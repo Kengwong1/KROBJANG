@@ -2,187 +2,162 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ข่าวกีฬา - ครบจังดอทคอม</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ครบจังดอทคอม - ข่าวกีฬา</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet" />
     <style>
-        /* CSS ที่ใช้ร่วมกับหน้าอื่นๆ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Kanit', sans-serif;
+            font-family: 'Noto Sans Thai', 'Kanit', sans-serif;
         }
+
         body {
-            background-color: #f0f2f5;
+            background: #f5f7fa;
             color: #333;
+            line-height: 1.6;
         }
+
+        /* Header Section */
         .header-container {
-            background-color: #004d99;
-            color: white;
+            background: #004080;
+            color: #fff;
             padding: 30px 20px;
             text-align: center;
         }
+
         .header-container h1 {
             font-size: 2.5em;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
+
         .header-container p {
             font-size: 1.2em;
+            opacity: 0.9;
         }
+
+        /* Navigation Bar */
         .main-nav {
-            background-color: white;
-            padding: 10px 20px;
+            background: #fff;
+            padding: 12px 20px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin: 20px;
         }
+
         .main-nav a {
             text-decoration: none;
             color: #333;
-            font-weight: bold;
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: background-color 0.3s, color 0.3s;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: 0.3s;
         }
-        .main-nav a:hover, .main-nav a.active {
-            background-color: #0066cc;
-            color: white;
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: #0066cc;
+            color: #fff;
         }
+
+        /* Main Content Section */
         .container {
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 20px auto;
             padding: 0 20px;
         }
+
         .section {
-            background: white;
+            background: #fff;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
+
         .section h2 {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #d90000;
-            font-size: 1.8em;
-            border-bottom: 3px solid #d90000;
-            padding-bottom: 10px;
+            font-size: 1.7em;
+            border-bottom: 2px solid #e0e0e0;
             display: inline-block;
         }
-        .footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-        /* สไตล์เฉพาะหน้านี้ */
-        .highlight-news {
-            background-color: #f9f9f9;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .highlight-news img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 8px;
-        }
-        .highlight-content {
-            flex: 1;
-            min-width: 300px;
-        }
-        .highlight-content h3 {
-            font-size: 2em;
-            color: #004d99;
-            margin-bottom: 10px;
-        }
-        .highlight-content p {
-            font-size: 1.1em;
-            color: #555;
-        }
-        .highlight-content a {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #d90000;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .highlight-content a:hover {
-            background-color: #b30000;
-        }
+
+        /* News Grid and Card */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
         }
+
         .news-card {
-            background: white;
-            border-radius: 8px;
+            background: #f9f9f9;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             text-decoration: none;
             color: #333;
             display: flex;
             flex-direction: column;
+            transition: 0.3s;
         }
+
         .news-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
         }
+
         .news-card img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
         }
+
         .news-content {
-            padding: 20px;
+            padding: 10px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
+
         .news-content h3 {
-            font-size: 1.5em;
+            font-size: 1.1em;
+            margin-bottom: 5px;
             color: #004d99;
-            margin-bottom: 10px;
         }
+
         .news-content p {
-            font-size: 1em;
+            font-size: 0.9em;
             color: #555;
             flex-grow: 1;
         }
-        .news-content a {
-            display: block;
-            margin-top: 15px;
-            color: #d90000;
-            font-weight: bold;
-            transition: color 0.3s;
+
+        /* Footer Section */
+        footer {
+            text-align:center;
+            background:#222;
+            color:#fff;
+            padding:15px;
         }
-        .news-content a:hover {
-            color: #b30000;
-        }
-        .ads {
-            text-align: center;
-            margin-bottom: 20px;
+
+        @media screen and (max-width: 768px) {
+            .news-card img {
+                height: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header-container">
         <h1>ครบจังดอทคอม</h1>
-        <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
+        <p>ข่าวสารไทยครบทุกหมวด อัปเดตอัตโนมัติทุกวัน</p>
     </header>
+
     <nav class="main-nav">
         <a href="index.html">หน้าแรก</a>
         <a href="news.html">ข่าว</a>
@@ -192,119 +167,69 @@
         <a href="video.html">วีดีโอ</a>
         <a href="games.html">เกมส์</a>
         <a href="marketplace.html">ซื้อ-ขาย</a>
-        <a href="booking.html">จองออนไลน์</a>
+        <a href="ai.html">AI</a>
         <a href="contact.html">ติดต่อเรา</a>
     </nav>
+
     <div class="container">
-        <div class="ads">
-        </div>
         <div class="section">
             <h2>🏆 ข่าวกีฬา</h2>
-            <div id="sport-news-container">
-                <p>กำลังโหลดข่าว...</p>
-            </div>
-        </div>
-        <div class="ads">
+            <div id="news-container" class="news-grid">กำลังโหลดข่าว...</div>
         </div>
     </div>
-    <footer class="footer">
-        <p>&copy; 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+
+    <footer>
+        © 2025 ครบจังดอทคอม | Powered by RSS ข่าวไทย
     </footer>
+
     <script>
-        // โค้ดสำหรับให้เมนู Active อัตโนมัติ
-        document.addEventListener("DOMContentLoaded", function () {
-            const currentPage = window.location.pathname.split("/").pop();
-            const menuLinks = document.querySelectorAll(".main-nav a");
-
-            menuLinks.forEach(link => {
-                const linkPage = link.getAttribute("href");
-                if (linkPage === currentPage || (currentPage === "" && linkPage === "index.html")) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
-        });
-
-        // โค้ดเดิมสำหรับโหลดข่าวกีฬา
         document.addEventListener("DOMContentLoaded", function() {
-            fetchSportNews();
-        });
+            const container = document.getElementById('news-container');
+            const rssUrl = "https://www.thairath.co.th/rss/sport";
 
-        async function fetchSportNews() {
-            const sportNewsContainer = document.getElementById('sport-news-container');
-            const rssUrl = 'https://www.bangkokpost.com/rss/data/sports.xml'; // Bangkok Post Sports RSS
-            const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
+                .then(res => res.json())
+                .then(data => {
+                    const items = data.items.slice(0, 24); // เปลี่ยนเป็นแสดง 24 ข่าวล่าสุด
+                    container.innerHTML = "";
 
-            try {
-                const response = await fetch(proxyUrl + encodeURIComponent(rssUrl));
-                const data = await response.json();
-
-                if (data.status === 'ok') {
-                    sportNewsContainer.innerHTML = ''; // เคลียร์เนื้อหาเดิม
-
-                    // ข่าวเด่น 1 ชิ้น
-                    const highlightItem = data.items[0];
-                    let highlightImg = 'images/sport_placeholder.png';
-                    if (highlightItem.enclosure && highlightItem.enclosure.link) {
-                        highlightImg = highlightItem.enclosure.link;
-                    } else if (highlightItem.thumbnail) {
-                        highlightImg = highlightItem.thumbnail;
+                    if (items.length === 0) {
+                        container.innerHTML = "<p>ไม่พบข่าว</p>";
+                        return;
                     }
-                    
-                    const highlightHtml = `
-                        <div class="highlight-news">
-                            <img src="${highlightImg}" alt="${highlightItem.title}">
-                            <div class="highlight-content">
-                                <h3>${highlightItem.title}</h3>
-                                <p>${highlightItem.description.replace(/<[^>]+>/g, '').substring(0, 200)}...</p>
-                                <a href="${highlightItem.link}" target="_blank">อ่านเพิ่มเติม</a>
-                            </div>
-                        </div>
-                    `;
-                    sportNewsContainer.innerHTML += highlightHtml;
 
-                    // ข่าวรองอีก 5 ชิ้น
-                    const newsGrid = document.createElement('div');
-                    newsGrid.className = 'news-grid';
-
-                    data.items.slice(1, 6).forEach(item => {
-                        let imgSrc = 'images/sport_placeholder.png';
+                    items.forEach(item => {
+                        let imgSrc = "";
                         if (item.enclosure && item.enclosure.link) {
                             imgSrc = item.enclosure.link;
                         } else if (item.thumbnail) {
                             imgSrc = item.thumbnail;
+                        } else {
+                            const match = item.description.match(/<img.*?src="(.*?)"/);
+                            imgSrc = match ? match[1] : "https://via.placeholder.com/400x200/004d99/ffffff?text=ข่าว";
                         }
+                        
+                        const cleanDesc = item.description.replace(/<[^>]+>/g, "").substring(0, 100) + "...";
 
-                        const newsCard = document.createElement('a');
-                        newsCard.href = item.link;
-                        newsCard.className = 'news-card';
-                        newsCard.target = '_blank'; // เปิดลิงก์ในแท็บใหม่
-
-                        newsCard.innerHTML = `
+                        const card = document.createElement('a');
+                        card.href = item.link;
+                        card.target = "_blank";
+                        card.className = "news-card";
+                        card.innerHTML = `
                             <img src="${imgSrc}" alt="${item.title}">
                             <div class="news-content">
                                 <h3>${item.title}</h3>
-                                <p>${item.description.replace(/<[^>]+>/g, '').substring(0, 100)}...</p>
-                                <span class="news-readmore">อ่านต่อ ></span>
+                                <p>${cleanDesc}</p>
                             </div>
                         `;
-                        newsGrid.appendChild(newsCard);
+                        container.appendChild(card);
                     });
-                    sportNewsContainer.appendChild(newsGrid);
-
-                } else {
-                    sportNewsContainer.innerHTML = '<p>ไม่สามารถโหลดข่าวได้ในขณะนี้</p>';
-                }
-            } catch (error) {
-                console.error('Error fetching sport news:', error);
-                sportNewsContainer.innerHTML = '<p>เกิดข้อผิดพลาดในการเชื่อมต่อ</p>';
-            }
-        }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
+                })
+                .catch(err => {
+                    container.innerHTML = "<p>ไม่สามารถโหลดข่าวได้ 😢</p>";
+                    console.error("Error fetching RSS feed:", err);
+                });
+        });
     </script>
 </body>
 </html>

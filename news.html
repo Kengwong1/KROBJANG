@@ -1,95 +1,233 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8" />
-    <title>ครบ​จังดอทคอม - ข่าว</title>
-    <style>
-        body { margin: 0; font-family: 'Sarabun', Arial, sans-serif; background: #f3f4f6; }
-        header { background: #0857c5; color: white; text-align: center; padding: 32px 0 12px 0; }
-        .subtitle { font-size: 16px; margin-top: 6px; }
-        nav { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-        nav ul { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        nav ul li { margin: 0 22px; }
-        nav ul li a { color: #222; text-decoration: none; font-weight: 500; font-size: 17px; transition: color 0.18s; }
-        nav ul li a:hover { color: #0857c5; }
-        .news-container {
-            max-width: 800px;
-            margin: 36px auto;
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 2px 12px #e7e7e7;
-            padding: 24px 32px 32px 32px;
-        }
-        h2 {
-            color: #e21b1b;
-            font-weight: 700;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-        }
-        h2 .icon {
-            font-size: 28px;
-            margin-right: 10px;
-        }
-        article {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 18px;
-            margin-bottom: 18px;
-        }
-        article:last-child {
-            border:none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        article h3 {
-            margin: 0 0 6px 0;
-            color: #0857c5;
-        }
-        article p {
-            margin: 0;
-            color: #444;
-            line-height: 1.5;
-        }
-        footer { background: #181818; color: #fafafa; text-align: center; padding: 16px 0 6px 0; margin-top: 60px; }
-        footer a { color: #fafafa; text-decoration: underline; margin-left: 6px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ข่าวทั้งหมด - ครบจังดอทคอม</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Noto Sans Thai','Kanit',sans-serif; }
+    body { background:#f5f7fa; color:#333; line-height:1.6; }
+
+    .header-container {
+      background:#004080;
+      color:#fff;
+      padding:30px 20px;
+      text-align:center;
+    }
+
+    .header-container h1 {
+      font-size:2.2em;
+      margin-bottom:8px;
+    }
+
+    .main-nav {
+      background:#fff;
+      padding:12px 20px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      border-radius:12px;
+      margin:20px;
+    }
+
+    .main-nav a {
+      text-decoration:none;
+      color:#333;
+      font-weight:600;
+      padding:10px 15px;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background:#0066cc;
+      color:#fff;
+    }
+
+    .container {
+      max-width:1200px;
+      margin:20px auto;
+      padding:0 20px;
+    }
+
+    .section {
+      background:#fff;
+      padding:20px;
+      border-radius:12px;
+      margin-bottom:30px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+      margin-bottom:15px;
+      font-size:1.6em;
+      color:#004080;
+      border-bottom:2px solid #e0e0e0;
+      display:inline-block;
+    }
+
+    .news-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:20px;
+    }
+
+    .news-card {
+      background:#f9f9f9;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      text-decoration:none;
+      color:#333;
+      display:flex;
+      flex-direction:column;
+      transition:0.3s;
+    }
+
+    .news-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .news-card img {
+      width:100%;
+      height:160px;
+      object-fit:cover;
+    }
+
+    .news-content {
+      padding:12px;
+      flex-grow:1;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .news-content h3 {
+      font-size:1.1em;
+      margin-bottom:6px;
+      color:#004d99;
+    }
+
+    .news-content p {
+      font-size:0.9em;
+      color:#555;
+      flex-grow:1;
+    }
+
+    footer {
+      text-align:center;
+      background:#222;
+      color:#fff;
+      padding:15px;
+    }
+
+    @media screen and (max-width:768px) {
+      .news-card img { height:120px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>ครบ​จังดอทคอม</h1>
-        <div class="subtitle">ข่าว เทค บันเทิง โฮท ไลฟ์สไตล์ ครบ​จบ​ใน​เว็บเดียว</div>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="home.html">หน้าแรก</a></li>
-            <li><a href="news.html">ข่าว</a></li>
-            <li><a href="lottery.html">ตรวจหวย</a></li>
-            <li><a href="horoscope.html">ดูดวง</a></li>
-            <li><a href="sport.html">กีฬา</a></li>
-            <li><a href="video.html">วีดีโอ</a></li>
-            <li><a href="game.html">เกมส์</a></li>
-            <li><a href="market.html">ซื้อ-ขาย</a></li>
-            <li><a href="booking.html">จองออนไลน์</a></li>
-            <li><a href="contact.html">ติดต่อเรา</a></li>
-        </ul>
-    </nav>
-    <section class="news-container">
-        <h2><span class="icon">📰</span> ข่าวล่าสุด</h2>
-        <article>
-            <h3>หัวข้อข่าวที่ 1</h3>
-            <p>รายละเอียดโดยย่อของข่าวที่ 1 เพื่อให้ผู้ใช้มีข้อมูลเบื้องต้นก่อนคลิกอ่านรายละเอียดเพิ่มเติม...</p>
-        </article>
-        <article>
-            <h3>หัวข้อข่าวที่ 2</h3>
-            <p>รายละเอียดโดยย่อของข่าวที่ 2 พร้อมข้อมูลทั่วไปที่น่าสนใจและดึงดูดผู้ชม...</p>
-        </article>
-        <article>
-            <h3>หัวข้อข่าวที่ 3</h3>
-            <p>ข่าวสารอัพเดทล่าสุดที่กำลังเป็นที่สนใจ พร้อมสรุปเนื้อหาเบื้องต้นอย่างกระชับ...</p>
-        </article>
-    </section>
-    <footer>
-        © 2025 ครบ​จังดอทคอม | <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>
-    </footer>
+  <header class="header-container">
+    <h1>ข่าวทั้งหมดจากทุกหมวด</h1>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html">หน้าแรก</a>
+    <a href="news.html" class="active">ข่าว</a>
+    <a href="lotto.html">ตรวจหวย</a>
+    <a href="horoscope.html">ดูดวง</a>
+    <a href="sport.html">กีฬา</a>
+    <a href="video.html">วีดีโอ</a>
+    <a href="games.html">เกมส์</a>
+    <a href="marketplace.html">ซื้อ-ขาย</a>
+    <a href="ai.html">AI</a>
+    <a href="contact.html">ติดต่อเรา</a>
+  </nav>
+
+  <div class="container">
+    <div class="section" id="general">
+      <h2>📰 ข่าวทั่วไป</h2>
+      <div id="general-news" class="news-grid">กำลังโหลด...</div>
+    </div>
+
+    <div class="section" id="economy">
+      <h2>📈 ข่าวเศรษฐกิจ</h2>
+      <div id="economy-news" class="news-grid">กำลังโหลด...</div>
+    </div>
+
+    <div class="section" id="finance">
+      <h2>💰 ข่าวการเงิน</h2>
+      <div id="finance-news" class="news-grid">กำลังโหลด...</div>
+    </div>
+
+    <div class="section" id="marketing">
+      <h2>🛍️ ธุรกิจ-การตลาด</h2>
+      <div id="marketing-news" class="news-grid">กำลังโหลด...</div>
+    </div>
+
+    <div class="section" id="ict">
+      <h2>🤖 เทคโนโลยี / AI</h2>
+      <div id="ict-news" class="news-grid">กำลังโหลด...</div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 ครบจังดอทคอม | รวมข่าวจาก RSS ประชาชาติธุรกิจ
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const feeds = {
+        general: 'https://www.prachachat.net/feed',
+        economy: 'https://www.prachachat.net/economy/feed',
+        finance: 'https://www.prachachat.net/finance/feed',
+        marketing: 'https://www.prachachat.net/marketing/feed',
+        ict: 'https://www.prachachat.net/ict/feed'
+      };
+
+      const containers = {
+        general: document.getElementById('general-news'),
+        economy: document.getElementById('economy-news'),
+        finance: document.getElementById('finance-news'),
+        marketing: document.getElementById('marketing-news'),
+        ict: document.getElementById('ict-news')
+      };
+
+      function loadFeed(category, url) {
+        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`)
+          .then(res => res.json())
+          .then(data => {
+            const items = data.items.slice(0, 6);
+            containers[category].innerHTML = '';
+            items.forEach(item => {
+              const card = document.createElement('a');
+              card.href = item.link;
+              card.target = '_blank';
+              card.className = 'news-card';
+              card.innerHTML = `
+                <img src="${item.thumbnail || 'https://via.placeholder.com/400x200/004d99/ffffff?text=ข่าว'}" alt="${item.title}">
+                <div class="news-content">
+                  <h3>${item.title}</h3>
+                  <p>${item.description.slice(0, 100)}...</p>
+                </div>
+              `;
+              containers[category].appendChild(card);
+            });
+          })
+          .catch(err => {
+            containers[category].innerHTML = '<p>ไม่สามารถโหลดข่าวได้</p>';
+            console.error(err);
+          });
+      }
+
+      for (const cat in feeds) {
+        loadFeed(cat, feeds[cat]);
+      }
+    });
+  </script>
 </body>
 </html>
