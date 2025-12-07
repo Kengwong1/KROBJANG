@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ศูนย์รวมข่าวสาร คำแนะนำ และแนวทางการลงทุน ไม่ว่าจะเป็นหุ้น, กองทุน, คริปโตเคอร์เรนซี พร้อมเทคนิคการบริหารเงินให้เกิดผลตอบแทนสูงสุด">
+    <meta name="robots" content="index, follow">
+    <title>การเงิน - ลงทุน, คริปโต, คำแนะนำ | ครบจังดอทคอม</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+
+    <!-- Google Fonts (Sarabun) -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap&font-display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (Free v6.5.0) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand: #0d47a1;
+            --accent: #1565c0;
+            --bg: #f4f6f9;
+            --card: #fff;
+            --text: #222;
+            --text-secondary: #666;
+            --border: #e0e0e0;
+            --highlight: #ff9800;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Sarabun", system-ui, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header {
+            background: var(--brand);
+            color: #fff;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 { margin: 0; font-size: 24px; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+        /* === ICON HOVER EFFECT === */
+        .icon-hover {
+            transition: all 0.25s ease;
+        }
+        .icon-hover:hover {
+            transform: scale(1.15);
+        }
+
+        nav.main-nav {
+            background: #fff;
+            padding: 10px 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+        nav.main-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9em;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
+            transition: background 0.25s ease;
+        }
+        nav.main-nav a:hover {
+            background: #f0f5ff;
+        }
+        nav.main-nav a i {
+            min-width: 18px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        nav.main-nav a.active,
+        nav.main-nav a:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .section {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            margin: 0 0 12px;
+            color: var(--brand);
+            font-size: 1.35em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section h2::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .section p.intro-text {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 1.15em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card p { color: var(--text-secondary); margin-bottom: 10px; }
+
+        /* YouTube section */
+        .youtube-embed {
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .youtube-embed iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .ad-section {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .ad-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .ad-placeholder {
+            background: #f9f9f9;
+            padding: 16px;
+            text-align: center;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: var(--brand);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main { grid-template-columns: 1fr; }
+            nav.main-nav { padding: 8px; }
+            nav.main-nav a { padding: 7px 10px; font-size: 0.83em; }
+            .sidebar { order: -1; } /* sidebar ขึ้นบนในมือถือ */
+            header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-coins icon-hover" style="color:#FFD166"></i> การเงิน & การลงทุน</h1>
+</header>
+
+<nav class="main-nav" aria-label="เมนูหลัก">
+    <a href="index.html"><i class="fas fa-home icon-hover" style="color:#45B7D1"></i> หน้าแรก</a>
+    <a href="news.html"><i class="fas fa-newspaper icon-hover" style="color:#FF6B6B"></i> ข่าว</a>
+    <a href="lotto.html"><i class="fas fa-ticket-alt icon-hover" style="color:#FFD166"></i> ตรวจหวย</a>
+    <a href="horoscope.html"><i class="fas fa-star icon-hover" style="color:#6A4C93"></i> ดูดวง</a>
+    <a href="sport.html"><i class="fas fa-futbol icon-hover" style="color:#E76F51"></i> กีฬา</a>
+    <a href="video.html"><i class="fas fa-video icon-hover" style="color:#FF9F1C"></i> วีดีโอ</a>
+    <a href="ai.html"><i class="fas fa-robot icon-hover" style="color:#2EC4B6"></i> AI</a>
+    <a href="games.html"><i class="fas fa-gamepad icon-hover" style="color:#E76F51"></i> เกมส์</a>
+    <a href="shopping.html"><i class="fas fa-shopping-cart icon-hover" style="color:#4ECDC4"></i> ช้อปปิ้ง</a>
+    <a href="booking.html"><i class="fas fa-plane icon-hover" style="color:#45B7D1"></i> ท่องเที่ยว</a>
+    <a href="contact.html"><i class="fas fa-envelope icon-hover" style="color:#6A4C93"></i> ติดต่อเรา</a>
+</nav>
+
+<main>
+    <div class="content-area">
+        <div class="section">
+            <h2><i class="fas fa-chart-line icon-hover" style="color:#FFD166;"></i> เริ่มต้นการเงินและการลงทุน</h2>
+            <p class="intro-text">
+                ยินดีต้อนรับสู่ศูนย์รวมความรู้ด้านการเงินและการลงทุน ไม่ว่าคุณจะเป็นมือใหม่หรือผู้เชี่ยวชาญ เราจะพาคุณเข้าใจพื้นฐาน กลยุทธ์ และโอกาสในการสร้างรายได้จากเงินของคุณ
+            </p>
+        </div>
+
+        <!-- หมวดหมู่หลัก -->
+        <div class="section">
+            <h2><i class="fas fa-folder-open icon-hover" style="color:#FF6B6B;"></i> หมวดหมู่หลัก</h2>
+            <div class="card-grid">
+                <a href="investment-guide.html" class="card">
+                    <h3><i class="fas fa-chart-bar icon-hover" style="color:#FFD166;"></i> การลงทุนเบื้องต้น</h3>
+                    <p>เรียนรู้พื้นฐานการลงทุน หุ้น, กองทุน, พันธบัตร</p>
+                </a>
+                <a href="crypto-guide.html" class="card">
+                    <h3><i class="fab fa-bitcoin icon-hover" style="color:#FF9F1C;"></i> คริปโตเคอร์เรนซี</h3>
+                    <p>เริ่มต้นกับ Bitcoin, Ethereum และเหรียญอื่นๆ</p>
+                </a>
+                <a href="saving-tips.html" class="card">
+                    <h3><i class="fas fa-piggy-bank icon-hover" style="color:#2EC4B6;"></i> เคล็ดลับการออม</h3>
+                    <p>วิธีออมเงินอย่างมีประสิทธิภาพ</p>
+                </a>
+                <a href="budgeting.html" class="card">
+                    <h3><i class="fas fa-calculator icon-hover" style="color:#FF6B6B;"></i> การวางแผนการเงิน</h3>
+                    <p>ทำงบประมาณ, ลดหนี้, สร้างความมั่งคั่ง</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- หัวข้อเด่น -->
+        <div class="section">
+            <h2><i class="fas fa-fire icon-hover" style="color:#FF9F1C;"></i> หัวข้อเด่น</h2>
+            <div class="card-grid">
+                <a href="stock-market-trends.html" class="card">
+                    <h3><i class="fas fa-arrow-trend-up icon-hover" style="color:#FFD166;"></i> แนวโน้มตลาดหุ้น 2025</h3>
+                    <p>สิ่งที่คุณควรรู้ก่อนลงทุน</p>
+                </a>
+                <a href="crypto-predictions.html" class="card">
+                    <h3><i class="fas fa-coins icon-hover" style="color:#FF9F1C;"></i> คาดการณ์ราคาคริปโต 2025</h3>
+                    <p>วิเคราะห์จากผู้เชี่ยวชาญ</p>
+                </a>
+                <a href="best-funds-2025.html" class="card">
+                    <h3><i class="fas fa-wallet icon-hover" style="color:#4ECDC4;"></i> กองทุนรวมที่ดีที่สุด 2025</h3>
+                    <p>เลือกกองทุนให้เหมาะกับเป้าหมาย</p>
+                </a>
+                <a href="passive-income.html" class="card">
+                    <h3><i class="fas fa-hand-holding-dollar icon-hover" style="color:#2EC4B6;"></i> สร้างรายได้แบบพาสซีฟ</h3>
+                    <p>วิธีทำให้เงินทำงานให้คุณ</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- วิดีโอแนะนำ -->
+        <div class="section">
+            <h2><i class="fab fa-youtube icon-hover" style="color:#E76F51;"></i> วิดีโอแนะนำ</h2>
+            <div class="card youtube-embed">
+                <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+                    title="วิดีโอแนะนำการลงทุน"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- บทความแนะนำ -->
+        <div class="section">
+            <h2><i class="fas fa-book-open icon-hover" style="color:#2EC4B6;"></i> บทความแนะนำ</h2>
+            <div class="card-grid">
+                <a href="how-to-start-investing.html" class="card">
+                    <h3><i class="fas fa-graduation-cap icon-hover" style="color:#FF6B6B;"></i> วิธีเริ่มต้นลงทุนสำหรับมือใหม่</h3>
+                    <p>ขั้นตอนง่ายๆ ที่คุณทำตามได้</p>
+                </a>
+                <a href="avoid-crypto-scams.html" class="card">
+                    <h3><i class="fas fa-shield-alt icon-hover" style="color:#E76F51;"></i> วิธีหลีกเลี่ยงการถูกโกงคริปโต</h3>
+                    <p>รู้ทันมิจฉาชีพในโลกดิจิทัล</p>
+                </a>
+                <a href="tax-for-investors.html" class="card">
+                    <h3><i class="fas fa-file-invoice-dollar icon-hover" style="color:#6A4C93;"></i> ภาษีสำหรับนักลงทุน</h3>
+                    <p>เข้าใจกฎหมายเพื่อไม่เสียภาษีเกิน</p>
+                </a>
+                <a href="financial-goals.html" class="card">
+                    <h3><i class="fas fa-bullseye icon-hover" style="color:#45B7D1;"></i> ตั้งเป้าหมายทางการเงิน</h3>
+                    <p>ทำให้ฝันของคุณกลายเป็นจริง</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <!-- AdSense -->
+        <div class="ad-section">
+            <h2><i class="fas fa-ad icon-hover" style="color:#FF6B6B;"></i> สนับสนุนเว็บไซต์</h2>
+            <div style="text-align:center;">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2068902667667616"
+                    data-ad-slot="1706997713"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="ad-placeholder">
+                🔗 แนะนำผลิตภัณฑ์การเงินคุณภาพ (Affiliate)
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="ad-section">
+            <h2><i class="fas fa-coffee icon-hover" style="color:#FFD166;"></i> สนับสนุนเรา</h2>
+            <div class="card" style="text-align:center;">
+                <p>หากเนื้อหาช่วยคุณได้ ช่วย “จารเก่ง” ได้นะครับ 🙏</p>
+                <img 
+                    src="images/promptpay.png" 
+                    alt="สแกนจ่ายผ่านพร้อมเพย์ - ครบจังดอทคอม" 
+                    loading="lazy"
+                    style="width:100%; max-width:150px; display:block; margin:0 auto; border-radius:8px;">
+                <small style="display:block; margin-top:8px; color:var(--text-secondary);">
+                    สแกนเพื่ออุดหนุนทีมงาน
+                </small>
+            </div>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    &copy; 2025 <strong>ครบจังดอทคอม</strong> — krobjang.com  
+    <br>สร้างด้วย ❤️ โดย <span style="color:#FFD166; font-weight:600">จารเก่ง</span>
+</footer>
+
+<!-- AdSense script (แนะนำให้ย้ายไป <head> ใน production) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>
