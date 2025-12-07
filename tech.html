@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เทคโนโลยี - ครบจังดอทคอม</title>
+    <meta name="description" content="ศูนย์รวมข่าวสารและรีวิวเทคโนโลยีใหม่ล่าสุด ไม่ว่าจะเป็น AI, Gadget, Software, สมาร์ทโฟน, แท็บเล็ต, โน้ตบุ๊ค และอุปกรณ์ไอทีทุกประเภท">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --brand: #0d47a1;
+            --accent: #1565c0;
+            --bg: #f4f6f9;
+            --card: #fff;
+            --text: #222;
+            --text-secondary: #666;
+            --border: #e0e0e0;
+            --highlight: #ff9800;
+            --gradient-start: #4facfe;
+            --gradient-end: #00f2fe;
+        }
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            flex: 1;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Nav */
+        nav.main-nav {
+            background: #fff;
+            padding: 10px 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+        nav.main-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            min-width: 80px;
+            text-align: center;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        nav.main-nav a.active, nav.main-nav a:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+        .mobile-nav a {
+            padding: 14px 20px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mobile-nav a:hover {
+            background: #f5f5f5;
+        }
+        .mobile-nav a:last-child { border: none; }
+
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Section */
+        .section {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            margin: 0 0 12px;
+            color: var(--brand);
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section h2::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .section p.intro {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .category-card {
+            background: linear-gradient(145deg, #f0f5ff, #ffffff);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .category-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            transition: width 0.5s ease;
+            z-index: -1;
+        }
+        .category-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+        .category-card:hover:before {
+            width: 100%;
+        }
+        .category-card .icon-wrapper {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 12px;
+        }
+        .category-card h3 {
+            color: var(--brand);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .category-card p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .ad-section {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .ad-section h2 {
+            color: var(--highlight);
+        }
+        .ad-placeholder {
+            background: #eee;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 10px;
+        }
+        .support-card {
+            background: var(--card);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .support-card h3 {
+            margin: 0 0 10px;
+            font-size: 1em;
+            color: var(--brand);
+        }
+        .qr-code {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 10px auto 0;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .social-links a {
+            display: block;
+            margin: 5px 0;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        footer {
+            background: var(--brand);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85em;
+        }
+
+        @media(max-width:768px) {
+            nav.main-nav { display: none; }
+            .mobile-nav.active { display: flex; }
+            .menu-toggle { display: block; }
+            header { padding: 12px 16px; font-size: 18px; }
+            main { grid-template-columns: 1fr; padding: 0 12px; }
+            .category-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <h1>เทคโนโลยี</h1>
+        <div style="width: 24px;"></div>
+    </header>
+
+    <!-- Desktop Navigation -->
+    <nav class="main-nav">
+        <a href="index.html">
+            <i class="fas fa-home" style="color: #45B7D1;"></i>
+            หน้าแรก
+        </a>
+        <a href="news.html">
+            <i class="fas fa-newspaper" style="color: #FF6B6B;"></i>
+            ข่าว
+        </a>
+        <a href="lotto.html">
+            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i>
+            หวย
+        </a>
+        <a href="horoscope.html">
+            <i class="fas fa-star" style="color: #6A4C93;"></i>
+            ดูดวง
+        </a>
+        <a href="sport.html">
+            <i class="fas fa-futbol" style="color: #E76F51;"></i>
+            กีฬา
+        </a>
+        <a href="video.html">
+            <i class="fas fa-video" style="color: #FF9F1C;"></i>
+            วีดีโอ
+        </a>
+        <a href="ai.html">
+            <i class="fas fa-robot" style="color: #2EC4B6;"></i>
+            AI
+        </a>
+        <a href="games.html">
+            <i class="fas fa-gamepad" style="color: #E76F51;"></i>
+            เกมส์
+        </a>
+        <a href="shopping.html">
+            <i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i>
+            ช้อป
+        </a>
+        <a href="booking.html">
+            <i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i>
+            ท่องเที่ยว
+        </a>
+        <a href="contact.html">
+            <i class="fas fa-address-card" style="color: #6A4C93;"></i>
+            ติดต่อเรา
+        </a>
+        <a href="tech.html" class="active">
+            <i class="fas fa-microchip" style="color: #FF6B6B;"></i>
+            เทคโนโลยี
+        </a>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">
+            <i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i>
+            หน้าแรก
+        </a>
+        <a href="news.html">
+            <i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i>
+            ข่าว
+        </a>
+        <a href="lotto.html">
+            <i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i>
+            หวย
+        </a>
+        <a href="horoscope.html">
+            <i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i>
+            ดูดวง
+        </a>
+        <a href="sport.html">
+            <i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i>
+            กีฬา
+        </a>
+        <a href="video.html">
+            <i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i>
+            วีดีโอ
+        </a>
+        <a href="ai.html">
+            <i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i>
+            AI
+        </a>
+        <a href="games.html">
+            <i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i>
+            เกมส์
+        </a>
+        <a href="shopping.html">
+            <i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i>
+            ช้อป
+        </a>
+        <a href="booking.html">
+            <i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i>
+            ท่องเที่ยว
+        </a>
+        <a href="contact.html">
+            <i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i>
+            ติดต่อเรา
+        </a>
+        <a href="tech.html" class="active">
+            <i class="fas fa-microchip" style="color: #FF6B6B; margin-right: 8px;"></i>
+            เทคโนโลยี
+        </a>
+    </div>
+
+    <main>
+        <div class="content-area">
+            <div class="section">
+                <h2>📱 เทคโนโลยี ไอที แกดเจ็ต</h2>
+                <p class="intro">
+                    ค้นหาข้อมูล รีวิว และข่าวสารล่าสุดเกี่ยวกับเทคโนโลยี ไม่ว่าจะเป็น AI, สมาร์ทโฟน, แท็บเล็ต, โน้ตบุ๊ค, ซอฟต์แวร์ หรืออุปกรณ์ไอทีใหม่ๆ
+                </p>
+            </div>
+
+            <!-- หมวดหมู่หลัก -->
+            <div class="section">
+                <h2>หมวดหมู่หลัก</h2>
+                <div class="category-grid">
+                    <a href="ai.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#2EC4B6">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3>AI, Gadget, Software</h3>
+                        <p>เครื่องมือ AI, อุปกรณ์ไอที, โปรแกรม</p>
+                    </a>
+                    <a href="gadgets.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#FF6B6B">
+                                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                            </svg>
+                        </div>
+                        <h3>สมาร์ทโฟน, แท็บเล็ต, โน้ตบุ๊ค</h3>
+                        <p>รีวิว, ราคา, แนะนำรุ่นใหม่</p>
+                    </a>
+                    <a href="software.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#FFD166">
+                                <path d="M18 2h-8L8.5 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-2.5L14 2h-4zM12 7c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-3 6v-2h6v2H9z"/>
+                            </svg>
+                        </div>
+                        <h3>ซอฟต์แวร์ & แอปพลิเคชัน</h3>
+                        <p>โปรแกรม, แอป, ระบบปฏิบัติการ</p>
+                    </a>
+                    <a href="reviews.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#FF9F1C">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>รีวิว & แนะนำ</h3>
+                        <p>รีวิวสินค้า, ไอเดียใช้งาน</p>
+                    </a>
+                    <a href="tips-tricks.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#6A4C93">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3>เทคนิค & ทริค</h3>
+                        <p>เคล็ดลับการใช้งาน, แก้ไขปัญหา</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- หมวดหมู่ย่อย -->
+            <div class="section">
+                <h2>หมวดหมู่ย่อย</h2>
+                <div class="category-grid">
+                    <a href="ai-tools-review.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#45B7D1">
+                                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-12H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                            </svg>
+                        </div>
+                        <h3>รีวิว AI Tools</h3>
+                        <p>เปรียบเทียบ, วิธีใช้งาน, รายได้</p>
+                    </a>
+                    <a href="gadgets-reviews.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#E76F51">
+                                <path d="M12 2c-1.1 0-2 .9-2 2 0 .04.01.08.01.12L10 6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-1.88c0-.04.01-.08.01-.12 0-1.1-.9-2-2-2zm4 14H8v4h8v-4z"/>
+                            </svg>
+                        </div>
+                        <h3>รีวิวแกดเจ็ต</h3>
+                        <p>โทรศัพท์, นาฬิกา, หูฟัง</p>
+                    </a>
+                    <a href="software-tutorials.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#4ECDC4">
+                                <path d="M8 20v-2h8v2H8zm0-4v-2h8v2H8zm-2-9V6c0-.55.45-1 1-1h8c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1zm2 0h6V6H8v1z"/>
+                            </svg>
+                        </div>
+                        <h3>วิธีใช้ซอฟต์แวร์</h3>
+                        <p>คู่มือ, วิดีโอ, ขั้นตอน</p>
+                    </a>
+                    <a href="mobile-games.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#E76F51">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>เกมมือถือ</h3>
+                        <p>เกมใหม่, แนะนำ, วิธีเล่น</p>
+                    </a>
+                    <a href="pc-games.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#45B7D1">
+                                <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                            </svg>
+                        </div>
+                        <h3>เกม PC</h3>
+                        <p>เกมใหม่, รีวิว, ฮาร์ดแวร์</p>
+                    </a>
+                    <a href="ai-ml-guide.html" class="category-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="#2EC4B6">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3>AI & ML</h3>
+                        <p>ความรู้เบื้องต้น, การใช้งาน</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="ad-section">
+                <h2>💰 สนับสนุนเว็บไซต์</h2>
+                <div style="text-align:center;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-2068902667667616"
+                        data-ad-slot="1706997713"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมทผลิตภัณฑ์ไอที]</div>
+            </div>
+
+            <div class="ad-section">
+                <h2>☕ สนับสนุนเรา</h2>
+                <div class="support-card">
+                    <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+                </div>
+            </div>
+
+            <div class="ad-section">
+                <h2>📣 ติดตามเรา</h2>
+                <div class="support-card">
+                    <p>ติดตามข่าวสารและอัปเดตได้ที่</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">Facebook Page</a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">YouTube Channel</a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank">TikTok</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        &copy; 2025 ครบจังดอทคอม — All rights reserved.
+    </footer>
+
+    <script>
+        // 📱 Toggle Mobile Menu
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        });
+
+        // Close mobile menu
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>
