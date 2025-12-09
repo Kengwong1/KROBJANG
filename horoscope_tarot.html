@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ดูดวงไพ่ยิปซี - ครบจังดอทคอม</title>
+  <!-- ฟอนต์และไอคอนแบบเดียวกับ index.html -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --brand: #0d47a1;
+      --accent: #1565c0;
+      --bg: #f4f6f9;
+      --card: #fff;
+      --text: #222;
+      --text-secondary: #666;
+      --border: #e0e0e0;
+      --highlight: #ff9800;
+      --gradient-start: #4facfe;
+      --gradient-end: #00f2fe;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Sarabun", system-ui, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    header p {
+      font-size: 0.95em;
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    /* Navigation */
+    nav.main-nav {
+      background: #fff;
+      padding: 10px 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+    nav.main-nav a {
+      color: #333;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9em;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      min-width: 80px;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    nav.main-nav a.active, nav.main-nav a:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    nav.main-nav a i {
+      font-size: 16px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    /* Section */
+    .section {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 16px;
+      color: var(--brand);
+      font-size: 1.6em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .section h2 i {
+      color: var(--highlight);
+    }
+    .section p.desc {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      font-size: 1.05em;
+    }
+
+    /* Tarot Area */
+    .tarot-area {
+      text-align: center;
+      padding: 20px;
+    }
+
+    #tarot-card {
+      width: 240px;
+      height: 380px;
+      border: 3px solid var(--accent);
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: #f8f9fc;
+    }
+    #tarot-card:hover {
+      transform: scale(1.04) rotate(2deg);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    }
+
+    #draw-button {
+      margin-top: 24px;
+      padding: 12px 32px;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(69, 183, 209, 0.3);
+    }
+    #draw-button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 14px rgba(69, 183, 209, 0.5);
+    }
+    #draw-button:active {
+      transform: translateY(0);
+    }
+
+    #result-area {
+      margin-top: 32px;
+      background: linear-gradient(145deg, #f0f5ff, #ffffff);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      display: none;
+    }
+    #result-area h3 {
+      font-size: 1.8em;
+      color: var(--brand);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    #result-area h3 i {
+      color: var(--highlight);
+    }
+    #result-area p {
+      line-height: 1.7;
+      font-size: 1.05em;
+      color: var(--text-secondary);
+      text-align: justify;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--brand);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.85em;
+      margin-top: 30px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #tarot-card {
+        width: 200px;
+        height: 320px;
+      }
+      header h1 { font-size: 18px; }
+      nav.main-nav a { font-size: 0.85em; padding: 6px 10px; }
+    }
+    @media (max-width: 480px) {
+      #tarot-card {
+        width: 180px;
+        height: 290px;
+      }
+      .section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ครบจังดอทคอม</h1>
+    <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+    <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+    <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+    <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+    <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+    <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+    <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+    <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+    <a href="booking.html"><i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+    <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+      <h2><i class="fas fa-magic"></i> ดูดวงไพ่ยิปซี <i class="fas fa-magic"></i></h2>
+      <p class="desc">ตั้งจิตอธิษฐาน แล้วคลิกที่ไพ่เพื่อเปิดคำทำนายสำหรับวันนี้</p>
+
+      <div class="tarot-area">
+        <img id="tarot-card"
+             src="images/tarot_back.png"
+             alt="ด้านหลังไพ่"
+             onerror="this.src='https://via.placeholder.com/240x380/1565C0/FFFFFF?text=ไพ่ยิปซี'">
+        <button id="draw-button">เปิดไพ่</button>
+      </div>
+
+      <div id="result-area">
+        <h3 id="card-name"><i class="fas fa-scroll"></i> <span id="card-title">The Fool</span></h3>
+        <p id="card-meaning">เป็นไพ่แห่งการเริ่มต้นใหม่, การผจญภัย, และความไร้เดียงสา...</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      © 2025 ครบจังดอทคอม — All rights reserved.
+      | 
+      <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>
+      |
+      <a href="contact.html">ติดต่อเรา</a>
+    </p>
+  </footer>
+
+  <script>
+    const tarotCards = [
+      {
+        name: 'The Fool',
+        image: 'images/tarot_the_fool.png',
+        meaning: 'เป็นไพ่แห่งการเริ่มต้นใหม่, การผจญภัย, และความไร้เดียงสา อาจหมายถึงการก้าวเข้าสู่เส้นทางใหม่โดยไม่กลัวสิ่งใด'
+      },
+      {
+        name: 'The Magician',
+        image: 'images/tarot_the_magician.png',
+        meaning: 'เป็นไพ่แห่งพลังงาน, ความสามารถ, และความคิดสร้างสรรค์ บ่งบอกถึงการมีเครื่องมือและความสามารถในการสร้างสรรค์สิ่งต่างๆ ให้เป็นจริง'
+      },
+      {
+        name: 'The High Priestess',
+        image: 'images/tarot_the_high_priestess.png',
+        meaning: 'เป็นไพ่แห่งความรู้, ความเข้าใจ, และสัญชาตญาณที่ลึกซึ้ง บ่งบอกถึงการฟังเสียงจากภายในและเชื่อในลางสังหรณ์ของตนเอง'
+      },
+      {
+        name: 'The Empress',
+        image: 'images/tarot_the_empress.png',
+        meaning: 'เป็นไพ่แห่งความอุดมสมบูรณ์, การเลี้ยงดู, และความสุขในชีวิต อาจหมายถึงการเริ่มต้นครอบครัว การตั้งครรภ์ หรือความสำเร็จที่งดงาม'
+      },
+      {
+        name: 'The Emperor',
+        image: 'images/tarot_the_emperor.png',
+        meaning: 'เป็นไพ่แห่งอำนาจ, ความมั่นคง, และการควบคุม บ่งบอกถึงความเป็นผู้นำ การตัดสินใจที่เด็ดขาด และความรับผิดชอบ'
+      },
+      {
+        name: 'The Lovers',
+        image: 'images/tarot_the_lovers.png',
+        meaning: 'เป็นไพ่แห่งความรัก, ความสัมพันธ์, และการตัดสินใจครั้งสำคัญในชีวิต อาจหมายถึงการเลือกเส้นทางที่ถูกต้องสำหรับตัวคุณ'
+      },
+      {
+        name: 'The Chariot',
+        image: 'images/tarot_the_chariot.png',
+        meaning: 'เป็นไพ่แห่งชัยชนะ, ความมุ่งมั่น, และการควบคุมทิศทางชีวิต บ่งบอกถึงความสำเร็จจากการใช้ความพยายามอย่างเต็มที่'
+      }
+    ];
+
+    const tarotCard = document.getElementById('tarot-card');
+    const drawButton = document.getElementById('draw-button');
+    const resultArea = document.getElementById('result-area');
+    const cardTitle = document.getElementById('card-title');
+    const cardMeaning = document.getElementById('card-meaning');
+
+    let isDrawn = false;
+
+    function drawCard() {
+      if (isDrawn) {
+        // รีเซ็ต
+        resultArea.style.display = 'none';
+        tarotCard.src = 'images/tarot_back.png';
+        tarotCard.alt = 'ด้านหลังไพ่';
+        drawButton.innerHTML = 'เปิดไพ่';
+        isDrawn = false;
+        return;
+      }
+
+      // สุ่มไพ่
+      const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+
+      // ตั้งค่าไพ่
+      tarotCard.src = card.image;
+      tarotCard.alt = card.name;
+      // fallback หากโหลดรูปไม่ได้
+      tarotCard.onerror = () => {
+        tarotCard.src = `https://via.placeholder.com/240x380/45B7D1/FFFFFF?text=${encodeURIComponent(card.name)}`;
+        tarotCard.alt = card.name;
+      };
+
+      // แสดงผล
+      cardTitle.textContent = card.name;
+      cardMeaning.textContent = card.meaning;
+      resultArea.style.display = 'block';
+      drawButton.innerHTML = 'เปิดไพ่ใบใหม่';
+      isDrawn = true;
+    }
+
+    tarotCard.addEventListener('click', drawCard);
+    drawButton.addEventListener('click', drawCard);
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>
