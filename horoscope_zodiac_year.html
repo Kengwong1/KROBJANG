@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ดูดวงปีนักษัตร - ครบจังดอทคอม</title>
+  <!-- ฟอนต์และไอคอนแบบเดียวกับ index.html -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --brand: #0d47a1;
+      --accent: #1565c0;
+      --bg: #f4f6f9;
+      --card: #fff;
+      --text: #222;
+      --text-secondary: #666;
+      --border: #e0e0e0;
+      --highlight: #ff9800;
+      --gradient-start: #4facfe;
+      --gradient-end: #00f2fe;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Sarabun", system-ui, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    header p {
+      font-size: 0.95em;
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    /* Navigation */
+    nav.main-nav {
+      background: #fff;
+      padding: 10px 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+    nav.main-nav a {
+      color: #333;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9em;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      min-width: 80px;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    nav.main-nav a.active, nav.main-nav a:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    nav.main-nav a i {
+      font-size: 16px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    /* Section */
+    .section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 16px;
+      color: var(--brand);
+      font-size: 1.6em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .section h2 i {
+      color: var(--highlight);
+    }
+    .section p.desc {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 1.05em;
+    }
+
+    /* Zodiac Grid */
+    .zodiac-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .zodiac-card {
+      background: linear-gradient(145deg, #f0f5ff, #ffffff);
+      padding: 20px 12px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .zodiac-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      transition: width 0.5s ease;
+      z-index: -1;
+    }
+    .zodiac-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+      border-color: var(--accent);
+    }
+    .zodiac-card:hover::before {
+      width: 100%;
+    }
+
+    .zodiac-card img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      transition: transform 0.3s;
+    }
+    .zodiac-card:hover img {
+      transform: scale(1.2) rotate(8deg);
+    }
+
+    .zodiac-card h3 {
+      font-size: 1.15em;
+      margin: 0;
+      color: var(--brand);
+      font-weight: 600;
+    }
+    .zodiac-card:hover h3 {
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--brand);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.85em;
+      margin-top: 30px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .zodiac-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      nav.main-nav a { font-size: 0.85em; padding: 6px 10px; }
+    }
+    @media (max-width: 480px) {
+      .zodiac-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .zodiac-card h3 { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ครบจังดอทคอม</h1>
+    <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+    <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+    <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+    <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+    <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+    <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+    <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+    <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+    <a href="booking.html"><i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+    <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+      <h2><i class="fas fa-dragon"></i> ดูดวงปีนักษัตร <i class="fas fa-dragon"></i></h2>
+      <p class="desc">เลือกปีนักษัตรของคุณเพื่อดูคำทำนายล่าสุด</p>
+
+      <div class="zodiac-grid">
+        <a href="horoscope_zodiac_year_detail.html?year=chua" class="zodiac-card">
+          <img src="images/chua.png" alt="ปีชวด" onerror="this.src='https://via.placeholder.com/70/6A4C93/FFFFFF?text=ชวด'">
+          <h3>ปีชวด</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=chalu" class="zodiac-card">
+          <img src="images/chalu.png" alt="ปีฉลู" onerror="this.src='https://via.placeholder.com/70/E76F51/FFFFFF?text=ฉลู'">
+          <h3>ปีฉลู</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=kahn" class="zodiac-card">
+          <img src="images/kahn.png" alt="ปีขาล" onerror="this.src='https://via.placeholder.com/70/FF9F1C/FFFFFF?text=ขาล'">
+          <h3>ปีขาล</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=thoh" class="zodiac-card">
+          <img src="images/thoh.png" alt="ปีเถาะ" onerror="this.src='https://via.placeholder.com/70/4ECDC4/FFFFFF?text=เถาะ'">
+          <h3>ปีเถาะ</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=marong" class="zodiac-card">
+          <img src="images/marong.png" alt="ปีมะโรง" onerror="this.src='https://via.placeholder.com/70/45B7D1/FFFFFF?text=มะโรง'">
+          <h3>ปีมะโรง</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=maseng" class="zodiac-card">
+          <img src="images/maseng.png" alt="ปีมะเส็ง" onerror="this.src='https://via.placeholder.com/70/FFD166/FFFFFF?text=มะเส็ง'">
+          <h3>ปีมะเส็ง</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=mamia" class="zodiac-card">
+          <img src="images/mamia.png" alt="ปีมะเมีย" onerror="this.src='https://via.placeholder.com/70/FF6B6B/FFFFFF?text=มะเมีย'">
+          <h3>ปีมะเมีย</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=mameh" class="zodiac-card">
+          <img src="images/mameh.png" alt="ปีมะแม" onerror="this.src='https://via.placeholder.com/70/2EC4B6/FFFFFF?text=มะแม'">
+          <h3>ปีมะแม</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=wawk" class="zodiac-card">
+          <img src="images/wawk.png" alt="ปีวอก" onerror="this.src='https://via.placeholder.com/70/6A4C93/FFFFFF?text=วอก'">
+          <h3>ปีวอก</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=raka" class="zodiac-card">
+          <img src="images/raka.png" alt="ปีระกา" onerror="this.src='https://via.placeholder.com/70/E76F51/FFFFFF?text=ระกา'">
+          <h3>ปีระกา</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=jor" class="zodiac-card">
+          <img src="images/jor.png" alt="ปีจอ" onerror="this.src='https://via.placeholder.com/70/FF9F1C/FFFFFF?text=จอ'">
+          <h3>ปีจอ</h3>
+        </a>
+        <a href="horoscope_zodiac_year_detail.html?year=kun" class="zodiac-card">
+          <img src="images/kun.png" alt="ปีกุน" onerror="this.src='https://via.placeholder.com/70/4ECDC4/FFFFFF?text=กุน'">
+          <h3>ปีกุน</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      © 2025 ครบจังดอทคอม — All rights reserved.
+      | 
+      <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>
+      |
+      <a href="contact.html">ติดต่อเรา</a>
+    </p>
+  </footer>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>
