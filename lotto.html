@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* CSS หลัก (นำมาจาก index.html เพื่อความสอดคล้อง) */
         :root {
             --brand: #0d47a1;
             --accent: #1565c0;
@@ -16,8 +15,8 @@
             --text: #222;
             --text-secondary: #666;
             --border: #e0e0e0;
-            --highlight-red: #d32f2f; /* เน้นสีแดงสำหรับรางวัลที่ 1 */
-            --highlight-green: #388e3c; /* เน้นสีเขียวสำหรับถูกรางวัล */
+            --highlight-red: #d32f2f;
+            --highlight-green: #388e3c;
             --gradient-start: #4facfe;
             --gradient-end: #00f2fe;
         }
@@ -62,7 +61,6 @@
             display: none;
         }
 
-        /* Style สำหรับ Nav Placeholder (สไตล์เดิมจาก index.html) */
         nav.main-nav {
             background: #fff;
             padding: 10px 16px;
@@ -95,8 +93,7 @@
             color: #fff;
             transform: scale(1.05);
         }
-        
-        /* Mobile Nav */
+
         .mobile-nav {
             display: none;
             flex-direction: column;
@@ -124,7 +121,6 @@
         }
         .mobile-nav a:last-child { border: none; }
 
-        /* Container แบบหน้าแรก */
         .container { 
             max-width: 1200px; 
             margin: 20px auto; 
@@ -134,14 +130,12 @@
             gap: 20px; 
         }
 
-        /* Content Area แบบหน้าแรก */
         .content-area { 
             display: flex; 
             flex-direction: column; 
             gap: 20px; 
         }
 
-        /* Section แบบหน้าแรก */
         .section { 
             background: var(--card); 
             padding: 18px; 
@@ -165,7 +159,6 @@
             border-radius:50%; 
         }
 
-        /* === ส่วนแสดงผลรางวัลล่าสุด === */
         .lotto-latest {
             text-align: center;
         }
@@ -218,7 +211,6 @@
             color: var(--highlight-green);
         }
 
-        /* === ส่วนตารางย้อนหลัง === */
         .lotto-history table {
             width: 100%;
             border-collapse: collapse;
@@ -246,7 +238,11 @@
              font-weight: 700;
         }
 
-        /* === ส่วนโฆษณาและสนับสนุน (ใน Sidebar) === */
+        .sidebar { 
+            display:flex; 
+            flex-direction:column; 
+            gap:18px; 
+        }
         .ad-section {
             background: var(--card);
             padding: 15px;
@@ -288,59 +284,40 @@
             margin-top: 15px;
         }
         .social-links a {
-            display: block;
-            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 6px 0;
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            gap: 8px;
         }
+        .social-links i { font-size: 18px; }
 
-        /* === Footer === */
+        /* ✅ Footer — แก้แล้ว: Gradient เหมือน header */
         footer {
-            background: var(--brand);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: #fff;
             padding: 15px;
             text-align: center;
             margin-top: 30px;
             font-size: 0.85em;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
         }
 
         @media(max-width:768px) { 
-            nav.main-nav { 
-                display: none;
-            }
-            .mobile-nav.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            header {
-                padding: 12px 16px;
-            }
-            header h1 {
-                font-size: 18px;
-            }
-            .container { 
-                grid-template-columns: 1fr; 
-                padding: 0 12px; 
-            }
-            .prize-box .number {
-                font-size: 1.8em;
-            }
-            .prize-summary {
-                flex-direction: column;
-                align-items: center;
-            }
-            .prize-item {
-                width: 100%;
-            }
-            .lotto-history table {
-                font-size: 0.85em;
-            }
-            .lotto-history th, .lotto-history td {
-                padding: 6px;
-            }
+            nav.main-nav { display: none; }
+            .mobile-nav.active { display: flex; }
+            .menu-toggle { display: block; }
+            header { padding: 12px 16px; }
+            header h1 { font-size: 18px; }
+            .container { grid-template-columns: 1fr; padding: 0 12px; }
+            .prize-box .number { font-size: 1.8em; }
+            .prize-summary { flex-direction: column; align-items: center; }
+            .prize-item { width: 100%; }
+            .lotto-history table { font-size: 0.85em; }
+            .lotto-history th, .lotto-history td { padding: 6px; }
         }
     </style>
 </head>
@@ -349,111 +326,63 @@
     <header>
         <button class="menu-toggle" id="menuToggle">☰</button>
         <h1>🏆 ตรวจหวยรัฐบาล</h1>
-        <div style="width: 24px;"></div> <!-- Spacer for symmetry -->
+        <div style="width: 24px;"></div>
     </header>
 
-    <!-- Desktop Navigation -->
     <nav class="main-nav">
         <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1;"></i>
-            หน้าแรก
+            <i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก
         </a>
         <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B;"></i>
-            ข่าว
+            <i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน
         </a>
         <a href="lotto.html" class="active">
-            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i>
-            หวย
+            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย
         </a>
         <a href="horoscope.html">
-            <i class="fas fa-star" style="color: #6A4C93;"></i>
-            ดูดวง
+            <i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง
         </a>
         <a href="sport.html">
-            <i class="fas fa-futbol" style="color: #E76F51;"></i>
-            กีฬา
+            <i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา
         </a>
         <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C;"></i>
-            วีดีโอ
+            <i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ
         </a>
         <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6;"></i>
-            AI
+            <i class="fas fa-robot" style="color: #2EC4B6;"></i> AI
         </a>
         <a href="games.html">
-            <i class="fas fa-gamepad" style="color: #E76F51;"></i>
-            เกมส์
+            <i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์
         </a>
         <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i>
-            ช้อป
+            <i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป <!-- ✅ แก้แล้ว -->
         </a>
         <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i>
-            ท่องเที่ยว
+            <i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว <!-- ✅ ใช้ไอคอนท่องเที่ยวชัดเจน -->
         </a>
         <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93;"></i>
-            ติดต่อเรา
+            <i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา
         </a>
     </nav>
 
-    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html" class="active">
-            <i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html">
-            <i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html">
-            <i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i>
-            AI
-        </a>
-        <a href="games.html">
-            <i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i>
-            ติดต่อเรา
-        </a>
+        <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+        <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+        <a href="lotto.html" class="active"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+        <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+        <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+        <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+        <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+        <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+        <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+        <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+        <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
     </div>
 
     <div class="container">
-        
         <div class="content-area">
-
             <div class="section lotto-latest">
-                <h2>ผลการออกรางวัลล่าสุด</h2>
+                <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
                 <div class="draw-date">งวดประจำวันที่ 1 ธันวาคม 2568</div>
 
                 <div class="prize-box">
@@ -479,7 +408,7 @@
             </div>
 
             <div class="section lotto-history">
-                <h2>สถิติย้อนหลัง 5 งวด</h2>
+                <h2><i class="fas fa-history"></i> สถิติย้อนหลัง 5 งวด</h2>
                 <table>
                     <thead>
                         <tr>
@@ -491,51 +420,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1 ธ.ค. 68</td>
-                            <td class="prize1">832547</td>
-                            <td class="prize-2digit">43</td>
-                            <td>734, 910</td>
-                            <td>215, 836</td>
-                        </tr>
-                        <tr>
-                            <td>16 พ.ย. 68</td>
-                            <td class="prize1">739420</td>
-                            <td class="prize-2digit">78</td>
-                            <td>005, 412</td>
-                            <td>153, 910</td>
-                        </tr>
-                        <tr>
-                            <td>1 พ.ย. 68</td>
-                            <td class="prize1">087119</td>
-                            <td class="prize-2digit">25</td>
-                            <td>430, 891</td>
-                            <td>032, 597</td>
-                        </tr>
-                        <tr>
-                            <td>16 ต.ค. 68</td>
-                            <td class="prize1">990159</td>
-                            <td class="prize-2digit">04</td>
-                            <td>999, 110</td>
-                            <td>286, 730</td>
-                        </tr>
-                        <tr>
-                            <td>1 ต.ค. 68</td>
-                            <td class="prize1">456789</td>
-                            <td class="prize-2digit">33</td>
-                            <td>101, 707</td>
-                            <td>654, 321</td>
-                        </tr>
+                        <tr><td>1 ธ.ค. 68</td><td class="prize1">832547</td><td class="prize-2digit">43</td><td>734, 910</td><td>215, 836</td></tr>
+                        <tr><td>16 พ.ย. 68</td><td class="prize1">739420</td><td class="prize-2digit">78</td><td>005, 412</td><td>153, 910</td></tr>
+                        <tr><td>1 พ.ย. 68</td><td class="prize1">087119</td><td class="prize-2digit">25</td><td>430, 891</td><td>032, 597</td></tr>
+                        <tr><td>16 ต.ค. 68</td><td class="prize1">990159</td><td class="prize-2digit">04</td><td>999, 110</td><td>286, 730</td></tr>
+                        <tr><td>1 ต.ค. 68</td><td class="prize1">456789</td><td class="prize-2digit">33</td><td>101, 707</td><td>654, 321</td></tr>
                     </tbody>
                 </table>
             </div>
-            
         </div>
-        
-        <aside class="sidebar">
 
+        <aside class="sidebar">
             <div class="ad-section">
-                <h2>💰 สนับสนุนเว็บไซต์</h2>
+                <h2><i class="fas fa-ad"></i> สนับสนุนเว็บไซต์</h2>
                 <div style="text-align:center;">
                     <ins class="adsbygoogle"
                         style="display:block"
@@ -543,28 +440,30 @@
                         data-ad-slot="1706997713"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
                 <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมท AI Tools อื่น ๆ]</div>
             </div>
 
             <div class="ad-section">
-                <h2>☕ สนับสนุนเรา</h2>
+                <h2><i class="fas fa-coffee"></i> สนับสนุนเรา</h2>
                 <div class="support-card">
                     <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
                     <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-                        <div class="social-links">
-                <a href="#" target="_blank">Facebook Page</a>
-                <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">YouTube Channel</a>
-                <a href="https://www.tiktok.com/@kengwong007" target="_blank">TikTok</a>
-            </div>
+                    <div class="social-links">
+                        <a href="https://facebook.com/yourpage" target="_blank">
+                            <i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook Page
+                        </a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">
+                            <i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube Channel
+                        </a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank">
+                            <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+                        </a>
+                    </div>
                 </div>
             </div>
-            
         </aside>
-
     </div> 
 
     <footer>
@@ -572,12 +471,9 @@
     </footer>
 
     <script>
-        // 📱 Toggle Mobile Menu
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.getElementById('mobileNav').classList.toggle('active');
         });
-
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobileNav').classList.remove('active');
@@ -586,8 +482,5 @@
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
-
