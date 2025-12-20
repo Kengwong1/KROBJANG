@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ครบจังดอทคอม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --brand: #0d47a1;
+            --accent: #1565c0;
+            --bg: #f8fbff;
+            --card: #ffffff;
+            --text: #1a1f2e;
+            --text-secondary: #5a6275;
+            --border: #e6edf5;
+            --highlight: #fbbf24; /* สีทอง — ใช้ใน header/footer */
+            --gradient-start: #4f46e5; /* indigo-600 */
+            --gradient-end: #7e22ce;   /* violet-700 */
+            --header-bg: #0f172a;      /* slate-900 — header & footer */
+            --pulse-glow: 0 0 12px rgba(126, 34, 206, 0.4);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Sarabun", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ✨ Wave สำหรับ header */
+        .header-wave {
+            position: relative;
+            overflow: hidden;
+        }
+        .header-wave::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,60 Q300,40 600,60 T1200,60 L1200,120 L0,120 Z' fill='%231e293b' opacity='0.6'/%3E%3C/svg%3E") no-repeat center bottom;
+            background-size: 1200px 20px;
+        }
+
+        /* Header — midnight blue + gold text */
+        header {
+            background: var(--header-bg);
+            color: #f1f5f9;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 800;
+            flex: 1;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+            background: linear-gradient(90deg, #f1f5f9, #fbbf24);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        header h1::after {
+            content: '✧';
+            position: absolute;
+            right: -24px;
+            top: 2px;
+            font-size: 14px;
+            color: #fbbf24;
+            opacity: 0.8;
+        }
+        .menu-toggle {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #cbd5e1;
+            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .menu-toggle:hover {
+            background: rgba(255,187,36,0.15);
+            color: #fbbf24;
+            transform: rotate(90deg);
+        }
+
+        /* Navigation — สดใสเหมือนเดิม */
+        nav.main-nav {
+            background: #fff;
+            padding: 10px 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 10px;
+            flex-wrap: nowrap;
+            border-radius: 14px;
+            margin: 14px 16px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+        nav.main-nav::-webkit-scrollbar {
+            height: 6px;
+        }
+        nav.main-nav::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        nav.main-nav a {
+            color: #4a5568;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 82px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        nav.main-nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        nav.main-nav a:hover,
+        nav.main-nav a.active {
+            color: #0d47a1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.25);
+        }
+        nav.main-nav a:hover::before {
+            opacity: 1;
+        }
+        nav.main-nav a i {
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        nav.main-nav a:hover i {
+            transform: scale(1.2) rotate(8deg);
+            text-shadow: var(--pulse-glow);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 64px;
+            left: 12px;
+            right: 12px;
+            border-radius: 16px;
+            overflow: hidden;
+            z-index: 999;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-nav a {
+            padding: 16px 22px;
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            position: relative;
+        }
+        .mobile-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            transition: width 0.3s ease;
+        }
+        .mobile-nav a:hover {
+            background: #f0f9ff;
+            color: var(--accent);
+        }
+        .mobile-nav a:hover::after {
+            width: 30px;
+        }
+        .mobile-nav a:last-child { border: none; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* Category Sections — สีสันจัดจ้าน ลูกเล่นเต็ม */
+        .main-categories {
+            background: #fff;
+            padding: 26px;
+            border-radius: 18px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+            margin-bottom: 26px;
+            position: relative;
+            overflow: hidden;
+        }
+        .main-categories::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(79,172,254,0.1) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .main-categories h2 {
+            text-align: center;
+            margin-bottom: 22px;
+            color: var(--brand);
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--brand), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-card {
+            background: #fff;
+            padding: 24px 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: all 0.35s cubic-bezier(0.17, 0.67, 0.32, 1.32);
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #edf2f7;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+        .category-card:nth-child(1) { animation-delay: 0.1s; }
+        .category-card:nth-child(2) { animation-delay: 0.2s; }
+        .category-card:nth-child(3) { animation-delay: 0.3s; }
+        .category-card:nth-child(4) { animation-delay: 0.4s; }
+        .category-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(110deg, transparent, rgba(79,172,254,0.15), transparent);
+            transition: left 0.8s ease;
+            z-index: 0;
+        }
+        .category-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(79,172,254,0.28);
+            border-color: rgba(79,172,254,0.3);
+        }
+        .category-card:hover::before {
+            left: 100%;
+        }
+        .category-card i {
+            font-size: 32px;
+            margin-bottom: 14px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .category-card:hover i {
+            transform: scale(1.3) rotate(15deg);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.3) rotate(15deg); }
+            50% { transform: scale(1.35) rotate(18deg); }
+        }
+        .category-card h3 {
+            font-size: 1.1rem;
+            margin: 8px 0 6px;
+            color: var(--brand);
+            font-weight: 800;
+            transition: color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        .category-card:hover h3 {
+            color: var(--accent);
+            text-shadow: 0 2px 4px rgba(21, 101, 192, 0.2);
+        }
+        .category-card p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+        .category-card:hover p {
+            color: #2d3748;
+        }
+
+        /* Footer Ad & Support */
+        .footer-ad {
+            background: #fff;
+            padding: 26px;
+            border-radius: 18px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+            margin-top: 16px;
+            position: relative;
+        }
+        .footer-ad h2 {
+            color: var(--highlight);
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+        }
+        .ad-placeholder {
+            background: #f0f9ff;
+            padding: 16px;
+            text-align: center;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 14px;
+            font-size: 0.95rem;
+            border: 1px dashed #c3ddff;
+            position: relative;
+        }
+        .ad-placeholder::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            font-size: 14px;
+        }
+
+        .support-card {
+            background: linear-gradient(145deg, #f0f9ff, #f8fdff);
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            text-align: center;
+            margin-top: 26px;
+            border: 1px solid #d1e8ff;
+            transition: all 0.4s ease;
+        }
+        .support-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 14px rgba(251, 191, 36, 0.15);
+        }
+        .support-card h3 {
+            margin: 0 0 14px;
+            font-size: 1.25rem;
+            color: var(--brand);
+            font-weight: 700;
+        }
+        .qr-code {
+            width: 130px;
+            height: auto;
+            display: block;
+            margin: 16px auto 10px;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            border: 2px solid #e2e8f0;
+        }
+        .qr-code:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 6px 16px rgba(251, 191, 36, 0.3);
+            border-color: var(--highlight);
+        }
+        .social-links {
+            margin-top: 22px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 12px auto;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.98rem;
+            padding: 12px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            max-width: 270px;
+            background: #f0f9ff;
+            position: relative;
+            overflow: hidden;
+        }
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251,191,36,0.15), transparent);
+            transition: left 0.5s;
+        }
+        .social-links a:hover {
+            background: #dbeafe;
+            color: #0d47a1;
+            transform: translateX(4px);
+            box-shadow: 0 4px 10px rgba(21,101,192,0.2);
+        }
+        .social-links a:hover::before {
+            left: 100%;
+        }
+        .social-links i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Footer — midnight blue + gold particles */
+        footer {
+            background: var(--header-bg);
+            color: rgba(241, 245, 249, 0.85);
+            padding: 20px 16px;
+            text-align: center;
+            font-size: 0.88rem;
+            margin-top: 32px;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid #1e293b;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(251, 191, 36, 0.15) 1px, transparent 2px),
+                radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.12) 1px, transparent 2px),
+                radial-gradient(circle at 50% 50%, rgba(126, 34, 206, 0.05) 1px, transparent 2px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes float {
+            from { background-position: 0 0, 0 0, 0 0; }
+            to { background-position: 50px 50px, -50px -50px, 25px 25px; }
+        }
+        footer p { margin: 0; line-height: 1.6; }
+        footer a {
+            color: #fbbf24;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+            position: relative;
+            padding: 2px 4px;
+        }
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #fbbf24;
+            transition: width 0.3s;
+        }
+        footer a:hover {
+            color: #ffedd5;
+        }
+        footer a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { padding: 14px 16px; }
+            header h1 { font-size: 1.3rem; }
+            .menu-toggle { display: block; }
+            nav.main-nav { display: none; }
+            .mobile-nav.active { display: flex; }
+            .main-category-grid { grid-template-columns: repeat(2, 1fr); }
+            .category-card { padding: 20px 14px; }
+            .category-card i { font-size: 28px; }
+        }
+
+        @media (max-width: 480px) {
+            .main-category-grid { grid-template-columns: 1fr; }
+            nav.main-nav a { font-size: 0.85rem; padding: 8px 12px; }
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header-wave">
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <h1>ครบจังดอทคอม</h1>
+    <div style="width: 24px;"></div>
+</header>
+
+<nav class="main-nav">
+    <a href="index.html" class="active">
+        <i class="fas fa-home"></i> หน้าแรก
+    </a>
+    <a href="news.html">
+        <i class="fas fa-newspaper" style="color: #FF6B6B;"></i> ข่าว
+    </a>
+    <a href="lotto.html">
+        <i class="fas fa-ticket-alt" style="color: #FFAA33;"></i> หวย
+    </a>
+    <a href="horoscope.html">
+        <i class="fas fa-star" style="color: #FF5768;"></i> ดูดวง
+    </a>
+    <a href="sport.html">
+        <i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา
+    </a>
+    <a href="video.html">
+        <i class="fas fa-video" style="color: #FF9F1C;"></i> วีดีโอ
+    </a>
+    <a href="ai.html">
+        <i class="fas fa-robot" style="color: #2EC4B6;"></i> AI
+    </a>
+    <a href="games.html">
+        <i class="fas fa-gamepad" style="color: #6A4C93;"></i> เกมส์
+    </a>
+    <a href="shopping.html">
+        <i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป
+    </a>
+    <a href="booking.html">
+        <i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว
+    </a>
+    <a href="contact.html">
+        <i class="fas fa-headset" style="color: #8B5CF6;"></i> ติดต่อเรา
+    </a>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+    <a href="news.html"><i class="fas fa-newspaper" style="color: #FF6B6B;"></i> ข่าว</a>
+    <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFAA33;"></i> หวย</a>
+    <a href="horoscope.html"><i class="fas fa-star" style="color: #FF5768;"></i> ดูดวง</a>
+    <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+    <a href="video.html"><i class="fas fa-video" style="color: #FF9F1C;"></i> วีดีโอ</a>
+    <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+    <a href="games.html"><i class="fas fa-gamepad" style="color: #6A4C93;"></i> เกมส์</a>
+    <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+    <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+    <a href="contact.html"><i class="fas fa-headset" style="color: #8B5CF6;"></i> ติดต่อเรา</a>
+    <hr style="margin: 5px 0; border-color: #eee;">
+    <a href="https://facebook.com/yourpage" target="_blank">
+        <i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook Page
+    </a>
+    <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">
+        <i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube Channel
+    </a>
+    <a href="https://www.tiktok.com/@kengwong007" target="_blank">
+        <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+    </a>
+</div>
+
+<div class="container">
+
+    <div class="main-categories">
+        <h2>หมวดหมู่หลักทั้งหมด</h2>
+        <div class="main-category-grid">
+            <a href="tech.html" class="category-card">
+                <i class="fas fa-microchip" style="color: #FF6B6B;"></i>
+                <h3>เทคโนโลยี & AI</h3>
+                <p>AI, Software, รีวิว Gadgets, แนวโน้มเทคโนโลยี</p>
+            </a>
+            <a href="finance.html" class="category-card">
+                <i class="fas fa-sack-dollar" style="color: #4ECDC4;"></i>
+                <h3>การเงิน & การลงทุน</h3>
+                <p>หุ้น, คริปโต, ธุรกิจ, ไอเดียหาเงินเสริม</p>
+            </a>
+            <a href="education.html" class="category-card">
+                <i class="fas fa-graduation-cap" style="color: #FFD166;"></i>
+                <h3>การศึกษา & ทักษะ</h3>
+                <p>เทคนิค, ข่าว, SEO, การพัฒนาตัวเอง</p>
+            </a>
+            <a href="home-lifestyle.html" class="category-card">
+                <i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i>
+                <h3>ไลฟ์สไตล์ & ท่องเที่ยว</h3>
+                <p>ตกแต่งบ้าน, ที่พัก, แหล่งเที่ยว</p>
+            </a>
+            <a href="entertainment.html" class="category-card">
+                <i class="fas fa-heart" style="color: #FF5768;"></i>
+                <h3>บันเทิง & สุขภาพ</h3>
+                <p>หนัง, เกม, ออกกำลังกาย, อาหาร, ความงาม</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-ad">
+        <h2>💰 สนับสนุนเว็บไซต์</h2>
+        <div style="text-align:center;">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-2068902667667616"
+                data-ad-slot="1706997713"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมท AI Tools อื่น ๆ]</div>
+
+        <div class="support-card">
+            <h3>☕ สนับสนุนเรา</h3>
+            <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+            <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+            <div class="social-links">
+                <a href="https://facebook.com/yourpage" target="_blank">
+                    <i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook Page
+                </a>
+                <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">
+                    <i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube Channel
+                </a>
+                <a href="https://www.tiktok.com/@kengwong007" target="_blank">
+                    <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>
+        © 2025 ครบจังดอทคอม — All rights reserved.
+        | 
+        <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>
+        |
+        <a href="contact.html">ติดต่อเรา</a>
+        |
+        <a href="about.html">เกี่ยวกับเรา</a>
+    </p>
+</footer>
+
+<script>
+    // Ripple effect
+    function createRipple(event) {
+        const el = event.currentTarget;
+        const circle = document.createElement("span");
+        const diameter = Math.max(el.clientWidth, el.clientHeight);
+        const radius = diameter / 2;
+        const rect = el.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${x - radius}px`;
+        circle.style.top = `${y - radius}px`;
+        circle.classList.add("ripple");
+
+        const existingRipple = el.querySelector(".ripple");
+        if (existingRipple) existingRipple.remove();
+
+        el.style.position = "relative";
+        el.appendChild(circle);
+
+        setTimeout(() => circle.remove(), 600);
+    }
+
+    document.querySelectorAll('nav.main-nav a, .category-card').forEach(el => {
+        el.addEventListener('click', createRipple);
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', function(e) {
+        createRipple(e);
+        document.getElementById('mobileNav').classList.toggle('active');
+    });
+
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('mobileNav').classList.remove('active');
+        });
+    });
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>
