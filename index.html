@@ -1,273 +1,250 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ครบจังดอทคอม | เว็บเดียวครบเรื่อง ใช้ง่ายทุกวัย</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ครบจังดอทคอม | เว็บเดียวครบเรื่อง ใช้ง่ายทุกวัย</title>
 
-<meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้ง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
-<meta name="keywords" content="ครบจัง, ข่าว, AI, ดูดวง, หวย, การเงิน, วิดีโอ">
-<meta name="author" content="ครบจังดอทคอม">
+  <meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้ง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
+  <meta name="keywords" content="ครบจัง, ข่าว, AI, ดูดวง, หวย, การเงิน, วิดีโอ">
+  <meta name="author" content="ครบจังดอทคอม">
 
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- ✅ Google AdSense Script -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
-        crossorigin="anonymous"></script>
+  <!-- ✅ Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+          crossorigin="anonymous"></script>
 
-<style>
-:root {
-  --primary: #2563eb;
-  --soft: #eff6ff;
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #1e293b;
-  --muted: #64748b;
-  --radius: 18px;
-}
+  <style>
+    :root {
+      --primary: #2563eb;
+      --soft: #eff6ff;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --radius: 18px;
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Sarabun', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-}
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-/* HEADER */
-header {
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #e5e7eb;
-}
+    /* HEADER */
+    header {
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-.header-wrap {
-  max-width: 1200px;
-  margin: auto;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
+    .header-wrap {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--primary);
-}
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
 
-.menu-btn {
-  position: absolute;
-  right: 1rem;
-  font-size: 1.4rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+    .menu-btn {
+      position: absolute;
+      right: 1rem;
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: none; /* ซ่อนบนเดสก์ท็อป */
+    }
 
-/* NAV */
-nav {
-  background: #fff;
-  display: block;
-}
-.nav-wrap {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  overflow-x: auto;
-}
-nav a {
-  text-decoration: none;
-  color: var(--muted);
-  font-weight: 600;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-nav a:hover,
-nav a.active {
-  background: var(--soft);
-  color: var(--primary);
-}
+    /* NAV */
+    .main-nav {
+      background: #fff;
+      padding: 0.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
 
-/* HERO — ✅ ปรับให้อยู่กลางพอดี + responsive */
-.hero {
-  max-width: 1200px;
-  margin: 1.5rem auto;
-  padding: 2rem 1.5rem;
-  background: linear-gradient(135deg, #2563eb, #60a5fa);
-  color: #fff;
-  border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 240px; /* ลดเล็กน้อยให้เหมาะมือถือ */
-}
-.hero h1 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin: 0;
-}
-.hero p {
-  margin-top: 0.8rem;
-  opacity: 0.95;
-  max-width: 560px;
-  line-height: 1.6;
-  font-size: 1.05rem;
-}
+    .nav-wrap {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      gap: 0.75rem;
+      padding: 0 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
 
-/* AD SECTION — ✅ responsive */
-.ad-section {
-  max-width: 1200px;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
-  text-align: center;
-}
-.ad-section .adsbygoogle {
-  display: block;
-  margin: 0 auto;
-}
+    .main-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
 
-/* SECTION */
-.section {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-.section h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: var(--soft);
+      color: var(--primary);
+    }
 
-/* GRID — ✅ ปรับให้ stack เป็น 2 คอลัมน์บนมือถือ */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.3rem;
-}
-.card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: all 0.25s ease;
-  text-align: center;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
-}
-.card i {
-  font-size: 2.2rem;
-  margin-bottom: 0.8rem;
-  color: var(--primary);
-}
-.card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.4rem;
-}
-.card p {
-  font-size: 0.95rem;
-  color: var(--muted);
-}
+    /* HERO */
+    .hero {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      color: #fff;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 240px;
+    }
 
-/* SUPPORT */
-.support {
-  background: #fff;
-  padding: 2rem;
-  border-radius: var(--radius);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  text-align: center;
-}
-.support h3 { color: var(--primary); }
-.support p { color: var(--muted); margin-top: 0.5rem; }
+    .hero h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0;
+    }
 
-/* FOOTER */
-footer {
-  margin-top: 2.5rem;
-  background: #0f172a;
-  color: #cbd5f5;
-  text-align: center;
-  padding: 1.8rem 1rem;
-}
-footer a {
-  color: #93c5fd;
-  text-decoration: none;
-  font-weight: 600;
-}
+    .hero p {
+      margin-top: 0.8rem;
+      opacity: 0.95;
+      max-width: 560px;
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
 
-/* MOBILE — ✅ ปรับให้เหมาะกับหน้าจอมือถือ */
-@media (max-width: 768px) {
-  .header-wrap {
-    padding: 1rem;
-  }
-  .logo {
-    font-size: 1.4rem;
-  }
+    /* AD */
+    .ad-section {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
 
-  .hero {
-    min-height: 200px;
-    padding: 1.5rem;
-    margin: 1rem auto;
-  }
-  .hero h1 {
-    font-size: 1.5rem;
-  }
-  .hero p {
-    font-size: 1rem;
-    margin-top: 0.7rem;
-  }
+    /* SECTION */
+    .section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-  nav { display: none; }
-  nav.active { display: block; }
-  .nav-wrap {
-    flex-direction: column;
-    padding: 0.5rem 0;
-  }
-  .nav-wrap a {
-    padding: 0.7rem 1.2rem;
-    justify-content: center;
-  }
+    .section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์บนมือถือ */
-    gap: 1rem;
-  }
-  .card {
-    padding: 1.2rem;
-  }
-  .card i { font-size: 2rem; }
-  .card h3 { font-size: 1rem; }
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
 
-  footer {
-    padding: 1.5rem 1rem;
-    font-size: 0.9rem;
-  }
-}
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.25s;
+      text-align: center;
+    }
 
-@media (max-width: 480px) {
-  .hero h1 { font-size: 1.4rem; }
-  .hero p { font-size: 0.95rem; }
-  .grid { grid-template-columns: 1fr; } /* เป็น 1 คอลัมน์บนมือถือเล็ก */
-}
-</style>
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 2.5rem;
+      background: #0f172a;
+      color: #cbd5f5;
+      text-align: center;
+      padding: 1.8rem 1rem;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ✅ MOBILE MENU */
+    @media (max-width: 768px) {
+      .menu-btn { display: block; }
+
+      #nav-placeholder { display: none; }
+      #nav-placeholder.active { display: block; }
+
+      .mobile-nav {
+        background: #fff;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 100;
+      }
+
+      .mobile-nav .nav-wrap {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+      }
+
+      .mobile-nav a {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+      }
+
+      .hero { min-height: 200px; padding: 1.5rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
 </head>
 
 <body>
@@ -279,18 +256,8 @@ footer a {
   </div>
 </header>
 
-<nav id="nav">
-  <div class="nav-wrap">
-    <a class="active" href="#">หน้าแรก</a>
-    <a href="#">ข่าว</a>
-    <a href="#">หวย</a>
-    <a href="#">ดูดวง</a>
-    <a href="#">AI</a>
-    <a href="#">วิดีโอ</a>
-    <a href="#">การเงิน</a>
-    <a href="#">ติดต่อ</a>
-  </div>
-</nav>
+<!-- ✅ Placeholder สำหรับโหลดเมนู -->
+<div id="nav-placeholder"></div>
 
 <section class="hero">
   <h1>เว็บเดียว ครบเรื่อง ใช้ง่ายทุกวัย</h1>
@@ -298,7 +265,6 @@ footer a {
   ออกแบบให้เข้าใจง่าย อ่านสบาย ใช้ได้ทุกวัน</p>
 </section>
 
-<!-- ✅ Google AdSense — วางใต้ Hero -->
 <div class="ad-section">
   <ins class="adsbygoogle"
        style="display:block"
@@ -321,23 +287,46 @@ footer a {
   </div>
 </section>
 
-<section class="section">
-  <div class="support">
-    <h3>☕ สนับสนุนเว็บไซต์</h3>
-    <p>หากเนื้อหามีประโยชน์ สามารถสนับสนุนทีมงานได้ตามกำลังใจนะคะ</p>
-  </div>
-</section>
-
 <footer>
   <p>© 2025 ครบจังดอทคอม | 
   <a href="#">นโยบายความเป็นส่วนตัว</a> |
   <a href="#">เกี่ยวกับเรา</a></p>
 </footer>
 
+<!-- ✅ SCRIPT: โหลด nav + จัดการ active + มือถือ -->
 <script>
-document.getElementById("menuBtn").onclick = () => {
-  document.getElementById("nav").classList.toggle("active");
-}
+  // 📌 ฟังก์ชันโหลดเมนู
+  async function loadNav() {
+    try {
+      const res = await fetch('nav.html');
+      if (!res.ok) throw new Error('ไม่พบ nav.html');
+      const html = await res.text();
+      document.getElementById('nav-placeholder').innerHTML = html;
+
+      // ✅ ตั้ง active อัตโนมัติ
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.main-nav a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+
+    } catch (err) {
+      console.error('โหลดเมนูล้มเหลว:', err);
+      document.getElementById('nav-placeholder').innerHTML = 
+        `<div class="main-nav" style="text-align:center;padding:12px;color:red">⚠️ โหลดเมนูล้มเหลว</div>`;
+    }
+  }
+
+  // 📱 มือถือ: toggle menu
+  document.getElementById('menuBtn')?.addEventListener('click', () => {
+    const placeholder = document.getElementById('nav-placeholder');
+    placeholder.classList.toggle('active');
+    placeholder.classList.add('mobile-nav');
+  });
+
+  // 🚀 เริ่มโหลดเมื่อหน้าพร้อม
+  document.addEventListener('DOMContentLoaded', loadNav);
 </script>
 
 </body>
