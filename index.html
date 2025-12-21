@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ครบจังดอทคอม | เว็บเดียวครบเรื่อง ใช้ง่ายทุกวัย</title>
+
+<meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้ง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
+<meta name="keywords" content="ครบจัง, ข่าว, AI, ดูดวง, หวย, การเงิน, วิดีโอ">
+<meta name="author" content="ครบจังดอทคอม">
+
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- ✅ Google AdSense Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+        crossorigin="anonymous"></script>
+
+<style>
+:root {
+  --primary: #2563eb;
+  --soft: #eff6ff;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --radius: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* HEADER */
+header {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-wrap {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.menu-btn {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* NAV */
+nav {
+  background: #fff;
+  display: block;
+}
+.nav-wrap {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  overflow-x: auto;
+}
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+nav a:hover,
+nav a.active {
+  background: var(--soft);
+  color: var(--primary);
+}
+
+/* HERO — ✅ ปรับให้อยู่กลางพอดี + responsive */
+.hero {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  color: #fff;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 240px; /* ลดเล็กน้อยให้เหมาะมือถือ */
+}
+.hero h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0;
+}
+.hero p {
+  margin-top: 0.8rem;
+  opacity: 0.95;
+  max-width: 560px;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* AD SECTION — ✅ responsive */
+.ad-section {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+.ad-section .adsbygoogle {
+  display: block;
+  margin: 0 auto;
+}
+
+/* SECTION */
+.section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* GRID — ✅ ปรับให้ stack เป็น 2 คอลัมน์บนมือถือ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.3rem;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  text-align: center;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
+}
+.card i {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* SUPPORT */
+.support {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+.support h3 { color: var(--primary); }
+.support p { color: var(--muted); margin-top: 0.5rem; }
+
+/* FOOTER */
+footer {
+  margin-top: 2.5rem;
+  background: #0f172a;
+  color: #cbd5f5;
+  text-align: center;
+  padding: 1.8rem 1rem;
+}
+footer a {
+  color: #93c5fd;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* MOBILE — ✅ ปรับให้เหมาะกับหน้าจอมือถือ */
+@media (max-width: 768px) {
+  .header-wrap {
+    padding: 1rem;
+  }
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  .hero {
+    min-height: 200px;
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-top: 0.7rem;
+  }
+
+  nav { display: none; }
+  nav.active { display: block; }
+  .nav-wrap {
+    flex-direction: column;
+    padding: 0.5rem 0;
+  }
+  .nav-wrap a {
+    padding: 0.7rem 1.2rem;
+    justify-content: center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์บนมือถือ */
+    gap: 1rem;
+  }
+  .card {
+    padding: 1.2rem;
+  }
+  .card i { font-size: 2rem; }
+  .card h3 { font-size: 1rem; }
+
+  footer {
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.4rem; }
+  .hero p { font-size: 0.95rem; }
+  .grid { grid-template-columns: 1fr; } /* เป็น 1 คอลัมน์บนมือถือเล็ก */
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrap">
+    <div class="logo">ครบจังดอทคอม</div>
+    <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="active" href="#">หน้าแรก</a>
+    <a href="#">ข่าว</a>
+    <a href="#">หวย</a>
+    <a href="#">ดูดวง</a>
+    <a href="#">AI</a>
+    <a href="#">วิดีโอ</a>
+    <a href="#">การเงิน</a>
+    <a href="#">ติดต่อ</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>เว็บเดียว ครบเรื่อง ใช้ง่ายทุกวัย</h1>
+  <p>รวมข่าวสาร เทคโนโลยี AI การเงิน ดูดวง หวย และวิดีโอ  
+  ออกแบบให้เข้าใจง่าย อ่านสบาย ใช้ได้ทุกวัน</p>
+</section>
+
+<!-- ✅ Google AdSense — วางใต้ Hero -->
+<div class="ad-section">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-2068902667667616"
+       data-ad-slot="1706997713"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="section">
+  <h2>หมวดหมู่ยอดนิยม</h2>
+  <div class="grid">
+    <a class="card" href="#"><i class="fas fa-robot"></i><h3>AI & เทคโนโลยี</h3><p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p></a>
+    <a class="card" href="#"><i class="fas fa-coins"></i><h3>การเงิน</h3><p>หาเงิน ลงทุน วางแผนชีวิต</p></a>
+    <a class="card" href="#"><i class="fas fa-star"></i><h3>ดูดวง</h3><p>ดวงรายวัน เลขมงคล ความเชื่อ</p></a>
+    <a class="card" href="#"><i class="fas fa-ticket"></i><h3>หวย</h3><p>เลขเด็ด แนวทาง วิเคราะห์</p></a>
+    <a class="card" href="#"><i class="fas fa-video"></i><h3>วิดีโอ</h3><p>ดูง่าย สนุก ได้สาระ</p></a>
+    <a class="card" href="#"><i class="fas fa-heart"></i><h3>ไลฟ์สไตล์</h3><p>สุขภาพ ชีวิต ความเป็นอยู่</p></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="support">
+    <h3>☕ สนับสนุนเว็บไซต์</h3>
+    <p>หากเนื้อหามีประโยชน์ สามารถสนับสนุนทีมงานได้ตามกำลังใจนะคะ</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 ครบจังดอทคอม | 
+  <a href="#">นโยบายความเป็นส่วนตัว</a> |
+  <a href="#">เกี่ยวกับเรา</a></p>
+</footer>
+
+<script>
+document.getElementById("menuBtn").onclick = () => {
+  document.getElementById("nav").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
