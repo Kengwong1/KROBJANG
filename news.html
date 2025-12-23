@@ -5,259 +5,425 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ข่าวทั้งหมด - ครบจังดอทคอม</title>
     <meta name="description" content="รวบรวมข่าวด่วน ข่าวเศรษฐกิจ หวย ดวง กีฬา และเทคโนโลยี AI อัปเดตตลอด 24 ชั่วโมง">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <meta name="keywords" content="ข่าว, ข่าวด่วน, ข่าวเศรษฐกิจ, หวย, ดูดวง, กีฬา, AI, ครบจัง">
+    <meta name="author" content="ครบจังดอทคอม">
+
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+            crossorigin="anonymous"></script>
 
     <style>
+        /* Variables */
         :root {
-            --brand: #0d47a1;
-            --accent: #1565c0;
-            --bg: #f4f6f9;
-            --card: #fff;
-            --text: #222;
-            --text-secondary: #666;
-            --border: #e0e0e0;
-            --highlight: #ff9800;
-            --gradient-start: #4facfe;
-            --gradient-end: #00f2fe;
-        }
-        * { box-sizing: border-box; margin:0; padding:0; }
-        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        
-        /* Header & Nav */
-        header { 
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color:#fff; 
-            padding:16px; 
-            text-align:center; 
-            box-shadow:0 2px 10px rgba(0,0,0,0.1); 
-            position: sticky; 
-            top:0; 
-            z-index:100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 { 
-            margin:0; 
-            font-size:20px; 
-            letter-spacing:0.5px;
-            flex: 1;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
+          --primary-dark: #1e3a8a;
+          --primary: #1e40af;
+          --soft: #eff6ff;
+          --bg: #f8fafc;
+          --card: #ffffff;
+          --text: #1e293b;
+          --muted: #64748b;
+          --radius: 18px;
         }
 
-        nav.main-nav { 
-            background:#fff; 
-            padding:10px 16px; 
-            box-shadow:0 2px 6px rgba(0,0,0,0.08); 
-            display:flex; 
-            justify-content:center; 
-            overflow-x:auto; 
-            gap:8px; 
-            flex-wrap: nowrap; 
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
         }
-        nav.main-nav a { 
-            color:#333; 
-            text-decoration:none; 
-            padding:8px 12px; 
-            border-radius:8px; 
-            font-weight:600; 
-            font-size:0.9em; 
-            white-space:nowrap; 
-            border:1px solid transparent; 
-            min-width: 80px;
-            text-align: center;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+
+        body {
+          font-family: 'Sarabun', sans-serif;
+          background: var(--bg);
+          color: var(--text);
+          line-height: 1.6;
         }
-        nav.main-nav a.active, nav.main-nav a:hover { 
-            background: var(--accent); 
-            color:#fff;
-            transform: scale(1.05);
+
+        /* Header */
+        header {
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: #fff;
+          padding: 0.75rem 1rem;
+          box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        .menu-toggle {
+          background: none;
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          cursor: pointer;
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          opacity: 0.9;
+          transition: opacity 0.2s;
+        }
+        .menu-toggle:hover { opacity: 1; }
+
+        .header-spacer { width: 24px; }
+
+        header h1 {
+          margin: 0;
+          font-size: 1.4rem;
+          font-weight: 800;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        .main-nav {
+          background: #fff;
+          padding: 0.5rem 0;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-wrap {
+          max-width: 1200px;
+          margin: auto;
+          display: flex;
+          gap: 0.5rem;
+          padding: 0 1rem;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .main-nav a {
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          padding: 0.6rem 1rem;
+          border-radius: 12px;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.95rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+          background: var(--soft);
+          transform: scale(1.02);
         }
 
         .mobile-nav {
-            display: none;
-            flex-direction: column;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            z-index: 999;
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 100;
         }
+
         .mobile-nav a {
-            padding: 14px 20px;
-            border-bottom: 1px solid #eee;
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #f1f5f9;
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          transition: background 0.2s;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
         }
-        .mobile-nav a:hover { background: #f5f5f5; }
+
+        .mobile-nav a:hover {
+          background: var(--soft);
+        }
 
         /* Layout */
-        .container { 
-            max-width:1200px; 
-            margin:20px auto; 
-            padding:0 16px; 
-            display: grid; 
-            grid-template-columns: 1fr 300px; 
-            gap: 20px; 
-        }
-        .content-area { display: flex; flex-direction: column; gap: 20px; }
-
-        .section { 
-            background: var(--card); 
-            padding:18px; 
-            border-radius:12px; 
-            box-shadow:0 4px 12px rgba(0,0,0,0.06); 
-        }
-        .section h2 { 
-            margin:0 0 12px; 
-            color: var(--brand); 
-            font-size:1.3em; 
-            display:flex; 
-            align-items:center; 
-            gap:8px; 
-        }
-        .section h2::before { 
-            content:""; display:inline-block; width:8px; height:8px; 
-            background: var(--accent); border-radius:50%; 
+        .container {
+          max-width: 1200px;
+          margin: 1.5rem auto;
+          padding: 0 1rem;
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 1.5rem;
         }
 
-        /* News Cards */
-        .news-grid { 
-            display:grid; 
-            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); 
-            gap:20px; 
-            margin-top:15px; 
-        }
-        .news-card { 
-            background: var(--card); 
-            padding:18px; 
-            border-radius:12px; 
-            box-shadow:0 4px 12px rgba(0,0,0,0.06); 
-            transition:0.2s; 
-            text-decoration: none; 
-            color: inherit; 
-            display: flex; 
-            flex-direction: column; 
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-        }
-        .news-card:hover { 
-            transform:translateY(-3px) scale(1.02); 
-            box-shadow:0 6px 15px rgba(0,0,0,0.1); 
-            border-color: var(--accent);
-        }
-        .news-card img { 
-            width: 100%; 
-            height: 160px; 
-            object-fit: cover; 
-            border-radius: 8px 8px 0 0; 
-        }
-        .news-content { flex-grow: 1; padding-top: 10px; }
-        .news-content h3 { 
-            color: var(--brand); 
-            margin-bottom: 8px; 
-            font-size: 1.1em; 
-            font-weight: 600;
-        }
-        .news-content p { 
-            color: var(--text-secondary); 
-            margin-bottom: 10px; 
-            font-size: 0.9em; 
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .content-area {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
 
-        /* Sidebar & Ads */
-        .sidebar { display:flex; flex-direction:column; gap:18px; }
-        .ad-section { 
-            background: var(--card); 
-            padding:15px; 
-            border-radius:10px; 
-            box-shadow:0 4px 12px rgba(0,0,0,0.06); 
-            text-align: center;
+        .section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1.25rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
         }
-        
-        /* --- ส่วนที่แก้เพิ่มสำหรับโฆษณา --- */
+
+        .section h2 {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+          color: var(--primary);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .section h2::before {
+          content: "";
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background: var(--primary);
+          border-radius: 50%;
+        }
+
+        .news-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 1.25rem;
+          margin-top: 0.75rem;
+        }
+
+        .news-card {
+          background: var(--card);
+          border-radius: var(--radius);
+          overflow: hidden;
+          text-decoration: none;
+          color: inherit;
+          box-shadow: 0 4px 10px rgba(30, 64, 175, 0.06);
+          transition: transform 0.25s, box-shadow 0.25s;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 2px solid transparent;
+        }
+
+        .news-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 20px rgba(30, 64, 175, 0.12);
+          border-color: #dbeafe;
+        }
+
+        .news-card img {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+          background: #f1f5f9;
+        }
+
+        .news-content {
+          padding: 1rem;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .news-content h3 {
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          color: var(--text);
+          line-height: 1.4;
+        }
+
+        .news-content p {
+          font-size: 0.9rem;
+          color: var(--muted);
+          margin: 0;
+          flex-grow: 1;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .ad-section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+          text-align: center;
+        }
+
+        .ad-section h2.support-site {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-site i {
+          color: #7E57C2;
+          font-size: 1.1em;
+        }
+
+        .ad-section h2.support-us {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-us i {
+          color: #FB8C00;
+          font-size: 1.1em;
+        }
+
+        .ad-section h2::after {
+          content: "";
+          display: block;
+          width: 30px;
+          height: 3px;
+          background: linear-gradient(90deg, #7E57C2, #FB8C00);
+          border-radius: 2px;
+          margin-top: 4px;
+        }
+
+        .ad-section h2.support-us::after {
+          background: linear-gradient(90deg, #FB8C00, #FFD54F);
+        }
+
         .adsense-container {
-            display: block;
-            width: 100%;
-            min-height: 280px; /* บังคับความสูงขั้นต่ำ */
-            background-color: #f9f9f9;
-            border: 1px dashed #ccc;
-            margin-bottom: 10px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .adsense-container::after {
-            content: "พื้นที่โฆษณา (Google AdSense)";
-            color: #aaa;
-            font-size: 0.8em;
-            position: absolute;
-            z-index: 0;
-        }
-        /* ถ้าโฆษณาโหลดมาแล้ว ให้ตัว AdSense ทับข้อความ */
-        .adsbygoogle {
-            z-index: 1;
-            position: relative;
-            background: #fff; 
-        }
-        /* ------------------------------- */
-
-        .support-card { 
-            background: var(--card); 
-            padding: 12px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); 
-            text-align: center; 
-        }
-        .qr-code { width: 100%; max-width: 150px; height: auto; display: block; margin: 10px auto 0; }
-        .social-links { margin-top: 15px; }
-        .social-links a { display: block; margin: 5px 0; color: var(--accent); text-decoration: none; font-size: 0.9em; }
-
-        footer { 
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color:#fff; 
-            padding:15px; 
-            text-align:center; 
-            margin-top:30px; 
-            font-size:0.85em; 
+          background-color: #f9fbff;
+          border: 1px dashed #dbeafe;
+          border-radius: 12px;
+          min-height: 280px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.75rem;
+          position: relative;
         }
 
-        @media(max-width:768px) { 
-            .container { grid-template-columns:1fr; padding:0 12px; } 
-            nav.main-nav { display: none; }
-            .mobile-nav.active { display: flex; }
-            .menu-toggle { display: block; }
-            .news-grid { grid-template-columns: 1fr; }
+        .adsense-container::before {
+          content: "พื้นที่โฆษณา";
+          color: #94a3b8;
+          font-size: 0.85rem;
+          position: absolute;
+          z-index: 0;
+        }
+
+        /* ✅ Support Section — อัปเดตให้มี YouTube & TikTok */
+        .support-card {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+        }
+
+        .qr-code {
+          width: 100%;
+          max-width: 150px;
+          height: auto;
+          margin: 0.75rem auto;
+          display: block;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ✅ ปุ่มสนับสนุน — grid 2 คอลัมน์ */
+        .support-links {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+
+        .support-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.6rem 0.5rem;
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: white;
+          transition: all 0.2s;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .support-btn i {
+          font-size: 1.1rem;
+        }
+
+        .support-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* สีตามแบรนด์ */
+        .support-btn.facebook { background: #4267B2; }
+        .support-btn.youtube  { background: #FF0000; }
+        .support-btn.tiktok   { background: #000000; }
+        .support-btn.promptpay{ background: #10B981; }
+
+        .support-btn.facebook:hover { background: #365899; }
+        .support-btn.youtube:hover  { background: #e60000; }
+        .support-btn.tiktok:hover   { background: #333333; }
+        .support-btn.promptpay:hover{ background: #0da172; }
+
+        /* Mobile: 1 คอลัมน์ */
+        @media (max-width: 768px) {
+          .support-links {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* Footer */
+        footer {
+          margin-top: 2rem;
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: white;
+          text-align: center;
+          padding: 1.25rem 1rem;
+          font-size: 0.9rem;
+          box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
+        }
+
+        footer a {
+          color: #e0f2fe;
+          text-decoration: none;
+          font-weight: 600;
+          margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+          color: #ffffff;
+          text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+          .menu-toggle { display: block; }
+          .main-nav { display: none; }
+          .mobile-nav.active { display: flex; }
+          .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
+          .news-grid { grid-template-columns: 1fr; }
+          .news-card img { height: 130px; }
+          header h1 { font-size: 1.25rem; }
+          .ad-section h2::after { display: none; }
         }
     </style>
 </head>
@@ -265,10 +431,26 @@
     <header>
         <button class="menu-toggle" id="menuToggle">☰</button>
         <h1>ครบจังดอทคอม</h1>
-        <div style="width: 24px;"></div>
+        <div class="header-spacer"></div>
     </header>
 
     <nav class="main-nav">
+        <div class="nav-wrap">
+            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+            <a href="news.html" class="active"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+            <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+        </div>
+    </nav>
+
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
         <a href="news.html" class="active"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
         <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
@@ -280,12 +462,7 @@
         <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
         <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
         <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-    </nav>
-
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">หน้าแรก</a>
-        <a href="news.html" class="active">ข่าวด่วน</a>
-        </div>
+    </div>
 
     <div class="container">
         <div class="content-area">
@@ -298,12 +475,13 @@
                 <h2><i class="fas fa-chart-line"></i> ข่าวเศรษฐกิจ</h2>
                 <div id="economy-news" class="news-grid">กำลังโหลด...</div>
             </div>
-             </div>
+        </div>
 
         <aside class="sidebar">
             <div class="ad-section">
-                <h2><i class="fas fa-ad"></i> สนับสนุนเว็บไซต์</h2>
-                
+                <h2 class="support-site">
+                    <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+                </h2>
                 <div class="adsense-container">
                     <ins class="adsbygoogle"
                          style="display:block; width:100%;"
@@ -311,22 +489,36 @@
                          data-ad-slot="1706997713"
                          data-ad-format="auto"
                          data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
                 <div style="font-size:0.8em; color:#999; margin-top:5px;">
-                    [พื้นที่ Affiliate / Banner อื่นๆ]
+                    [พื้นที่สนับสนุนเว็บ]
                 </div>
             </div>
 
+            <!-- ✅ สนับสนุนเรา — อัปเดตแล้ว -->
             <div class="ad-section">
-                <h2><i class="fas fa-coffee"></i> สนับสนุนเรา</h2>
+                <h2 class="support-us">
+                    <i class="fas fa-heart"></i> สนับสนุนเรา
+                </h2>
                 <div class="support-card">
-                    <p>สแกนเพื่อสนับสนุนทีมงาน</p>
-                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i> Facebook Page</a>
+                    <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+                    <img src="https://via.placeholder.com/150/10B981/ffffff?text=QR+PromptPay" alt="QR PromptPay" class="qr-code">
+                    
+                    <!-- ✅ ปุ่มสนับสนุนทั้ง 4 ช่องทาง -->
+                    <div class="support-links">
+                        <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
+                            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+                        </a>
+                        <a href="https://facebook.com/krobjang" target="_blank" class="support-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://youtube.com/@krobjang" target="_blank" class="support-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://tiktok.com/@krobjang" target="_blank" class="support-btn tiktok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
                     </div>
                 </div>
             </div>
@@ -334,33 +526,43 @@
     </div>
 
     <footer>
-        © 2025 ครบจังดอทคอม | ข่าวสารฉับไว
+        <p>© 2025 ครบจังดอทคอม | 
+        <a href="#">นโยบายความเป็นส่วนตัว</a> | 
+        <a href="#">เกี่ยวกับเรา</a></p>
+        <p>ข่าวสารฉับไว ใช้งานง่าย ทุกวัยเข้าใจ</p>
     </footer>
 
     <script>
-        // เมนูมือถือ
-        document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('menuToggle')?.addEventListener('click', function () {
             document.getElementById('mobileNav').classList.toggle('active');
         });
 
-        // RSS Feed Script
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             const feeds = {
                 general: 'https://www.prachachat.net/feed',
                 economy: 'https://www.prachachat.net/economy/feed'
-                // ใส่ feed อื่นๆ เพิ่มตรงนี้
             };
 
             const containers = {
                 general: document.getElementById('general-news'),
                 economy: document.getElementById('economy-news')
-                // ใส่ ID ให้ตรงกับ feed
             };
 
             function loadFeed(category, url) {
-                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+                const cleanUrl = url.trim();
+                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(cleanUrl)}`;
+
                 fetch(apiUrl)
-                    .then(res => res.json())
+                    .then(res => {
+                        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                        return res.json();
+                    })
                     .then(data => {
                         if (data.status === 'ok') {
                             const items = data.items.slice(0, 6);
@@ -370,12 +572,13 @@
                                 card.href = item.link;
                                 card.target = '_blank';
                                 card.className = 'news-card';
-                                // เช็คว่ามีรูปหรือไม่ ถ้าไม่มีให้ใช้รูป placeholder
-                                const imgUrl = item.thumbnail || 'https://via.placeholder.com/400x200/eee/999?text=News';
-                                const desc = item.description ? item.description.replace(/<[^>]*>/g, '').substring(0, 80) + '...' : '';
-                                
+                                const imgUrl = item.thumbnail || 'https://via.placeholder.com/400x150/eff6ff/1e40af?text=News';
+                                const desc = item.description 
+                                    ? item.description.replace(/<[^>]*>/g, '').substring(0, 100) + '…' 
+                                    : 'อ่านข่าวเพิ่มเติม';
+
                                 card.innerHTML = `
-                                    <img src="${imgUrl}" alt="News Image">
+                                    <img src="${imgUrl}" alt="ข่าว">
                                     <div class="news-content">
                                         <h3>${item.title}</h3>
                                         <p>${desc}</p>
@@ -383,16 +586,18 @@
                                 `;
                                 containers[category].appendChild(card);
                             });
+                        } else {
+                            throw new Error(data.message || 'Unknown error');
                         }
                     })
                     .catch(err => {
-                        console.error('Error loading feed:', err);
-                        containers[category].innerHTML = '<p style="color:red; text-align:center;">โหลดข่าวไม่สำเร็จ</p>';
+                        console.error('โหลดข่าวไม่สำเร็จ:', err);
+                        containers[category].innerHTML = `<p style="color:#ef4444; text-align:center; padding:1rem;">⚠️ โหลดข่าวไม่ได้ชั่วคราว</p>`;
                     });
             }
 
             Object.keys(feeds).forEach(cat => {
-                if(containers[cat]) loadFeed(cat, feeds[cat]);
+                if (containers[cat]) loadFeed(cat, feeds[cat]);
             });
         });
     </script>
