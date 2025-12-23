@@ -5,20 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ครบจังดอทคอม | เว็บเดียวครบทุกเรื่อง ใช้ง่ายทุกวัย</title>
 
-  <meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้ง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
+  <meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้งานง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
   <meta name="keywords" content="ครบจัง, ข่าว, AI, ดูดวง, หวย, การเงิน, วิดีโอ">
   <meta name="author" content="ครบจังดอทคอม">
 
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ✅ Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
           crossorigin="anonymous"></script>
 
   <style>
     :root {
-      --primary: #2563eb;
+      --primary-dark: #1e3a8a;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
       --soft: #eff6ff;
       --bg: #f8fafc;
       --card: #ffffff;
@@ -40,46 +41,49 @@
       line-height: 1.7;
     }
 
-    /* HEADER */
     header {
-      background: #fff;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .header-wrap {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem;
+      box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      padding: 0.75rem 1rem;
     }
 
     .logo {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      color: var(--primary);
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
     .menu-btn {
       position: absolute;
-      right: 1rem;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
       font-size: 1.4rem;
       background: none;
       border: none;
+      color: white;
       cursor: pointer;
-      display: none; /* ซ่อนบนเดสก์ท็อป */
+      opacity: 0.9;
+      display: none;
+    }
+    .menu-btn:hover { opacity: 1; }
+
+    .header-spacer {
+      width: 24px;
     }
 
-    /* NAV */
     .main-nav {
       background: #fff;
       padding: 0.5rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .nav-wrap {
@@ -94,25 +98,55 @@
 
     .main-nav a {
       text-decoration: none;
-      color: var(--muted);
+      color: #4b5563;
       font-weight: 600;
       padding: 0.6rem 1rem;
       border-radius: 12px;
       transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
     }
 
     .main-nav a:hover,
     .main-nav a.active {
       background: var(--soft);
-      color: var(--primary);
+      transform: scale(1.02);
     }
 
-    /* HERO */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .mobile-nav a {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a:hover {
+      background: var(--soft);
+    }
+
     .hero {
       max-width: 1200px;
       margin: 1.5rem auto;
       padding: 2rem 1.5rem;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
       color: #fff;
       border-radius: var(--radius);
       display: flex;
@@ -121,12 +155,14 @@
       align-items: center;
       text-align: center;
       min-height: 240px;
+      box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
     }
 
     .hero h1 {
       font-size: 1.8rem;
       font-weight: 800;
       margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
     .hero p {
@@ -137,7 +173,6 @@
       font-size: 1.05rem;
     }
 
-    /* AD */
     .ad-section {
       max-width: 1200px;
       margin: 1.5rem auto;
@@ -145,7 +180,6 @@
       text-align: center;
     }
 
-    /* SECTION */
     .section {
       max-width: 1200px;
       margin: 2rem auto;
@@ -156,9 +190,21 @@
       font-size: 1.6rem;
       margin-bottom: 1.5rem;
       text-align: center;
+      color: var(--primary);
+      position: relative;
     }
 
-    /* GRID */
+    .section h2::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* ✅ GRID — อัปเดตให้ไอคอนมีสีสัน */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -171,24 +217,33 @@
       padding: 1.5rem;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.25s;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.06);
+      transition: all 0.25s ease;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid transparent;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      border-color: #e0e7ff;
     }
 
-    .card i {
-      font-size: 2.2rem;
-      margin-bottom: 0.8rem;
-      color: var(--primary);
-    }
+    /* ✅ สีไอคอนแต่ละหมวด — สวย มีชีวิตชีวา */
+    .card.ai i { color: #2EC4B6; }          /* AI */
+    .card.finance i { color: #FFD700; }     /* การเงิน (ทอง) */
+    .card.horoscope i { color: #6A4C93; }   /* ดูดวง (ม่วง) */
+    .card.lotto i { color: #FF6B6B; }       /* หวย (แดง) */
+    .card.video i { color: #FF9F1C; }       /* วิดีโอ (ส้ม) */
+    .card.lifestyle i { color: #E76F51; }   /* ไลฟ์สไตล์ (ส้มแดง) */
 
     .card h3 {
       font-size: 1.1rem;
-      margin-bottom: 0.4rem;
+      margin: 0.8rem 0 0.4rem;
+      font-weight: 700;
     }
 
     .card p {
@@ -196,138 +251,146 @@
       color: var(--muted);
     }
 
-    /* FOOTER */
     footer {
       margin-top: 2.5rem;
-      background: #0f172a;
-      color: #cbd5f5;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
       text-align: center;
-      padding: 1.8rem 1rem;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
     }
 
     footer a {
-      color: #93c5fd;
+      color: #e0f2fe;
       text-decoration: none;
       font-weight: 600;
+      margin: 0 0.5rem;
     }
 
-    /* ✅ MOBILE MENU */
+    footer a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
       .menu-btn { display: block; }
-
       #nav-placeholder { display: none; }
       #nav-placeholder.active { display: block; }
-
-      .mobile-nav {
-        background: #fff;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 100;
-      }
-
-      .mobile-nav .nav-wrap {
-        flex-direction: column;
-        gap: 0;
-        padding: 0;
-      }
-
-      .mobile-nav a {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid #eee;
-        text-align: center;
-      }
-
       .hero { min-height: 200px; padding: 1.5rem; }
       .hero h1 { font-size: 1.5rem; }
       .hero p { font-size: 1rem; }
+      .section h2::after { width: 30px; }
     }
   </style>
 </head>
 
 <body>
-
-<header>
-  <div class="header-wrap">
+  <header>
+    <button class="menu-btn" id="menuBtn">☰</button>
     <div class="logo">ครบจังดอทคอม</div>
-    <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    <div class="header-spacer"></div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="nav-wrap">
+      <a href="index.html" class="active"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="nav-placeholder">
+    <div class="nav-wrap">
+      <a href="index.html" class="active"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+    </div>
   </div>
-</header>
 
-<!-- ✅ Placeholder สำหรับโหลดเมนู -->
-<div id="nav-placeholder"></div>
+  <section class="hero">
+    <h1>เว็บเดียว ครบทุกเรื่อง ใช้ง่ายทุกวัย</h1>
+    <p>รวมข่าวสาร เทคโนโลยี AI การเงิน ดูดวง หวย และวิดีโอ  
+    ออกแบบให้เข้าใจง่าย อ่านสบาย ใช้ได้ทุกวัน</p>
+  </section>
 
-<section class="hero">
-  <h1>เว็บเดียว ครบทุกเรื่อง ใช้ง่ายทุกวัย</h1>
-  <p>รวมข่าวสาร เทคโนโลยี AI การเงิน ดูดวง หวย และวิดีโอ  
-  ออกแบบให้เข้าใจง่าย อ่านสบาย ใช้ได้ทุกวัน</p>
-</section>
+  <section class="section">
+    <h2>หมวดหมู่ยอดนิยม</h2>
+    <div class="grid">
+      <!-- ✅ เพิ่ม class ตามหมวด — ไอคอนจะมีสีอัตโนมัติ -->
+      <a class="card ai" href="ai.html">
+        <i class="fas fa-robot fa-2x"></i>
+        <h3>AI & เทคโนโลยี</h3>
+        <p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p>
+      </a>
+      <a class="card finance" href="finance.html">
+        <i class="fas fa-coins fa-2x"></i>
+        <h3>การเงิน</h3>
+        <p>หาเงิน ลงทุน วางแผนชีวิต</p>
+      </a>
+      <a class="card horoscope" href="horoscope.html">
+        <i class="fas fa-star fa-2x"></i>
+        <h3>ดูดวง</h3>
+        <p>ดวงรายวัน เลขมงคล ความเชื่อ</p>
+      </a>
+      <a class="card lotto" href="lotto.html">
+        <i class="fas fa-ticket-alt fa-2x"></i>
+        <h3>หวย</h3>
+        <p>เลขเด็ด แนวทาง วิเคราะห์</p>
+      </a>
+      <a class="card video" href="video.html">
+        <i class="fas fa-play-circle fa-2x"></i>
+        <h3>วิดีโอ</h3>
+        <p>ดูง่าย สนุก ได้สาระ</p>
+      </a>
+      <a class="card lifestyle" href="lifestyle.html">
+        <i class="fas fa-heart fa-2x"></i>
+        <h3>ไลฟ์สไตล์</h3>
+        <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
+      </a>
+    </div>
+  </section>
 
-<section class="section">
-  <h2>หมวดหมู่ยอดนิยม</h2>
-  <div class="grid">
-    <a class="card" href="ai.html"><i class="fas fa-robot"></i><h3>AI & เทคโนโลยี</h3><p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p></a>
-    <a class="card" href="finance.html"><i class="fas fa-coins"></i><h3>การเงิน</h3><p>หาเงิน ลงทุน วางแผนชีวิต</p></a>
-    <a class="card" href="horoscope.html"><i class="fas fa-star"></i><h3>ดูดวง</h3><p>ดวงรายวัน เลขมงคล ความเชื่อ</p></a>
-    <a class="card" href="lotto.html"><i class="fas fa-ticket"></i><h3>หวย</h3><p>เลขเด็ด แนวทาง วิเคราะห์</p></a>
-    <a class="card" href="video.html"><i class="fas fa-video"></i><h3>วิดีโอ</h3><p>ดูง่าย สนุก ได้สาระ</p></a>
-    <a class="card" href="lifestyle.html"><i class="fas fa-heart"></i><h3>ไลฟ์สไตล์</h3><p>สุขภาพ ชีวิต ความเป็นอยู่</p></a>
+  <div class="ad-section">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2068902667667616"
+         data-ad-slot="1706997713"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
-</section>
 
-<div class="ad-section">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-2068902667667616"
-       data-ad-slot="1706997713"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
+  <footer>
+    <p>© 2025 ครบจังดอทคอม | 
+    <a href="#">นโยบายความเป็นส่วนตัว</a> |
+    <a href="#">เกี่ยวกับเรา</a></p>
+  </footer>
 
-<footer>
-  <p>© 2025 ครบจังดอทคอม | 
-  <a href="#">นโยบายความเป็นส่วนตัว</a> |
-  <a href="#">เกี่ยวกับเรา</a></p>
-</footer>
+  <script>
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      document.getElementById('nav-placeholder').classList.toggle('active');
+    });
 
-<!-- ✅ SCRIPT: โหลด nav + จัดการ active + มือถือ -->
-<script>
-  // 📌 ฟังก์ชันโหลดเมนู
-  async function loadNav() {
-    try {
-      const res = await fetch('nav.html');
-      if (!res.ok) throw new Error('ไม่พบ nav.html');
-      const html = await res.text();
-      document.getElementById('nav-placeholder').innerHTML = html;
-
-      // ✅ ตั้ง active อัตโนมัติ
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('.main-nav a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-        }
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('nav-placeholder').classList.remove('active');
       });
-
-    } catch (err) {
-      console.error('โหลดเมนูล้มเหลว:', err);
-      document.getElementById('nav-placeholder').innerHTML = 
-        `<div class="main-nav" style="text-align:center;padding:12px;color:red">⚠️ โหลดเมนูล้มเหลว</div>`;
-    }
-  }
-
-  // 📱 มือถือ: toggle menu
-  document.getElementById('menuBtn')?.addEventListener('click', () => {
-    const placeholder = document.getElementById('nav-placeholder');
-    placeholder.classList.toggle('active');
-    placeholder.classList.add('mobile-nav');
-  });
-
-  // 🚀 เริ่มโหลดเมื่อหน้าพร้อม
-  document.addEventListener('DOMContentLoaded', loadNav);
-</script>
-
+    });
+  </script>
 </body>
 </html>
