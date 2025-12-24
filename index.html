@@ -232,13 +232,13 @@
       border-color: #e0e7ff;
     }
 
-    /* ✅ สีไอคอนแต่ละหมวด — สวย มีชีวิตชีวา */
-    .card.ai i { color: #2EC4B6; }          /* AI */
-    .card.finance i { color: #FFD700; }     /* การเงิน (ทอง) */
-    .card.horoscope i { color: #6A4C93; }   /* ดูดวง (ม่วง) */
-    .card.lotto i { color: #FF6B6B; }       /* หวย (แดง) */
-    .card.video i { color: #FF9F1C; }       /* วิดีโอ (ส้ม) */
-    .card.lifestyle i { color: #E76F51; }   /* ไลฟ์สไตล์ (ส้มแดง) */
+    /* ✅ สีไอคอนแต่ละหมวด */
+    .card.ai i { color: #2EC4B6; }          
+    .card.finance i { color: #FFD700; }     
+    .card.horoscope i { color: #6A4C93; }   
+    .card.lotto i { color: #FF6B6B; }       
+    .card.video i { color: #FF9F1C; }       
+    .card.lifestyle i { color: #E76F51; }   
 
     .card h3 {
       font-size: 1.1rem;
@@ -250,6 +250,57 @@
       font-size: 0.95rem;
       color: var(--muted);
     }
+
+    /* ✅ เพิ่ม CSS สำหรับส่วน "สนับสนุนเรา" */
+    .support-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+      text-align: center;
+    }
+
+    .qr-code {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin: 1rem auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-width: 90px;
+      gap: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-2px);
+    }
+
+    .social-links .promptpay { background: #00C853; }
+    .social-links .facebook  { background: #3b5998; }
+    .social-links .youtube   { background: #FF0000; }
+    .social-links .tiktok    { background: #000; }
 
     footer {
       margin-top: 2.5rem;
@@ -279,6 +330,16 @@
       .hero h1 { font-size: 1.5rem; }
       .hero p { font-size: 1rem; }
       .section h2::after { width: 30px; }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      .social-links a {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -331,7 +392,6 @@
   <section class="section">
     <h2>หมวดหมู่ยอดนิยม</h2>
     <div class="grid">
-      <!-- ✅ เพิ่ม class ตามหมวด — ไอคอนจะมีสีอัตโนมัติ -->
       <a class="card ai" href="ai.html">
         <i class="fas fa-robot fa-2x"></i>
         <h3>AI & เทคโนโลยี</h3>
@@ -362,6 +422,21 @@
         <h3>ไลฟ์สไตล์</h3>
         <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
       </a>
+    </div>
+  </section>
+
+  <!-- ✅ แทรกส่วน "สนับสนุนเรา" ตรงนี้ -->
+  <section class="section">
+    <h2>❤️ สนับสนุนเรา</h2>
+    <div class="support-card">
+      <p>ขอบคุณทุกการสนับสนุน!</p>
+      <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+      <div class="social-links">
+        <a href="#" class="promptpay"><i class="fas fa-money-bill-wave"></i> พร้อมเพย์</a>
+        <a href="https://facebook.com/yourpage" target="_blank" class="facebook"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="youtube"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+      </div>
     </div>
   </section>
 
