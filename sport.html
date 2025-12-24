@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ครบจังดอทคอม - ข่าวกีฬา</title>
-    <!-- เปลี่ยน font เป็น Sarabun ตามหน้าแรก -->
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ใช้ CSS Variables และสไตล์ทั้งหมดจากหน้าแรก */
         :root {
             --brand: #0d47a1;
             --accent: #1565c0;
@@ -24,9 +22,8 @@
         * { box-sizing: border-box; margin:0; padding:0; }
         body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        /* Header แบบ footer — สีเดียวกับ footer */
         header { 
-            background: var(--brand); /* ✅ ยังเป็นสีเดิม */
+            background: var(--brand);
             color: #fff; 
             padding: 16px; 
             text-align: center; 
@@ -55,7 +52,6 @@
             display: none;
         }
 
-        /* Nav แบบหน้าแรก */
         nav.main-nav { 
             background: #fff; 
             padding: 10px 16px; 
@@ -88,7 +84,6 @@
             transform: scale(1.05);
         }
 
-        /* Mobile Nav */
         .mobile-nav {
             display: none;
             flex-direction: column;
@@ -116,7 +111,6 @@
         }
         .mobile-nav a:last-child { border: none; }
 
-        /* Container แบบหน้าแรก (Grid Layout) */
         .container { 
             max-width: 1200px; 
             margin: 20px auto; 
@@ -126,13 +120,11 @@
             gap: 20px; 
         }
 
-        /* Content Area แบบหน้าแรก */
         .content-area { 
             display: flex; 
             flex-direction: column; 
         }
 
-        /* Section แบบหน้าแรก */
         .section { 
             background: var(--card); 
             padding: 18px; 
@@ -157,7 +149,6 @@
             border-radius: 50%; 
         }
 
-        /* News Grid and Card — ✅ แก้ไขเฉพาะ hover */
         .news-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
@@ -178,33 +169,9 @@
             position: relative;
             overflow: hidden;
         }
-        /* ✅ ลบ ::before ออก — ไม่มี gradient sweep */
-        /*
-        .news-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            transition: width 0.5s ease;
-            z-index: -1;
-        }
-        */
-
-        /* ✅ hover แบบนุ่มนวล — ขยับขึ้นเล็กน้อยเท่านั้น */
         .news-card:hover { 
-            transform: translateY(-3px); /* เฉยๆ ไม่มี scale, ไม่มี border, ไม่มี shadow เพิ่ม */
-            /* ลบบรรทัดเหล่านี้ออก:
-            scale(1.02); 
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1); 
-            border-color: var(--accent);
-            */
+            transform: translateY(-3px); 
         }
-        /* ✅ ลบบรรทัดนี้ออก:
-        .news-card:hover:before { width: 100%; }
-        */
 
         .news-card img { 
             width: 100%; 
@@ -233,7 +200,7 @@
         }
 
         footer { 
-            background: var(--brand); /* ✅ ยังเป็นสีเดิม */
+            background: var(--brand); 
             color: #fff; 
             padding: 15px; 
             text-align: center; 
@@ -241,7 +208,6 @@
             font-size: 0.85em; 
         }
 
-        /* สไตล์สำหรับส่วนโฆษณาและสนับสนุนด้านข้าง (ใช้สไตล์จากหน้าแรก) */
         .sidebar { 
             display: flex; 
             flex-direction: column; 
@@ -295,6 +261,69 @@
             font-size: 0.9em; 
         }
 
+        /* ✅ ส่วน "สนับสนุนเรา" แบบสวยๆ ที่เคยทำไว้ */
+        .support-card-beautiful {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+            text-align: center;
+        }
+
+        .qr-code-beautiful {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin: 1rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links-beautiful {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 90px;
+            gap: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-btn.promptpay { background: #00C853; }
+        .social-btn.facebook  { background: #3b5998; }
+        .social-btn.youtube   { background: #FF0000; }
+        .social-btn.tiktok    { background: #000; }
+
+        @media (max-width: 768px) {
+            .social-links-beautiful {
+                grid-template-columns: 1fr;
+                align-items: center;
+            }
+            .social-btn {
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             nav.main-nav { 
                 display: none;
@@ -314,7 +343,6 @@
             .news-card img { 
                 height: 120px; 
             }
-            /* แสดงเป็นคอลัมน์เดียวบนมือถือ */
             .container { 
                 grid-template-columns: 1fr; 
                 padding: 0 12px; 
@@ -326,107 +354,38 @@
     <header>
         <button class="menu-toggle" id="menuToggle">☰</button>
         <h1>ครบจังดอทคอม</h1>
-        <div style="width: 24px;"></div> <!-- Spacer for symmetry -->
+        <div style="width: 24px;"></div>
     </header>
 
-    <!-- Desktop Navigation -->
     <nav class="main-nav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html">
-            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html">
-            <i class="fas fa-star" style="color: #6A4C93;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html" class="active">
-            <i class="fas fa-futbol" style="color: #E76F51;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6;"></i>
-            AI
-        </a>
-        <a href="games.html">
-            <i class="fas fa-gamepad" style="color: #E76F51;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93;"></i>
-            ติดต่อเรา
-        </a>
+        <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+        <a href="news.html"><i class="fas fa-newspaper" style="color: #FF6B6B;"></i> ข่าว</a>
+        <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+        <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+        <a href="sport.html" class="active"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+        <a href="video.html"><i class="fas fa-video" style="color: #FF9F1C;"></i> วีดีโอ</a>
+        <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+        <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+        <a href="shopping.html"><i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i> ช้อป</a>
+        <a href="booking.html"><i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+        <a href="contact.html"><i class="fas fa-address-card" style="color: #6A4C93;"></i> ติดต่อเรา</a>
     </nav>
 
-    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html">
-            <i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html">
-            <i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html" class="active">
-            <i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i>
-            AI
-        </a>
-        <a href="games.html">
-            <i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i>
-            ติดต่อเรา
-        </a>
+        <a href="index.html"><i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i> หน้าแรก</a>
+        <a href="news.html"><i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i> ข่าว</a>
+        <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i> หวย</a>
+        <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i> ดูดวง</a>
+        <a href="sport.html" class="active"><i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i> กีฬา</a>
+        <a href="video.html"><i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i> วีดีโอ</a>
+        <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i> AI</a>
+        <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i> เกมส์</a>
+        <a href="shopping.html"><i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i> ช้อป</a>
+        <a href="booking.html"><i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i> ท่องเที่ยว</a>
+        <a href="contact.html"><i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i> ติดต่อเรา</a>
     </div>
 
     <div class="container">
-        <!-- พื้นที่เนื้อหาหลัก -->
         <div class="content-area">
             <div class="section">
                 <h2>🏆 ข่าวกีฬา</h2>
@@ -434,9 +393,7 @@
             </div>
         </div>
 
-        <!-- พื้นที่ด้านข้างสำหรับโฆษณาและสนับสนุน -->
         <aside class="sidebar">
-            <!-- โฆษณา AdSense -->
             <div class="ad-section">
                 <h2>💰 สนับสนุนเว็บไซต์</h2>
                 <div style="text-align: center;"> 
@@ -446,33 +403,32 @@
                       data-ad-slot="1706997713" 
                       data-ad-format="auto"
                       data-full-width-responsive="true"></ins>
-                  <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                  </script>
+                  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
                 <div class="ad-placeholder" style="margin-top: 10px;">
                     [โฆษณา Affiliate]
                 </div>
             </div>
             
-            <!-- QR Code สนับสนุน -->
+            <!-- ✅ ส่วน "สนับสนุนเรา" แบบสวยๆ ที่เคยทำไว้ -->
             <div class="ad-section">
-                <h2>☕ สนับสนุนเรา</h2>
-                <div class="support-card">
-                    <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
-                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-                </div>
-            </div>
-
-            <!-- โซเชียล -->
-            <div class="ad-section">
-                <h2>📣 ติดตามเรา</h2>
-                <div class="support-card">
-                    <p>ติดตามข่าวสารและอัปเดตได้ที่</p>
-                    <div class="social-links">
-                        <a href="#" target="_blank">Facebook Page</a>
-                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">YouTube Channel</a>
-                        <a href="https://www.tiktok.com/@kengwong007" target="_blank">TikTok</a>
+                <h2>❤️ สนับสนุนเรา</h2>
+                <div class="support-card-beautiful">
+                    <p>ขอบคุณทุกการสนับสนุน!</p>
+                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code-beautiful">
+                    <div class="social-links-beautiful">
+                        <a href="#" class="social-btn promptpay">
+                            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+                        </a>
+                        <a href="https://facebook.com/yourpage" target="_blank" class="social-btn facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="social-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="social-btn tiktok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
                     </div>
                 </div>
             </div>
@@ -484,19 +440,16 @@
     </footer>
 
     <script>
-        // 📱 Toggle Mobile Menu
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.getElementById('mobileNav').classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobileNav').classList.remove('active');
             });
         });
 
-        // 📌 ฟังก์ชันเดิม: สำหรับโหลดข่าว
         function loadSportNews() {
             const container = document.getElementById('news-container');
             const rssUrl = "https://www.thairath.co.th/rss/sport";
@@ -504,28 +457,22 @@
             fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
                 .then(res => res.json())
                 .then(data => {
-                    const items = data.items.slice(0, 24); // เปลี่ยนเป็นแสดง 24 ข่าวล่าสุด
+                    if (data.status !== "ok") {
+                        throw new Error(data.message || "Failed to fetch RSS");
+                    }
+                    const items = data.items.slice(0, 12);
                     container.innerHTML = "";
-
                     if (items.length === 0) {
                         container.innerHTML = "<p>ไม่พบข่าว</p>";
                         return;
                     }
-
                     items.forEach(item => {
-                        let imgSrc = "";
-                        // พยายามดึงรูปภาพจาก enclosure, thumbnail, หรือจาก description
-                        if (item.enclosure && item.enclosure.link) {
-                            imgSrc = item.enclosure.link;
-                        } else if (item.thumbnail) {
-                            imgSrc = item.thumbnail;
-                        } else {
+                        let imgSrc = item.enclosure?.link || item.thumbnail || "";
+                        if (!imgSrc) {
                             const match = item.description.match(/<img.*?src="(.*?)"/);
                             imgSrc = match ? match[1] : "https://via.placeholder.com/400x200/004d99/ffffff?text=ข่าว";
                         }
-                        
                         const cleanDesc = item.description.replace(/<[^>]+>/g, "").substring(0, 100) + "...";
-
                         const card = document.createElement('a');
                         card.href = item.link;
                         card.target = "_blank";
@@ -542,16 +489,15 @@
                     });
                 })
                 .catch(err => {
-                    container.innerHTML = "<p>ไม่สามารถโหลดข่าวได้ 😢</p>";
-                    console.error("Error fetching RSS feed:", err);
+                    console.error("Error loading news:", err);
+                    container.innerHTML = `<p style="color: #e04444; text-align: center; padding: 1rem;">⚠️ โหลดข่าวไม่ได้: ${err.message}</p>`;
                 });
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            loadSportNews(); // โหลดข่าว
+            loadSportNews();
         });
     </script>
-    <!-- โหลดสคริปต์ AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 </body>
 </html>
