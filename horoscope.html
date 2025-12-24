@@ -4,514 +4,550 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ดูดวงแม่นๆ 12 ราศี - ครบจังดอทคอม</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="ดูดวงรายวัน รายสัปดาห์ รายเดือน 12 ราศี ไพ่ยิปซี เบอร์มงคล แม่นยำ โดยจารย์ดัง">
+    <meta name="keywords" content="ดูดวง, ราศี, ไพ่ยิปซี, เบอร์มงคล, ครบจัง">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+            crossorigin="anonymous"></script>
 
     <style>
-        /* ใช้ CSS Variables และสไตล์ทั้งหมดจากหน้าแรก */
+        /* ✅ Variables — ใช้แบบเดียวกับหน้าอื่น */
         :root {
-            --brand: #0d47a1;
-            --accent: #1565c0;
-            --bg: #f4f6f9;
-            --card: #fff;
-            --text: #222;
-            --text-secondary: #666;
-            --border: #e0e0e0;
-            --highlight: #ff9800;
-            --gradient-start: #4facfe;
-            --gradient-end: #00f2fe;
-        }
-        * { box-sizing: border-box; margin:0; padding:0; }
-        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
-        /* Header แบบหน้าแรก */
-        header { 
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color:#fff; 
-            padding:16px; 
-            text-align:center; 
-            box-shadow:0 2px 10px rgba(0,0,0,0.1); 
-            position: sticky; 
-            top:0; 
-            z-index:100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 { 
-            margin:0; 
-            font-size:20px; 
-            letter-spacing:0.5px;
-            flex: 1;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
+          --primary-dark: #1e3a8a;
+          --primary: #1e40af;
+          --primary-light: #3b82f6;
+          --soft: #eff6ff;
+          --bg: #f8fafc;
+          --card: #ffffff;
+          --text: #1e293b;
+          --muted: #64748b;
+          --radius: 18px;
+          --highlight-orange: #FB8C00;
+          --highlight-purple: #6A4C93;
         }
 
-        /* Nav แบบหน้าแรก */
-        nav.main-nav { 
-            background:#fff; 
-            padding:10px 16px; 
-            box-shadow:0 2px 6px rgba(0,0,0,0.08); 
-            display:flex; 
-            justify-content:center; 
-            overflow-x:auto; 
-            gap:8px; 
-            flex-wrap: nowrap; 
-        }
-        nav.main-nav a { 
-            color:#333; 
-            text-decoration:none; 
-            padding:8px 12px; 
-            border-radius:8px; 
-            font-weight:600; 
-            font-size:0.9em; 
-            white-space:nowrap; 
-            border:1px solid transparent; 
-            min-width: 80px;
-            text-align: center;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        nav.main-nav a.active, nav.main-nav a:hover { 
-            background: var(--accent); 
-            color:#fff;
-            transform: scale(1.05);
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Sarabun', sans-serif;
         }
 
-        /* Mobile Nav */
+        body {
+          background: var(--bg);
+          color: var(--text);
+          line-height: 1.6;
+        }
+
+        /* ✅ Header — เข้มสม่ำเสมอ + โลโก้กลาง */
+        header {
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: #fff;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.75rem 1rem;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin: 0;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .menu-btn {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1.4rem;
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          opacity: 0.9;
+          display: none;
+        }
+        .menu-btn:hover { opacity: 1; }
+
+        .header-spacer {
+          width: 24px;
+        }
+
+        /* ✅ Navigation — สีสันสดใส + icon แบบหน้าอื่น */
+        .main-nav {
+          background: #fff;
+          padding: 0.5rem 0;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .nav-wrap {
+          max-width: 1200px;
+          margin: auto;
+          display: flex;
+          gap: 0.75rem;
+          padding: 0 1rem;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .main-nav a {
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          padding: 0.6rem 1rem;
+          border-radius: 12px;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.95rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+          background: var(--soft);
+          transform: scale(1.02);
+        }
+
         .mobile-nav {
-            display: none;
-            flex-direction: column;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            z-index: 999;
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 100;
         }
+
         .mobile-nav a {
-            padding: 14px 20px;
-            border-bottom: 1px solid #eee;
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #f1f5f9;
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
         }
+
         .mobile-nav a:hover {
-            background: #f5f5f5;
-        }
-        .mobile-nav a:last-child { border: none; }
-
-        /* Container แบบหน้าแรก (Grid Layout) */
-        .container { 
-            max-width:1200px; 
-            margin:20px auto; 
-            padding:0 16px; 
-            display: grid; 
-            grid-template-columns: 1fr 300px; 
-            gap: 20px; 
+          background: var(--soft);
         }
 
-        /* Content Area แบบหน้าแรก */
-        .content-area { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px; 
+        /* Layout */
+        .container {
+          max-width: 1200px;
+          margin: 1.5rem auto;
+          padding: 0 1rem;
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 1.5rem;
         }
 
-        /* Section แบบหน้าแรก */
-        .section { 
-            background: var(--card); 
-            padding:18px; 
-            border-radius:12px; 
-            box-shadow:0 4px 12px rgba(0,0,0,0.06); 
-        }
-        .section h2 { 
-            margin:0 0 12px; 
-            color: var(--brand); 
-            font-size:1.3em; 
-            display:flex; 
-            align-items:center; 
-            gap:8px; 
-        }
-        .section h2::before { 
-            content:""; 
-            display:inline-block; 
-            width:8px; 
-            height:8px; 
-            background: var(--accent); 
-            border-radius:50%; 
+        .content-area {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
 
-        /* Grid และ Card ของราศี (ปรับให้เข้ากับสไตล์ใหม่) */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            transition: 0.2s;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 10px;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        .card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            transition: width 0.5s ease;
-            z-index: -1;
-        }
-        .card:hover {
-            transform:translateY(-3px) scale(1.02);
-            box-shadow:0 6px 15px rgba(0,0,0,0.1);
-            border-color: var(--accent);
-        }
-        .card:hover:before {
-            width: 100%;
-        }
-        .card img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-        }
-        .card h3 {
-            color: var(--brand);
-            margin: 10px 0 5px 0;
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-        .card p {
-            color: var(--text-secondary);
-            font-size: 0.9em;
+        .section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1.25rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
         }
 
-        /* ปรับปรุงแถบสี (Banners) ให้เข้ากับสไตล์ใหม่ */
+        .section h2 {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+          color: var(--primary);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .section h2::before {
+          content: "";
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background: var(--primary);
+          border-radius: 50%;
+        }
+
+        /* ✅ ปุ่มดูดวงแต่ละประเภท — สีสันสดใส */
         .horoscope-type-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
         }
+
         .horoscope-type-card {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 25px;
-            height: 60px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: box-shadow 0.3s, transform 0.3s;
-            font-size: 1.2em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.75rem;
+          text-align: center;
+          text-decoration: none;
+          color: white;
+          font-weight: 700;
+          border-radius: var(--radius);
+          transition: all 0.3s;
+          font-size: 1.05rem;
         }
+
         .horoscope-type-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .daily-horoscope-banner { background-color: #ff9900; }
-        .zodiac-year-banner { background-color: #008080; }
-        .tarot-banner { background-color: #8A2BE2; }
-        .birthday-banner { background-color: #e91e63; }
-        .phone-number-banner { background-color: #4CAF50; }
-        .articles-banner { background-color: #ff5722; }
-
-        /* สไตล์สำหรับส่วนโฆษณาและสนับสนุนด้านข้าง (ใช้สไตล์จากหน้าแรก) */
-        .sidebar { 
-            display:flex; 
-            flex-direction:column; 
-            gap:18px; 
-        }
-        .ad-section { 
-            background: var(--card); 
-            padding:15px; 
-            border-radius:10px; 
-            box-shadow:0 4px 12px rgba(0,0,0,0.06); 
-        }
-        .ad-section h2 { 
-            color: var(--highlight); 
-        }
-        .ad-placeholder { 
-            background:#eee; 
-            padding:20px; 
-            text-align:center; 
-            border-radius:8px; 
-            color: var(--text-secondary); 
-            font-style:italic; 
-            margin-top:10px; 
-        }
-        .support-card { 
-            background: var(--card); 
-            padding: 12px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); 
-            text-align: center; 
-        }
-        .support-card h3 { 
-            margin: 0 0 10px; 
-            font-size: 1em; 
-            color: var(--brand); 
-        }
-        .qr-code { 
-            width: 100%; 
-            max-width: 150px; 
-            height: auto; 
-            display: block; 
-            margin: 10px auto 0; 
-        }
-        .social-links { 
-            margin-top: 15px; 
-        }
-        .social-links a { 
-            display: block; 
-            margin: 5px 0; 
-            color: var(--accent); 
-            text-decoration: none; 
-            font-size: 0.9em; 
+          transform: translateY(-3px);
+          box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
 
-        footer { 
-            background: var(--brand); 
-            color:#fff; 
-            padding:15px; 
-            text-align:center; 
-            margin-top:30px; 
-            font-size:0.85em; 
+        .daily-horoscope-banner { background: linear-gradient(135deg, #FF6B6B, #FF8E8E); }
+        .zodiac-year-banner { background: linear-gradient(135deg, #6A4C93, #8A6BC3); }
+        .tarot-banner { background: linear-gradient(135deg, #8A2BE2, #A357FF); }
+        .birthday-banner { background: linear-gradient(135deg, #e91e63, #f06292); }
+        .phone-number-banner { background: linear-gradient(135deg, #4CAF50, #81C784); }
+        .articles-banner { background: linear-gradient(135deg, #FF9F1C, #FFC16A); }
+
+        /* ✅ 12 ราศี — ปรับ hover effect ให้เหมือนหน้าอื่น */
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: 1rem;
         }
 
-        @media(max-width:768px) {
-            nav.main-nav { 
-                display: none;
-            }
-            .mobile-nav.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            header {
-                padding: 12px 16px;
-            }
-            header h1 {
-                font-size: 18px;
-            }
-            .container { 
-                grid-template-columns:1fr; 
-                padding:0 12px; 
-            }
-            .horoscope-type-card { 
-                font-size: 1.1em; 
-                height: 50px; 
-            }
+        .card {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          text-align: center;
+          text-decoration: none;
+          color: var(--text);
+          box-shadow: 0 4px 10px rgba(30, 64, 175, 0.06);
+          transition: all 0.25s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border: 2px solid transparent;
+        }
+
+        .card:hover {
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+          border-color: #e0e7ff;
+        }
+
+        .card img {
+          width: 60px;
+          height: 60px;
+          margin-bottom: 0.75rem;
+        }
+
+        .card h3 {
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin: 0.5rem 0 0.25rem;
+        }
+
+        .card p {
+          font-size: 0.85rem;
+          color: var(--muted);
+        }
+
+        /* ✅ Sidebar — แบบเดียวกับหน้าอื่น */
+        .sidebar {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .ad-section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+          text-align: center;
+        }
+
+        .ad-section h2.support-site {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-site i {
+          color: #7E57C2;
+        }
+
+        .ad-section h2.support-us {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-us i {
+          color: #FB8C00;
+        }
+
+        .adsense-container {
+          background-color: #f9fbff;
+          border: 1px dashed #dbeafe;
+          border-radius: 12px;
+          min-height: 280px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.75rem;
+          position: relative;
+        }
+
+        .adsense-container::before {
+          content: "พื้นที่โฆษณา";
+          color: #94a3b8;
+          font-size: 0.85rem;
+          position: absolute;
+          z-index: 0;
+        }
+
+        /* ✅ Support Card — 4 ช่องทาง */
+        .support-card {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+        }
+
+        .qr-code {
+          width: 100%;
+          max-width: 150px;
+          height: auto;
+          margin: 0.75rem auto;
+          display: block;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-links {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+
+        .support-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.6rem 0.5rem;
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: white;
+          transition: all 0.2s;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .support-btn i {
+          font-size: 1.1rem;
+        }
+
+        .support-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .support-btn.facebook { background: #4267B2; }
+        .support-btn.youtube  { background: #FF0000; }
+        .support-btn.tiktok   { background: #000000; }
+        .support-btn.promptpay{ background: #10B981; }
+
+        @media (max-width: 768px) {
+          .support-links {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* ✅ Footer — เข้มเท่า header */
+        footer {
+          margin-top: 2rem;
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: white;
+          text-align: center;
+          padding: 1.25rem 1rem;
+          font-size: 0.9rem;
+          box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
+        }
+
+        footer a {
+          color: #e0f2fe;
+          text-decoration: none;
+          font-weight: 600;
+          margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+          text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .menu-btn { display: block; }
+          .main-nav { display: none; }
+          .mobile-nav.active { display: flex; }
+          .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
+          .grid { grid-template-columns: repeat(3, 1fr); }
+          .card { padding: 0.75rem; }
+          .card img { width: 50px; height: 50px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <h1>ครบจังดอทคอม</h1>
-        <div style="width: 24px;"></div> <!-- Spacer for symmetry -->
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div class="logo">ครบจังดอทคอม</div>
+        <div class="header-spacer"></div>
     </header>
 
-    <!-- Desktop Navigation -->
     <nav class="main-nav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html">
-            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html" class="active">
-            <i class="fas fa-star" style="color: #6A4C93;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html">
-            <i class="fas fa-futbol" style="color: #E76F51;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6;"></i>
-            AI
-        </a>
-        <a href="games.html">
-            <i class="fas fa-gamepad" style="color: #E76F51;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93;"></i>
-            ติดต่อเรา
-        </a>
+        <div class="nav-wrap">
+            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+            <a href="horoscope.html" class="active"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+            <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+        </div>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html">
-            <i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html" class="active">
-            <i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html">
-            <i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i>
-            AI
-        </a>
-        <a href="games.html">
-            <i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i>
-            ติดต่อเรา
-        </a>
+    <div class="mobile-nav" id="nav-placeholder">
+        <div class="nav-wrap">
+            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+            <a href="horoscope.html" class="active"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+            <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+        </div>
     </div>
 
     <div class="container">
-        <!-- พื้นที่เนื้อหาหลัก -->
         <div class="content-area">
             <div class="horoscope-type-container">
-                <a href="horoscope_daily.html" class="horoscope-type-card daily-horoscope-banner">🔮 ดูดวงรายวันสำหรับคุณ คลิกเลย!</a>
-                <a href="horoscope_zodiac_year.html" class="horoscope-type-card zodiac-year-banner">🐉 ดูดวงปีนักษัตรของคุณ คลิกเลย!</a>
-                <a href="horoscope_tarot.html" class="horoscope-type-card tarot-banner">🃏 ดูดวงไพ่ยิปซี คลิกเลย!</a>
-                <a href="horoscope_birthday.html" class="horoscope-type-card birthday-banner">🎂 ทำนายจากวันเกิดของคุณ คลิกเลย!</a>
-                <a href="horoscope_phone_number.html" class="horoscope-type-card phone-number-banner">📱 ทำนายเบอร์มงคลของคุณ คลิกเลย!</a>
-                <a href="horoscope_articles.html" class="horoscope-type-card articles-banner">📰 บทความเสริมดวงน่ารู้ คลิกเลย!</a>
+                <a href="horoscope_daily.html" class="horoscope-type-card daily-horoscope-banner">
+                    <i class="fas fa-moon"></i> ดูดวงรายวันสำหรับคุณ คลิกเลย!
+                </a>
+                <a href="horoscope_zodiac_year.html" class="horoscope-type-card zodiac-year-banner">
+                    <i class="fas fa-dragon"></i> ดูดวงปีนักษัตรของคุณ คลิกเลย!
+                </a>
+                <a href="horoscope_tarot.html" class="horoscope-type-card tarot-banner">
+                    <i class="fas fa-cards"></i> ดูดวงไพ่ยิปซี คลิกเลย!
+                </a>
+                <a href="horoscope_birthday.html" class="horoscope-type-card birthday-banner">
+                    <i class="fas fa-birthday-cake"></i> ทำนายจากวันเกิดของคุณ คลิกเลย!
+                </a>
+                <a href="horoscope_phone_number.html" class="horoscope-type-card phone-number-banner">
+                    <i class="fas fa-mobile-alt"></i> ทำนายเบอร์มงคลของคุณ คลิกเลย!
+                </a>
+                <a href="horoscope_articles.html" class="horoscope-type-card articles-banner">
+                    <i class="fas fa-book"></i> บทความเสริมดวงน่ารู้ คลิกเลย!
+                </a>
             </div>
-            <div class="section" style="margin-top: 0;">
-                <h2>✨ ดูดวง 12 ราศี</h2>
-                <p style="text-align: center; margin-bottom: 20px; color: var(--text-secondary);">เลือกราศีของคุณเพื่อดูคำทำนายล่าสุด</p>
+
+            <div class="section">
+                <h2><i class="fas fa-star"></i> ดูดวง 12 ราศี</h2>
+                <p style="text-align: center; margin-bottom: 1rem; color: var(--muted);">
+                    เลือกราศีของคุณเพื่อดูคำทำนายล่าสุด
+                </p>
                 <div class="grid">
                     <a href="horoscope_detail.html?sign=aries" class="card">
-                        <img src="images/aries.png" alt="ราศีเมษ">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♈" alt="ราศีเมษ">
                         <h3>ราศีเมษ</h3>
                         <p>13 เม.ย. - 13 พ.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=taurus" class="card">
-                        <img src="images/taurus.png" alt="ราศีพฤษภ">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♉" alt="ราศีพฤษภ">
                         <h3>ราศีพฤษภ</h3>
                         <p>14 พ.ค. - 13 มิ.ย.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=gemini" class="card">
-                        <img src="images/gemini.png" alt="ราศีเมถุน">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♊" alt="ราศีเมถุน">
                         <h3>ราศีเมถุน</h3>
                         <p>14 มิ.ย. - 14 ก.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=cancer" class="card">
-                        <img src="images/cancer.png" alt="ราศีกรกฎ">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♋" alt="ราศีกรกฎ">
                         <h3>ราศีกรกฎ</h3>
                         <p>15 ก.ค. - 16 ส.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=leo" class="card">
-                        <img src="images/leo.png" alt="ราศีสิงห์">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♌" alt="ราศีสิงห์">
                         <h3>ราศีสิงห์</h3>
                         <p>17 ส.ค. - 16 ก.ย.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=virgo" class="card">
-                        <img src="images/virgo.png" alt="ราศีกันย์">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♍" alt="ราศีกันย์">
                         <h3>ราศีกันย์</h3>
                         <p>17 ก.ย. - 16 ต.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=libra" class="card">
-                        <img src="images/libra.png" alt="ราศีตุลย์">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♎" alt="ราศีตุลย์">
                         <h3>ราศีตุลย์</h3>
                         <p>17 ต.ค. - 15 พ.ย.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=scorpio" class="card">
-                        <img src="images/scorpio.png" alt="ราศีพิจิก">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♏" alt="ราศีพิจิก">
                         <h3>ราศีพิจิก</h3>
                         <p>16 พ.ย. - 15 ธ.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=sagittarius" class="card">
-                        <img src="images/sagittarius.png" alt="ราศีธนู">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♐" alt="ราศีธนู">
                         <h3>ราศีธนู</h3>
                         <p>16 ธ.ค. - 14 ม.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=capricorn" class="card">
-                        <img src="images/capricorn.png" alt="ราศีมังกร">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♑" alt="ราศีมังกร">
                         <h3>ราศีมังกร</h3>
                         <p>15 ม.ค. - 12 ก.พ.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=aquarius" class="card">
-                        <img src="images/aquarius.png" alt="ราศีกุมภ์">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♒" alt="ราศีกุมภ์">
                         <h3>ราศีกุมภ์</h3>
                         <p>13 ก.พ. - 13 มี.ค.</p>
                     </a>
                     <a href="horoscope_detail.html?sign=pisces" class="card">
-                        <img src="images/pisces.png" alt="ราศีมีน">
+                        <img src="https://via.placeholder.com/60/6A4C93/ffffff?text=♓" alt="ราศีมีน">
                         <h3>ราศีมีน</h3>
                         <p>14 มี.ค. - 12 เม.ย.</p>
                     </a>
@@ -519,34 +555,42 @@
             </div>
         </div>
 
-        <!-- พื้นที่ด้านข้างสำหรับโฆษณาและสนับสนุน -->
         <aside class="sidebar">
             <div class="ad-section">
-                <h2>💰 สนับสนุนเว็บไซต์</h2>
-                <div style="text-align:center;">
+                <h2 class="support-site">
+                    <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+                </h2>
+                <div class="adsense-container">
                     <ins class="adsbygoogle"
-                        style="display:block"
-                        data-ad-client="ca-pub-2068902667667616"
-                        data-ad-slot="1706997713"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                         style="display:block; width:100%;"
+                         data-ad-client="ca-pub-2068902667667616"
+                         data-ad-slot="1706997713"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
-                <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมท AI Tools อื่น ๆ]</div>
             </div>
 
             <div class="ad-section">
-                <h2>☕ สนับสนุนเรา</h2>
+                <h2 class="support-us">
+                    <i class="fas fa-heart"></i> สนับสนุนเรา
+                </h2>
                 <div class="support-card">
-                    <h3>☕ สนับสนุนทีมงาน</h3>
-                    <p>เนื้อหาดูดวงแม่นๆ นี้เป็นประโยชน์หรือไม่? ท่านสามารถสนับสนุนการทำงานของทีมงานได้ครับ/ค่ะ</p>
-                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-                    <div class="social-links">
-                        <a href="#" target="_blank">Facebook Page</a>
-                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">YouTube Channel</a>
-                        <a href="https://www.tiktok.com/@kengwong007" target="_blank">TikTok</a>
+                    <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+                    <img src="https://via.placeholder.com/150/10B981/ffffff?text=QR+PromptPay" alt="QR PromptPay" class="qr-code">
+                    <div class="support-links">
+                        <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
+                            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+                        </a>
+                        <a href="https://facebook.com/yourpage" target="_blank" class="support-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
                     </div>
                 </div>
             </div>
@@ -554,19 +598,19 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+        <p>© 2025 ครบจังดอทคอม | 
+        <a href="#">นโยบายความเป็นส่วนตัว</a> |
+        <a href="#">เกี่ยวกับเรา</a></p>
     </footer>
 
     <script>
-        // 📱 Toggle Mobile Menu
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.toggle('active');
+        document.getElementById('menuBtn')?.addEventListener('click', () => {
+            document.getElementById('nav-placeholder').classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById('mobileNav').classList.remove('active');
+                document.getElementById('nav-placeholder').classList.remove('active');
             });
         });
     </script>
