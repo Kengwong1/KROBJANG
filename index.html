@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <!-- ✅ Google AdSense Script (วางไว้ใน head ได้ แต่ต้องมี push หลังโหลด) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
           crossorigin="anonymous"></script>
 
@@ -266,6 +267,26 @@
       max-width: 1200px;
     }
 
+    .adsense-container {
+      background-color: #f9fbff;
+      border: 1px dashed #dbeafe;
+      border-radius: 12px;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .adsense-container::before {
+      content: "พื้นที่โฆษณา";
+      color: #94a3b8;
+      font-size: 0.85rem;
+      position: absolute;
+      z-index: 0;
+    }
+
     /* ✅ Support Section */
     .support-section {
       margin-top: 1.5rem;
@@ -452,13 +473,15 @@
 
     <!-- ✅ โฆษณา — วางตรงนี้ (หลังหมวดหมู่) -->
     <section class="adsense-unit">
-      <ins class="adsbygoogle"
-           style="display:block; max-width: 970px; margin: 0 auto;"
-           data-ad-client="ca-pub-2068902667667616"
-           data-ad-slot="1706997713"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <div class="adsense-container">
+        <ins class="adsbygoogle"
+             style="display:block; width:100%; height: auto;"
+             data-ad-client="ca-pub-2068902667667616"
+             data-ad-slot="1706997713"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
     </section>
 
     <!-- ✅ สนับสนุนเรา -->
@@ -491,6 +514,7 @@
     <a href="#">เกี่ยวกับเรา</a></p>
   </footer>
 
+  <!-- ✅ วาง script หลัง body เพื่อให้โหลดหลังเนื้อหา -->
   <script>
     document.getElementById('menuBtn')?.addEventListener('click', () => {
       document.getElementById('nav-placeholder').classList.toggle('active');
@@ -500,6 +524,18 @@
       link.addEventListener('click', () => {
         document.getElementById('nav-placeholder').classList.remove('active');
       });
+    });
+  </script>
+
+  <!-- ✅ วาง script AdSense ที่นี่ (หลัง body) สำหรับการรันแบบปลอดภัย -->
+  <script>
+    // ตรวจสอบว่า adsbygoogle มีอยู่แล้วหรือยัง
+    if (typeof window.adsbygoogle === 'undefined') {
+      window.adsbygoogle = [];
+    }
+    // รัน push หลังหน้าโหลดเสร็จ
+    window.addEventListener('load', function() {
+      (adsbygoogle = window.adsbygoogle || []).push({});
     });
   </script>
 </body>
