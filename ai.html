@@ -181,6 +181,48 @@
           border-radius: 50%;
         }
 
+        /* ✅ ปรับปรุงส่วนเนื้อหา AI ให้เข้ากับธีมเดิม */
+        .ai-intro {
+            margin-bottom: 1rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .ai-category {
+            margin-top: 1rem;
+        }
+
+        .ai-category h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-left: 1rem;
+        }
+
+        .ai-links a {
+            color: var(--highlight-green);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.4rem 0;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .ai-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
         /* ✅ Sidebar — แบบเดียวกับหน้าข่าว */
         .sidebar {
           display: flex;
@@ -381,7 +423,7 @@
             <!-- แนะนำสั้นๆ ด้านบน -->
             <div class="section">
                 <h2>🤖 เริ่มต้นใช้งาน AI อย่างมืออาชีพ</h2>
-                <p class="intro-text">
+                <p class="ai-intro">
                     ยินดีต้อนรับสู่ศูนย์รวมเครื่องมือ AI ที่ดีที่สุด ค้นหาวิธีใช้ AI เพื่อสร้างรายได้ รีวิวเครื่องมือใหม่ๆ และไอเดียสร้างสรรค์ 
                     ที่จะช่วยให้คุณก้าวทันยุคแห่งปัญญาประดิษฐ์
                 </p>
@@ -390,115 +432,145 @@
             <!-- หมวดเครื่องมือ AI ที่ใช้บ่อย -->
             <div class="section">
                 <h2>🧩 เครื่องมือ AI ที่ใช้บ่อย</h2>
-                <div class="card-grid">
-                    <a href="https://www.leonardo.ai" target="_blank" rel="noopener noreferrer" class="card">
-                        <h3>สร้างภาพด้วย AI</h3>
-                        <p>ทำภาพสวย คม ล้ำ แบบมืออาชีพ</p>
-                    </a>
-                    <a href="https://runwayml.com" target="_blank" rel="noopener noreferrer" class="card">
-                        <h3>สร้างวิดีโอ AI</h3>
-                        <p>ทำคลิปเคลื่อนไหวแบบง่าย ๆ</p>
-                    </a>
-                    <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" class="card">
-                        <h3>เสียงเล่า AI</h3>
-                        <p>เสียงคุณภาพสูง สำหรับคลิป ข้อคิด คำคม</p>
-                    </a>
-                    <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="card">
-                        <h3>เขียนบทความด้วย AI</h3>
-                        <p>ทำคอนเทนต์เร็ว ติด SEO ง่าย</p>
-                    </a>
+                <div class="ai-category">
+                    <h3><i class="fas fa-image"></i> สร้างภาพด้วย AI</h3>
+                    <div class="ai-links">
+                        <a href="https://www.leonardo.ai" target="_blank" rel="noopener noreferrer">Leonardo.AI - ทำภาพสวย คม ล้ำ แบบมืออาชีพ</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-film"></i> สร้างวิดีโอ AI</h3>
+                    <div class="ai-links">
+                        <a href="https://runwayml.com" target="_blank" rel="noopener noreferrer">RunwayML - ทำคลิปเคลื่อนไหวแบบง่าย ๆ</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-volume-up"></i> เสียงเล่า AI</h3>
+                    <div class="ai-links">
+                        <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">ElevenLabs - เสียงคุณภาพสูง สำหรับคลิป ข้อคิด คำคม</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-pen"></i> เขียนบทความด้วย AI</h3>
+                    <div class="ai-links">
+                        <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">ChatGPT - ทำคอนเทนต์เร็ว ติด SEO ง่าย</a>
+                    </div>
                 </div>
             </div>
 
             <!-- หมวดเครื่องมือ AI ฟรี -->
             <div class="section">
                 <h2>🆓 เครื่องมือ AI ฟรี ใช้ได้จริง</h2>
-                <div class="card-grid">
-                    <a href="ai-free-tools.html" class="card">
-                        <h3>AI เขียนบทความฟรี</h3>
-                        <p>เครื่องมือที่ดีที่สุดในปี 2025</p>
-                    </a>
-                    <a href="ai-free-tools.html" class="card">
-                        <h3>AI สร้างภาพฟรี</h3>
-                        <p>ไม่ต้องจ่าย ได้ภาพคุณภาพ</p>
-                    </a>
-                    <a href="ai-free-tools.html" class="card">
-                        <h3>AI แปลภาษาฟรี</h3>
-                        <p>แม่นยำ รวดเร็ว ใช้ได้จริง</p>
-                    </a>
-                    <a href="ai-free-tools.html" class="card">
-                        <h3>AI สร้างเสียงฟรี</h3>
-                        <p>ทำคลิป ทำสคริปต์ ได้เลย</p>
-                    </a>
+                <div class="ai-category">
+                    <h3><i class="fas fa-pen"></i> AI เขียนบทความฟรี</h3>
+                    <div class="ai-links">
+                        <a href="ai-free-tools.html">เครื่องมือที่ดีที่สุดในปี 2025</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-image"></i> AI สร้างภาพฟรี</h3>
+                    <div class="ai-links">
+                        <a href="ai-free-tools.html">ไม่ต้องจ่าย ได้ภาพคุณภาพ</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-language"></i> AI แปลภาษาฟรี</h3>
+                    <div class="ai-links">
+                        <a href="ai-free-tools.html">แม่นยำ รวดเร็ว ใช้ได้จริง</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-volume-up"></i> AI สร้างเสียงฟรี</h3>
+                    <div class="ai-links">
+                        <a href="ai-free-tools.html">ทำคลิป ทำสคริปต์ ได้เลย</a>
+                    </div>
                 </div>
             </div>
 
             <!-- หมวดวิธีใช้ AI -->
             <div class="section">
                 <h2>📚 วิธีใช้ AI สำหรับผู้เริ่มต้น</h2>
-                <div class="card-grid">
-                    <a href="ai-tutorials.html" class="card">
-                        <h3>เริ่มต้นใช้ ChatGPT</h3>
-                        <p>คู่มือเบื้องต้นสำหรับมือใหม่</p>
-                    </a>
-                    <a href="ai-tutorials.html" class="card">
-                        <h3>วิธี Prompt Engineering</h3>
-                        <p>เขียน Prompt ให้ AI ตอบแม่นยำ</p>
-                    </a>
-                    <a href="ai-tutorials.html" class="card">
-                        <h3>AI ใช้ในชีวิตประจำวัน</h3>
-                        <p>ไอเดียดีๆ ที่ช่วยให้ชีวิตง่ายขึ้น</p>
-                    </a>
-                    <a href="ai-tutorials.html" class="card">
-                        <h3>AI สำหรับนักเรียน</h3>
-                        <p>เครื่องมือช่วยบ้านการเรียนรู้</p>
-                    </a>
+                <div class="ai-category">
+                    <h3><i class="fas fa-robot"></i> เริ่มต้นใช้ ChatGPT</h3>
+                    <div class="ai-links">
+                        <a href="ai-tutorials.html">คู่มือเบื้องต้นสำหรับมือใหม่</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-keyboard"></i> วิธี Prompt Engineering</h3>
+                    <div class="ai-links">
+                        <a href="ai-tutorials.html">เขียน Prompt ให้ AI ตอบแม่นยำ</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-home"></i> AI ใช้ในชีวิตประจำวัน</h3>
+                    <div class="ai-links">
+                        <a href="ai-tutorials.html">ไอเดียดีๆ ที่ช่วยให้ชีวิตง่ายขึ้น</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-graduation-cap"></i> AI สำหรับนักเรียน</h3>
+                    <div class="ai-links">
+                        <a href="ai-tutorials.html">เครื่องมือช่วยบ้านการเรียนรู้</a>
+                    </div>
                 </div>
             </div>
 
             <!-- หมวดไอเดียหาเงิน -->
             <div class="section">
                 <h2>💸 ไอเดียหาเงินด้วย AI</h2>
-                <div class="card-grid">
-                    <a href="ai-online-shop.html" class="card">
-                        <h3>ทำรูปขายออนไลน์</h3>
-                        <p>ใช้ AI ทำภาพสวย ๆ แล้วขาย</p>
-                    </a>
-                    <a href="ai-reels-income.html" class="card">
-                        <h3>ทำคลิป Reels รายได้ดี</h3>
-                        <p>ใช้ AI ทำคลิปไวรัล เพิ่มผู้ติดตาม</p>
-                    </a>
-                    <a href="ai-voice-income.html" class="card">
-                        <h3>เสียงเล่า ทำช่องคำคม</h3>
-                        <p>เสียง AI ช่วยทำคอนเทนต์ ปล่อยรายได้ทุกวัน</p>
-                    </a>
-                    <a href="ai-seo-income.html" class="card">
-                        <h3>เขียนบทความ SEO</h3>
-                        <p>ใช้ AI เขียนบทความ แล้วทำเว็บรายได้โฆษณา</p>
-                    </a>
+                <div class="ai-category">
+                    <h3><i class="fas fa-image"></i> ทำรูปขายออนไลน์</h3>
+                    <div class="ai-links">
+                        <a href="ai-online-shop.html">ใช้ AI ทำภาพสวย ๆ แล้วขาย</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fab fa-youtube"></i> ทำคลิป Reels รายได้ดี</h3>
+                    <div class="ai-links">
+                        <a href="ai-reels-income.html">ใช้ AI ทำคลิปไวรัล เพิ่มผู้ติดตาม</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-microphone"></i> เสียงเล่า ทำช่องคำคม</h3>
+                    <div class="ai-links">
+                        <a href="ai-voice-income.html">เสียง AI ช่วยทำคอนเทนต์ ปล่อยรายได้ทุกวัน</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-search"></i> เขียนบทความ SEO</h3>
+                    <div class="ai-links">
+                        <a href="ai-seo-income.html">ใช้ AI เขียนบทความ แล้วทำเว็บรายได้โฆษณา</a>
+                    </div>
                 </div>
             </div>
 
             <!-- หมวดรีวิว & แนวโน้ม -->
             <div class="section">
                 <h2>🔍 รีวิว & แนวโน้ม AI</h2>
-                <div class="card-grid">
-                    <a href="ai-reviews.html" class="card">
-                        <h3>รีวิว AI Tools ใหม่</h3>
-                        <p>เครื่องมือไหนดี ปี 2025 นี้</p>
-                    </a>
-                    <a href="ai-tools-compare.html" class="card">
-                        <h3>เปรียบเทียบ AI Tools</h3>
-                        <p>ตัวไหนดีที่สุดในแต่ละด้าน</p>
-                    </a>
-                    <a href="ai-trends-2025.html" class="card">
-                        <h3>แนวโน้ม AI ปี 2025</h3>
-                        <p>สิ่งที่จะเปลี่ยนโลกของเรา</p>
-                    </a>
-                    <a href="ai-ethics.html" class="card">
-                        <h3>จริยธรรมของ AI</h3>
-                        <p>สิ่งที่เราควรรู้และคำนึงถึง</p>
-                    </a>
+                <div class="ai-category">
+                    <h3><i class="fas fa-star"></i> รีวิว AI Tools ใหม่</h3>
+                    <div class="ai-links">
+                        <a href="ai-reviews.html">เครื่องมือไหนดี ปี 2025 นี้</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-balance-scale"></i> เปรียบเทียบ AI Tools</h3>
+                    <div class="ai-links">
+                        <a href="ai-tools-compare.html">ตัวไหนดีที่สุดในแต่ละด้าน</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-chart-line"></i> แนวโน้ม AI ปี 2025</h3>
+                    <div class="ai-links">
+                        <a href="ai-trends-2025.html">สิ่งที่จะเปลี่ยนโลกของเรา</a>
+                    </div>
+                </div>
+                <div class="ai-category">
+                    <h3><i class="fas fa-gavel"></i> จริยธรรมของ AI</h3>
+                    <div class="ai-links">
+                        <a href="ai-ethics.html">สิ่งที่เราควรรู้และคำนึงถึง</a>
+                    </div>
                 </div>
             </div>
         </div>
