@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ครบจังดอทคอม | เว็บเดียวครบทุกเรื่อง ใช้ง่ายทุกวัย</title>
-
   <meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้งานง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
   <meta name="keywords" content="ครบจัง, ข่าว, AI, ดูดวง, หวย, การเงิน, วิดีโอ">
   <meta name="author" content="ครบจังดอทคอม">
@@ -26,6 +25,7 @@
       --text: #1e293b;
       --muted: #64748b;
       --radius: 18px;
+      --highlight-green: #388e3c;
     }
 
     * {
@@ -38,7 +38,7 @@
       font-family: 'Sarabun', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     header {
@@ -142,19 +142,15 @@
       background: var(--soft);
     }
 
+    /* ✅ HERO — ปรับให้กระชับ + ดึงดูด */
     .hero {
       max-width: 1200px;
       margin: 1.5rem auto;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem 1.5rem;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
       color: #fff;
       border-radius: var(--radius);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       text-align: center;
-      min-height: 240px;
       box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
     }
 
@@ -166,35 +162,42 @@
     }
 
     .hero p {
-      margin-top: 0.8rem;
+      margin: 0.8rem 0 0.5rem;
       opacity: 0.95;
       max-width: 560px;
-      line-height: 1.6;
+      margin-left: auto;
+      margin-right: auto;
       font-size: 1.05rem;
+      line-height: 1.5;
     }
 
-    .ad-section {
+    .hero small {
+      display: block;
+      opacity: 0.85;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+    }
+
+    /* ✅ Section layout */
+    .container {
       max-width: 1200px;
       margin: 1.5rem auto;
       padding: 0 1rem;
-      text-align: center;
     }
 
     .section {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      margin-bottom: 2rem;
     }
 
-    .section h2 {
+    .section-title {
       font-size: 1.6rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       text-align: center;
       color: var(--primary);
       position: relative;
     }
 
-    .section h2::after {
+    .section-title::after {
       content: "";
       display: block;
       width: 40px;
@@ -204,54 +207,70 @@
       border-radius: 2px;
     }
 
-    /* ✅ GRID — อัปเดตให้ไอคอนมีสีสัน */
-    .grid {
+    /* ✅ GRID — ไอคอนมีสีสัน + hover ที่นุ่มลึก */
+    .category-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
     }
 
-    .card {
+    .category-card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 1.25rem;
       text-decoration: none;
       color: inherit;
       box-shadow: 0 4px 12px rgba(30, 64, 175, 0.06);
-      transition: all 0.25s ease;
+      transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 2px solid transparent;
+      border: 1px solid transparent;
     }
 
-    .card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-      border-color: #e0e7ff;
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.15);
+      border-color: #dbeafe;
     }
 
-    /* ✅ สีไอคอนแต่ละหมวด */
-    .card.ai i { color: #2EC4B6; }          
-    .card.finance i { color: #FFD700; }     
-    .card.horoscope i { color: #6A4C93; }   
-    .card.lotto i { color: #FF6B6B; }       
-    .card.video i { color: #FF9F1C; }       
-    .card.lifestyle i { color: #E76F51; }   
+    /* สีไอคอน — ใช้สีเดียวกับเมนูหลัก */
+    .category-card.ai i { color: #2EC4B6; }
+    .category-card.finance i { color: #FFD700; }
+    .category-card.horoscope i { color: #6A4C93; }
+    .category-card.lotto i { color: #FF6B6B; }
+    .category-card.video i { color: #FF9F1C; }
+    .category-card.lifestyle i { color: #E76F51; }
 
-    .card h3 {
+    .category-card i {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .category-card h3 {
       font-size: 1.1rem;
-      margin: 0.8rem 0 0.4rem;
+      margin: 0 0 0.5rem;
       font-weight: 700;
     }
 
-    .card p {
+    .category-card p {
       font-size: 0.95rem;
       color: var(--muted);
     }
 
-    /* ✅ เพิ่ม CSS สำหรับส่วน "สนับสนุนเรา" */
+    /* ✅ Ad Unit — responsive */
+    .adsense-unit {
+      margin: 2rem auto;
+      text-align: center;
+      max-width: 1200px;
+    }
+
+    /* ✅ Support Section */
+    .support-section {
+      margin-top: 1.5rem;
+    }
+
     .support-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -262,12 +281,18 @@
 
     .qr-code {
       width: 100%;
-      max-width: 150px;
+      max-width: 160px;
       height: auto;
       margin: 1rem auto;
       display: block;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .support-note {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
     }
 
     .social-links {
@@ -278,7 +303,7 @@
       margin-top: 1rem;
     }
 
-    .social-links a {
+    .social-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -288,20 +313,23 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
-      min-width: 90px;
+      min-width: 95px;
       gap: 0.5rem;
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .social-links a:hover {
+    .social-btn:hover {
       transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    .social-links .promptpay { background: #00C853; }
-    .social-links .facebook  { background: #3b5998; }
-    .social-links .youtube   { background: #FF0000; }
-    .social-links .tiktok    { background: #000; }
+    .social-btn.promptpay { background: #10B981; }
+    .social-btn.facebook  { background: #4267B2; }
+    .social-btn.youtube   { background: #FF0000; }
+    .social-btn.tiktok    { background: #000000; }
 
+    /* ✅ Footer */
     footer {
       margin-top: 2.5rem;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -324,22 +352,16 @@
 
     @media (max-width: 768px) {
       .menu-btn { display: block; }
-      #nav-placeholder { display: none; }
-      #nav-placeholder.active { display: block; }
-      .hero { min-height: 200px; padding: 1.5rem; }
+      .mobile-nav.active { display: flex; }
+
+      .hero {
+        padding: 1.25rem;
+      }
       .hero h1 { font-size: 1.5rem; }
       .hero p { font-size: 1rem; }
-      .section h2::after { width: 30px; }
 
-      .social-links {
-        flex-direction: column;
-        align-items: center;
-      }
-      .social-links a {
-        width: 100%;
-        max-width: 200px;
-        justify-content: center;
-      }
+      .social-links { flex-direction: column; align-items: center; }
+      .social-btn { width: 100%; max-width: 220px; }
     }
   </style>
 </head>
@@ -383,71 +405,84 @@
     </div>
   </div>
 
+  <!-- ✅ HERO ปรับแล้ว -->
   <section class="hero">
     <h1>เว็บเดียว ครบทุกเรื่อง ใช้ง่ายทุกวัย</h1>
-    <p>รวมข่าวสาร เทคโนโลยี AI การเงิน ดูดวง หวย และวิดีโอ  
-    ออกแบบให้เข้าใจง่าย อ่านสบาย ใช้ได้ทุกวัน</p>
+    <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
+    <small>เริ่มค้นหาตามความสนใจของคุณเลย 👇</small>
   </section>
 
-  <section class="section">
-    <h2>หมวดหมู่ยอดนิยม</h2>
-    <div class="grid">
-      <a class="card ai" href="ai.html">
-        <i class="fas fa-robot fa-2x"></i>
-        <h3>AI & เทคโนโลยี</h3>
-        <p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p>
-      </a>
-      <a class="card finance" href="finance.html">
-        <i class="fas fa-coins fa-2x"></i>
-        <h3>การเงิน</h3>
-        <p>หาเงิน ลงทุน วางแผนชีวิต</p>
-      </a>
-      <a class="card horoscope" href="horoscope.html">
-        <i class="fas fa-star fa-2x"></i>
-        <h3>ดูดวง</h3>
-        <p>ดวงรายวัน เลขมงคล ความเชื่อ</p>
-      </a>
-      <a class="card lotto" href="lotto.html">
-        <i class="fas fa-ticket-alt fa-2x"></i>
-        <h3>หวย</h3>
-        <p>เลขเด็ด แนวทาง วิเคราะห์</p>
-      </a>
-      <a class="card video" href="video.html">
-        <i class="fas fa-play-circle fa-2x"></i>
-        <h3>วิดีโอ</h3>
-        <p>ดูง่าย สนุก ได้สาระ</p>
-      </a>
-      <a class="card lifestyle" href="lifestyle.html">
-        <i class="fas fa-heart fa-2x"></i>
-        <h3>ไลฟ์สไตล์</h3>
-        <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
-      </a>
-    </div>
-  </section>
-
-  <!-- ✅ แทรกส่วน "สนับสนุนเรา" ตรงนี้ -->
-  <section class="section">
-    <h2>❤️ สนับสนุนเรา</h2>
-    <div class="support-card">
-      <p>ขอบคุณทุกการสนับสนุน!</p>
-      <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-      <div class="social-links">
-        <a href="#" class="promptpay"><i class="fas fa-money-bill-wave"></i> พร้อมเพย์</a>
-        <a href="https://facebook.com/yourpage" target="_blank" class="facebook"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="youtube"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+  <div class="container">
+    <!-- ✅ หมวดหมู่ยอดนิยม -->
+    <section class="section">
+      <h2 class="section-title">หมวดหมู่ยอดนิยม</h2>
+      <div class="category-grid">
+        <a class="category-card ai" href="ai.html">
+          <i class="fas fa-robot"></i>
+          <h3>AI & เทคโนโลยี</h3>
+          <p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p>
+        </a>
+        <a class="category-card finance" href="finance.html">
+          <i class="fas fa-coins"></i>
+          <h3>การเงิน</h3>
+          <p>หาเงิน ลงทุน วางแผนชีวิต</p>
+        </a>
+        <a class="category-card horoscope" href="horoscope.html">
+          <i class="fas fa-star"></i>
+          <h3>ดูดวง</h3>
+          <p>ดวงรายวัน เลขมงคล ความเชื่อ</p>
+        </a>
+        <a class="category-card lotto" href="lotto.html">
+          <i class="fas fa-ticket-alt"></i>
+          <h3>หวย</h3>
+          <p>เลขเด็ด แนวทาง วิเคราะห์</p>
+        </a>
+        <a class="category-card video" href="video.html">
+          <i class="fas fa-play-circle"></i>
+          <h3>วิดีโอ</h3>
+          <p>ดูง่าย สนุก ได้สาระ</p>
+        </a>
+        <a class="category-card lifestyle" href="lifestyle.html">
+          <i class="fas fa-heart"></i>
+          <h3>ไลฟ์สไตล์</h3>
+          <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
+        </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="ad-section">
-    <ins class="adsbygoogle"
-         style="display:block"
-          data-ad-client="ca-pub-2068902667667616" 
-          data-ad-slot="1706997713" 
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <!-- ✅ โฆษณา — วางตรงนี้ (หลังหมวดหมู่) -->
+    <section class="adsense-unit">
+      <ins class="adsbygoogle"
+           style="display:block; max-width: 970px; margin: 0 auto;"
+           data-ad-client="ca-pub-2068902667667616"
+           data-ad-slot="1706997713"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <!-- ✅ สนับสนุนเรา -->
+    <section class="section support-section">
+      <h2 class="section-title">❤️ สนับสนุนเรา</h2>
+      <div class="support-card">
+        <p class="support-note">ขอบคุณทุกการสนับสนุน!</p>
+        <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+        <div class="social-links">
+          <a href="https://promptpay.io/0123456789" target="_blank" class="social-btn promptpay">
+            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+          </a>
+          <a href="https://facebook.com/yourpage" target="_blank" class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="social-btn youtube">
+            <i class="fab fa-youtube"></i> YouTube
+          </a>
+          <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="social-btn tiktok">
+            <i class="fab fa-tiktok"></i> TikTok
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer>
