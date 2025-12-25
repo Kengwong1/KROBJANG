@@ -2,425 +2,478 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>เกมส์ - ครบจังดอทคอม</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมส์ - ครบจังดอทคอม</title>
     <meta name="description" content="เล่นเกมออนไลน์ฟรี หลากหลายหมวดหมู่: เกมแอคชั่น, พัซเซิล, กีฬา, ไพ่ และเกมตลก ทั้งเกมฝังในเว็บและเกมภายนอกคุณภาพสูง">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ✅ Google AdSense (เหมือนหน้าอื่นๆ) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+            crossorigin="anonymous"></script>
+
     <style>
+        /* ✅ Variables — ใช้แบบเดียวกับ index.html & news.html */
         :root {
-            --brand: #0d47a1;
-            --accent: #1565c0;
-            --bg: #f4f6f9;
-            --card: #fff;
-            --text: #222;
-            --text-secondary: #666;
-            --border: #e0e0e0;
-            --highlight: #ff9800;
-            --gradient-start: #4facfe;
-            --gradient-end: #00f2fe;
+          --primary-dark: #1e3a8a;
+          --primary: #1e40af;
+          --primary-light: #3b82f6;
+          --soft: #eff6ff;
+          --bg: #f8fafc;
+          --card: #ffffff;
+          --text: #1e293b;
+          --muted: #64748b;
+          --radius: 18px;
+          --highlight-red: #d32f2f;
+          --highlight-green: #388e3c;
         }
-        * { box-sizing: border-box; margin:0; padding:0; }
-        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        /* Header */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Sarabun', sans-serif;
+        }
+
+        body {
+          background: var(--bg);
+          color: var(--text);
+          line-height: 1.6;
+        }
+
+        /* ✅ Header — เข้มสม่ำเสมอ + โลโก้กลาง */
         header {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color: #fff;
-            padding: 16px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-            flex: 1;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: #fff;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.75rem 1rem;
         }
 
-        /* Nav */
-        nav.main-nav {
-            background: #fff;
-            padding: 10px 16px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-            gap: 8px;
-            flex-wrap: nowrap;
-        }
-        nav.main-nav a {
-            color: #333;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9em;
-            white-space: nowrap;
-            border: 1px solid transparent;
-            min-width: 80px;
-            text-align: center;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        nav.main-nav a.active, nav.main-nav a:hover {
-            background: var(--accent);
-            color: #fff;
-            transform: scale(1.05);
+        .logo {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin: 0;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* Mobile Nav */
+        .menu-btn {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1.4rem;
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          opacity: 0.9;
+          display: none;
+        }
+        .menu-btn:hover { opacity: 1; }
+
+        .header-spacer {
+          width: 24px;
+        }
+
+        /* ✅ Navigation — สีสันเหมือนหน้าอื่น */
+        .main-nav {
+          background: #fff;
+          padding: 0.5rem 0;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .nav-wrap {
+          max-width: 1200px;
+          margin: auto;
+          display: flex;
+          gap: 0.75rem;
+          padding: 0 1rem;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .main-nav a {
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          padding: 0.6rem 1rem;
+          border-radius: 12px;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.95rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+          background: var(--soft);
+          transform: scale(1.02);
+        }
+
         .mobile-nav {
-            display: none;
-            flex-direction: column;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            z-index: 999;
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 100;
         }
-        .mobile-nav a {
-            padding: 14px 20px;
-            border-bottom: 1px solid #eee;
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .mobile-nav a:hover {
-            background: #f5f5f5;
-        }
-        .mobile-nav a:last-child { border: none; }
 
-        /* Container */
+        .mobile-nav a {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #f1f5f9;
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .mobile-nav a:hover {
+          background: var(--soft);
+        }
+
+        /* Layout */
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 16px;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 20px;
+          max-width: 1200px;
+          margin: 1.5rem auto;
+          padding: 0 1rem;
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 1.5rem;
         }
 
         .content-area {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
 
-        /* Section */
         .section {
-            background: var(--card);
-            padding: 18px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-        .section h2 {
-            margin: 0 0 12px;
-            color: var(--brand);
-            font-size: 1.3em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .section h2::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1.25rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
         }
 
-        /* Search */
+        .section h2 {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+          color: var(--primary);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .section h2::before {
+          content: "";
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background: var(--primary);
+          border-radius: 50%;
+        }
+
+        /* 🔍 Search */
         #searchInput {
-            width: 100%;
-            max-width: 480px;
-            margin: 18px auto;
-            padding: 9px 14px;
-            font-size: 1.07em;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background-color: var(--card);
-            color: var(--text);
-            display: block;
+          width: 100%;
+          max-width: 480px;
+          margin: 0 auto 1rem;
+          padding: 0.6rem 1rem;
+          font-size: 1em;
+          border-radius: 8px;
+          border: 1px solid #cbd5e1;
+          background-color: var(--card);
+          color: var(--text);
+          display: block;
         }
 
         /* Game Grid */
         .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 22px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.25rem;
         }
+
         .game-card {
-            background: linear-gradient(145deg, #f0f5ff, #ffffff);
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            transition: 0.3s;
-            padding: 15px 10px 22px 10px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 2px solid transparent;
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          text-align: center;
+          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+          transition: transform 0.2s, box-shadow 0.2s;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
+
         .game-card:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            border-color: var(--accent);
+          transform: translateY(-3px);
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
         }
+
         .game-card img {
-            width: 80px;
-            height: 80px;
-            margin: 12px auto 8px;
-            border-radius: 18px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
-            object-fit: cover;
-            background: #eee;
+          width: 72px;
+          height: 72px;
+          margin: 0.5rem auto;
+          border-radius: 12px;
+          background: #f1f5f9;
+          object-fit: cover;
         }
+
         .game-card h3 {
-            font-size: 1.15em;
-            margin: 8px 0 10px 0;
-            color: var(--brand);
-            font-weight: 600;
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: var(--primary);
+          margin: 0.5rem 0;
         }
+
         .game-btn {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--accent), #004d99);
-            color: #fff;
-            padding: 8px 24px;
-            border: none;
-            border-radius: 24px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 2px 8px #0099ff44;
-            align-self: center;
+          background: var(--primary);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 0.4rem 1rem;
+          font-weight: 600;
+          font-size: 0.95rem;
+          cursor: pointer;
+          margin-top: 0.5rem;
+          transition: background 0.2s;
         }
+
         .game-btn:hover {
-            background: linear-gradient(90deg, #007bff, #0055bb);
-            transform: scale(1.08);
+          background: var(--primary-dark);
         }
 
         /* YouTube iframe */
+        .youtube-container {
+          position: relative;
+          overflow: hidden;
+          border-radius: var(--radius);
+          background: #000;
+        }
+
         .youtube-embed {
-            width: 100%;
-            height: 250px;
-            border: 0;
-            border-radius: 10px;
-            background: #000;
+          width: 100%;
+          height: 250px;
+          border: 0;
         }
+
         .youtube-fallback {
-            text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
-            border-radius: 10px;
-            background: #f9f9f9;
+          text-align: center;
+          padding: 1.5rem;
+          color: var(--muted);
+          border: 1px dashed #cbd5e1;
+          border-radius: var(--radius);
         }
 
-        /* Sidebar */
+        /* ✅ Sidebar — แบบเดียวกับหน้าข่าว */
         .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .ad-section {
-            background: var(--card);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-        .ad-section h2 {
-            color: var(--highlight);
-        }
-        .ad-placeholder {
-            background: #eee;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            color: var(--text-secondary);
-            font-style: italic;
-            margin-top: 10px;
-        }
-        .support-card {
-            background: var(--card);
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        .support-card h3 {
-            margin: 0 0 10px;
-            font-size: 1em;
-            color: var(--brand);
-        }
-        .qr-code {
-            width: 100%;
-            max-width: 150px;
-            height: auto;
-            display: block;
-            margin: 10px auto 0;
-        }
-        .social-links {
-            margin-top: 15px;
-        }
-        .social-links a {
-            display: block;
-            margin: 5px 0;
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9em;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
         }
 
-        footer {
-            background: var(--brand);
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.85em;
+        .ad-section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+          text-align: center;
         }
+
+        .ad-section h2.support-site {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-site i {
+          color: #7E57C2;
+        }
+
+        .ad-section h2.support-us {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-us i {
+          color: #FB8C00;
+        }
+
+        .adsense-container {
+          background-color: #f9fbff;
+          border: 1px dashed #dbeafe;
+          border-radius: 12px;
+          min-height: 280px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.75rem;
+          position: relative;
+        }
+
+        .adsense-container::before {
+          content: "พื้นที่โฆษณา";
+          color: #94a3b8;
+          font-size: 0.85rem;
+          position: absolute;
+          z-index: 0;
+        }
+
+        /* ✅ Support Card — เหมือนหน้าข่าว & หน้าแรก */
+        .support-card {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+        }
+
+        .qr-code {
+          width: 100%;
+          max-width: 150px;
+          height: auto;
+          margin: 0.75rem auto;
+          display: block;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-links {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+
+        .support-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.6rem 0.5rem;
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: white;
+          transition: all 0.2s;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .support-btn i {
+          font-size: 1.1rem;
+        }
+
+        .support-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .support-btn.facebook { background: #4267B2; }
+        .support-btn.youtube  { background: #FF0000; }
+        .support-btn.tiktok   { background: #000000; }
+        .support-btn.promptpay{ background: #10B981; }
 
         @media (max-width: 768px) {
-            nav.main-nav { display: none; }
-            .mobile-nav.active { display: flex; }
-            .menu-toggle { display: block; }
-            header { padding: 12px 16px; font-size: 18px; }
-            .container { grid-template-columns: 1fr; padding: 0 12px; }
-            .game-grid { grid-template-columns: 1fr; }
-            .youtube-embed { height: 200px; }
+          .support-links {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* ✅ Footer — เข้มเท่า header */
+        footer {
+          margin-top: 2rem;
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: white;
+          text-align: center;
+          padding: 1.25rem 1rem;
+          font-size: 0.9rem;
+          box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
+        }
+
+        footer a {
+          color: #e0f2fe;
+          text-decoration: none;
+          font-weight: 600;
+          margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+          text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .menu-btn { display: block; }
+          .main-nav { display: none; }
+          .mobile-nav.active { display: flex; }
+          .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
+          .game-grid { grid-template-columns: 1fr; }
+          .youtube-embed { height: 200px; }
         }
     </style>
 </head>
 <body>
-
     <header>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <h1>ครบจังดอทคอม</h1>
-        <div style="width: 24px;"></div>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div class="logo">ครบจังดอทคอม</div>
+        <div class="header-spacer"></div>
     </header>
 
-    <!-- Desktop Navigation -->
     <nav class="main-nav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html">
-            <i class="fas fa-ticket-alt" style="color: #FFD166;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html">
-            <i class="fas fa-star" style="color: #6A4C93;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html">
-            <i class="fas fa-futbol" style="color: #E76F51;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6;"></i>
-            AI
-        </a>
-        <a href="games.html" class="active">
-            <i class="fas fa-gamepad" style="color: #E76F51;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93;"></i>
-            ติดต่อเรา
-        </a>
+        <div class="nav-wrap">
+            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+            <a href="games.html" class="active"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+        </div>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">
-            <i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i>
-            หน้าแรก
-        </a>
-        <a href="news.html">
-            <i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i>
-            ข่าว
-        </a>
-        <a href="lotto.html">
-            <i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i>
-            หวย
-        </a>
-        <a href="horoscope.html">
-            <i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i>
-            ดูดวง
-        </a>
-        <a href="sport.html">
-            <i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i>
-            กีฬา
-        </a>
-        <a href="video.html">
-            <i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i>
-            วีดีโอ
-        </a>
-        <a href="ai.html">
-            <i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i>
-            AI
-        </a>
-        <a href="games.html" class="active">
-            <i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i>
-            เกมส์
-        </a>
-        <a href="shopping.html">
-            <i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i>
-            ช้อป
-        </a>
-        <a href="booking.html">
-            <i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i>
-            ท่องเที่ยว
-        </a>
-        <a href="contact.html">
-            <i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i>
-            ติดต่อเรา
-        </a>
+    <div class="mobile-nav" id="nav-placeholder">
+        <div class="nav-wrap">
+            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+            <a href="games.html" class="active"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+        </div>
     </div>
 
     <div class="container">
@@ -428,7 +481,7 @@
             <input type="text" id="searchInput" placeholder="ค้นหาเกม...">
 
             <div class="section" id="action">
-                <h2>🎮 เกมแอคชั่น</h2>
+                <h2><i class="fas fa-fire"></i> เกมแอคชั่น</h2>
                 <div class="game-grid">
                     <div class="game-card" onclick="window.open('games/snake.html', '_blank')">
                         <img src="images/snake-local.png" alt="Snake">
@@ -459,14 +512,14 @@
             </div>
 
             <div class="section" id="puzzle">
-                <h2>🧩 เกมพัซเซิล</h2>
+                <h2><i class="fas fa-puzzle-piece"></i> เกมพัซเซิล</h2>
                 <div class="game-grid">
-                    <div class="game-card" onclick="window.open('https://play2048.co/', '_blank', 'noopener,noreferrer')">
+                    <div class="game-card" onclick="window.open('https://play2048.co/', '_blank')">
                         <img src="images/2048.png" alt="2048">
                         <h3>2048</h3>
                         <button class="game-btn">เล่นเลย</button>
                     </div>
-                    <div class="game-card" onclick="window.open('https://www.mathplayground.com/logic-traffic.html', '_blank', 'noopener,noreferrer')">
+                    <div class="game-card" onclick="window.open('https://www.mathplayground.com/logic-traffic.html', '_blank')">
                         <img src="https://www.mathplayground.com/wp-content/uploads/2022/02/traffic-jam-logic-puzzle.png" alt="Logic Traffic">
                         <h3>Logic Traffic</h3>
                         <button class="game-btn">เล่นเลย</button>
@@ -480,9 +533,9 @@
             </div>
 
             <div class="section" id="sports">
-                <h2>⚽ เกมกีฬา</h2>
+                <h2><i class="fas fa-futbol"></i> เกมกีฬา</h2>
                 <div class="game-grid">
-                    <div class="game-card" onclick="window.open('https://www.miniclip.com/games/8-ball-pool-multiplayer/en/', '_blank', 'noopener,noreferrer')">
+                    <div class="game-card" onclick="window.open('https://www.miniclip.com/games/8-ball-pool-multiplayer/en/', '_blank')">
                         <img src="images/8-ball-pool.png" alt="8 Ball Pool">
                         <h3>8 Ball Pool</h3>
                         <button class="game-btn">เล่นเลย</button>
@@ -491,9 +544,9 @@
             </div>
 
             <div class="section" id="funny">
-                <h2>🤣 เกมตลก</h2>
+                <h2><i class="fas fa-laugh"></i> เกมตลก</h2>
                 <div class="game-grid">
-                    <div class="game-card" onclick="window.open('https://poki.com/en/g/quirky-turkey', '_blank', 'noopener,noreferrer')">
+                    <div class="game-card" onclick="window.open('https://poki.com/en/g/quirky-turkey', '_blank')">
                         <img src="images/quirky-turkey.png" alt="Quirky Turkey">
                         <h3>Quirky Turkey</h3>
                         <button class="game-btn">เล่นเลย</button>
@@ -502,7 +555,7 @@
             </div>
 
             <div class="section" id="card">
-                <h2>🃏 เกมไพ่</h2>
+                <h2><i class="fas fa-cards"></i> เกมไพ่</h2>
                 <div class="game-grid">
                     <div class="game-card" onclick="window.open('games/card-game.html', '_blank')">
                         <img src="images/card-game.png" alt="Card Game">
@@ -513,56 +566,59 @@
             </div>
 
             <div class="section">
-                <h2>🎥 รีวิวเกมส์จาก YouTube</h2>
-                <div class="game-grid">
+                <h2><i class="fab fa-youtube"></i> รีวิวเกมส์จาก YouTube</h2>
+                <div class="youtube-container">
                     <iframe class="youtube-embed" 
                             src="https://www.youtube.com/embed/PLz_hD_F5_lB_6pT_B_R1Z2Z_L_x_C3_O3?list=PLz_hD_F5_lB_6pT_B_R1Z2Z_L_x_C3_O3"
                             title="รีวิวเกมส์"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
-                    
-                    <div class="youtube-fallback">
-                        <i class="fas fa-video fa-2x" style="color: #ff0000;"></i>
-                        <p style="margin-top:10px;">ไม่สามารถโหลดวิดีโอได้<br>ลอง <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" style="color:var(--accent);">เข้าช่อง YouTube ของเรา</a></p>
-                    </div>
+                </div>
+                <div class="youtube-fallback">
+                    <i class="fas fa-video fa-lg" style="color: #ff0000;"></i>
+                    <p style="margin-top:10px;">ไม่สามารถโหลดวิดีโอได้<br>
+                    <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" style="color: var(--primary); font-weight: 600;">เข้าช่อง YouTube ของเรา</a>
+                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="ad-section">
-                <h2>💰 สนับสนุนเว็บไซต์</h2>
-                <div style="text-align: center;">
+                <h2 class="support-site">
+                    <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+                </h2>
+                <div class="adsense-container">
                     <ins class="adsbygoogle"
-                        style="display:block"
-                        data-ad-client="ca-pub-2068902667667616"
-                        data-ad-slot="1706997713"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                         style="display:block; width:100%;"
+                         data-ad-client="ca-pub-2068902667667616"
+                         data-ad-slot="1706997713"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
-                <div class="ad-placeholder">[โฆษณา Affiliate]</div>
             </div>
 
             <div class="ad-section">
-                <h2>☕ สนับสนุนเรา</h2>
+                <h2 class="support-us">
+                    <i class="fas fa-heart"></i> สนับสนุนเรา
+                </h2>
                 <div class="support-card">
-                    <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+                    <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
                     <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-                </div>
-            </div>
-
-            <div class="ad-section">
-                <h2>📣 ติดตามเรา</h2>
-                <div class="support-card">
-                    <p>ติดตามข่าวสารและอัปเดตได้ที่</p>
-                    <div class="social-links">
-                        <a href="#" target="_blank">Facebook Page</a>
-                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank">YouTube Channel</a>
-                        <a href="https://www.tiktok.com/@kengwong007" target="_blank">TikTok</a>
+                    <div class="support-links">
+                        <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
+                            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+                        </a>
+                        <a href="https://facebook.com/yourpage" target="_blank" class="support-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
                     </div>
                 </div>
             </div>
@@ -570,19 +626,20 @@
     </div>
 
     <footer>
-        <p>© 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+        <p>© 2025 ครบจังดอทคอม | 
+        <a href="#">นโยบายความเป็นส่วนตัว</a> |
+        <a href="#">เกี่ยวกับเรา</a></p>
+        <p>ข้อมูลจากสำนักงานสลากกินแบ่งรัฐบาล</p>
     </footer>
 
     <script>
-        // 📱 Toggle Mobile Menu
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.toggle('active');
+        document.getElementById('menuBtn')?.addEventListener('click', () => {
+            document.getElementById('nav-placeholder').classList.toggle('active');
         });
 
-        // Close mobile menu
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById('mobileNav').classList.remove('active');
+                document.getElementById('nav-placeholder').classList.remove('active');
             });
         });
 
@@ -595,8 +652,5 @@
             });
         });
     </script>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
-
 </body>
 </html>
