@@ -4,192 +4,528 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>บทความเสริมดวงน่ารู้ - ครบจังดอทคอม</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="description" content="บทความเสริมดวงน่ารู้ ดูดวงรายวัน ดูดวงความรัก การเงิน การงาน ทำนายจากไพ่ยิปซี ปีนักษัตร วันเกิด พร้อมคำแนะนำเสริมดวง">
+  <meta name="keywords" content="บทความเสริมดวง, ดูดวงรายวัน, ดูดวงความรัก, ดูดวงการเงิน, ไพ่ยิปซี, ปีนักษัตร, ทำนายจากวันเกิด">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- ✅ Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+          crossorigin="anonymous"></script>
+
   <style>
-    /* CSS ที่ใช้ร่วมกับหน้าอื่นๆ */
+    /* ✅ Variables — ใช้แบบเดียวกับ index.html & news.html */
+    :root {
+      --primary-dark: #1e3a8a;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --soft: #eff6ff;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --radius: 18px;
+      --highlight-red: #d32f2f;
+      --highlight-green: #388e3c;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Kanit', sans-serif;
+      font-family: 'Sarabun', sans-serif;
     }
+
     body {
-      background-color: #f0f2f5;
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    .header-container {
-      background-color: #004d99;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    .header-container h1 {
-      font-size: 2.5em;
-      margin-bottom: 5px;
-    }
-    .header-container p {
-      font-size: 1.2em;
-    }
-    .main-nav {
-      background-color: white;
-      padding: 10px 20px;
+
+    /* ✅ Header — เข้มสม่ำเสมอ + โลโก้กลาง */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      align-items: center;
+      padding: 0.75rem 1rem;
     }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .menu-btn {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      opacity: 0.9;
+      display: none;
+    }
+    .menu-btn:hover { opacity: 1; }
+
+    .header-spacer {
+      width: 24px;
+    }
+
+    /* ✅ Navigation — สีสันเหมือนหน้าอื่น */
+    .main-nav {
+      background: #fff;
+      padding: 0.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .nav-wrap {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      gap: 0.75rem;
+      padding: 0 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
     .main-nav a {
       text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding: 12px 20px;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
+      color: #4b5563;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
     }
-    .main-nav a:hover, .main-nav a.active {
-      background-color: #0066cc;
-      color: white;
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: var(--soft);
+      transform: scale(1.02);
     }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .mobile-nav a {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a:hover {
+      background: var(--soft);
+    }
+
+    /* Layout */
     .container {
       max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.5rem;
     }
+
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
     .section {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin-bottom: 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
     }
+
     .section h2 {
-      margin-bottom: 20px;
-      color: #d90000;
-      font-size: 1.8em;
-      border-bottom: 3px solid #d90000;
-      padding-bottom: 10px;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section h2::before {
+      content: "";
       display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
     }
-    .footer {
-      background-color: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    /* สไตล์เฉพาะหน้านี้ */
+
+    /* Article List */
     .article-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
     }
+
     .article-card {
-      background: #f9f9f9;
-      border-radius: 8px;
+      background: var(--card);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
       text-decoration: none;
-      color: #333;
+      color: inherit;
       display: flex;
       flex-direction: column;
+      border: 1px solid #e2e8f0;
     }
+
     .article-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(30, 64, 175, 0.1);
+      border-color: #dbeafe;
     }
+
     .article-card img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
+      border-bottom: 1px solid #e2e8f0;
     }
+
     .article-content {
-      padding: 20px;
-      flex-grow: 1;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
-    }
-    .article-content h3 {
-      font-size: 1.5em;
-      color: #ff5722;
-      margin-bottom: 10px;
-    }
-    .article-content p {
-      font-size: 1em;
-      color: #555;
       flex-grow: 1;
     }
-    .article-readmore {
-      display: block;
-      margin-top: 15px;
-      color: #0066cc;
-      font-weight: bold;
-      transition: color 0.3s;
+
+    .article-content h3 {
+      font-size: 1.25rem;
+      color: var(--highlight-red);
+      margin-bottom: 0.75rem;
     }
-    .article-readmore:hover {
-      color: #004d99;
+
+    .article-content p {
+      font-size: 1rem;
+      color: var(--muted);
+      flex-grow: 1;
+    }
+
+    .article-readmore {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .article-card:hover .article-readmore {
+      color: var(--primary-dark);
+    }
+
+    /* ✅ Sidebar — แบบเดียวกับหน้าอื่น */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ad-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+      text-align: center;
+    }
+
+    .ad-section h2.support-site {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ad-section h2.support-site i {
+      color: #7E57C2;
+    }
+
+    .ad-section h2.support-us {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ad-section h2.support-us i {
+      color: #FB8C00;
+    }
+
+    .adsense-container {
+      background-color: #f9fbff;
+      border: 1px dashed #dbeafe;
+      border-radius: 12px;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .adsense-container::before {
+      content: "พื้นที่โฆษณา";
+      color: #94a3b8;
+      font-size: 0.85rem;
+      position: absolute;
+      z-index: 0;
+    }
+
+    /* ✅ Support Card — เหมือนหน้าอื่น */
+    .support-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+    }
+
+    .qr-code {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin: 0.75rem auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .support-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .support-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 0.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .support-btn i {
+      font-size: 1.1rem;
+    }
+
+    .support-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .support-btn.facebook { background: #4267B2; }
+    .support-btn.youtube  { background: #FF0000; }
+    .support-btn.tiktok   { background: #000000; }
+    .support-btn.promptpay{ background: #10B981; }
+
+    @media (max-width: 768px) {
+      .support-links {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ✅ Footer — เข้มเท่า header */
+    footer {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
+    }
+
+    footer a {
+      color: #e0f2fe;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-btn { display: block; }
+      .main-nav { display: none; }
+      .mobile-nav.active { display: flex; }
+      .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
     }
   </style>
 </head>
 <body>
-  <header class="header-container">
-    <h1>ครบจังดอทคอม</h1>
-    <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
+  <header>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="logo">ครบจังดอทคอม</div>
+    <div class="header-spacer"></div>
   </header>
- <nav class="main-nav">
-    <a href="index.html" class="active">หน้าแรก</a>
-    <a href="news.html">ข่าว</a>
-    <a href="lotto.html">ตรวจหวย</a>
-    <a href="horoscope.html">ดูดวง</a>
-    <a href="sport.html">กีฬา</a>
-    <a href="video.html">วีดีโอ</a>
-    <a href="games.html">เกมส์</a>
-    <a href="marketplace.html">ซื้อ-ขาย</a>
-    <a href="booking.html">จองออนไลน์</a>
-    <a href="contact.html">ติดต่อเรา</a>
-  </nav>
-  <div class="container">
-    <div class="ads">
-      </div>
-    <div class="section">
-      <h2>📰 บทความเสริมดวงน่ารู้</h2>
-      <div class="article-list">
-        <a href="horoscope_article_1.html" class="article-card">
-          <img src="images/lucky_colors.png" alt="สีเสื้อมงคลประจำวัน">
-          <div class="article-content">
-            <h3>สีเสื้อมงคลประจำวัน</h3>
-            <p>มาดูกันว่าแต่ละวันควรใส่เสื้อสีอะไรเพื่อเสริมดวงการเงิน การงาน และความรัก</p>
-            <span class="article-readmore">อ่านต่อ ></span>
-          </div>
-        </a>
-        <a href="horoscope_article_2.html" class="article-card">
-          <img src="images/taro.png" alt="ความหมายไพ่ยิปซีเบื้องต้น">
-          <div class="article-content">
-            <h3>ความหมายไพ่ยิปซีเบื้องต้น</h3>
-            <p>รวมความหมายของไพ่หลักๆ ที่ควรรู้ก่อนเริ่มดูดวงไพ่ยิปซี</p>
-            <span class="article-readmore">อ่านต่อ ></span>
-          </div>
-        </a>
-        <a href="horoscope_article_3.html" class="article-card">
-          <img src="images/zodiac_love.png" alt="ดูดวงความรักตามราศี">
-          <div class="article-content">
-            <h3>ดูดวงความรักตามราศี</h3>
-            <p>ลักษณะนิสัยความรักของแต่ละราศีเป็นอย่างไร พร้อมวิธีมัดใจคนในราศีต่างๆ</p>
-            <span class="article-readmore">อ่านต่อ ></span>
-          </div>
-        </a>
-        </div>
+
+  <nav class="main-nav">
+    <div class="nav-wrap">
+      <a href="index.html" class="active"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
     </div>
-    <div class="ads">
-      </div>
+  </nav>
+
+  <div class="mobile-nav" id="nav-placeholder">
+    <div class="nav-wrap">
+      <a href="index.html" class="active"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+    </div>
   </div>
-  <footer class="footer">
-    <p>&copy; 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+
+  <div class="container">
+    <div class="content-area">
+      <div class="section">
+        <h2><i class="fas fa-newspaper"></i> บทความเสริมดวงน่ารู้</h2>
+        <div class="article-list">
+          <a href="horoscope_article_1.html" class="article-card">
+            <img src="images/lucky_colors.png" alt="สีเสื้อมงคลประจำวัน">
+            <div class="article-content">
+              <h3>สีเสื้อมงคลประจำวัน</h3>
+              <p>มาดูกันว่าแต่ละวันควรใส่เสื้อสีอะไรเพื่อเสริมดวงการเงิน การงาน และความรัก</p>
+              <span class="article-readmore">อ่านต่อ ></span>
+            </div>
+          </a>
+          <a href="horoscope_article_2.html" class="article-card">
+            <img src="images/tarot.png" alt="ความหมายไพ่ยิปซีเบื้องต้น">
+            <div class="article-content">
+              <h3>ความหมายไพ่ยิปซีเบื้องต้น</h3>
+              <p>รวมความหมายของไพ่หลักๆ ที่ควรรู้ก่อนเริ่มดูดวงไพ่ยิปซี</p>
+              <span class="article-readmore">อ่านต่อ ></span>
+            </div>
+          </a>
+          <a href="horoscope_article_3.html" class="article-card">
+            <img src="images/zodiac_love.png" alt="ดูดวงความรักตามราศี">
+            <div class="article-content">
+              <h3>ดูดวงความรักตามราศี</h3>
+              <p>ลักษณะนิสัยความรักของแต่ละราศีเป็นอย่างไร พร้อมวิธีมัดใจคนในราศีต่างๆ</p>
+              <span class="article-readmore">อ่านต่อ ></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="ad-section">
+        <h2 class="support-site">
+          <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+        </h2>
+        <div class="adsense-container">
+          <ins class="adsbygoogle"
+               style="display:block; width:100%;"
+               data-ad-client="ca-pub-2068902667667616"
+               data-ad-slot="1706997713"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </div>
+
+      <div class="ad-section">
+        <h2 class="support-us">
+          <i class="fas fa-heart"></i> สนับสนุนเรา
+        </h2>
+        <div class="support-card">
+          <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+          <div class="support-links">
+            <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
+              <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+            </a>
+            <a href="https://facebook.com/yourpage" target="_blank" class="support-btn facebook">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+              <i class="fab fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>© 2025 ครบจังดอทคอม | 
+    <a href="#">นโยบายความเป็นส่วนตัว</a> |
+    <a href="#">เกี่ยวกับเรา</a></p>
+    <p>ข้อมูลจากแหล่งบริการที่เชื่อถือได้</p>
   </footer>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
 </body>
 </html>
