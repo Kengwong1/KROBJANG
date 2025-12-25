@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ✅ Google AdSense Script (วางไว้ใน head ได้ แต่ต้องมี push หลังโหลด) -->
+  <!-- ✅ Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
           crossorigin="anonymous"></script>
 
@@ -475,12 +475,19 @@
     <section class="adsense-unit">
       <div class="adsense-container">
         <ins class="adsbygoogle"
-             style="display:block; width:100%; height: auto;"
+             style="display:block; width:100%; height:auto;"
              data-ad-client="ca-pub-2068902667667616"
              data-ad-slot="1706997713"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <script>
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {
+            console.log("AdSense ไม่สามารถโหลดได้");
+            // อาจแสดง fallback หรือซ่อน div ถ้าจำเป็น
+          }
+        </script>
       </div>
     </section>
 
@@ -514,7 +521,6 @@
     <a href="#">เกี่ยวกับเรา</a></p>
   </footer>
 
-  <!-- ✅ วาง script หลัง body เพื่อให้โหลดหลังเนื้อหา -->
   <script>
     document.getElementById('menuBtn')?.addEventListener('click', () => {
       document.getElementById('nav-placeholder').classList.toggle('active');
@@ -535,7 +541,11 @@
     }
     // รัน push หลังหน้าโหลดเสร็จ
     window.addEventListener('load', function() {
-      (adsbygoogle = window.adsbygoogle || []).push({});
+      try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.log("AdSense ไม่สามารถโหลดได้ในโหมดนี้");
+      }
     });
   </script>
 </body>
