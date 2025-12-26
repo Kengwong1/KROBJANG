@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ✅ Google AdSense Script - แก้ไขแล้ว -->
+  <!-- ✅ Google AdSense Script แก้ไขแล้ว (ไม่มีช่องว่าง) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
           crossorigin="anonymous"></script>
 
@@ -42,6 +42,7 @@
       line-height: 1.6;
     }
 
+    /* Header */
     header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: #fff;
@@ -75,12 +76,16 @@
       opacity: 0.9;
       display: none;
     }
-    .menu-btn:hover { opacity: 1; }
+    
+    .menu-btn:hover { 
+      opacity: 1;
+    }
 
     .header-spacer {
       width: 24px;
     }
 
+    /* Navigation */
     .main-nav {
       background: #fff;
       padding: 0.5rem 0;
@@ -143,49 +148,108 @@
       background: var(--soft);
     }
 
+    /* ✅ HERO SECTION - ปรับปรุงให้สวยงาม */
     .hero {
       max-width: 1200px;
-      margin: 1.5rem auto;
-      padding: 1.5rem 1.5rem;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
       color: #fff;
       border-radius: var(--radius);
       text-align: center;
-      box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
+      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -50%;
+      left: -50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .hero h1 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 800;
       margin: 0;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      line-height: 1.3;
     }
 
     .hero p {
-      margin: 0.8rem 0 0.5rem;
+      font-size: 1.2rem;
+      margin: 1rem 0 0.75rem;
       opacity: 0.95;
-      max-width: 560px;
+      max-width: 600px;
       margin-left: auto;
       margin-right: auto;
-      font-size: 1.05rem;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    .hero small {
-      display: block;
+    .hero-subtitle {
+      font-size: 1.1rem;
       opacity: 0.85;
-      font-size: 0.95rem;
-      margin-top: 0.75rem;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
+    /* Layout */
     .container {
       max-width: 1200px;
       margin: 1.5rem auto;
       padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.5rem;
     }
 
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* Section */
     .section {
-      margin-bottom: 2rem;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
     }
 
     .section-title {
@@ -206,6 +270,7 @@
       border-radius: 2px;
     }
 
+    /* Category Grid */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -256,10 +321,59 @@
       color: var(--muted);
     }
 
-    .adsense-unit {
-      margin: 2rem auto;
+    /* ✅ Sidebar Ad Section */
+    .ad-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
       text-align: center;
-      max-width: 1200px;
+    }
+
+    .ad-section h2.support-site {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ad-section h2.support-site i {
+      color: #7E57C2;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2.support-us {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ad-section h2.support-us i {
+      color: #FB8C00;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: linear-gradient(90deg, #7E57C2, #FB8C00);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .ad-section h2.support-us::after {
+      background: linear-gradient(90deg, #FB8C00, #FFD54F);
     }
 
     .adsense-container {
@@ -282,70 +396,59 @@
       z-index: 0;
     }
 
-    .support-section {
-      margin-top: 1.5rem;
-    }
-
+    /* ✅ Support Section */
     .support-card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 1.2rem;
-      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
-      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
     }
 
     .qr-code {
       width: 100%;
-      max-width: 160px;
+      max-width: 150px;
       height: auto;
-      margin: 1rem auto;
+      margin: 0.75rem auto;
       display: block;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .support-note {
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-    }
-
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
+    .support-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
-      justify-content: center;
       margin-top: 1rem;
     }
 
-    .social-btn {
-      display: inline-flex;
+    .support-btn {
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      color: white;
+      gap: 0.5rem;
+      padding: 0.6rem 0.5rem;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
-      min-width: 95px;
-      gap: 0.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      color: white;
+      transition: all 0.2s;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .social-btn:hover {
+    .support-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    .social-btn.promptpay { background: #10B981; }
-    .social-btn.facebook  { background: #4267B2; }
-    .social-btn.youtube   { background: #FF0000; }
-    .social-btn.tiktok    { background: #000000; }
+    .support-btn.promptpay { background: #10B981; }
+    .support-btn.facebook  { background: #4267B2; }
+    .support-btn.youtube   { background: #FF0000; }
+    .support-btn.tiktok    { background: #000000; }
 
+    /* Footer */
     footer {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white;
       text-align: center;
@@ -364,18 +467,43 @@
       text-decoration: underline;
     }
 
+    /* ✅ Responsive */
     @media (max-width: 768px) {
       .menu-btn { display: block; }
       .mobile-nav.active { display: flex; }
 
+      /* Hero Section Responsive */
       .hero {
-        padding: 1.25rem;
+        padding: 2rem 1.5rem;
+        margin: 1.5rem auto;
       }
-      .hero h1 { font-size: 1.5rem; }
-      .hero p { font-size: 1rem; }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+      }
 
-      .social-links { flex-direction: column; align-items: center; }
-      .social-btn { width: 100%; max-width: 220px; }
+      /* Layout Responsive */
+      .container {
+        grid-template-columns: 1fr;
+        padding: 0 0.75rem;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+
+      .support-links {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -419,85 +547,102 @@
     </div>
   </div>
 
+  <!-- ✅ HERO SECTION - ปรับปรุงให้สวยงาม -->
   <section class="hero">
-    <h1>เว็บเดียว ครบทุกเรื่อง ใช้ง่ายทุกวัย</h1>
-    <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
-    <small>เริ่มค้นหาตามความสนใจของคุณเลย 👇</small>
+    <div class="hero-content">
+      <h1>เว็บเดียว ครบทุกเรื่อง ใช้ง่ายทุกวัย</h1>
+      <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
+      <div class="hero-subtitle">เริ่มค้นหาตามความสนใจของคุณเลย 👇</div>
+    </div>
   </section>
 
+  <!-- ✅ โครงสร้าง 2 คอลัมน์ (เนื้อหา + Sidebar) -->
   <div class="container">
-    <section class="section">
-      <h2 class="section-title">หมวดหมู่ยอดนิยม</h2>
-      <div class="category-grid">
-        <a class="category-card ai" href="ai.html">
-          <i class="fas fa-robot"></i>
-          <h3>AI & เทคโนโลยี</h3>
-          <p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p>
-        </a>
-        <a class="category-card finance" href="finance.html">
-          <i class="fas fa-coins"></i>
-          <h3>การเงิน</h3>
-          <p>หาเงิน ลงทุน วางแผนชีวิต</p>
-        </a>
-        <a class="category-card horoscope" href="horoscope.html">
-          <i class="fas fa-star"></i>
-          <h3>ดูดวง</h3>
-          <p>ดวงรายวัน เลขมงคล ความเชื่อ</p>
-        </a>
-        <a class="category-card lotto" href="lotto.html">
-          <i class="fas fa-ticket-alt"></i>
-          <h3>หวย</h3>
-          <p>เลขเด็ด แนวทาง วิเคราะห์</p>
-        </a>
-        <a class="category-card video" href="video.html">
-          <i class="fas fa-play-circle"></i>
-          <h3>วิดีโอ</h3>
-          <p>ดูง่าย สนุก ได้สาระ</p>
-        </a>
-        <a class="category-card lifestyle" href="lifestyle.html">
-          <i class="fas fa-heart"></i>
-          <h3>ไลฟ์สไตล์</h3>
-          <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
-        </a>
-      </div>
-    </section>
-
-    <!-- ✅ โฆษณา — วางตรงนี้ (หลังหมวดหมู่) -->
-    <section class="adsense-unit">
-      <div class="adsense-container">
-        <ins class="adsbygoogle"
-             style="display:block; width:100%; height:auto;"
-             data-ad-client="ca-pub-2068902667667616"
-             data-ad-slot="1706997713"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-    </section>
-
-    <section class="section support-section">
-      <h2 class="section-title">❤️ สนับสนุนเรา</h2>
-      <div class="support-card">
-        <p class="support-note">ขอบคุณทุกการสนับสนุน!</p>
-        <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-        <div class="social-links">
-          <a href="https://promptpay.io/0123456789" target="_blank" class="social-btn promptpay">
-            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+    <div class="content-area">
+      <section class="section">
+        <h2 class="section-title">หมวดหมู่ยอดนิยม</h2>
+        <div class="category-grid">
+          <a class="category-card ai" href="ai.html">
+            <i class="fas fa-robot"></i>
+            <h3>AI & เทคโนโลยี</h3>
+            <p>ข่าว AI เครื่องมือใหม่ ใช้งานจริง</p>
           </a>
-          <a href="https://facebook.com/yourpage" target="_blank" class="social-btn facebook">
-            <i class="fab fa-facebook-f"></i> Facebook
+          <a class="category-card finance" href="finance.html">
+            <i class="fas fa-coins"></i>
+            <h3>การเงิน</h3>
+            <p>หาเงิน ลงทุน วางแผนชีวิต</p>
           </a>
-          <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="social-btn youtube">
-            <i class="fab fa-youtube"></i> YouTube
+          <a class="category-card horoscope" href="horoscope.html">
+            <i class="fas fa-star"></i>
+            <h3>ดูดวง</h3>
+            <p>ดวงรายวัน เลขมงคล ความเชื่อ</p>
           </a>
-          <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="social-btn tiktok">
-            <i class="fab fa-tiktok"></i> TikTok
+          <a class="category-card lotto" href="lotto.html">
+            <i class="fas fa-ticket-alt"></i>
+            <h3>หวย</h3>
+            <p>เลขเด็ด แนวทาง วิเคราะห์</p>
+          </a>
+          <a class="category-card video" href="video.html">
+            <i class="fas fa-play-circle"></i>
+            <h3>วิดีโอ</h3>
+            <p>ดูง่าย สนุก ได้สาระ</p>
+          </a>
+          <a class="category-card lifestyle" href="lifestyle.html">
+            <i class="fas fa-heart"></i>
+            <h3>ไลฟ์สไตล์</h3>
+            <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
           </a>
         </div>
+      </section>
+    </div>
+
+    <!-- ✅ Sidebar (โฆษณาและส่วนสนับสนุน) -->
+    <aside class="sidebar">
+      <div class="ad-section">
+        <h2 class="support-site">
+          <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+        </h2>
+        <div class="adsense-container">
+          <ins class="adsbygoogle"
+               style="display:block; width:100%;"
+               data-ad-client="ca-pub-2068902667667616"
+               data-ad-slot="1706997713"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+        <div style="font-size:0.8em; color:#999; margin-top:5px;">
+          [พื้นที่สนับสนุนเว็บ]
+        </div>
       </div>
-    </section>
+
+      <div class="ad-section">
+        <h2 class="support-us">
+          <i class="fas fa-heart"></i> สนับสนุนเรา
+        </h2>
+        <div class="support-card">
+          <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+          
+          <div class="support-links">
+            <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
+              <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+            </a>
+            <a href="https://facebook.com/yourpage" target="_blank" class="support-btn facebook">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+              <i class="fab fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
   </div>
 
   <footer>
@@ -517,8 +662,5 @@
       });
     });
   </script>
-
-  <!-- ✅ ลบ script ท้าย body เดิมออกแล้ว -->
-  <!-- โฆษณาจะถูกโหลดด้วย script ที่อยู่ใน <head> และ <ins> ด้านบน -->
 </body>
 </html>
