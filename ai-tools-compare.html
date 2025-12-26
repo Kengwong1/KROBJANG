@@ -5,180 +5,730 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เปรียบเทียบ AI Tools ตัวไหนดีที่สุด | ครบจังดอทคอม</title>
     <meta name="description" content="เปรียบเทียบเครื่องมือ AI ยอดนิยม 2025 ระหว่าง ChatGPT, Claude, Gemini, Qwen ว่าตัวไหนดีที่สุดในแต่ละด้าน">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="keywords" content="เปรียบเทียบ AI, ChatGPT, Claude, Gemini, Qwen, AI Tools, ครบจัง">
+    <meta name="author" content="ครบจังดอทคอม">
+
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ✅ Google AdSense Script - แก้ไขแล้ว (ไม่มีช่องว่าง) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+            crossorigin="anonymous"></script>
+
     <style>
         :root {
-            --brand: #0d47a1;
-            --accent: #1565c0;
-            --bg: #f4f6f9;
-            --card: #fff;
-            --text: #222;
-            --text-secondary: #666;
-            --border: #e0e0e0;
-            --highlight: #ff9800;
+          --primary-dark: #1e3a8a;
+          --primary: #1e40af;
+          --primary-light: #3b82f6;
+          --soft: #eff6ff;
+          --bg: #f8fafc;
+          --card: #ffffff;
+          --text: #1e293b;
+          --muted: #64748b;
+          --radius: 18px;
+          --highlight: #ff9800;
         }
-        * { box-sizing: border-box; margin:0; padding:0; }
-        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        header { background: var(--brand); color:#fff; padding:20px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
-        header h1 { margin:0; font-size:24px; letter-spacing:0.5px; }
-        nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
-        nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
-        nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
-        main { max-width:1200px; margin:20px auto; padding:0 16px; display:grid; grid-template-columns:1fr 300px; gap:20px; }
-        .content-area { display:flex; flex-direction:column; gap:20px; }
-        .section { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
-        .section h2 { margin:0 0 12px; color: var(--brand); font-size:1.3em; display:flex; align-items:center; gap:8px; }
-        .section h2::before { content:""; display:inline-block; width:8px; height:8px; background: var(--accent); border-radius:50%; }
-        .compare-table { width:100%; border-collapse:collapse; margin-top:15px; }
-        .compare-table th, .compare-table td { padding:10px; text-align:left; border:1px solid #ddd; }
-        .compare-table th { background-color: var(--accent); color:#fff; }
-        .compare-table tr:nth-child(even) { background-color: #f9f9f9; }
-        .sidebar { display:flex; flex-direction:column; gap:18px; }
-        .ad-section { background: var(--card); padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
-        .ad-section h2 { color: var(--highlight); }
-        .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
-        footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
-        @media(max-width:768px) { main { grid-template-columns:1fr; padding:0 12px; } nav.main-nav { padding:8px; } nav.main-nav a { padding:6px 10px; font-size:0.85em; } }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Sarabun', sans-serif;
+          background: var(--bg);
+          color: var(--text);
+          line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: #fff;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.75rem 1rem;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin: 0;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .menu-btn {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1.4rem;
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          opacity: 0.9;
+          display: none;
+        }
+        .menu-btn:hover { opacity: 1; }
+
+        .header-spacer {
+          width: 24px;
+        }
+
+        /* Navigation */
+        .main-nav {
+          background: #fff;
+          padding: 0.5rem 0;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .nav-wrap {
+          max-width: 1200px;
+          margin: auto;
+          display: flex;
+          gap: 0.75rem;
+          padding: 0 1rem;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        .main-nav a {
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          padding: 0.6rem 1rem;
+          border-radius: 12px;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.95rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+          background: var(--soft);
+          transform: scale(1.02);
+        }
+
+        .mobile-nav {
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 100;
+        }
+
+        .mobile-nav a {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #f1f5f9;
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .mobile-nav a:hover {
+          background: var(--soft);
+        }
+
+        /* ✅ HERO SECTION - ปรับปรุงให้สวยงาม */
+        .hero {
+          max-width: 1200px;
+          margin: 2rem auto;
+          padding: 2.5rem 2rem;
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+          color: #fff;
+          border-radius: var(--radius);
+          text-align: center;
+          box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .hero::before {
+          content: "";
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+          border-radius: 50%;
+        }
+
+        .hero::after {
+          content: "";
+          position: absolute;
+          bottom: -50%;
+          left: -50%;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+          border-radius: 50%;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 2;
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+          font-weight: 800;
+          margin: 0;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          line-height: 1.3;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+          margin: 1rem 0 0.75rem;
+          opacity: 0.95;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.6;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+          opacity: 0.85;
+          margin-top: 0.5rem;
+          font-weight: 600;
+          display: inline-block;
+          padding: 0.4rem 1.2rem;
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 30px;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Layout */
+        .container {
+          max-width: 1200px;
+          margin: 1.5rem auto;
+          padding: 0 1rem;
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 1.5rem;
+        }
+
+        .content-area {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .sidebar {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        /* Section */
+        .section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1.25rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+        }
+
+        .section-title {
+          font-size: 1.6rem;
+          margin-bottom: 1.25rem;
+          text-align: center;
+          color: var(--primary);
+          position: relative;
+        }
+
+        .section-title::after {
+          content: "";
+          display: block;
+          width: 40px;
+          height: 4px;
+          background: linear-gradient(90deg, var(--primary), var(--primary-light));
+          margin: 0.5rem auto;
+          border-radius: 2px;
+        }
+
+        /* Compare Table */
+        .compare-table-container {
+          overflow-x: auto;
+          margin-top: 1rem;
+        }
+
+        .compare-table {
+          width: 100%;
+          border-collapse: collapse;
+          min-width: 800px;
+        }
+
+        .compare-table th, 
+        .compare-table td {
+          padding: 12px 15px;
+          text-align: center;
+          border: 1px solid #e2e8f0;
+        }
+
+        .compare-table th {
+          background: var(--primary);
+          color: white;
+          font-weight: 700;
+          position: sticky;
+          top: 0;
+        }
+
+        .compare-table tr:nth-child(even) {
+          background-color: #f8fafc;
+        }
+
+        .compare-table tr:hover {
+          background-color: #edf2f7;
+        }
+
+        .compare-table td:first-child {
+          text-align: left;
+          font-weight: 600;
+          color: var(--primary-dark);
+        }
+
+        .star-rating {
+          color: #fbbf24;
+          font-size: 1.1rem;
+        }
+
+        .feature-icon {
+          font-size: 1.2rem;
+          margin-right: 5px;
+        }
+
+        .intro-text {
+          color: var(--muted);
+          margin-bottom: 1rem;
+          text-align: center;
+          font-size: 1.05rem;
+          line-height: 1.6;
+        }
+
+        .summary-list {
+          padding-left: 1.5rem;
+          margin: 1rem 0;
+        }
+
+        .summary-list li {
+          margin-bottom: 0.5rem;
+          color: var(--text);
+          line-height: 1.5;
+        }
+
+        /* ✅ Sidebar Ad Section */
+        .ad-section {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+          text-align: center;
+        }
+
+        .ad-section h2.support-site {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-site i {
+          color: #7E57C2;
+          font-size: 1.1em;
+        }
+
+        .ad-section h2.support-us {
+          font-size: 1.25rem;
+          margin-bottom: 0.75rem;
+          color: #1e293b;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ad-section h2.support-us i {
+          color: #FB8C00;
+          font-size: 1.1em;
+        }
+
+        .ad-section h2::after {
+          content: "";
+          display: block;
+          width: 30px;
+          height: 3px;
+          background: linear-gradient(90deg, #7E57C2, #FB8C00);
+          border-radius: 2px;
+          margin-top: 4px;
+        }
+
+        .ad-section h2.support-us::after {
+          background: linear-gradient(90deg, #FB8C00, #FFD54F);
+        }
+
+        .adsense-container {
+          background-color: #f9fbff;
+          border: 1px dashed #dbeafe;
+          border-radius: 12px;
+          min-height: 280px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.75rem;
+          position: relative;
+        }
+
+        .adsense-container::before {
+          content: "พื้นที่โฆษณา";
+          color: #94a3b8;
+          font-size: 0.85rem;
+          position: absolute;
+          z-index: 0;
+        }
+
+        /* ✅ Support Section */
+        .support-card {
+          background: var(--card);
+          border-radius: var(--radius);
+          padding: 1rem;
+          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+        }
+
+        .qr-code {
+          width: 100%;
+          max-width: 150px;
+          height: auto;
+          margin: 0.75rem auto;
+          display: block;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-links {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+
+        .support-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.6rem 0.5rem;
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: white;
+          transition: all 0.2s;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .support-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .support-btn.promptpay { background: #10B981; }
+        .support-btn.facebook  { background: #4267B2; }
+        .support-btn.youtube   { background: #FF0000; }
+        .support-btn.tiktok    { background: #000000; }
+
+        /* Footer */
+        footer {
+          margin-top: 2rem;
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          color: white;
+          text-align: center;
+          padding: 1.5rem 1rem;
+          box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
+        }
+
+        footer a {
+          color: #e0f2fe;
+          text-decoration: none;
+          font-weight: 600;
+          margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+          text-decoration: underline;
+        }
+
+        /* ✅ Responsive */
+        @media (max-width: 768px) {
+          .menu-btn { display: block; }
+          .mobile-nav.active { display: flex; }
+
+          /* Hero Section Responsive */
+          .hero {
+            padding: 2rem 1.5rem;
+            margin: 1.5rem auto;
+          }
+          
+          .hero h1 {
+            font-size: 1.8rem;
+          }
+          
+          .hero p {
+            font-size: 1rem;
+          }
+          
+          .hero-subtitle {
+            font-size: 1rem;
+            padding: 0.3rem 1rem;
+          }
+
+          /* Layout Responsive */
+          .container {
+            grid-template-columns: 1fr;
+            padding: 0 0.75rem;
+          }
+
+          .compare-table-container {
+            overflow-x: auto;
+          }
+
+          .compare-table {
+            min-width: 600px;
+          }
+
+          .support-links {
+            grid-template-columns: 1fr;
+          }
+        }
     </style>
 </head>
 <body>
+  <header>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="logo">ครบจังดอทคอม</div>
+    <div class="header-spacer"></div>
+  </header>
 
-<header>
-    <h1>เปรียบเทียบ AI Tools ตัวไหนดีที่สุด</h1>
-</header>
+  <nav class="main-nav">
+    <div class="nav-wrap">
+      <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html" class="active"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+    </div>
+  </nav>
 
-<nav class="main-nav">
-    <a href="index.html">หน้าแรก</a>
-    <a href="news.html">ข่าว</a>
-    <a href="lotto.html">ตรวจหวย</a>
-    <a href="horoscope.html">ดูดวง</a>
-    <a href="sport.html">กีฬา</a>
-    <a href="video.html">วีดีโอ</a>
-    <a href="ai.html">AI</a>
-    <a href="games.html">เกมส์</a>
-    <a href="shopping.html">ช้อปปิ้งกับเรา</a>
-    <a href="booking.html">ท่องเที่ยว</a>
-    <a href="contact.html">ติดต่อเรา</a>
-</nav>
+  <div class="mobile-nav" id="nav-placeholder">
+    <div class="nav-wrap">
+      <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html" class="active"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+    </div>
+  </div>
 
-<main>
+  <!-- ✅ HERO SECTION - ปรับปรุงให้สวยงาม -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>เปรียบเทียบ AI Tools ตัวไหนดีที่สุด</h1>
+      <p>ตารางเปรียบเทียบ ChatGPT, Claude, Gemini, Qwen แบบละเอียดทุกฟีเจอร์</p>
+      <div class="hero-subtitle">เลือกเครื่องมือ AI ที่เหมาะกับการใช้งานของคุณ</div>
+    </div>
+  </section>
+
+  <!-- ✅ โครงสร้าง 2 คอลัมน์ (เนื้อหา + Sidebar) -->
+  <div class="container">
     <div class="content-area">
-        <div class="section">
-            <h2>📊 เปรียบเทียบ AI Tools ตัวไหนดีที่สุด</h2>
-            <p class="intro-text">
-                ไม่รู้จะเลือกใช้ AI ตัวไหนดี? นี่คือตารางเปรียบเทียบเครื่องมือ AI ยอดนิยมในปี 2025 ระหว่าง ChatGPT, Claude, Gemini, และ Qwen 
-                ว่าตัวไหนดีที่สุดในแต่ละด้าน
-            </p>
-        </div>
+      <section class="section">
+        <h2 class="section-title">📊 เปรียบเทียบ AI Tools ตัวไหนดีที่สุด</h2>
+        <p class="intro-text">
+          ไม่รู้จะเลือกใช้ AI ตัวไหนดี? นี่คือตารางเปรียบเทียบเครื่องมือ AI ยอดนิยมในปี 2025 ระหว่าง ChatGPT, Claude, Gemini, และ Qwen 
+          ว่าตัวไหนดีที่สุดในแต่ละด้าน
+        </p>
+      </section>
 
-        <div class="section">
-            <h2>✅ ตารางเปรียบเทียบ</h2>
-            <table class="compare-table">
-                <thead>
-                    <tr>
-                        <th>คุณสมบัติ</th>
-                        <th>ChatGPT</th>
-                        <th>Claude</th>
-                        <th>Gemini</th>
-                        <th>Qwen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ความแม่นยำในการตอบคำถาม</td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                    </tr>
-                    <tr>
-                        <td>การเขียนบทความ</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐</td>
-                    </tr>
-                    <tr>
-                        <td>การเขียนโค้ด</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐</td>
-                    </tr>
-                    <tr>
-                        <td>การแปลภาษา</td>
-                        <td>⭐⭐⭐</td>
-                        <td>⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                    </tr>
-                    <tr>
-                        <td>การสร้างภาพ</td>
-                        <td>❌ (ต้องใช้ DALL·E)</td>
-                        <td>❌</td>
-                        <td>✅ (มี Imagen)</td>
-                        <td>✅ (มี Qwen-VL)</td>
-                    </tr>
-                    <tr>
-                        <td>รองรับภาษาไทย</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                    </tr>
-                    <tr>
-                        <td>ฟรี/พรีเมียม</td>
-                        <td>ฟรี (GPT-3.5), พรีเมียม (GPT-4)</td>
-                        <td>ฟรี (Claude 3 Sonnet), พรีเมียม (Claude 3 Opus)</td>
-                        <td>ฟรี (Gemini 1.5 Pro), พรีเมียม (Gemini 1.5 Flash)</td>
-                        <td>ฟรี (Qwen 2 7B), พรีเมียม (Qwen 2 72B)</td>
-                    </tr>
-                </tbody>
-            </table>
+      <section class="section">
+        <h2 class="section-title">✅ ตารางเปรียบเทียบ</h2>
+        <div class="compare-table-container">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>คุณสมบัติ</th>
+                <th><i class="fas fa-comments"></i> ChatGPT</th>
+                <th><i class="fas fa-brain"></i> Claude</th>
+                <th><i class="fas fa-diamond"></i> Gemini</th>
+                <th><i class="fas fa-robot"></i> Qwen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ความแม่นยำในการตอบคำถาม</td>
+                <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+              </tr>
+              <tr>
+                <td>การเขียนบทความ</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+              </tr>
+              <tr>
+                <td>การเขียนโค้ด</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+              </tr>
+              <tr>
+                <td>การแปลภาษา</td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+              </tr>
+              <tr>
+                <td>การสร้างภาพ</td>
+                <td>❌ (ต้องใช้ DALL·E)</td>
+                <td>❌</td>
+                <td>✅ (มี Imagen)</td>
+                <td>✅ (มี Qwen-VL)</td>
+              </tr>
+              <tr>
+                <td>รองรับภาษาไทย</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+              </tr>
+              <tr>
+                <td>ฟรี/พรีเมียม</td>
+                <td>ฟรี (GPT-3.5)<br>พรีเมียม (GPT-4)</td>
+                <td>ฟรี (Claude 3 Sonnet)<br>พรีเมียม (Claude 3 Opus)</td>
+                <td>ฟรี (Gemini 1.5 Pro)<br>พรีเมียม (Gemini 1.5 Flash)</td>
+                <td>ฟรี (Qwen 2 7B)<br>พรีเมียม (Qwen 2 72B)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </section>
 
-        <div class="section">
-            <h2>💡 สรุป</h2>
-            <ul style="padding-left: 20px; margin: 10px 0;">
-                <li><strong>เลือกตามความต้องการ:</strong> ถ้าคุณต้องการเขียนบทความ ให้เลือก Claude ถ้าต้องการแปลภาษา ให้เลือก Gemini หรือ Qwen</li>
-                <li><strong>ทดลองใช้งาน:</strong> ลองใช้งานเครื่องมือฟรีก่อนตัดสินใจ</li>
-                <li><strong>อัปเดตข้อมูล:</strong> โลกของ AI พัฒนาเร็วมาก ควรอัปเดตข้อมูลอยู่เสมอ</li>
-            </ul>
-        </div>
+      <section class="section">
+        <h2 class="section-title">💡 สรุป</h2>
+        <ul class="summary-list">
+          <li><strong>เลือกตามความต้องการ:</strong> ถ้าคุณต้องการเขียนบทความ ให้เลือก Claude ถ้าต้องการแปลภาษา ให้เลือก Gemini หรือ Qwen</li>
+          <li><strong>ทดลองใช้งาน:</strong> ลองใช้งานเครื่องมือฟรีก่อนตัดสินใจ</li>
+          <li><strong>อัปเดตข้อมูล:</strong> โลกของ AI พัฒนาเร็วมาก ควรอัปเดตข้อมูลอยู่เสมอ</li>
+        </ul>
+      </section>
     </div>
 
+    <!-- ✅ Sidebar (โฆษณาและส่วนสนับสนุน) -->
     <aside class="sidebar">
-        <div class="ad-section">
-            <h2>💰 สนับสนุนเว็บไซต์</h2>
-            <div style="text-align:center;">
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-2068902667667616"
-                    data-ad-slot="1706997713"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมท AI Tools อื่น ๆ]</div>
+      <div class="ad-section">
+        <h2 class="support-site">
+          <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+        </h2>
+        <div class="adsense-container">
+          <ins class="adsbygoogle"
+               style="display:block; width:100%;"
+               data-ad-client="ca-pub-2068902667667616"
+               data-ad-slot="1706997713"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
+        <div style="font-size:0.8em; color:#999; margin-top:5px;">
+          [พื้นที่สนับสนุนเว็บ]
+        </div>
+      </div>
 
-        <div class="ad-section">
-            <h2>☕ สนับสนุนเรา</h2>
-            <div class="card">
-                <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
-                <img src="images/promptpay.png" alt="QR PromptPay" style="width:100%; max-width:150px; display:block; margin:0 auto;">
-            </div>
+      <div class="ad-section">
+        <h2 class="support-us">
+          <i class="fas fa-heart"></i> สนับสนุนเรา
+        </h2>
+        <div class="support-card">
+          <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+          
+          <div class="support-links">
+            <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
+              <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+            </a>
+            <a href="https://facebook.com/yourpage" target="_blank" class="support-btn facebook">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+              <i class="fab fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
         </div>
+      </div>
     </aside>
-</main>
+  </div>
 
-<footer>
-    &copy; 2025 ครบจังดอทคอม — All rights reserved.
-</footer>
+  <footer>
+    <p>© 2025 ครบจังดอทคอม | 
+    <a href="#">นโยบายความเป็นส่วนตัว</a> |
+    <a href="#">เกี่ยวกับเรา</a></p>
+  </footer>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      document.getElementById('nav-placeholder').classList.toggle('active');
+    });
 
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('nav-placeholder').classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
