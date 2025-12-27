@@ -9,12 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ✅ Google AdSense -->
+  <!-- ✅ Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
           crossorigin="anonymous"></script>
 
   <style>
-    /* ✅ Variables — ใช้แบบเดียวกับ index.html & news.html */
     :root {
       --primary-dark: #1e3a8a;
       --primary: #1e40af;
@@ -27,6 +26,8 @@
       --radius: 18px;
       --highlight-red: #d32f2f;
       --highlight-green: #388e3c;
+      --accent-purple: #8b5cf6;
+      --accent-gold: #f59e0b;
     }
 
     * {
@@ -42,7 +43,7 @@
       line-height: 1.6;
     }
 
-    /* ✅ Header — เข้มสม่ำเสมอ + โลโก้กลาง */
+    /* Header */
     header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: #fff;
@@ -82,7 +83,7 @@
       width: 24px;
     }
 
-    /* ✅ Navigation — สีสันเหมือนหน้าอื่น */
+    /* Navigation */
     .main-nav {
       background: #fff;
       padding: 0.5rem 0;
@@ -145,6 +146,80 @@
       background: var(--soft);
     }
 
+    /* ✅ HERO SECTION - เพิ่มส่วนนี้ */
+    .hero {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      color: #fff;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -50%;
+      left: -50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.75rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
     /* Layout */
     .container {
       max-width: 1200px;
@@ -168,91 +243,96 @@
       box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
     }
 
-    .section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section h2::before {
-      content: "";
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-    }
-
-    /* Article Content */
-    .article-content-container {
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .article-content-container h1 {
-      font-size: 1.8rem;
-      color: var(--highlight-red);
-      margin-bottom: 1rem;
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
       text-align: center;
+      color: var(--primary);
+      position: relative;
     }
 
-    .article-content-container h3 {
-      color: var(--primary);
-      margin-top: 1.5rem;
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* Tarot Card Layout with Font Awesome */
+    .tarot-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .tarot-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tarot-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.15);
+    }
+
+    .tarot-card-header {
+      background: linear-gradient(135deg, var(--accent-purple), #5b21b6);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .tarot-card-icon {
+      font-size: 3rem;
       margin-bottom: 0.5rem;
     }
 
-    .article-content-container p {
-      margin-bottom: 1rem;
+    .tarot-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
     }
 
-    .tarot-card-info {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      background: var(--card);
-      padding: 1rem;
-      border-radius: var(--radius);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      border-left: 5px solid var(--highlight-green);
+    .tarot-card-content {
+      padding: 1.25rem;
+      flex-grow: 1;
     }
 
-    .tarot-card-info img {
-      width: 100px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .tarot-card-info div {
-      flex: 1;
-    }
-
-    .tarot-card-info h4 {
-      font-size: 1.1rem;
+    .tarot-card-meaning {
       color: var(--primary);
-      margin: 0 0 0.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
 
-    .tarot-card-info p {
-      font-size: 1rem;
+    .tarot-card-description {
       color: var(--muted);
-      margin: 0;
       line-height: 1.6;
     }
 
-    /* ✅ Sidebar — แบบเดียวกับหน้าอื่น */
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
+    .tarot-card-footer {
+      padding: 0.75rem 1.25rem;
+      background: var(--soft);
+      font-size: 0.9rem;
+      color: var(--primary-dark);
     }
 
+    /* Special card styles */
+    .card-fool .tarot-card-header { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .card-magician .tarot-card-header { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .card-empress .tarot-card-header { background: linear-gradient(135deg, #f97316, #c2410c); }
+    .card-lovers .tarot-card-header { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+    /* ✅ Sidebar Ad Section */
     .ad-section {
       background: var(--card);
       border-radius: var(--radius);
@@ -274,6 +354,7 @@
 
     .ad-section h2.support-site i {
       color: #7E57C2;
+      font-size: 1.1em;
     }
 
     .ad-section h2.support-us {
@@ -289,6 +370,21 @@
 
     .ad-section h2.support-us i {
       color: #FB8C00;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: linear-gradient(90deg, #7E57C2, #FB8C00);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .ad-section h2.support-us::after {
+      background: linear-gradient(90deg, #FB8C00, #FFD54F);
     }
 
     .adsense-container {
@@ -311,7 +407,7 @@
       z-index: 0;
     }
 
-    /* ✅ Support Card — เหมือนหน้าอื่น */
+    /* ✅ Support Section */
     .support-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -351,34 +447,23 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .support-btn i {
-      font-size: 1.1rem;
-    }
-
     .support-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    .support-btn.facebook { background: #4267B2; }
-    .support-btn.youtube  { background: #FF0000; }
-    .support-btn.tiktok   { background: #000000; }
-    .support-btn.promptpay{ background: #10B981; }
+    .support-btn.promptpay { background: #10B981; }
+    .support-btn.facebook  { background: #4267B2; }
+    .support-btn.youtube   { background: #FF0000; }
+    .support-btn.tiktok    { background: #000000; }
 
-    @media (max-width: 768px) {
-      .support-links {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ✅ Footer — เข้มเท่า header */
+    /* Footer */
     footer {
       margin-top: 2rem;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white;
       text-align: center;
-      padding: 1.25rem 1rem;
-      font-size: 0.9rem;
+      padding: 1.5rem 1rem;
       box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
     }
 
@@ -396,9 +481,36 @@
     /* Responsive */
     @media (max-width: 768px) {
       .menu-btn { display: block; }
-      .main-nav { display: none; }
       .mobile-nav.active { display: flex; }
-      .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
+
+      /* Hero Section Responsive */
+      .hero {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem auto;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+      }
+
+      /* Layout Responsive */
+      .container {
+        grid-template-columns: 1fr;
+        padding: 0 0.75rem;
+      }
+
+      .support-links {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -441,63 +553,116 @@
     </div>
   </div>
 
+  <!-- ✅ HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ความหมายไพ่ยิปซีเบื้องต้น</h1>
+      <p>เรียนรู้ความหมายไพ่ยิปซี Major Arcana สำหรับมือใหม่</p>
+      <div class="hero-subtitle">คู่มือดูดวงไพ่ยิปซีฉบับย่อ</div>
+    </div>
+  </section>
+
+  <!-- ✅ โครงสร้าง 2 คอลัมน์ (เนื้อหา + Sidebar) -->
   <div class="container">
     <div class="content-area">
-      <div class="section">
-        <div class="article-content-container">
-          <h1>ความหมายไพ่ยิปซีเบื้องต้น</h1>
-          <!-- ✅ ใช้ลิงก์ภาพออนไลน์แทน images/tarot_the_emperor.png -->
-          <img src="https://leonardo.ai/wp-content/uploads/2024/10/image-1.png" alt="ความหมายไพ่ยิปซีเบื้องต้น">
-          <p>สำหรับมือใหม่ที่สนใจในการดูดวงไพ่ยิปซี การทำความเข้าใจความหมายของไพ่แต่ละใบเป็นสิ่งสำคัญมาก บทความนี้จะสรุปความหมายเบื้องต้นของไพ่หลักๆ ที่พบบ่อยให้คุณได้ศึกษาครับ</p>
-          
-          <h3>กลุ่ม Major Arcana</h3>
-          <p>เป็นไพ่ชุดหลัก 22 ใบ ที่มีความหมายสำคัญและส่งผลกระทบในวงกว้างต่อชีวิตของผู้รับการทำนาย</p>
-
-          <div class="tarot-card-info">
-            <!-- ✅ ใช้ลิงก์ภาพออนไลน์แทน images/tarot_the_fool.png -->
-            <img src="https://leonardo.ai/wp-content/uploads/2024/10/image.png" alt="The Fool">
-            <div>
-              <h4>The Fool (เดอะ ฟูล)</h4>
-              <p>ความหมาย: การเริ่มต้นใหม่, อิสระ, ความกล้าหาญ, การเดินทาง, ความไร้เดียงสา</p>
-              <p>ไพ่ใบนี้บ่งบอกถึงการเริ่มต้นเส้นทางใหม่ๆ ในชีวิตอย่างมีความสุขและไม่กลัวสิ่งใด</p>
+      <section class="section">
+        <h2 class="section-title">🔮 ความหมายไพ่ยิปซีเบื้องต้น</h2>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 1.5rem;">
+          สำหรับมือใหม่ที่สนใจในการดูดวงไพ่ยิปซี การทำความเข้าใจความหมายของไพ่แต่ละใบเป็นสิ่งสำคัญมาก 
+          บทความนี้จะสรุปความหมายเบื้องต้นของไพ่หลักๆ ที่พบบ่อยให้คุณได้ศึกษาครับ
+        </p>
+        
+        <h3 style="color: var(--primary); margin: 1.5rem 0 0.75rem;">กลุ่ม Major Arcana</h3>
+        <p style="margin-bottom: 1.5rem;">
+          เป็นไพ่ชุดหลัก 22 ใบ ที่มีความหมายสำคัญและส่งผลกระทบในวงกว้างต่อชีวิตของผู้รับการทำนาย
+        </p>
+        
+        <div class="tarot-card-grid">
+          <div class="tarot-card card-fool">
+            <div class="tarot-card-header">
+              <div class="tarot-card-icon">
+                <i class="fas fa-mountain"></i>
+              </div>
+              <div class="tarot-card-title">The Fool (เดอะ ฟูล)</div>
             </div>
-          </div>
-
-          <div class="tarot-card-info">
-            <!-- ✅ ใช้ลิงก์ภาพออนไลน์แทน images/tarot_the_magician.png -->
-            <img src="https://leonardo.ai/wp-content/uploads/2024/10/image-3.png" alt="The Magician">
-            <div>
-              <h4>The Magician (เดอะ เมจิกเชียน)</h4>
-              <p>ความหมาย: พลัง, ความสามารถ, ความคิดสร้างสรรค์, การสื่อสาร</p>
-              <p>ไพ่ใบนี้หมายถึงการที่คุณมีเครื่องมือและความสามารถครบครันในการทำสิ่งต่างๆ ให้สำเร็จ</p>
+            <div class="tarot-card-content">
+              <div class="tarot-card-meaning">ความหมาย: การเริ่มต้นใหม่, อิสระ, ความกล้าหาญ, การเดินทาง, ความไร้เดียงสา</div>
+              <p class="tarot-card-description">
+                ไพ่ใบนี้บ่งบอกถึงการเริ่มต้นเส้นทางใหม่ๆ ในชีวิตอย่างมีความสุขและไม่กลัวสิ่งใด 
+                เป็นสัญลักษณ์ของความหวังและความเป็นไปได้ที่ไม่สิ้นสุด
+              </p>
             </div>
-          </div>
-
-          <div class="tarot-card-info">
-            <!-- ✅ ใช้ลิงก์ภาพออนไลน์แทน images/tarot_the_empress.png -->
-            <img src="https://leonardo.ai/wp-content/uploads/2024/10/image-2.png" alt="The Empress">
-            <div>
-              <h4>The Empress (ดิ เอ็มเพรส)</h4>
-              <p>ความหมาย: ความอุดมสมบูรณ์, การเลี้ยงดู, ธรรมชาติ, ความงาม, ความรัก</p>
-              <p>บ่งบอกถึงความสุขสบาย, ความอุดมสมบูรณ์ และความสำเร็จที่งดงามในชีวิต</p>
+            <div class="tarot-card-footer">
+              <i class="fas fa-star"></i> หมายเลข 0 ไพ่เริ่มต้นแห่งวงจรชีวิต
             </div>
           </div>
           
-          <div class="tarot-card-info">
-            <!-- ✅ ใช้ลิงก์ภาพออนไลน์แทน images/tarot_the_lovers.png -->
-            <img src="https://leonardo.ai/wp-content/uploads/2024/10/image-4.png" alt="The Lovers">
-            <div>
-              <h4>The Lovers (เดอะ เลิฟเวอร์ส)</h4>
-              <p>ความหมาย: ความรัก, ความสัมพันธ์, การตัดสินใจครั้งสำคัญ</p>
-              <p>ไพ่ใบนี้หมายถึงการต้องตัดสินใจเลือกเส้นทางสำคัญในเรื่องของความรักหรือชีวิต</p>
+          <div class="tarot-card card-magician">
+            <div class="tarot-card-header">
+              <div class="tarot-card-icon">
+                <i class="fas fa-magic"></i>
+              </div>
+              <div class="tarot-card-title">The Magician (เดอะ เมจิกเชียน)</div>
+            </div>
+            <div class="tarot-card-content">
+              <div class="tarot-card-meaning">ความหมาย: พลัง, ความสามารถ, ความคิดสร้างสรรค์, การสื่อสาร</div>
+              <p class="tarot-card-description">
+                ไพ่ใบนี้หมายถึงการที่คุณมีเครื่องมือและความสามารถครบครันในการทำสิ่งต่างๆ ให้สำเร็จ 
+                แสดงถึงการแปลงความคิดเป็นการกระทำได้อย่างเต็มที่
+              </p>
+            </div>
+            <div class="tarot-card-footer">
+              <i class="fas fa-star"></i> หมายเลข 1 ไพ่แห่งศักยภาพและความสามารถ
             </div>
           </div>
           
-          <p style="margin-top: 2rem;">**หมายเหตุ:** ความหมายของไพ่สามารถตีความได้หลายแบบขึ้นอยู่กับบริบทและไพ่ใบอื่นๆ ที่อยู่รอบข้าง</p>
+          <div class="tarot-card card-empress">
+            <div class="tarot-card-header">
+              <div class="tarot-card-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <div class="tarot-card-title">The Empress (ดิ เอ็มเพรส)</div>
+            </div>
+            <div class="tarot-card-content">
+              <div class="tarot-card-meaning">ความหมาย: ความอุดมสมบูรณ์, การเลี้ยงดู, ธรรมชาติ, ความงาม, ความรัก</div>
+              <p class="tarot-card-description">
+                บ่งบอกถึงความสุขสบาย, ความอุดมสมบูรณ์ และความสำเร็จที่งดงามในชีวิต 
+                เป็นสัญลักษณ์ของพลังการให้กำเนิดทั้งในทางร่างกายและความคิดสร้างสรรค์
+              </p>
+            </div>
+            <div class="tarot-card-footer">
+              <i class="fas fa-star"></i> หมายเลข 3 ไพ่แห่งความอุดมสมบูรณ์และการเติบโต
+            </div>
+          </div>
+          
+          <div class="tarot-card card-lovers">
+            <div class="tarot-card-header">
+              <div class="tarot-card-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="tarot-card-title">The Lovers (เดอะ เลิฟเวอร์ส)</div>
+            </div>
+            <div class="tarot-card-content">
+              <div class="tarot-card-meaning">ความหมาย: ความรัก, ความสัมพันธ์, การตัดสินใจครั้งสำคัญ</div>
+              <p class="tarot-card-description">
+                ไพ่ใบนี้หมายถึงการต้องตัดสินใจเลือกเส้นทางสำคัญในเรื่องของความรักหรือชีวิต 
+                สะท้อนถึงความสัมพันธ์ที่ลึกซึ้งระหว่างบุคคลและระหว่างตัวเราเองกับสิ่งต่างๆ ในชีวิต
+              </p>
+            </div>
+            <div class="tarot-card-footer">
+              <i class="fas fa-star"></i> หมายเลข 6 ไพ่แห่งความสัมพันธ์และการเลือก
+            </div>
+          </div>
         </div>
-      </div>
+        
+        <p style="margin-top: 2rem; padding: 1rem; background-color: #fee2e2; border-left: 4px solid #b91c1c; border-radius: 0 var(--radius) var(--radius) 0;">
+          <strong><i class="fas fa-exclamation-triangle"></i> ข้อควรรู้:</strong> ความหมายของไพ่สามารถตีความได้หลายแบบขึ้นอยู่กับบริบทและไพ่ใบอื่นๆ ที่อยู่รอบข้าง 
+          การดูดวงจากไพ่ยิปซีควรพิจารณาโดยผู้เชี่ยวชาญหรือศึกษาให้เข้าใจอย่างลึกซึ้งก่อนนำข้อมูลไปใช้ประกอบการตัดสินใจสำคัญ
+        </p>
+      </section>
     </div>
 
+    <!-- ✅ Sidebar (โฆษณาและส่วนสนับสนุน) -->
     <aside class="sidebar">
       <div class="ad-section">
         <h2 class="support-site">
@@ -510,11 +675,16 @@
                data-ad-slot="1706997713"
                data-ad-format="auto"
                data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+        <div style="font-size:0.8em; color:#999; margin-top:5px;">
+          [พื้นที่สนับสนุนเว็บ]
         </div>
       </div>
 
-     <div class="ad-section">
+      <div class="ad-section">
         <h2 class="support-us">
           <i class="fas fa-heart"></i> สนับสนุนเรา
         </h2>
@@ -523,10 +693,10 @@
           <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
           
           <div class="support-links">
-            <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
+            <a href="https://promptpay.io/0123456789" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
             </a>
-            <a href="https://www.facebook.com/phongphun.phommanee/?locale=th_TH" target="_blank" class="support-btn facebook">
+            <a href="https://facebook.com/yourpage" target="_blank" class="support-btn facebook">
               <i class="fab fa-facebook-f"></i> Facebook
             </a>
             <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
@@ -545,8 +715,19 @@
     <p>© 2025 ครบจังดอทคอม | 
     <a href="#">นโยบายความเป็นส่วนตัว</a> |
     <a href="#">เกี่ยวกับเรา</a></p>
-    <p>ข้อมูลจากแหล่งบริการที่เชื่อถือได้</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">ข้อมูลจากแหล่งบริการที่เชื่อถือได้</p>
   </footer>
+
+  <script>
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      document.getElementById('nav-placeholder').classList.toggle('active');
+    });
+
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('nav-placeholder').classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
-
