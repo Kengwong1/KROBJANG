@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ครบจังดอทคอม | เว็บเดียวครบทุกเรื่อง ใช้ง่ายทุกวัย</title>
+  <title>ครบจังดอทคอม | เว็บเดียวครบทุกเรื่อง ใช้งานง่ายทุกวัย</title>
   <meta name="description" content="ครบจังดอทคอม เว็บรวมข่าว AI การเงิน ดูดวง หวย วิดีโอ และไลฟ์สไตล์ ใช้งานง่าย อ่านสบาย เหมาะกับทุกกลุ่ม">
   <meta name="keywords" content="ครบจัง, ข่าว, AI, ดูดวง, หวย, การเงิน, วิดีโอ">
   <meta name="author" content="ครบจังดอทคอม">
 
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <!-- ✅ ใช้ AdSense script แบบคลาสสิก (แนะนำ) -->
+
+  <!-- ✅ Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <style>
@@ -32,10 +32,10 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Sarabun', sans-serif;
     }
 
     body {
-      font-family: 'Sarabun', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -67,17 +67,16 @@
       background: #fff;
       padding: 0.5rem 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      text-align: center;
     }
 
     .nav-wrap {
       max-width: 1200px;
       margin: auto;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
       gap: 0.5rem;
       padding: 0 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     .main-nav a {
@@ -91,8 +90,6 @@
       align-items: center;
       gap: 0.4rem;
       font-size: 0.95rem;
-      min-width: 90px;
-      text-align: center;
     }
 
     .main-nav a:hover,
@@ -169,6 +166,8 @@
       flex-direction: column;
       align-items: center;
       border: 1px solid transparent;
+      height: 100%;
+      justify-content: center;
     }
 
     .category-card:hover {
@@ -186,11 +185,26 @@
       font-size: 1.1rem;
       margin: 0 0 0.5rem;
       font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      text-align: center;
     }
 
     .category-card p {
       font-size: 0.95rem;
       color: var(--muted);
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      flex-grow: 1;
     }
 
     /* Footer */
@@ -212,48 +226,6 @@
 
     footer a:hover {
       text-decoration: underline;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
-      }
-      
-      .hero {
-        padding: 1.5rem;
-        margin: 1rem auto;
-      }
-      
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .nav-wrap {
-        flex-direction: column;
-        gap: 0.3rem;
-        padding: 0.5rem 0;
-      }
-      
-      .main-nav a {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-      
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      /* Hide sidebar on mobile */
-      .sidebar {
-        display: none;
-      }
     }
 
     /* Sidebar */
@@ -283,33 +255,16 @@
       gap: 0.5rem;
     }
 
-    .ad-section h2 i {
-      color: #7E57C2;
-    }
-
-    /* ✅ แก้ไขหลัก: ลบ ::before ออกทั้งหมด — ไม่บังโฆษณาจริง */
     .adsense-container {
       background-color: #f9fbff;
       border: 1px dashed #dbeafe;
       border-radius: 12px;
-      min-height: 250px; /* รองรับโฆษณาขนาดเล็ก */
+      min-height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 0.75rem;
-      position: relative;
     }
-
-    /* ❌ ถูกคอมเมนต์/ลบออก — สำคัญมาก */
-    /*
-    .adsense-container::before {
-      content: "พื้นที่โฆษณา";
-      color: #94a3b8;
-      font-size: 0.85rem;
-      position: absolute;
-      z-index: 0;
-    }
-    */
 
     .support-card {
       background: var(--card);
@@ -360,36 +315,10 @@
     .support-btn.youtube   { background: #FF0000; }
     .support-btn.tiktok    { background: #000000; }
 
-    /* Additional styling for sidebar sections */
-    .ad-section h2.support-site i {
-      color: #7E57C2;
-    }
-
-    .ad-section h2.support-us {
-      color: #1e293b;
-      font-weight: 700;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .ad-section h2.support-us i {
-      color: #FB8C00;
-    }
-
-    .ad-section h2::after {
-      content: "";
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: linear-gradient(90deg, #7E57C2, #FB8C00);
-      border-radius: 2px;
-      margin-top: 4px;
-    }
-
-    .ad-section h2.support-us::after {
-      background: linear-gradient(90deg, #FB8C00, #FFD54F);
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .support-links { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -400,23 +329,23 @@
 
   <nav class="main-nav">
     <div class="nav-wrap">
-      <a href="index.html" class="active">หน้าแรก</a>
-      <a href="news.html">ข่าวด่วน</a>
-      <a href="lotto.html">ตรวจหวย</a>
-      <a href="horoscope.html">ดูดวง</a>
-      <a href="sport.html">กีฬา</a>
-      <a href="video.html">วีดีโอ</a>
-      <a href="ai.html">AI</a>
-      <a href="games.html">เกมส์</a>
-      <a href="shopping.html">ช้อป</a>
-      <a href="booking.html">ท่องเที่ยว</a>
-      <a href="contact.html">ติดต่อเรา</a>
+      <a href="index.html" class="active"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+      <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> ตรวจหวย</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+      <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+      <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+      <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+      <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+      <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
   <section class="hero">
-    <h1>เว็บเดียว ครบทุกเรื่อง ใช้ง่ายทุกวัย</h1>
+    <h1>เว็บเดียว ครบทุกเรื่อง ใช้งานง่ายทุกวัย</h1>
     <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
   </section>
 
@@ -426,6 +355,7 @@
       <div class="section">
         <h2 style="text-align: center; color: var(--primary); font-size: 1.6rem; margin-bottom: 1.25rem;">หมวดหมู่ยอดนิยม</h2>
         <div class="category-grid">
+          <!-- หมวดหลัก -->
           <a class="category-card" href="ai.html">
             <i class="fas fa-robot" style="color: #2EC4B6;"></i>
             <h3>AI & เทคโนโลยี</h3>
@@ -456,33 +386,38 @@
             <h3>ไลฟ์สไตล์</h3>
             <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
           </a>
+
+          <!-- หมวดดูดวงจาก myhora.com -->
+          <a class="category-card" href="graph-life.html">
+            <i class="fas fa-chart-line" style="color: #8B5CF6;"></i>
+            <h3>กราฟชีวิต</h3>
+            <p>พยากรณ์ตามวันเกิด แม่นยำสูง</p>
+          </a>
+          <a class="category-card" href="name-mongkol.html">
+            <i class="fas fa-signature" style="color: #06B6D4;"></i>
+            <h3>ตั้งชื่อ-นามมงคล</h3>
+            <p>วิเคราะห์ทักษา เลขศาสตร์ อายตนะ ๖</p>
+          </a>
+          <a class="category-card" href="thai-calendar.html">
+            <i class="fas fa-calendar-alt" style="color: #10B981;"></i>
+            <h3>ปฏิทินจันทรคติ</h3>
+            <p>ฤกษ์มงคล วันดี-ร้าย รายวัน-รายเดือน</p>
+          </a>
+          <a class="category-card" href="myhora-full.html">
+            <i class="fas fa-magic" style="color: #F59E0B;"></i>
+            <h3>มายโหราออนไลน์</h3>
+            <p>ดูดวงครบวงจร ไพ่ยิปซี ทำนายฝัน</p>
+          </a>
+
+          <!-- ✅ หมวดใหม่ — โหลดฟรี แจกฟรี -->
+          <a class="category-card" href="free-gifts/index.html">
+            <i class="fas fa-gift" style="color: #F59E0B;"></i>
+            <h3>โหลดฟรี แจกฟรี</h3>
+            <p>เทมเพลต, E-Book, วอลล์เปเปอร์, เครื่องมือ</p>
+          </a>
         </div>
       </div>
     </div>
-    <!-- ✅ เพิ่มใน category-grid -->
-<a class="category-card" href="free-gifts/free-templates.html">
-  <i class="fas fa-file-excel" style="color: #10B981;"></i>
-  <h3>เทมเพลตฟรี</h3>
-  <p>Excel, Google Sheets, Notion — ใช้งานง่าย</p>
-</a>
-
-<a class="category-card" href="free-gifts/free-ebooks.html">
-  <i class="fas fa-book" style="color: #8B5CF6;"></i>
-  <h3>E-Book ฟรี</h3>
-  <p>ดูดวง, การเงิน, AI — ดาวน์โหลด PDF</p>
-</a>
-
-<a class="category-card" href="free-gifts/free-wallpaper-sticker.html">
-  <i class="fas fa-image" style="color: #EF4444;"></i>
-  <h3>วอลล์เปเปอร์ & สติกเกอร์</h3>
-  <p>ไพ่ยิปซี, ราศี, โหราศาสตร์ — สวยๆ ใช้ได้ทันที</p>
-</a>
-
-<a class="category-card" href="free-gifts/free-tools.html">
-  <i class="fas fa-calculator" style="color: #06B6D4;"></i>
-  <h3>เครื่องมือออนไลน์</h3>
-  <p>คำนวณเลขมงคล, วันดี, วางแผนการเงิน</p>
-</a>
 
     <aside class="sidebar">
       <div class="ad-section">
@@ -490,7 +425,6 @@
           <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
         </h2>
         <div class="adsense-container">
-          <!-- ✅ โฆษณาจริง — ไม่มี placeholder ทับแล้ว -->
           <ins class="adsbygoogle"
                style="display:block; width:100%;"
                data-ad-client="ca-pub-2068902667667616"
@@ -516,7 +450,6 @@
             <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
             </a>
-            <!-- ✅ ล้าง whitespace ท้าย URL -->
             <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
               <i class="fab fa-facebook-f"></i> Facebook
             </a>
