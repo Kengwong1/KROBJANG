@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
+  <!-- ✅ ใช้ AdSense script แบบคลาสสิก (แนะนำ) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <style>
     :root {
       --primary-dark: #1e3a8a;
@@ -284,11 +287,12 @@
       color: #7E57C2;
     }
 
+    /* ✅ แก้ไขหลัก: ลบ ::before ออกทั้งหมด — ไม่บังโฆษณาจริง */
     .adsense-container {
       background-color: #f9fbff;
       border: 1px dashed #dbeafe;
       border-radius: 12px;
-      min-height: 280px;
+      min-height: 250px; /* รองรับโฆษณาขนาดเล็ก */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -296,6 +300,8 @@
       position: relative;
     }
 
+    /* ❌ ถูกคอมเมนต์/ลบออก — สำคัญมาก */
+    /*
     .adsense-container::before {
       content: "พื้นที่โฆษณา";
       color: #94a3b8;
@@ -303,6 +309,7 @@
       position: absolute;
       z-index: 0;
     }
+    */
 
     .support-card {
       background: var(--card);
@@ -454,23 +461,24 @@
     </div>
 
     <aside class="sidebar">
-            <div class="ad-section">
-                <h2 class="support-site">
-                    <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
-                </h2>
-                <div class="adsense-container">
-                    <ins class="adsbygoogle"
-                         style="display:block; width:100%;"
-                         data-ad-client="ca-pub-2068902667667616"
-                         data-ad-slot="1706997713"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                </div>
-                <div style="font-size:0.8em; color:#999; margin-top:5px;">
-                    [พื้นที่สนับสนุนเว็บ]
-                </div>
-            </div>
+      <div class="ad-section">
+        <h2 class="support-site">
+          <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+        </h2>
+        <div class="adsense-container">
+          <!-- ✅ โฆษณาจริง — ไม่มี placeholder ทับแล้ว -->
+          <ins class="adsbygoogle"
+               style="display:block; width:100%;"
+               data-ad-client="ca-pub-2068902667667616"
+               data-ad-slot="1706997713"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        <div style="font-size:0.8em; color:#999; margin-top:5px;">
+          [พื้นที่สนับสนุนเว็บ]
+        </div>
+      </div>
 
       <div class="ad-section">
         <h2 class="support-us">
@@ -478,13 +486,14 @@
         </h2>
         <div class="support-card">
           <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
-          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code" loading="lazy">
           
           <div class="support-links">
             <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
             </a>
-            <a href="https://www.facebook.com/phongphun.phommanee/?locale=th_TH" target="_blank" class="support-btn facebook">
+            <!-- ✅ ล้าง whitespace ท้าย URL -->
+            <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
               <i class="fab fa-facebook-f"></i> Facebook
             </a>
             <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
