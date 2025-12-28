@@ -3,30 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ดูดวงไพ่ยิปซี - ครบจังดอทคอม</title>
-  <meta name="description" content="ดูดวงไพ่ยิปซีรายวัน ทำนายจากไพ่ยิปซี 7 ใบ ดูดวงความรัก การเงิน การงาน พร้อมคำอธิบายลึกซึ้ง">
-  <meta name="keywords" content="ดูดวงไพ่ยิปซี, ทำนายไพ่ยิปซี, ไพ่ยิปซีรายวัน, คำทำนายไพ่ยิปซี, Tarot Reading">
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>ดูดวงไพ่ยิปซีรายวัน - ครบจังดอทคอม</title>
+  <meta name="description" content="ดูดวงไพ่ยิปซีรายวัน ทำนายจากไพ่ยิปซี 22 ใบ Major Arcana พร้อมเสียงและภาพสมจริง">
+  <meta name="keywords" content="ดูดวงไพ่ยิปซี, ไพ่ยิปซีรายวัน, Tarot Reading, ดูดวงวันนี้, ไพ่ยิปซี 22 ใบ">
+
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- ✅ Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
-          crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <style>
-    /* ✅ Variables — ใช้แบบเดียวกับ index.html & news.html */
     :root {
       --primary-dark: #1e3a8a;
       --primary: #1e40af;
-      --primary-light: #3b82f6;
       --soft: #eff6ff;
       --bg: #f8fafc;
       --card: #ffffff;
       --text: #1e293b;
       --muted: #64748b;
       --radius: 18px;
-      --highlight-red: #d32f2f;
       --highlight-green: #388e3c;
+      --gold: #d4af37;
     }
 
     * {
@@ -42,7 +40,7 @@
       line-height: 1.6;
     }
 
-    /* ✅ Header — เข้มสม่ำเสมอ + โลโก้กลาง */
+    /* Header */
     header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: #fff;
@@ -78,11 +76,9 @@
     }
     .menu-btn:hover { opacity: 1; }
 
-    .header-spacer {
-      width: 24px;
-    }
+    .header-spacer { width: 24px; }
 
-    /* ✅ Navigation — สีสันเหมือนหน้าอื่น */
+    /* Navigation */
     .main-nav {
       background: #fff;
       padding: 0.5rem 0;
@@ -145,7 +141,39 @@
       background: var(--soft);
     }
 
-    /* Layout */
+    /* Hero Section */
+    .hero {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.75rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Main Content */
     .container {
       max-width: 1200px;
       margin: 1.5rem auto;
@@ -209,10 +237,24 @@
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       background: #f8f9fc;
       margin: 0 auto;
+      position: relative;
+      overflow: hidden;
     }
+
+    #tarot-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
     #tarot-card:hover {
       transform: scale(1.04) rotate(2deg);
       box-shadow: 0 8px 22px rgba(30, 64, 175, 0.15);
+    }
+
+    #tarot-card:hover img {
+      transform: scale(1.05);
     }
 
     #draw-button {
@@ -227,14 +269,39 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3);
+      position: relative;
+      overflow: hidden;
     }
+
     #draw-button:hover {
       transform: translateY(-3px) scale(1.03);
       background: var(--primary-dark);
       box-shadow: 0 6px 14px rgba(30, 64, 175, 0.5);
     }
+
     #draw-button:active {
       transform: translateY(0);
+    }
+
+    /* Glint effect on button */
+    #draw-button::after {
+      content: "";
+      position: absolute;
+      top: -100%; left: -100%;
+      width: 200%; height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+
+    #draw-button:hover::after {
+      top: 0; left: 0;
+      animation: glint 1.2s infinite;
+    }
+
+    @keyframes glint {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
     }
 
     #result-area {
@@ -246,15 +313,18 @@
       border: 1px solid #e2e8f0;
       display: none;
     }
+
     #result-area h3 {
       font-size: 1.4rem;
       color: var(--primary);
       margin-bottom: 1rem;
       text-align: center;
     }
+
     #result-area h3 i {
       color: var(--highlight-green);
     }
+
     #result-area p {
       line-height: 1.7;
       font-size: 1.05rem;
@@ -419,7 +489,14 @@
         width: 200px;
         height: 320px;
       }
+      .hero {
+        padding: 1.5rem;
+        margin: 1rem auto;
+      }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
     }
+
     @media (max-width: 480px) {
       #tarot-card {
         width: 180px;
@@ -441,7 +518,7 @@
       <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
       <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
       <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
-      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+      <a href="horoscope.html" class="active"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
       <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
       <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
       <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
@@ -475,10 +552,9 @@
         <p class="desc">ตั้งจิตอธิษฐาน แล้วคลิกที่ไพ่เพื่อเปิดคำทำนายสำหรับวันนี้</p>
 
         <div class="tarot-area">
-          <img id="tarot-card"
-               src="images/tarot_back.png"
-               alt="ด้านหลังไพ่"
-               onerror="this.src='https://via.placeholder.com/240x380/1e40af/FFFFFF?text=ไพ่ยิปซี'">
+          <div id="tarot-card">
+            <img src="images/tarot_back.png" alt="ด้านหลังไพ่" onerror="this.src='https://via.placeholder.com/240x380/1e40af/FFFFFF?text=ไพ่ยิปซี'">
+          </div>
           <button id="draw-button">เปิดไพ่</button>
         </div>
 
@@ -505,7 +581,7 @@
         </div>
       </div>
 
-     <div class="ad-section">
+      <div class="ad-section">
         <h2 class="support-us">
           <i class="fas fa-heart"></i> สนับสนุนเรา
         </h2>
@@ -517,7 +593,7 @@
             <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
             </a>
-            <a href="https://www.facebook.com/phongphun.phommanee/?locale=th_TH" target="_blank" class="support-btn facebook">
+            <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
               <i class="fab fa-facebook-f"></i> Facebook
             </a>
             <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
@@ -539,86 +615,226 @@
     <p>ข้อมูลจากแหล่งบริการที่เชื่อถือได้</p>
   </footer>
 
+  <!-- ✅ เสียง (CDN ฟรี) -->
+  <audio id="sound-click" preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/01/27/audio_52142a410e.mp3?filename=click-12445.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="sound-shuffle" preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/14/audio_76a8b84899.mp3?filename=card-shuffle-64471.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="sound-flip" preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/01/27/audio_f3e91c1be2.mp3?filename=card-flip-61970.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
+    // ✅ ไพ่ยิปซี 22 ใบ (Major Arcana) — ใช้ภาพจาก Sacred Texts (public domain)
     const tarotCards = [
       {
-        name: 'The Fool',
-        image: 'images/tarot_the_fool.png',
-        meaning: 'เป็นไพ่แห่งการเริ่มต้นใหม่, การผจญภัย, และความไร้เดียงสา อาจหมายถึงการก้าวเข้าสู่เส้นทางใหม่โดยไม่กลัวสิ่งใด'
+        name: "The Fool",
+        thai: "คนโง่",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar00.jpg",
+        meaning: "เป็นไพ่แห่งการเริ่มต้นใหม่, การผจญภัย, และความไร้เดียงสา อาจหมายถึงการก้าวเข้าสู่เส้นทางใหม่โดยไม่กลัวสิ่งใด"
       },
       {
-        name: 'The Magician',
-        image: 'images/tarot_the_magician.png',
-        meaning: 'เป็นไพ่แห่งพลังงาน, ความสามารถ, และความคิดสร้างสรรค์ บ่งบอกถึงการมีเครื่องมือและความสามารถในการสร้างสรรค์สิ่งต่างๆ ให้เป็นจริง'
+        name: "The Magician",
+        thai: "มนตร์ผู้วิเศษ",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar01.jpg",
+        meaning: "เป็นไพ่แห่งพลังงาน, ความสามารถ, และความคิดสร้างสรรค์ บ่งบอกถึงการมีเครื่องมือและความสามารถในการสร้างสรรค์สิ่งต่างๆ ให้เป็นจริง"
       },
       {
-        name: 'The High Priestess',
-        image: 'images/tarot_the_high_priestess.png',
-        meaning: 'เป็นไพ่แห่งความรู้, ความเข้าใจ, และสัญชาตญาณที่ลึกซึ้ง บ่งบอกถึงการฟังเสียงจากภายในและเชื่อในลางสังหรณ์ของตนเอง'
+        name: "The High Priestess",
+        thai: "มหาปุโรหิตหญิง",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar02.jpg",
+        meaning: "เป็นไพ่แห่งความรู้, ความเข้าใจ, และสัญชาตญาณที่ลึกซึ้ง บ่งบอกถึงการฟังเสียงจากภายในและเชื่อในลางสังหรณ์ของตนเอง"
       },
       {
-        name: 'The Empress',
-        image: 'images/tarot_the_empress.png',
-        meaning: 'เป็นไพ่แห่งความอุดมสมบูรณ์, การเลี้ยงดู, และความสุขในชีวิต อาจหมายถึงการเริ่มต้นครอบครัว การตั้งครรภ์ หรือความสำเร็จที่งดงาม'
+        name: "The Empress",
+        thai: "จักรีพรรดินี",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar03.jpg",
+        meaning: "เป็นไพ่แห่งความอุดมสมบูรณ์, การเลี้ยงดู, และความสุขในชีวิต อาจหมายถึงการเริ่มต้นครอบครัว การตั้งครรภ์ หรือความสำเร็จที่งดงาม"
       },
       {
-        name: 'The Emperor',
-        image: 'images/tarot_the_emperor.png',
-        meaning: 'เป็นไพ่แห่งอำนาจ, ความมั่นคง, และการควบคุม บ่งบอกถึงความเป็นผู้นำ การตัดสินใจที่เด็ดขาด และความรับผิดชอบ'
+        name: "The Emperor",
+        thai: "จักรพรรดิ",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar04.jpg",
+        meaning: "เป็นไพ่แห่งอำนาจ, ความมั่นคง, และการควบคุม บ่งบอกถึงความเป็นผู้นำ การตัดสินใจที่เด็ดขาด และความรับผิดชอบ"
       },
       {
-        name: 'The Lovers',
-        image: 'images/tarot_the_lovers.png',
-        meaning: 'เป็นไพ่แห่งความรัก, ความสัมพันธ์, และการตัดสินใจครั้งสำคัญในชีวิต อาจหมายถึงการเลือกเส้นทางที่ถูกต้องสำหรับตัวคุณ'
+        name: "The Hierophant",
+        thai: "มหาปุโรหิต",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar05.jpg",
+        meaning: "เป็นไพ่แห่งประเพณี, ความเชื่อ, ครูบาอาจารย์, และสถาบัน อาจหมายถึงการแสวงหาความรู้จากแหล่งที่เชื่อถือได้"
       },
       {
-        name: 'The Chariot',
-        image: 'images/tarot_the_chariot.png',
-        meaning: 'เป็นไพ่แห่งชัยชนะ, ความมุ่งมั่น, และการควบคุมทิศทางชีวิต บ่งบอกถึงความสำเร็จจากการใช้ความพยายามอย่างเต็มที่'
+        name: "The Lovers",
+        thai: "คู่รัก",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar06.jpg",
+        meaning: "เป็นไพ่แห่งความรัก, ความสัมพันธ์, และการตัดสินใจครั้งสำคัญในชีวิต อาจหมายถึงการเลือกเส้นทางที่ถูกต้องสำหรับตัวคุณ"
+      },
+      {
+        name: "The Chariot",
+        thai: "ราชรถ",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar07.jpg",
+        meaning: "เป็นไพ่แห่งชัยชนะ, ความมุ่งมั่น, และการควบคุมทิศทางชีวิต บ่งบอกถึงความสำเร็จจากการใช้ความพยายามอย่างเต็มที่"
+      },
+      {
+        name: "Strength",
+        thai: "พลังอำนาจ",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar08.jpg",
+        meaning: "เป็นไพ่แห่งความกล้าหาญภายใน, การควบคุมด้วยเมตตา, และการเอาชนะอุปสรรคด้วยจิตใจที่แข็งแกร่ง"
+      },
+      {
+        name: "The Hermit",
+        thai: "ฤๅษี",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar09.jpg",
+        meaning: "เป็นไพ่แห่งการแสวงหาภายใน, ปัญญา, และการสำรวม อาจหมายถึงการต้องการเวลาส่วนตัวเพื่อคิดทบทวน"
+      },
+      {
+        name: "Wheel of Fortune",
+        thai: "โชคชะตา",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar10.jpg",
+        meaning: "เป็นไพ่แห่งการเปลี่ยนแปลง, วัฏจักร, และโอกาส บ่งบอกถึงการเปลี่ยนแปลงที่กำลังจะมาถึง"
+      },
+      {
+        name: "Justice",
+        thai: "ยุติธรรม",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar11.jpg",
+        meaning: "เป็นไพ่แห่งความสมดุล, กฎหมาย, และผลแห่งการกระทำ อาจหมายถึงการได้รับสิ่งที่คุณสมควรได้"
+      },
+      {
+        name: "The Hanged Man",
+        thai: "คนแขวนหัว",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar12.jpg",
+        meaning: "เป็นไพ่แห่งมุมมองใหม่, การเสียสละ, และการยอมรับ อาจหมายถึงการต้องหยุดพักเพื่อมองสิ่งต่างๆ ในมุมที่ต่างออกไป"
+      },
+      {
+        name: "Death",
+        thai: "ความตาย",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar13.jpg",
+        meaning: "เป็นไพ่แห่งการจบสิ้นเพื่อการเริ่มต้นใหม่, การเปลี่ยนผ่าน, และการปลดปล่อย อาจหมายถึงการเปลี่ยนแปลงครั้งใหญ่"
+      },
+      {
+        name: "Temperance",
+        thai: "ความพอประมาณ",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar14.jpg",
+        meaning: "เป็นไพ่แห่งสมดุล, ความกลมกลืน, และการปรับตัว อาจหมายถึงการต้องผสมผสานสิ่งต่างๆ เพื่อให้เกิดความสมดุล"
+      },
+      {
+        name: "The Devil",
+        thai: "มาร",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar15.jpg",
+        meaning: "เป็นไพ่แห่งพันธนาการ, ความยึดติด, และความกลัว อาจหมายถึงการต้องปลดปล่อยตัวเองจากสิ่งที่รั้งคุณไว้"
+      },
+      {
+        name: "The Tower",
+        thai: "หอคอย",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar16.jpg",
+        meaning: "เป็นไพ่แห่งการล่มสลาย, ความจริงที่ถูกซ่อน, และการตื่นรู้ อาจหมายถึงเหตุการณ์ที่พลิกผันอย่างฉับพลัน"
+      },
+      {
+        name: "The Star",
+        thai: "ดวงดาว",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar17.jpg",
+        meaning: "เป็นไพ่แห่งความหวัง, แรงบันดาลใจ, และการเยียวยา อาจหมายถึงแสงสว่างที่ปรากฏหลังจากความมืดมิด"
+      },
+      {
+        name: "The Moon",
+        thai: "ดวงจันทร์",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar18.jpg",
+        meaning: "เป็นไพ่แห่งจิตใต้สำนึก, ความลวงตา, และความฝัน อาจหมายถึงการต้องระวังสิ่งที่ไม่ปรากฏชัดเจน"
+      },
+      {
+        name: "The Sun",
+        thai: "ดวงอาทิตย์",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar19.jpg",
+        meaning: "เป็นไพ่แห่งความสำเร็จ, ความสุข, และพลังชีวิต อาจหมายถึงช่วงเวลาแห่งความสดใสและชัยชนะ"
+      },
+      {
+        name: "Judgement",
+        thai: "การฟื้นคืนชีพ",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar20.jpg",
+        meaning: "เป็นไพ่แห่งการเรียกคืน, การให้อภัย, และการตัดสินใจครั้งสำคัญ อาจหมายถึงการได้รับโอกาสใหม่"
+      },
+      {
+        name: "The World",
+        thai: "จักรวาล",
+        image: "https://www.sacred-texts.com/tarot/pkt/img/ar21.jpg",
+        meaning: "เป็นไพ่แห่งความสำเร็จสมบูรณ์, การเดินทางจบสิ้น, และความสมดุล อาจหมายถึงการบรรลุเป้าหมายและเข้าสู่รอบใหม่"
       }
     ];
 
+    // DOM Elements
     const tarotCard = document.getElementById('tarot-card');
     const drawButton = document.getElementById('draw-button');
     const resultArea = document.getElementById('result-area');
     const cardTitle = document.getElementById('card-title');
     const cardMeaning = document.getElementById('card-meaning');
 
+    // Audio elements
+    const soundClick = document.getElementById('sound-click');
+    const soundShuffle = document.getElementById('sound-shuffle');
+    const soundFlip = document.getElementById('sound-flip');
+
     let isDrawn = false;
+
+    function playSound(sound) {
+      if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log("Sound blocked by browser"));
+      }
+    }
 
     function drawCard() {
       if (isDrawn) {
         // รีเซ็ต
         resultArea.style.display = 'none';
-        tarotCard.src = 'images/tarot_back.png';
-        tarotCard.alt = 'ด้านหลังไพ่';
+        tarotCard.innerHTML = '<img src="images/tarot_back.png" alt="ด้านหลังไพ่" onerror="this.src=\'https://via.placeholder.com/240x380/1e40af/FFFFFF?text=ไพ่ยิปซี\'">';
         drawButton.innerHTML = 'เปิดไพ่';
         isDrawn = false;
         return;
       }
 
+      // แอนิเมชัน: สับไพ่ + เสียง
+      playSound(soundShuffle);
+
       // สุ่มไพ่
       const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
 
       // ตั้งค่าไพ่
-      tarotCard.src = card.image;
-      tarotCard.alt = card.name;
-      // fallback หากโหลดรูปไม่ได้
-      tarotCard.onerror = () => {
-        tarotCard.src = `https://via.placeholder.com/240x380/1e40af/FFFFFF?text=${encodeURIComponent(card.name)}`;
-        tarotCard.alt = card.name;
+      const img = document.createElement('img');
+      img.src = card.image;
+      img.alt = card.name;
+      img.onerror = () => {
+        img.src = `https://via.placeholder.com/240x380/1e40af/FFFFFF?text=${encodeURIComponent(card.thai)}`;
+        img.alt = card.name;
       };
 
+      // แทนที่ภาพ
+      tarotCard.innerHTML = '';
+      tarotCard.appendChild(img);
+
       // แสดงผล
-      cardTitle.textContent = card.name;
+      cardTitle.textContent = `${card.name} (${card.thai})`;
       cardMeaning.textContent = card.meaning;
       resultArea.style.display = 'block';
       drawButton.innerHTML = 'เปิดไพ่ใบใหม่';
       isDrawn = true;
+
+      // เสียงเปิดไพ่
+      playSound(soundFlip);
     }
 
-    tarotCard.addEventListener('click', drawCard);
-    drawButton.addEventListener('click', drawCard);
+    // คลิกที่ไพ่
+    tarotCard.addEventListener('click', () => {
+      playSound(soundClick);
+      drawCard();
+    });
+
+    // คลิกที่ปุ่ม
+    drawButton.addEventListener('click', () => {
+      playSound(soundClick);
+      drawCard();
+    });
   </script>
 </body>
 </html>
