@@ -1,564 +1,555 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รวมเครื่องมือ AI 30 ตัว น่าใช้ 2025 | ครบจังดอทคอม</title>
-    <meta name="description" content="รวมเครื่องมือ AI 30 ตัว ที่ดีที่สุดในปี 2025 ครอบคลุมทุกการใช้งาน ไม่ว่าจะเป็นการเขียน สร้างภาพ สร้างวิดีโอ หรือเสียง">
-    <meta name="keywords" content="เครื่องมือ AI, AI Tools, AI 2025, รีวิว AI, ครบจัง">
-    <meta name="author" content="ครบจังดอทคอม">
-
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- ✅ Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
-            crossorigin="anonymous"></script>
-
-    <style>
-        :root {
-          --primary-dark: #1e3a8a;
-          --primary: #1e40af;
-          --primary-light: #3b82f6;
-          --soft: #eff6ff;
-          --bg: #f8fafc;
-          --card: #ffffff;
-          --text: #1e293b;
-          --muted: #64748b;
-          --radius: 18px;
-          --highlight: #ff9800;
-          --category-bg: #f1f5f9;
-          --info-bg: #e0f2fe;
-        }
-
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        body {
-          font-family: 'Sarabun', sans-serif;
-          background: var(--bg);
-          color: var(--text);
-          line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-          color: #fff;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0.75rem 1rem;
-        }
-
-        .logo {
-          font-size: 1.5rem;
-          font-weight: 800;
-          margin: 0;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-
-        .menu-btn {
-          position: absolute;
-          left: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 1.4rem;
-          background: none;
-          border: none;
-          color: white;
-          cursor: pointer;
-          opacity: 0.9;
-          display: none;
-        }
-        .menu-btn:hover { opacity: 1; }
-
-        .header-spacer {
-          width: 24px;
-        }
-
-        /* Navigation */
-        .main-nav {
-          background: #fff;
-          padding: 0.5rem 0;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .nav-wrap {
-          max-width: 1200px;
-          margin: auto;
-          display: flex;
-          gap: 0.75rem;
-          padding: 0 1rem;
-          overflow-x: auto;
-          white-space: nowrap;
-        }
-
-        .main-nav a {
-          text-decoration: none;
-          color: #4b5563;
-          font-weight: 600;
-          padding: 0.6rem 1rem;
-          border-radius: 12px;
-          transition: all 0.2s ease;
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.95rem;
-        }
-
-        .main-nav a:hover,
-        .main-nav a.active {
-          background: var(--soft);
-          transform: scale(1.02);
-        }
-
-        .mobile-nav {
-          display: none;
-          flex-direction: column;
-          background: #fff;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          z-index: 100;
-        }
-
-        .mobile-nav a {
-          padding: 1rem 1.5rem;
-          border-bottom: 1px solid #f1f5f9;
-          text-decoration: none;
-          color: #4b5563;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        .mobile-nav a:hover {
-          background: var(--soft);
-        }
-
-        /* ✅ HERO SECTION */
-        .hero {
-          max-width: 1200px;
-          margin: 2rem auto;
-          padding: 2.5rem 2rem;
-          background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
-          color: #fff;
-          border-radius: var(--radius);
-          text-align: center;
-          box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .hero::before {
-          content: "";
-          position: absolute;
-          top: -50%;
-          right: -50%;
-          width: 300px;
-          height: 300px;
-          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-          border-radius: 50%;
-        }
-
-        .hero::after {
-          content: "";
-          position: absolute;
-          bottom: -50%;
-          left: -50%;
-          width: 300px;
-          height: 300px;
-          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-          border-radius: 50%;
-        }
-
-        .hero-content {
-          position: relative;
-          z-index: 2;
-          max-width: 700px;
-          margin: 0 auto;
-        }
-
-        .hero h1 {
-          font-size: 2.2rem;
-          font-weight: 800;
-          margin: 0;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-          line-height: 1.3;
-        }
-
-        .hero p {
-          font-size: 1.2rem;
-          margin: 1rem 0 0.75rem;
-          opacity: 0.95;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-          line-height: 1.6;
-        }
-
-        .hero-subtitle {
-          font-size: 1.1rem;
-          opacity: 0.85;
-          margin-top: 0.5rem;
-          font-weight: 600;
-          display: inline-block;
-          padding: 0.4rem 1.2rem;
-          background: rgba(255, 255, 255, 0.15);
-          border-radius: 30px;
-          backdrop-filter: blur(5px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Layout */
-        .container {
-          max-width: 1200px;
-          margin: 1.5rem auto;
-          padding: 0 1rem;
-          display: grid;
-          grid-template-columns: 1fr 300px;
-          gap: 1.5rem;
-        }
-
-        .content-area {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .sidebar {
-          display: flex;
-          flex-direction: column;
-          gap: 1.25rem;
-        }
-
-        /* Section */
-        .section {
-          background: var(--card);
-          border-radius: var(--radius);
-          padding: 1.25rem;
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
-        }
-
-        .section-title {
-          font-size: 1.6rem;
-          margin-bottom: 1.25rem;
-          text-align: center;
-          color: var(--primary);
-          position: relative;
-        }
-
-        .section-title::after {
-          content: "";
-          display: block;
-          width: 40px;
-          height: 4px;
-          background: linear-gradient(90deg, var(--primary), var(--primary-light));
-          margin: 0.5rem auto;
-          border-radius: 2px;
-        }
-
-        /* Info Box */
-        .info-box {
-          background: var(--info-bg);
-          border-left: 4px solid var(--primary);
-          padding: 1rem;
-          margin: 1rem 0;
-          border-radius: 0 var(--radius) var(--radius) 0;
-        }
-
-        .info-box h4 {
-          color: var(--primary-dark);
-          margin-bottom: 0.5rem;
-          font-size: 1.1rem;
-        }
-
-        /* AI Category Section */
-        .ai-category {
-          background: var(--category-bg);
-          border-radius: 12px;
-          margin-bottom: 1.5rem;
-          padding: 1rem;
-          transition: all 0.2s ease;
-        }
-
-        .ai-category:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.06);
-        }
-
-        .category-header {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 0.75rem;
-          padding-bottom: 0.5rem;
-          border-bottom: 2px solid var(--primary);
-        }
-
-        .category-header i {
-          color: var(--primary);
-          font-size: 1.2rem;
-        }
-
-        .category-header h3 {
-          font-size: 1.3rem;
-          color: var(--primary-dark);
-          margin: 0;
-        }
-
-        .ai-tool {
-          background: white;
-          border-radius: 10px;
-          padding: 1rem;
-          margin-bottom: 0.75rem;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-          border-left: 3px solid var(--primary);
-          transition: all 0.2s ease;
-        }
-
-        .ai-tool:hover {
-          transform: translateX(5px);
-          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .tool-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 0.5rem;
-        }
-
-        .tool-name {
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: var(--primary);
-          text-decoration: none;
-        }
-
-        .tool-name:hover {
-          text-decoration: underline;
-        }
-
-        .tool-description {
-          color: var(--muted);
-          margin-bottom: 0.5rem;
-          line-height: 1.6;
-        }
-
-        .feature-list {
-          margin-top: 0.5rem;
-          padding-left: 1.2rem;
-        }
-
-        .feature-list li {
-          font-size: 0.95rem;
-          color: var(--text);
-          margin-bottom: 0.3rem;
-        }
-
-        /* Tool Image */
-        .tool-image {
-          width: 100%;
-          max-height: 150px;
-          border-radius: 8px;
-          object-fit: cover;
-          margin: 0.5rem 0;
-          display: block;
-        }
-
-        /* ✅ Sidebar Ad Section */
-        .ad-section {
-          background: var(--card);
-          border-radius: var(--radius);
-          padding: 1rem;
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
-          text-align: center;
-        }
-
-        .ad-section h2.support-site {
-          font-size: 1.25rem;
-          margin-bottom: 0.75rem;
-          color: #1e293b;
-          font-weight: 700;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .ad-section h2.support-site i {
-          color: #7E57C2;
-          font-size: 1.1em;
-        }
-
-        .ad-section h2.support-us {
-          font-size: 1.25rem;
-          margin-bottom: 0.75rem;
-          color: #1e293b;
-          font-weight: 700;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .ad-section h2.support-us i {
-          color: #FB8C00;
-          font-size: 1.1em;
-        }
-
-        .ad-section h2::after {
-          content: "";
-          display: block;
-          width: 30px;
-          height: 3px;
-          background: linear-gradient(90deg, #7E57C2, #FB8C00);
-          border-radius: 2px;
-          margin-top: 4px;
-        }
-
-        .ad-section h2.support-us::after {
-          background: linear-gradient(90deg, #FB8C00, #FFD54F);
-        }
-
-        .adsense-container {
-          background-color: #f9fbff;
-          border: 1px dashed #dbeafe;
-          border-radius: 12px;
-          min-height: 280px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 0.75rem;
-          position: relative;
-        }
-
-        .adsense-container::before {
-          content: "พื้นที่โฆษณา";
-          color: #94a3b8;
-          font-size: 0.85rem;
-          position: absolute;
-          z-index: 0;
-        }
-
-        /* ✅ Support Section */
-        .support-card {
-          background: var(--card);
-          border-radius: var(--radius);
-          padding: 1rem;
-          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
-        }
-
-        .qr-code {
-          width: 100%;
-          max-width: 150px;
-          height: auto;
-          margin: 0.75rem auto;
-          display: block;
-          border-radius: 8px;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .support-links {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.75rem;
-          margin-top: 1rem;
-        }
-
-        .support-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-          padding: 0.6rem 0.5rem;
-          border-radius: 10px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 0.9rem;
-          color: white;
-          transition: all 0.2s;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        .support-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .support-btn.promptpay { background: #10B981; }
-        .support-btn.facebook  { background: #4267B2; }
-        .support-btn.youtube   { background: #FF0000; }
-        .support-btn.tiktok    { background: #000000; }
-
-        /* Footer */
-        footer {
-          margin-top: 2rem;
-          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-          color: white;
-          text-align: center;
-          padding: 1.5rem 1rem;
-          box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
-        }
-
-        footer a {
-          color: #e0f2fe;
-          text-decoration: none;
-          font-weight: 600;
-          margin: 0 0.5rem;
-        }
-
-        footer a:hover {
-          text-decoration: underline;
-        }
-
-        /* ✅ Responsive */
-        @media (max-width: 768px) {
-          .menu-btn { display: block; }
-          .mobile-nav.active { display: flex; }
-
-          /* Hero Section Responsive */
-          .hero {
-            padding: 2rem 1.5rem;
-            margin: 1.5rem auto;
-          }
-          
-          .hero h1 {
-            font-size: 1.8rem;
-          }
-          
-          .hero p {
-            font-size: 1rem;
-          }
-          
-          .hero-subtitle {
-            font-size: 1rem;
-            padding: 0.3rem 1rem;
-          }
-
-          /* Layout Responsive */
-          .container {
-            grid-template-columns: 1fr;
-            padding: 0 0.75rem;
-          }
-
-          .support-links {
-            grid-template-columns: 1fr;
-          }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รวมเครื่องมือ AI 30 ตัว น่าใช้ 2025 | ครบจังดอทคอม</title>
+  <meta name="description" content="รวมเครื่องมือ AI 30 ตัว ที่ดีที่สุดในปี 2025 ครอบคลุมทุกการใช้งาน ไม่ว่าจะเป็นการเขียน สร้างภาพ สร้างวิดีโอ หรือเสียง">
+  <meta name="keywords" content="เครื่องมือ AI, AI Tools, AI 2025, รีวิว AI, ครบจัง">
+  <meta name="author" content="ครบจังดอทคอม">
+
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- ✅ Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
+  crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary-dark: #1e3a8a;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --soft: #eff6ff;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --radius: 18px;
+      --highlight: #ff9800;
+      --category-bg: #f1f5f9;
+      --info-bg: #e0f2fe;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.75rem 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .menu-btn {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      opacity: 0.9;
+      display: none;
+    }
+    .menu-btn:hover { opacity: 1; }
+
+    .header-spacer { width: 24px; }
+
+    /* Navigation */
+    .main-nav {
+      background: #fff;
+      padding: 0.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .nav-wrap {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      gap: 0.75rem;
+      padding: 0 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: var(--soft);
+      transform: scale(1.02);
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .mobile-nav a {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a:hover {
+      background: var(--soft);
+    }
+
+    /* ✅ HERO SECTION */
+    .hero {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      color: #fff;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -50%;
+      left: -50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.75rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.5rem;
+    }
+
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      min-height: auto; /* ✅ เพิ่มบรรทัดนี้ */
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* Section */
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* Info Box */
+    .info-box {
+      background: var(--info-bg);
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .info-box h4 {
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* AI Category Section */
+    .ai-category {
+      background: var(--category-bg);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .ai-category:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.06);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .category-header i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .category-header h3 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin: 0;
+    }
+
+    .ai-tool {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-left: 3px solid var(--primary);
+      transition: all 0.2s ease;
+    }
+
+    .ai-tool:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .tool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .tool-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .tool-name:hover {
+      text-decoration: underline;
+    }
+
+    .tool-description {
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .feature-list {
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+    }
+
+    .feature-list li {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    /* Tool Image */
+    .tool-image {
+      width: 100%;
+      max-height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin: 0.5rem 0;
+      display: block;
+    }
+
+    /* ✅ Sidebar Ad Section */
+    .ad-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+      text-align: center;
+    }
+
+    .ad-section h2.support-site {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ad-section h2.support-site i {
+      color: #7E57C2;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2.support-us {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ad-section h2.support-us i {
+      color: #FB8C00;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: linear-gradient(90deg, #7E57C2, #FB8C00);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .ad-section h2.support-us::after {
+      background: linear-gradient(90deg, #FB8C00, #FFD54F);
+    }
+
+    .adsense-container {
+      background-color: #f9fbff;
+      border: 1px dashed #dbeafe;
+      border-radius: 12px;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .adsense-container::before {
+      content: "พื้นที่โฆษณา";
+      color: #94a3b8;
+      font-size: 0.85rem;
+      position: absolute;
+      z-index: 0;
+    }
+
+    /* ✅ Support Section */
+    .support-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
+    }
+
+    .qr-code {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin: 0.75rem auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .support-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .support-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 0.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .support-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .support-btn.promptpay { background: #10B981; }
+    .support-btn.facebook  { background: #4267B2; }
+    .support-btn.youtube   { background: #FF0000; }
+    .support-btn.tiktok    { background: #000000; }
+
+    /* Footer */
+    footer {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
+    }
+
+    footer a {
+      color: #e0f2fe;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ✅ Responsive */
+    @media (max-width: 768px) {
+      .menu-btn { display: block; }
+      .mobile-nav.active { display: flex; }
+      .hero {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem auto;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+      }
+      .container {
+        grid-template-columns: 1fr;
+        padding: 0 0.75rem;
+      }
+      .support-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -617,11 +608,10 @@
           คัดสรรเครื่องมือ AI ที่ดีที่สุด 30 ตัว ที่คุณควรรู้จักในปี 2025 ครอบคลุมทุกการใช้งาน
           ไม่ว่าจะเป็นการเขียน สร้างภาพ สร้างวิดีโอ หรือสร้างเสียง
         </p>
-        
         <div class="info-box">
           <h4><i class="fas fa-info-circle"></i> ข้อควรทราบ</h4>
-          <p>ข้อมูลในหน้านี้อัปเดตล่าสุดในปี 2025 โดยเน้นคุณสมบัติและประเภทของเครื่องมือ AI 
-          ขอแนะนำให้ตรวจสอบข้อมูลล่าสุดจากเว็บไซต์หลักของแต่ละบริการ</p>
+          <p>ข้อมูลในหน้านี้อัปเดตล่าสุดในปี 2025 โดยเน้นคุณสมบัติและประเภทของเครื่องมือ AI
+            ขอแนะนำให้ตรวจสอบข้อมูลล่าสุดจากเว็บไซต์หลักของแต่ละบริการ</p>
         </div>
 
         <!-- AI Assistants (Chatbots) -->
@@ -630,14 +620,13 @@
             <i class="fas fa-robot"></i>
             <h3>AI Assistants (Chatbots)</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://chat.openai.com" target="_blank" class="tool-name">ChatGPT</a>
             </div>
             <img src="images/chatgpt.png" alt="ChatGPT Interface" class="tool-image">
             <p class="tool-description">
-              ผู้ช่วยที่ได้รับความนิยมมากที่สุดในโลก ช่วยแปลงาน วิเคราะห์งาน ค้นหาข้อมูล และสร้างแผนภูมิ 
+              ผู้ช่วยที่ได้รับความนิยมมากที่สุดในโลก ช่วยแปลงาน วิเคราะห์งาน ค้นหาข้อมูล และสร้างแผนภูมิ
               ChatGPT สามารถเก็บบทสนทนาก่อน ๆ และเรียนรู้ไปได้เรื่อย ๆ โดยปรับแต่งคำตอบตามบทสนทนาก่อนหน้า
             </p>
             <ul class="feature-list">
@@ -646,14 +635,13 @@
               <li>มีการอัปเดตฟีเจอร์เป็นประจำ</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://claude.ai" target="_blank" class="tool-name">Claude</a>
             </div>
             <img src="images/claude.jpg" alt="Claude AI Interface" class="tool-image">
             <p class="tool-description">
-              AI ที่ถูกพัฒนาโดยบริษัท Anthropic ข้อดีคือความแม่นยำ และการเข้าใจความแตกต่างเล็กน้อยในการเขียนโปรแกรม 
+              AI ที่ถูกพัฒนาโดยบริษัท Anthropic ข้อดีคือความแม่นยำ และการเข้าใจความแตกต่างเล็กน้อยในการเขียนโปรแกรม
               กับการสนทนาที่ลื่นไหล มีความเป็นมนุษย์มากกว่า ChatGPT
             </p>
             <ul class="feature-list">
@@ -662,14 +650,13 @@
               <li>ปลอดภัย ไม่ค่อยหลุด</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://gemini.google.com" target="_blank" class="tool-name">Gemini</a>
             </div>
             <img src="images/gemini.jpg" alt="Gemini AI Interface" class="tool-image">
             <p class="tool-description">
-              เครื่องมือจาก Google ที่สะดวกหากใช้งาน Google Workspace อยู่แล้ว 
+              เครื่องมือจาก Google ที่สะดวกหากใช้งาน Google Workspace อยู่แล้ว
               ไม่ว่าจะเป็นการร่างอีเมล สรุปบทความ หรือถามคำถามสุ่ม ๆ ก็ให้ผลลัพธ์ได้อย่างรวดเร็ว
             </p>
             <ul class="feature-list">
@@ -678,14 +665,13 @@
               <li>ทำงานร่วมกับบริการอื่นๆ ของ Google ได้ดี</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://poe.com" target="_blank" class="tool-name">Poe</a>
             </div>
             <img src="images/poe.jpg" alt="Poe AI Interface" class="tool-image">
             <p class="tool-description">
-              แพลตฟอร์มรวม AI หลายตัว ช่วยให้คุณเลือกใช้ GPT-5.2, Claude-Sonnet-4.5, Gemini-3-Pro, 
+              แพลตฟอร์มรวม AI หลายตัว ช่วยให้คุณเลือกใช้ GPT-5.2, Claude-Sonnet-4.5, Gemini-3-Pro,
               ได้ในที่เดียว พร้อมฟีเจอร์แชทกลุ่มและส่วนตัว
             </p>
             <ul class="feature-list">
@@ -694,14 +680,13 @@
               <li>มีเครื่องมือค้นหาข้อมูลที่รวดเร็ว</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.perplexity.ai" target="_blank" class="tool-name">Perplexity</a>
             </div>
             <img src="images/perplexity.jpg" alt="Perplexity AI Interface" class="tool-image">
             <p class="tool-description">
-              เครื่องมือค้นหาข้อมูลด้วย AI ที่ให้คำตอบพร้อมแหล่งอ้างอิง ช่วยให้คุณค้นหาข้อมูลได้ลึกขึ้น 
+              เครื่องมือค้นหาข้อมูลด้วย AI ที่ให้คำตอบพร้อมแหล่งอ้างอิง ช่วยให้คุณค้นหาข้อมูลได้ลึกขึ้น
               และมีความน่าเชื่อถือสูง
             </p>
             <ul class="feature-list">
@@ -711,21 +696,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Video generators -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-video"></i>
             <h3>AI Video generators</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.synthesia.io" target="_blank" class="tool-name">Synthesia</a>
             </div>
             <img src="images/synthesia.jpg" alt="Synthesia AI Interface" class="tool-image">
             <p class="tool-description">
-              แพลตฟอร์มสร้างวิดีโอ AI ชั้นนำสำหรับเนื้อหาคุณภาพระดับสตูดิโอ เปลี่ยน Text เป็นคำพูด สร้างเป็นวิดีโอ 
+              แพลตฟอร์มสร้างวิดีโอ AI ชั้นนำสำหรับเนื้อหาคุณภาพระดับสตูดิโอ เปลี่ยน Text เป็นคำพูด สร้างเป็นวิดีโอ
               เลือกคาแรคเตอร์ น้ำเสียงในการพูดได้
             </p>
             <ul class="feature-list">
@@ -734,14 +718,13 @@
               <li>รองรับมากกว่า 140 ภาษา</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://runwayml.com" target="_blank" class="tool-name">Runway</a>
             </div>
             <img src="images/runway.jpg" alt="Runway AI Interface" class="tool-image">
             <p class="tool-description">
-              แพลตฟอร์มสร้างวิดีโอด้วย AI ที่เปลี่ยน text-to-video มีเครื่องมืออย่าง Motion Brush ที่เพิ่มแอนิเมชั่นง่าย ๆ 
+              แพลตฟอร์มสร้างวิดีโอด้วย AI ที่เปลี่ยน text-to-video มีเครื่องมืออย่าง Motion Brush ที่เพิ่มแอนิเมชั่นง่าย ๆ
               ลงในคลิปได้ และยังมีการปรับมุมกล้องต่าง ๆ ได้ด้วย
             </p>
             <ul class="feature-list">
@@ -750,14 +733,13 @@
               <li>เหมาะสำหรับการสร้างวิดีโอคุณภาพสูง</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://filmora.wondershare.com" target="_blank" class="tool-name">Filmora</a>
             </div>
             <img src="images/filmora.jpg" alt="Filmora AI Interface" class="tool-image">
             <p class="tool-description">
-              โปรแกรมตัดต่อวิดีโอที่เป็นมิตรกับผู้ใช้มากที่สุด หน้าตาการใช้งานง่าย 
+              โปรแกรมตัดต่อวิดีโอที่เป็นมิตรกับผู้ใช้มากที่สุด หน้าตาการใช้งานง่าย
               และมี AI ที่ช่วยแยกวัตถุ หรือสลับพื้นหลังวิดีโอได้โดยไม่ต้องใช้ฉากสีเขียว
             </p>
             <ul class="feature-list">
@@ -766,7 +748,6 @@
               <li>เหมาะสำหรับผู้เริ่มต้น</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.midjourney.com" target="_blank" class="tool-name">Midjourney</a>
@@ -781,7 +762,6 @@
               <li>ใช้งานผ่าน Discord</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.leonardo.ai" target="_blank" class="tool-name">Leonardo AI</a>
@@ -797,21 +777,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Meeting assistants -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-users"></i>
             <h3>AI Meeting assistants</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://fathom.video" target="_blank" class="tool-name">Fathom</a>
             </div>
             <img src="images/fathom.jpg" alt="Fathom AI Interface" class="tool-image">
             <p class="tool-description">
-              เครื่องบันทึกการประชุมด้วย AI ที่สามารถสรุปการประชุม, ถอดเสียงจากการประชุมได้ 
+              เครื่องบันทึกการประชุมด้วย AI ที่สามารถสรุปการประชุม, ถอดเสียงจากการประชุมได้
               และดู timestamps ของบันทึกการประชุมที่จดออกมาได้
             </p>
             <ul class="feature-list">
@@ -820,14 +799,13 @@
               <li>ง่ายต่อการค้นหาข้อมูลสำคัญ</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://nyota.ai" target="_blank" class="tool-name">Nyota</a>
             </div>
             <img src="images/nyota.jpg" alt="Nyota AI Interface" class="tool-image">
             <p class="tool-description">
-              เครื่องมือที่ช่วยจดบันทึก การจัดการงาน และการวางแผนการประชุมอัตโนมัติ 
+              เครื่องมือที่ช่วยจดบันทึก การจัดการงาน และการวางแผนการประชุมอัตโนมัติ
               ระหว่างประชุม Nyota จะบันทึกประเด็นสำคัญ เรื่องที่ตัดสินใจ และลิสต์รายการที่ต้องทำให้
             </p>
             <ul class="feature-list">
@@ -837,21 +815,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Writing tools -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-pen"></i>
             <h3>AI Writing tools</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://rytr.me" target="_blank" class="tool-name">Rytr</a>
             </div>
             <img src="images/rytr.jpg" alt="Rytr AI Interface" class="tool-image">
             <p class="tool-description">
-              ผู้ช่วยเขียนที่เขียนเป็นภาษาไทยได้ เหมาะกับงานเขียนสั้น ๆ เช่น โพสต์โซเชียลมีเดีย, เขียนอีเมล, เขียนแคปชันสินค้า 
+              ผู้ช่วยเขียนที่เขียนเป็นภาษาไทยได้ เหมาะกับงานเขียนสั้น ๆ เช่น โพสต์โซเชียลมีเดีย, เขียนอีเมล, เขียนแคปชันสินค้า
               ใช้ภาษาได้นุ่มนวลกว่า และรองรับมากกว่า 30 ภาษา
             </p>
             <ul class="feature-list">
@@ -860,14 +837,13 @@
               <li>เหมาะสำหรับงานเขียนสั้น ๆ</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.sudowrite.com" target="_blank" class="tool-name">Sudowrite</a>
             </div>
             <img src="images/sudowrite.jpg" alt="Sudowrite AI Interface" class="tool-image">
             <p class="tool-description">
-              เครื่องมือที่ยอดเยี่ยมสำหรับคนชอบเขียนงานแนวนวนิยาย มี 'Describe' tool ช่วยสร้างคำอธิบายที่ดึงดูดใจ, 
+              เครื่องมือที่ยอดเยี่ยมสำหรับคนชอบเขียนงานแนวนวนิยาย มี 'Describe' tool ช่วยสร้างคำอธิบายที่ดึงดูดใจ,
               มี Brainstorm ช่วยปรับปรุงกระบวนการเล่าเรื่อง
             </p>
             <ul class="feature-list">
@@ -876,7 +852,6 @@
               <li>มีฟีเจอร์ช่วยปรับปรุงเรื่องราว</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.notion.so" target="_blank" class="tool-name">Notion AI</a>
@@ -892,21 +867,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Grammar Checkers -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-check-circle"></i>
             <h3>AI Grammar Checkers</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.grammarly.com" target="_blank" class="tool-name">Grammarly</a>
             </div>
             <img src="images/grammarly.jpg" alt="Grammarly AI Interface" class="tool-image">
             <p class="tool-description">
-              เครื่องมือช่วยตรวจจับข้อผิดพลาดทางไวยากรณ์และการสะกดคำที่ดีมาก ที่ตอนนี้มี AI ช่วยปรับโทนเสียง 
+              เครื่องมือช่วยตรวจจับข้อผิดพลาดทางไวยากรณ์และการสะกดคำที่ดีมาก ที่ตอนนี้มี AI ช่วยปรับโทนเสียง
               ให้คำแนะนำ และเขียนประโยคใหม่ได้
             </p>
             <ul class="feature-list">
@@ -915,7 +889,6 @@
               <li>ให้คำแนะนำและเขียนประโยคใหม่ได้</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="#" class="tool-name">Katproof</a>
@@ -930,14 +903,13 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Image Generators -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-image"></i>
             <h3>AI Image Generators</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.midjourney.com" target="_blank" class="tool-name">Midjourney</a>
@@ -952,14 +924,13 @@
               <li>ใช้งานผ่าน Discord</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://labs.openai.com" target="_blank" class="tool-name">DALL·E 3</a>
             </div>
             <img src="images/dalle.jpg" alt="DALL·E 3 AI Interface" class="tool-image">
             <p class="tool-description">
-              เวอร์ชันล่าสุดของ OpenAI ในการแปลงข้อความเป็นรูปภาพ ซึ่งพอรวมกันกับ ChatGPT ก็ทำให้ภาพที่ออกมาชัดเจนขึ้น 
+              เวอร์ชันล่าสุดของ OpenAI ในการแปลงข้อความเป็นรูปภาพ ซึ่งพอรวมกันกับ ChatGPT ก็ทำให้ภาพที่ออกมาชัดเจนขึ้น
               เหมาะมากถ้าต้องมีการทำภาพหรือฉากที่สมจริง
             </p>
             <ul class="feature-list">
@@ -967,7 +938,6 @@
               <li>ทำงานร่วมกับ ChatGPT ได้ดี</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" class="tool-name">Stable Diffusion</a>
@@ -983,21 +953,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Design Tools -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-paint-brush"></i>
             <h3>AI Design Tools</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.canva.com" target="_blank" class="tool-name">Canva Magic Studio</a>
             </div>
             <img src="images/canva.jpg" alt="Canva Magic Studio Interface" class="tool-image">
             <p class="tool-description">
-              Canva มีเครื่องมือใหม่ AI-powered Magic Studio ที่มีฟีเจอร์อย่าง Magic Design ที่ป้อนคำสั่งหรืออัปโหลดรูปภาพ 
+              Canva มีเครื่องมือใหม่ AI-powered Magic Studio ที่มีฟีเจอร์อย่าง Magic Design ที่ป้อนคำสั่งหรืออัปโหลดรูปภาพ
               ก็จะสร้าง personalized templates สำหรับรูปแบบต่าง ๆ
             </p>
             <ul class="feature-list">
@@ -1006,14 +975,13 @@
               <li>เข้าถึงได้ง่ายผ่านเว็บ</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://looka.com" target="_blank" class="tool-name">Looka</a>
             </div>
             <img src="images/looka.jpg" alt="Looka AI Interface" class="tool-image">
             <p class="tool-description">
-              แพลตฟอร์มออกแบบโลโก้ที่ใช้ AI หลังเลือกสไตล์และสีแล้ว Looka จะสร้างตัวเลือกต่าง ๆ ขึ้นมาหลายแบบที่ดูสวยงาม 
+              แพลตฟอร์มออกแบบโลโก้ที่ใช้ AI หลังเลือกสไตล์และสีแล้ว Looka จะสร้างตัวเลือกต่าง ๆ ขึ้นมาหลายแบบที่ดูสวยงาม
               และเป็นมืออาชีพ
             </p>
             <ul class="feature-list">
@@ -1023,21 +991,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Voice Generators -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-microphone"></i>
             <h3>AI Voice Generators</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://elevenlabs.io" target="_blank" class="tool-name">ElevenLabs</a>
             </div>
             <img src="images/elevenlabs.jpg" alt="ElevenLabs AI Interface" class="tool-image">
             <p class="tool-description">
-              ผู้สร้างเสียงด้วย AI ที่ได้รับความนิยมแพร่หลาย มีคุณสมบัติการแปลงข้อความเป็นคำพูดและการโคลนเสียง 
+              ผู้สร้างเสียงด้วย AI ที่ได้รับความนิยมแพร่หลาย มีคุณสมบัติการแปลงข้อความเป็นคำพูดและการโคลนเสียง
               สามารถจับน้ำเสียงและจังหวะของมนุษย์ได้อย่างมีประสิทธิภาพ
             </p>
             <ul class="feature-list">
@@ -1046,14 +1013,13 @@
               <li>มีระบบ voice cloning</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://murf.ai" target="_blank" class="tool-name">Murf</a>
             </div>
             <img src="images/murf.jpg" alt="Murf AI Interface" class="tool-image">
             <p class="tool-description">
-              โปรแกรมสร้างเสียงพากย์ที่มีตัวเลือกเสียงที่เหมือนจริงมาก ทั้งน้ำเสียง จังหวะ และโทนเสียง 
+              โปรแกรมสร้างเสียงพากย์ที่มีตัวเลือกเสียงที่เหมือนจริงมาก ทั้งน้ำเสียง จังหวะ และโทนเสียง
               มีฟีเจอร์ Voice Cloning (โคลนนิ่งเสียง) เหมาะสำหรับคนที่ต้องการใช้เสียงของตัวเองในหลาย ๆ คอนเทนต์
             </p>
             <ul class="feature-list">
@@ -1062,7 +1028,6 @@
               <li>เหมาะสำหรับการสร้างเนื้อหาวิดีโอ</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.uberduck.ai" target="_blank" class="tool-name">UberDuck</a>
@@ -1078,21 +1043,20 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Music Generators -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-music"></i>
             <h3>AI Music Generators</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://suno.com" target="_blank" class="tool-name">Suno</a>
             </div>
             <img src="images/suno.jpg" alt="Suno AI Interface" class="tool-image">
             <p class="tool-description">
-              แพลตฟอร์มสร้างเพลงด้วย AI ที่ให้ผู้ใช้ป้อนข้อความ (text prompt) เพื่อกำหนดแนวเพลงและอารมณ์ที่ต้องการ 
+              แพลตฟอร์มสร้างเพลงด้วย AI ที่ให้ผู้ใช้ป้อนข้อความ (text prompt) เพื่อกำหนดแนวเพลงและอารมณ์ที่ต้องการ
               จากนั้น AI จะสร้างเพลงพร้อมเสียงร้องและเครื่องดนตรีให้ทันที
             </p>
             <ul class="feature-list">
@@ -1101,7 +1065,6 @@
               <li>เหมาะสำหรับการสร้างไอเดียเพลงเบื้องต้น</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.aiva.ai" target="_blank" class="tool-name">AIVA</a>
@@ -1117,14 +1080,13 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- AI Project Management -->
         <div class="ai-category">
           <div class="category-header">
             <i class="fas fa-tasks"></i>
             <h3>AI Project Management</h3>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.asana.com" target="_blank" class="tool-name">Asana</a>
@@ -1139,14 +1101,13 @@
               <li>ทำงานร่วมกับเครื่องมืออื่นๆ ได้</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://clickup.com" target="_blank" class="tool-name">ClickUp</a>
             </div>
             <img src="images/clickup.jpg" alt="ClickUp AI Interface" class="tool-image">
             <p class="tool-description">
-              แพลตฟอร์มที่เหมาะกับการทำงานร่วมกับทีม มีฟีเจอร์ที่ช่วยแตกงานใหญ่ออกมาเป็นงานย่อย ๆ ได้ 
+              แพลตฟอร์มที่เหมาะกับการทำงานร่วมกับทีม มีฟีเจอร์ที่ช่วยแตกงานใหญ่ออกมาเป็นงานย่อย ๆ ได้
               กำหนดลำดับความสำคัญ และติดตามเวลาที่ใช้ในแต่ละงาน
             </p>
             <ul class="feature-list">
@@ -1155,14 +1116,13 @@
               <li>ทำงานร่วมกับ Slack และ Google Drive</li>
             </ul>
           </div>
-          
           <div class="ai-tool">
             <div class="tool-header">
               <a href="https://www.lark.com" target="_blank" class="tool-name">Lark</a>
             </div>
             <img src="images/lark.jpg" alt="Lark AI Interface" class="tool-image">
             <p class="tool-description">
-              โปรแกรมที่ใช้ทำงานร่วมกับทีม และใช้จัดการ Tasks งานต่าง ๆ ได้ดีเยี่ยม 
+              โปรแกรมที่ใช้ทำงานร่วมกับทีม และใช้จัดการ Tasks งานต่าง ๆ ได้ดีเยี่ยม
               สามารถจัดการ Task งานต่าง ๆ ร่วมกับคนอื่นได้ Assign และกำหนดเดตไลน์ต่าง ๆ เพื่อติดตามงานได้
             </p>
             <ul class="feature-list">
@@ -1188,23 +1148,20 @@
                data-ad-slot="1706997713"
                data-ad-format="auto"
                data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <div style="font-size:0.8em; color:#999; margin-top:5px;">
           [พื้นที่สนับสนุนเว็บ]
         </div>
       </div>
 
-     <div class="ad-section">
+      <div class="ad-section">
         <h2 class="support-us">
           <i class="fas fa-heart"></i> สนับสนุนเรา
         </h2>
         <div class="support-card">
           <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
           <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-          
           <div class="support-links">
             <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
@@ -1225,7 +1182,7 @@
   </div>
 
   <footer>
-    <p>© 2025 ครบจังดอทคอม | 
+    <p>© 2025 ครบจังดอทคอม |
     <a href="#">นโยบายความเป็นส่วนตัว</a> |
     <a href="#">เกี่ยวกับเรา</a></p>
   </footer>
@@ -1234,7 +1191,6 @@
     document.getElementById('menuBtn')?.addEventListener('click', () => {
       document.getElementById('nav-placeholder').classList.toggle('active');
     });
-
     document.querySelectorAll('.mobile-nav a').forEach(link => {
       link.addEventListener('click', () => {
         document.getElementById('nav-placeholder').classList.remove('active');
