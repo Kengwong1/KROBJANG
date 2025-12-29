@@ -233,7 +233,6 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      min-height: auto; /* ✅ เพิ่มบรรทัดนี้ */
     }
 
     .sidebar {
@@ -370,9 +369,8 @@
     /* Tool Image */
     .tool-image {
       width: 100%;
-      max-height: 150px;
+      height: auto; /* ✅ แสดงภาพตามขนาดจริง */
       border-radius: 8px;
-      object-fit: cover;
       margin: 0.5rem 0;
       display: block;
     }
@@ -1162,6 +1160,7 @@
         <div class="support-card">
           <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
           <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+          
           <div class="support-links">
             <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
@@ -1182,7 +1181,7 @@
   </div>
 
   <footer>
-    <p>© 2025 ครบจังดอทคอม |
+    <p>© 2025 ครบจังดอทคอม | 
     <a href="#">นโยบายความเป็นส่วนตัว</a> |
     <a href="#">เกี่ยวกับเรา</a></p>
   </footer>
