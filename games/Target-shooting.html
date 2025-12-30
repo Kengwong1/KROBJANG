@@ -290,6 +290,179 @@
     </div>
 
     <script>
+        // ✅ สร้าง Sound Manager
+        class SoundManager {
+            constructor() {
+                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                this.sounds = {};
+            }
+
+            // สร้างเสียงยิง
+            createGunshot() {
+                const oscillator = this.ctx.createOscillator();
+                const gainNode = this.ctx.createGain();
+                
+                oscillator.type = 'square';
+                oscillator.frequency.setValueAtTime(300, this.ctx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.01);
+                
+                gainNode.gain.setValueAtTime(0.5, this.ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.2);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.ctx.destination);
+                
+                oscillator.start();
+                oscillator.stop(this.ctx.currentTime + 0.2);
+            }
+
+            // สร้างเสียงยิงถูก
+            createHitSound() {
+                const oscillator = this.ctx.createOscillator();
+                const gainNode = this.ctx.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(600, this.ctx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, this.ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.ctx.destination);
+                
+                oscillator.start();
+                oscillator.stop(this.ctx.currentTime + 0.3);
+            }
+
+            // สร้างเสียงเวลาหมด
+            createGameOverSound() {
+                const oscillator = this.ctx.createOscillator();
+                const gainNode = this.ctx.createGain();
+                
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(200, this.ctx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0.2, this.ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.5);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.ctx.destination);
+                
+                oscillator.start();
+                oscillator.stop(this.ctx.currentTime + 0.5);
+            }
+
+            // เสียงพื้นหลังเบาๆ
+            createAmbientSound() {
+                const oscillator = this.ctx.createOscillator();
+                const gainNode = this.ctx.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 60;
+                gainNode.gain.value = 0.02;
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.ctx.destination);
+                
+                oscillator.start();
+                
+                // หยุดเมื่อปิดหน้า
+                window.addEventListener('beforeunload', () => {
+                    oscillator.stop();
+                });
+            }
+        }
+
+        // ✅ สร้างเอฟเฟกต์ควัน
+        function createSmoke(x, y) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smoke.style.left = (x - 15) + 'px';
+            smoke.style.top = (y - 15) + 'px';
+            document.getElementById('gameArea').appendChild(smoke);
+            
+            // แอนิเมชันควัน
+            smoke.animate([
+                { opacity: 0, transform: 'scale(0.5)' },
+                { opacity: 0.8, transform: 'scale(1)' },
+                { opacity: 0, transform: 'scale(2) translateY(-20px)' }
+            ], {
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            setTimeout(() => {
+                if (smoke.parentNode) {
+                    smoke.parentNode.removeChild(smoke);
+                }
+            }, 800);
+        }
+
+        // ✅ สร้างเอฟเฟกต์ประกายไฟ
+        function createSparks(x, y, count = 5) {
+            const gameArea = document.getElementById('gameArea');
+            for (let i = 0; i < count; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = (x - 2) + 'px';
+                spark.style.top = (y - 2) + 'px';
+                gameArea.appendChild(spark);
+                
+                // ทิศทางสุ่ม
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 20 + Math.random() * 30;
+                const endX = x + Math.cos(angle) * distance;
+                const endY = y + Math.sin(angle) * distance;
+                
+                spark.animate([
+                    { left: x + 'px', top: y + 'px', opacity: 1 },
+                    { left: endX + 'px', top: endY + 'px', opacity: 0 }
+                ], {
+                    duration: 400 + Math.random() * 300,
+                    easing: 'cubic-bezier(0,0.9,0.57,1)'
+                });
+                
+                setTimeout(() => {
+                    if (spark.parentNode) {
+                        spark.parentNode.removeChild(spark);
+                    }
+                }, 700);
+            }
+        }
+
+        // ✅ สร้างเอฟเฟกต์ประกายไฟตอนจบเกม
+        function createFireworks() {
+            const content = document.querySelector('.game-over-content');
+            for (let i = 0; i < 20; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = '50%';
+                firework.style.top = '50%';
+                content.appendChild(firework);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 100 + Math.random() * 150;
+                const endX = 50 + Math.cos(angle) * distance;
+                const endY = 50 + Math.sin(angle) * distance;
+                
+                firework.animate([
+                    { left: '50%', top: '50%', opacity: 1, transform: 'scale(1)' },
+                    { left: endX + '%', top: endY + '%', opacity: 0, transform: 'scale(0)' }
+                ], {
+                    duration: 800 + Math.random() * 400,
+                    easing: 'cubic-bezier(0,0.9,0.57,1)'
+                });
+                
+                setTimeout(() => {
+                    if (firework.parentNode) {
+                        firework.parentNode.removeChild(firework);
+                    }
+                }, 1200);
+            }
+        }
+
         // ตัวแปรเกม
         let score = 0;
         let timeLeft = 30;
@@ -302,6 +475,23 @@
         const gameArea = document.getElementById('gameArea');
         const crosshair = document.getElementById('crosshair');
         
+        // เริ่มต้น
+        window.addEventListener('load', () => {
+            updateStats();
+            
+            // สร้าง Sound Manager
+            soundManager = new SoundManager();
+            
+            // เริ่มเสียงพื้นหลังเมื่อคลิกครั้งแรก
+            document.body.addEventListener('click', () => {
+                if (soundManager.ctx.state === 'suspended') {
+                    soundManager.ctx.resume();
+                    soundManager.createAmbientSound();
+                    document.getElementById('startBtn').classList.add('ready-btn');
+                }
+            }, { once: true });
+        });
+
         // อัพเดท UI
         function updateStats() {
             document.getElementById('score').textContent = score;
@@ -345,8 +535,12 @@
         function hitTarget(target, x, y) {
             if (!gameActive) return;
             
-            // สร้างเอฟเฟกต์การยิง
-            createHitEffect(x + 30, y + 30);
+            // เสียงยิงถูก
+            soundManager.createHitSound();
+            
+            // สร้างเอฟเฟกต์
+            createSmoke(x + 30, y + 30);
+            createSparks(x + 30, y + 30, 8);
             
             // อัพเดทคะแนน
             score += 10;
@@ -360,43 +554,25 @@
             updateStats();
         }
         
-        // สร้างเอฟเฟกต์การยิง
-        function createHitEffect(x, y) {
-            const effect = document.createElement('div');
-            effect.className = 'hit-effect';
-            effect.style.left = (x - 40) + 'px';
-            effect.style.top = (y - 40) + 'px';
-            gameArea.appendChild(effect);
-            
-            // ลบเอฟเฟกต์หลังจากแอนิเมชันเสร็จ
-            setTimeout(() => {
-                if (gameArea.contains(effect)) {
-                    gameArea.removeChild(effect);
-                }
-            }, 600);
-        }
-        
         // จัดการการคลิกที่พื้นหลัง (ยิงพลาด)
         function handleMiss(event) {
             if (!gameActive) return;
+            
+            // เสียงยิง
+            soundManager.createGunshot();
             
             const rect = gameArea.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
             
-            // สร้างเอฟเฟกต์การยิง (สีเทาสำหรับยิงพลาด)
-            const effect = document.createElement('div');
-            effect.className = 'hit-effect';
-            effect.style.left = (x - 40) + 'px';
-            effect.style.top = (y - 40) + 'px';
-            effect.style.background = 'radial-gradient(circle, rgba(200,200,200,0.8) 0%, rgba(100,100,100,0.6) 70%, transparent 100%)';
-            gameArea.appendChild(effect);
+            // สร้างเอฟเฟกต์การยิง (ประกายไฟ)
+            createSparks(x, y, 3);
             
+            // แอนิเมชัน crosshair
+            crosshair.classList.add('shoot');
             setTimeout(() => {
-                if (gameArea.contains(effect)) {
-                    gameArea.removeChild(effect);
-                }
-            }, 600);
+                crosshair.classList.remove('shoot');
+            }, 100);
             
             shots++;
             updateStats();
@@ -405,6 +581,18 @@
         // เริ่มเกม
         function startGame() {
             if (gameActive) return;
+            
+            // เสียงเริ่มเกม
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = 'sine';
+            oscillator.frequency.value = 440;
+            gainNode.gain.value = 0.1;
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
             
             // รีเซ็ตค่า
             score = 0;
@@ -423,6 +611,7 @@
             
             updateStats();
             document.getElementById('startBtn').disabled = true;
+            document.getElementById('startBtn').classList.remove('ready-btn');
             
             // เริ่มจับเวลา
             timer = setInterval(() => {
@@ -444,6 +633,9 @@
             clearInterval(timer);
             clearInterval(targetInterval);
             
+            // เสียงสิ้นสุดเกม
+            soundManager.createGameOverSound();
+            
             // ล้างเป้าที่เหลือ
             targets.forEach(target => {
                 if (gameArea.contains(target)) {
@@ -459,6 +651,9 @@
             document.getElementById('finalScore').textContent = score;
             document.getElementById('finalAccuracy').textContent = accuracy;
             document.getElementById('gameOver').style.display = 'flex';
+            
+            // สร้างประกายไฟ
+            setTimeout(createFireworks, 300);
         }
         
         // รีเซ็ตเกม
@@ -483,6 +678,7 @@
             
             updateStats();
             document.getElementById('startBtn').disabled = false;
+            document.getElementById('startBtn').classList.add('ready-btn');
             document.getElementById('gameOver').style.display = 'none';
         }
         
@@ -500,7 +696,7 @@
         // เพิ่ม event listener สำหรับการยิงพลาด
         gameArea.addEventListener('click', handleMiss);
         
-        // เริ่มต้น
+        // อัปเดตครั้งแรก
         updateStats();
     </script>
 </body>
