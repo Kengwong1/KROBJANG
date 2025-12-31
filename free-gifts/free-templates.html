@@ -199,6 +199,8 @@
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: center;
+      display: inline-block;
+      width: 100%;
     }
 
     .download-btn:hover {
@@ -206,6 +208,7 @@
       transform: scale(1.03);
     }
 
+    /* ✅ Sidebar — แบบสมบูรณ์ */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -231,6 +234,30 @@
       gap: 0.5rem;
     }
 
+    .ad-section h2.support-site i {
+      color: #7E57C2;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2.support-us i {
+      color: #FB8C00;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: linear-gradient(90deg, #7E57C2, #FB8C00);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .ad-section h2.support-us::after {
+      background: linear-gradient(90deg, #FB8C00, #FFD54F);
+    }
+
     .adsense-container {
       background-color: #f9fbff;
       border: 1px dashed #dbeafe;
@@ -241,6 +268,14 @@
       justify-content: center;
       margin-bottom: 0.75rem;
       position: relative;
+    }
+
+    .adsense-container::before {
+      content: "พื้นที่โฆษณา";
+      color: #94a3b8;
+      font-size: 0.85rem;
+      position: absolute;
+      z-index: 0;
     }
 
     .support-card {
@@ -296,6 +331,12 @@
     .support-btn.tiktok   { background: #000000; }
     .support-btn.promptpay{ background: #10B981; }
 
+    /* ✅ Hover effect */
+    .support-btn.facebook:hover { background: #365899; }
+    .support-btn.youtube:hover  { background: #e60000; }
+    .support-btn.tiktok:hover   { background: #333333; }
+    .support-btn.promptpay:hover{ background: #0da172; }
+
     @media (max-width: 768px) {
       .support-links {
         grid-template-columns: 1fr;
@@ -321,17 +362,6 @@
 
     footer a:hover {
       text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle { display: block; }
-      .main-nav { display: none; }
-      .mobile-nav.active { display: flex; }
-      .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
-      .news-grid { grid-template-columns: 1fr; }
-      .news-card img { height: 130px; }
-      header h1 { font-size: 1.25rem; }
-      .ad-section h2::after { display: none; }
     }
   </style>
 </head>
@@ -365,7 +395,6 @@
         </p>
 
         <div class="template-grid">
-          <!-- Template 1 -->
           <div class="template-card">
             <img src="https://via.placeholder.com/280x150/1e40af/FFFFFF?text=Excel+Plan" alt="เทมเพลตการเงิน">
             <div class="template-content">
@@ -375,7 +404,6 @@
             </div>
           </div>
 
-          <!-- Template 2 -->
           <div class="template-card">
             <img src="https://via.placeholder.com/280x150/1e40af/FFFFFF?text=AI+Prompt" alt="เทมเพลต AI">
             <div class="template-content">
@@ -385,7 +413,6 @@
             </div>
           </div>
 
-          <!-- Template 3 -->
           <div class="template-card">
             <img src="https://via.placeholder.com/280x150/1e40af/FFFFFF?text=Work+Tracker" alt="เทมเพลตงาน">
             <div class="template-content">
@@ -395,7 +422,6 @@
             </div>
           </div>
 
-          <!-- Template 4 -->
           <div class="template-card">
             <img src="https://via.placeholder.com/280x150/1e40af/FFFFFF?text=Diet+Plan" alt="เทมเพลตสุขภาพ">
             <div class="template-content">
@@ -405,7 +431,6 @@
             </div>
           </div>
 
-          <!-- Template 5 -->
           <div class="template-card">
             <img src="https://via.placeholder.com/280x150/1e40af/FFFFFF?text=Travel+Budget" alt="เทมเพลตท่องเที่ยว">
             <div class="template-content">
@@ -415,7 +440,6 @@
             </div>
           </div>
 
-          <!-- Template 6 -->
           <div class="template-card">
             <img src="https://via.placeholder.com/280x150/1e40af/FFFFFF?text=Study+Schedule" alt="เทมเพลตเรียน">
             <div class="template-content">
@@ -428,6 +452,7 @@
       </div>
     </div>
 
+    <!-- ✅ Sidebar — แบบสมบูรณ์ -->
     <aside class="sidebar">
       <div class="ad-section">
         <h2 class="support-site">
@@ -450,10 +475,12 @@
         </h2>
         <div class="support-card">
           <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
-          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+          <img src="https://krobjang.vercel.app/images/promptpay.png" 
+               alt="QR PromptPay" 
+               class="qr-code">
           
           <div class="support-links">
-            <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
+            <a href="https://krobjang.vercel.app/images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
             </a>
             <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
@@ -479,16 +506,20 @@
 
   <script>
     function downloadTemplate(filename) {
-      // ตัวอย่าง: ใช้ placeholder ไฟล์ — คุณสามารถแทนที่ด้วยไฟล์จริงใน future
+      // ใช้ Blob + URL.createObjectURL เพื่อป้องกัน redirect
+      const content = "ตัวอย่างเทมเพลต — คุณสามารถแทนที่ด้วยไฟล์จริงเมื่ออัปโหลดเสร็จ";
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      
       const link = document.createElement('a');
-      link.href = 'https://example.com/' + filename; // แทนที่ด้วย URL จริงของไฟล์
+      link.href = url;
       link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      URL.revokeObjectURL(url);
       
-      // แสดงข้อความยืนยัน
-      alert("กำลังดาวน์โหลด " + filename + "\n(ไฟล์ตัวอย่าง — คุณสามารถอัปโหลดไฟล์จริงในอนาคต)");
+      alert("✅ กำลังดาวน์โหลด " + filename + "\n(ตัวอย่าง — คุณสามารถอัปโหลดไฟล์จริงในอนาคต)");
     }
   </script>
 </body>
