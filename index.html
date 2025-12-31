@@ -228,7 +228,7 @@
       text-decoration: underline;
     }
 
-    /* Sidebar */
+    /* ✅ Sidebar — แบบสมบูรณ์ */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -255,6 +255,30 @@
       gap: 0.5rem;
     }
 
+    .ad-section h2.support-site i {
+      color: #7E57C2;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2.support-us i {
+      color: #FB8C00;
+      font-size: 1.1em;
+    }
+
+    .ad-section h2::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: linear-gradient(90deg, #7E57C2, #FB8C00);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .ad-section h2.support-us::after {
+      background: linear-gradient(90deg, #FB8C00, #FFD54F);
+    }
+
     .adsense-container {
       background-color: #f9fbff;
       border: 1px dashed #dbeafe;
@@ -264,6 +288,15 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .adsense-container::before {
+      content: "พื้นที่โฆษณา";
+      color: #94a3b8;
+      font-size: 0.85rem;
+      position: absolute;
+      z-index: 0;
     }
 
     .support-card {
@@ -305,6 +338,10 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
+    .support-btn i {
+      font-size: 1.1rem;
+    }
+
     .support-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -315,10 +352,17 @@
     .support-btn.youtube   { background: #FF0000; }
     .support-btn.tiktok    { background: #000000; }
 
+    /* ✅ Hover effect */
+    .support-btn.facebook:hover { background: #365899; }
+    .support-btn.youtube:hover  { background: #e60000; }
+    .support-btn.tiktok:hover   { background: #333333; }
+    .support-btn.promptpay:hover{ background: #0da172; }
+
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
       .category-grid { grid-template-columns: repeat(2, 1fr); }
       .support-links { grid-template-columns: 1fr; }
+      .ad-section h2::after { display: none; }
     }
   </style>
 </head>
@@ -397,6 +441,7 @@
       </div>
     </div>
 
+    <!-- ✅ Sidebar — แบบสมบูรณ์ -->
     <aside class="sidebar">
       <div class="ad-section">
         <h2 class="support-site">
@@ -411,9 +456,6 @@
                data-full-width-responsive="true"></ins>
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
-        <div style="font-size:0.8em; color:#999; margin-top:5px;">
-          [พื้นที่สนับสนุนเว็บ]
-        </div>
       </div>
 
       <div class="ad-section">
@@ -422,10 +464,13 @@
         </h2>
         <div class="support-card">
           <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
-          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code" loading="lazy">
+          <img src="https://krobjang.vercel.app/images/promptpay.png" 
+               alt="QR PromptPay" 
+               class="qr-code" 
+               loading="lazy">
           
           <div class="support-links">
-            <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
+            <a href="https://krobjang.vercel.app/images/promptpay.png" target="_blank" class="support-btn promptpay">
               <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
             </a>
             <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
