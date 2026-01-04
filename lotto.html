@@ -6,15 +6,14 @@
     <title>ตรวจหวย - ครบจังดอทคอม</title>
     <meta name="description" content="ตรวจผลสลากกินแบ่งรัฐบาลล่าสุด ย้อนหลัง 5 งวด พร้อมสถิติเลขเด็ด">
     <meta name="keywords" content="ตรวจหวย, หวย, ผลสลาก, เลขเด็ด, ครบจัง">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun    :wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css    ">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- ✅ Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616    "
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
             crossorigin="anonymous"></script>
 
     <style>
-        /* ✅ Variables — ใช้แบบเดียวกับ index.html & news.html */
         :root {
           --primary-dark: #1e3a8a;
           --primary: #1e40af;
@@ -42,7 +41,6 @@
           line-height: 1.6;
         }
 
-        /* ✅ Header — เข้มสม่ำเสมอ + โลโก้กลาง */
         header {
           background: linear-gradient(135deg, var(--primary-dark), var(--primary));
           color: #fff;
@@ -82,7 +80,6 @@
           width: 24px;
         }
 
-        /* ✅ Navigation — สีสันเหมือนหน้าอื่น */
         .main-nav {
           background: #fff;
           padding: 0.5rem 0;
@@ -145,7 +142,6 @@
           background: var(--soft);
         }
 
-        /* Layout */
         .container {
           max-width: 1200px;
           margin: 1.5rem auto;
@@ -186,7 +182,7 @@
           border-radius: 50%;
         }
 
-        /* ✅ ส่วนตรวจหวย — ยังคงความเด่นชัด */
+        /* ✅ ตรวจหวยล่าสุด + ฟอร์ม */
         .lotto-latest {
           text-align: center;
         }
@@ -195,6 +191,61 @@
           font-size: 1.1em;
           color: var(--muted);
           margin-bottom: 1.25rem;
+        }
+
+        /* 🔍 ฟอร์มตรวจเลข */
+        .check-form {
+          background: #f1f5f9;
+          padding: 1rem;
+          border-radius: 12px;
+          margin-bottom: 1.5rem;
+          text-align: center;
+        }
+        .check-form label {
+          display: block;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: var(--primary);
+        }
+        #userNumber {
+          width: 180px;
+          padding: 0.6rem;
+          font-size: 1.1rem;
+          text-align: center;
+          border: 2px solid #cbd5e1;
+          border-radius: 10px;
+          outline: none;
+          margin: 0.5rem auto;
+          display: block;
+        }
+        #userNumber:focus {
+          border-color: var(--primary-light);
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .btn-check {
+          background: var(--primary);
+          color: white;
+          border: none;
+          padding: 0.6rem 1.2rem;
+          border-radius: 10px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .btn-check:hover {
+          background: var(--primary-dark);
+          transform: scale(1.05);
+        }
+        #resultMsg {
+          margin-top: 0.75rem;
+          min-height: 1.5rem;
+          font-weight: 700;
+        }
+        #resultMsg.win {
+          color: var(--highlight-green);
+        }
+        #resultMsg.lose {
+          color: var(--highlight-red);
         }
 
         .prize-box {
@@ -248,6 +299,35 @@
           color: var(--highlight-green);
         }
 
+        /* 🎯 Animation */
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+          20%, 40%, 60%, 80% { transform: translateX(6px); }
+        }
+        @keyframes flash {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+        @keyframes pulse {
+          0% { box-shadow: 0 0 0 0 rgba(56, 142, 60, 0.4); }
+          70% { box-shadow: 0 0 0 12px rgba(56, 142, 60, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(56, 142, 60, 0); }
+        }
+
+        .animate-hover {
+          transition: transform 0.2s ease;
+        }
+        .animate-hover:hover {
+          animation: shake 0.6s ease-in-out, flash 0.8s ease-in-out;
+        }
+
+        .animate-win {
+          animation: pulse 0.8s ease-out, shake 0.8s ease-in-out;
+          background: #e8f5e9 !important;
+          border: 2px solid var(--highlight-green);
+        }
+
         .lotto-history table {
           width: 100%;
           border-collapse: collapse;
@@ -281,7 +361,6 @@
           font-weight: 700;
         }
 
-        /* ✅ Sidebar — แบบเดียวกับหน้าข่าว */
         .sidebar {
           display: flex;
           flex-direction: column;
@@ -346,7 +425,6 @@
           z-index: 0;
         }
 
-        /* ✅ Support Card — เหมือนหน้าข่าว & หน้าแรก */
         .support-card {
           background: var(--card);
           border-radius: var(--radius);
@@ -400,13 +478,6 @@
         .support-btn.tiktok   { background: #000000; }
         .support-btn.promptpay{ background: #10B981; }
 
-        @media (max-width: 768px) {
-          .support-links {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        /* ✅ Footer — เข้มเท่า header */
         footer {
           margin-top: 2rem;
           background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -428,7 +499,6 @@
           text-decoration: underline;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .menu-btn { display: block; }
           .main-nav { display: none; }
@@ -436,6 +506,7 @@
           .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
           .prize-box .number { font-size: 1.8rem; }
           .prize-summary { flex-direction: column; }
+          #userNumber { width: 140px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -480,32 +551,43 @@
 
     <div class="container">
         <div class="content-area">
+            <!-- ✅ ส่วนตรวจหวยอัปเดต -->
             <div class="section lotto-latest">
                 <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
-                <div class="draw-date">งวดประจำวันที่ 16 ธันวาคม 2567</div>
+                <div class="draw-date">งวดประจำวันที่ <strong>1 มกราคม 2568</strong></div>
 
-                <div class="prize-box">
+                <div class="check-form">
+                    <label><i class="fas fa-search"></i> ตรวจเลขของคุณ (ใส่ 1–6 หลัก)</label><br>
+                    <input type="text" id="userNumber" maxlength="6" inputmode="numeric" placeholder="เช่น 293515 หรือ 26">
+                    <button id="checkBtn" class="btn-check">ตรวจเลย!</button>
+                    <div id="resultMsg"></div>
+                </div>
+
+                <div class="prize-box prize-1 animate-hover">
                     <h3>รางวัลที่ 1</h3>
-                    <div class="number">979473</div>
+                    <div class="number" id="prize1">293515</div>
                 </div>
 
                 <div class="prize-summary">
-                    <div class="prize-item">
+                    <div class="prize-item animate-hover">
                         <h4>เลขท้าย 2 ตัว</h4>
-                        <div class="number">45</div>
+                        <div class="number" id="last2">26</div>
                     </div>
-                    <div class="prize-item">
+                    <div class="prize-item animate-hover">
                         <h4>เลขท้าย 3 ตัว</h4>
-                        <div class="number">390, 285</div>
+                        <div class="number" id="last3">038, 467</div>
                     </div>
-                    <div class="prize-item">
+                    <div class="prize-item animate-hover">
                         <h4>เลขหน้า 3 ตัว</h4>
-                        <div class="number">614, 815</div>
+                        <div class="number" id="front3">123, 702</div>
                     </div>
                 </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">ข้อมูลจากสำนักงานสลากกินแบ่งรัฐบาล</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">
+                    ข้อมูลจาก <a href="https://www.glo.or.th" target="_blank" style="color:#3b82f6">สำนักงานสลากกินแบ่งรัฐบาล</a>
+                </p>
             </div>
 
+            <!-- 🔁 ย้อนหลัง 5 งวด -->
             <div class="section lotto-history">
                 <h2><i class="fas fa-history"></i> สถิติย้อนหลัง 5 งวด</h2>
                 <table>
@@ -519,11 +601,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr><td>1 ม.ค. 68</td><td class="prize1">293515</td><td class="prize-2digit">26</td><td>123, 702</td><td>038, 467</td></tr>
                         <tr><td>16 ธ.ค. 67</td><td class="prize1">979473</td><td class="prize-2digit">45</td><td>614, 815</td><td>390, 285</td></tr>
                         <tr><td>1 ธ.ค. 67</td><td class="prize1">318616</td><td class="prize-2digit">95</td><td>360, 142</td><td>838, 949</td></tr>
                         <tr><td>16 พ.ย. 67</td><td class="prize1">435393</td><td class="prize-2digit">71</td><td>864, 611</td><td>719, 354</td></tr>
                         <tr><td>1 พ.ย. 67</td><td class="prize1">177818</td><td class="prize-2digit">41</td><td>679, 989</td><td>740, 814</td></tr>
-                        <tr><td>16 ต.ค. 67</td><td class="prize1">822929</td><td class="prize-2digit">25</td><td>888, 066</td><td>526, 343</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -546,31 +628,30 @@
             </div>
 
             <div class="ad-section">
-        <h2 class="support-us">
-          <i class="fas fa-heart"></i> สนับสนุนเรา
-        </h2>
-        <div class="support-card">
-          <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
-          <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-          
-          <div class="support-links">
-            <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
-              <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
-            </a>
-            <a href="https://www.facebook.com/phongphun.phommanee/?locale=th_TH" target="_blank" class="support-btn facebook">
-              <i class="fab fa-facebook-f"></i> Facebook
-            </a>
-            <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
-              <i class="fab fa-youtube"></i> YouTube
-            </a>
-            <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
-              <i class="fab fa-tiktok"></i> TikTok
-            </a>
-          </div>
-        </div>
-      </div>
-    </aside>
-  </div>
+                <h2 class="support-us">
+                    <i class="fas fa-heart"></i> สนับสนุนเรา
+                </h2>
+                <div class="support-card">
+                    <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+                    <div class="support-links">
+                        <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
+                            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+                        </a>
+                        <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
 
     <footer>
         <p>© 2025 ครบจังดอทคอม | 
@@ -580,6 +661,113 @@
     </footer>
 
     <script>
+        // 🔊 สร้างเสียงแบบ On-the-fly
+        function playWinSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = ctx.createOscillator();
+                const gainNode = ctx.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(ctx.destination);
+
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(700, ctx.currentTime);
+                gainNode.gain.setValueAtTime(0.25, ctx.currentTime);
+
+                oscillator.start(ctx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6);
+                oscillator.stop(ctx.currentTime + 0.6);
+            } catch (e) {
+                console.log("AudioContext not allowed without user gesture (fallback silent)");
+            }
+        }
+
+        // 🧠 ตรรกะตรวจหวย
+        function checkLotto() {
+            const inputEl = document.getElementById('userNumber');
+            let raw = inputEl.value.trim();
+            if (!raw) {
+                showResult('กรุณากรอกเลขก่อนค่ะ/ครับ', 'lose');
+                return;
+            }
+
+            // รับเฉพาะตัวเลข — ลบทุกตัวที่ไม่ใช่ 0-9
+            let numOnly = raw.replace(/\D/g, '');
+            if (!numOnly) {
+                showResult('กรุณาใส่ตัวเลขเท่านั้น!', 'lose');
+                return;
+            }
+
+            if (numOnly.length > 6) numOnly = numOnly.slice(0, 6);
+            inputEl.value = numOnly;
+
+            // รางวัลจริง 1 ม.ค. 68
+            const prizes = {
+                prize1: '293515',
+                last2: ['26'],
+                last3: ['038', '467'],
+                front3: ['123', '702']
+            };
+
+            let matched = [];
+            let numPad = numOnly.padStart(6, '0');
+
+            // ตรวจ 6 หลัก
+            if (numPad === prizes.prize1) {
+                matched.push('รางวัลที่ 1 🎉');
+                highlight('prize1');
+            }
+
+            // ตรวจ 2 หลักท้าย
+            const l2 = numPad.slice(-2);
+            if (prizes.last2.includes(l2)) {
+                matched.push('เลขท้าย 2 ตัว ✅');
+                highlight('last2');
+            }
+
+            // ตรวจ 3 หลักท้าย
+            const l3 = numPad.slice(-3);
+            if (prizes.last3.includes(l3)) {
+                matched.push('เลขท้าย 3 ตัว ✅');
+                highlight('last3');
+            }
+
+            // ตรวจ 3 หลักหน้า
+            const f3 = numPad.slice(0, 3);
+            if (prizes.front3.includes(f3)) {
+                matched.push('เลขหน้า 3 ตัว ✅');
+                highlight('front3');
+            }
+
+            if (matched.length > 0) {
+                playWinSound();
+                showResult(`ถูกรางวัล: ${matched.join(', ')} 🎊`, 'win');
+            } else {
+                showResult('เสียใจด้วย ไม่ถูกรางวัล 😢', 'lose');
+            }
+        }
+
+        function highlight(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.add('animate-win');
+                setTimeout(() => el.classList.remove('animate-win'), 2200);
+            }
+        }
+
+        function showResult(msg, type) {
+            const res = document.getElementById('resultMsg');
+            res.textContent = msg;
+            res.className = type;
+        }
+
+        // 🎯 เหตุการณ์
+        document.getElementById('checkBtn')?.addEventListener('click', checkLotto);
+        document.getElementById('userNumber')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkLotto();
+        });
+
         document.getElementById('menuBtn')?.addEventListener('click', () => {
             document.getElementById('nav-placeholder').classList.toggle('active');
         });
@@ -592,4 +780,3 @@
     </script>
 </body>
 </html>
-
