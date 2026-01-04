@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ตรวจหวย - ครบจังดอทคอม</title>
     <meta name="description" content="ตรวจผลสลากกินแบ่งรัฐบาลล่าสุด ย้อนหลัง 5 งวด พร้อมสถิติเลขเด็ด">
     <meta name="keywords" content="ตรวจหวย, หวย, ผลสลาก, เลขเด็ด, ครบจัง">
@@ -41,6 +41,7 @@
           line-height: 1.6;
         }
 
+        /* Header */
         header {
           background: linear-gradient(135deg, var(--primary-dark), var(--primary));
           color: #fff;
@@ -61,25 +62,7 @@
           text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
-        .menu-btn {
-          position: absolute;
-          left: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 1.4rem;
-          background: none;
-          border: none;
-          color: white;
-          cursor: pointer;
-          opacity: 0.9;
-          display: none;
-        }
-        .menu-btn:hover { opacity: 1; }
-
-        .header-spacer {
-          width: 24px;
-        }
-
+        /* Navigation */
         .main-nav {
           background: #fff;
           padding: 0.5rem 0;
@@ -90,7 +73,7 @@
           max-width: 1200px;
           margin: auto;
           display: flex;
-          gap: 0.75rem;
+          gap: 0.5rem;
           padding: 0 1rem;
           overflow-x: auto;
           white-space: nowrap;
@@ -115,33 +98,7 @@
           transform: scale(1.02);
         }
 
-        .mobile-nav {
-          display: none;
-          flex-direction: column;
-          background: #fff;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          z-index: 100;
-        }
-
-        .mobile-nav a {
-          padding: 1rem 1.5rem;
-          border-bottom: 1px solid #f1f5f9;
-          text-decoration: none;
-          color: #4b5563;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        .mobile-nav a:hover {
-          background: var(--soft);
-        }
-
+        /* Container */
         .container {
           max-width: 1200px;
           margin: 1.5rem auto;
@@ -182,7 +139,7 @@
           border-radius: 50%;
         }
 
-        /* ✅ ตรวจหวยล่าสุด + ฟอร์ม */
+        /* ตรวจหวย */
         .lotto-latest {
           text-align: center;
         }
@@ -191,61 +148,6 @@
           font-size: 1.1em;
           color: var(--muted);
           margin-bottom: 1.25rem;
-        }
-
-        /* 🔍 ฟอร์มตรวจเลข */
-        .check-form {
-          background: #f1f5f9;
-          padding: 1rem;
-          border-radius: 12px;
-          margin-bottom: 1.5rem;
-          text-align: center;
-        }
-        .check-form label {
-          display: block;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-          color: var(--primary);
-        }
-        #userNumber {
-          width: 180px;
-          padding: 0.6rem;
-          font-size: 1.1rem;
-          text-align: center;
-          border: 2px solid #cbd5e1;
-          border-radius: 10px;
-          outline: none;
-          margin: 0.5rem auto;
-          display: block;
-        }
-        #userNumber:focus {
-          border-color: var(--primary-light);
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-        .btn-check {
-          background: var(--primary);
-          color: white;
-          border: none;
-          padding: 0.6rem 1.2rem;
-          border-radius: 10px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .btn-check:hover {
-          background: var(--primary-dark);
-          transform: scale(1.05);
-        }
-        #resultMsg {
-          margin-top: 0.75rem;
-          min-height: 1.5rem;
-          font-weight: 700;
-        }
-        #resultMsg.win {
-          color: var(--highlight-green);
-        }
-        #resultMsg.lose {
-          color: var(--highlight-red);
         }
 
         .prize-box {
@@ -299,7 +201,62 @@
           color: var(--highlight-green);
         }
 
-        /* 🎯 Animation */
+        /* ฟอร์มตรวจเลข */
+        .check-form {
+          background: #f0f5ff;
+          padding: 1.2rem;
+          border-radius: 12px;
+          margin: 1.5rem 0;
+          text-align: center;
+        }
+        .check-form label {
+          display: block;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: var(--primary);
+        }
+        #userNumbers {
+          width: 180px;
+          padding: 0.6rem;
+          font-size: 1.1rem;
+          text-align: center;
+          border: 2px solid #cbd5e1;
+          border-radius: 10px;
+          outline: none;
+          margin: 0.5rem auto;
+          display: block;
+        }
+        #userNumbers:focus {
+          border-color: var(--primary-light);
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .btn-check {
+          background: var(--primary);
+          color: white;
+          border: none;
+          padding: 0.6rem 1.2rem;
+          border-radius: 10px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .btn-check:hover {
+          background: var(--primary-dark);
+          transform: scale(1.05);
+        }
+        #resultMsg {
+          margin-top: 0.75rem;
+          min-height: 1.5rem;
+          font-weight: 700;
+        }
+        #resultMsg.win {
+          color: var(--highlight-green);
+        }
+        #resultMsg.lose {
+          color: var(--highlight-red);
+        }
+
+        /* Animation */
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
           10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
@@ -328,39 +285,29 @@
           border: 2px solid var(--highlight-green);
         }
 
-        .lotto-history table {
+        /* ตารางรางวัล */
+        .prize-table {
           width: 100%;
           border-collapse: collapse;
-          text-align: center;
-          font-size: 0.95rem;
+          margin-top: 1rem;
+          font-size: 0.9rem;
         }
-
-        .lotto-history th,
-        .lotto-history td {
+        .prize-table th,
+        .prize-table td {
           padding: 0.75rem;
           border: 1px solid #e2e8f0;
+          text-align: center;
         }
-
-        .lotto-history th {
+        .prize-table th {
           background: var(--primary);
           color: white;
           font-weight: 600;
         }
-
-        .lotto-history tr:nth-child(even) {
+        .prize-table tr:nth-child(even) {
           background: #f8fafc;
         }
 
-        .lotto-history .prize1 {
-          color: var(--highlight-red);
-          font-weight: 700;
-        }
-
-        .lotto-history .prize-2digit {
-          color: var(--highlight-green);
-          font-weight: 700;
-        }
-
+        /* Sidebar */
         .sidebar {
           display: flex;
           flex-direction: column;
@@ -409,7 +356,7 @@
           background-color: #f9fbff;
           border: 1px dashed #dbeafe;
           border-radius: 12px;
-          min-height: 280px;
+          min-height: 250px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -500,28 +447,23 @@
         }
 
         @media (max-width: 768px) {
-          .menu-btn { display: block; }
-          .main-nav { display: none; }
-          .mobile-nav.active { display: flex; }
           .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
           .prize-box .number { font-size: 1.8rem; }
           .prize-summary { flex-direction: column; }
-          #userNumber { width: 140px; font-size: 1rem; }
+          #userNumbers { width: 140px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
     <header>
-        <button class="menu-btn" id="menuBtn">☰</button>
         <div class="logo">ครบจังดอทคอม</div>
-        <div class="header-spacer"></div>
     </header>
 
     <nav class="main-nav">
         <div class="nav-wrap">
             <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
             <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
-            <a href="lotto.html" class="active"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
+            <a href="lotto.html" class="active"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> ตรวจหวย</a>
             <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
             <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
             <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
@@ -533,39 +475,22 @@
         </div>
     </nav>
 
-    <div class="mobile-nav" id="nav-placeholder">
-        <div class="nav-wrap">
-            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
-            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
-            <a href="lotto.html" class="active"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
-            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
-            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
-            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
-            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
-            <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
-            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
-            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
-            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-        </div>
-    </div>
-
     <div class="container">
         <div class="content-area">
-            <!-- ✅ ส่วนตรวจหวยอัปเดต -->
             <div class="section lotto-latest">
                 <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
                 <div class="draw-date">งวดประจำวันที่ <strong>1 มกราคม 2568</strong></div>
 
                 <div class="check-form">
-                    <label><i class="fas fa-search"></i> ตรวจเลขของคุณ (ใส่ 1–6 หลัก)</label><br>
-                    <input type="text" id="userNumber" maxlength="6" inputmode="numeric" placeholder="เช่น 293515 หรือ 26">
+                    <label><i class="fas fa-search"></i> ตรวจเลขของคุณ (ใส่หลายเลขได้ คั่นด้วยช่องว่างหรือ ,)</label><br>
+                    <input type="text" id="userNumbers" placeholder="เช่น 293515, 038, 702">
                     <button id="checkBtn" class="btn-check">ตรวจเลย!</button>
                     <div id="resultMsg"></div>
                 </div>
 
                 <div class="prize-box prize-1 animate-hover">
-                    <h3>รางวัลที่ 1</h3>
-                    <div class="number" id="prize1">293515</div>
+                    <h3>🏆 รางวัลที่ 1</h3>
+                    <div class="number" id="prize1-main">293515</div>
                 </div>
 
                 <div class="prize-summary">
@@ -583,31 +508,77 @@
                     </div>
                 </div>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">
-                    ข้อมูลจาก <a href="https://www.glo.or.th" target="_blank" style="color:#3b82f6">สำนักงานสลากกินแบ่งรัฐบาล</a>
+                    ข้อมูลจาก <a href="https://www.glo.or.th" target="_blank">สำนักงานสลากกินแบ่งรัฐบาล</a>
                 </p>
             </div>
 
-            <!-- 🔁 ย้อนหลัง 5 งวด -->
-            <div class="section lotto-history">
-                <h2><i class="fas fa-history"></i> สถิติย้อนหลัง 5 งวด</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>งวดวันที่</th>
-                            <th>รางวัลที่ 1</th>
-                            <th>เลขท้าย 2 ตัว</th>
-                            <th>เลขหน้า 3 ตัว</th>
-                            <th>เลขท้าย 3 ตัว</th>
-                        </tr>
-                    </thead>
+            <div class="section">
+                <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล (169 รางวัล)</h2>
+
+                <h3>🥈 รางวัลที่ 2 (5 รางวัล)</h3>
+                <table class="prize-table">
                     <tbody>
-                        <tr><td>1 ม.ค. 68</td><td class="prize1">293515</td><td class="prize-2digit">26</td><td>123, 702</td><td>038, 467</td></tr>
-                        <tr><td>16 ธ.ค. 67</td><td class="prize1">979473</td><td class="prize-2digit">45</td><td>614, 815</td><td>390, 285</td></tr>
-                        <tr><td>1 ธ.ค. 67</td><td class="prize1">318616</td><td class="prize-2digit">95</td><td>360, 142</td><td>838, 949</td></tr>
-                        <tr><td>16 พ.ย. 67</td><td class="prize1">435393</td><td class="prize-2digit">71</td><td>864, 611</td><td>719, 354</td></tr>
-                        <tr><td>1 พ.ย. 67</td><td class="prize1">177818</td><td class="prize-2digit">41</td><td>679, 989</td><td>740, 814</td></tr>
+                        <tr><td>047989</td></tr>
+                        <tr><td>123484</td></tr>
+                        <tr><td>329198</td></tr>
+                        <tr><td>689124</td></tr>
+                        <tr><td>987441</td></tr>
                     </tbody>
                 </table>
+
+                <h3>🥉 รางวัลที่ 3 (10 รางวัล)</h3>
+                <table class="prize-table">
+                    <tbody>
+                        <tr><td>011509</td></tr>
+                        <tr><td>058593</td></tr>
+                        <tr><td>109907</td></tr>
+                        <tr><td>208788</td></tr>
+                        <tr><td>307367</td></tr>
+                        <tr><td>436627</td></tr>
+                        <tr><td>605707</td></tr>
+                        <tr><td>721507</td></tr>
+                        <tr><td>833788</td></tr>
+                        <tr><td>993301</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>🎖️ รางวัลที่ 4 (50 รางวัล)</h3>
+                <table class="prize-table">
+                    <tbody>
+                        <tr><td>010136</td><td>022383</td><td>033372</td><td>053799</td><td>074778</td></tr>
+                        <tr><td>085297</td><td>090588</td><td>110014</td><td>115407</td><td>123540</td></tr>
+                        <tr><td>125830</td><td>142649</td><td>152644</td><td>162845</td><td>171731</td></tr>
+                        <tr><td>175156</td><td>182028</td><td>186318</td><td>192312</td><td>218395</td></tr>
+                        <tr><td>223189</td><td>235613</td><td>242919</td><td>244907</td><td>256015</td></tr>
+                        <tr><td>263465</td><td>270100</td><td>272913</td><td>283651</td><td>290631</td></tr>
+                        <tr><td>293001</td><td>296977</td><td>308532</td><td>320015</td><td>332789</td></tr>
+                        <tr><td>340529</td><td>343464</td><td>346515</td><td>351000</td><td>372858</td></tr>
+                        <tr><td>385410</td><td>389028</td><td>393011</td><td>400392</td><td>400782</td></tr>
+                        <tr><td>414024</td><td>418324</td><td>433346</td><td>439700</td><td>441204</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>🏅 รางวัลที่ 5 (100 รางวัล)</h3>
+                <div style="max-height:300px; overflow:auto; border:1px solid #e2e8f0; border-radius:8px;">
+                    <table class="prize-table" style="font-size:0.85rem;">
+                        <tbody>
+                            <tr><td>001939</td><td>015347</td><td>029788</td><td>038630</td><td>042295</td><td>051079</td><td>062616</td><td>072866</td><td>082566</td><td>091152</td></tr>
+                            <tr><td>094917</td><td>100852</td><td>104365</td><td>112854</td><td>127563</td><td>133077</td><td>144695</td><td>154080</td><td>162570</td><td>170018</td></tr>
+                            <tr><td>174897</td><td>184620</td><td>194840</td><td>205395</td><td>213314</td><td>220370</td><td>230273</td><td>232685</td><td>240237</td><td>251060</td></tr>
+                            <tr><td>253056</td><td>261300</td><td>270871</td><td>280719</td><td>291667</td><td>302204</td><td>313199</td><td>323755</td><td>331993</td><td>342233</td></tr>
+                            <tr><td>352557</td><td>361390</td><td>372210</td><td>382882</td><td>390240</td><td>402810</td><td>413636</td><td>420582</td><td>431978</td><td>441824</td></tr>
+                            <tr><td>452710</td><td>462307</td><td>472655</td><td>482434</td><td>491309</td><td>502189</td><td>512152</td><td>522671</td><td>532722</td><td>542098</td></tr>
+                            <tr><td>552745</td><td>562704</td><td>572716</td><td>582322</td><td>592817</td><td>602460</td><td>612568</td><td>622256</td><td>632338</td><td>642617</td></tr>
+                            <tr><td>652718</td><td>662658</td><td>671575</td><td>681940</td><td>692338</td><td>702366</td><td>712853</td><td>722278</td><td>732148</td><td>742228</td></tr>
+                            <tr><td>752306</td><td>762256</td><td>772157</td><td>782281</td><td>792558</td><td>802274</td><td>812172</td><td>822464</td><td>832564</td><td>842216</td></tr>
+                            <tr><td>852726</td><td>862572</td><td>872289</td><td>882152</td><td>892629</td><td>902376</td><td>912307</td><td>922608</td><td>932710</td><td>942535</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">
+                    ✅ ข้อมูลจาก <a href="https://www.glo.or.th/result/168598" target="_blank">สำนักงานสลากกินแบ่งรัฐบาล</a>
+                </p>
             </div>
         </div>
 
@@ -661,121 +632,123 @@
     </footer>
 
     <script>
-        // 🔊 สร้างเสียงแบบ On-the-fly
+        // 🔊 เสียงแจ้งเตือน
         function playWinSound() {
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = ctx.createOscillator();
-                const gainNode = ctx.createGain();
-
-                oscillator.connect(gainNode);
-                gainNode.connect(ctx.destination);
-
-                oscillator.type = 'sine';
-                oscillator.frequency.setValueAtTime(700, ctx.currentTime);
-                gainNode.gain.setValueAtTime(0.25, ctx.currentTime);
-
-                oscillator.start(ctx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6);
-                oscillator.stop(ctx.currentTime + 0.6);
-            } catch (e) {
-                console.log("AudioContext not allowed without user gesture (fallback silent)");
-            }
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, now);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+                osc.start(now);
+                osc.stop(now + 0.7);
+            } catch (e) { }
         }
 
-        // 🧠 ตรรกะตรวจหวย
+        // 📊 ข้อมูลรางวัลทั้งหมด 169 รายการ — งวด 1 ม.ค. 68
+        const lottoData = {
+            prize1: ['293515'],
+            prize2: ['047989','123484','329198','689124','987441'],
+            prize3: ['011509','058593','109907','208788','307367','436627','605707','721507','833788','993301'],
+            prize4: [
+                '010136','022383','033372','053799','074778','085297','090588','110014','115407','123540',
+                '125830','142649','152644','162845','171731','175156','182028','186318','192312','218395',
+                '223189','235613','242919','244907','256015','263465','270100','272913','283651','290631',
+                '293001','296977','308532','320015','332789','340529','343464','346515','351000','372858',
+                '385410','389028','393011','400392','400782','414024','418324','433346','439700','441204'
+            ],
+            prize5: [
+                '001939','015347','029788','038630','042295','051079','062616','072866','082566','091152',
+                '094917','100852','104365','112854','127563','133077','144695','154080','162570','170018',
+                '174897','184620','194840','205395','213314','220370','230273','232685','240237','251060',
+                '253056','261300','270871','280719','291667','302204','313199','323755','331993','342233',
+                '352557','361390','372210','382882','390240','402810','413636','420582','431978','441824',
+                '452710','462307','472655','482434','491309','502189','512152','522671','532722','542098',
+                '552745','562704','572716','582322','592817','602460','612568','622256','632338','642617',
+                '652718','662658','671575','681940','692338','702366','712853','722278','732148','742228',
+                '752306','762256','772157','782281','792558','802274','812172','822464','832564','842216',
+                '852726','862572','872289','882152','892629','902376','912307','922608','932710','942535'
+            ],
+            front3: ['123','702'],
+            last3: ['038','467'],
+            last2: ['26']
+        };
+
         function checkLotto() {
-            const inputEl = document.getElementById('userNumber');
-            let raw = inputEl.value.trim();
-            if (!raw) {
-                showResult('กรุณากรอกเลขก่อนค่ะ/ครับ', 'lose');
+            const input = document.getElementById('userNumbers').value.trim();
+            if (!input) {
+                showResult('⚠️ กรุณากรอกเลขหวยของคุณก่อนค่ะ/ครับ', 'lose');
                 return;
             }
 
-            // รับเฉพาะตัวเลข — ลบทุกตัวที่ไม่ใช่ 0-9
-            let numOnly = raw.replace(/\D/g, '');
-            if (!numOnly) {
-                showResult('กรุณาใส่ตัวเลขเท่านั้น!', 'lose');
+            const rawNums = input.split(/[\s,，]+/).filter(x => x.trim());
+            const userNums = rawNums.map(n => n.replace(/\D/g, '').padStart(6, '0')).filter(n => n.length === 6 && /^\d{6}$/.test(n));
+
+            if (userNums.length === 0) {
+                showResult('❌ ไม่พบเลขที่ถูกต้อง กรุณาใส่ตัวเลข เช่น 293515 หรือ 038', 'lose');
                 return;
             }
 
-            if (numOnly.length > 6) numOnly = numOnly.slice(0, 6);
-            inputEl.value = numOnly;
+            let results = [];
+            let foundAny = false;
 
-            // รางวัลจริง 1 ม.ค. 68
-            const prizes = {
-                prize1: '293515',
-                last2: ['26'],
-                last3: ['038', '467'],
-                front3: ['123', '702']
-            };
-
-            let matched = [];
-            let numPad = numOnly.padStart(6, '0');
-
-            // ตรวจ 6 หลัก
-            if (numPad === prizes.prize1) {
-                matched.push('รางวัลที่ 1 🎉');
-                highlight('prize1');
+            function checkAgainst(list, label, isPartial = false, len = 6) {
+                for (let num of userNums) {
+                    let target = isPartial ? num.slice(-len) : num;
+                    if (Array.isArray(list)) {
+                        for (let prize of list) {
+                            if (prize === target) {
+                                results.push(`<div class="match-item"><i class="fas fa-check-circle"></i> เลข <strong>${num}</strong> ถูกรางวัล <strong>${label}</strong></div>`);
+                                foundAny = true;
+                                return true;
+                            }
+                        }
+                    } else if (list === target) {
+                        results.push(`<div class="match-item"><i class="fas fa-check-circle"></i> เลข <strong>${num}</strong> ถูกรางวัล <strong>${label}</strong></div>`);
+                        foundAny = true;
+                        return true;
+                    }
+                }
+                return false;
             }
 
-            // ตรวจ 2 หลักท้าย
-            const l2 = numPad.slice(-2);
-            if (prizes.last2.includes(l2)) {
-                matched.push('เลขท้าย 2 ตัว ✅');
-                highlight('last2');
-            }
+            // ตรวจทุกรางวัล
+            checkAgainst(lottoData.prize1[0], 'รางวัลที่ 1');
+            lottoData.prize2.forEach(p => checkAgainst([p], 'รางวัลที่ 2'));
+            lottoData.prize3.forEach(p => checkAgainst([p], 'รางวัลที่ 3'));
+            lottoData.prize4.forEach(p => checkAgainst([p], 'รางวัลที่ 4'));
+            lottoData.prize5.forEach(p => checkAgainst([p], 'รางวัลที่ 5'));
+            checkAgainst(lottoData.front3, 'เลขหน้า 3 ตัว', true, 3);
+            checkAgainst(lottoData.last3, 'เลขท้าย 3 ตัว', true, 3);
+            checkAgainst(lottoData.last2, 'เลขท้าย 2 ตัว', true, 2);
 
-            // ตรวจ 3 หลักท้าย
-            const l3 = numPad.slice(-3);
-            if (prizes.last3.includes(l3)) {
-                matched.push('เลขท้าย 3 ตัว ✅');
-                highlight('last3');
-            }
-
-            // ตรวจ 3 หลักหน้า
-            const f3 = numPad.slice(0, 3);
-            if (prizes.front3.includes(f3)) {
-                matched.push('เลขหน้า 3 ตัว ✅');
-                highlight('front3');
-            }
-
-            if (matched.length > 0) {
+            if (foundAny) {
                 playWinSound();
-                showResult(`ถูกรางวัล: ${matched.join(', ')} 🎊`, 'win');
+                showResult(results.join(''), 'win');
+                if (userNums.includes('293515')) {
+                    const el = document.getElementById('prize1-main');
+                    el.classList.add('animate-win');
+                    setTimeout(() => el.classList.remove('animate-win'), 2000);
+                }
             } else {
-                showResult('เสียใจด้วย ไม่ถูกรางวัล 😢', 'lose');
+                showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัลใดเลย (เลขที่ตรวจ: ${userNums.join(', ')})</div>`, 'lose');
             }
         }
 
-        function highlight(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.classList.add('animate-win');
-                setTimeout(() => el.classList.remove('animate-win'), 2200);
-            }
-        }
-
-        function showResult(msg, type) {
+        function showResult(html, type) {
             const res = document.getElementById('resultMsg');
-            res.textContent = msg;
+            res.innerHTML = html;
             res.className = type;
         }
 
-        // 🎯 เหตุการณ์
         document.getElementById('checkBtn')?.addEventListener('click', checkLotto);
-        document.getElementById('userNumber')?.addEventListener('keypress', (e) => {
+        document.getElementById('userNumbers')?.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') checkLotto();
-        });
-
-        document.getElementById('menuBtn')?.addEventListener('click', () => {
-            document.getElementById('nav-placeholder').classList.toggle('active');
-        });
-
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav-placeholder').classList.remove('active');
-            });
         });
     </script>
 </body>
