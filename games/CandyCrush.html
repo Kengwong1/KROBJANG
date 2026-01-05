@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🍭 Candy Crush - แก้บั๊ก + Hint สุดยอด 🍭</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body { height:100%; overflow:hidden; background:#121212; }
+        body { font-family:Arial,Helvetica,sans-serif; display:flex; flex-direction:column; }
+        #header { padding:10px; text-align:center; background:rgba(0,0,0,0.5); color:white; position:relative; }
+        h1 { font-size:clamp(1.8em,6vw,2.8em); margin-bottom:8px; }
+        #stats { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; font-size:clamp(1em,4vw,1.4em); }
+        .stat { background:rgba(255,255,255,0.3); padding:8px 16px; border-radius:20px; min-width:100px; }
+        canvas { flex:1; display:block; background:#1e1e1e; touch-action:none; }
+        #levelComplete, #gameOver, #howToPlay { 
+            position:fixed; inset:0; background:rgba(0,0,0,0.95); display:none; 
+            flex-direction:column; align-items:center; justify-content:center; color:white; z-index:999;
+            padding:20px; text-align:center;
+        }
+        #howToPlay h2 { font-size:clamp(2.5em,8vw,4em); margin-bottom:20px; }
+        #howToPlay .content { font-size:clamp(1.2em,4vw,1.8em); max-width:90%; line-height:1.6; background:rgba(255,255,255,0.1); padding:20px; border-radius:20px; }
+        #closeHowTo { margin-top:30px; padding:12px 30px; font-size:1.5em; background:#ff4757; border:none; border-radius:50px; color:white; cursor:pointer; }
+        #levelComplete h2, #gameOver h2 { font-size:clamp(3em,10vw,5em); margin-bottom:20px; }
+        #nextLevel, #restart { padding:15px 40px; font-size:clamp(1.2em,5vw,2em); background:#ff4757; border:none; border-radius:50px; color:white; cursor:pointer; margin-top:20px; }
+        #nextLevel { background:#00cec9; }
+        #helpBtn { position:absolute; top:10px; right:60px; font-size:24px; background:rgba(255,255,255,0.3); border:none; border-radius:50%; width:50px; height:50px; cursor:pointer; }
+        #hintBtn { position:absolute; top:10px; right:10px; font-size:24px; background:rgba(255,255,255,0.3); border:none; border-radius:50%; width:50px; height:50px; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <button id="helpBtn" title="วิธีเล่น">❓</button>
+        <button id="hintBtn" title="หา moves">💡</button>
+        <h1>🍭 Candy Crush 🍭</h1>
+        <div id="stats">
+            <div class="stat">ด่าน: <span id="level">1</span></div>
+            <div class="stat">คะแนน: <span id="score">0</span></div>
+            <div class="stat">เหลือ moves: <span id="moves">35</span></div>
+            <div class="stat">เป้าหมาย: <span id="target">600</span></div>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <div id="howToPlay">
+        <h2>วิธีเล่น 🍭</h2>
+        <div class="content">
+            <p><strong>เป้าหมาย</strong><br>
+            ทำคะแนนให้ถึงเป้า ก่อน moves หมด<br>
+            ผ่านด่าน = ไปด่านต่อไป</p>
+
+            <p><strong>วิธีสลับ</strong><br>
+            • กดลูกอมลูกแรก → เรืองแสง<br>
+            • กดลูกอมที่สองที่ติดกัน → สลับ<br>
+            • ถ้าไม่ match → กลับที่เดิม (ไม่เสีย moves)</p>
+
+            <p><strong>ปุ่ม 💡</strong> = หา moves ที่ทำคะแนนได้ (hint)</p>
+
+            <p>สนุก ๆ นะครับ!</p>
+        </div>
+        <button id="closeHowTo">ปิด</button>
+    </div>
+
+    <div id="levelComplete">
+        <h2>🎉 ผ่านด่าน! 🎉</h2>
+        <div style="font-size:2em;margin:20px 0">ด่าน <span id="completedLevel">1</span> สำเร็จ!</div>
+        <div style="font-size:1.5em">คะแนน: <span id="finalScore">0</span></div>
+        <button id="nextLevel">ด่านต่อไป →</button>
+    </div>
+
+    <div id="gameOver">
+        <h2>💀 Game Over 💀</h2>
+        <div style="font-size:2em;margin:20px 0">Moves หมด!</div>
+        <div style="font-size:1.5em">คะแนน: <span id="gameOverScore">0</span></div>
+        <button id="restart">เล่นใหม่</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const rows = 9, cols = 8;
+        const colors = ['#FF1744','#FF9100','#00E5FF','#E040FB','#76FF03','#FFD600','#2979FF','#FF4081'];
+        let board = [];
+        let selected = null;
+        let processing = false;
+        let score = 0, movesLeft = 35, level = 1, targetScore = 600;
+        let particles = [];
+        let audioCtx = null;
+        let cellSize, offsetX, offsetY;
+        let hintTimeout = null;
+
+        const levelEl = document.getElementById('level');
+        const scoreEl = document.getElementById('score');
+        const movesEl = document.getElementById('moves');
+        const targetEl = document.getElementById('target');
+        const finalScoreEl = document.getElementById('finalScore');
+        const completedLevelEl = document.getElementById('completedLevel');
+        const gameOverScoreEl = document.getElementById('gameOverScore');
+        const levelComplete = document.getElementById('levelComplete');
+        const gameOverDiv = document.getElementById('gameOver');
+        const nextLevelBtn = document.getElementById('nextLevel');
+        const restartBtn = document.getElementById('restart');
+        const howToPlay = document.getElementById('howToPlay');
+        const closeHowTo = document.getElementById('closeHowTo');
+        const helpBtn = document.getElementById('helpBtn');
+        const hintBtn = document.getElementById('hintBtn');
+
+        helpBtn.onclick = () => howToPlay.style.display = 'flex';
+        closeHowTo.onclick = () => howToPlay.style.display = 'none';
+
+        // ปุ่ม Hint 💡
+        hintBtn.onclick = () => findAndShowHint();
+
+        function getAudioContext() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+        }
+
+        function playSound(freq, dur = 0.1, type = 'sine', vol = 0.2) {
+            getAudioContext();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.frequency.value = freq; osc.type = type;
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + dur);
+            osc.start(); osc.stop(audioCtx.currentTime + dur);
+        }
+
+        function playSwap() { playSound(400 + Math.random()*200, 0.08, 'square', 0.2); }
+        function playMatch() { playSound(700 + Math.random()*300, 0.12, 'sawtooth', 0.3); if ('vibrate' in navigator) navigator.vibrate(50); }
+        function playCombo() { playSound(900, 0.1); setTimeout(() => playSound(1100, 0.1), 50); setTimeout(() => playSound(1300, 0.15), 100); if ('vibrate' in navigator) navigator.vibrate([60,40,60]); }
+        function playLevelUp() { playSound(800, 0.2); setTimeout(() => playSound(1000, 0.2), 100); setTimeout(() => playSound(1200, 0.3), 200); if ('vibrate' in navigator) navigator.vibrate([100,50,100]); }
+        function playGameOverSound() { playSound(300, 0.4, 'sawtooth', 0.3); setTimeout(() => playSound(200, 0.5), 200); }
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight - document.getElementById('header').offsetHeight;
+            cellSize = Math.min(canvas.width / cols, canvas.height / rows);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function newLevel() {
+            level++;
+            targetScore = level * 600 + (level - 1) * 200;
+            movesLeft = Math.max(20, 35 - (level - 1) * 2);
+            updateStats();
+        }
+
+        function createBoard() {
+            board = Array(rows).fill().map(() => Array(cols).fill().map(() => Math.floor(Math.random() * colors.length)));
+            removeInitialMatches();
+            // รับประกันว่ามี moves อย่างน้อย 1 ครั้งเสมอ
+            if (findPossibleMoves().length === 0) createBoard();
+        }
+
+        function removeInitialMatches() {
+            let matches;
+            while ((matches = findMatches()).length) {
+                matches.forEach(p => board[p.r][p.c] = null);
+                drop();
+                fill();
+            }
+        }
+
+        function findMatches() {
+            const matches = [];
+            for (let r = 0; r < rows; r++) {
+                let count = 1;
+                for (let c = 1; c < cols; c++) {
+                    if (board[r][c] === board[r][c-1] && board[r][c] !== null) count++;
+                    else {
+                        if (count >= 3) for (let i = 0; i < count; i++) matches.push({r, c: c - count + i});
+                        count = 1;
+                    }
+                }
+                if (count >= 3) for (let i = 0; i < count; i++) matches.push({r, c: cols - count + i});
+            }
+            for (let c = 0; c < cols; c++) {
+                let count = 1;
+                for (let r = 1; r < rows; r++) {
+                    if (board[r][c] === board[r-1][c] && board[r][c] !== null) count++;
+                    else {
+                        if (count >= 3) for (let i = 0; i < count; i++) matches.push({r: r - count + i, c});
+                        count = 1;
+                    }
+                }
+                if (count >= 3) for (let i = 0; i < count; i++) matches.push({r: rows - count + i, c});
+            }
+            return matches;
+        }
+
+        function drop() {
+            for (let c = 0; c < cols; c++) {
+                let write = rows - 1;
+                for (let read = rows - 1; read >= 0; read--) {
+                    if (board[read][c] !== null) {
+                        board[write][c] = board[read][c];
+                        if (write !== read) board[read][c] = null;
+                        write--;
+                    }
+                }
+                for (let r = write; r >= 0; r--) board[r][c] = Math.floor(Math.random() * colors.length);
+            }
+        }
+
+        function fill() {
+            for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (board[r][c] === null) board[r][c] = Math.floor(Math.random() * colors.length);
+        }
+
+        function swap(p1, p2) {
+            const temp = board[p1.r][p1.c];
+            board[p1.r][p1.c] = board[p2.r][p2.c];
+            board[p2.r][p2.c] = temp;
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y;
+                this.vx = (Math.random() - 0.5) * 12;
+                this.vy = (Math.random() - 1) * 12;
+                this.life = 40;
+                this.color = color;
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.vy += 0.4; this.life--; }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.life / 40;
+                ctx.fillStyle = this.color;
+                ctx.shadowColor = this.color; ctx.shadowBlur = 15;
+                ctx.beginPath(); ctx.arc(this.x, this.y, 6, 0, Math.PI*2); ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createParticles(x, y, color) {
+            for (let i = 0; i < 15; i++) particles.push(new Particle(x, y, color));
+        }
+
+        async function handleMatches() {
+            processing = true;
+            let matches = findMatches();
+            while (matches.length) {
+                playMatch();
+                if (matches.length > 5) playCombo();
+                matches.forEach(p => {
+                    createParticles(offsetX + (p.c + 0.5) * cellSize, offsetY + (p.r + 0.5) * cellSize, colors[board[p.r][p.c]]);
+                    board[p.r][p.c] = null;
+                });
+                score += matches.length * 20 * (Math.floor(matches.length / 3) + 1);
+                updateStats();
+                await sleep(250);
+                drop();
+                await sleep(300);
+                matches = findMatches();
+            }
+            movesLeft--;
+            updateStats();
+            if (movesLeft <= 0) {
+                if (score >= targetScore) {
+                    playLevelUp();
+                    completedLevelEl.textContent = level;
+                    finalScoreEl.textContent = score;
+                    levelComplete.style.display = 'flex';
+                } else {
+                    playGameOverSound();
+                    gameOverScoreEl.textContent = score;
+                    gameOverDiv.style.display = 'flex';
+                }
+            } else if (findPossibleMoves().length === 0) {
+                // ถ้าไม่มี moves เหลือเลย → สุ่มบอร์ดใหม่ (ไม่เสียด่าน)
+                createBoard();
+            }
+            processing = false;
+        }
+
+        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        function updateStats() {
+            levelEl.textContent = level;
+            scoreEl.textContent = score;
+            movesEl.textContent = movesLeft;
+            targetEl.textContent = targetScore;
+        }
+
+        // Hint system
+        let hint1 = null, hint2 = null;
+        function findPossibleMoves() {
+            const moves = [];
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    // Check right
+                    if (c < cols - 1) {
+                        swap({r, c}, {r, c: c+1});
+                        if (findMatches().length > 0) moves.push({p1: {r, c}, p2: {r, c: c+1}});
+                        swap({r, c}, {r, c: c+1}); // revert
+                    }
+                    // Check down
+                    if (r < rows - 1) {
+                        swap({r, c}, {r: r+1, c});
+                        if (findMatches().length > 0) moves.push({p1: {r, c}, p2: {r: r+1, c}});
+                        swap({r, c}, {r: r+1, c});
+                    }
+                }
+            }
+            return moves;
+        }
+
+        function findAndShowHint() {
+            if (hintTimeout) clearTimeout(hintTimeout);
+            hint1 = hint2 = null;
+            const possible = findPossibleMoves();
+            if (possible.length > 0) {
+                const move = possible[Math.floor(Math.random() * possible.length)];
+                hint1 = move.p1;
+                hint2 = move.p2;
+                hintTimeout = setTimeout(() => { hint1 = hint2 = null; }, 5000); // หายใน 5 วิ
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            offsetX = (canvas.width - cols * cellSize) / 2;
+            offsetY = (canvas.height - rows * cellSize) / 2;
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    if (board[r][c] === null) continue;
+                    const x = offsetX + c * cellSize + cellSize / 2;
+                    const y = offsetY + r * cellSize + cellSize / 2;
+                    const radius = cellSize * 0.4;
+                    const color = colors[board[r][c]];
+                    ctx.save();
+                    // Hint effect
+                    if ((hint1 && hint1.r === r && hint1.c === c) || (hint2 && hint2.r === r && hint2.c === c)) {
+                        ctx.shadowBlur = 40;
+                        ctx.shadowColor = '#ffff00';
+                        ctx.strokeStyle = '#ffff00';
+                        ctx.lineWidth = 5;
+                        ctx.beginPath();
+                        ctx.arc(x, y, radius + 5, 0, Math.PI*2);
+                        ctx.stroke();
+                    }
+                    if (selected && selected.r === r && selected.c === c) {
+                        ctx.shadowBlur = 30;
+                        ctx.shadowColor = '#fff';
+                    }
+                    const grad = ctx.createRadialGradient(x - radius/3, y - radius/3, 0, x, y, radius);
+                    grad.addColorStop(0, '#fff');
+                    grad.addColorStop(0.5, color);
+                    grad.addColorStop(1, darken(color));
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+                    ctx.beginPath();
+                    ctx.arc(x - radius/3, y - radius/3, radius/3, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+            particles = particles.filter(p => {
+                p.update();
+                if (p.life > 0) p.draw();
+                return p.life > 0;
+            });
+            requestAnimationFrame(draw);
+        }
+
+        function darken(hex) {
+            let c = hex.substring(1);
+            let rgb = parseInt(c, 16);
+            let r = (rgb >> 16) & 0xff;
+            let g = (rgb >> 8) & 0xff;
+            let b = rgb & 0xff;
+            return `rgb(${Math.floor(r*0.7)},${Math.floor(g*0.7)},${Math.floor(b*0.7)})`;
+        }
+
+        function getGridPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+            const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+            return {
+                c: Math.floor((x - offsetX) / cellSize),
+                r: Math.floor((y - offsetY) / cellSize)
+            };
+        }
+
+        function handleTap(e) {
+            if (processing) return;
+            getAudioContext();
+            const pos = getGridPos(e);
+            if (pos.r < 0 || pos.r >= rows || pos.c < 0 || pos.c >= cols) return;
+
+            if (!selected) {
+                selected = pos;
+            } else {
+                const dr = Math.abs(pos.r - selected.r);
+                const dc = Math.abs(pos.c - selected.c);
+                if (dr + dc === 1) {
+                    playSwap();
+                    swap(selected, pos);
+                    if (findMatches().length === 0) {
+                        swap(selected, pos);
+                    } else {
+                        handleMatches();
+                    }
+                } else if (pos.r === selected.r && pos.c === selected.c) {
+                    selected = null;
+                } else {
+                    selected = pos;
+                }
+            }
+        }
+
+        canvas.addEventListener('touchstart', e => {
+            e.preventDefault();
+            handleTap(e);
+        }, {passive: false});
+
+        canvas.addEventListener('click', handleTap);
+
+        nextLevelBtn.onclick = () => {
+            levelComplete.style.display = 'none';
+            newLevel();
+            createBoard();
+            updateStats();
+        };
+
+        restartBtn.onclick = () => {
+            gameOverDiv.style.display = 'none';
+            level = 1;
+            targetScore = 600;
+            movesLeft = 35;
+            score = 0;
+            createBoard();
+            updateStats();
+        };
+
+        createBoard();
+        updateStats();
+        draw();
+    </script>
+</body>
+</html>
