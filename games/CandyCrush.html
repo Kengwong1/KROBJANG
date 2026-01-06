@@ -13,8 +13,8 @@
         #stats { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; font-size:clamp(1em,4vw,1.4em); }
         .stat { background:rgba(255,255,255,0.3); padding:8px 16px; border-radius:20px; min-width:100px; }
         canvas { flex:1; display:block; background:#1e1e1e; touch-action:none; }
-        #levelComplete, #gameOver, #howToPlay { 
-            position:fixed; inset:0; background:rgba(0,0,0,0.95); display:none; 
+        #levelComplete, #gameOver, #howToPlay {
+            position:fixed; inset:0; background:rgba(0,0,0,0.95); display:none;
             flex-direction:column; align-items:center; justify-content:center; color:white; z-index:999;
             padding:20px; text-align:center;
         }
@@ -41,40 +41,33 @@
         </div>
     </div>
     <canvas id="canvas"></canvas>
-
     <div id="howToPlay">
         <h2>วิธีเล่น 🍭</h2>
         <div class="content">
             <p><strong>เป้าหมาย</strong><br>
             ทำคะแนนให้ถึงเป้า ก่อน moves หมด<br>
             ผ่านด่าน = ไปด่านต่อไป</p>
-
             <p><strong>วิธีสลับ</strong><br>
             • กดลูกอมลูกแรก → เรืองแสง<br>
             • กดลูกอมที่สองที่ติดกัน → สลับ<br>
             • ถ้าไม่ match → กลับที่เดิม (ไม่เสีย moves)</p>
-
             <p><strong>ปุ่ม 💡</strong> = หา moves ที่ทำคะแนนได้ (hint)</p>
-
             <p>สนุก ๆ นะครับ!</p>
         </div>
         <button id="closeHowTo">ปิด</button>
     </div>
-
     <div id="levelComplete">
         <h2>🎉 ผ่านด่าน! 🎉</h2>
         <div style="font-size:2em;margin:20px 0">ด่าน <span id="completedLevel">1</span> สำเร็จ!</div>
         <div style="font-size:1.5em">คะแนน: <span id="finalScore">0</span></div>
         <button id="nextLevel">ด่านต่อไป →</button>
     </div>
-
     <div id="gameOver">
         <h2>💀 Game Over 💀</h2>
         <div style="font-size:2em;margin:20px 0">Moves หมด!</div>
         <div style="font-size:1.5em">คะแนน: <span id="gameOverScore">0</span></div>
         <button id="restart">เล่นใหม่</button>
     </div>
-
     <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
@@ -88,7 +81,6 @@
         let audioCtx = null;
         let cellSize, offsetX, offsetY;
         let hintTimeout = null;
-
         const levelEl = document.getElementById('level');
         const scoreEl = document.getElementById('score');
         const movesEl = document.getElementById('moves');
@@ -145,6 +137,7 @@
             level++;
             targetScore = level * 600 + (level - 1) * 200;
             movesLeft = Math.max(20, 35 - (level - 1) * 2);
+            score = 0; // รีเซ็ตคะแนนด่านใหม่
             updateStats();
         }
 
@@ -160,12 +153,13 @@
             while ((matches = findMatches()).length) {
                 matches.forEach(p => board[p.r][p.c] = null);
                 drop();
-                fill();
+                fill(); // กันเผื่อ มี null เหลือ
             }
         }
 
         function findMatches() {
             const matches = [];
+            // แถวแนวนอน
             for (let r = 0; r < rows; r++) {
                 let count = 1;
                 for (let c = 1; c < cols; c++) {
@@ -177,6 +171,7 @@
                 }
                 if (count >= 3) for (let i = 0; i < count; i++) matches.push({r, c: cols - count + i});
             }
+            // แถวแนวตั้ง
             for (let c = 0; c < cols; c++) {
                 let count = 1;
                 for (let r = 1; r < rows; r++) {
@@ -201,12 +196,17 @@
                         write--;
                     }
                 }
+                // เติมลูกอมใหม่ด้านบน
                 for (let r = write; r >= 0; r--) board[r][c] = Math.floor(Math.random() * colors.length);
             }
         }
 
         function fill() {
-            for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (board[r][c] === null) board[r][c] = Math.floor(Math.random() * colors.length);
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    if (board[r][c] === null) board[r][c] = Math.floor(Math.random() * colors.length);
+                }
+            }
         }
 
         function swap(p1, p2) {
@@ -255,23 +255,26 @@
                 await sleep(300);
                 matches = findMatches();
             }
+
+            // ลด moves หลังจากจบ chain ทั้งหมด (swap สำเร็จ 1 ครั้ง)
             movesLeft--;
             updateStats();
-            if (movesLeft <= 0) {
-                if (score >= targetScore) {
-                    playLevelUp();
-                    completedLevelEl.textContent = level;
-                    finalScoreEl.textContent = score;
-                    levelComplete.style.display = 'flex';
-                } else {
-                    playGameOverSound();
-                    gameOverScoreEl.textContent = score;
-                    gameOverDiv.style.display = 'flex';
-                }
+
+            // ตรวจสอบชนะ/แพ้
+            if (score >= targetScore) {
+                playLevelUp();
+                completedLevelEl.textContent = level;
+                finalScoreEl.textContent = score;
+                levelComplete.style.display = 'flex';
+            } else if (movesLeft <= 0) {
+                playGameOverSound();
+                gameOverScoreEl.textContent = score;
+                gameOverDiv.style.display = 'flex';
             } else if (findPossibleMoves().length === 0) {
-                // ถ้าไม่มี moves เหลือเลย → สุ่มบอร์ดใหม่ (ไม่เสียด่าน)
+                // ไม่มี moves → สุ่มบอร์ดใหม่ (ไม่เสีย moves)
                 createBoard();
             }
+
             processing = false;
         }
 
@@ -290,13 +293,13 @@
             const moves = [];
             for (let r = 0; r < rows; r++) {
                 for (let c = 0; c < cols; c++) {
-                    // Check right
+                    // ขวา
                     if (c < cols - 1) {
                         swap({r, c}, {r, c: c+1});
                         if (findMatches().length > 0) moves.push({p1: {r, c}, p2: {r, c: c+1}});
                         swap({r, c}, {r, c: c+1}); // revert
                     }
-                    // Check down
+                    // ลง
                     if (r < rows - 1) {
                         swap({r, c}, {r: r+1, c});
                         if (findMatches().length > 0) moves.push({p1: {r, c}, p2: {r: r+1, c}});
@@ -323,6 +326,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             offsetX = (canvas.width - cols * cellSize) / 2;
             offsetY = (canvas.height - rows * cellSize) / 2;
+
             for (let r = 0; r < rows; r++) {
                 for (let c = 0; c < cols; c++) {
                     if (board[r][c] === null) continue;
@@ -330,7 +334,9 @@
                     const y = offsetY + r * cellSize + cellSize / 2;
                     const radius = cellSize * 0.4;
                     const color = colors[board[r][c]];
+
                     ctx.save();
+
                     // Hint effect
                     if ((hint1 && hint1.r === r && hint1.c === c) || (hint2 && hint2.r === r && hint2.c === c)) {
                         ctx.shadowBlur = 40;
@@ -341,10 +347,13 @@
                         ctx.arc(x, y, radius + 5, 0, Math.PI*2);
                         ctx.stroke();
                     }
+
+                    // Selected effect
                     if (selected && selected.r === r && selected.c === c) {
                         ctx.shadowBlur = 30;
                         ctx.shadowColor = '#fff';
                     }
+
                     const grad = ctx.createRadialGradient(x - radius/3, y - radius/3, 0, x, y, radius);
                     grad.addColorStop(0, '#fff');
                     grad.addColorStop(0.5, color);
@@ -353,18 +362,24 @@
                     ctx.beginPath();
                     ctx.arc(x, y, radius, 0, Math.PI*2);
                     ctx.fill();
+
+                    // Highlight ขาว
                     ctx.fillStyle = 'rgba(255,255,255,0.6)';
                     ctx.beginPath();
                     ctx.arc(x - radius/3, y - radius/3, radius/3, 0, Math.PI*2);
                     ctx.fill();
+
                     ctx.restore();
                 }
             }
+
+            // Particles
             particles = particles.filter(p => {
                 p.update();
                 if (p.life > 0) p.draw();
                 return p.life > 0;
             });
+
             requestAnimationFrame(draw);
         }
 
@@ -402,9 +417,11 @@
                     playSwap();
                     swap(selected, pos);
                     if (findMatches().length === 0) {
-                        swap(selected, pos);
+                        swap(selected, pos); // revert
+                        selected = null;
                     } else {
                         handleMatches();
+                        selected = null;
                     }
                 } else if (pos.r === selected.r && pos.c === selected.c) {
                     selected = null;
@@ -418,7 +435,6 @@
             e.preventDefault();
             handleTap(e);
         }, {passive: false});
-
         canvas.addEventListener('click', handleTap);
 
         nextLevelBtn.onclick = () => {
