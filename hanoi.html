@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตรวจหวยฮานอย - ครบจังดอทคอม</title>
-    <meta name="description" content="ตรวจผลหวยฮานอยวันนี้ ฮานอยพิเศษ ฮานอยปกติ ฮานอย VIP อัปเดตทุกวัน">
+    <title>ตรวจหวยฮานอยรวม 3 รอบ - ครบจังดอทคอม</title>
+    <meta name="description" content="ตรวจผลหวยฮานอยวันนี้ พิเศษ ปกติ VIP อัปเดตทุกวัน รู้ผลทันที!">
     <meta name="keywords" content="ตรวจหวยฮานอย, หวยฮานอย, ฮานอยพิเศษ, ฮานอยปกติ, ฮานอย VIP, ครบจัง">
+    
+    <meta property="og:title" content="ตรวจหวยฮานอยรวม 3 รอบ - ครบจังดอทคอม">
+    <meta property="og:description" content="ตรวจผลหวยฮานอยวันนี้ พิเศษ ปกติ VIP อัปเดตทุกวัน รู้ผลทันที!">
+    <meta property="og:image" content="https://placehold.co/1200x630/1e40af/ffffff?text=Krobjang.com">
+    <meta property="og:url" content="https://krobjang.vercel.app/hanoi.html">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
     <style>
@@ -16,7 +22,7 @@
           --primary-dark: #1e3a8a; --primary: #1e40af; --primary-light: #3b82f6;
           --soft: #eff6ff; --bg: #f8fafc; --card: #ffffff; --text: #1e293b;
           --muted: #64748b; --radius: 18px; --highlight-red: #d32f2f; --highlight-green: #388e3c;
-          --hanoi-color: #10B981; /* สีเขียวมรกตสำหรับฮานอย */
+          --hanoi-color: #10B981;
           --hanoi-dark: #047857;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; }
@@ -33,12 +39,9 @@
         .content-area { display: flex; flex-direction: column; gap: 1.5rem; }
         .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         
-        /* เมนูสลับหน้าหวย */
         .lotto-tabs { display: flex; gap: 0.5rem; background: var(--card); padding: 0.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); overflow-x: auto; white-space: nowrap; }
         .lotto-tab-btn { flex: 1; text-align: center; padding: 0.75rem 1rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; color: var(--muted); transition: all 0.2s; border: 1px solid transparent; min-width: 120px; }
         .lotto-tab-btn:hover { background: var(--soft); color: var(--primary); }
-        
-        /* ✅ สำหรับหน้าหวยฮานอย จะเน้นเป็นสีเขียวมรกต */
         .lotto-tab-btn.active-hanoi { background: linear-gradient(135deg, #34D399, #10B981); color: white; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
 
         .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--hanoi-dark); display: flex; align-items: center; gap: 0.5rem; }
@@ -47,7 +50,6 @@
         .lotto-latest { text-align: center; }
         .draw-date { font-size: 1.1em; color: var(--muted); margin-bottom: 1.25rem; }
         
-        /* ✅ โครงสร้างการ์ด 3 ใบ สำหรับฮานอย 3 รอบ */
         .hanoi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; margin-bottom: 1.5rem; }
         .hanoi-card { border: 2px solid #ecfdf5; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s; }
         .hanoi-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(16, 185, 129, 0.15); border-color: var(--hanoi-color); }
@@ -97,11 +99,7 @@
         footer { margin-top: 2rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 1.25rem 1rem; font-size: 0.9rem; }
         footer a { color: #e0f2fe; text-decoration: none; font-weight: 600; margin: 0 0.5rem; }
         
-        @media (max-width: 768px) { 
-            .container { grid-template-columns: 1fr; } 
-            .hanoi-grid { grid-template-columns: 1fr; } /* เรียงลงมาเป็นการ์ด 3 ใบซ้อนกันในมือถือ */
-            .lotto-tabs { padding-bottom: 0.5rem; } 
-        }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .hanoi-grid { grid-template-columns: 1fr; } .lotto-tabs { padding-bottom: 0.5rem; } }
     </style>
 </head>
 <body>
@@ -136,9 +134,7 @@
 
             <div class="section lotto-latest">
                 <h2 style="color: var(--hanoi-dark);"><i class="fas fa-gem"></i> ผลหวยฮานอย วันนี้</h2>
-                <p style="text-align: center; color: var(--muted); margin-top: -0.5rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
-                    ออกรางวัลทุกวัน ลุ้นรวยได้ 3 รอบต่อวัน
-                </p>
+                <p style="text-align: center; color: var(--muted); margin-top: -0.5rem; margin-bottom: 0.5rem; font-size: 0.95rem;">ออกรางวัลทุกวัน ลุ้นรวยได้ 3 รอบต่อวัน</p>
 
                 <div class="draw-date" id="displayDate">กำลังอัปเดตข้อมูลล่าสุด...</div>
 
@@ -159,72 +155,27 @@
                     <div class="hanoi-card" id="card-special">
                         <div class="hanoi-header">ฮานอยพิเศษ (17:30 น.)</div>
                         <div class="hanoi-body">
-                            <div class="hn-box">
-                                <div class="hn-label">รางวัลพิเศษ (4 ตัว)</div>
-                                <div class="hn-number-big" id="sp-4">...</div>
-                            </div>
-                            <div style="display:flex; gap:0.5rem;">
-                                <div class="hn-box" style="flex:1;">
-                                    <div class="hn-label">3 ตัวบน</div>
-                                    <div class="hn-number-small" id="sp-3up">...</div>
-                                </div>
-                                <div class="hn-box" style="flex:1;">
-                                    <div class="hn-label">2 ตัวบน</div>
-                                    <div class="hn-number-small" id="sp-2up">...</div>
-                                </div>
-                            </div>
-                            <div class="hn-box">
-                                <div class="hn-label">2 ตัวล่าง</div>
-                                <div class="hn-number-small" id="sp-2down">...</div>
-                            </div>
+                            <div class="hn-box"><div class="hn-label">รางวัลพิเศษ (4 ตัว)</div><div class="hn-number-big" id="sp-4">...</div></div>
+                            <div style="display:flex; gap:0.5rem;"><div class="hn-box" style="flex:1;"><div class="hn-label">3 ตัวบน</div><div class="hn-number-small" id="sp-3up">...</div></div><div class="hn-box" style="flex:1;"><div class="hn-label">2 ตัวบน</div><div class="hn-number-small" id="sp-2up">...</div></div></div>
+                            <div class="hn-box"><div class="hn-label">2 ตัวล่าง</div><div class="hn-number-small" id="sp-2down">...</div></div>
                         </div>
                     </div>
 
                     <div class="hanoi-card" id="card-normal">
                         <div class="hanoi-header" style="background: linear-gradient(135deg, #F59E0B, #D97706);">ฮานอยปกติ (18:30 น.)</div>
                         <div class="hanoi-body">
-                            <div class="hn-box">
-                                <div class="hn-label">รางวัลพิเศษ (4 ตัว)</div>
-                                <div class="hn-number-big" id="nm-4">...</div>
-                            </div>
-                            <div style="display:flex; gap:0.5rem;">
-                                <div class="hn-box" style="flex:1;">
-                                    <div class="hn-label">3 ตัวบน</div>
-                                    <div class="hn-number-small" id="nm-3up">...</div>
-                                </div>
-                                <div class="hn-box" style="flex:1;">
-                                    <div class="hn-label">2 ตัวบน</div>
-                                    <div class="hn-number-small" id="nm-2up">...</div>
-                                </div>
-                            </div>
-                            <div class="hn-box">
-                                <div class="hn-label">2 ตัวล่าง</div>
-                                <div class="hn-number-small" id="nm-2down">...</div>
-                            </div>
+                            <div class="hn-box"><div class="hn-label">รางวัลพิเศษ (4 ตัว)</div><div class="hn-number-big" id="nm-4">...</div></div>
+                            <div style="display:flex; gap:0.5rem;"><div class="hn-box" style="flex:1;"><div class="hn-label">3 ตัวบน</div><div class="hn-number-small" id="nm-3up">...</div></div><div class="hn-box" style="flex:1;"><div class="hn-label">2 ตัวบน</div><div class="hn-number-small" id="nm-2up">...</div></div></div>
+                            <div class="hn-box"><div class="hn-label">2 ตัวล่าง</div><div class="hn-number-small" id="nm-2down">...</div></div>
                         </div>
                     </div>
 
                     <div class="hanoi-card" id="card-vip">
                         <div class="hanoi-header" style="background: linear-gradient(135deg, #EF4444, #B91C1C);">ฮานอย VIP (19:30 น.)</div>
                         <div class="hanoi-body">
-                            <div class="hn-box">
-                                <div class="hn-label">รางวัลพิเศษ (4 ตัว)</div>
-                                <div class="hn-number-big" id="vip-4">...</div>
-                            </div>
-                            <div style="display:flex; gap:0.5rem;">
-                                <div class="hn-box" style="flex:1;">
-                                    <div class="hn-label">3 ตัวบน</div>
-                                    <div class="hn-number-small" id="vip-3up">...</div>
-                                </div>
-                                <div class="hn-box" style="flex:1;">
-                                    <div class="hn-label">2 ตัวบน</div>
-                                    <div class="hn-number-small" id="vip-2up">...</div>
-                                </div>
-                            </div>
-                            <div class="hn-box">
-                                <div class="hn-label">2 ตัวล่าง</div>
-                                <div class="hn-number-small" id="vip-2down">...</div>
-                            </div>
+                            <div class="hn-box"><div class="hn-label">รางวัลพิเศษ (4 ตัว)</div><div class="hn-number-big" id="vip-4">...</div></div>
+                            <div style="display:flex; gap:0.5rem;"><div class="hn-box" style="flex:1;"><div class="hn-label">3 ตัวบน</div><div class="hn-number-small" id="vip-3up">...</div></div><div class="hn-box" style="flex:1;"><div class="hn-label">2 ตัวบน</div><div class="hn-number-small" id="vip-2up">...</div></div></div>
+                            <div class="hn-box"><div class="hn-label">2 ตัวล่าง</div><div class="hn-number-small" id="vip-2down">...</div></div>
                         </div>
                     </div>
                 </div>
@@ -274,44 +225,24 @@
                     if(index === notes.length - 1) { gain.gain.exponentialRampToValueAtTime(0.01, startTime + 1.5); osc.start(startTime); osc.stop(startTime + 1.5); } 
                     else { gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2); osc.start(startTime); osc.stop(startTime + 0.2); startTime += 0.15; }
                 });
-            } catch (e) { }
+            } catch (e) {}
         }
 
         let hanoiData = null;
 
-        // ฟังก์ชันจำลองดึงข้อมูลหวยฮานอย (รวม 3 รอบ)
         async function fetchHanoiData() {
             document.getElementById('displayDate').innerHTML = 'กำลังโหลดข้อมูล... <i class="fas fa-spinner fa-spin"></i>';
-            
             setTimeout(() => {
-                // ข้อมูลสมมติเพื่อให้เห็นภาพรวม (เมื่อมี API จริง สามารถนำมาแทนที่ได้เลย)
                 hanoiData = {
-                    date: "21 กุมภาพันธ์ 2569", // อัปเดตทุกวัน
+                    date: "21 กุมภาพันธ์ 2569", 
                     special: { p4: "8472", p3: "472", p2up: "72", p2down: "59" },
                     normal:  { p4: "1593", p3: "593", p2up: "93", p2down: "11" },
                     vip:     { p4: "0486", p3: "486", p2up: "86", p2down: "07" }
                 };
-
                 document.getElementById('displayDate').innerHTML = `ประจำวันที่ <strong>${hanoiData.date}</strong>`;
-                
-                // ยัดข้อมูลลงกล่องพิเศษ
-                document.getElementById('sp-4').innerText = hanoiData.special.p4;
-                document.getElementById('sp-3up').innerText = hanoiData.special.p3;
-                document.getElementById('sp-2up').innerText = hanoiData.special.p2up;
-                document.getElementById('sp-2down').innerText = hanoiData.special.p2down;
-
-                // ยัดข้อมูลลงกล่องปกติ
-                document.getElementById('nm-4').innerText = hanoiData.normal.p4;
-                document.getElementById('nm-3up').innerText = hanoiData.normal.p3;
-                document.getElementById('nm-2up').innerText = hanoiData.normal.p2up;
-                document.getElementById('nm-2down').innerText = hanoiData.normal.p2down;
-
-                // ยัดข้อมูลลงกล่อง VIP
-                document.getElementById('vip-4').innerText = hanoiData.vip.p4;
-                document.getElementById('vip-3up').innerText = hanoiData.vip.p3;
-                document.getElementById('vip-2up').innerText = hanoiData.vip.p2up;
-                document.getElementById('vip-2down').innerText = hanoiData.vip.p2down;
-
+                document.getElementById('sp-4').innerText = hanoiData.special.p4; document.getElementById('sp-3up').innerText = hanoiData.special.p3; document.getElementById('sp-2up').innerText = hanoiData.special.p2up; document.getElementById('sp-2down').innerText = hanoiData.special.p2down;
+                document.getElementById('nm-4').innerText = hanoiData.normal.p4; document.getElementById('nm-3up').innerText = hanoiData.normal.p3; document.getElementById('nm-2up').innerText = hanoiData.normal.p2up; document.getElementById('nm-2down').innerText = hanoiData.normal.p2down;
+                document.getElementById('vip-4').innerText = hanoiData.vip.p4; document.getElementById('vip-3up').innerText = hanoiData.vip.p3; document.getElementById('vip-2up').innerText = hanoiData.vip.p2up; document.getElementById('vip-2down').innerText = hanoiData.vip.p2down;
             }, 800);
         }
 
@@ -328,19 +259,16 @@
             let results = []; let foundAny = false;
 
             userNums.forEach(num => {
-                // เช็คฮานอยพิเศษ
                 if (num === hanoiData.special.p4) { results.push(`<div class="match-item">ถูก <strong>4 ตัว</strong> ฮานอยพิเศษ (${num})</div>`); foundAny = true; document.getElementById('card-special').classList.add('animate-win'); }
                 if (num === hanoiData.special.p3) { results.push(`<div class="match-item">ถูก <strong>3 ตัวบน</strong> ฮานอยพิเศษ (${num})</div>`); foundAny = true; document.getElementById('card-special').classList.add('animate-win'); }
                 if (num === hanoiData.special.p2up) { results.push(`<div class="match-item">ถูก <strong>2 ตัวบน</strong> ฮานอยพิเศษ (${num})</div>`); foundAny = true; document.getElementById('card-special').classList.add('animate-win'); }
                 if (num === hanoiData.special.p2down) { results.push(`<div class="match-item">ถูก <strong>2 ตัวล่าง</strong> ฮานอยพิเศษ (${num})</div>`); foundAny = true; document.getElementById('card-special').classList.add('animate-win'); }
 
-                // เช็คฮานอยปกติ
                 if (num === hanoiData.normal.p4) { results.push(`<div class="match-item">ถูก <strong>4 ตัว</strong> ฮานอยปกติ (${num})</div>`); foundAny = true; document.getElementById('card-normal').classList.add('animate-win'); }
                 if (num === hanoiData.normal.p3) { results.push(`<div class="match-item">ถูก <strong>3 ตัวบน</strong> ฮานอยปกติ (${num})</div>`); foundAny = true; document.getElementById('card-normal').classList.add('animate-win'); }
                 if (num === hanoiData.normal.p2up) { results.push(`<div class="match-item">ถูก <strong>2 ตัวบน</strong> ฮานอยปกติ (${num})</div>`); foundAny = true; document.getElementById('card-normal').classList.add('animate-win'); }
                 if (num === hanoiData.normal.p2down) { results.push(`<div class="match-item">ถูก <strong>2 ตัวล่าง</strong> ฮานอยปกติ (${num})</div>`); foundAny = true; document.getElementById('card-normal').classList.add('animate-win'); }
 
-                // เช็คฮานอย VIP
                 if (num === hanoiData.vip.p4) { results.push(`<div class="match-item">ถูก <strong>4 ตัว</strong> ฮานอย VIP (${num})</div>`); foundAny = true; document.getElementById('card-vip').classList.add('animate-win'); }
                 if (num === hanoiData.vip.p3) { results.push(`<div class="match-item">ถูก <strong>3 ตัวบน</strong> ฮานอย VIP (${num})</div>`); foundAny = true; document.getElementById('card-vip').classList.add('animate-win'); }
                 if (num === hanoiData.vip.p2up) { results.push(`<div class="match-item">ถูก <strong>2 ตัวบน</strong> ฮานอย VIP (${num})</div>`); foundAny = true; document.getElementById('card-vip').classList.add('animate-win'); }
@@ -348,22 +276,11 @@
             });
 
             const shareBox = document.getElementById('shareBox');
-            
-            // ล้างเอฟเฟกต์กระพริบหลังผ่านไป 2 วินาที
-            setTimeout(() => {
-                document.getElementById('card-special').classList.remove('animate-win');
-                document.getElementById('card-normal').classList.remove('animate-win');
-                document.getElementById('card-vip').classList.remove('animate-win');
-            }, 2000);
+            setTimeout(() => { document.getElementById('card-special').classList.remove('animate-win'); document.getElementById('card-normal').classList.remove('animate-win'); document.getElementById('card-vip').classList.remove('animate-win'); }, 2000);
 
             if (foundAny) { 
-                playGrandWinSound(); 
-                showResult(`🎉 ยินดีด้วยค่ะ!<br>${results.join('')}`, 'win'); 
-                shareBox.style.display = 'flex'; 
-            } else { 
-                showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัลรอบไหนเลย (เลข: ${userNums.join(', ')})</div>`, 'lose'); 
-                shareBox.style.display = 'none'; 
-            }
+                playGrandWinSound(); showResult(`🎉 ยินดีด้วยค่ะ!<br>${results.join('')}`, 'win'); shareBox.style.display = 'flex'; 
+            } else { showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัลรอบไหนเลย (เลข: ${userNums.join(', ')})</div>`, 'lose'); shareBox.style.display = 'none'; }
         }
 
         function showResult(html, type) { const res = document.getElementById('resultMsg'); res.innerHTML = html; res.className = type; }
