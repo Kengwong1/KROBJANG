@@ -478,7 +478,7 @@
         <div class="content-area">
             <div class="section lotto-latest">
                 <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
-                <div class="draw-date">งวดประจำวันที่ <strong>1 กุมภาพันธ์ 2569</strong></div>
+                <div class="draw-date">กำลังโหลดข้อมูล...</div>
 
                 <div class="check-form">
                     <label><i class="fas fa-search"></i> ตรวจเลขของคุณ (ใส่หลายเลขได้ คั่นด้วยช่องว่างหรือ ,)</label><br>
@@ -489,21 +489,21 @@
 
                 <div class="prize-box prize-1 animate-hover">
                     <h3>🏆 รางวัลที่ 1</h3>
-                    <div class="number" id="prize1-main">604738</div>
+                    <div class="number" id="prize1-main">กำลังโหลด...</div>
                 </div>
 
                 <div class="prize-summary">
                     <div class="prize-item animate-hover">
                         <h4>เลขท้าย 2 ตัว</h4>
-                        <div class="number" id="last2">85</div>
+                        <div class="number" id="last2">...</div>
                     </div>
                     <div class="prize-item animate-hover">
                         <h4>เลขท้าย 3 ตัว</h4>
-                        <div class="number" id="last3">471, 923</div>
+                        <div class="number" id="last3">...</div>
                     </div>
                     <div class="prize-item animate-hover">
                         <h4>เลขหน้า 3 ตัว</h4>
-                        <div class="number" id="front3">295, 036</div>
+                        <div class="number" id="front3">...</div>
                     </div>
                 </div>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">
@@ -515,50 +515,31 @@
                 <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล (169 รางวัล)</h2>
 
                 <h3>🥈 รางวัลที่ 2 (5 รางวัล)</h3>
-                <table class="prize-table">
+                <table class="prize-table table-prize-2">
                     <tbody>
-                        <tr><td>158421</td></tr>
-                        <tr><td>294856</td></tr>
-                        <tr><td>301548</td></tr>
-                        <tr><td>462973</td></tr>
-                        <tr><td>581024</td></tr>
+                        <tr><td>กำลังโหลดข้อมูล...</td></tr>
                     </tbody>
                 </table>
 
                 <h3>🥉 รางวัลที่ 3 (10 รางวัล)</h3>
-                <table class="prize-table">
+                <table class="prize-table table-prize-3">
                     <tbody>
-                        <tr><td>025814</td></tr>
-                        <tr><td>148520</td></tr>
-                        <tr><td>269357</td></tr>
-                        <tr><td>384015</td></tr>
-                        <tr><td>495123</td></tr>
-                        <tr><td>502476</td></tr>
-                        <tr><td>615289</td></tr>
-                        <tr><td>736952</td></tr>
-                        <tr><td>847103</td></tr>
-                        <tr><td>958214</td></tr>
+                        <tr><td>กำลังโหลดข้อมูล...</td></tr>
                     </tbody>
                 </table>
 
                 <h3>🎖️ รางวัลที่ 4 (50 รางวัล)</h3>
                 <div style="max-height:200px; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; padding:0.5rem; text-align:center;">
-                    (แสดงผลบางส่วนในตาราง)
+                    (รองรับการตรวจทางช่องค้นหาด้านบน)
                 </div>
 
                 <h3>🏅 รางวัลที่ 5 (100 รางวัล)</h3>
-                <div style="max-height:300px; overflow:auto; border:1px solid #e2e8f0; border-radius:8px;">
-                    <table class="prize-table" style="font-size:0.85rem;">
-                        <tbody>
-                             <tr><td>014523</td><td>125634</td><td>236745</td><td>347856</td><td>458967</td><td>569078</td><td>670189</td><td>781290</td><td>892301</td><td>903412</td></tr>
-                            <tr><td>102345</td><td>213456</td><td>324567</td><td>435678</td><td>546789</td><td>657890</td><td>768901</td><td>879012</td><td>980123</td><td>091234</td></tr>
-                            <tr><td colspan="10" style="color:gray;">... (ข้อมูลจำลองอื่นๆ) ...</td></tr>
-                        </tbody>
-                    </table>
+                <div style="max-height:300px; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; text-align:center; padding:0.5rem;">
+                    (รองรับการตรวจทางช่องค้นหาด้านบน)
                 </div>
 
                 <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">
-                    ✅ ข้อมูลจาก <a href="https://www.glo.or.th" target="_blank">สำนักงานสลากกินแบ่งรัฐบาล</a>
+                    ✅ ข้อมูลอัปเดตอัตโนมัติจาก API
                 </p>
             </div>
         </div>
@@ -631,39 +612,69 @@
             } catch (e) { }
         }
 
-        // 📊 ข้อมูลรางวัลทั้งหมด 169 รายการ — งวด 1 ก.พ. 69 (Mock Data จำลอง)
-        const lottoData = {
-            prize1: ['604738'],
-            prize2: ['158421','294856','301548','462973','581024'],
-            prize3: ['025814','148520','269357','384015','495123','502476','615289','736952','847103','958214'],
-            prize4: [
-                '100001', '100002', '100003', '100004', '100005', '100006', '100007', '100008', '100009', '100010',
-                '200001', '200002', '200003', '200004', '200005', '200006', '200007', '200008', '200009', '200010',
-                '300001', '300002', '300003', '300004', '300005', '300006', '300007', '300008', '300009', '300010',
-                '400001', '400002', '400003', '400004', '400005', '400006', '400007', '400008', '400009', '400010',
-                '500001', '500002', '500003', '500004', '500005', '500006', '500007', '500008', '500009', '500010'
-            ],
-            prize5: [
-                 '014523', '125634', '236745', '347856', '458967', '569078', '670189', '781290', '892301', '903412',
-                 '102345', '213456', '324567', '435678', '546789', '657890', '768901', '879012', '980123', '091234',
-                 '111111', '111112', '111113', '111114', '111115', '111116', '111117', '111118', '111119', '111120',
-                 '222211', '222212', '222213', '222214', '222215', '222216', '222217', '222218', '222219', '222220',
-                 '333311', '333312', '333313', '333314', '333315', '333316', '333317', '333318', '333319', '333320',
-                 '444411', '444412', '444413', '444414', '444415', '444416', '444417', '444418', '444419', '444420',
-                 '555511', '555512', '555513', '555514', '555515', '555516', '555517', '555518', '555519', '555520',
-                 '666611', '666612', '666613', '666614', '666615', '666616', '666617', '666618', '666619', '666620',
-                 '777711', '777712', '777713', '777714', '777715', '777716', '777717', '777718', '777719', '777720',
-                 '888811', '888812', '888813', '888814', '888815', '888816', '888817', '888818', '888819', '888820'
-            ],
-            front3: ['295','036'],
-            last3: ['471','923'],
-            last2: ['85']
-        };
+        // 📊 ตัวแปรเก็บข้อมูลหวยที่ดึงมาจาก API
+        let lottoData = null;
+
+        // ฟังก์ชันดึงข้อมูลจาก API แบบ Real-time
+        async function fetchLottoData() {
+            try {
+                const response = await fetch('https://lotto.api.rayriffy.com/lotto/latest');
+                const data = await response.json();
+                const result = data.response;
+
+                // 1. อัปเดตข้อมูลบนหน้าเว็บ (วันที่ และ รางวัลหลัก)
+                document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${result.date}</strong>`;
+                document.getElementById('prize1-main').innerText = result.prizes[0].number[0];
+                document.getElementById('front3').innerText = result.runningNumbers[0].number.join(', ');
+                document.getElementById('last3').innerText = result.runningNumbers[1].number.join(', ');
+                document.getElementById('last2').innerText = result.runningNumbers[2].number[0];
+
+                // 2. เก็บข้อมูลลง object สำหรับนำไปใช้ตรวจหวย
+                lottoData = {
+                    prize1: result.prizes[0].number,
+                    prize2: result.prizes[1].number,
+                    prize3: result.prizes[2].number,
+                    prize4: result.prizes[3].number,
+                    prize5: result.prizes[4].number,
+                    front3: result.runningNumbers[0].number,
+                    last3: result.runningNumbers[1].number,
+                    last2: result.runningNumbers[2].number
+                };
+
+                // 3. นำข้อมูลไปสร้างตารางรางวัลที่ 2 และ 3
+                renderPrizeTable(lottoData.prize2, 'table-prize-2');
+                renderPrizeTable(lottoData.prize3, 'table-prize-3');
+
+            } catch (error) {
+                console.error("ดึงข้อมูล API ผิดพลาด:", error);
+                document.getElementById('resultMsg').innerHTML = '<span style="color:red">ไม่สามารถดึงข้อมูลผลสลากได้ในขณะนี้</span>';
+            }
+        }
+
+        // ฟังก์ชันช่วยสร้างตารางรางวัลรอง
+        function renderPrizeTable(numbers, tableClass) {
+            const tbody = document.querySelector(`.${tableClass} tbody`);
+            if(!tbody) return;
+            let html = '';
+            numbers.forEach(num => {
+                html += `<tr><td>${num}</td></tr>`;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // โหลดข้อมูลทันทีที่เปิดหน้าเว็บ
+        fetchLottoData();
 
         function checkLotto() {
+            // เช็คว่าโหลด API เสร็จหรือยัง
+            if (!lottoData) {
+                showResult('⚠️ ข้อมูลยังโหลดไม่เสร็จ กรุณารอสักครู่ค่ะ', 'lose');
+                return;
+            }
+
             const input = document.getElementById('userNumbers').value.trim();
             if (!input) {
-                showResult('⚠️ กรุณากรอกเลขหวยของคุณก่อนค่ะ/ครับ', 'lose');
+                showResult('⚠️ กรุณากรอกเลขหวยของคุณก่อนค่ะ', 'lose');
                 return;
             }
 
@@ -671,50 +682,54 @@
             const userNums = rawNums.map(n => n.replace(/\D/g, '').padStart(6, '0')).filter(n => n.length === 6 && /^\d{6}$/.test(n));
 
             if (userNums.length === 0) {
-                showResult('❌ ไม่พบเลขที่ถูกต้อง กรุณาใส่ตัวเลข เช่น 604738 หรือ 036', 'lose');
+                showResult('❌ ไม่พบเลขที่ถูกต้อง กรุณาใส่ตัวเลข 6 หลัก เช่น 604738', 'lose');
                 return;
             }
 
             let results = [];
             let foundAny = false;
 
-            function checkAgainst(list, label, isPartial = false, len = 6) {
+            // ฟังก์ชันย่อยสำหรับเช็คเลข (แก้ไขให้รองรับหน้า/ท้ายอย่างถูกต้อง)
+            function checkAgainst(list, label, type = 'full') {
                 for (let num of userNums) {
-                    let target = isPartial ? num.slice(-len) : num;
                     if (Array.isArray(list)) {
                         for (let prize of list) {
-                            if (prize === target) {
+                            let isMatch = false;
+                            if (type === 'full' && num === prize) isMatch = true;
+                            if (type === 'front3' && num.startsWith(prize)) isMatch = true;
+                            if (type === 'last3' && num.endsWith(prize)) isMatch = true;
+                            if (type === 'last2' && num.endsWith(prize)) isMatch = true;
+
+                            if (isMatch) {
                                 results.push(`<div class="match-item"><i class="fas fa-check-circle"></i> เลข <strong>${num}</strong> ถูกรางวัล <strong>${label}</strong></div>`);
                                 foundAny = true;
-                                return true;
                             }
                         }
-                    } else if (list === target) {
-                        results.push(`<div class="match-item"><i class="fas fa-check-circle"></i> เลข <strong>${num}</strong> ถูกรางวัล <strong>${label}</strong></div>`);
-                        foundAny = true;
-                        return true;
                     }
                 }
-                return false;
             }
 
             // ตรวจทุกรางวัล
-            checkAgainst(lottoData.prize1[0], 'รางวัลที่ 1');
-            lottoData.prize2.forEach(p => checkAgainst([p], 'รางวัลที่ 2'));
-            lottoData.prize3.forEach(p => checkAgainst([p], 'รางวัลที่ 3'));
-            lottoData.prize4.forEach(p => checkAgainst([p], 'รางวัลที่ 4'));
-            lottoData.prize5.forEach(p => checkAgainst([p], 'รางวัลที่ 5'));
-            checkAgainst(lottoData.front3, 'เลขหน้า 3 ตัว', true, 3);
-            checkAgainst(lottoData.last3, 'เลขท้าย 3 ตัว', true, 3);
-            checkAgainst(lottoData.last2, 'เลขท้าย 2 ตัว', true, 2);
+            checkAgainst(lottoData.prize1, 'รางวัลที่ 1', 'full');
+            checkAgainst(lottoData.prize2, 'รางวัลที่ 2', 'full');
+            checkAgainst(lottoData.prize3, 'รางวัลที่ 3', 'full');
+            checkAgainst(lottoData.prize4, 'รางวัลที่ 4', 'full');
+            checkAgainst(lottoData.prize5, 'รางวัลที่ 5', 'full');
+            checkAgainst(lottoData.front3, 'เลขหน้า 3 ตัว', 'front3');
+            checkAgainst(lottoData.last3, 'เลขท้าย 3 ตัว', 'last3');
+            checkAgainst(lottoData.last2, 'เลขท้าย 2 ตัว', 'last2');
 
             if (foundAny) {
                 playWinSound();
                 showResult(results.join(''), 'win');
-                if (userNums.includes('604738')) {
-                    const el = document.getElementById('prize1-main');
-                    el.classList.add('animate-win');
-                    setTimeout(() => el.classList.remove('animate-win'), 2000);
+                
+                // เอฟเฟกต์กระพริบถ้ารางวัลที่ 1
+                for(let num of userNums) {
+                    if (lottoData.prize1.includes(num)) {
+                        const el = document.getElementById('prize1-main');
+                        el.parentElement.classList.add('animate-win');
+                        setTimeout(() => el.parentElement.classList.remove('animate-win'), 2000);
+                    }
                 }
             } else {
                 showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัลใดเลย (เลขที่ตรวจ: ${userNums.join(', ')})</div>`, 'lose');
