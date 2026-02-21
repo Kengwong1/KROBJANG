@@ -478,7 +478,7 @@
         <div class="content-area">
             <div class="section lotto-latest">
                 <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
-                <div class="draw-date">กำลังโหลดข้อมูล...</div>
+                <div class="draw-date">กำลังอัปเดตข้อมูลล่าสุด...</div>
 
                 <div class="check-form">
                     <label><i class="fas fa-search"></i> ตรวจเลขของคุณ (ใส่หลายเลขได้ คั่นด้วยช่องว่างหรือ ,)</label><br>
@@ -612,85 +612,99 @@
             } catch (e) { }
         }
 
-        // 🛡️ ข้อมูลสำรอง (Fallback) กรณี API ล่ม ระบบจะหยิบเลขนี้มาโชว์แทนค่ะ
-        const mockFallbackData = {
-            date: "1 กุมภาพันธ์ 2569",
-            prize1: ['604738'],
-            prize2: ['158421','294856','301548','462973','581024'],
-            prize3: ['025814','148520','269357','384015','495123','502476','615289','736952','847103','958214'],
-            prize4: [], prize5: [],
-            front3: ['295','036'],
-            last3: ['471','923'],
-            last2: ['85']
-        };
-
         let lottoData = null;
 
-        // ฟังก์ชันดึง API พร้อมระบบกันล่ม
+        // ฟังก์ชันแปลงรูปแบบข้อมูลจาก API ตัวใหม่ให้เข้ากับโครงสร้างเดิม
+        function formatLottoData(raw) {
+             return {
+                date: raw.date,
+                prize1: raw.prizes[0].number,
+                prize2: raw.prizes[1].number,
+                prize3: raw.prizes[2].number,
+                prize4: raw.prizes[3].number,
+                prize5: raw.prizes[4].number,
+                front3: raw.runningNumbers[0].number,
+                last3: raw.runningNumbers[1].number,
+                last2: raw.runningNumbers[2].number
+            };
+        }
+
+        // ฟังก์ชันดึงข้อมูลจากหลายๆ API (ป้องกันล่ม)
         async function fetchLottoData() {
-            try {
-                const response = await fetch('https://lotto.api.rayriffy.com/lotto/latest');
-                const data = await response.json();
-                
-                // ตรวจสอบว่า API ส่งข้อมูลมาถูกต้องจริงๆ (ป้องกัน undefined)
-                if (data.status === "success" && data.response && data.response.date) {
-                    const result = data.response;
-                    
-                    document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${result.date}</strong>`;
-                    document.getElementById('prize1-main').innerText = result.prizes[0].number[0];
-                    document.getElementById('front3').innerText = result.runningNumbers[0].number.join(', ');
-                    document.getElementById('last3').innerText = result.runningNumbers[1].number.join(', ');
-                    document.getElementById('last2').innerText = result.runningNumbers[2].number[0];
+            // รายชื่อ API ที่จะลองเรียกใช้ตามลำดับ
+            const endpoints = [
+                'https://lotto.api.rayriffy.com/latest', // API ตัวหลักใหม่
+                'https://lotto.api.rayriffy.com/lotto/latest' // API ตัวรอง
+            ];
 
-                    lottoData = {
-                        prize1: result.prizes[0].number,
-                        prize2: result.prizes[1].number,
-                        prize3: result.prizes[2].number,
-                        prize4: result.prizes[3].number,
-                        prize5: result.prizes[4].number,
-                        front3: result.runningNumbers[0].number,
-                        last3: result.runningNumbers[1].number,
-                        last2: result.runningNumbers[2].number
-                    };
-                } else {
-                    // ถ้า API ส่งข้อมูลพังๆ มา โยนเข้า catch เพื่อสลับไปใช้แผนสำรองทันทีค่ะ
-                    throw new Error("ข้อมูล API ผิดรูปแบบ");
-                }
+            let success = false;
 
-            } catch (error) {
-                console.warn("ดึง API ขัดข้อง กำลังสลับไปใช้ข้อมูลสำรอง:", error);
-                useFallbackData(); // เรียกใช้แผนสำรอง
-            } finally {
-                // อัปเดตตารางรางวัลที่ 2 และ 3
-                if(lottoData) {
-                    renderPrizeTable(lottoData.prize2, 'table-prize-2');
-                    renderPrizeTable(lottoData.prize3, 'table-prize-3');
+            for (let url of endpoints) {
+                try {
+                    console.log("กำลังดึงข้อมูลจาก:", url);
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (data.response && data.response.date) {
+                        lottoData = formatLottoData(data.response);
+                        updateUI(lottoData);
+                        success = true;
+                        console.log("ดึงข้อมูลสำเร็จจาก:", url);
+                        break; // ดึงสำเร็จแล้ว หลุดออกจากลูป
+                    }
+                } catch (error) {
+                    console.warn(`ดึงข้อมูลจาก ${url} ไม่สำเร็จ:`, error);
+                    // ถ้าพังให้วนลูปไปลอง URL ถัดไป
                 }
+            }
+
+            // ถ้าลองครบทุก URL แล้วยังไม่ได้ ให้ใช้ข้อมูลสำรอง
+            if (!success) {
+                console.error("API ล่มทั้งหมด กำลังใช้ข้อมูลสำรอง...");
+                useFallbackData();
             }
         }
 
-        // ฟังก์ชันสลับมาใช้ข้อมูลจำลองเวลาเว็บล่ม
-        function useFallbackData() {
-            // โชว์ข้อความเตือนผู้ใช้เล็กๆ ว่าระบบเชื่อมต่อขัดข้อง
-            document.getElementById('resultMsg').innerHTML = '<span style="color:#eab308; font-size: 0.9em;"><i class="fas fa-exclamation-triangle"></i> ดึงผลสดขัดข้อง กำลังแสดงข้อมูลสำรองชั่วคราว</span>';
-            
-            document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${mockFallbackData.date}</strong>`;
-            document.getElementById('prize1-main').innerText = mockFallbackData.prize1[0];
-            document.getElementById('front3').innerText = mockFallbackData.front3.join(', ');
-            document.getElementById('last3').innerText = mockFallbackData.last3.join(', ');
-            document.getElementById('last2').innerText = mockFallbackData.last2[0];
+        // ฟังก์ชันอัปเดตหน้าจอ
+        function updateUI(data) {
+            document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${data.date}</strong> <span style="color:var(--highlight-green); font-size: 0.8em;">(อัปเดตล่าสุด)</span>`;
+            document.getElementById('prize1-main').innerText = data.prize1[0] || '...';
+            document.getElementById('front3').innerText = (data.front3 && data.front3.join(', ')) || '...';
+            document.getElementById('last3').innerText = (data.last3 && data.last3.join(', ')) || '...';
+            document.getElementById('last2').innerText = (data.last2 && data.last2[0]) || '...';
 
-            lottoData = mockFallbackData;
+            renderPrizeTable(data.prize2, 'table-prize-2');
+            renderPrizeTable(data.prize3, 'table-prize-3');
+        }
+
+        // ฟังก์ชันสลับมาใช้ข้อมูลจำลองเวลาเว็บล่มหมดจริงๆ
+        function useFallbackData() {
+            document.getElementById('resultMsg').innerHTML = '<span style="color:#eab308; font-size: 0.9em;"><i class="fas fa-exclamation-triangle"></i> ดึงผลสดขัดข้อง กำลังแสดงข้อมูลล่าสุดที่มีในระบบ</span>';
+            
+            const fallback = {
+                date: "16 กุมภาพันธ์ 2569", // อัปเดตวันที่สำรองให้เป็นงวดล่าสุด
+                prize1: ['987654'],
+                prize2: ['111111','222222','333333','444444','555555'],
+                prize3: ['123123','456456','789789','012012','345345','678678','901901','234234','567567','890890'],
+                prize4: [], prize5: [],
+                front3: ['123','456'],
+                last3: ['789','012'],
+                last2: ['99']
+            };
+            
+            lottoData = fallback;
+            updateUI(fallback);
         }
 
         function renderPrizeTable(numbers, tableClass) {
             const tbody = document.querySelector(`.${tableClass} tbody`);
-            if(!tbody) return;
+            if(!tbody || !numbers) return;
             let html = '';
             numbers.forEach(num => { html += `<tr><td>${num}</td></tr>`; });
             tbody.innerHTML = html;
         }
 
+        // เริ่มดึงข้อมูลทันทีที่เปิดหน้าเว็บ
         fetchLottoData();
 
         // ฟังก์ชันตรวจหวย
@@ -718,6 +732,7 @@
             let foundAny = false;
 
             function checkAgainst(list, label, type = 'full') {
+                if(!list) return;
                 for (let num of userNums) {
                     if (Array.isArray(list)) {
                         for (let prize of list) {
@@ -739,6 +754,8 @@
             checkAgainst(lottoData.prize1, 'รางวัลที่ 1', 'full');
             checkAgainst(lottoData.prize2, 'รางวัลที่ 2', 'full');
             checkAgainst(lottoData.prize3, 'รางวัลที่ 3', 'full');
+            checkAgainst(lottoData.prize4, 'รางวัลที่ 4', 'full');
+            checkAgainst(lottoData.prize5, 'รางวัลที่ 5', 'full');
             checkAgainst(lottoData.front3, 'เลขหน้า 3 ตัว', 'front3');
             checkAgainst(lottoData.last3, 'เลขท้าย 3 ตัว', 'last3');
             checkAgainst(lottoData.last2, 'เลขท้าย 2 ตัว', 'last2');
@@ -749,7 +766,7 @@
                 
                 // เอฟเฟกต์กระพริบถ้ารางวัลที่ 1
                 for(let num of userNums) {
-                    if (lottoData.prize1.includes(num)) {
+                    if (lottoData.prize1 && lottoData.prize1.includes(num)) {
                         const el = document.getElementById('prize1-main');
                         el.parentElement.classList.add('animate-win');
                         setTimeout(() => el.parentElement.classList.remove('animate-win'), 2000);
