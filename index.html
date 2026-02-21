@@ -97,28 +97,58 @@
       transform: scale(1.02);
     }
 
-    /* Minimal Slogan Section - สโลแกนแบบมินิมอล */
-    .minimal-slogan {
+    /* ✅ Slogan Capsule แบบใหม่ - ประหยัดพื้นที่ สีสันสวยงาม */
+    .slogan-wrapper {
       text-align: center;
-      margin-bottom: 2rem;
-      padding-top: 1rem;
+      margin-top: -0.25rem; /* ดึงข้อความให้ชิดขอบบนขึ้นอีกนิด */
+      margin-bottom: 1.25rem;
     }
-    .minimal-slogan h1 {
-      font-size: 1.8rem;
+
+    .slogan-capsule {
+      background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 50px;
+      padding: 0.5rem 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .slogan-capsule:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.12);
+    }
+
+    .slogan-main {
       font-weight: 800;
       color: var(--primary-dark);
-      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
     }
-    .minimal-slogan p {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 400;
+
+    .slogan-main i {
+      color: #F59E0B; /* สีเหลืองทอง */
+      margin-right: 0.2rem;
+    }
+
+    .slogan-divider {
+      color: #93c5fd;
+      font-weight: 300;
+    }
+
+    .slogan-sub {
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
     /* Content Area */
     .container {
       max-width: 1200px;
-      margin: 1.5rem auto;
+      margin: 1.25rem auto; /* ลด margin ด้านบนของ container ลง */
       padding: 0 1rem;
       display: grid;
       grid-template-columns: 1fr 300px;
@@ -213,7 +243,7 @@
       text-decoration: underline;
     }
 
-    /* ✅ Sidebar — แบบสมบูรณ์ */
+    /* ✅ Sidebar */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -337,7 +367,6 @@
     .support-btn.youtube   { background: #FF0000; }
     .support-btn.tiktok    { background: #000000; }
 
-    /* ✅ Hover effect */
     .support-btn.facebook:hover { background: #365899; }
     .support-btn.youtube:hover  { background: #e60000; }
     .support-btn.tiktok:hover   { background: #333333; }
@@ -348,7 +377,15 @@
       .category-grid { grid-template-columns: repeat(2, 1fr); }
       .support-links { grid-template-columns: 1fr; }
       .ad-section h2::after { display: none; }
-      .minimal-slogan h1 { font-size: 1.5rem; }
+      
+      /* ปรับแคปซูลบนมือถือให้ขยับสวยๆ */
+      .slogan-capsule {
+        flex-direction: column;
+        gap: 0.25rem;
+        border-radius: 18px;
+        padding: 0.75rem 1rem;
+      }
+      .slogan-divider { display: none; } /* ซ่อนขีดคั่นในมือถือเพราะอยู่คนละบรรทัดแล้ว */
     }
   </style>
 </head>
@@ -376,9 +413,13 @@
   <div class="container">
     <div class="content-area">
       <div class="section" style="background: transparent; box-shadow: none; padding-top: 0;">
-        <div class="minimal-slogan">
-            <h1>ครบทุกเรื่อง ใช้งานง่ายทุกวัย</h1>
-            <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
+        
+        <div class="slogan-wrapper">
+          <div class="slogan-capsule">
+            <span class="slogan-main"><i class="fas fa-sparkles"></i> ครบทุกเรื่อง ใช้งานง่ายทุกวัย</span>
+            <span class="slogan-divider">|</span>
+            <span class="slogan-sub">อัปเดตข่าว AI, ดูดวง, หวย, การเงิน</span>
+          </div>
         </div>
 
         <h2 style="text-align: center; color: var(--primary); font-size: 1.6rem; margin-bottom: 1.25rem;">หมวดหมู่ยอดนิยม</h2>
@@ -470,7 +511,7 @@
   </div>
 
   <footer>
-    <p>© 2025 ครบจังดอทคอม | 
+    <p>© 2026 ครบจังดอทคอม | 
     <a href="#">นโยบายความเป็นส่วนตัว</a> |
     <a href="#">เกี่ยวกับเรา</a></p>
   </footer>
