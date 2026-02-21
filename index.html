@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ✅ Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <style>
@@ -98,36 +97,22 @@
       transform: scale(1.02);
     }
 
-    /* Hero Section */
-    .hero {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 2.5rem 2rem;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
-      color: #fff;
-      border-radius: var(--radius);
+    /* Minimal Slogan Section - สโลแกนแบบมินิมอล */
+    .minimal-slogan {
       text-align: center;
-      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.25);
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 2rem;
+      padding-top: 1rem;
     }
-
-    .hero h1 {
-      font-size: 2.2rem;
+    .minimal-slogan h1 {
+      font-size: 1.8rem;
       font-weight: 800;
-      margin: 0;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      line-height: 1.3;
+      color: var(--primary-dark);
+      margin-bottom: 0.25rem;
     }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin: 1rem 0 0.75rem;
-      opacity: 0.95;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+    .minimal-slogan p {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 400;
     }
 
     /* Content Area */
@@ -363,6 +348,7 @@
       .category-grid { grid-template-columns: repeat(2, 1fr); }
       .support-links { grid-template-columns: 1fr; }
       .ad-section h2::after { display: none; }
+      .minimal-slogan h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -387,19 +373,16 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>เว็บเดียว ครบทุกเรื่อง ใช้งานง่ายทุกวัย</h1>
-    <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
-  </section>
-
-  <!-- Content Area -->
   <div class="container">
     <div class="content-area">
-      <div class="section">
+      <div class="section" style="background: transparent; box-shadow: none; padding-top: 0;">
+        <div class="minimal-slogan">
+            <h1>ครบทุกเรื่อง ใช้งานง่ายทุกวัย</h1>
+            <p>อัปเดตข่าว AI, ดูดวง, หวย, การเงิน — อ่านง่าย ใช้ได้ทุกวัน</p>
+        </div>
+
         <h2 style="text-align: center; color: var(--primary); font-size: 1.6rem; margin-bottom: 1.25rem;">หมวดหมู่ยอดนิยม</h2>
         <div class="category-grid">
-          <!-- หมวดหลัก -->
           <a class="category-card" href="ai.html">
             <i class="fas fa-robot" style="color: #2EC4B6;"></i>
             <h3>AI & เทคโนโลยี</h3>
@@ -431,7 +414,6 @@
             <p>สุขภาพ ชีวิต ความเป็นอยู่</p>
           </a>
 
-          <!-- ✅ หมวดใหม่ — โหลดฟรี แจกฟรี -->
           <a class="category-card" href="free-gifts/index.html">
             <i class="fas fa-gift" style="color: #F59E0B;"></i>
             <h3>โหลดฟรี แจกฟรี</h3>
@@ -441,7 +423,6 @@
       </div>
     </div>
 
-    <!-- ✅ Sidebar — แบบสมบูรณ์ -->
     <aside class="sidebar">
       <div class="ad-section">
         <h2 class="support-site">
