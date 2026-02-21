@@ -40,7 +40,6 @@
 
         .lotto-latest { text-align: center; }
         
-        /* ✅ สไตล์สำหรับกล่องเลือกวันที่ย้อนหลัง */
         .history-select-box { background: var(--soft); padding: 0.75rem; border-radius: 12px; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #dbeafe; }
         .history-select-box select { padding: 0.4rem 0.5rem; border-radius: 8px; border: 1px solid #cbd5e1; font-family: 'Sarabun'; font-size: 1rem; outline: none; cursor: pointer; background: #fff; color: var(--primary-dark); font-weight: 600; }
 
@@ -86,6 +85,11 @@
         .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
         .ad-section { background: var(--card); border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         .ad-section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e293b; font-weight: 700; }
+        
+        /* ✅ แก้ไขสีไอคอนให้เข้ากับธีม */
+        .ad-section h2.support-site i { color: var(--primary); } /* สีน้ำเงิน */
+        .ad-section h2.support-us i { color: var(--highlight-red); } /* สีแดงหัวใจ */
+
         .adsense-container { background-color: #f9fbff; border: 1px dashed #dbeafe; border-radius: 12px; min-height: 250px; display: flex; align-items: center; justify-content: center; position: relative; }
         .adsense-container::before { content: "พื้นที่โฆษณา"; color: #94a3b8; font-size: 0.85rem; position: absolute; z-index: 0; }
         .support-card { background: var(--card); border-radius: var(--radius); padding: 1rem; }
@@ -220,6 +224,7 @@
             <div class="ad-section">
                 <h2><i class="fas fa-heart"></i> สนับสนุนเรา</h2>
                 <div class="support-card">
+                    <p><i class="fas fa-hand-holding-heart" style="color:var(--highlight-red);"></i> ขอบคุณทุกการสนับสนุน!</p>
                     <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
                     <div class="support-links">
                         <a href="#" class="support-btn promptpay"><i class="fas fa-money-bill-wave"></i> พร้อมเพย์</a>
@@ -262,61 +267,31 @@
 
         let lottoData = null;
 
-        // จัดฟอร์แมตข้อมูลจาก API ตัวหลัก (Rayriffy) ให้ใช้ง่าย
         function formatRayriffyData(raw) {
             return {
-                date: raw.date, 
-                prize1: raw.prizes[0].number, 
-                prize2: raw.prizes[1].number, 
-                prize3: raw.prizes[2].number,
-                prize4: raw.prizes[3].number, 
-                prize5: raw.prizes[4].number,
-                front3: raw.runningNumbers[0].number, 
-                last3: raw.runningNumbers[1].number, 
-                last2: raw.runningNumbers[2].number
+                date: raw.date, prize1: raw.prizes[0].number, prize2: raw.prizes[1].number, prize3: raw.prizes[2].number,
+                prize4: raw.prizes[3].number, prize5: raw.prizes[4].number, front3: raw.runningNumbers[0].number, 
+                last3: raw.runningNumbers[1].number, last2: raw.runningNumbers[2].number
             };
         }
 
-        // เคลียร์หน้าจอก่อนโหลดข้อมูลใหม่
         function showLoadingState() {
             document.getElementById('displayDate').innerHTML = 'กำลังโหลดข้อมูล... <i class="fas fa-spinner fa-spin"></i>';
             document.getElementById('prize1-main').innerText = '...';
-            document.getElementById('front3').innerText = '...';
-            document.getElementById('last3').innerText = '...';
-            document.getElementById('last2').innerText = '...';
-            document.getElementById('resultMsg').innerHTML = '';
-            document.getElementById('shareBox').style.display = 'none';
-            document.getElementById('userNumbers').value = '';
-            renderPrizeTable(['...'], 'table-prize-2');
-            renderPrizeTable(['...'], 'table-prize-3');
-            renderPrizeGrid(['...'], 'grid-prize-4');
-            renderPrizeGrid(['...'], 'grid-prize-5');
+            document.getElementById('front3').innerText = '...'; document.getElementById('last3').innerText = '...'; document.getElementById('last2').innerText = '...';
+            document.getElementById('resultMsg').innerHTML = ''; document.getElementById('shareBox').style.display = 'none'; document.getElementById('userNumbers').value = '';
+            renderPrizeTable(['...'], 'table-prize-2'); renderPrizeTable(['...'], 'table-prize-3'); renderPrizeGrid(['...'], 'grid-prize-4'); renderPrizeGrid(['...'], 'grid-prize-5');
         }
 
-        // ✅ อัปเกรด: ฟังก์ชันดึงข้อมูลตามวันที่เลือก
         async function fetchLottoData(dateId = 'latest') {
             showLoadingState();
-            
-            // ถ้าเลือกล่าสุด ใช้ endpoint /latest ถ้าเลือกวันที่ ใช้ /lotto/{dateId}
-            let url = dateId === 'latest' 
-                ? 'https://lotto.api.rayriffy.com/latest' 
-                : `https://lotto.api.rayriffy.com/lotto/${dateId}`;
-            
+            let url = dateId === 'latest' ? 'https://lotto.api.rayriffy.com/latest' : `https://lotto.api.rayriffy.com/lotto/${dateId}`;
             try {
-                console.log("กำลังดึงข้อมูลจาก:", url);
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (data.response && data.response.date) {
-                    lottoData = formatRayriffyData(data.response);
-                    updateUI(lottoData);
-                } else {
-                    throw new Error("ไม่พบข้อมูล");
-                }
+                const response = await fetch(url); const data = await response.json();
+                if (data.response && data.response.date) { lottoData = formatRayriffyData(data.response); updateUI(lottoData); } else { throw new Error("ไม่พบข้อมูล"); }
             } catch (error) {
-                console.warn(`ดึงข้อมูลไม่สำเร็จ:`, error);
-                document.getElementById('displayDate').innerHTML = `<span style="color:var(--highlight-red);">❌ ไม่พบข้อมูลของงวดที่เลือก หรือระบบขัดข้อง</span>`;
-                lottoData = null; // ป้องกันการกดตรวจ
+                console.warn(`API Error:`, error);
+                document.getElementById('displayDate').innerHTML = `<span style="color:var(--highlight-red);">❌ ไม่พบข้อมูลของงวดที่เลือก หรือระบบขัดข้อง</span>`; lottoData = null;
             }
         }
 
@@ -332,28 +307,19 @@
 
         function renderPrizeTable(numbers, tableClass) {
             const tbody = document.querySelector(`.${tableClass} tbody`);
-            if(!tbody || !numbers) return; let html = '';
-            numbers.forEach(num => { html += `<tr><td>${num}</td></tr>`; }); tbody.innerHTML = html;
+            if(!tbody || !numbers) return; let html = ''; numbers.forEach(num => { html += `<tr><td>${num}</td></tr>`; }); tbody.innerHTML = html;
         }
-
         function renderPrizeGrid(numbers, containerId) {
             const container = document.getElementById(containerId);
             if(!container || !numbers || numbers.length === 0) return; let html = '';
-            numbers.forEach(num => { html += `<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.4rem; text-align:center; font-weight:600; color:#1e3a8a;">${num}</div>`; });
-            container.innerHTML = html;
+            numbers.forEach(num => { html += `<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.4rem; text-align:center; font-weight:600; color:#1e3a8a;">${num}</div>`; }); container.innerHTML = html;
         }
 
-        // เริ่มดึงข้อมูลงวดล่าสุดตอนเปิดเว็บ
         fetchLottoData('latest');
+        document.getElementById('historySelect').addEventListener('change', function(e) { fetchLottoData(e.target.value); });
 
-        // ✅ จับ Event เมื่อคนเปลี่ยน Dropdown เลือกงวด
-        document.getElementById('historySelect').addEventListener('change', function(e) {
-            fetchLottoData(e.target.value);
-        });
-
-        // ฟังก์ชันตรวจหวย
         function checkLotto() {
-            if (!lottoData) { showResult('⚠️ ข้อมูลยังโหลดไม่เสร็จ หรือไม่พบข้อมูลงวดนี้ค่ะ', 'lose'); return; }
+            if (!lottoData) { showResult('⚠️ ข้อมูลไม่พร้อมใช้งาน', 'lose'); return; }
             const input = document.getElementById('userNumbers').value.trim();
             if (!input) { showResult('⚠️ กรุณากรอกเลขหวยก่อนค่ะ', 'lose'); return; }
             const rawNums = input.split(/[\s,，]+/).filter(x => x.trim());
@@ -361,25 +327,8 @@
             if (userNums.length === 0) { showResult('❌ กรุณาใส่ตัวเลข 6 หลัก', 'lose'); return; }
 
             let results = []; let foundAny = false;
-
             function checkAgainst(list, label, type = 'full') {
-                if(!list) return;
-                for (let num of userNums) {
-                    if (Array.isArray(list)) {
-                        for (let prize of list) {
-                            let isMatch = false;
-                            if (type === 'full' && num === prize) isMatch = true;
-                            if (type === 'front3' && num.startsWith(prize)) isMatch = true;
-                            if (type === 'last3' && num.endsWith(prize)) isMatch = true;
-                            if (type === 'last2' && num.endsWith(prize)) isMatch = true;
-
-                            if (isMatch) {
-                                results.push(`<div class="match-item"><i class="fas fa-star" style="color:#F59E0B;"></i> ยินดีด้วย! เลข <strong>${num}</strong> ถูกรางวัล <strong>${label}</strong></div>`);
-                                foundAny = true;
-                            }
-                        }
-                    }
-                }
+                if(!list) return; for (let num of userNums) { if (Array.isArray(list)) { for (let prize of list) { let isMatch = false; if (type === 'full' && num === prize) isMatch = true; if (type === 'front3' && num.startsWith(prize)) isMatch = true; if (type === 'last3' && num.endsWith(prize)) isMatch = true; if (type === 'last2' && num.endsWith(prize)) isMatch = true; if (isMatch) { results.push(`<div class="match-item"><i class="fas fa-star" style="color:#F59E0B;"></i> ยินดีด้วย! เลข <strong>${num}</strong> ถูกรางวัล <strong>${label}</strong></div>`); foundAny = true; } } } }
             }
 
             checkAgainst(lottoData.prize1, 'รางวัลที่ 1', 'full'); checkAgainst(lottoData.prize2, 'รางวัลที่ 2', 'full');
@@ -388,29 +337,12 @@
             checkAgainst(lottoData.last3, 'เลขท้าย 3 ตัว', 'last3'); checkAgainst(lottoData.last2, 'เลขท้าย 2 ตัว', 'last2');
 
             const shareBox = document.getElementById('shareBox');
-
-            if (foundAny) {
-                playGrandWinSound();
-                showResult(results.join(''), 'win');
-                shareBox.style.display = 'flex'; 
-                for(let num of userNums) {
-                    if (lottoData.prize1 && lottoData.prize1.includes(num)) {
-                        const el = document.getElementById('prize1-main');
-                        el.parentElement.classList.add('animate-win');
-                        setTimeout(() => el.parentElement.classList.remove('animate-win'), 2000);
-                    }
-                }
-            } else {
-                showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัล (เลข: ${userNums.join(', ')})</div>`, 'lose');
-                shareBox.style.display = 'none'; 
-            }
+            if (foundAny) { playGrandWinSound(); showResult(results.join(''), 'win'); shareBox.style.display = 'flex'; 
+                for(let num of userNums) { if (lottoData.prize1 && lottoData.prize1.includes(num)) { const el = document.getElementById('prize1-main'); el.parentElement.classList.add('animate-win'); setTimeout(() => el.parentElement.classList.remove('animate-win'), 2000); } }
+            } else { showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัล (เลข: ${userNums.join(', ')})</div>`, 'lose'); shareBox.style.display = 'none'; }
         }
 
-        function showResult(html, type) {
-            const res = document.getElementById('resultMsg');
-            res.innerHTML = html; res.className = type;
-        }
-
+        function showResult(html, type) { const res = document.getElementById('resultMsg'); res.innerHTML = html; res.className = type; }
         document.getElementById('checkBtn')?.addEventListener('click', checkLotto);
         document.getElementById('userNumbers')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkLotto(); });
 
@@ -423,5 +355,3 @@
     </script>
 </body>
 </html>
-
-
