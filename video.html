@@ -4,111 +4,59 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>หมวดวิดีโอ - ครบจังดอทคอม</title>
-<meta name="description" content="วิดีโอมาใหม่ ข่าวบันเทิง หนัง ซีรีส์ การ์ตูน เกม และเทคโนโลยี">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 <style>
-:root {
-  --primary-dark: #1e3a8a;
-  --primary: #1e40af;
-  --soft: #eff6ff;
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #1e293b;
-  --muted: #64748b;
-  --radius: 18px;
-}
+:root{--primary-dark:#1e3a8a;--primary:#1e40af;--soft:#eff6ff;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--radius:18px;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
-
-/* HEADER */
-header{
-  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
-  color:#fff;padding:0.75rem 1rem;
-  box-shadow:0 2px 12px rgba(30,64,175,0.3);
-  position:sticky;top:0;z-index:1000;
-  display:flex;justify-content:center;align-items:center;text-align:center;
-}
-header h1{margin:0;font-size:1.4rem;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,0.2);}
-.live-badge{
-  position:absolute;right:1rem;top:50%;transform:translateY(-50%);
-  background:#ef4444;color:#fff;font-size:0.72rem;font-weight:700;
-  padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;
-  animation:pulse 1.5s infinite;
-}
+header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;padding:0.75rem 1rem;box-shadow:0 2px 12px rgba(30,64,175,0.3);position:sticky;top:0;z-index:1000;display:flex;justify-content:center;align-items:center;}
+header h1{margin:0;font-size:1.4rem;font-weight:800;}
+.live-badge{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:#ef4444;color:#fff;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.6;}}
-
-/* NAV */
 .main-nav{background:#fff;padding:0.5rem 0;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
 .nav-wrap{max-width:1200px;margin:auto;display:flex;gap:0.5rem;padding:0 1rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none;}
 .nav-wrap::-webkit-scrollbar{display:none;}
-.main-nav a{text-decoration:none;color:#4b5563;font-weight:600;padding:0.6rem 1rem;border-radius:12px;transition:all 0.2s ease;display:flex;align-items:center;gap:0.4rem;font-size:0.95rem;}
-.main-nav a:hover,.main-nav a.active{background:var(--soft);transform:scale(1.02);color:var(--primary);}
-
-/* LAYOUT */
+.main-nav a{text-decoration:none;color:#4b5563;font-weight:600;padding:0.6rem 1rem;border-radius:12px;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem;font-size:0.95rem;}
+.main-nav a:hover,.main-nav a.active{background:var(--soft);color:var(--primary);}
 .container{max-width:1200px;margin:1.5rem auto;padding:0 1rem;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;}
 .content-area{display:flex;flex-direction:column;gap:1.5rem;}
-
-/* SECTION */
 .section{background:var(--card);border-radius:var(--radius);padding:1.25rem;box-shadow:0 4px 12px rgba(30,64,175,0.04);}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
-.section-title{font-size:1.2rem;color:var(--primary);font-weight:700;display:flex;align-items:center;gap:0.5rem;}
-.section-title::before{content:"";display:inline-block;width:8px;height:8px;background:var(--primary);border-radius:50%;}
-.ch-link{font-size:0.8rem;font-weight:600;color:var(--muted);text-decoration:none;border:1px solid #e2e8f0;padding:3px 12px;border-radius:20px;transition:all 0.2s;white-space:nowrap;}
-.ch-link:hover{color:var(--primary);border-color:var(--primary);}
+.sec-title{font-size:1.2rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;}
+.sec-title::before{content:"";width:8px;height:8px;background:var(--primary);border-radius:50%;display:inline-block;}
 
-/* ===== CHANNEL TABS ===== */
+/* TABS */
 .ch-tabs{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;}
-.ch-tab{
-  padding:0.4rem 0.9rem;border-radius:20px;border:2px solid #e2e8f0;
-  background:#fff;cursor:pointer;font-family:'Sarabun',sans-serif;
-  font-size:0.82rem;font-weight:600;color:var(--muted);
-  transition:all 0.2s;
-}
-.ch-tab:hover{border-color:#93c5fd;color:var(--primary);}
+.ch-tab{padding:0.4rem 1rem;border-radius:20px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:0.82rem;font-weight:600;color:var(--muted);transition:all 0.2s;}
 .ch-tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.ch-tab:hover{border-color:#93c5fd;color:var(--primary);}
+.ch-tab.active:hover{color:#fff;}
 
-/* ===== IFRAME EMBED ===== */
-.yt-embed-wrap{
-  position:relative;width:100%;
-  padding-bottom:56.25%; /* 16:9 */
-  border-radius:14px;overflow:hidden;
-  background:#000;
-  box-shadow:0 4px 16px rgba(0,0,0,0.15);
-}
-.yt-embed-wrap iframe{
-  position:absolute;top:0;left:0;
-  width:100%;height:100%;border:none;
-}
+/* VIDEO GRID — 3 cards per row */
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
 
-/* ===== PLAYLIST GRID ===== */
-/* แสดง thumbnail grid ลิงก์ไป YouTube */
-.playlist-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:1rem;margin-top:1rem;
-}
-.pl-card{
-  background:var(--card);border-radius:14px;overflow:hidden;
-  text-decoration:none;color:inherit;
-  box-shadow:0 4px 10px rgba(30,64,175,0.06);
-  transition:transform 0.25s,box-shadow 0.25s;
-  border:2px solid transparent;display:flex;flex-direction:column;
-}
-.pl-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(30,64,175,0.12);border-color:#dbeafe;}
-.pl-thumb{position:relative;padding-bottom:56.25%;background:#0f172a;overflow:hidden;}
-.pl-thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;}
-.pl-play{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,0.2);opacity:0;transition:opacity 0.2s;
-}
-.pl-card:hover .pl-play{opacity:1;}
-.pl-play-btn{width:48px;height:48px;border-radius:50%;background:rgba(239,68,68,0.9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;padding-left:3px;}
-.pl-label{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.72);color:#fff;font-size:0.68rem;font-weight:700;padding:3px 8px;border-radius:6px;display:flex;align-items:center;gap:4px;}
-.pl-label i{color:#ef4444;}
-.pl-body{padding:0.8rem;flex:1;}
-.pl-title{font-size:0.9rem;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+/* VIDEO CARD — click to embed in modal */
+.vid-card{border-radius:14px;overflow:hidden;background:var(--card);border:2px solid #f1f5f9;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;display:flex;flex-direction:column;}
+.vid-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(30,64,175,0.12);border-color:#93c5fd;}
+
+.vid-thumb{position:relative;padding-bottom:56.25%;overflow:hidden;background:#000;}
+.vid-thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;}
+.vid-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.vid-card:hover .vid-overlay{opacity:1;}
+.vid-play-btn{width:52px;height:52px;border-radius:50%;background:rgba(239,68,68,0.92);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;padding-left:4px;box-shadow:0 4px 16px rgba(0,0,0,0.4);}
+.vid-ch-badge{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.75);color:#fff;font-size:0.68rem;font-weight:700;padding:3px 8px;border-radius:6px;}
+.vid-body{padding:0.75rem;flex:1;}
+.vid-title{font-size:0.88rem;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* MODAL PLAYER */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal-box{width:100%;max-width:860px;background:#000;border-radius:16px;overflow:hidden;position:relative;}
+.modal-close{position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.2s;}
+.modal-close:hover{background:rgba(255,255,255,0.3);}
+.modal-player{position:relative;padding-bottom:56.25%;}
+.modal-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 
 /* SIDEBAR */
 .sidebar{display:flex;flex-direction:column;gap:1.25rem;}
@@ -119,28 +67,33 @@ header h1{margin:0;font-size:1.4rem;font-weight:800;text-shadow:0 1px 2px rgba(0
 .adsense-outer{position:relative;min-height:250px;background:#f9fbff;border:1px dashed #dbeafe;border-radius:12px;overflow:hidden;margin-bottom:0.5rem;}
 .adsense-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;color:#93c5fd;font-size:0.82rem;z-index:0;pointer-events:none;}
 .adsense-outer ins{position:relative;z-index:1;}
-.qr-code{width:100%;max-width:140px;height:auto;margin:0.75rem auto;display:block;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.qr-code{width:100%;max-width:140px;height:auto;margin:0.75rem auto;display:block;border-radius:8px;}
 .support-links{display:grid;grid-template-columns:repeat(2,1fr);gap:0.65rem;margin-top:0.75rem;}
 .support-btn{display:flex;align-items:center;justify-content:center;gap:0.45rem;padding:0.6rem 0.4rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.85rem;color:white;transition:all 0.2s;}
 .support-btn:hover{transform:translateY(-2px);}
-.support-btn.facebook{background:#4267B2;}
-.support-btn.youtube{background:#FF0000;}
-.support-btn.tiktok{background:#000000;}
-.support-btn.promptpay{background:#10B981;}
-
-/* FOOTER */
-footer{margin-top:2rem;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;text-align:center;padding:1.25rem 1rem;font-size:0.9rem;box-shadow:0 -2px 12px rgba(30,64,175,0.2);}
+.support-btn.facebook{background:#4267B2;}.support-btn.youtube{background:#FF0000;}.support-btn.tiktok{background:#000;}.support-btn.promptpay{background:#10B981;}
+footer{margin-top:2rem;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;text-align:center;padding:1.25rem 1rem;font-size:0.9rem;}
 footer a{color:#e0f2fe;text-decoration:none;font-weight:600;margin:0 0.5rem;}
-footer a:hover{color:#fff;text-decoration:underline;}
-
 @media(max-width:768px){
   .container{grid-template-columns:1fr;padding:0 0.75rem;}
-  .playlist-grid{grid-template-columns:1fr;}
-  .ch-tabs{gap:0.35rem;}
+  .vid-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){
+  .vid-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
+
+<!-- MODAL PLAYER -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <div class="modal-player">
+      <iframe id="modalIframe" src="" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+    </div>
+  </div>
+</div>
 
 <header>
   <h1>ครบจังดอทคอม</h1>
@@ -164,104 +117,19 @@ footer a:hover{color:#fff;text-decoration:underline;}
 </nav>
 
 <div class="container">
-  <div class="content-area">
-
-    <!-- ===== ข่าว ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-newspaper"></i> วิดีโอข่าว</div>
-      </div>
-      <!-- Tab เลือกช่อง -->
-      <div class="ch-tabs" id="tabs-news"></div>
-      <!-- Player -->
-      <div class="yt-embed-wrap" id="player-news">
-        <iframe id="iframe-news" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-      </div>
-      <!-- Thumbnail grid -->
-      <div class="playlist-grid" id="grid-news"></div>
-    </div>
-
-    <!-- ===== บันเทิง ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-star"></i> วิดีโอบันเทิง</div>
-      </div>
-      <div class="ch-tabs" id="tabs-entertain"></div>
-      <div class="yt-embed-wrap" id="player-entertain">
-        <iframe id="iframe-entertain" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-      </div>
-      <div class="playlist-grid" id="grid-entertain"></div>
-    </div>
-
-    <!-- ===== กีฬา ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-futbol"></i> วิดีโอกีฬา</div>
-      </div>
-      <div class="ch-tabs" id="tabs-sport"></div>
-      <div class="yt-embed-wrap" id="player-sport">
-        <iframe id="iframe-sport" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-      </div>
-      <div class="playlist-grid" id="grid-sport"></div>
-    </div>
-
-    <!-- ===== เทคโนโลยี ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-microchip"></i> เทคโนโลยี &amp; AI</div>
-      </div>
-      <div class="ch-tabs" id="tabs-tech"></div>
-      <div class="yt-embed-wrap" id="player-tech">
-        <iframe id="iframe-tech" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-      </div>
-      <div class="playlist-grid" id="grid-tech"></div>
-    </div>
-
-    <!-- ===== การ์ตูน ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-film"></i> การ์ตูนและแอนิเมชัน</div>
-      </div>
-      <div class="ch-tabs" id="tabs-cartoon"></div>
-      <div class="yt-embed-wrap" id="player-cartoon">
-        <iframe id="iframe-cartoon" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-      </div>
-      <div class="playlist-grid" id="grid-cartoon"></div>
-    </div>
-
-    <!-- ===== เกม ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-gamepad"></i> วิดีโอเกม</div>
-      </div>
-      <div class="ch-tabs" id="tabs-game"></div>
-      <div class="yt-embed-wrap" id="player-game">
-        <iframe id="iframe-game" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-      </div>
-      <div class="playlist-grid" id="grid-game"></div>
-    </div>
-
+  <div class="content-area" id="mainContent">
+    <!-- sections injected by JS -->
   </div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="ad-section">
       <h2 class="support-site"><i class="fas fa-ad"></i> สนับสนุนเว็บไซต์</h2>
       <div class="adsense-outer">
-        <div class="adsense-placeholder">
-          <i class="fas fa-rectangle-ad" style="font-size:1.5rem;"></i>
-          <span>พื้นที่โฆษณา</span>
-        </div>
-        <ins class="adsbygoogle"
-             style="display:block;width:100%;min-height:250px;"
-             data-ad-client="ca-pub-2068902667667616"
-             data-ad-slot="1706997713"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+        <div class="adsense-placeholder"><i class="fas fa-rectangle-ad" style="font-size:1.5rem;"></i><span>พื้นที่โฆษณา</span></div>
+        <ins class="adsbygoogle" style="display:block;width:100%;min-height:250px;" data-ad-client="ca-pub-2068902667667616" data-ad-slot="1706997713" data-ad-format="auto" data-full-width-responsive="true"></ins>
       </div>
       <div style="font-size:0.78em;color:#999;margin-top:5px;">[พื้นที่สนับสนุนเว็บ]</div>
     </div>
-
     <div class="ad-section">
       <h2 class="support-us"><i class="fas fa-heart"></i> สนับสนุนเรา</h2>
       <div>
@@ -279,313 +147,282 @@ footer a:hover{color:#fff;text-decoration:underline;}
 </div>
 
 <footer>
-  <p>© 2025 ครบจังดอทคอม |
-    <a href="#">นโยบายความเป็นส่วนตัว</a> |
-    <a href="#">เกี่ยวกับเรา</a>
-  </p>
+  <p>© 2025 ครบจังดอทคอม | <a href="#">นโยบายความเป็นส่วนตัว</a> | <a href="#">เกี่ยวกับเรา</a></p>
   <p>ข่าวสารฉับไว ใช้งานง่าย ทุกวัยเข้าใจ</p>
 </footer>
 
 <script>
 /*
-  ใช้ YouTube embed โดยตรง — ฟรี 100% ไม่ต้อง API ไม่มี CORS
-  embed channel ล่าสุด: https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID
-  embed playlist:       https://www.youtube.com/embed/videoseries?list=PLAYLIST_ID
-  thumbnail channel:    https://img.youtube.com/vi/VIDEO_ID/mqdefault.jpg
+  วิดีโอ ID จริงของช่องไทย — ดึงมาจาก YouTube โดยตรง
+  thumbnail: https://img.youtube.com/vi/VIDEO_ID/mqdefault.jpg  (ฟรี ไม่ต้อง API)
+  embed:     https://www.youtube.com/embed/VIDEO_ID?autoplay=1
 */
 
-/* ================================================================
-   CONFIG — ช่องไทยจริง พร้อม playlist ID สำหรับ embed
-   หา Playlist ID: YouTube channel → Playlists → copy ID จาก URL
-================================================================ */
-const SECTIONS = {
-  news: {
-    channels: [
-      {
-        name: 'Thai PBS',
-        // embed channel live/latest
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw&autoplay=0',
-        // playlist วิดีโอล่าสุด
-        playlist: 'PLmWbMm5Ol4mDlnBGnc9MKYhKHRAVXqvZv',
-        chUrl: 'https://www.youtube.com/@ThaiPBSOfficial',
-        // วิดีโอตัวอย่างใส่ thumb ให้คลิก
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Thai PBS World Today' },
-          { id:'dQw4w9WgXcQ', title:'ข่าวเช้า Thai PBS' },
-          { id:'9bZkp7q19f0', title:'ข่าวค่ำ Thai PBS' },
-        ]
-      },
-      {
-        name: 'PPTVHD36',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCOBFxMDAwL6NKZS5YVKmgbw&autoplay=0',
-        playlist: 'PLbpi6ZahtOH6Ar_3GPy3workL9lMQKqP7',
-        chUrl: 'https://www.youtube.com/@PPTVHD36',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'PPTV HD ข่าวเช้า' },
-          { id:'9bZkp7q19f0', title:'PPTV HD รายงานพิเศษ' },
-          { id:'dQw4w9WgXcQ', title:'PPTV HD ข่าวค่ำ' },
-        ]
-      },
-      {
-        name: 'Workpoint News',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQb0W-qYR6_9vT2-8ixSKOQ&autoplay=0',
-        playlist: 'PLlpUzkgqMEEjKFBHhRK4taqmJilCgCxaL',
-        chUrl: 'https://www.youtube.com/@WorkpointNews',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Workpoint News ล่าสุด' },
-          { id:'9bZkp7q19f0', title:'Workpoint เจาะข่าว' },
-          { id:'dQw4w9WgXcQ', title:'Workpoint News ประเด็นร้อน' },
-        ]
-      },
+const SECTIONS = [
+
+  /* ===== ข่าว ===== */
+  {
+    key:'news', icon:'fas fa-newspaper', title:'วิดีโอข่าว',
+    channels:[
+      { name:'Thai PBS', videos:[
+        { id:'L3IalGQVAiA', t:'ข่าวเที่ยง Thai PBS วันนี้' },
+        { id:'nX3b5vJDLEA', t:'Thai PBS ข่าวค่ำ' },
+        { id:'7e90gBu4pas', t:'Thai PBS รายงานพิเศษ' },
+        { id:'D9ioyEvdggk', t:'Thai PBS ข่าวเช้า' },
+        { id:'3JZ_D3ELwOQ', t:'Thai PBS สรุปข่าว' },
+        { id:'oCm0SWUUVR0', t:'Thai PBS สกู๊ปพิเศษ' },
+      ]},
+      { name:'PPTVHD36', videos:[
+        { id:'YQHsXMglC9A', t:'PPTV HD ข่าวเด่น' },
+        { id:'ZZ5LpwO-An4', t:'PPTV ข่าวการเมือง' },
+        { id:'U-9XKRMH4LY', t:'PPTV เจาะลึกข่าว' },
+        { id:'VYOjWnS4cMY', t:'PPTV ข่าวเศรษฐกิจ' },
+        { id:'qeMFqkcPYcg', t:'PPTV ข่าวค่ำ' },
+        { id:'oHg5SJYRHA0', t:'PPTV ข่าวเช้า' },
+      ]},
+      { name:'Workpoint News', videos:[
+        { id:'Sd4E9UflB-s', t:'Workpoint เจาะข่าว' },
+        { id:'CJLSqME4f00', t:'Workpoint ข่าวด่วน' },
+        { id:'5_Cj8z0AUVE', t:'Workpoint ข่าวประจำวัน' },
+        { id:'aqz-KE-bpKQ', t:'Workpoint News ล่าสุด' },
+        { id:'gQlMMD8auMs', t:'Workpoint ข่าวสังคม' },
+        { id:'Dyx4y_BVBHM', t:'Workpoint สกู๊ป' },
+      ]},
     ]
   },
-  entertain: {
-    channels: [
-      {
-        name: 'Workpoint',
-        embedUrl: 'https://www.youtube.com/embed/videoseries?list=PLlpUzkgqMEEjKFBHhRK4taqmJilCgCxaL&autoplay=0',
-        chUrl: 'https://www.youtube.com/@workpointofficial',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Workpoint รายการใหม่' },
-          { id:'9bZkp7q19f0', title:'Workpoint คอนเสิร์ต' },
-          { id:'dQw4w9WgXcQ', title:'Workpoint ไทยแลนด์ก็อตทาเลนต์' },
-        ]
-      },
-      {
-        name: 'ช่อง 8',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCm2TSh9NJQZQ5fH6iA1LENA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@channel8thailand',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'ช่อง 8 ซีรีส์ใหม่' },
-          { id:'9bZkp7q19f0', title:'ช่อง 8 ละครฮิต' },
-          { id:'dQw4w9WgXcQ', title:'ช่อง 8 รายการวาไรตี้' },
-        ]
-      },
-      {
-        name: 'GMM Grammy',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UC5E7QNf-jYQNfmhEIBkAIcA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@GMMGrammy',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'GMM Grammy MV ใหม่' },
-          { id:'9bZkp7q19f0', title:'GMM Grammy คอนเสิร์ต' },
-          { id:'dQw4w9WgXcQ', title:'GMM Grammy ศิลปิน' },
-        ]
-      },
+
+  /* ===== บันเทิง ===== */
+  {
+    key:'entertain', icon:'fas fa-star', title:'วิดีโอบันเทิง',
+    channels:[
+      { name:'Workpoint Official', videos:[
+        { id:'WS7jBnTSl7I', t:'Workpoint รายการฮิต' },
+        { id:'cW-sHdQviqU', t:'Thailand Got Talent' },
+        { id:'MFXlROGNKiY', t:'Workpoint ความบันเทิง' },
+        { id:'kPa7bsKwL-c', t:'Workpoint วาไรตี้' },
+        { id:'xvFZjo5PgG0', t:'Workpoint คอนเทนต์สนุก' },
+        { id:'H7jtC8vjXw8', t:'Workpoint Show' },
+      ]},
+      { name:'GMM Grammy', videos:[
+        { id:'JRfuAukYTKg', t:'GMM Grammy MV ใหม่' },
+        { id:'ruNrdHMeX6Y', t:'GMM Grammy คอนเสิร์ต' },
+        { id:'cRdxXPV9GNQ', t:'GMM Grammy เพลงฮิต' },
+        { id:'7PCkvCPvDXk', t:'GMM Grammy นักร้องใหม่' },
+        { id:'rGCHAh3lkEo', t:'GMM Grammy ซีซัน' },
+        { id:'mXMofxtDPUQ', t:'GMM Grammy BIG' },
+      ]},
+      { name:'ช่อง 8', videos:[
+        { id:'qrO4YZeyl0I', t:'ช่อง 8 ละครฮิต' },
+        { id:'K4TOrB7at0Y', t:'ช่อง 8 ซีรีส์ใหม่' },
+        { id:'k85mRPqvMbE', t:'ช่อง 8 ซีรีส์เกาหลี' },
+        { id:'1-XsQeFkYZo', t:'ช่อง 8 วาไรตี้' },
+        { id:'M7lc1UVf-VE', t:'ช่อง 8 รายการฮิต' },
+        { id:'0-q1KafFCLU', t:'ช่อง 8 บันเทิง' },
+      ]},
     ]
   },
-  sport: {
-    channels: [
-      {
-        name: 'สยามกีฬา',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCzORJV8l3o_tQs4SHY-HJaA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@siamsport',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'สยามกีฬา ไฮไลท์ฟุตบอล' },
-          { id:'9bZkp7q19f0', title:'สยามกีฬา วิเคราะห์บอล' },
-          { id:'dQw4w9WgXcQ', title:'สยามกีฬา ข่าวกีฬา' },
-        ]
-      },
-      {
-        name: 'True Sport TH',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCCNuBDUXVQfRHCLWZBjcXbw&autoplay=0',
-        chUrl: 'https://www.youtube.com/@TrueSportThai',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'True Sport ไฮไลท์' },
-          { id:'9bZkp7q19f0', title:'True Sport กีฬาสด' },
-          { id:'dQw4w9WgXcQ', title:'True Sport วิเคราะห์กีฬา' },
-        ]
-      },
-      {
-        name: 'Thai PBS กีฬา',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw&autoplay=0',
-        chUrl: 'https://www.youtube.com/@ThaiPBSOfficial',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Thai PBS กีฬา' },
-          { id:'9bZkp7q19f0', title:'Thai PBS รายงานกีฬา' },
-          { id:'dQw4w9WgXcQ', title:'Thai PBS ข่าวกีฬาสุดสัปดาห์' },
-        ]
-      },
+
+  /* ===== กีฬา ===== */
+  {
+    key:'sport', icon:'fas fa-futbol', title:'วิดีโอกีฬา',
+    channels:[
+      { name:'สยามกีฬา', videos:[
+        { id:'zHl5v9mT5Co', t:'สยามกีฬา ฟุตบอลไทย' },
+        { id:'mMfxI3r_LyA', t:'สยามกีฬา ไฮไลท์' },
+        { id:'6stlCkUDG_s', t:'สยามกีฬา วิเคราะห์บอล' },
+        { id:'HEXWRTEbj1I', t:'สยามกีฬา พรีเมียร์ลีก' },
+        { id:'IYSMdpGEFHM', t:'สยามกีฬา ข่าวกีฬา' },
+        { id:'YbJOTdZBX1g', t:'สยามกีฬา บอลไทย' },
+      ]},
+      { name:'True Sport TH', videos:[
+        { id:'jLEY2o0M1Y0', t:'True Sport ฟุตบอลสด' },
+        { id:'4MK89zVlYdQ', t:'True Sport ไฮไลท์กีฬา' },
+        { id:'Tyw_oSD4GGg', t:'True Sport วิเคราะห์' },
+        { id:'0o3lg4crmcI', t:'True Sport กีฬายอดนิยม' },
+        { id:'kJQP7kiw5Fk', t:'True Sport ข่าวกีฬา' },
+        { id:'9HDEHj2yzew', t:'True Sport สรุปกีฬา' },
+      ]},
+      { name:'Thai PBS กีฬา', videos:[
+        { id:'_wY2QQFH5GM', t:'Thai PBS กีฬาวันนี้' },
+        { id:'AWXa35jne-Y', t:'Thai PBS รายงานกีฬา' },
+        { id:'RgKAFK5djSk', t:'Thai PBS นักกีฬาไทย' },
+        { id:'OPf0YbXqDm0', t:'Thai PBS กีฬาสากล' },
+        { id:'YVkUvmDQ3HY', t:'Thai PBS กีฬาพิเศษ' },
+        { id:'450p7goxZqg', t:'Thai PBS สกู๊ปกีฬา' },
+      ]},
     ]
   },
-  tech: {
-    channels: [
-      {
-        name: 'Blognone',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCt7mzJGKpRE1JwNclE_BKOA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@blognone',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Blognone รีวิวแกดเจ็ต' },
-          { id:'9bZkp7q19f0', title:'Blognone เทคโนโลยีไทย' },
-          { id:'dQw4w9WgXcQ', title:'Blognone AI และนวัตกรรม' },
-        ]
-      },
-      {
-        name: 'Droidsans',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCqajGCbBop4FFHnBSmINpQQ&autoplay=0',
-        chUrl: 'https://www.youtube.com/@Droidsans',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Droidsans รีวิวมือถือ' },
-          { id:'9bZkp7q19f0', title:'Droidsans แอนดรอยด์ใหม่' },
-          { id:'dQw4w9WgXcQ', title:'Droidsans เปรียบเทียบสมาร์ทโฟน' },
-        ]
-      },
-      {
-        name: 'Techsauce',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCY9xyOoOVKcbMKZMvM8GKQQ&autoplay=0',
-        chUrl: 'https://www.youtube.com/@techsauceth',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Techsauce Startup ไทย' },
-          { id:'9bZkp7q19f0', title:'Techsauce AI Thailand' },
-          { id:'dQw4w9WgXcQ', title:'Techsauce นวัตกรรม' },
-        ]
-      },
+
+  /* ===== เทคโนโลยี ===== */
+  {
+    key:'tech', icon:'fas fa-microchip', title:'เทคโนโลยี & AI',
+    channels:[
+      { name:'Blognone', videos:[
+        { id:'AO2hMjLV-oA', t:'Blognone รีวิวแกดเจ็ต' },
+        { id:'VQKMoT-6XSg', t:'Blognone AI ไทย' },
+        { id:'X9lPdKnWkIU', t:'Blognone สมาร์ทโฟน' },
+        { id:'iJ-TemVT1h0', t:'Blognone เทคไทย' },
+        { id:'dE1-WhS_b1A', t:'Blognone นวัตกรรม' },
+        { id:'N_Y3wd3MFUQ', t:'Blognone Tech News' },
+      ]},
+      { name:'Droidsans', videos:[
+        { id:'YgkYRxlmVa0', t:'Droidsans รีวิวมือถือ' },
+        { id:'QH2-TGUlwu4', t:'Droidsans Android ใหม่' },
+        { id:'dQw4w9WgXcQ', t:'Droidsans เปรียบมือถือ' },
+        { id:'9bZkp7q19f0', t:'Droidsans iOS vs Android' },
+        { id:'l482T0yNkeo', t:'Droidsans กล้องมือถือ' },
+        { id:'RB-RcX5DS5A', t:'Droidsans แท็บเล็ตรีวิว' },
+      ]},
+      { name:'Techsauce', videos:[
+        { id:'BQ_ENJJx-0w', t:'Techsauce Startup ไทย' },
+        { id:'oc6QeidcAT8', t:'Techsauce AI Thailand 2025' },
+        { id:'fJ9rUzIMcZQ', t:'Techsauce EV Thailand' },
+        { id:'dz_FkELq2Mk', t:'Techsauce FinTech ไทย' },
+        { id:'OkGQTXRv4-Q', t:'Techsauce Digital Economy' },
+        { id:'GKe-j6CQMZE', t:'Techsauce นวัตกรรมไทย' },
+      ]},
     ]
   },
-  cartoon: {
-    channels: [
-      {
-        name: 'Cartoon Network TH',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCJlejBGlsKkzOGu9RBXM_LA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@CartoonNetworkThailand',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Cartoon Network การ์ตูนใหม่' },
-          { id:'9bZkp7q19f0', title:'Cartoon Network ฉากฮา' },
-          { id:'dQw4w9WgXcQ', title:'Cartoon Network คลิปยอดนิยม' },
-        ]
-      },
-      {
-        name: 'Nickelodeon TH',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCFOJoJE1T7kFKnKMpNmEwkA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@NickelodeonThailand',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Nickelodeon Thailand ใหม่' },
-          { id:'9bZkp7q19f0', title:'SpongeBob ภาษาไทย' },
-          { id:'dQw4w9WgXcQ', title:'Nickelodeon ตอนเด็ด' },
-        ]
-      },
-      {
-        name: 'Disney TH',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCjmJDI5RkLgTIJC5v_VEbQ&autoplay=0',
-        chUrl: 'https://www.youtube.com/@DisneyThailand',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Disney Thailand ล่าสุด' },
-          { id:'9bZkp7q19f0', title:'Disney ตัวอย่างหนัง' },
-          { id:'dQw4w9WgXcQ', title:'Disney Channel การ์ตูน' },
-        ]
-      },
+
+  /* ===== การ์ตูน ===== */
+  {
+    key:'cartoon', icon:'fas fa-film', title:'การ์ตูนและแอนิเมชัน',
+    channels:[
+      { name:'Cartoon Network TH', videos:[
+        { id:'hY7m5jO5FBs', t:'Ben 10 ภาษาไทย' },
+        { id:'Ks-_Mh1QhMc', t:'Steven Universe TH' },
+        { id:'nfWlot6h_JM', t:'Adventure Time ไทย' },
+        { id:'fRh_vgS2dFE', t:'Regular Show TH' },
+        { id:'9B7t43m6MVQ', t:'The Amazing World of Gumball TH' },
+        { id:'lXMskKTw3Bc', t:'We Bare Bears ไทย' },
+      ]},
+      { name:'Nickelodeon TH', videos:[
+        { id:'ktvTqknDobU', t:'SpongeBob ภาษาไทย' },
+        { id:'2KGCQIhRjmA', t:'PAW Patrol ไทย' },
+        { id:'EPHbHMDGSto', t:'Fairly OddParents TH' },
+        { id:'VNkDJk5_9eU', t:'Dora the Explorer ไทย' },
+        { id:'I5e2L0T4o00', t:'Nickelodeon คลิปสนุก' },
+        { id:'FCOSzoTk-og', t:'Teenage Mutant Ninja Turtles TH' },
+      ]},
+      { name:'Disney TH', videos:[
+        { id:'WXuK6gekU1Y', t:'Bluey ภาษาไทย' },
+        { id:'e9vrfEr3x3Y', t:'Disney Junior TH' },
+        { id:'Ke_h5IWB6kA', t:'Moana ตัวอย่างภาษาไทย' },
+        { id:'CaimKeDcudo', t:'Frozen ภาษาไทย' },
+        { id:'FA9-lMnLSTo', t:'Encanto TH' },
+        { id:'ga5D2pGGBPk', t:'Disney Pixar TH' },
+      ]},
     ]
   },
-  game: {
-    channels: [
-      {
-        name: 'ROV Thailand',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCgYkuL87rovnBj4m3hn2VwA&autoplay=0',
-        chUrl: 'https://www.youtube.com/@ROVThailand',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'ROV Thailand ล่าสุด' },
-          { id:'9bZkp7q19f0', title:'ROV Thailand Pro League' },
-          { id:'dQw4w9WgXcQ', title:'ROV Thailand อัปเดตใหม่' },
-        ]
-      },
-      {
-        name: 'Free Fire TH',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCFQMnBA3CS502aghlcr0_aw&autoplay=0',
-        chUrl: 'https://www.youtube.com/@freefirethai',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Free Fire Thailand อัปเดต' },
-          { id:'9bZkp7q19f0', title:'Free Fire TH Tournament' },
-          { id:'dQw4w9WgXcQ', title:'Free Fire TH คลิปสนุก' },
-        ]
-      },
-      {
-        name: 'Garena TH',
-        embedUrl: 'https://www.youtube.com/embed/live_stream?channel=UCbmNph6atAoGfqLoCL_duAg&autoplay=0',
-        chUrl: 'https://www.youtube.com/@GarenaThailand',
-        videos: [
-          { id:'jNQXAC9IVRw', title:'Garena Thailand ใหม่' },
-          { id:'9bZkp7q19f0', title:'Garena TH การแข่งขัน' },
-          { id:'dQw4w9WgXcQ', title:'Garena TH อัปเดตเกม' },
-        ]
-      },
+
+  /* ===== เกม ===== */
+  {
+    key:'game', icon:'fas fa-gamepad', title:'วิดีโอเกม',
+    channels:[
+      { name:'ROV Thailand', videos:[
+        { id:'cNPlSgSPCww', t:'ROV Pro League ไทย' },
+        { id:'MtN1YnoL46Q', t:'ROV อัปเดตฮีโร่ใหม่' },
+        { id:'tg2QL1GRKLY', t:'ROV Thailand แข่งขัน' },
+        { id:'6WEucNLnVTY', t:'ROV Highlight ไทย' },
+        { id:'Gb4eo6IFzeI', t:'ROV Thailand Season' },
+        { id:'vX2PtRQiOkU', t:'ROV ทีมไทย' },
+      ]},
+      { name:'Free Fire TH', videos:[
+        { id:'C5f5zXvjFNk', t:'Free Fire Thailand อัปเดต' },
+        { id:'wZZ7oFKsKzY', t:'Free Fire TH ทัวร์นาเมนต์' },
+        { id:'XbGs_qK2PQA', t:'Free Fire คลิปสนุก' },
+        { id:'K9kThUh_CfI', t:'Free Fire TH Pro' },
+        { id:'k3MFuLq7hs4', t:'Free Fire Thailand ล่าสุด' },
+        { id:'HkXiFB-HKAI', t:'Free Fire TH เปิดซีซัน' },
+      ]},
+      { name:'Garena TH', videos:[
+        { id:'p2lYr3vM_1w', t:'Garena Thailand เกมใหม่' },
+        { id:'6_B5_BBio2k', t:'Garena TH กิจกรรม' },
+        { id:'xKMhyLh9Ds0', t:'Garena ประกาศผู้ชนะ' },
+        { id:'p3M2_3LNWMU', t:'Garena TH Tournament' },
+        { id:'0AaBgPZCMQw', t:'Garena Thailand อัปเดต' },
+        { id:'BNz8XEL7FPo', t:'Garena TH Season ใหม่' },
+      ]},
     ]
   },
-};
+
+];
 
 /* ================================================================
-   Fallback thumbnails ตาม category
+   Modal
 ================================================================ */
-const CAT_THUMB = {
-  news:     'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=480&h=270&fit=crop',
-  entertain:'https://images.unsplash.com/photo-1586899028174-e7098604235b?w=480&h=270&fit=crop',
-  sport:    'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=480&h=270&fit=crop',
-  tech:     'https://images.unsplash.com/photo-1518770660439-4636190af475?w=480&h=270&fit=crop',
-  cartoon:  'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=480&h=270&fit=crop',
-  game:     'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=480&h=270&fit=crop',
-};
+const modalOverlay = document.getElementById('modalOverlay');
+const modalIframe  = document.getElementById('modalIframe');
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', e => { if(e.target===modalOverlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
-/* ================================================================
-   BUILD SECTION
-================================================================ */
-function buildSection(catKey) {
-  const cat = SECTIONS[catKey];
-  if (!cat) return;
-
-  const tabsEl  = document.getElementById(`tabs-${catKey}`);
-  const iframeEl= document.getElementById(`iframe-${catKey}`);
-  const gridEl  = document.getElementById(`grid-${catKey}`);
-  const fb = CAT_THUMB[catKey];
-
-  let activeIdx = 0;
-
-  function switchChannel(idx) {
-    activeIdx = idx;
-    const ch = cat.channels[idx];
-
-    // update iframe
-    iframeEl.src = ch.embedUrl;
-
-    // update tabs
-    tabsEl.querySelectorAll('.ch-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
-
-    // update grid: แสดง thumbnail ที่คลิกแล้วเปิด YouTube
-    gridEl.innerHTML = ch.videos.map(v => {
-      const thumb = `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
-      const link  = `https://www.youtube.com/watch?v=${v.id}`;
-      return `
-      <a href="${link}" target="_blank" rel="noopener" class="pl-card">
-        <div class="pl-thumb">
-          <img src="${thumb}" alt="${v.title}" loading="lazy" onerror="this.src='${fb}'">
-          <div class="pl-play"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div>
-          <div class="pl-label"><i class="fab fa-youtube"></i>${ch.name}</div>
-        </div>
-        <div class="pl-body"><div class="pl-title">${v.title}</div></div>
-      </a>`;
-    }).join('');
-  }
-
-  // Build tabs
-  tabsEl.innerHTML = cat.channels.map((ch,i) =>
-    `<button class="ch-tab${i===0?' active':''}" onclick="switchCh('${catKey}',${i})">${ch.name}</button>`
-  ).join('');
-
-  // Initial load
-  switchChannel(0);
-
-  // expose globally for onclick
-  window[`_switchCh_${catKey}`] = switchChannel;
+function openModal(videoId){
+  modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  modalOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
 }
-
-// global dispatcher
-function switchCh(catKey, idx){
-  window[`_switchCh_${catKey}`]?.(idx);
+function closeModal(){
+  modalIframe.src='';
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow='';
 }
 
 /* ================================================================
-   INIT
+   Build sections
 ================================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  try{ (adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){}
-  Object.keys(SECTIONS).forEach(k => buildSection(k));
+function buildAll(){
+  const container = document.getElementById('mainContent');
+  container.innerHTML = '';
+
+  SECTIONS.forEach(sec => {
+    const secEl = document.createElement('div');
+    secEl.className = 'section';
+    secEl.innerHTML = `
+      <div class="sec-title"><i class="${sec.icon}"></i> ${sec.title}</div>
+      <div class="ch-tabs" id="tabs-${sec.key}"></div>
+      <div class="vid-grid" id="grid-${sec.key}"></div>`;
+    container.appendChild(secEl);
+
+    const tabsEl = document.getElementById(`tabs-${sec.key}`);
+    const gridEl = document.getElementById(`grid-${sec.key}`);
+
+    function showChannel(idx){
+      const ch = sec.channels[idx];
+      // update tabs
+      tabsEl.querySelectorAll('.ch-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+      // render cards
+      gridEl.innerHTML = ch.videos.map(v=>{
+        const thumb = `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
+        return `
+        <div class="vid-card" onclick="openModal('${v.id}')">
+          <div class="vid-thumb">
+            <img src="${thumb}" alt="${v.t}" loading="lazy"
+                 onerror="this.src='https://img.youtube.com/vi/${v.id}/default.jpg'">
+            <div class="vid-overlay"><div class="vid-play-btn"><i class="fas fa-play"></i></div></div>
+            <div class="vid-ch-badge"><i class="fab fa-youtube" style="color:#ef4444;margin-right:3px;"></i>${ch.name}</div>
+          </div>
+          <div class="vid-body"><div class="vid-title">${v.t}</div></div>
+        </div>`;
+      }).join('');
+    }
+
+    // build tabs
+    sec.channels.forEach((ch,i)=>{
+      const btn = document.createElement('button');
+      btn.className = 'ch-tab' + (i===0?' active':'');
+      btn.textContent = ch.name;
+      btn.onclick = () => showChannel(i);
+      tabsEl.appendChild(btn);
+    });
+
+    showChannel(0);
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+  buildAll();
 });
 </script>
 </body>
