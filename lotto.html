@@ -9,8 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
-            crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
     <style>
         :root {
@@ -33,6 +32,27 @@
         .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
         
+        /* ✅ สไตล์สำหรับกรอบวิดีโอถ่ายทอดสด */
+        .live-section { border-top: 4px solid var(--highlight-red); }
+        .live-section h2 { color: var(--highlight-red); }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* อัตราส่วน 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .lotto-latest { text-align: center; }
         .draw-date { font-size: 1.1em; color: var(--muted); margin-bottom: 1.25rem; }
         .prize-box { display: inline-block; background: var(--highlight-red); color: #fff; padding: 1rem 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3); margin-bottom: 1.25rem; }
@@ -52,7 +72,6 @@
         #resultMsg.win { color: var(--highlight-green); font-size: 1.1rem;}
         #resultMsg.lose { color: var(--highlight-red); }
 
-        /* ✅ ปุ่มแชร์โซเชียล (ซ่อนไว้ก่อน จะโชว์ตอนถูกหวย) */
         .share-box { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1; display: none; justify-content: center; gap: 0.5rem; align-items: center;}
         .share-text { font-size: 0.95rem; font-weight: 700; color: var(--primary-dark); }
         .btn-share { border: none; padding: 0.5rem 1rem; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: transform 0.2s;}
@@ -63,11 +82,9 @@
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(56, 142, 60, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(56, 142, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(56, 142, 60, 0); } }
         .animate-win { animation: pulse 0.8s ease-out; background: #e8f5e9 !important; border: 2px solid var(--highlight-green); }
 
-        /* ตารางรางวัลทั่วไป */
         .prize-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
         .prize-table td { padding: 0.75rem; border: 1px solid #e2e8f0; text-align: center; }
         
-        /* ✅ แถบยืดหดได้ (Accordion) สำหรับรางวัลที่ 4 และ 5 */
         details.prize-accordion { background: var(--soft); border: 1px solid #dbeafe; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; }
         details.prize-accordion summary { padding: 1rem; font-weight: 700; color: var(--primary-dark); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
         details.prize-accordion summary:hover { background: #dbeafe; }
@@ -76,7 +93,6 @@
         details[open].prize-accordion summary::after { transform: rotate(180deg); }
         .accordion-content { padding: 1rem; background: #fff; border-top: 1px solid #dbeafe; max-height: 350px; overflow-y: auto; }
 
-        /* Sidebar & Footer CSS */
         .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
         .ad-section { background: var(--card); border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         .ad-section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e293b; font-weight: 700; }
@@ -115,6 +131,17 @@
 
     <div class="container">
         <div class="content-area">
+            
+            <div class="section live-section">
+                <h2><i class="fas fa-broadcast-tower"></i> ถ่ายทอดสดสลากกินแบ่งรัฐบาล</h2>
+                <p style="text-align: center; color: var(--muted); margin-top: -0.5rem; margin-bottom: 1rem; font-size: 0.95rem;">
+                    มารอลุ้นผลรางวัลแบบสดๆ ไปพร้อมกันตรงนี้เลยค่ะ!
+                </p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/S_I5O_zYw-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+
             <div class="section lotto-latest">
                 <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
                 <div class="draw-date">กำลังอัปเดตข้อมูลล่าสุด...</div>
@@ -155,7 +182,6 @@
 
             <div class="section">
                 <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล (169 รางวัล)</h2>
-
                 <h3>🥈 รางวัลที่ 2 (5 รางวัล)</h3>
                 <table class="prize-table table-prize-2"><tbody><tr><td>กำลังโหลดข้อมูล...</td></tr></tbody></table>
 
@@ -165,21 +191,16 @@
                 <details class="prize-accordion">
                     <summary>🎖️ รางวัลที่ 4 (50 รางวัล) - คลิกเพื่อดูเลขทั้งหมด</summary>
                     <div class="accordion-content">
-                        <div id="grid-prize-4" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem;">
-                            กำลังโหลด...
-                        </div>
+                        <div id="grid-prize-4" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem;">กำลังโหลด...</div>
                     </div>
                 </details>
 
                 <details class="prize-accordion">
                     <summary>🏅 รางวัลที่ 5 (100 รางวัล) - คลิกเพื่อดูเลขทั้งหมด</summary>
                     <div class="accordion-content">
-                        <div id="grid-prize-5" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem;">
-                            กำลังโหลด...
-                        </div>
+                        <div id="grid-prize-5" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem;">กำลังโหลด...</div>
                     </div>
                 </details>
-
             </div>
         </div>
 
@@ -211,39 +232,24 @@
     </footer>
 
     <script>
-        // 🎺 ✅ อัปเกรด: เสียงประกาศชัยชนะสุดยิ่งใหญ่ (Grand Fanfare Sound)
         function playGrandWinSound() {
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
                 let startTime = ctx.currentTime;
-                
-                // โน้ตเพลงความสำเร็จ (C4 -> E4 -> G4 -> C5 ยาวๆ)
                 const notes = [261.63, 329.63, 392.00, 523.25];
-                
                 notes.forEach((freq, index) => {
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-                    
-                    osc.type = 'square'; // ใช้คลื่นสี่เหลี่ยมให้เสียงดูคล้ายเกมส์ 8-bit อลังการ
-                    osc.frequency.setValueAtTime(freq, startTime);
-                    
-                    // ปรับความดังค่อยๆ ดังแล้วเบาลง
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.type = 'square'; osc.frequency.setValueAtTime(freq, startTime);
                     gain.gain.setValueAtTime(0, startTime);
                     gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
-                    
                     if(index === notes.length - 1) {
-                        // โน้ตตัวสุดท้ายลากยาว
                         gain.gain.exponentialRampToValueAtTime(0.01, startTime + 1.5);
-                        osc.start(startTime);
-                        osc.stop(startTime + 1.5);
+                        osc.start(startTime); osc.stop(startTime + 1.5);
                     } else {
-                        // โน้ตตัวแรกๆ สั้นๆ
                         gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2);
-                        osc.start(startTime);
-                        osc.stop(startTime + 0.2);
-                        startTime += 0.15; // ดีเลย์โน้ตตัวถัดไปนิดนึง
+                        osc.start(startTime); osc.stop(startTime + 0.2); startTime += 0.15;
                     }
                 });
             } catch (e) { console.log(e); }
@@ -254,14 +260,9 @@
         function formatLottoMoeData(raw) {
              return {
                 date: "16 กุมภาพันธ์ 2569", 
-                prize1: raw.data.first.number,
-                prize2: raw.data.second.number,
-                prize3: raw.data.third.number,
-                prize4: raw.data.fourth.number,
-                prize5: raw.data.fifth.number,
-                front3: raw.data.front3.number,
-                last3: raw.data.last3.number,
-                last2: raw.data.last2.number
+                prize1: raw.data.first.number, prize2: raw.data.second.number, prize3: raw.data.third.number,
+                prize4: raw.data.fourth.number, prize5: raw.data.fifth.number,
+                front3: raw.data.front3.number, last3: raw.data.last3.number, last2: raw.data.last2.number
             };
         }
 
@@ -270,8 +271,7 @@
             let success = false;
             for (let url of endpoints) {
                 try {
-                    const response = await fetch(url);
-                    const data = await response.json();
+                    const response = await fetch(url); const data = await response.json();
                     if (data.response && data.response.date) {
                         lottoData = {
                             date: data.response.date, prize1: data.response.prizes[0].number,
@@ -279,11 +279,9 @@
                             prize4: data.response.prizes[3].number, prize5: data.response.prizes[4].number,
                             front3: data.response.runningNumbers[0].number, last3: data.response.runningNumbers[1].number,
                             last2: data.response.runningNumbers[2].number
-                        };
-                        updateUI(lottoData); success = true; break;
+                        }; updateUI(lottoData); success = true; break;
                     } else if (data.data && data.data.first) {
-                        lottoData = formatLottoMoeData(data);
-                        updateUI(lottoData); success = true; break;
+                        lottoData = formatLottoMoeData(data); updateUI(lottoData); success = true; break;
                     }
                 } catch (error) { console.warn(`API Error:`, error); }
             }
@@ -296,11 +294,8 @@
             document.getElementById('front3').innerText = (data.front3 && data.front3.join(', ')) || '...';
             document.getElementById('last3').innerText = (data.last3 && data.last3.join(', ')) || '...';
             document.getElementById('last2').innerText = (data.last2 && data.last2[0]) || '...';
-
-            renderPrizeTable(data.prize2, 'table-prize-2');
-            renderPrizeTable(data.prize3, 'table-prize-3');
-            renderPrizeGrid(data.prize4, 'grid-prize-4');
-            renderPrizeGrid(data.prize5, 'grid-prize-5');
+            renderPrizeTable(data.prize2, 'table-prize-2'); renderPrizeTable(data.prize3, 'table-prize-3');
+            renderPrizeGrid(data.prize4, 'grid-prize-4'); renderPrizeGrid(data.prize5, 'grid-prize-5');
         }
 
         function useFallbackData() {
@@ -314,20 +309,14 @@
 
         function renderPrizeTable(numbers, tableClass) {
             const tbody = document.querySelector(`.${tableClass} tbody`);
-            if(!tbody || !numbers) return;
-            let html = '';
-            numbers.forEach(num => { html += `<tr><td>${num}</td></tr>`; });
-            tbody.innerHTML = html;
+            if(!tbody || !numbers) return; let html = '';
+            numbers.forEach(num => { html += `<tr><td>${num}</td></tr>`; }); tbody.innerHTML = html;
         }
 
-        // ✅ ฟังก์ชันอัปเกรด: สร้างกล่องกริดสวยๆ สำหรับรางวัลที่ 4 และ 5
         function renderPrizeGrid(numbers, containerId) {
             const container = document.getElementById(containerId);
-            if(!container || !numbers || numbers.length === 0) return;
-            let html = '';
-            numbers.forEach(num => { 
-                html += `<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.4rem; text-align:center; font-weight:600; color:#1e3a8a;">${num}</div>`; 
-            });
+            if(!container || !numbers || numbers.length === 0) return; let html = '';
+            numbers.forEach(num => { html += `<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.4rem; text-align:center; font-weight:600; color:#1e3a8a;">${num}</div>`; });
             container.innerHTML = html;
         }
 
@@ -337,10 +326,8 @@
             if (!lottoData) return;
             const input = document.getElementById('userNumbers').value.trim();
             if (!input) { showResult('⚠️ กรุณากรอกเลขหวยก่อนค่ะ', 'lose'); return; }
-
             const rawNums = input.split(/[\s,，]+/).filter(x => x.trim());
             const userNums = rawNums.map(n => n.replace(/\D/g, '').padStart(6, '0')).filter(n => n.length === 6 && /^\d{6}$/.test(n));
-
             if (userNums.length === 0) { showResult('❌ กรุณาใส่ตัวเลข 6 หลัก', 'lose'); return; }
 
             let results = []; let foundAny = false;
@@ -373,10 +360,9 @@
             const shareBox = document.getElementById('shareBox');
 
             if (foundAny) {
-                playGrandWinSound(); // 🎺 เรียกเสียงชัยชนะ!
+                playGrandWinSound();
                 showResult(results.join(''), 'win');
-                shareBox.style.display = 'flex'; // ✅ โชว์ปุ่มแชร์
-                
+                shareBox.style.display = 'flex'; 
                 for(let num of userNums) {
                     if (lottoData.prize1 && lottoData.prize1.includes(num)) {
                         const el = document.getElementById('prize1-main');
@@ -386,7 +372,7 @@
                 }
             } else {
                 showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัล (เลข: ${userNums.join(', ')})</div>`, 'lose');
-                shareBox.style.display = 'none'; // ซ่อนปุ่มแชร์
+                shareBox.style.display = 'none'; 
             }
         }
 
@@ -398,16 +384,11 @@
         document.getElementById('checkBtn')?.addEventListener('click', checkLotto);
         document.getElementById('userNumbers')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkLotto(); });
 
-        // ✅ ฟังก์ชันแชร์ลงโซเชียล
         function shareSocial(platform) {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent("🎉 ฉันถูกหวย! มาตรวจผลสลากกินแบ่งรัฐบาลที่เว็บ ครบจังดอทคอม กันเถอะ!");
-            
-            if(platform === 'facebook') {
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
-            } else if(platform === 'line') {
-                window.open(`https://social-plugins.line.me/lineit/share?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
-            }
+            if(platform === 'facebook') { window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400'); }
+            else if(platform === 'line') { window.open(`https://social-plugins.line.me/lineit/share?url=${url}&text=${text}`, '_blank', 'width=600,height=400'); }
         }
     </script>
 </body>
