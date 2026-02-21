@@ -32,6 +32,40 @@
         .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
         
+        /* ✅ สไตล์สำหรับเมนูสลับหน้าหวย */
+        .lotto-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--card);
+            padding: 0.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .lotto-tab-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--muted);
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            min-width: 120px;
+        }
+        .lotto-tab-btn:hover {
+            background: var(--soft);
+            color: var(--primary);
+        }
+        .lotto-tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
         /* กรอบวิดีโอ */
         .live-section { border-top: 4px solid var(--highlight-red); }
         .live-section h2 { color: var(--highlight-red); }
@@ -86,9 +120,8 @@
         .ad-section { background: var(--card); border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         .ad-section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e293b; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
         
-        /* ✅ ดึงสีต้นฉบับของคุณเก่งกลับมาแบบ 100% ค่ะ */
-        .ad-section h2.support-site i { color: #7E57C2; font-size: 1.1em; } /* สีม่วง */
-        .ad-section h2.support-us i { color: #FB8C00; font-size: 1.1em; } /* สีส้ม */
+        .ad-section h2.support-site i { color: #7E57C2; font-size: 1.1em; } 
+        .ad-section h2.support-us i { color: #FB8C00; font-size: 1.1em; } 
 
         .adsense-container { background-color: #f9fbff; border: 1px dashed #dbeafe; border-radius: 12px; min-height: 250px; display: flex; align-items: center; justify-content: center; position: relative; }
         .adsense-container::before { content: "พื้นที่โฆษณา"; color: #94a3b8; font-size: 0.85rem; position: absolute; z-index: 0; }
@@ -99,7 +132,7 @@
         .support-btn.promptpay{ background: #10B981; } .support-btn.facebook { background: #4267B2; } .support-btn.youtube { background: #FF0000; } .support-btn.tiktok { background: #000000; }
         footer { margin-top: 2rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 1.25rem 1rem; font-size: 0.9rem; }
         footer a { color: #e0f2fe; text-decoration: none; font-weight: 600; margin: 0 0.5rem; }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .prize-summary { flex-direction: column; } .history-select-box { flex-direction: column; width: 100%;} }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .prize-summary { flex-direction: column; } .history-select-box { flex-direction: column; width: 100%;} .lotto-tabs { padding-bottom: 0.5rem; } }
     </style>
 </head>
 <body>
@@ -126,6 +159,12 @@
     <div class="container">
         <div class="content-area">
             
+            <div class="lotto-tabs">
+                <a href="lotto.html" class="lotto-tab-btn active"><i class="fas fa-ticket-alt"></i> หวยรัฐบาลไทย</a>
+                <a href="lao.html" class="lotto-tab-btn"><i class="fas fa-star" style="color: #F59E0B;"></i> หวยลาว</a>
+                <a href="hanoi.html" class="lotto-tab-btn"><i class="fas fa-gem" style="color: #10B981;"></i> หวยฮานอย</a>
+            </div>
+
             <div class="section live-section">
                 <h2><i class="fas fa-broadcast-tower"></i> ถ่ายทอดสดสลากกินแบ่งรัฐบาล</h2>
                 <p style="text-align: center; color: var(--muted); margin-top: -0.5rem; margin-bottom: 1rem; font-size: 0.95rem;">
