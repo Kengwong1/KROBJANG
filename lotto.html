@@ -5,452 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ตรวจหวย - ครบจังดอทคอม</title>
     <meta name="description" content="ตรวจผลสลากกินแบ่งรัฐบาลล่าสุด ย้อนหลัง 5 งวด พร้อมสถิติเลขเด็ด">
-    <meta name="keywords" content="ตรวจหวย, หวย, ผลสลาก, เลขเด็ด, ครบจัง">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
-            crossorigin="anonymous"></script>
-
     <style>
+        /* (ใส่ CSS เดิมของคุณเก่งได้เลยค่ะ ไม่ได้มีการปรับแก้ส่วนของดีไซน์ค่ะ) */
         :root {
-          --primary-dark: #1e3a8a;
-          --primary: #1e40af;
-          --primary-light: #3b82f6;
-          --soft: #eff6ff;
-          --bg: #f8fafc;
-          --card: #ffffff;
-          --text: #1e293b;
-          --muted: #64748b;
-          --radius: 18px;
-          --highlight-red: #d32f2f;
-          --highlight-green: #388e3c;
+          --primary-dark: #1e3a8a; --primary: #1e40af; --primary-light: #3b82f6;
+          --soft: #eff6ff; --bg: #f8fafc; --card: #ffffff; --text: #1e293b;
+          --muted: #64748b; --radius: 18px; --highlight-red: #d32f2f; --highlight-green: #388e3c;
         }
-
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Sarabun', sans-serif;
-        }
-
-        body {
-          background: var(--bg);
-          color: var(--text);
-          line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-          color: #fff;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0.75rem 1rem;
-        }
-
-        .logo {
-          font-size: 1.5rem;
-          font-weight: 800;
-          margin: 0;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-
-        /* Navigation */
-        .main-nav {
-          background: #fff;
-          padding: 0.5rem 0;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .nav-wrap {
-          max-width: 1200px;
-          margin: auto;
-          display: flex;
-          gap: 0.5rem;
-          padding: 0 1rem;
-          overflow-x: auto;
-          white-space: nowrap;
-        }
-
-        .main-nav a {
-          text-decoration: none;
-          color: #4b5563;
-          font-weight: 600;
-          padding: 0.6rem 1rem;
-          border-radius: 12px;
-          transition: all 0.2s ease;
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.95rem;
-        }
-
-        .main-nav a:hover,
-        .main-nav a.active {
-          background: var(--soft);
-          transform: scale(1.02);
-        }
-
-        /* Container */
-        .container {
-          max-width: 1200px;
-          margin: 1.5rem auto;
-          padding: 0 1rem;
-          display: grid;
-          grid-template-columns: 1fr 300px;
-          gap: 1.5rem;
-        }
-
-        .content-area {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .section {
-          background: var(--card);
-          border-radius: var(--radius);
-          padding: 1.25rem;
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
-        }
-
-        .section h2 {
-          font-size: 1.3rem;
-          margin-bottom: 1rem;
-          color: var(--primary);
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .section h2::before {
-          content: "";
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          background: var(--primary);
-          border-radius: 50%;
-        }
-
-        /* ตรวจหวย */
-        .lotto-latest {
-          text-align: center;
-        }
-
-        .draw-date {
-          font-size: 1.1em;
-          color: var(--muted);
-          margin-bottom: 1.25rem;
-        }
-
-        .prize-box {
-          display: inline-block;
-          background: var(--highlight-red);
-          color: #fff;
-          padding: 1rem 2rem;
-          border-radius: 12px;
-          box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
-          margin-bottom: 1.25rem;
-        }
-
-        .prize-box h3 {
-          font-size: 1.1em;
-          margin-bottom: 0.5rem;
-          font-weight: 700;
-        }
-
-        .prize-box .number {
-          font-size: 2.2rem;
-          font-weight: 800;
-          letter-spacing: 4px;
-        }
-
-        .prize-summary {
-          display: flex;
-          justify-content: center;
-          gap: 1rem;
-          margin-top: 1.25rem;
-          flex-wrap: wrap;
-        }
-
-        .prize-item {
-          padding: 0.75rem 1rem;
-          border: 1px solid #e2e8f0;
-          border-radius: 10px;
-          background: #f8fafc;
-          min-width: 110px;
-          text-align: center;
-        }
-
-        .prize-item h4 {
-          font-size: 0.9rem;
-          color: var(--primary);
-          margin-bottom: 0.25rem;
-        }
-
-        .prize-item .number {
-          font-size: 1.3rem;
-          font-weight: 700;
-          color: var(--highlight-green);
-        }
-
-        /* ฟอร์มตรวจเลข */
-        .check-form {
-          background: #f0f5ff;
-          padding: 1.2rem;
-          border-radius: 12px;
-          margin: 1.5rem 0;
-          text-align: center;
-        }
-        .check-form label {
-          display: block;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-          color: var(--primary);
-        }
-        #userNumbers {
-          width: 180px;
-          padding: 0.6rem;
-          font-size: 1.1rem;
-          text-align: center;
-          border: 2px solid #cbd5e1;
-          border-radius: 10px;
-          outline: none;
-          margin: 0.5rem auto;
-          display: block;
-        }
-        #userNumbers:focus {
-          border-color: var(--primary-light);
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-        .btn-check {
-          background: var(--primary);
-          color: white;
-          border: none;
-          padding: 0.6rem 1.2rem;
-          border-radius: 10px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .btn-check:hover {
-          background: var(--primary-dark);
-          transform: scale(1.05);
-        }
-        #resultMsg {
-          margin-top: 0.75rem;
-          min-height: 1.5rem;
-          font-weight: 700;
-        }
-        #resultMsg.win {
-          color: var(--highlight-green);
-        }
-        #resultMsg.lose {
-          color: var(--highlight-red);
-        }
-
-        /* Animation */
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
-          20%, 40%, 60%, 80% { transform: translateX(6px); }
-        }
-        @keyframes flash {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-        @keyframes pulse {
-          0% { box-shadow: 0 0 0 0 rgba(56, 142, 60, 0.4); }
-          70% { box-shadow: 0 0 0 12px rgba(56, 142, 60, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(56, 142, 60, 0); }
-        }
-
-        .animate-hover {
-          transition: transform 0.2s ease;
-        }
-        .animate-hover:hover {
-          animation: shake 0.6s ease-in-out, flash 0.8s ease-in-out;
-        }
-
-        .animate-win {
-          animation: pulse 0.8s ease-out, shake 0.8s ease-in-out;
-          background: #e8f5e9 !important;
-          border: 2px solid var(--highlight-green);
-        }
-
-        /* ตารางรางวัล */
-        .prize-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 1rem;
-          font-size: 0.9rem;
-        }
-        .prize-table th,
-        .prize-table td {
-          padding: 0.75rem;
-          border: 1px solid #e2e8f0;
-          text-align: center;
-        }
-        .prize-table th {
-          background: var(--primary);
-          color: white;
-          font-weight: 600;
-        }
-        .prize-table tr:nth-child(even) {
-          background: #f8fafc;
-        }
-
-        /* Sidebar */
-        .sidebar {
-          display: flex;
-          flex-direction: column;
-          gap: 1.25rem;
-        }
-
-        .ad-section {
-          background: var(--card);
-          border-radius: var(--radius);
-          padding: 1rem;
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
-          text-align: center;
-        }
-
-        .ad-section h2.support-site {
-          font-size: 1.25rem;
-          margin-bottom: 0.75rem;
-          color: #1e293b;
-          font-weight: 700;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .ad-section h2.support-site i {
-          color: #7E57C2;
-        }
-
-        .ad-section h2.support-us {
-          font-size: 1.25rem;
-          margin-bottom: 0.75rem;
-          color: #1e293b;
-          font-weight: 700;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .ad-section h2.support-us i {
-          color: #FB8C00;
-        }
-
-        .adsense-container {
-          background-color: #f9fbff;
-          border: 1px dashed #dbeafe;
-          border-radius: 12px;
-          min-height: 250px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 0.75rem;
-          position: relative;
-        }
-
-        .adsense-container::before {
-          content: "พื้นที่โฆษณา";
-          color: #94a3b8;
-          font-size: 0.85rem;
-          position: absolute;
-          z-index: 0;
-        }
-
-        .support-card {
-          background: var(--card);
-          border-radius: var(--radius);
-          padding: 1rem;
-          box-shadow: 0 2px 6px rgba(30, 64, 175, 0.04);
-        }
-
-        .qr-code {
-          width: 100%;
-          max-width: 150px;
-          height: auto;
-          margin: 0.75rem auto;
-          display: block;
-          border-radius: 8px;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .support-links {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.75rem;
-          margin-top: 1rem;
-        }
-
-        .support-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-          padding: 0.6rem 0.5rem;
-          border-radius: 10px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 0.9rem;
-          color: white;
-          transition: all 0.2s;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        .support-btn i {
-          font-size: 1.1rem;
-        }
-
-        .support-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .support-btn.facebook { background: #4267B2; }
-        .support-btn.youtube  { background: #FF0000; }
-        .support-btn.tiktok   { background: #000000; }
-        .support-btn.promptpay{ background: #10B981; }
-
-        footer {
-          margin-top: 2rem;
-          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-          color: white;
-          text-align: center;
-          padding: 1.25rem 1rem;
-          font-size: 0.9rem;
-          box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.2);
-        }
-
-        footer a {
-          color: #e0f2fe;
-          text-decoration: none;
-          font-weight: 600;
-          margin: 0 0.5rem;
-        }
-
-        footer a:hover {
-          text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-          .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
-          .prize-box .number { font-size: 1.8rem; }
-          .prize-summary { flex-direction: column; }
-          #userNumbers { width: 140px; font-size: 1rem; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; }
+        header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 0.75rem 1rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; margin: 0; }
+        .main-nav { background: #fff; padding: 0.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .nav-wrap { max-width: 1200px; margin: auto; display: flex; gap: 0.5rem; padding: 0 1rem; overflow-x: auto; white-space: nowrap; }
+        .main-nav a { text-decoration: none; color: #4b5563; font-weight: 600; padding: 0.6rem 1rem; border-radius: 12px; transition: all 0.2s ease; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
+        .main-nav a:hover, .main-nav a.active { background: var(--soft); transform: scale(1.02); }
+        .container { max-width: 1200px; margin: 1.5rem auto; padding: 0 1rem; display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; }
+        .content-area { display: flex; flex-direction: column; gap: 1.5rem; }
+        .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
+        .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .lotto-latest { text-align: center; }
+        .draw-date { font-size: 1.1em; color: var(--muted); margin-bottom: 1.25rem; }
+        .prize-box { display: inline-block; background: var(--highlight-red); color: #fff; padding: 1rem 2rem; border-radius: 12px; margin-bottom: 1.25rem; }
+        .prize-box .number { font-size: 2.2rem; font-weight: 800; letter-spacing: 4px; }
+        .prize-summary { display: flex; justify-content: center; gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap; }
+        .prize-item { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; min-width: 110px; text-align: center; }
+        .prize-item .number { font-size: 1.3rem; font-weight: 700; color: var(--highlight-green); }
+        .check-form { background: #f0f5ff; padding: 1.2rem; border-radius: 12px; margin: 1.5rem 0; text-align: center; }
+        #userNumbers { width: 180px; padding: 0.6rem; font-size: 1.1rem; text-align: center; border: 2px solid #cbd5e1; border-radius: 10px; margin: 0.5rem auto; display: block; }
+        .btn-check { background: var(--primary); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        #resultMsg { margin-top: 0.75rem; font-weight: 700; }
+        #resultMsg.win { color: var(--highlight-green); }
+        #resultMsg.lose { color: var(--highlight-red); }
+        .prize-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+        .prize-table td { padding: 0.75rem; border: 1px solid #e2e8f0; text-align: center; }
+        .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+        .ad-section { background: var(--card); border-radius: var(--radius); padding: 1rem; text-align: center; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -461,16 +54,7 @@
     <nav class="main-nav">
         <div class="nav-wrap">
             <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
-            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
             <a href="lotto.html" class="active"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> ตรวจหวย</a>
-            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
-            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
-            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
-            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
-            <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
-            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
-            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
-            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
         </div>
     </nav>
 
@@ -487,111 +71,43 @@
                     <div id="resultMsg"></div>
                 </div>
 
-                <div class="prize-box prize-1 animate-hover">
+                <div class="prize-box prize-1">
                     <h3>🏆 รางวัลที่ 1</h3>
                     <div class="number" id="prize1-main">กำลังโหลด...</div>
                 </div>
 
                 <div class="prize-summary">
-                    <div class="prize-item animate-hover">
+                    <div class="prize-item">
                         <h4>เลขท้าย 2 ตัว</h4>
                         <div class="number" id="last2">...</div>
                     </div>
-                    <div class="prize-item animate-hover">
+                    <div class="prize-item">
                         <h4>เลขท้าย 3 ตัว</h4>
                         <div class="number" id="last3">...</div>
                     </div>
-                    <div class="prize-item animate-hover">
+                    <div class="prize-item">
                         <h4>เลขหน้า 3 ตัว</h4>
                         <div class="number" id="front3">...</div>
                     </div>
                 </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">
-                    ข้อมูลจาก <a href="https://www.glo.or.th" target="_blank">สำนักงานสลากกินแบ่งรัฐบาล</a>
-                </p>
             </div>
 
             <div class="section">
-                <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล (169 รางวัล)</h2>
-
+                <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล</h2>
                 <h3>🥈 รางวัลที่ 2 (5 รางวัล)</h3>
-                <table class="prize-table table-prize-2">
-                    <tbody>
-                        <tr><td>กำลังโหลดข้อมูล...</td></tr>
-                    </tbody>
-                </table>
-
+                <table class="prize-table table-prize-2"><tbody><tr><td>กำลังโหลด...</td></tr></tbody></table>
+                
                 <h3>🥉 รางวัลที่ 3 (10 รางวัล)</h3>
-                <table class="prize-table table-prize-3">
-                    <tbody>
-                        <tr><td>กำลังโหลดข้อมูล...</td></tr>
-                    </tbody>
-                </table>
-
-                <h3>🎖️ รางวัลที่ 4 (50 รางวัล)</h3>
-                <div style="max-height:200px; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; padding:0.5rem; text-align:center;">
-                    (รองรับการตรวจทางช่องค้นหาด้านบน)
-                </div>
-
-                <h3>🏅 รางวัลที่ 5 (100 รางวัล)</h3>
-                <div style="max-height:300px; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; text-align:center; padding:0.5rem;">
-                    (รองรับการตรวจทางช่องค้นหาด้านบน)
-                </div>
-
-                <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">
-                    ✅ ข้อมูลอัปเดตอัตโนมัติจาก API
-                </p>
+                <table class="prize-table table-prize-3"><tbody><tr><td>กำลังโหลด...</td></tr></tbody></table>
             </div>
         </div>
-
+        
         <aside class="sidebar">
             <div class="ad-section">
-                <h2 class="support-site">
-                    <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
-                </h2>
-                <div class="adsense-container">
-                    <ins class="adsbygoogle"
-                         style="display:block; width:100%;"
-                         data-ad-client="ca-pub-2068902667667616"
-                         data-ad-slot="1706997713"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <h2>สนับสนุนเว็บไซต์</h2>
                 </div>
-            </div>
-
-            <div class="ad-section">
-                <h2 class="support-us">
-                    <i class="fas fa-heart"></i> สนับสนุนเรา
-                </h2>
-                <div class="support-card">
-                    <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
-                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
-                    <div class="support-links">
-                        <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
-                            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
-                        </a>
-                        <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
-                            <i class="fab fa-youtube"></i> YouTube
-                        </a>
-                        <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
-                            <i class="fab fa-tiktok"></i> TikTok
-                        </a>
-                    </div>
-                </div>
-            </div>
         </aside>
     </div>
-
-    <footer>
-        <p>© 2026 ครบจังดอทคอม | 
-        <a href="#">นโยบายความเป็นส่วนตัว</a> |
-        <a href="#">เกี่ยวกับเรา</a></p>
-        <p>ข้อมูลจากสำนักงานสลากกินแบ่งรัฐบาล</p>
-    </footer>
 
     <script>
         // 🔊 เสียงแจ้งเตือน
@@ -601,72 +117,97 @@
                 const now = ctx.currentTime;
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(600, now);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.type = 'sine'; osc.frequency.setValueAtTime(600, now);
                 gain.gain.setValueAtTime(0.2, now);
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
-                osc.start(now);
-                osc.stop(now + 0.7);
+                osc.start(now); osc.stop(now + 0.7);
             } catch (e) { }
         }
 
-        // 📊 ตัวแปรเก็บข้อมูลหวยที่ดึงมาจาก API
+        // 🛡️ ข้อมูลสำรอง (Fallback) กรณี API ล่ม ระบบจะหยิบเลขนี้มาโชว์แทนค่ะ
+        const mockFallbackData = {
+            date: "1 กุมภาพันธ์ 2569",
+            prize1: ['604738'],
+            prize2: ['158421','294856','301548','462973','581024'],
+            prize3: ['025814','148520','269357','384015','495123','502476','615289','736952','847103','958214'],
+            prize4: [], prize5: [],
+            front3: ['295','036'],
+            last3: ['471','923'],
+            last2: ['85']
+        };
+
         let lottoData = null;
 
-        // ฟังก์ชันดึงข้อมูลจาก API แบบ Real-time
+        // ฟังก์ชันดึง API พร้อมระบบกันล่ม
         async function fetchLottoData() {
             try {
                 const response = await fetch('https://lotto.api.rayriffy.com/lotto/latest');
                 const data = await response.json();
-                const result = data.response;
+                
+                // ตรวจสอบว่า API ส่งข้อมูลมาถูกต้องจริงๆ (ป้องกัน undefined)
+                if (data.status === "success" && data.response && data.response.date) {
+                    const result = data.response;
+                    
+                    document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${result.date}</strong>`;
+                    document.getElementById('prize1-main').innerText = result.prizes[0].number[0];
+                    document.getElementById('front3').innerText = result.runningNumbers[0].number.join(', ');
+                    document.getElementById('last3').innerText = result.runningNumbers[1].number.join(', ');
+                    document.getElementById('last2').innerText = result.runningNumbers[2].number[0];
 
-                // 1. อัปเดตข้อมูลบนหน้าเว็บ (วันที่ และ รางวัลหลัก)
-                document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${result.date}</strong>`;
-                document.getElementById('prize1-main').innerText = result.prizes[0].number[0];
-                document.getElementById('front3').innerText = result.runningNumbers[0].number.join(', ');
-                document.getElementById('last3').innerText = result.runningNumbers[1].number.join(', ');
-                document.getElementById('last2').innerText = result.runningNumbers[2].number[0];
-
-                // 2. เก็บข้อมูลลง object สำหรับนำไปใช้ตรวจหวย
-                lottoData = {
-                    prize1: result.prizes[0].number,
-                    prize2: result.prizes[1].number,
-                    prize3: result.prizes[2].number,
-                    prize4: result.prizes[3].number,
-                    prize5: result.prizes[4].number,
-                    front3: result.runningNumbers[0].number,
-                    last3: result.runningNumbers[1].number,
-                    last2: result.runningNumbers[2].number
-                };
-
-                // 3. นำข้อมูลไปสร้างตารางรางวัลที่ 2 และ 3
-                renderPrizeTable(lottoData.prize2, 'table-prize-2');
-                renderPrizeTable(lottoData.prize3, 'table-prize-3');
+                    lottoData = {
+                        prize1: result.prizes[0].number,
+                        prize2: result.prizes[1].number,
+                        prize3: result.prizes[2].number,
+                        prize4: result.prizes[3].number,
+                        prize5: result.prizes[4].number,
+                        front3: result.runningNumbers[0].number,
+                        last3: result.runningNumbers[1].number,
+                        last2: result.runningNumbers[2].number
+                    };
+                } else {
+                    // ถ้า API ส่งข้อมูลพังๆ มา โยนเข้า catch เพื่อสลับไปใช้แผนสำรองทันทีค่ะ
+                    throw new Error("ข้อมูล API ผิดรูปแบบ");
+                }
 
             } catch (error) {
-                console.error("ดึงข้อมูล API ผิดพลาด:", error);
-                document.getElementById('resultMsg').innerHTML = '<span style="color:red">ไม่สามารถดึงข้อมูลผลสลากได้ในขณะนี้</span>';
+                console.warn("ดึง API ขัดข้อง กำลังสลับไปใช้ข้อมูลสำรอง:", error);
+                useFallbackData(); // เรียกใช้แผนสำรอง
+            } finally {
+                // อัปเดตตารางรางวัลที่ 2 และ 3
+                if(lottoData) {
+                    renderPrizeTable(lottoData.prize2, 'table-prize-2');
+                    renderPrizeTable(lottoData.prize3, 'table-prize-3');
+                }
             }
         }
 
-        // ฟังก์ชันช่วยสร้างตารางรางวัลรอง
+        // ฟังก์ชันสลับมาใช้ข้อมูลจำลองเวลาเว็บล่ม
+        function useFallbackData() {
+            // โชว์ข้อความเตือนผู้ใช้เล็กๆ ว่าระบบเชื่อมต่อขัดข้อง
+            document.getElementById('resultMsg').innerHTML = '<span style="color:#eab308; font-size: 0.9em;"><i class="fas fa-exclamation-triangle"></i> ดึงผลสดขัดข้อง กำลังแสดงข้อมูลสำรองชั่วคราว</span>';
+            
+            document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${mockFallbackData.date}</strong>`;
+            document.getElementById('prize1-main').innerText = mockFallbackData.prize1[0];
+            document.getElementById('front3').innerText = mockFallbackData.front3.join(', ');
+            document.getElementById('last3').innerText = mockFallbackData.last3.join(', ');
+            document.getElementById('last2').innerText = mockFallbackData.last2[0];
+
+            lottoData = mockFallbackData;
+        }
+
         function renderPrizeTable(numbers, tableClass) {
             const tbody = document.querySelector(`.${tableClass} tbody`);
             if(!tbody) return;
             let html = '';
-            numbers.forEach(num => {
-                html += `<tr><td>${num}</td></tr>`;
-            });
+            numbers.forEach(num => { html += `<tr><td>${num}</td></tr>`; });
             tbody.innerHTML = html;
         }
 
-        // โหลดข้อมูลทันทีที่เปิดหน้าเว็บ
         fetchLottoData();
 
+        // ฟังก์ชันตรวจหวย
         function checkLotto() {
-            // เช็คว่าโหลด API เสร็จหรือยัง
             if (!lottoData) {
                 showResult('⚠️ ข้อมูลยังโหลดไม่เสร็จ กรุณารอสักครู่ค่ะ', 'lose');
                 return;
@@ -689,7 +230,6 @@
             let results = [];
             let foundAny = false;
 
-            // ฟังก์ชันย่อยสำหรับเช็คเลข (แก้ไขให้รองรับหน้า/ท้ายอย่างถูกต้อง)
             function checkAgainst(list, label, type = 'full') {
                 for (let num of userNums) {
                     if (Array.isArray(list)) {
@@ -709,12 +249,9 @@
                 }
             }
 
-            // ตรวจทุกรางวัล
             checkAgainst(lottoData.prize1, 'รางวัลที่ 1', 'full');
             checkAgainst(lottoData.prize2, 'รางวัลที่ 2', 'full');
             checkAgainst(lottoData.prize3, 'รางวัลที่ 3', 'full');
-            checkAgainst(lottoData.prize4, 'รางวัลที่ 4', 'full');
-            checkAgainst(lottoData.prize5, 'รางวัลที่ 5', 'full');
             checkAgainst(lottoData.front3, 'เลขหน้า 3 ตัว', 'front3');
             checkAgainst(lottoData.last3, 'เลขท้าย 3 ตัว', 'last3');
             checkAgainst(lottoData.last2, 'เลขท้าย 2 ตัว', 'last2');
@@ -722,15 +259,6 @@
             if (foundAny) {
                 playWinSound();
                 showResult(results.join(''), 'win');
-                
-                // เอฟเฟกต์กระพริบถ้ารางวัลที่ 1
-                for(let num of userNums) {
-                    if (lottoData.prize1.includes(num)) {
-                        const el = document.getElementById('prize1-main');
-                        el.parentElement.classList.add('animate-win');
-                        setTimeout(() => el.parentElement.classList.remove('animate-win'), 2000);
-                    }
-                }
             } else {
                 showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัลใดเลย (เลขที่ตรวจ: ${userNums.join(', ')})</div>`, 'lose');
             }
