@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตรวจหวยลาว - ครบจังดอทคอม</title>
-    <meta name="description" content="ตรวจผลหวยลาวพัฒนาล่าสุด อัปเดตทุกวันจันทร์ พุธ ศุกร์ พร้อมสถิติ">
+    <title>ตรวจหวยลาวพัฒนา - ครบจังดอทคอม</title>
+    <meta name="description" content="ตรวจผลหวยลาวล่าสุด อัปเดต จันทร์ พุธ ศุกร์ รู้ผลทันที พร้อมเลขนามสัตว์!">
     <meta name="keywords" content="ตรวจหวยลาว, หวยลาวพัฒนา, ผลหวยลาว, เลขเด็ดลาว, ครบจัง">
+    
+    <meta property="og:title" content="ตรวจหวยลาวพัฒนา - ครบจังดอทคอม">
+    <meta property="og:description" content="ตรวจผลหวยลาวล่าสุด อัปเดต จันทร์ พุธ ศุกร์ รู้ผลทันที พร้อมเลขนามสัตว์!">
+    <meta property="og:image" content="https://placehold.co/1200x630/1e40af/ffffff?text=Krobjang.com">
+    <meta property="og:url" content="https://krobjang.vercel.app/lao.html">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
     <style>
@@ -16,7 +22,7 @@
           --primary-dark: #1e3a8a; --primary: #1e40af; --primary-light: #3b82f6;
           --soft: #eff6ff; --bg: #f8fafc; --card: #ffffff; --text: #1e293b;
           --muted: #64748b; --radius: 18px; --highlight-red: #d32f2f; --highlight-green: #388e3c;
-          --lao-color: #F59E0B; /* สีส้มทองสำหรับหวยลาว */
+          --lao-color: #F59E0B;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; }
         body { background: var(--bg); color: var(--text); line-height: 1.6; }
@@ -32,12 +38,9 @@
         .content-area { display: flex; flex-direction: column; gap: 1.5rem; }
         .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         
-        /* เมนูสลับหน้าหวย */
         .lotto-tabs { display: flex; gap: 0.5rem; background: var(--card); padding: 0.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); overflow-x: auto; white-space: nowrap; }
         .lotto-tab-btn { flex: 1; text-align: center; padding: 0.75rem 1rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; color: var(--muted); transition: all 0.2s; border: 1px solid transparent; min-width: 120px; }
         .lotto-tab-btn:hover { background: var(--soft); color: var(--primary); }
-        
-        /* ✅ สำหรับหน้าหวยลาว จะเน้นเป็นสีส้มทอง */
         .lotto-tab-btn.active-lao { background: linear-gradient(135deg, #FBBF24, #F59E0B); color: white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
 
         .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--lao-color); display: flex; align-items: center; gap: 0.5rem; }
@@ -131,9 +134,7 @@
 
             <div class="section lotto-latest">
                 <h2 style="color: var(--lao-color);"><i class="fas fa-star"></i> ผลหวยลาวพัฒนา</h2>
-                <p style="text-align: center; color: var(--muted); margin-top: -0.5rem; margin-bottom: 1rem; font-size: 0.95rem;">
-                    ออกรางวัลทุกวัน จันทร์ พุธ ศุกร์ เวลา 20:30 น.
-                </p>
+                <p style="text-align: center; color: var(--muted); margin-top: -0.5rem; margin-bottom: 1rem; font-size: 0.95rem;">ออกรางวัลทุกวัน จันทร์ พุธ ศุกร์ เวลา 20:30 น.</p>
 
                 <div class="draw-date" id="displayDate">กำลังอัปเดตข้อมูลล่าสุด...</div>
 
@@ -219,68 +220,34 @@
                 let startTime = ctx.currentTime;
                 const notes = [261.63, 329.63, 392.00, 523.25];
                 notes.forEach((freq, index) => {
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
+                    const osc = ctx.createOscillator(); const gain = ctx.createGain();
                     osc.connect(gain); gain.connect(ctx.destination);
                     osc.type = 'square'; osc.frequency.setValueAtTime(freq, startTime);
-                    gain.gain.setValueAtTime(0, startTime);
-                    gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
-                    if(index === notes.length - 1) {
-                        gain.gain.exponentialRampToValueAtTime(0.01, startTime + 1.5);
-                        osc.start(startTime); osc.stop(startTime + 1.5);
-                    } else {
-                        gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2);
-                        osc.start(startTime); osc.stop(startTime + 0.2); startTime += 0.15;
-                    }
+                    gain.gain.setValueAtTime(0, startTime); gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
+                    if(index === notes.length - 1) { gain.gain.exponentialRampToValueAtTime(0.01, startTime + 1.5); osc.start(startTime); osc.stop(startTime + 1.5); } 
+                    else { gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2); osc.start(startTime); osc.stop(startTime + 0.2); startTime += 0.15; }
                 });
-            } catch (e) { }
+            } catch (e) {}
         }
 
         let laoData = null;
 
-        // ฟังก์ชันดึงหวยลาว (ใส่โครงสร้างจำลองไว้ให้พร้อมอัปเดต)
-        // หมายเหตุ: API หวยลาวฟรีที่เสถียรมักจะหายาก ในเบื้องต้นจะใช้ระบบจำลองที่ดูสมจริง
-        // ในอนาคตคุณเก่งสามารถนำ URL API หวยลาวมาเสียบตรง fetch ได้เลยค่ะ
         async function fetchLaoData() {
             document.getElementById('displayDate').innerHTML = 'กำลังโหลดข้อมูล... <i class="fas fa-spinner fa-spin"></i>';
-            
-            // จำลองเวลาโหลด API 1 วินาที
             setTimeout(() => {
-                const mockLaoData = {
-                    date: "20 กุมภาพันธ์ 2569", // งวดล่าสุดวันศุกร์
-                    prize6: "847259",
-                    animals: ["แมวป่า (05)", "ม้า (12)", "กุ้ง (31)", "หอย (02)"]
-                };
-
-                // หวยลาว เลข 5,4,3,2 ตัว จะตัดจากเลข 6 ตัวจากข้างหลัง
+                const mockLaoData = { date: "20 กุมภาพันธ์ 2569", prize6: "847259", animals: ["แมวป่า (05)", "ม้า (12)", "กุ้ง (31)", "หอย (02)"] };
                 const p6 = mockLaoData.prize6;
-                laoData = {
-                    date: mockLaoData.date,
-                    p6: p6,
-                    p5: p6.slice(-5),
-                    p4: p6.slice(-4),
-                    p3: p6.slice(-3),
-                    p2: p6.slice(-2),
-                    animals: mockLaoData.animals
-                };
-
+                laoData = { date: mockLaoData.date, p6: p6, p5: p6.slice(-5), p4: p6.slice(-4), p3: p6.slice(-3), p2: p6.slice(-2), animals: mockLaoData.animals };
                 updateUI(laoData);
             }, 800);
         }
 
         function updateUI(data) {
             document.getElementById('displayDate').innerHTML = `งวดประจำวันที่ <strong>${data.date}</strong>`;
-            document.getElementById('prize6').innerText = data.p6;
-            document.getElementById('prize5').innerText = data.p5;
-            document.getElementById('prize4').innerText = data.p4;
-            document.getElementById('prize3').innerText = data.p3;
-            document.getElementById('prize2').innerText = data.p2;
-
-            const animalBox = document.getElementById('animalContainer');
-            animalBox.innerHTML = '';
-            data.animals.forEach(animal => {
-                animalBox.innerHTML += `<div class="animal-item">${animal}</div>`;
-            });
+            document.getElementById('prize6').innerText = data.p6; document.getElementById('prize5').innerText = data.p5;
+            document.getElementById('prize4').innerText = data.p4; document.getElementById('prize3').innerText = data.p3; document.getElementById('prize2').innerText = data.p2;
+            const animalBox = document.getElementById('animalContainer'); animalBox.innerHTML = '';
+            data.animals.forEach(animal => { animalBox.innerHTML += `<div class="animal-item">${animal}</div>`; });
         }
 
         fetchLaoData();
@@ -289,14 +256,10 @@
             if (!laoData) return;
             const input = document.getElementById('userNumbers').value.trim();
             if (!input) { showResult('⚠️ กรุณากรอกเลขหวยก่อนค่ะ', 'lose'); return; }
-            
-            // กรองเอาเฉพาะตัวเลข
             const userNums = input.split(/[\s,，]+/).map(n => n.replace(/\D/g, '')).filter(n => n.length >= 2 && n.length <= 6);
-            
             if (userNums.length === 0) { showResult('❌ กรุณาใส่ตัวเลข 2 ถึง 6 หลัก', 'lose'); return; }
 
             let results = []; let foundAny = false;
-
             userNums.forEach(num => {
                 if (num === laoData.p6) { results.push(`<div><i class="fas fa-star" style="color:#F59E0B;"></i> เลข <strong>${num}</strong> ถูกรางวัล <strong>เลข 6 ตัว</strong></div>`); foundAny = true; }
                 else if (num === laoData.p5) { results.push(`<div><i class="fas fa-star" style="color:#F59E0B;"></i> เลข <strong>${num}</strong> ถูกรางวัล <strong>เลข 5 ตัว</strong></div>`); foundAny = true; }
@@ -307,15 +270,9 @@
 
             const shareBox = document.getElementById('shareBox');
             if (foundAny) { 
-                playGrandWinSound(); 
-                showResult(results.join(''), 'win'); 
-                shareBox.style.display = 'flex'; 
-                document.querySelector('.prize-1').classList.add('animate-win');
-                setTimeout(() => document.querySelector('.prize-1').classList.remove('animate-win'), 2000);
-            } else { 
-                showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัล (เลข: ${userNums.join(', ')})</div>`, 'lose'); 
-                shareBox.style.display = 'none'; 
-            }
+                playGrandWinSound(); showResult(results.join(''), 'win'); shareBox.style.display = 'flex'; 
+                document.querySelector('.prize-1').classList.add('animate-win'); setTimeout(() => document.querySelector('.prize-1').classList.remove('animate-win'), 2000);
+            } else { showResult(`<div>😞 ตรวจแล้วไม่ถูกรางวัล (เลข: ${userNums.join(', ')})</div>`, 'lose'); shareBox.style.display = 'none'; }
         }
 
         function showResult(html, type) { const res = document.getElementById('resultMsg'); res.innerHTML = html; res.className = type; }
