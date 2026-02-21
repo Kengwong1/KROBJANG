@@ -32,28 +32,18 @@
         .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
         .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
         
-        /* ✅ สไตล์สำหรับกรอบวิดีโอถ่ายทอดสด */
+        /* กรอบวิดีโอ */
         .live-section { border-top: 4px solid var(--highlight-red); }
         .live-section h2 { color: var(--highlight-red); }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* อัตราส่วน 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            background: #000;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); background: #000; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         .lotto-latest { text-align: center; }
+        
+        /* ✅ สไตล์สำหรับกล่องเลือกวันที่ย้อนหลัง */
+        .history-select-box { background: var(--soft); padding: 0.75rem; border-radius: 12px; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #dbeafe; }
+        .history-select-box select { padding: 0.4rem 0.5rem; border-radius: 8px; border: 1px solid #cbd5e1; font-family: 'Sarabun'; font-size: 1rem; outline: none; cursor: pointer; background: #fff; color: var(--primary-dark); font-weight: 600; }
+
         .draw-date { font-size: 1.1em; color: var(--muted); margin-bottom: 1.25rem; }
         .prize-box { display: inline-block; background: var(--highlight-red); color: #fff; padding: 1rem 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3); margin-bottom: 1.25rem; }
         .prize-box h3 { font-size: 1.1em; margin-bottom: 0.5rem; font-weight: 700; }
@@ -105,7 +95,7 @@
         .support-btn.promptpay{ background: #10B981; } .support-btn.facebook { background: #4267B2; } .support-btn.youtube { background: #FF0000; } .support-btn.tiktok { background: #000000; }
         footer { margin-top: 2rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 1.25rem 1rem; font-size: 0.9rem; }
         footer a { color: #e0f2fe; text-decoration: none; font-weight: 600; margin: 0 0.5rem; }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .prize-summary { flex-direction: column; } }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .prize-summary { flex-direction: column; } .history-select-box { flex-direction: column; width: 100%;} }
     </style>
 </head>
 <body>
@@ -143,8 +133,22 @@
             </div>
 
             <div class="section lotto-latest">
-                <h2><i class="fas fa-trophy"></i> ผลการออกรางวัลล่าสุด</h2>
-                <div class="draw-date">กำลังอัปเดตข้อมูลล่าสุด...</div>
+                <h2><i class="fas fa-trophy"></i> ผลการออกรางวัล</h2>
+                
+                <div class="history-select-box">
+                    <i class="far fa-calendar-alt" style="color: var(--primary); font-size: 1.2rem;"></i>
+                    <label for="historySelect">เลือกงวด:</label>
+                    <select id="historySelect">
+                        <option value="latest">งวดล่าสุด (ดึงอัตโนมัติ)</option>
+                        <option value="16022569">16 กุมภาพันธ์ 2569</option>
+                        <option value="01022569">1 กุมภาพันธ์ 2569</option>
+                        <option value="17012569">17 มกราคม 2569</option>
+                        <option value="30122568">30 ธันวาคม 2568</option>
+                        <option value="16122568">16 ธันวาคม 2568</option>
+                    </select>
+                </div>
+
+                <div class="draw-date" id="displayDate">กำลังอัปเดตข้อมูล...</div>
 
                 <div class="check-form">
                     <label><i class="fas fa-search"></i> ตรวจเลขของคุณ (ใส่หลายเลขได้ คั่นด้วยช่องว่างหรือ ,)</label><br>
@@ -181,7 +185,7 @@
             </div>
 
             <div class="section">
-                <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล (169 รางวัล)</h2>
+                <h2><i class="fas fa-list-ol"></i> รายละเอียดทุกรางวัล</h2>
                 <h3>🥈 รางวัลที่ 2 (5 รางวัล)</h3>
                 <table class="prize-table table-prize-2"><tbody><tr><td>กำลังโหลดข้อมูล...</td></tr></tbody></table>
 
@@ -257,54 +261,72 @@
 
         let lottoData = null;
 
-        function formatLottoMoeData(raw) {
-             return {
-                date: "16 กุมภาพันธ์ 2569", 
-                prize1: raw.data.first.number, prize2: raw.data.second.number, prize3: raw.data.third.number,
-                prize4: raw.data.fourth.number, prize5: raw.data.fifth.number,
-                front3: raw.data.front3.number, last3: raw.data.last3.number, last2: raw.data.last2.number
+        // จัดฟอร์แมตข้อมูลจาก API ตัวหลัก (Rayriffy) ให้ใช้ง่าย
+        function formatRayriffyData(raw) {
+            return {
+                date: raw.date, 
+                prize1: raw.prizes[0].number, 
+                prize2: raw.prizes[1].number, 
+                prize3: raw.prizes[2].number,
+                prize4: raw.prizes[3].number, 
+                prize5: raw.prizes[4].number,
+                front3: raw.runningNumbers[0].number, 
+                last3: raw.runningNumbers[1].number, 
+                last2: raw.runningNumbers[2].number
             };
         }
 
-        async function fetchLottoData() {
-            const endpoints = ['https://lotto.api.rayriffy.com/latest', 'https://lotto.moe/api'];
-            let success = false;
-            for (let url of endpoints) {
-                try {
-                    const response = await fetch(url); const data = await response.json();
-                    if (data.response && data.response.date) {
-                        lottoData = {
-                            date: data.response.date, prize1: data.response.prizes[0].number,
-                            prize2: data.response.prizes[1].number, prize3: data.response.prizes[2].number,
-                            prize4: data.response.prizes[3].number, prize5: data.response.prizes[4].number,
-                            front3: data.response.runningNumbers[0].number, last3: data.response.runningNumbers[1].number,
-                            last2: data.response.runningNumbers[2].number
-                        }; updateUI(lottoData); success = true; break;
-                    } else if (data.data && data.data.first) {
-                        lottoData = formatLottoMoeData(data); updateUI(lottoData); success = true; break;
-                    }
-                } catch (error) { console.warn(`API Error:`, error); }
+        // เคลียร์หน้าจอก่อนโหลดข้อมูลใหม่
+        function showLoadingState() {
+            document.getElementById('displayDate').innerHTML = 'กำลังโหลดข้อมูล... <i class="fas fa-spinner fa-spin"></i>';
+            document.getElementById('prize1-main').innerText = '...';
+            document.getElementById('front3').innerText = '...';
+            document.getElementById('last3').innerText = '...';
+            document.getElementById('last2').innerText = '...';
+            document.getElementById('resultMsg').innerHTML = '';
+            document.getElementById('shareBox').style.display = 'none';
+            document.getElementById('userNumbers').value = '';
+            renderPrizeTable(['...'], 'table-prize-2');
+            renderPrizeTable(['...'], 'table-prize-3');
+            renderPrizeGrid(['...'], 'grid-prize-4');
+            renderPrizeGrid(['...'], 'grid-prize-5');
+        }
+
+        // ✅ อัปเกรด: ฟังก์ชันดึงข้อมูลตามวันที่เลือก
+        async function fetchLottoData(dateId = 'latest') {
+            showLoadingState();
+            
+            // ถ้าเลือกล่าสุด ใช้ endpoint /latest ถ้าเลือกวันที่ ใช้ /lotto/{dateId}
+            let url = dateId === 'latest' 
+                ? 'https://lotto.api.rayriffy.com/latest' 
+                : `https://lotto.api.rayriffy.com/lotto/${dateId}`;
+            
+            try {
+                console.log("กำลังดึงข้อมูลจาก:", url);
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.response && data.response.date) {
+                    lottoData = formatRayriffyData(data.response);
+                    updateUI(lottoData);
+                } else {
+                    throw new Error("ไม่พบข้อมูล");
+                }
+            } catch (error) {
+                console.warn(`ดึงข้อมูลไม่สำเร็จ:`, error);
+                document.getElementById('displayDate').innerHTML = `<span style="color:var(--highlight-red);">❌ ไม่พบข้อมูลของงวดที่เลือก หรือระบบขัดข้อง</span>`;
+                lottoData = null; // ป้องกันการกดตรวจ
             }
-            if (!success) useFallbackData();
         }
 
         function updateUI(data) {
-            document.querySelector('.draw-date').innerHTML = `งวดประจำวันที่ <strong>${data.date}</strong>`;
+            document.getElementById('displayDate').innerHTML = `งวดประจำวันที่ <strong>${data.date}</strong>`;
             document.getElementById('prize1-main').innerText = data.prize1[0] || '...';
             document.getElementById('front3').innerText = (data.front3 && data.front3.join(', ')) || '...';
             document.getElementById('last3').innerText = (data.last3 && data.last3.join(', ')) || '...';
             document.getElementById('last2').innerText = (data.last2 && data.last2[0]) || '...';
             renderPrizeTable(data.prize2, 'table-prize-2'); renderPrizeTable(data.prize3, 'table-prize-3');
             renderPrizeGrid(data.prize4, 'grid-prize-4'); renderPrizeGrid(data.prize5, 'grid-prize-5');
-        }
-
-        function useFallbackData() {
-            const fallback = {
-                date: "16 กุมภาพันธ์ 2569", prize1: ['987654'], prize2: ['111111','222222','333333','444444','555555'],
-                prize3: ['123123','456456','789789','012012','345345','678678','901901','234234','567567','890890'],
-                prize4: ['000000','999999'], prize5: ['888888'], front3: ['123','456'], last3: ['789','012'], last2: ['99']
-            };
-            lottoData = fallback; updateUI(fallback);
         }
 
         function renderPrizeTable(numbers, tableClass) {
@@ -320,10 +342,17 @@
             container.innerHTML = html;
         }
 
-        fetchLottoData();
+        // เริ่มดึงข้อมูลงวดล่าสุดตอนเปิดเว็บ
+        fetchLottoData('latest');
 
+        // ✅ จับ Event เมื่อคนเปลี่ยน Dropdown เลือกงวด
+        document.getElementById('historySelect').addEventListener('change', function(e) {
+            fetchLottoData(e.target.value);
+        });
+
+        // ฟังก์ชันตรวจหวย
         function checkLotto() {
-            if (!lottoData) return;
+            if (!lottoData) { showResult('⚠️ ข้อมูลยังโหลดไม่เสร็จ หรือไม่พบข้อมูลงวดนี้ค่ะ', 'lose'); return; }
             const input = document.getElementById('userNumbers').value.trim();
             if (!input) { showResult('⚠️ กรุณากรอกเลขหวยก่อนค่ะ', 'lose'); return; }
             const rawNums = input.split(/[\s,，]+/).filter(x => x.trim());
