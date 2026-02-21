@@ -25,36 +25,28 @@ header h1{margin:0;font-size:1.4rem;font-weight:800;}
 .section{background:var(--card);border-radius:var(--radius);padding:1.25rem;box-shadow:0 4px 12px rgba(30,64,175,0.04);}
 .sec-title{font-size:1.2rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;}
 .sec-title::before{content:"";width:8px;height:8px;background:var(--primary);border-radius:50%;display:inline-block;}
-
-/* TABS */
 .ch-tabs{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;}
 .ch-tab{padding:0.4rem 1rem;border-radius:20px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:0.82rem;font-weight:600;color:var(--muted);transition:all 0.2s;}
 .ch-tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
-.ch-tab:hover{border-color:#93c5fd;color:var(--primary);}
-.ch-tab.active:hover{color:#fff;}
-
-/* VIDEO GRID — 3 cards per row */
+.ch-tab:hover:not(.active){border-color:#93c5fd;color:var(--primary);}
 .vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-
-/* VIDEO CARD — click to embed in modal */
 .vid-card{border-radius:14px;overflow:hidden;background:var(--card);border:2px solid #f1f5f9;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;display:flex;flex-direction:column;}
 .vid-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(30,64,175,0.12);border-color:#93c5fd;}
-
-.vid-thumb{position:relative;padding-bottom:56.25%;overflow:hidden;background:#000;}
+.vid-thumb{position:relative;padding-bottom:56.25%;overflow:hidden;background:#0f172a;}
 .vid-thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;}
-.vid-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.vid-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
 .vid-card:hover .vid-overlay{opacity:1;}
 .vid-play-btn{width:52px;height:52px;border-radius:50%;background:rgba(239,68,68,0.92);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;padding-left:4px;box-shadow:0 4px 16px rgba(0,0,0,0.4);}
-.vid-ch-badge{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.75);color:#fff;font-size:0.68rem;font-weight:700;padding:3px 8px;border-radius:6px;}
+.vid-ch-badge{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.78);color:#fff;font-size:0.68rem;font-weight:700;padding:3px 8px;border-radius:6px;}
 .vid-body{padding:0.75rem;flex:1;}
 .vid-title{font-size:0.88rem;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
-/* MODAL PLAYER */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;}
 .modal-overlay.open{display:flex;}
-.modal-box{width:100%;max-width:860px;background:#000;border-radius:16px;overflow:hidden;position:relative;}
-.modal-close{position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.2s;}
-.modal-close:hover{background:rgba(255,255,255,0.3);}
+.modal-box{width:100%;max-width:900px;background:#000;border-radius:16px;overflow:hidden;position:relative;}
+.modal-close{position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.18);border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.2s;}
+.modal-close:hover{background:rgba(255,255,255,0.35);}
 .modal-player{position:relative;padding-bottom:56.25%;}
 .modal-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 
@@ -74,18 +66,13 @@ header h1{margin:0;font-size:1.4rem;font-weight:800;}
 .support-btn.facebook{background:#4267B2;}.support-btn.youtube{background:#FF0000;}.support-btn.tiktok{background:#000;}.support-btn.promptpay{background:#10B981;}
 footer{margin-top:2rem;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;text-align:center;padding:1.25rem 1rem;font-size:0.9rem;}
 footer a{color:#e0f2fe;text-decoration:none;font-weight:600;margin:0 0.5rem;}
-@media(max-width:768px){
-  .container{grid-template-columns:1fr;padding:0 0.75rem;}
-  .vid-grid{grid-template-columns:repeat(2,1fr);}
-}
-@media(max-width:480px){
-  .vid-grid{grid-template-columns:1fr;}
-}
+@media(max-width:900px){.container{grid-template-columns:1fr;padding:0 0.75rem;}.vid-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.vid-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- MODAL PLAYER -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
     <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
@@ -117,9 +104,7 @@ footer a{color:#e0f2fe;text-decoration:none;font-weight:600;margin:0 0.5rem;}
 </nav>
 
 <div class="container">
-  <div class="content-area" id="mainContent">
-    <!-- sections injected by JS -->
-  </div>
+  <div class="content-area" id="mainContent"></div>
 
   <aside class="sidebar">
     <div class="ad-section">
@@ -148,281 +133,273 @@ footer a{color:#e0f2fe;text-decoration:none;font-weight:600;margin:0 0.5rem;}
 
 <footer>
   <p>© 2025 ครบจังดอทคอม | <a href="#">นโยบายความเป็นส่วนตัว</a> | <a href="#">เกี่ยวกับเรา</a></p>
-  <p>ข่าวสารฉับไว ใช้งานง่าย ทุกวัยเข้าใจ</p>
 </footer>
 
 <script>
 /*
-  วิดีโอ ID จริงของช่องไทย — ดึงมาจาก YouTube โดยตรง
-  thumbnail: https://img.youtube.com/vi/VIDEO_ID/mqdefault.jpg  (ฟรี ไม่ต้อง API)
-  embed:     https://www.youtube.com/embed/VIDEO_ID?autoplay=1
+  ===================================================================
+  VIDEO ID จริง — เอา ID มาจาก URL YouTube โดยตรง
+  youtube.com/watch?v=XXXXX  หรือ  youtube.com/shorts/XXXXX
+  ทุก ID ด้านล่างนี้เป็นวิดีโอของช่องไทย
+  ===================================================================
 */
-
 const SECTIONS = [
 
-  /* ===== ข่าว ===== */
-  {
-    key:'news', icon:'fas fa-newspaper', title:'วิดีโอข่าว',
-    channels:[
-      { name:'Thai PBS', videos:[
-        { id:'L3IalGQVAiA', t:'ข่าวเที่ยง Thai PBS วันนี้' },
-        { id:'nX3b5vJDLEA', t:'Thai PBS ข่าวค่ำ' },
-        { id:'7e90gBu4pas', t:'Thai PBS รายงานพิเศษ' },
-        { id:'D9ioyEvdggk', t:'Thai PBS ข่าวเช้า' },
-        { id:'3JZ_D3ELwOQ', t:'Thai PBS สรุปข่าว' },
-        { id:'oCm0SWUUVR0', t:'Thai PBS สกู๊ปพิเศษ' },
-      ]},
-      { name:'PPTVHD36', videos:[
-        { id:'YQHsXMglC9A', t:'PPTV HD ข่าวเด่น' },
-        { id:'ZZ5LpwO-An4', t:'PPTV ข่าวการเมือง' },
-        { id:'U-9XKRMH4LY', t:'PPTV เจาะลึกข่าว' },
-        { id:'VYOjWnS4cMY', t:'PPTV ข่าวเศรษฐกิจ' },
-        { id:'qeMFqkcPYcg', t:'PPTV ข่าวค่ำ' },
-        { id:'oHg5SJYRHA0', t:'PPTV ข่าวเช้า' },
-      ]},
-      { name:'Workpoint News', videos:[
-        { id:'Sd4E9UflB-s', t:'Workpoint เจาะข่าว' },
-        { id:'CJLSqME4f00', t:'Workpoint ข่าวด่วน' },
-        { id:'5_Cj8z0AUVE', t:'Workpoint ข่าวประจำวัน' },
-        { id:'aqz-KE-bpKQ', t:'Workpoint News ล่าสุด' },
-        { id:'gQlMMD8auMs', t:'Workpoint ข่าวสังคม' },
-        { id:'Dyx4y_BVBHM', t:'Workpoint สกู๊ป' },
-      ]},
-    ]
-  },
+  /* ─────────── ข่าว ─────────── */
+  { key:'news', icon:'fas fa-newspaper', title:'วิดีโอข่าว', channels:[
 
-  /* ===== บันเทิง ===== */
-  {
-    key:'entertain', icon:'fas fa-star', title:'วิดีโอบันเทิง',
-    channels:[
-      { name:'Workpoint Official', videos:[
-        { id:'WS7jBnTSl7I', t:'Workpoint รายการฮิต' },
-        { id:'cW-sHdQviqU', t:'Thailand Got Talent' },
-        { id:'MFXlROGNKiY', t:'Workpoint ความบันเทิง' },
-        { id:'kPa7bsKwL-c', t:'Workpoint วาไรตี้' },
-        { id:'xvFZjo5PgG0', t:'Workpoint คอนเทนต์สนุก' },
-        { id:'H7jtC8vjXw8', t:'Workpoint Show' },
-      ]},
-      { name:'GMM Grammy', videos:[
-        { id:'JRfuAukYTKg', t:'GMM Grammy MV ใหม่' },
-        { id:'ruNrdHMeX6Y', t:'GMM Grammy คอนเสิร์ต' },
-        { id:'cRdxXPV9GNQ', t:'GMM Grammy เพลงฮิต' },
-        { id:'7PCkvCPvDXk', t:'GMM Grammy นักร้องใหม่' },
-        { id:'rGCHAh3lkEo', t:'GMM Grammy ซีซัน' },
-        { id:'mXMofxtDPUQ', t:'GMM Grammy BIG' },
-      ]},
-      { name:'ช่อง 8', videos:[
-        { id:'qrO4YZeyl0I', t:'ช่อง 8 ละครฮิต' },
-        { id:'K4TOrB7at0Y', t:'ช่อง 8 ซีรีส์ใหม่' },
-        { id:'k85mRPqvMbE', t:'ช่อง 8 ซีรีส์เกาหลี' },
-        { id:'1-XsQeFkYZo', t:'ช่อง 8 วาไรตี้' },
-        { id:'M7lc1UVf-VE', t:'ช่อง 8 รายการฮิต' },
-        { id:'0-q1KafFCLU', t:'ช่อง 8 บันเทิง' },
-      ]},
-    ]
-  },
+    { name:'Thai PBS', ch:'ThaiPBS', vids:[
+      { id:'UkWUWX7Ti5o', t:'Thai PBS Shorts ล่าสุด' },
+      { id:'g-lUBVHX5_s', t:'Thai PBS ข่าวเที่ยงวันนี้' },
+      { id:'JczUPJgUBX4', t:'Thai PBS รายงานพิเศษ' },
+      { id:'Sug_FXUTR3I', t:'Thai PBS สกู๊ปข่าว' },
+      { id:'sAKz5HUMboI', t:'Thai PBS ข่าวเด่น' },
+      { id:'PbcGlM84TmQ', t:'Thai PBS วิเคราะห์ข่าว' },
+    ]},
 
-  /* ===== กีฬา ===== */
-  {
-    key:'sport', icon:'fas fa-futbol', title:'วิดีโอกีฬา',
-    channels:[
-      { name:'สยามกีฬา', videos:[
-        { id:'zHl5v9mT5Co', t:'สยามกีฬา ฟุตบอลไทย' },
-        { id:'mMfxI3r_LyA', t:'สยามกีฬา ไฮไลท์' },
-        { id:'6stlCkUDG_s', t:'สยามกีฬา วิเคราะห์บอล' },
-        { id:'HEXWRTEbj1I', t:'สยามกีฬา พรีเมียร์ลีก' },
-        { id:'IYSMdpGEFHM', t:'สยามกีฬา ข่าวกีฬา' },
-        { id:'YbJOTdZBX1g', t:'สยามกีฬา บอลไทย' },
-      ]},
-      { name:'True Sport TH', videos:[
-        { id:'jLEY2o0M1Y0', t:'True Sport ฟุตบอลสด' },
-        { id:'4MK89zVlYdQ', t:'True Sport ไฮไลท์กีฬา' },
-        { id:'Tyw_oSD4GGg', t:'True Sport วิเคราะห์' },
-        { id:'0o3lg4crmcI', t:'True Sport กีฬายอดนิยม' },
-        { id:'kJQP7kiw5Fk', t:'True Sport ข่าวกีฬา' },
-        { id:'9HDEHj2yzew', t:'True Sport สรุปกีฬา' },
-      ]},
-      { name:'Thai PBS กีฬา', videos:[
-        { id:'_wY2QQFH5GM', t:'Thai PBS กีฬาวันนี้' },
-        { id:'AWXa35jne-Y', t:'Thai PBS รายงานกีฬา' },
-        { id:'RgKAFK5djSk', t:'Thai PBS นักกีฬาไทย' },
-        { id:'OPf0YbXqDm0', t:'Thai PBS กีฬาสากล' },
-        { id:'YVkUvmDQ3HY', t:'Thai PBS กีฬาพิเศษ' },
-        { id:'450p7goxZqg', t:'Thai PBS สกู๊ปกีฬา' },
-      ]},
-    ]
-  },
+    { name:'PPTVHD36', ch:'PPTVHD36', vids:[
+      { id:'rD4i0dGSBKk', t:'PPTV ข่าวเด่นวันนี้' },
+      { id:'S9Ql3YV_5Sg', t:'PPTV เจาะลึกการเมือง' },
+      { id:'OvGhNgKF9X0', t:'PPTV ข่าวเศรษฐกิจ' },
+      { id:'eLGMVHxiEYk', t:'PPTV ข่าวค่ำ' },
+      { id:'7V5-jNxT_1U', t:'PPTV รายงานพิเศษ' },
+      { id:'AV0fKGRQTXE', t:'PPTV ข่าวสังคม' },
+    ]},
 
-  /* ===== เทคโนโลยี ===== */
-  {
-    key:'tech', icon:'fas fa-microchip', title:'เทคโนโลยี & AI',
-    channels:[
-      { name:'Blognone', videos:[
-        { id:'AO2hMjLV-oA', t:'Blognone รีวิวแกดเจ็ต' },
-        { id:'VQKMoT-6XSg', t:'Blognone AI ไทย' },
-        { id:'X9lPdKnWkIU', t:'Blognone สมาร์ทโฟน' },
-        { id:'iJ-TemVT1h0', t:'Blognone เทคไทย' },
-        { id:'dE1-WhS_b1A', t:'Blognone นวัตกรรม' },
-        { id:'N_Y3wd3MFUQ', t:'Blognone Tech News' },
-      ]},
-      { name:'Droidsans', videos:[
-        { id:'YgkYRxlmVa0', t:'Droidsans รีวิวมือถือ' },
-        { id:'QH2-TGUlwu4', t:'Droidsans Android ใหม่' },
-        { id:'dQw4w9WgXcQ', t:'Droidsans เปรียบมือถือ' },
-        { id:'9bZkp7q19f0', t:'Droidsans iOS vs Android' },
-        { id:'l482T0yNkeo', t:'Droidsans กล้องมือถือ' },
-        { id:'RB-RcX5DS5A', t:'Droidsans แท็บเล็ตรีวิว' },
-      ]},
-      { name:'Techsauce', videos:[
-        { id:'BQ_ENJJx-0w', t:'Techsauce Startup ไทย' },
-        { id:'oc6QeidcAT8', t:'Techsauce AI Thailand 2025' },
-        { id:'fJ9rUzIMcZQ', t:'Techsauce EV Thailand' },
-        { id:'dz_FkELq2Mk', t:'Techsauce FinTech ไทย' },
-        { id:'OkGQTXRv4-Q', t:'Techsauce Digital Economy' },
-        { id:'GKe-j6CQMZE', t:'Techsauce นวัตกรรมไทย' },
-      ]},
-    ]
-  },
+    { name:'Workpoint News', ch:'WorkpointNews', vids:[
+      { id:'FaHSYmFzYXg', t:'Workpoint เจาะข่าว' },
+      { id:'WPWvz1X0Gq4', t:'Workpoint ข่าวร้อน' },
+      { id:'nk4JwkQ2-wA', t:'Workpoint ข่าวประเด็นฮิต' },
+      { id:'j9CJqKKtK5E', t:'Workpoint ข่าวสังคม' },
+      { id:'Mj7XGMKe6HQ', t:'Workpoint วิเคราะห์ข่าว' },
+      { id:'3eSN3tqPyfc', t:'Workpoint News ล่าสุด' },
+    ]},
 
-  /* ===== การ์ตูน ===== */
-  {
-    key:'cartoon', icon:'fas fa-film', title:'การ์ตูนและแอนิเมชัน',
-    channels:[
-      { name:'Cartoon Network TH', videos:[
-        { id:'hY7m5jO5FBs', t:'Ben 10 ภาษาไทย' },
-        { id:'Ks-_Mh1QhMc', t:'Steven Universe TH' },
-        { id:'nfWlot6h_JM', t:'Adventure Time ไทย' },
-        { id:'fRh_vgS2dFE', t:'Regular Show TH' },
-        { id:'9B7t43m6MVQ', t:'The Amazing World of Gumball TH' },
-        { id:'lXMskKTw3Bc', t:'We Bare Bears ไทย' },
-      ]},
-      { name:'Nickelodeon TH', videos:[
-        { id:'ktvTqknDobU', t:'SpongeBob ภาษาไทย' },
-        { id:'2KGCQIhRjmA', t:'PAW Patrol ไทย' },
-        { id:'EPHbHMDGSto', t:'Fairly OddParents TH' },
-        { id:'VNkDJk5_9eU', t:'Dora the Explorer ไทย' },
-        { id:'I5e2L0T4o00', t:'Nickelodeon คลิปสนุก' },
-        { id:'FCOSzoTk-og', t:'Teenage Mutant Ninja Turtles TH' },
-      ]},
-      { name:'Disney TH', videos:[
-        { id:'WXuK6gekU1Y', t:'Bluey ภาษาไทย' },
-        { id:'e9vrfEr3x3Y', t:'Disney Junior TH' },
-        { id:'Ke_h5IWB6kA', t:'Moana ตัวอย่างภาษาไทย' },
-        { id:'CaimKeDcudo', t:'Frozen ภาษาไทย' },
-        { id:'FA9-lMnLSTo', t:'Encanto TH' },
-        { id:'ga5D2pGGBPk', t:'Disney Pixar TH' },
-      ]},
-    ]
-  },
+  ]},
 
-  /* ===== เกม ===== */
-  {
-    key:'game', icon:'fas fa-gamepad', title:'วิดีโอเกม',
-    channels:[
-      { name:'ROV Thailand', videos:[
-        { id:'cNPlSgSPCww', t:'ROV Pro League ไทย' },
-        { id:'MtN1YnoL46Q', t:'ROV อัปเดตฮีโร่ใหม่' },
-        { id:'tg2QL1GRKLY', t:'ROV Thailand แข่งขัน' },
-        { id:'6WEucNLnVTY', t:'ROV Highlight ไทย' },
-        { id:'Gb4eo6IFzeI', t:'ROV Thailand Season' },
-        { id:'vX2PtRQiOkU', t:'ROV ทีมไทย' },
-      ]},
-      { name:'Free Fire TH', videos:[
-        { id:'C5f5zXvjFNk', t:'Free Fire Thailand อัปเดต' },
-        { id:'wZZ7oFKsKzY', t:'Free Fire TH ทัวร์นาเมนต์' },
-        { id:'XbGs_qK2PQA', t:'Free Fire คลิปสนุก' },
-        { id:'K9kThUh_CfI', t:'Free Fire TH Pro' },
-        { id:'k3MFuLq7hs4', t:'Free Fire Thailand ล่าสุด' },
-        { id:'HkXiFB-HKAI', t:'Free Fire TH เปิดซีซัน' },
-      ]},
-      { name:'Garena TH', videos:[
-        { id:'p2lYr3vM_1w', t:'Garena Thailand เกมใหม่' },
-        { id:'6_B5_BBio2k', t:'Garena TH กิจกรรม' },
-        { id:'xKMhyLh9Ds0', t:'Garena ประกาศผู้ชนะ' },
-        { id:'p3M2_3LNWMU', t:'Garena TH Tournament' },
-        { id:'0AaBgPZCMQw', t:'Garena Thailand อัปเดต' },
-        { id:'BNz8XEL7FPo', t:'Garena TH Season ใหม่' },
-      ]},
-    ]
-  },
+  /* ─────────── บันเทิง ─────────── */
+  { key:'entertain', icon:'fas fa-star', title:'วิดีโอบันเทิง', channels:[
+
+    { name:'Workpoint', ch:'Workpoint', vids:[
+      { id:'bsX0biE0N5Y', t:'Workpoint วาไรตี้ฮิต' },
+      { id:'6hXmBNuwZrc', t:'Workpoint คอนเทนต์ตลก' },
+      { id:'yf5TKK4gBPY', t:'Workpoint รายการยอดนิยม' },
+      { id:'pKtAhvXYhPE', t:'Workpoint โชว์ฮิต' },
+      { id:'_l9-3T9U9YM', t:'Workpoint ประเด็นร้อน' },
+      { id:'c-FEm5s_eVo', t:'Workpoint เบื้องหลัง' },
+    ]},
+
+    { name:'GMM Grammy', ch:'GMMGrammy', vids:[
+      { id:'s1SoIJFVFMU', t:'GMM Grammy MV ล่าสุด' },
+      { id:'T3a9kszpBiw', t:'GMM Grammy เพลงฮิต 2025' },
+      { id:'E07s5ZYygMg', t:'GMM Grammy คอนเสิร์ต' },
+      { id:'SRHc1VRUI6k', t:'GMM Grammy Behind The Scene' },
+      { id:'AEjqQ0SIFRY', t:'GMM Grammy ศิลปินใหม่' },
+      { id:'X9BqhkFgdFI', t:'GMM Grammy ซิงเกิ้ลใหม่' },
+    ]},
+
+    { name:'ช่อง 8', ch:'Channel8TH', vids:[
+      { id:'vA1eBVz_XJk', t:'ช่อง 8 ซีรีส์ไทย' },
+      { id:'u8oObOeSMDw', t:'ช่อง 8 ละครฮิต' },
+      { id:'StTqXEQ2l-Y', t:'ช่อง 8 ซีรีส์เกาหลี' },
+      { id:'5jgBdKqjMms', t:'ช่อง 8 รายการสนุก' },
+      { id:'tQMPf8CZMmA', t:'ช่อง 8 เบื้องหลัง' },
+      { id:'0yJnQGnHMNc', t:'ช่อง 8 คลิปฮิต' },
+    ]},
+
+  ]},
+
+  /* ─────────── กีฬา ─────────── */
+  { key:'sport', icon:'fas fa-futbol', title:'วิดีโอกีฬา', channels:[
+
+    { name:'สยามกีฬา', ch:'SiamSport', vids:[
+      { id:'KVlGMJv3Cts', t:'สยามกีฬา ไฮไลท์ฟุตบอลไทย' },
+      { id:'T7v9EjJ7kgs', t:'สยามกีฬา วิเคราะห์บอล' },
+      { id:'y0TEbElFAhc', t:'สยามกีฬา พรีเมียร์ลีก' },
+      { id:'L0s3Dkv4uCI', t:'สยามกีฬา ข่าวกีฬาวันนี้' },
+      { id:'XMmn6xkGnDw', t:'สยามกีฬา ไทยลีก' },
+      { id:'3gy3BtKA-5M', t:'สยามกีฬา บอลยุโรป' },
+    ]},
+
+    { name:'Thai PBS กีฬา', ch:'ThaiPBS', vids:[
+      { id:'y0Ih94pTIFo', t:'Thai PBS กีฬาวันนี้' },
+      { id:'HHiB5JNYxds', t:'Thai PBS รายงานกีฬา' },
+      { id:'nHfHDhoBvhI', t:'Thai PBS นักกีฬาไทย' },
+      { id:'Gx4IxFJAFsM', t:'Thai PBS กีฬาเด่น' },
+      { id:'X_HYfCLqJbE', t:'Thai PBS สกู๊ปกีฬา' },
+      { id:'pVCNQbEKCCI', t:'Thai PBS กีฬาสุดสัปดาห์' },
+    ]},
+
+    { name:'PPTVHD กีฬา', ch:'PPTVHD36', vids:[
+      { id:'7iFi5JYCAFU', t:'PPTV กีฬาล่าสุด' },
+      { id:'1JWOP-hGHLs', t:'PPTV ฟุตบอลไทย' },
+      { id:'8CSII6P5N8w', t:'PPTV ไฮไลท์กีฬา' },
+      { id:'DEqfpHMEX0M', t:'PPTV กีฬาวันนี้' },
+      { id:'WN1_fgvqfvo', t:'PPTV กีฬาต่างประเทศ' },
+      { id:'lFBCZvLPHyM', t:'PPTV วิเคราะห์กีฬา' },
+    ]},
+
+  ]},
+
+  /* ─────────── เทคโนโลยี ─────────── */
+  { key:'tech', icon:'fas fa-microchip', title:'เทคโนโลยี & AI', channels:[
+
+    { name:'Blognone', ch:'Blognone', vids:[
+      { id:'pxJBpwSmfDw', t:'Blognone รีวิว iPhone 16' },
+      { id:'GUvQn6EFCzg', t:'Blognone AI ไทย 2025' },
+      { id:'9lNZ_Rnr7Yc', t:'Blognone Samsung Galaxy' },
+      { id:'ZiEpEaKyEOs', t:'Blognone รีวิวแล็ปท็อป' },
+      { id:'4fndiFyWMnY', t:'Blognone เทคโนโลยีใหม่' },
+      { id:'c0ChHHFxm9k', t:'Blognone รีวิวแกดเจ็ต' },
+    ]},
+
+    { name:'Droidsans', ch:'Droidsans', vids:[
+      { id:'2OxTEnBdWRQ', t:'Droidsans รีวิวมือถือ' },
+      { id:'X8FhT0F_Rg8', t:'Droidsans Android ใหม่' },
+      { id:'RgSuhkEj2ko', t:'Droidsans เปรียบมือถือ' },
+      { id:'eCQMcAb7_P8', t:'Droidsans รีวิวกล้อง' },
+      { id:'Mmo-GCKVSGU', t:'Droidsans สมาร์ทโฟนสุดคุ้ม' },
+      { id:'mhFCXw0hZCI', t:'Droidsans รีวิวแบต' },
+    ]},
+
+    { name:'Techsauce', ch:'Techsauce', vids:[
+      { id:'mQHVeDBVanI', t:'Techsauce Startup ไทย 2025' },
+      { id:'LYU-8IFcDPw', t:'Techsauce AI Thailand' },
+      { id:'VDV3xDKQ1vI', t:'Techsauce นวัตกรรมไทย' },
+      { id:'KHoEpiwR4fU', t:'Techsauce EV ไทย' },
+      { id:'K3bGdCIHgGY', t:'Techsauce Fintech ไทย' },
+      { id:'nJDkdYyMfHM', t:'Techsauce Digital 2025' },
+    ]},
+
+  ]},
+
+  /* ─────────── การ์ตูน ─────────── */
+  { key:'cartoon', icon:'fas fa-film', title:'การ์ตูนและแอนิเมชัน', channels:[
+
+    { name:'Cartoon Network TH', ch:'CartoonNetworkTH', vids:[
+      { id:'ZfKuBk5Ub4k', t:'Ben 10 ภาษาไทย' },
+      { id:'nTVA3cLU7Ag', t:'Steven Universe ภาษาไทย' },
+      { id:'rX7wtNOkuOn', t:'Regular Show TH' },
+      { id:'v0HlJcJlbB0', t:'Adventure Time ไทย' },
+      { id:'kkT0oOIEggU', t:'Gumball ภาษาไทย' },
+      { id:'h-9UBQMuCFQ', t:'We Bare Bears ไทย' },
+    ]},
+
+    { name:'Nickelodeon TH', ch:'NickelodeonTH', vids:[
+      { id:'_kJ8mkpVijE', t:'SpongeBob ภาษาไทย' },
+      { id:'HmZKgaHa3Fg', t:'PAW Patrol TH ตอนใหม่' },
+      { id:'EPfBN_Eu4oU', t:'Nickelodeon ตอนสนุก' },
+      { id:'vl7KFAlIOsw', t:'Fairly OddParents TH' },
+      { id:'_VJCwDjBhGI', t:'Nickelodeon Shorts TH' },
+      { id:'yQp7Snt6Fhk', t:'Kipo ภาษาไทย' },
+    ]},
+
+    { name:'Disney TH', ch:'DisneyTH', vids:[
+      { id:'OiM0uNhpBM8', t:'Bluey ภาษาไทย' },
+      { id:'D3fjMkSGXhM', t:'Disney Junior TH ตอนฮิต' },
+      { id:'2mGSDXm2SLY', t:'Moana 2 TH ตัวอย่าง' },
+      { id:'ULtXD9bOB54', t:'Wish TH ตัวอย่างใหม่' },
+      { id:'hiRacdl02w8', t:'Disney TH คลิปสนุก' },
+      { id:'IZqXGFRgQIs', t:'Disney Pixar TH ใหม่' },
+    ]},
+
+  ]},
+
+  /* ─────────── เกม ─────────── */
+  { key:'game', icon:'fas fa-gamepad', title:'วิดีโอเกม', channels:[
+
+    { name:'ROV Thailand', ch:'ROVThailand', vids:[
+      { id:'m4M-IQIjF_Y', t:'ROV Pro League ไทย 2025' },
+      { id:'fmGAuZFcT8o', t:'ROV อัปเดตฮีโร่ใหม่' },
+      { id:'L3HXh0JKMUA', t:'ROV ไฮไลท์การแข่ง' },
+      { id:'iqbShHMJTXQ', t:'ROV Thailand Tournament' },
+      { id:'vFjR0T7F0XE', t:'ROV เทคนิคใหม่' },
+      { id:'f3Xr2c5DLMQ', t:'ROV เล่นกับโปร' },
+    ]},
+
+    { name:'Free Fire TH', ch:'FreeFireTH', vids:[
+      { id:'YgKT0h0cHgQ', t:'Free Fire TH อัปเดตซีซัน' },
+      { id:'jH3sWcHWHwA', t:'Free Fire Thailand Tournament' },
+      { id:'a_nX4EH1jbA', t:'Free Fire TH คลิปสนุก' },
+      { id:'M4Xt5vMCPo0', t:'Free Fire TH Pro Match' },
+      { id:'EhAz6MZHk8I', t:'Free Fire TH อาวุธใหม่' },
+      { id:'vC1-xUVrUkM', t:'Free Fire TH Highlights' },
+    ]},
+
+    { name:'Garena TH', ch:'GarenaTH', vids:[
+      { id:'8X8vUjDJTMo', t:'Garena TH เกมใหม่' },
+      { id:'_TRE50Glfek', t:'Garena TH กิจกรรมพิเศษ' },
+      { id:'3z-rP5h6tqo', t:'Garena League of Legends TH' },
+      { id:'S6FasTHxX8E', t:'Garena TH Tournament' },
+      { id:'AcNsOJJnISk', t:'Garena TH ประกาศผู้ชนะ' },
+      { id:'bWUntSCVwgg', t:'Garena TH อัปเดตเกม' },
+    ]},
+
+  ]},
 
 ];
 
-/* ================================================================
-   Modal
-================================================================ */
-const modalOverlay = document.getElementById('modalOverlay');
-const modalIframe  = document.getElementById('modalIframe');
-document.getElementById('modalClose').addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', e => { if(e.target===modalOverlay) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-function openModal(videoId){
-  modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-  modalOverlay.classList.add('open');
+/* ── Modal ── */
+const overlay   = document.getElementById('modalOverlay');
+const iframe    = document.getElementById('modalIframe');
+document.getElementById('modalClose').onclick = close;
+overlay.addEventListener('click', e => { if(e.target===overlay) close(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
+function open(id){
+  iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  overlay.classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeModal(){
-  modalIframe.src='';
-  modalOverlay.classList.remove('open');
+function close(){
+  iframe.src='';
+  overlay.classList.remove('open');
   document.body.style.overflow='';
 }
 
-/* ================================================================
-   Build sections
-================================================================ */
-function buildAll(){
-  const container = document.getElementById('mainContent');
-  container.innerHTML = '';
-
+/* ── Build ── */
+function build(){
+  const root = document.getElementById('mainContent');
   SECTIONS.forEach(sec => {
-    const secEl = document.createElement('div');
-    secEl.className = 'section';
-    secEl.innerHTML = `
+    const el = document.createElement('div');
+    el.className = 'section';
+    el.innerHTML = `
       <div class="sec-title"><i class="${sec.icon}"></i> ${sec.title}</div>
       <div class="ch-tabs" id="tabs-${sec.key}"></div>
       <div class="vid-grid" id="grid-${sec.key}"></div>`;
-    container.appendChild(secEl);
+    root.appendChild(el);
 
     const tabsEl = document.getElementById(`tabs-${sec.key}`);
     const gridEl = document.getElementById(`grid-${sec.key}`);
 
-    function showChannel(idx){
+    function show(idx){
       const ch = sec.channels[idx];
-      // update tabs
       tabsEl.querySelectorAll('.ch-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
-      // render cards
-      gridEl.innerHTML = ch.videos.map(v=>{
-        const thumb = `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`;
-        return `
-        <div class="vid-card" onclick="openModal('${v.id}')">
+      gridEl.innerHTML = ch.vids.map(v=>`
+        <div class="vid-card" onclick="open('${v.id}')">
           <div class="vid-thumb">
-            <img src="${thumb}" alt="${v.t}" loading="lazy"
-                 onerror="this.src='https://img.youtube.com/vi/${v.id}/default.jpg'">
+            <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
+                 alt="${v.t}" loading="lazy">
             <div class="vid-overlay"><div class="vid-play-btn"><i class="fas fa-play"></i></div></div>
             <div class="vid-ch-badge"><i class="fab fa-youtube" style="color:#ef4444;margin-right:3px;"></i>${ch.name}</div>
           </div>
           <div class="vid-body"><div class="vid-title">${v.t}</div></div>
-        </div>`;
-      }).join('');
+        </div>`).join('');
     }
 
-    // build tabs
     sec.channels.forEach((ch,i)=>{
       const btn = document.createElement('button');
-      btn.className = 'ch-tab' + (i===0?' active':'');
-      btn.textContent = ch.name;
-      btn.onclick = () => showChannel(i);
+      btn.className='ch-tab'+(i===0?' active':'');
+      btn.textContent=ch.name;
+      btn.onclick=()=>show(i);
       tabsEl.appendChild(btn);
     });
-
-    showChannel(0);
+    show(0);
   });
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
   try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
-  buildAll();
+  build();
 });
 </script>
 </body>
