@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ครบจังดอทคอม | วีดีโอ</title>
-  <meta name="description" content="ดูวิดีโอข่าว บันเทิง กีฬา เทคโนโลยี การ์ตูน และเกมส์ จากช่องดังทั่วไทย">
+  <meta name="description" content="ดูวิดีโอข่าว บันเทิง กีฬา เทคโนโลยี การ์ตูน เกมส์ ละคร ซีรี่ส์ เพลง จากช่องดังทั่วไทย">
 
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -22,23 +22,15 @@
       --muted: #64748b;
       --radius: 18px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; }
-
     body { background: var(--bg); color: var(--text); line-height: 1.6; }
 
     /* Header */
     header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      color: #fff; position: sticky; top: 0; z-index: 1000;
       box-shadow: 0 2px 12px rgba(30,64,175,0.3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.75rem 1rem;
+      display: flex; justify-content: center; align-items: center; padding: 0.75rem 1rem;
     }
     .logo { font-size: 1.5rem; font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
@@ -57,27 +49,27 @@
     }
     .main-nav a:hover, .main-nav a.active { background: var(--soft); transform: scale(1.02); }
 
-    /* Layout */
-    .container {
-      max-width: 1200px; margin: 1.25rem auto; padding: 0 1rem;
-      display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem;
+    /* Main Layout */
+    .page-wrap {
+      max-width: 1300px; margin: 0 auto; padding: 1rem 1rem;
+      display: grid; grid-template-columns: 1fr 280px; gap: 1.5rem;
     }
-    .content-area { display: flex; flex-direction: column; gap: 1.5rem; }
 
-    /* Category Tabs */
-    .cat-tabs {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-      background: var(--card); padding: 1rem;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(30,64,175,0.06);
+    /* ── Category Tabs ── */
+    .cat-scroll {
+      overflow-x: auto; white-space: nowrap;
+      padding-bottom: 0.25rem; margin-bottom: 1rem;
+      scrollbar-width: none;
     }
+    .cat-scroll::-webkit-scrollbar { display: none; }
+    .cat-tabs { display: inline-flex; gap: 0.5rem; }
     .cat-btn {
-      padding: 0.5rem 1.1rem; border-radius: 50px;
+      padding: 0.5rem 1.2rem; border-radius: 50px;
       border: 2px solid #dbeafe;
       background: #fff; color: var(--primary);
       font-weight: 700; font-size: 0.9rem;
-      cursor: pointer; transition: all 0.2s;
-      display: flex; align-items: center; gap: 0.4rem;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 0.4rem;
     }
     .cat-btn:hover { background: var(--soft); border-color: var(--primary-light); }
     .cat-btn.active {
@@ -86,59 +78,79 @@
       box-shadow: 0 4px 12px rgba(30,64,175,0.3);
     }
 
-    /* Channel Section */
-    .channel-section { margin-bottom: 1.75rem; }
-    .channel-title {
-      font-size: 1.1rem; font-weight: 800; color: var(--primary-dark);
-      margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.5rem;
-      padding-bottom: 0.5rem;
+    /* ── Channel Row (YouTube style) ── */
+    .ch-row { margin-bottom: 2rem; }
+    .ch-header {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem;
       border-bottom: 2px solid #dbeafe;
     }
-    .channel-title i { color: #FF0000; }
+    .ch-icon { color: #FF0000; font-size: 1.3rem; }
+    .ch-name { font-size: 1.1rem; font-weight: 800; color: var(--primary-dark); }
+    .ch-badge {
+      background: var(--soft); color: var(--primary);
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.15rem 0.5rem; border-radius: 50px;
+      border: 1px solid #bfdbfe;
+    }
 
-    /* Video Grid */
+    /* ── Video Grid YouTube-style ── */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.9rem;
     }
-    .video-card {
-      background: var(--card); border-radius: 14px; overflow: hidden;
-      box-shadow: 0 3px 10px rgba(30,64,175,0.07);
-      transition: all 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
-      cursor: pointer; text-decoration: none; color: inherit;
-      display: block; border: 1px solid transparent;
-    }
-    .video-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 24px rgba(30,64,175,0.15);
-      border-color: #dbeafe;
-    }
-    .thumb-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #e2e8f0; }
-    .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .play-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.3);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity 0.2s;
-    }
-    .video-card:hover .play-overlay { opacity: 1; }
-    .play-overlay i { font-size: 2.5rem; color: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
-    .video-info { padding: 0.65rem 0.75rem; }
-    .video-title {
-      font-size: 0.85rem; font-weight: 700;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-      overflow: hidden; line-height: 1.4; color: var(--text);
-    }
-    .video-date { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
 
-    /* Loading / Error */
-    .loading-box {
-      text-align: center; padding: 3rem 1rem;
-      color: var(--muted); font-size: 1rem;
+    /* First video = large (spans 2 cols, 2 rows) */
+    .video-card { text-decoration: none; color: inherit; display: block; }
+    .video-card:hover .thumb-img { transform: scale(1.03); }
+    .video-card:hover .video-title { color: var(--primary); }
+
+    .thumb-wrap {
+      position: relative; aspect-ratio: 16/9;
+      border-radius: 10px; overflow: hidden;
+      background: #e2e8f0;
     }
-    .loading-box i { font-size: 2rem; margin-bottom: 0.5rem; display: block; animation: spin 1s linear infinite; }
+    .thumb-img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform 0.3s;
+    }
+    .play-btn {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0); display: flex;
+      align-items: center; justify-content: center;
+      opacity: 0; transition: all 0.2s;
+    }
+    .video-card:hover .play-btn { opacity: 1; background: rgba(0,0,0,0.25); }
+    .play-btn i { font-size: 2.8rem; color: #fff; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+
+    .duration-badge {
+      position: absolute; bottom: 5px; right: 6px;
+      background: rgba(0,0,0,0.82); color: #fff;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 0.1rem 0.35rem; border-radius: 4px;
+    }
+
+    .video-info { padding: 0.5rem 0.25rem 0; }
+    .video-title {
+      font-size: 0.82rem; font-weight: 700; line-height: 1.35;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; color: var(--text); transition: color 0.2s;
+    }
+    .video-meta {
+      font-size: 0.72rem; color: var(--muted);
+      margin-top: 0.2rem; display: flex; align-items: center; gap: 0.3rem;
+    }
+
+    /* Loading */
+    .loading-box {
+      text-align: center; padding: 4rem 1rem; color: var(--muted);
+    }
+    .spinner {
+      width: 42px; height: 42px; border: 4px solid #dbeafe;
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto 1rem;
+    }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .error-box {
@@ -147,68 +159,58 @@
       text-align: center; color: #b91c1c; font-weight: 600;
     }
 
-    /* Sidebar */
+    /* ── Sidebar ── */
     .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
     .ad-section {
       background: var(--card); border-radius: var(--radius);
       padding: 1rem; box-shadow: 0 4px 12px rgba(30,64,175,0.04);
-      text-align: center; margin-bottom: 1.5rem;
+      text-align: center;
     }
     .ad-section h2 {
-      font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e293b;
+      font-size: 1.1rem; margin-bottom: 0.75rem; color: #1e293b;
       font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 0.5rem;
     }
-    .ad-section h2.support-site i { color: #7E57C2; font-size: 1.1em; }
-    .ad-section h2.support-us i  { color: #FB8C00; font-size: 1.1em; }
-    .ad-section h2::after {
-      content: ""; display: block; width: 30px; height: 3px;
-      background: linear-gradient(90deg, #7E57C2, #FB8C00); border-radius: 2px; margin-top: 4px;
-    }
-    .ad-section h2.support-us::after { background: linear-gradient(90deg, #FB8C00, #FFD54F); }
+    .ad-section h2.support-site i { color: #7E57C2; }
+    .ad-section h2.support-us   i { color: #FB8C00; }
     .adsense-container {
       background-color: #f9fbff; border: 1px dashed #dbeafe; border-radius: 12px;
       min-height: 250px; display: flex; align-items: center; justify-content: center;
-      margin-bottom: 0.75rem; position: relative;
+      position: relative;
     }
-    .adsense-container::before { content: "พื้นที่โฆษณา"; color: #94a3b8; font-size: 0.85rem; position: absolute; z-index: 0; }
-    .support-card { background: var(--card); border-radius: var(--radius); padding: 1rem; box-shadow: 0 2px 6px rgba(30,64,175,0.04); }
-    .qr-code { width: 100%; max-width: 150px; height: auto; margin: 0.75rem auto; display: block; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    .support-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1rem; }
+    .adsense-container::before { content: "พื้นที่โฆษณา"; color: #94a3b8; font-size: 0.85rem; }
+    .support-card { background: var(--card); border-radius: var(--radius); padding: 1rem; }
+    .qr-code { width: 100%; max-width: 140px; height: auto; margin: 0.75rem auto; display: block; border-radius: 8px; }
+    .support-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.75rem; }
     .support-btn {
-      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 0.6rem 0.5rem; border-radius: 10px; text-decoration: none;
-      font-weight: 600; font-size: 0.9rem; color: white;
-      transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.55rem 0.4rem; border-radius: 10px; text-decoration: none;
+      font-weight: 700; font-size: 0.82rem; color: white; transition: all 0.2s;
     }
-    .support-btn i { font-size: 1.1rem; }
-    .support-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+    .support-btn:hover { opacity: 0.88; transform: translateY(-1px); }
     .support-btn.promptpay { background: #10B981; }
     .support-btn.facebook  { background: #4267B2; }
     .support-btn.youtube   { background: #FF0000; }
-    .support-btn.tiktok    { background: #000000; }
-    .support-btn.facebook:hover  { background: #365899; }
-    .support-btn.youtube:hover   { background: #e60000; }
-    .support-btn.tiktok:hover    { background: #333333; }
-    .support-btn.promptpay:hover { background: #0da172; }
+    .support-btn.tiktok    { background: #000; }
 
     /* Footer */
     footer {
       margin-top: 2rem;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white; text-align: center; padding: 1.5rem 1rem;
-      box-shadow: 0 -2px 12px rgba(30,64,175,0.2);
     }
     footer a { color: #e0f2fe; text-decoration: none; font-weight: 600; margin: 0 0.5rem; }
     footer a:hover { text-decoration: underline; }
 
-    @media (max-width: 768px) {
-      .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
-      .video-grid { grid-template-columns: repeat(2, 1fr); }
-      .support-links { grid-template-columns: 1fr; }
-      .ad-section h2::after { display: none; }
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .video-grid { grid-template-columns: repeat(4, 1fr); }
     }
-    @media (max-width: 480px) {
-      .video-grid { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -234,43 +236,47 @@
   </div>
 </nav>
 
-<div class="container">
-  <div class="content-area">
-
-    <!-- Category Tabs -->
-    <div class="cat-tabs">
-      <button class="cat-btn active" data-cat="news">
-        <i class="fas fa-bolt" style="color:#FF6B6B;"></i> ข่าว
-      </button>
-      <button class="cat-btn" data-cat="entertain">
-        <i class="fas fa-tv" style="color:#a855f7;"></i> บันเทิง
-      </button>
-      <button class="cat-btn" data-cat="sport">
-        <i class="fas fa-futbol" style="color:#E76F51;"></i> กีฬา
-      </button>
-      <button class="cat-btn" data-cat="tech">
-        <i class="fas fa-microchip" style="color:#2EC4B6;"></i> เทคโนโลยี
-      </button>
-      <button class="cat-btn" data-cat="cartoon">
-        <i class="fas fa-star" style="color:#FFD166;"></i> การ์ตูน
-      </button>
-      <button class="cat-btn" data-cat="game">
-        <i class="fas fa-gamepad" style="color:#E76F51;"></i> เกมส์
-      </button>
-      <button class="cat-btn" data-cat="movie">
-        <i class="fas fa-film" style="color:#e91e63;"></i> หนัง/ซีรี่ส์
-      </button>
-    </div>
-
-    <!-- Video Content -->
-    <div id="video-content">
-      <div class="loading-box">
-        <i class="fas fa-circle-notch"></i>
-        กำลังโหลดวิดีโอ...
+<div class="page-wrap">
+  <!-- Main content -->
+  <main>
+    <!-- Category tabs -->
+    <div class="cat-scroll">
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-btn active" data-cat="news">
+          <i class="fas fa-bolt" style="color:#FF6B6B;"></i> ข่าว
+        </button>
+        <button class="cat-btn" data-cat="entertain">
+          <i class="fas fa-tv" style="color:#a855f7;"></i> บันเทิง
+        </button>
+        <button class="cat-btn" data-cat="sport">
+          <i class="fas fa-futbol" style="color:#E76F51;"></i> กีฬา
+        </button>
+        <button class="cat-btn" data-cat="movie">
+          <i class="fas fa-film" style="color:#e91e63;"></i> ละคร/ซีรี่ส์
+        </button>
+        <button class="cat-btn" data-cat="music">
+          <i class="fas fa-music" style="color:#FF9F1C;"></i> เพลง/MV
+        </button>
+        <button class="cat-btn" data-cat="tech">
+          <i class="fas fa-microchip" style="color:#2EC4B6;"></i> เทคโนโลยี
+        </button>
+        <button class="cat-btn" data-cat="cartoon">
+          <i class="fas fa-star" style="color:#FFD166;"></i> การ์ตูน
+        </button>
+        <button class="cat-btn" data-cat="game">
+          <i class="fas fa-gamepad" style="color:#E76F51;"></i> เกมส์
+        </button>
       </div>
     </div>
 
-  </div>
+    <!-- Video content -->
+    <div id="videoContent">
+      <div class="loading-box">
+        <div class="spinner"></div>
+        กำลังโหลดวิดีโอจากช่องไทย...
+      </div>
+    </div>
+  </main>
 
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -294,7 +300,7 @@
         <i class="fas fa-heart"></i> สนับสนุนเรา
       </h2>
       <div class="support-card">
-        <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+        <p style="font-size:0.9rem;"><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
         <img src="https://krobjang.vercel.app/images/promptpay.png"
              alt="QR PromptPay" class="qr-code" loading="lazy">
         <div class="support-links">
@@ -323,65 +329,55 @@
 </footer>
 
 <script>
-  const CATS = {
-    news:     { label: 'ข่าว',        icon: 'fas fa-bolt',      color: '#FF6B6B' },
-    entertain:{ label: 'บันเทิง',     icon: 'fas fa-tv',        color: '#a855f7' },
-    sport:    { label: 'กีฬา',        icon: 'fas fa-futbol',    color: '#E76F51' },
-    tech:     { label: 'เทคโนโลยี',  icon: 'fas fa-microchip', color: '#2EC4B6' },
-    cartoon:  { label: 'การ์ตูน',    icon: 'fas fa-star',      color: '#FFD166' },
-    game:     { label: 'เกมส์',       icon: 'fas fa-gamepad',   color: '#E76F51' },
-  };
-
-  let currentCat = 'news';
-
   function timeAgo(dateStr) {
     const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
-    if (diff < 60) return 'เมื่อกี้';
-    if (diff < 3600) return `${Math.floor(diff/60)} นาทีที่แล้ว`;
-    if (diff < 86400) return `${Math.floor(diff/3600)} ชั่วโมงที่แล้ว`;
+    if (diff < 60)      return 'เมื่อกี้';
+    if (diff < 3600)    return `${Math.floor(diff/60)} นาทีที่แล้ว`;
+    if (diff < 86400)   return `${Math.floor(diff/3600)} ชั่วโมงที่แล้ว`;
     if (diff < 2592000) return `${Math.floor(diff/86400)} วันที่แล้ว`;
-    return new Date(dateStr).toLocaleDateString('th-TH');
+    return new Date(dateStr).toLocaleDateString('th-TH', {day:'numeric',month:'short',year:'2-digit'});
   }
 
   function renderVideos(grouped) {
-    const container = document.getElementById('video-content');
-    if (!grouped || Object.keys(grouped).length === 0) {
-      container.innerHTML = `<div class="error-box"><i class="fas fa-exclamation-circle"></i> ไม่พบวิดีโอในหมวดนี้</div>`;
+    const wrap = document.getElementById('videoContent');
+    const entries = Object.entries(grouped).filter(([,v]) => v && v.length > 0);
+    if (!entries.length) {
+      wrap.innerHTML = `<div class="error-box">ไม่พบวิดีโอในหมวดนี้</div>`;
       return;
     }
 
-    let html = '';
-    for (const [chName, videos] of Object.entries(grouped)) {
-      if (!videos || videos.length === 0) continue;
-      html += `
-        <div class="channel-section">
-          <div class="channel-title">
-            <i class="fab fa-youtube"></i> ${chName}
-          </div>
-          <div class="video-grid">
-            ${videos.map(v => `
-              <a class="video-card" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
-                <div class="thumb-wrap">
-                  <img src="${v.thumb}" alt="${v.title}" loading="lazy">
-                  <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+    wrap.innerHTML = entries.map(([chName, videos]) => `
+      <div class="ch-row">
+        <div class="ch-header">
+          <i class="fab fa-youtube ch-icon"></i>
+          <span class="ch-name">${chName}</span>
+          <span class="ch-badge">${videos.length} วิดีโอ</span>
+        </div>
+        <div class="video-grid">
+          ${videos.map(v => `
+            <a class="video-card"
+               href="https://www.youtube.com/watch?v=${v.id}"
+               target="_blank" rel="noopener">
+              <div class="thumb-wrap">
+                <img class="thumb-img" src="${v.thumb}" alt="${v.title}" loading="lazy">
+                <div class="play-btn"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">${v.title}</div>
+                <div class="video-meta">
+                  <i class="far fa-clock"></i> ${timeAgo(v.date)}
                 </div>
-                <div class="video-info">
-                  <div class="video-title">${v.title}</div>
-                  <div class="video-date"><i class="far fa-clock"></i> ${timeAgo(v.date)}</div>
-                </div>
-              </a>
-            `).join('')}
-          </div>
-        </div>`;
-    }
-
-    container.innerHTML = html || `<div class="error-box">ไม่พบวิดีโอ</div>`;
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
   }
 
   async function loadCat(cat) {
-    const container = document.getElementById('video-content');
-    container.innerHTML = `<div class="loading-box"><i class="fas fa-circle-notch"></i>กำลังโหลดวิดีโอ...</div>`;
-
+    const wrap = document.getElementById('videoContent');
+    wrap.innerHTML = `<div class="loading-box"><div class="spinner"></div>กำลังโหลดวิดีโอจากช่องไทย...</div>`;
     try {
       const res = await fetch(`/api/videos?cat=${cat}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -389,27 +385,24 @@
       if (data.error) throw new Error(data.error);
       renderVideos(data);
     } catch (err) {
-      container.innerHTML = `
+      wrap.innerHTML = `
         <div class="error-box">
           <i class="fas fa-exclamation-triangle"></i>
-          โหลดวิดีโอไม่สำเร็จ: ${err.message}<br>
-          <small>กรุณาตรวจสอบ YOUTUBE_API_KEY ใน Vercel Environment Variables</small>
+          โหลดไม่สำเร็จ: ${err.message}<br>
+          <small>กรุณาตรวจสอบ YOUTUBE_API_KEY ใน Vercel Dashboard → Settings → Environment Variables</small>
         </div>`;
     }
   }
 
-  // Tab clicks
   document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      currentCat = btn.dataset.cat;
-      loadCat(currentCat);
+      loadCat(btn.dataset.cat);
     });
   });
 
-  // Load on start
-  loadCat(currentCat);
+  loadCat('news');
 </script>
 </body>
 </html>
