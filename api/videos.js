@@ -16,7 +16,11 @@
 // ====================================================
 // ⚙️  ใส่ YouTube Data API Key ของคุณตรงนี้
 // ====================================================
+// เปลี่ยนจาก
 const YOUTUBE_API_KEY = 'YOUR_API_KEY_HERE';
+
+// เป็น
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 // ====================================================
 
 // Channel IDs จริงของช่องไทย แยกตาม category
@@ -121,3 +125,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
+
