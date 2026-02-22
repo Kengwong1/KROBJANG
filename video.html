@@ -371,13 +371,19 @@ function renderCards(gridEl, chName, videos){
 }
 
 function buildSection(sec, data, isLive){
-  const root  = document.getElementById('mainContent');
+  const root = document.getElementById('mainContent');
+
+  // ลบ section เดิมถ้ามี (ตอน replace ด้วยข้อมูลสด)
+  const old = document.getElementById(`sec-${sec.cat}`);
+  if(old) old.remove();
+
   const secEl = document.createElement('div');
   secEl.className = 'section';
+  secEl.id = `sec-${sec.cat}`;
 
   const badge = isLive
     ? '<span class="api-badge live"><i class="fas fa-circle" style="font-size:0.5rem;"></i> สดใหม่จาก YouTube</span>'
-    : '<span class="api-badge cached"><i class="fas fa-database" style="font-size:0.65rem;"></i> ตัวอย่าง</span>';
+    : '';
 
   secEl.innerHTML = `
     <div class="sec-title"><i class="${sec.icon}"></i> ${sec.title} ${badge}</div>
@@ -399,32 +405,32 @@ function buildSection(sec, data, isLive){
     };
     tabsEl.appendChild(btn);
   });
-  renderCards(gridEl, chNames[0], data[chNames[0]]);
+  if(chNames.length) renderCards(gridEl, chNames[0], data[chNames[0]]);
 }
 
 async function init(){
   try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
 
+  // ขั้น 1: แสดง fallback ทันทีก่อนเสมอ ไม่ต้องรอ API
   for(const sec of SECTIONS){
-    let data = null;
-    let isLive = false;
+    buildSection(sec, FALLBACK[sec.cat] || {}, false);
+  }
 
-    // ลอง /api/videos ก่อน — ถ้ามี API Key จะได้วิดีโอสดใหม่
+  // ขั้น 2: ดึง API แบบ background ถ้าได้ข้อมูลจริงค่อย replace
+  for(const sec of SECTIONS){
     try{
-      const res = await fetch(`/api/videos?cat=${sec.cat}`);
-      if(res.ok){
-        const json = await res.json();
-        if(json && Object.keys(json).length){
-          data   = json;
-          isLive = true;
-        }
-      }
-    }catch(_){}
-
-    // ถ้า API ยังไม่พร้อม ใช้ fallback
-    if(!data) data = FALLBACK[sec.cat] || {};
-
-    buildSection(sec, data, isLive);
+      const ctrl = new AbortController();
+      const timer = setTimeout(()=>ctrl.abort(), 8000);
+      const res = await fetch(`/api/videos?cat=${sec.cat}`, {signal:ctrl.signal});
+      clearTimeout(timer);
+      if(!res.ok) continue;
+      const json = await res.json();
+      // ตรวจว่ามีข้อมูลวิดีโอจริงๆ (มี id field)
+      const valid = json
+        && typeof json === 'object'
+        && Object.values(json).some(arr=>Array.isArray(arr) && arr.length>0 && arr[0].id);
+      if(valid) buildSection(sec, json, true);
+    }catch(_){ /* timeout/error — ใช้ fallback ที่แสดงไปแล้ว */ }
   }
 }
 
