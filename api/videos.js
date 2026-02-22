@@ -14,12 +14,10 @@
 */
 
 // ====================================================
-// ⚙️  ใส่ YouTube Data API Key ของคุณตรงนี้
+// ⚙️  API Key อ่านจาก Vercel Environment Variables
+// ไปตั้งค่าที่: Vercel Dashboard → Settings → Environment Variables
+// Name: YOUTUBE_API_KEY  |  Value: AIzaSy.........
 // ====================================================
-// เปลี่ยนจาก
-const YOUTUBE_API_KEY = 'YOUR_API_KEY_HERE';
-
-// เป็น
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 // ====================================================
 
@@ -125,4 +123,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
-
