@@ -1,125 +1,412 @@
-/*
-  ============================================================
-  ไฟล์นี้วางไว้ที่:  /api/videos.js  ใน project Vercel
-  ============================================================
-  วิธีใช้:
-  1. เปิดไฟล์นี้ แล้วใส่ YouTube API Key ของคุณตรง บรรทัด 16
-  2. Push ขึ้น Vercel — Vercel จะ deploy เป็น serverless function ให้อัตโนมัติ
-  3. video.html จะเรียก /api/videos?cat=news  ฯลฯ
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ครบจังดอทคอม | วีดีโอ</title>
+  <meta name="description" content="ดูวิดีโอข่าว บันเทิง กีฬา เทคโนโลยี การ์ตูน และเกมส์ จากช่องดังทั่วไทย">
 
-  CACHE: Vercel Edge Cache 6 ชั่วโมง
-  → YouTube API ถูกเรียกแค่ 4 ครั้ง/วัน ต่อ category
-  → คนดูกี่หมื่นคนก็ดึงจาก cache ไม่กิน quota
-  ============================================================
-*/
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-// ====================================================
-// ⚙️  API Key อ่านจาก Vercel Environment Variables
-// ไปตั้งค่าที่: Vercel Dashboard → Settings → Environment Variables
-// Name: YOUTUBE_API_KEY  |  Value: AIzaSy.........
-// ====================================================
-const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-// ====================================================
+  <style>
+    :root {
+      --primary-dark: #1e3a8a;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --soft: #eff6ff;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --radius: 18px;
+    }
 
-// Channel IDs ที่ verify แล้ว — ตรวจสอบจาก Wikidata + SPEAKRJ
-const CHANNELS = {
-  news: [
-    { id: 'UC5TOFhyb_LxL2VG_Zenhpzw', name: 'Thai PBS' },          // ✅ verified
-    { id: 'UC7FCQJFK1sfwD_uobB45Xng', name: 'PPTVHD36' },           // ✅ verified via Wikidata
-    { id: 'UCrFDdD-EE05N7gjwZho2wqw', name: 'ไทยรัฐ' },             // ✅ verified via SPEAKRJ
-    { id: 'UCASFOneKa9lsHvc2NqKufqg', name: 'Workpoint News' },     // Workpoint News
-  ],
-  entertain: [
-    { id: 'UCwVNMVDPnSFCbIeKVAhv4kA', name: 'ช่อง 8' },             // Channel 8 TH
-    { id: 'UCQb0W-qYR6_9vT2-8ixSKOQ', name: 'Workpoint' },          // Workpoint Official
-    { id: 'UC9CP-k0UwCRIr3RTDP3GdMQ', name: 'GMM Grammy' },         // GMM Grammy Official
-    { id: 'UCBcRF18a7Qf58cCRy5xuWwQ', name: 'One31' },              // One31 Official
-  ],
-  sport: [
-    { id: 'UC7FCQJFK1sfwD_uobB45Xng', name: 'PPTVHD36' },           // PPTV มีกีฬาเยอะ
-    { id: 'UC5TOFhyb_LxL2VG_Zenhpzw', name: 'Thai PBS' },
-    { id: 'UCrFDdD-EE05N7gjwZho2wqw', name: 'ไทยรัฐ' },
-    { id: 'UCzORJV8l3o_tQs4SHY-HJaA', name: 'สยามกีฬา' },
-  ],
-  tech: [
-    { id: 'UCt7mzJGKpRE1JwNclE_BKOA', name: 'Blognone' },
-    { id: 'UCqajGCbBop4FFHnBSmINpQQ', name: 'Droidsans' },
-    { id: 'UCY9xyOoOVKcbMKZMvM8GKQQ', name: 'Techsauce' },
-  ],
-  cartoon: [
-    { id: 'UCJlejBGlsKkzOGu9RBXM_LA', name: 'Cartoon Network TH' },
-    { id: 'UCFOJoJE1T7kFKnKMpNmEwkA', name: 'Nickelodeon TH' },
-    { id: 'UCjmJDI5RkLgTIJC5v_VEbQ', name: 'Disney TH' },
-  ],
-  game: [
-    { id: 'UCgYkuL87rovnBj4m3hn2VwA', name: 'ROV Thailand' },
-    { id: 'UCFQMnBA3CS502aghlcr0_aw', name: 'Free Fire TH' },
-    { id: 'UCbmNph6atAoGfqLoCL_duAg', name: 'Garena TH' },
-  ],
-};
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; }
 
-// ดึงวิดีโอล่าสุดจาก 1 channel (5 วิดีโอ)
-async function fetchChannel(channelId, channelName) {
-  const url = `https://www.googleapis.com/youtube/v3/search`
-    + `?key=${YOUTUBE_API_KEY}`
-    + `&channelId=${channelId}`
-    + `&part=snippet`
-    + `&order=date`           // เรียงล่าสุดก่อน
-    + `&type=video`
-    + `&maxResults=6`;
+    body { background: var(--bg); color: var(--text); line-height: 1.6; }
 
-  const res = await fetch(url);
-  if (!res.ok) return [];
-  const data = await res.json();
-  if (!data.items) return [];
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(30,64,175,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.75rem 1rem;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
-  return data.items.map(item => ({
-    id:    item.id.videoId,
-    title: item.snippet.title,
-    thumb: item.snippet.thumbnails?.medium?.url || '',
-    ch:    channelName,
-    date:  item.snippet.publishedAt,
-  }));
-}
+    /* Nav */
+    .main-nav { background: #fff; padding: 0.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nav-wrap {
+      max-width: 1200px; margin: auto;
+      display: flex; gap: 0.5rem; padding: 0 1rem;
+      overflow-x: auto; white-space: nowrap;
+    }
+    .main-nav a {
+      text-decoration: none; color: #4b5563; font-weight: 600;
+      padding: 0.6rem 1rem; border-radius: 12px;
+      transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem;
+    }
+    .main-nav a:hover, .main-nav a.active { background: var(--soft); transform: scale(1.02); }
 
-// Vercel serverless handler
-export default async function handler(req, res) {
-  const cat = req.query.cat || 'news';
-  const channels = CHANNELS[cat];
+    /* Layout */
+    .container {
+      max-width: 1200px; margin: 1.25rem auto; padding: 0 1rem;
+      display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem;
+    }
+    .content-area { display: flex; flex-direction: column; gap: 1.5rem; }
 
-  if (!channels) {
-    return res.status(400).json({ error: 'Unknown category' });
+    /* Category Tabs */
+    .cat-tabs {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      background: var(--card); padding: 1rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(30,64,175,0.06);
+    }
+    .cat-btn {
+      padding: 0.5rem 1.1rem; border-radius: 50px;
+      border: 2px solid #dbeafe;
+      background: #fff; color: var(--primary);
+      font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .cat-btn:hover { background: var(--soft); border-color: var(--primary-light); }
+    .cat-btn.active {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff; border-color: transparent;
+      box-shadow: 0 4px 12px rgba(30,64,175,0.3);
+    }
+
+    /* Channel Section */
+    .channel-section { margin-bottom: 1.75rem; }
+    .channel-title {
+      font-size: 1.1rem; font-weight: 800; color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #dbeafe;
+    }
+    .channel-title i { color: #FF0000; }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .video-card {
+      background: var(--card); border-radius: 14px; overflow: hidden;
+      box-shadow: 0 3px 10px rgba(30,64,175,0.07);
+      transition: all 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
+      cursor: pointer; text-decoration: none; color: inherit;
+      display: block; border: 1px solid transparent;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 24px rgba(30,64,175,0.15);
+      border-color: #dbeafe;
+    }
+    .thumb-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #e2e8f0; }
+    .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .play-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .video-card:hover .play-overlay { opacity: 1; }
+    .play-overlay i { font-size: 2.5rem; color: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+    .video-info { padding: 0.65rem 0.75rem; }
+    .video-title {
+      font-size: 0.85rem; font-weight: 700;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; line-height: 1.4; color: var(--text);
+    }
+    .video-date { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* Loading / Error */
+    .loading-box {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--muted); font-size: 1rem;
+    }
+    .loading-box i { font-size: 2rem; margin-bottom: 0.5rem; display: block; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-box {
+      background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: var(--radius); padding: 1.5rem;
+      text-align: center; color: #b91c1c; font-weight: 600;
+    }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+    .ad-section {
+      background: var(--card); border-radius: var(--radius);
+      padding: 1rem; box-shadow: 0 4px 12px rgba(30,64,175,0.04);
+      text-align: center; margin-bottom: 1.5rem;
+    }
+    .ad-section h2 {
+      font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e293b;
+      font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 0.5rem;
+    }
+    .ad-section h2.support-site i { color: #7E57C2; font-size: 1.1em; }
+    .ad-section h2.support-us i  { color: #FB8C00; font-size: 1.1em; }
+    .ad-section h2::after {
+      content: ""; display: block; width: 30px; height: 3px;
+      background: linear-gradient(90deg, #7E57C2, #FB8C00); border-radius: 2px; margin-top: 4px;
+    }
+    .ad-section h2.support-us::after { background: linear-gradient(90deg, #FB8C00, #FFD54F); }
+    .adsense-container {
+      background-color: #f9fbff; border: 1px dashed #dbeafe; border-radius: 12px;
+      min-height: 250px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.75rem; position: relative;
+    }
+    .adsense-container::before { content: "พื้นที่โฆษณา"; color: #94a3b8; font-size: 0.85rem; position: absolute; z-index: 0; }
+    .support-card { background: var(--card); border-radius: var(--radius); padding: 1rem; box-shadow: 0 2px 6px rgba(30,64,175,0.04); }
+    .qr-code { width: 100%; max-width: 150px; height: auto; margin: 0.75rem auto; display: block; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .support-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1rem; }
+    .support-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.6rem 0.5rem; border-radius: 10px; text-decoration: none;
+      font-weight: 600; font-size: 0.9rem; color: white;
+      transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .support-btn i { font-size: 1.1rem; }
+    .support-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+    .support-btn.promptpay { background: #10B981; }
+    .support-btn.facebook  { background: #4267B2; }
+    .support-btn.youtube   { background: #FF0000; }
+    .support-btn.tiktok    { background: #000000; }
+    .support-btn.facebook:hover  { background: #365899; }
+    .support-btn.youtube:hover   { background: #e60000; }
+    .support-btn.tiktok:hover    { background: #333333; }
+    .support-btn.promptpay:hover { background: #0da172; }
+
+    /* Footer */
+    footer {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white; text-align: center; padding: 1.5rem 1rem;
+      box-shadow: 0 -2px 12px rgba(30,64,175,0.2);
+    }
+    footer a { color: #e0f2fe; text-decoration: none; font-weight: 600; margin: 0 0.5rem; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; padding: 0 0.75rem; }
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .support-links { grid-template-columns: 1fr; }
+      .ad-section h2::after { display: none; }
+    }
+    @media (max-width: 480px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ครบจังดอทคอม</div>
+</header>
+
+<nav class="main-nav">
+  <div class="nav-wrap">
+    <a href="index.html"><i class="fas fa-home" style="color:#45B7D1;"></i> หน้าแรก</a>
+    <a href="news.html"><i class="fas fa-bolt" style="color:#FF6B6B;"></i> ข่าวด่วน</a>
+    <a href="lotto.html"><i class="fas fa-ticket-alt" style="color:#FFD166;"></i> ตรวจหวย</a>
+    <a href="horoscope.html"><i class="fas fa-star" style="color:#6A4C93;"></i> ดูดวง</a>
+    <a href="sport.html"><i class="fas fa-futbol" style="color:#E76F51;"></i> กีฬา</a>
+    <a href="video.html" class="active"><i class="fas fa-play-circle" style="color:#FF9F1C;"></i> วีดีโอ</a>
+    <a href="ai.html"><i class="fas fa-robot" style="color:#2EC4B6;"></i> AI</a>
+    <a href="games.html"><i class="fas fa-gamepad" style="color:#E76F51;"></i> เกมส์</a>
+    <a href="shopping.html"><i class="fas fa-shopping-bag" style="color:#4ECDC4;"></i> ช้อป</a>
+    <a href="booking.html"><i class="fas fa-umbrella-beach" style="color:#45B7D1;"></i> ท่องเที่ยว</a>
+    <a href="contact.html"><i class="fas fa-headset" style="color:#6A4C93;"></i> ติดต่อเรา</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="content-area">
+
+    <!-- Category Tabs -->
+    <div class="cat-tabs">
+      <button class="cat-btn active" data-cat="news">
+        <i class="fas fa-bolt" style="color:#FF6B6B;"></i> ข่าว
+      </button>
+      <button class="cat-btn" data-cat="entertain">
+        <i class="fas fa-tv" style="color:#a855f7;"></i> บันเทิง
+      </button>
+      <button class="cat-btn" data-cat="sport">
+        <i class="fas fa-futbol" style="color:#E76F51;"></i> กีฬา
+      </button>
+      <button class="cat-btn" data-cat="tech">
+        <i class="fas fa-microchip" style="color:#2EC4B6;"></i> เทคโนโลยี
+      </button>
+      <button class="cat-btn" data-cat="cartoon">
+        <i class="fas fa-star" style="color:#FFD166;"></i> การ์ตูน
+      </button>
+      <button class="cat-btn" data-cat="game">
+        <i class="fas fa-gamepad" style="color:#E76F51;"></i> เกมส์
+      </button>
+    </div>
+
+    <!-- Video Content -->
+    <div id="video-content">
+      <div class="loading-box">
+        <i class="fas fa-circle-notch"></i>
+        กำลังโหลดวิดีโอ...
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="ad-section">
+      <h2 class="support-site">
+        <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+      </h2>
+      <div class="adsense-container">
+        <ins class="adsbygoogle"
+             style="display:block; width:100%;"
+             data-ad-client="ca-pub-2068902667667616"
+             data-ad-slot="1706997713"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+
+    <div class="ad-section">
+      <h2 class="support-us">
+        <i class="fas fa-heart"></i> สนับสนุนเรา
+      </h2>
+      <div class="support-card">
+        <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+        <img src="https://krobjang.vercel.app/images/promptpay.png"
+             alt="QR PromptPay" class="qr-code" loading="lazy">
+        <div class="support-links">
+          <a href="https://krobjang.vercel.app/images/promptpay.png" target="_blank" class="support-btn promptpay">
+            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+          </a>
+          <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+            <i class="fab fa-youtube"></i> YouTube
+          </a>
+          <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+            <i class="fab fa-tiktok"></i> TikTok
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <p>© 2026 ครบจังดอทคอม |
+  <a href="#">นโยบายความเป็นส่วนตัว</a> |
+  <a href="#">เกี่ยวกับเรา</a></p>
+</footer>
+
+<script>
+  const CATS = {
+    news:     { label: 'ข่าว',        icon: 'fas fa-bolt',      color: '#FF6B6B' },
+    entertain:{ label: 'บันเทิง',     icon: 'fas fa-tv',        color: '#a855f7' },
+    sport:    { label: 'กีฬา',        icon: 'fas fa-futbol',    color: '#E76F51' },
+    tech:     { label: 'เทคโนโลยี',  icon: 'fas fa-microchip', color: '#2EC4B6' },
+    cartoon:  { label: 'การ์ตูน',    icon: 'fas fa-star',      color: '#FFD166' },
+    game:     { label: 'เกมส์',       icon: 'fas fa-gamepad',   color: '#E76F51' },
+  };
+
+  let currentCat = 'news';
+
+  function timeAgo(dateStr) {
+    const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+    if (diff < 60) return 'เมื่อกี้';
+    if (diff < 3600) return `${Math.floor(diff/60)} นาทีที่แล้ว`;
+    if (diff < 86400) return `${Math.floor(diff/3600)} ชั่วโมงที่แล้ว`;
+    if (diff < 2592000) return `${Math.floor(diff/86400)} วันที่แล้ว`;
+    return new Date(dateStr).toLocaleDateString('th-TH');
   }
 
-  if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_API_KEY_HERE') {
-    return res.status(500).json({ error: 'API key not set' });
+  function renderVideos(grouped) {
+    const container = document.getElementById('video-content');
+    if (!grouped || Object.keys(grouped).length === 0) {
+      container.innerHTML = `<div class="error-box"><i class="fas fa-exclamation-circle"></i> ไม่พบวิดีโอในหมวดนี้</div>`;
+      return;
+    }
+
+    let html = '';
+    for (const [chName, videos] of Object.entries(grouped)) {
+      if (!videos || videos.length === 0) continue;
+      html += `
+        <div class="channel-section">
+          <div class="channel-title">
+            <i class="fab fa-youtube"></i> ${chName}
+          </div>
+          <div class="video-grid">
+            ${videos.map(v => `
+              <a class="video-card" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
+                <div class="thumb-wrap">
+                  <img src="${v.thumb}" alt="${v.title}" loading="lazy">
+                  <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="video-info">
+                  <div class="video-title">${v.title}</div>
+                  <div class="video-date"><i class="far fa-clock"></i> ${timeAgo(v.date)}</div>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </div>`;
+    }
+
+    container.innerHTML = html || `<div class="error-box">ไม่พบวิดีโอ</div>`;
   }
 
-  try {
-    // ดึงทุก channel พร้อมกัน
-    const results = await Promise.all(
-      channels.map(ch => fetchChannel(ch.id, ch.name))
-    );
+  async function loadCat(cat) {
+    const container = document.getElementById('video-content');
+    container.innerHTML = `<div class="loading-box"><i class="fas fa-circle-notch"></i>กำลังโหลดวิดีโอ...</div>`;
 
-    // รวมและ group ตาม channel name
-    const grouped = {};
-    channels.forEach((ch, i) => {
-      grouped[ch.name] = results[i];
+    try {
+      const res = await fetch(`/api/videos?cat=${cat}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      renderVideos(data);
+    } catch (err) {
+      container.innerHTML = `
+        <div class="error-box">
+          <i class="fas fa-exclamation-triangle"></i>
+          โหลดวิดีโอไม่สำเร็จ: ${err.message}<br>
+          <small>กรุณาตรวจสอบ YOUTUBE_API_KEY ใน Vercel Environment Variables</small>
+        </div>`;
+    }
+  }
+
+  // Tab clicks
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
+      loadCat(currentCat);
     });
+  });
 
-    // ส่งกลับพร้อม Cache-Control 6 ชั่วโมง
-    // Vercel Edge Cache จะเก็บไว้ → คนดูกี่หมื่นก็ดึง cache
-    res.setHeader(
-      'Cache-Control',
-      's-maxage=21600, stale-while-revalidate=3600'
-      //              ^ 6 ชม.             ^ อัปเดต background อีก 1 ชม.
-    );
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    return res.status(200).json(grouped);
-
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: err.message });
-  }
-}
+  // Load on start
+  loadCat(currentCat);
+</script>
+</body>
+</html>
