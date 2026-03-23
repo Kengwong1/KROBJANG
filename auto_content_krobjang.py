@@ -112,7 +112,7 @@ def match_topic_to_category(topic: str, allowed_categories: list) -> str:
 def get_unsplash_image(category: str, css_class: str = "hero-image") -> str:
     keyword = CATEGORY_IMAGES.get(category, "thailand")
     rand = random.randint(1, 9999)
-    return f'<img class="{css_class}" src="https://source.unsplash.com/800x400/?{keyword}&sig={rand}" alt="{category}" loading="lazy">'
+    return f'<img class="{css_class}" src="https://picsum.photos/seed/{keyword}{rand}/800/400" alt="{category}" loading="lazy">'
 
 
 def generate_content_with_ollama(title: str, category: str, style: str) -> str:
@@ -136,7 +136,7 @@ def generate_content_with_ollama(title: str, category: str, style: str) -> str:
             # แทรกรูปกลางบทความ
             keyword = CATEGORY_IMAGES.get(category, "thailand")
             rand = random.randint(1, 9999)
-            inline_img = f'\n<img style="width:100%;border-radius:8px;margin:16px 0;" src="https://source.unsplash.com/800x300/?{keyword}&sig={rand}" alt="{category}" loading="lazy">\n'
+            inline_img = f'\n<img style="width:100%;border-radius:8px;margin:16px 0;" src="https://picsum.photos/seed/{keyword}{rand}/800/300" alt="{category}" loading="lazy">\n'
             mid = len(content) // 2
             nearest_p = content.find("</p>", mid)
             if nearest_p > 0:
@@ -157,7 +157,7 @@ def create_article_html(title: str, category: str, content: str, hero_image: str
   <title>{title} | ครบจังดอทคอม</title>
   <meta name="description" content="{title[:150]}">
   <meta property="og:title" content="{title}">
-  <meta property="og:image" content="https://source.unsplash.com/1200x630/?{CATEGORY_IMAGES.get(category,'thailand')}">
+  <meta property="og:image" content="https://picsum.photos/seed/{CATEGORY_IMAGES.get(category,'thailand')}{random.randint(1,9999)}/1200/630">
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
@@ -241,7 +241,7 @@ def update_category_page(category: str, title: str, filename: str):
     <!-- AUTO_ARTICLE_START -->
     <div class="section" style="margin-bottom:1rem;">
       <div style="display:flex;gap:1rem;align-items:flex-start;">
-        <img src="https://source.unsplash.com/120x80/?{keyword}&sig={rand}" 
+        <img src="https://picsum.photos/seed/{keyword}{rand}/120/80" 
              style="width:120px;height:80px;object-fit:cover;border-radius:10px;flex-shrink:0;" 
              alt="{category}" loading="lazy">
         <div>
@@ -266,14 +266,77 @@ def update_category_page(category: str, title: str, filename: str):
 def generate_fb_caption(title: str, category: str, style: str, article_url: str) -> str:
     if style == "funny":
         hooks = [
-            f"😂 อ่านแล้วหัวเราะไม่หยุด!\n\n📖 {title}\n\n👇 กดดูเลย!\n{article_url}\n\n#ครบจัง #{category}",
-            f"🤣 เรื่องนี้ต้องแชร์!\n\n✨ {title}\n\n🔗 อ่านเพิ่มเติม: {article_url}\n\n#ครบจัง #{category}",
-            f"😆 รู้หรือเปล่า?\n\n📌 {title}\n\n👉 คลิกอ่านได้เลย: {article_url}\n\n#ครบจัง #{category}",
+            (
+                f"🔥 หยุดแป๊บนึง!\n\n"
+                f"📌 {title}\n\n"
+                f"━━━━━━━━━━━━━━━\n"
+                f"✅ อ่านจบแล้วชีวิตเปลี่ยนแน่นอน 😂\n"
+                f"✅ แชร์ให้เพื่อนอ่านด้วยนะ!\n"
+                f"✅ กด 👍 ถ้าชอบเนื้อหาแบบนี้\n"
+                f"━━━━━━━━━━━━━━━\n\n"
+                f"👇 อ่านบทความเต็มได้เลย\n"
+                f"🔗 {article_url}\n\n"
+                f"#ครบจัง #ครบจังดอทคอม #{category} #คนไทย #ความรู้"
+            ),
+            (
+                f"😱 เห็นหัวข้อนี้แล้วต้องอ่าน!\n\n"
+                f"💥 \"{title}\"\n\n"
+                f"━━━━━━━━━━━━━━━\n"
+                f"หลายคนยังไม่รู้เรื่องนี้เลย 👀\n"
+                f"อ่านแล้วจะรู้ว่าทำไมถึงสำคัญ!\n"
+                f"━━━━━━━━━━━━━━━\n\n"
+                f"📖 อ่านเพิ่มเติม → {article_url}\n\n"
+                f"💬 คิดเห็นยังไงบอกได้เลยในคอมเมนต์ ⬇️\n\n"
+                f"#ครบจัง #{category} #เรื่องน่ารู้ #แชร์ด้วยนะ"
+            ),
+            (
+                f"🤔 คุณรู้เรื่องนี้แล้วหรือยัง?\n\n"
+                f"📢 {title}\n\n"
+                f"━━━━━━━━━━━━━━━\n"
+                f"🎯 เนื้อหาที่คนไทยต้องรู้\n"
+                f"🎯 เข้าใจง่าย อ่านสนุก\n"
+                f"🎯 มีประโยชน์แน่นอน 100%\n"
+                f"━━━━━━━━━━━━━━━\n\n"
+                f"👉 คลิกอ่านได้เลยครับ\n"
+                f"🔗 {article_url}\n\n"
+                f"#ครบจัง #ครบทุกเรื่อง #{category} #อ่านเลย"
+            ),
         ]
     else:
         hooks = [
-            f"🙏 ข้อคิดดีๆ สำหรับวันนี้\n\n✨ {title}\n\n🌟 อ่านแล้วจิตใจสงบ:\n{article_url}\n\n#ธรรมะ #{category}",
-            f"💫 สาธุ! แชร์ให้คนที่รัก\n\n🌺 {title}\n\n🔗 อ่านต่อที่: {article_url}\n\n#แสงธรรม #{category}",
+            (
+                f"🙏 สาธุ... ขอแชร์ข้อคิดดีๆ วันนี้\n\n"
+                f"✨ {title}\n\n"
+                f"━━━━━━━━━━━━━━━\n"
+                f"💛 อ่านแล้วจิตใจสงบขึ้นจริงๆ\n"
+                f"💛 แชร์ให้คนที่คุณรักอ่านด้วยนะ\n"
+                f"💛 กด 👍 เป็นกำลังใจให้กันด้วยครับ\n"
+                f"━━━━━━━━━━━━━━━\n\n"
+                f"📖 อ่านบทความเต็ม → {article_url}\n\n"
+                f"#แสงธรรมส่องทาง #ธรรมะ #{category} #ข้อคิดดีๆ #กำลังใจ"
+            ),
+            (
+                f"🌅 เริ่มต้นวันนี้ด้วยสิ่งดีๆ\n\n"
+                f"🌸 {title}\n\n"
+                f"━━━━━━━━━━━━━━━\n"
+                f"\"ชีวิตที่ดีเริ่มต้นที่ความคิดที่ดี\"\n\n"
+                f"อ่านแล้วอย่าลืมแชร์ให้คนที่คุณห่วงใยด้วยนะครับ 🙏\n"
+                f"━━━━━━━━━━━━━━━\n\n"
+                f"🔗 อ่านต่อที่ → {article_url}\n\n"
+                f"#แสงธรรม #ธรรมะออนไลน์ #{category} #สาธุ #จิตใจสงบ"
+            ),
+            (
+                f"💫 ข้อคิดที่อยากส่งต่อวันนี้...\n\n"
+                f"🕊️ {title}\n\n"
+                f"━━━━━━━━━━━━━━━\n"
+                f"🌟 บทความนี้ช่วยเรื่อง...\n"
+                f"  → ความสงบในจิตใจ\n"
+                f"  → กำลังใจในชีวิตประจำวัน\n"
+                f"  → มุมมองใหม่ที่ดีขึ้น\n"
+                f"━━━━━━━━━━━━━━━\n\n"
+                f"📿 อ่านเพิ่มเติม → {article_url}\n\n"
+                f"#แสงธรรมส่องทาง #{category} #ธรรมะ #สติ #ความสุข"
+            ),
         ]
     return random.choice(hooks)
 
@@ -289,7 +352,7 @@ def post_to_facebook_with_image(page: dict, title: str, filename: str, category:
     message = generate_fb_caption(title, category, page["style"], article_url)
     keyword = CATEGORY_IMAGES.get(category, "thailand")
     rand = random.randint(1, 9999)
-    image_url = f"https://source.unsplash.com/1200x630/?{keyword}&sig={rand}"
+    image_url = f"https://picsum.photos/seed/{keyword}{rand}/1200/630"
 
     try:
         r = requests.post(
@@ -375,10 +438,9 @@ def git_push(files: list):
     try:
         os.chdir(KROBJANG_PATH)
         date_str = datetime.now().strftime("%Y-%m-%d")
-        # add ทั้งไฟล์ใหม่และหน้าหมวดที่อัปเดต
         subprocess.run(["git", "add", "-A"], check=True)
         subprocess.run(["git", "commit", "-m", f"auto: add {len(files)} articles + update category pages {date_str}"], check=True)
-        subprocess.run(["git", "push"], check=True)
+        subprocess.run(["git", "push", "--set-upstream", "origin", "main"], check=True)
         print(f"\n✅ Pushed {len(files)} files + category pages → Vercel deploying...")
     except Exception as e:
         print(f"Git error: {e}")
