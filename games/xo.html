@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เกม XO (Tic-Tac-Toe)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+    .wrap {
+      width: 90vw;
+      max-width: 600px;
+      padding: 30px;
+      background: #111827;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      display: grid;
+      gap: 24px;
+    }
+    h1 { margin: 0; font-size: 24px; text-align: center; }
+    select, button {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    select { width: 100%; }
+    button { background: #0ea5e9; color: white; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      justify-content: center;
+    }
+    .cell {
+      width: 28vw;
+      height: 28vw;
+      max-width: 160px;
+      max-height: 160px;
+      font-size: 8vw;
+      font-weight: bold;
+      background: #1f2937;
+      border: 2px solid #374151;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .cell.x { color: #22c55e; }
+    .cell.o { color: #ef4444; }
+    .status { font-size: 16px; text-align: center; }
+    .win { background: #334155 !important; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>เกม XO (Tic-Tac-Toe)</h1>
+    <select id="mode">
+      <option value="pvp">เล่น 2 คน</option>
+      <option value="bot">เล่นกับบอท</option>
+    </select>
+    <div id="board" class="board"></div>
+    <div class="status">
+      ตาปัจจุบัน: <span id="turn">X</span> | <span id="message">เริ่มเกมได้เลย</span>
+    </div>
+    <button id="reset">เริ่มใหม่</button>
+  </div>
+
+  <script>
+    const boardEl = document.getElementById('board');
+    const turnEl = document.getElementById('turn');
+    const messageEl = document.getElementById('message');
+    const resetBtn = document.getElementById('reset');
+    const modeSel = document.getElementById('mode');
+
+    // 🔊 โหลดเสียงเอฟเฟค
+    const soundClick = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+    const soundWin   = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+    const soundDraw  = new Audio("https://actions.google.com/sounds/v1/cartoon/slide_whistle_to_drum_hit.ogg");
+    const soundReset = new Audio("https://actions.google.com/sounds/v1/cartoon/metal_thud_and_clang.ogg");
+
+    const size = 3;
+    let board = Array.from({ length: size }, () => Array(size).fill(''));
+    let current = 'X';
+    let gameOver = false;
+    let mode = 'pvp';
+
+    const lines = [
+      [[0,0],[0,1],[0,2]],
+      [[1,0],[1,1],[1,2]],
+      [[2,0],[2,1],[2,2]],
+      [[0,0],[1,0],[2,0]],
+      [[0,1],[1,1],[2,1]],
+      [[0,2],[1,2],[2,2]],
+      [[0,0],[1,1],[2,2]],
+      [[0,2],[1,1],[2,0]],
+    ];
+
+    function render() {
+      boardEl.innerHTML = '';
+      board.forEach((row, r) => {
+        row.forEach((val, c) => {
+          const cell = document.createElement('div');
+          cell.className = 'cell' + (val ? ' ' + val.toLowerCase() : '');
+          cell.textContent = val || '';
+          cell.addEventListener('click', () => clickCell(r, c));
+          boardEl.appendChild(cell);
+        });
+      });
+      turnEl.textContent = current;
+    }
+
+    function clickCell(r, c) {
+      if (gameOver || board[r][c]) return;
+      if (mode === 'bot' && current === 'O') return;
+
+      board[r][c] = current;
+      soundClick.play();
+      render();
+
+      const win = checkWinner();
+      const full = board.flat().every(v => v);
+
+      if (win) {
+        gameOver = true;
+        highlightWin(win);
+        messageEl.textContent = `ผู้เล่น ${current} ชนะ!`;
+        soundWin.play();
+        return;
+      }
+      if (full) {
+        gameOver = true;
+        messageEl.textContent = 'เสมอ!';
+        soundDraw.play();
+        return;
+      }
+
+      current = current === 'X' ? 'O' : 'X';
+      turnEl.textContent = current;
+      messageEl.textContent = `ตาของ ${current}`;
+
+      if (mode === 'bot' && current === 'O') {
+        setTimeout(botMove, 300);
+      }
+    }
+
+    function botMove() {
+      const empty = [];
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          if (!board[r][c]) empty.push([r, c]);
+        }
+      }
+      if (empty.length === 0) return;
+      const [r, c] = empty[Math.floor(Math.random() * empty.length)];
+      board[r][c] = 'O';
+      soundClick.play();
+      render();
+
+      const win = checkWinner();
+      const full = board.flat().every(v => v);
+
+      if (win) {
+        gameOver = true;
+        highlightWin(win);
+        messageEl.textContent = `บอทชนะ!`;
+        soundWin.play();
+        return;
+      }
+      if (full) {
+        gameOver = true;
+        messageEl.textContent = 'เสมอ!';
+        soundDraw.play();
+        return;
+      }
+
+      current = 'X';
+      turnEl.textContent = current;
+      messageEl.textContent = `ตาของ ${current}`;
+    }
+
+    function checkWinner() {
+      for (const line of lines) {
+        const [a,b,c] = line;
+        const va = board[a[0]][a[1]];
+        const vb = board[b[0]][b[1]];
+        const vc = board[c[0]][c[1]];
+        if (va && va === vb && vb === vc) return line;
+      }
+      return null;
+    }
+
+    function highlightWin(line) {
+      const cells = [...boardEl.children];
+      line.forEach(([r, c]) => {
+        const idx = r * size + c;
+        cells[idx].classList.add('win');
+      });
+    }
+
+    function reset() {
+      board = Array.from({ length: size }, () => Array(size).fill(''));
+      current = 'X';
+      gameOver = false;
+      messageEl.textContent = 'เริ่มเกมได้เลย';
+      render();
+      soundReset.play();
+    }
+
+    resetBtn.addEventListener('click', reset);
+    modeSel.addEventListener('change', () => {
+      mode = modeSel.value;
+      reset();
+    });
+
+    render();
+  </script>
+</body>
+</html>

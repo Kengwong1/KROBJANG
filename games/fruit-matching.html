@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมจับคู่ผลไม้</title>
+    <style>
+        body {
+            font-family: 'Sarabun', 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            height: 100px;
+            background: #3498db;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            background: #2980b9;
+        }
+        
+        .card.flipped {
+            background: white;
+            transform: rotateY(180deg);
+        }
+        
+        .card.matched {
+            background: #2ecc71;
+            cursor: default;
+        }
+        
+        .controls {
+            margin-top: 20px;
+        }
+        
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .instructions {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🎮 เกมจับคู่ผลไม้ 🎮</h1>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="moves">0</div>
+                <div class="stat-label">จำนวนครั้ง</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="matches">0</div>
+                <div class="stat-label">จับคู่ได้</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="time">0</div>
+                <div class="stat-label">เวลา (วินาที)</div>
+            </div>
+        </div>
+        
+        <div class="game-board" id="gameBoard"></div>
+        
+        <div class="controls">
+            <button onclick="resetGame()">เริ่มเกมใหม่</button>
+        </div>
+        
+        <div class="message" id="message"></div>
+        
+        <div class="instructions">
+            <strong>วิธีเล่น:</strong> คลิกที่การ์ดเพื่อเปิดดูผลไม้ แล้วจับคู่ผลไม้ที่เหมือนกันให้ได้ทั้งหมด!<br>
+            ลองทำคะแนนให้ดีที่สุดด้วยจำนวนครั้งที่น้อยที่สุดและเวลาที่เร็วที่สุด!
+        </div>
+    </div>
+
+    <script>
+        // ผลไม้ต่างๆ ด้วยอีโมจิ
+        const fruits = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓', '🍑', '🍍', '🥝', '🍉', '🥭', '🥥', '🍈', '🍐', '🍋', '🫐'];
+        const totalPairs = 8; // 8 คู่ = 16 ใบ
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        let timer = 0;
+        let timerInterval = null;
+        let gameStarted = false;
+        
+        function initializeGame() {
+            // สร้างผลไม้สำหรับจับคู่
+            const selectedFruits = fruits.slice(0, totalPairs);
+            const gameCards = [...selectedFruits, ...selectedFruits];
+            
+            // สุ่มการ์ด
+            cards = shuffleArray(gameCards);
+            
+            // สร้างบอร์ดเกม
+            const gameBoard = document.getElementById('gameBoard');
+            gameBoard.innerHTML = '';
+            
+            cards.forEach((fruit, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.dataset.index = index;
+                cardElement.dataset.value = fruit;
+                cardElement.textContent = '?';
+                cardElement.addEventListener('click', flipCard);
+                gameBoard.appendChild(cardElement);
+            });
+            
+            // รีเซ็ตค่าต่างๆ
+            flippedCards = [];
+            matchedPairs = 0;
+            moves = 0;
+            timer = 0;
+            gameStarted = false;
+            clearInterval(timerInterval);
+            
+            updateStats();
+            hideMessage();
+        }
+        
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+        
+        function flipCard() {
+            if (!gameStarted) {
+                startTimer();
+                gameStarted = true;
+            }
+            
+            const card = this;
+            const index = parseInt(card.dataset.index);
+            
+            // ตรวจสอบว่าสามารถเปิดการ์ดได้หรือไม่
+            if (flippedCards.length >= 2 || 
+                card.classList.contains('flipped') || 
+                card.classList.contains('matched')) {
+                return;
+            }
+            
+            // เปิดการ์ด
+            card.textContent = card.dataset.value;
+            card.classList.add('flipped');
+            flippedCards.push(index);
+            
+            // ตรวจสอบเมื่อเปิดการ์ดครบ 2 ใบ
+            if (flippedCards.length === 2) {
+                moves++;
+                updateStats();
+                
+                const card1 = document.querySelector(`.card[data-index="${flippedCards[0]}"]`);
+                const card2 = document.querySelector(`.card[data-index="${flippedCards[1]}"]`);
+                
+                if (card1.dataset.value === card2.dataset.value) {
+                    // จับคู่สำเร็จ
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedPairs++;
+                    flippedCards = [];
+                    updateStats();
+                    
+                    // ตรวจสอบว่าชนะหรือยัง
+                    if (matchedPairs === totalPairs) {
+                        endGame();
+                    }
+                } else {
+                    // จับคู่ไม่สำเร็จ - ปิดการ์ดหลังจาก 1 วินาที
+                    setTimeout(() => {
+                        card1.textContent = '?';
+                        card2.textContent = '?';
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+        
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timer++;
+                document.getElementById('time').textContent = timer;
+            }, 1000);
+        }
+        
+        function endGame() {
+            clearInterval(timerInterval);
+            showSuccessMessage();
+        }
+        
+        function updateStats() {
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('matches').textContent = matchedPairs;
+            document.getElementById('time').textContent = timer;
+        }
+        
+        function showSuccessMessage() {
+            const message = document.getElementById('message');
+            message.textContent = `🎉 ยินดีด้วย! คุณจับคู่ผลไม้ได้ทั้งหมดใน ${moves} ครั้ง และใช้เวลา ${timer} วินาที!`;
+            message.className = 'message success';
+            message.style.display = 'block';
+        }
+        
+        function hideMessage() {
+            document.getElementById('message').style.display = 'none';
+        }
+        
+        function resetGame() {
+            initializeGame();
+        }
+        
+        // เริ่มเกมเมื่อโหลดหน้าเว็บ
+        window.onload = initializeGame;
+    </script>
+</body>
+</html>

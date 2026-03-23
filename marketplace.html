@@ -193,18 +193,9 @@
         <h1>ครบจังดอทคอม</h1>
         <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
     </header>
-    <nav class="main-nav">
-        <a href="index.html">หน้าแรก</a>
-        <a href="news.html">ข่าว</a>
-        <a href="lotto.html">ตรวจหวย</a>
-        <a href="horoscope.html">ดูดวง</a>
-        <a href="sport.html">กีฬา</a>
-        <a href="video.html">วีดีโอ</a>
-        <a href="games.html">เกมส์</a>
-        <a href="marketplace.html" class="active">ซื้อ-ขาย</a>
-        <a href="booking.html">จองออนไลน์</a>
-        <a href="contact.html">ติดต่อเรา</a>
-    </nav>
+
+    <!-- จุดที่จะโหลดเมนูจาก nav.html -->
+    <div id="navigation-placeholder"></div>
 
     <div class="container">
         <div class="ads">
@@ -244,7 +235,7 @@
         const userStatusDiv = document.getElementById('userStatus');
         const tabButtons = document.querySelectorAll('.category-nav .tab-button');
         const productsArea = document.getElementById('productsArea');
-    
+
         function updateUserStatus() {
             const user = localStorage.getItem('loggedInUser');
             if (user) {
@@ -260,61 +251,61 @@
                 userStatusDiv.innerHTML = `<a href="login.html" style="color:#fff;">เข้าสู่ระบบ</a>`;
             }
         }
-    
+
         function showProducts(category) {
             const allPosts = JSON.parse(localStorage.getItem('salePosts')) || [];
             const filtered = allPosts.filter(p => p.category === category);
-    
+
             productsArea.innerHTML = '';
             const grid = document.createElement('div');
             grid.className = 'product-grid';
-    
+
             if (filtered.length === 0) {
                 productsArea.innerHTML = `<p style="text-align:center; color:#666; font-style: italic;">ยังไม่มีสินค้าที่หมวด "${category}"</p>`;
                 return;
             }
-    
+
             filtered.forEach(post => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.tabIndex = 0;
-    
+
                 const img = document.createElement('img');
-                img.src = post.image || 'https://via.placeholder.com/400x280?text=ไม่มีรูปภาพ';
+                img.src = post.image || 'https://via.placeholder.com/400x280?text=  ไม่มีรูปภาพ';
                 img.alt = `รูปสินค้าของ ${post.title}`;
                 card.appendChild(img);
-    
+
                 const info = document.createElement('div');
                 info.className = 'product-info';
-    
+
                 const title = document.createElement('h3');
                 title.className = 'product-title';
                 title.textContent = post.title;
                 info.appendChild(title);
-    
+
                 const desc = document.createElement('p');
                 desc.className = 'product-desc';
                 desc.textContent = post.description;
                 info.appendChild(desc);
-    
+
                 const price = document.createElement('div');
                 price.className = 'product-price';
                 price.textContent = `${post.price.toLocaleString()} บาท`;
                 info.appendChild(price);
-    
+
                 card.appendChild(info);
-    
+
                 card.addEventListener('click', () => {
                     sessionStorage.setItem('selectedProduct', JSON.stringify(post));
                     window.location.href = 'product-detail.html';
                 });
-    
+
                 grid.appendChild(card);
             });
-    
+
             productsArea.appendChild(grid);
         }
-    
+
         tabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 tabButtons.forEach(b => b.classList.remove('active'));
@@ -323,22 +314,43 @@
                 showProducts(selectedCategory);
             });
         });
-    
+
         updateUserStatus();
 
-        // โค้ดสำหรับให้เมนู Active อัตโนมัติ (เมนูหลัก)
-        document.addEventListener("DOMContentLoaded", function () {
-            const currentPage = window.location.pathname.split("/").pop();
-            const mainNavLinks = document.querySelectorAll(".main-nav a");
-
-            mainNavLinks.forEach(link => {
-                const linkPage = link.getAttribute("href");
-                if (linkPage === currentPage || (currentPage === "" && linkPage === "index.html")) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
+        // ฟังก์ชันสำหรับโหลดเมนูจาก nav.html และจัดการ active link
+        async function loadNav() {
+            try {
+                const response = await fetch('nav.html');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-            });
+                const html = await response.text();
+                const placeholder = document.getElementById('navigation-placeholder');
+                placeholder.innerHTML = html;
+
+                // Logic to set the active link dynamically
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = placeholder.querySelectorAll('.main-nav a');
+
+                // ลบ active class จากทุก link
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                // เพิ่ม active class ให้กับ link ของหน้านี้
+                navLinks.forEach(link => {
+                    if (link.href.endsWith(currentPage)) {
+                        link.classList.add('active');
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error loading navigation:', error);
+                document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; color: red;">ไม่สามารถโหลดเมนูได้</p>';
+            }
+        }
+
+        // เรียกใช้ฟังก์ชันโหลดเมนูเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener("DOMContentLoaded", function () {
+            loadNav();
         });
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

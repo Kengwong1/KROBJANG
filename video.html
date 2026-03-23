@@ -1,34 +1,365 @@
-async function fetchVideos(category, channelId) {
-    const videoGrid = document.getElementById(`${category}-video-grid`);
-    try {
-        const res = await fetch(`/api/proxy?channelId=${channelId}&maxResults=12`);
-        const data = await res.json();
-
-        if (data.items && data.items.length) {
-            videoGrid.innerHTML = '';
-            data.items.forEach(item => {
-                if (item.id.kind === 'youtube#video') {
-                    const videoId = item.id.videoId;
-                    const videoTitle = item.snippet.title;
-                    const videoThumbnail = item.snippet.thumbnails.high.url;
-                    const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
-
-                    const videoCard = `
-                        <a href="${videoLink}" class="video-card" target="_blank" rel="noopener noreferrer">
-                            <img src="${videoThumbnail}" alt="${videoTitle}" class="video-thumbnail">
-                            <div class="video-content">
-                                <h3>${videoTitle}</h3>
-                            </div>
-                        </a>
-                    `;
-                    videoGrid.innerHTML += videoCard;
-                }
-            });
-        } else {
-            videoGrid.innerHTML = `<p class="error-message">ไม่พบวิดีโอในหมวดนี้</p>`;
-        }
-    } catch (error) {
-        console.error(error);
-        videoGrid.innerHTML = `<p class="error-message">ไม่สามารถโหลดข้อมูลวิดีโอได้</p>`;
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ครบจังดอทคอม | วีดีโอ</title>
+  <meta name="description" content="ดูวิดีโอช่องไทยดัง ข่าว บันเทิง กีฬา ละคร เพลง เทค การ์ตูน เกมส์">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <style>
+    :root {
+      --primary-dark:#1e3a8a; --primary:#1e40af; --primary-light:#3b82f6;
+      --soft:#eff6ff; --bg:#f1f5f9; --card:#fff; --text:#1e293b; --muted:#64748b;
+      --radius:16px; --red:#FF0000;
     }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Sarabun',sans-serif}
+    body{background:var(--bg);color:var(--text)}
+    header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(30,64,175,.3);display:flex;justify-content:center;align-items:center;padding:.75rem 1rem}
+    .logo{font-size:1.5rem;font-weight:800}
+    .main-nav{background:#fff;padding:.5rem 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .nav-wrap{max-width:1300px;margin:auto;display:flex;gap:.4rem;padding:0 1rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+    .nav-wrap::-webkit-scrollbar{display:none}
+    .main-nav a{text-decoration:none;color:#4b5563;font-weight:600;padding:.55rem .9rem;border-radius:12px;transition:all .2s;display:inline-flex;align-items:center;gap:.35rem;font-size:.9rem}
+    .main-nav a:hover,.main-nav a.active{background:var(--soft)}
+    .page-wrap{max-width:1300px;margin:1rem auto;padding:0 1rem;display:grid;grid-template-columns:1fr 280px;gap:1.25rem}
+    .cat-scroll{overflow-x:auto;white-space:nowrap;margin-bottom:1rem;scrollbar-width:none}
+    .cat-scroll::-webkit-scrollbar{display:none}
+    .cat-tabs{display:inline-flex;gap:.5rem}
+    .cat-btn{padding:.45rem 1.1rem;border-radius:50px;border:2px solid #dbeafe;background:#fff;color:var(--primary);font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:.35rem}
+    .cat-btn:hover{background:var(--soft)}
+    .cat-btn.active{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(30,64,175,.3)}
+    .ch-block{margin-bottom:1.75rem}
+    .ch-header{display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid #dbeafe}
+    .ch-logo{width:36px;height:36px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .ch-logo i{color:#fff;font-size:1rem}
+    .ch-name{font-size:1.05rem;font-weight:800;color:var(--primary-dark)}
+    .ch-sub{font-size:.75rem;color:var(--muted);font-weight:600}
+    .video-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.85rem}
+    .vcard{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(30,64,175,.07);cursor:pointer;border:2px solid transparent;transition:all .22s cubic-bezier(.25,.46,.45,.94)}
+    .vcard:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(30,64,175,.16);border-color:#bfdbfe}
+    .vcard:hover .play-overlay{opacity:1}
+    .vcard:hover .thumb img{transform:scale(1.05)}
+    .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#e2e8f0}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+    .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+    .play-overlay i{font-size:3rem;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+    .vinfo{padding:.55rem .65rem .65rem}
+    .vtitle{font-size:.8rem;font-weight:700;line-height:1.35;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .vmeta{font-size:.7rem;color:var(--muted);margin-top:.25rem}
+    .skel-card{border-radius:12px;overflow:hidden;background:var(--card)}
+    .skel-box{background:linear-gradient(90deg,#e2e8f0 25%,#f1f5f9 50%,#e2e8f0 75%);background-size:400% 100%;animation:shimmer 1.4s infinite}
+    @keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+    .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;padding:1rem}
+    .modal-bg.open{display:flex}
+    .modal-box{background:#000;border-radius:16px;overflow:hidden;width:100%;max-width:900px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.8)}
+    .modal-close{position:absolute;top:10px;right:12px;z-index:10;background:rgba(0,0,0,.7);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+    .modal-close:hover{background:rgba(255,0,0,.8)}
+    .modal-frame{position:relative;aspect-ratio:16/9}
+    .modal-frame iframe{width:100%;height:100%;border:0;display:block}
+    .sidebar{display:flex;flex-direction:column;gap:1.25rem}
+    .ad-section{background:var(--card);border-radius:var(--radius);padding:1rem;box-shadow:0 4px 12px rgba(30,64,175,.04);text-align:center}
+    .ad-section h2{font-size:1.1rem;margin-bottom:.75rem;color:#1e293b;font-weight:700;display:flex;justify-content:center;align-items:center;gap:.5rem}
+    .ad-section h2.support-site i{color:#7E57C2}
+    .ad-section h2.support-us i{color:#FB8C00}
+    .adsense-container{background:#f9fbff;border:1px dashed #dbeafe;border-radius:12px;min-height:250px;display:flex;align-items:center;justify-content:center;position:relative}
+    .adsense-container::before{content:"พื้นที่โฆษณา";color:#94a3b8;font-size:.85rem}
+    .support-card{background:var(--card);border-radius:var(--radius);padding:1rem}
+    .qr-code{width:100%;max-width:140px;height:auto;margin:.75rem auto;display:block;border-radius:8px}
+    .support-links{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.75rem}
+    .support-btn{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.55rem .4rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;color:white;transition:all .2s}
+    .support-btn:hover{opacity:.88;transform:translateY(-1px)}
+    .support-btn.promptpay{background:#10B981}.support-btn.facebook{background:#4267B2}
+    .support-btn.youtube{background:#FF0000}.support-btn.tiktok{background:#000}
+    footer{margin-top:2rem;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;text-align:center;padding:1.5rem 1rem}
+    footer a{color:#e0f2fe;text-decoration:none;font-weight:600;margin:0 .5rem}
+    @media(max-width:1100px){.video-grid{grid-template-columns:repeat(4,1fr)}}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.video-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.video-grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+<header><div class="logo">ครบจังดอทคอม</div></header>
+<nav class="main-nav">
+  <div class="nav-wrap">
+    <a href="index.html"><i class="fas fa-home" style="color:#45B7D1"></i> หน้าแรก</a>
+    <a href="news.html"><i class="fas fa-bolt" style="color:#FF6B6B"></i> ข่าวด่วน</a>
+    <a href="lotto.html"><i class="fas fa-ticket-alt" style="color:#FFD166"></i> ตรวจหวย</a>
+    <a href="horoscope.html"><i class="fas fa-star" style="color:#6A4C93"></i> ดูดวง</a>
+    <a href="sport.html"><i class="fas fa-futbol" style="color:#E76F51"></i> กีฬา</a>
+    <a href="video.html" class="active"><i class="fas fa-play-circle" style="color:#FF9F1C"></i> วีดีโอ</a>
+    <a href="ai.html"><i class="fas fa-robot" style="color:#2EC4B6"></i> AI</a>
+    <a href="games.html"><i class="fas fa-gamepad" style="color:#E76F51"></i> เกมส์</a>
+    <a href="shopping.html"><i class="fas fa-shopping-bag" style="color:#4ECDC4"></i> ช้อป</a>
+    <a href="booking.html"><i class="fas fa-umbrella-beach" style="color:#45B7D1"></i> ท่องเที่ยว</a>
+    <a href="contact.html"><i class="fas fa-headset" style="color:#6A4C93"></i> ติดต่อเรา</a>
+  </div>
+</nav>
+<div class="page-wrap">
+  <main>
+    <div class="cat-scroll">
+      <div class="cat-tabs">
+        <button class="cat-btn active" data-cat="news"><i class="fas fa-bolt" style="color:#FF6B6B"></i> ข่าว</button>
+        <button class="cat-btn" data-cat="entertain"><i class="fas fa-tv" style="color:#a855f7"></i> บันเทิง</button>
+        <button class="cat-btn" data-cat="sport"><i class="fas fa-futbol" style="color:#E76F51"></i> กีฬา</button>
+        <button class="cat-btn" data-cat="movie"><i class="fas fa-film" style="color:#e91e63"></i> ละคร/ซีรี่ส์</button>
+        <button class="cat-btn" data-cat="music"><i class="fas fa-music" style="color:#FF9F1C"></i> เพลง/MV</button>
+        <button class="cat-btn" data-cat="tech"><i class="fas fa-microchip" style="color:#2EC4B6"></i> เทคโนโลยี</button>
+        <button class="cat-btn" data-cat="cartoon"><i class="fas fa-star" style="color:#FFD166"></i> การ์ตูน</button>
+        <button class="cat-btn" data-cat="game"><i class="fas fa-gamepad" style="color:#E76F51"></i> เกมส์</button>
+      </div>
+    </div>
+    <div id="videoWrap"></div>
+  </main>
+  <aside class="sidebar">
+    <div class="ad-section">
+      <h2 class="support-site"><i class="fas fa-ad"></i> สนับสนุนเว็บไซต์</h2>
+      <div class="adsense-container">
+        <ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-2068902667667616" data-ad-slot="1706997713" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      </div>
+    </div>
+    <div class="ad-section">
+      <h2 class="support-us"><i class="fas fa-heart"></i> สนับสนุนเรา</h2>
+      <div class="support-card">
+        <p style="font-size:.9rem"><i class="fas fa-hand-holding-heart" style="color:#FB8C00"></i> ขอบคุณทุกการสนับสนุน!</p>
+        <img src="https://krobjang.vercel.app/images/promptpay.png" alt="QR PromptPay" class="qr-code" loading="lazy">
+        <div class="support-links">
+          <a href="https://krobjang.vercel.app/images/promptpay.png" target="_blank" class="support-btn promptpay"><i class="fas fa-money-bill-wave"></i> พร้อมเพย์</a>
+          <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube"><i class="fab fa-youtube"></i> YouTube</a>
+          <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+<footer>
+  <p>© 2026 ครบจังดอทคอม | <a href="#">นโยบายความเป็นส่วนตัว</a> | <a href="#">เกี่ยวกับเรา</a></p>
+</footer>
+
+<!-- Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <div class="modal-frame"><iframe id="modalFrame" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
+  </div>
+</div>
+
+<script>
+// ── Channel definitions ────────────────────────────────────────────────────────
+// kw = filter keyword จาก title (สำหรับช่องที่มีหลายประเภทปนกัน)
+// ช่องเฉพาะทาง (ข่าวล้วน, กีฬาล้วน, เพลงล้วน) ไม่ต้อง kw
+const CAT = {
+  news:[
+    {name:'ไทยรัฐ',           ch:'UCrFDdD-EE05N7gjwZho2wqw'},
+    {name:'อมรินทร์ทีวี',     ch:'UCzMoibQRslh_1bTuW0YXc6A'},
+    {name:'เรื่องเล่าเช้านี้',ch:'UC5wKpLWxAZBZrunls3mzwEw'},
+    {name:'Thai PBS',          ch:'UC5TOFhyb_LxL2VG_Zenhpzw'},
+    {name:'PPTV HD 36',        ch:'UC7FCQJFK1sfwD_uobB45Xng'},
+    {name:'TNN Online',        ch:'UCqUBA96OsqMgSFvTwLXY9yw'},
+    {name:'ข่าวช่อง 8',       ch:'UC6x41swVZP3rEmy-ODxLMFA'},
+    {name:'Workpoint News',    ch:'UCASFOneKa9lsHvc2NqKufqg'},
+  ],
+  entertain:[
+    {name:'Workpoint', ch:'UC3ZkCd7XtUREnjjt3cyY_gg'},
+    {name:'ช่อง 3',   ch:'UC48h7Dst_hX82HxOf3xJw_w'},
+    {name:'ช่อง One31',ch:'UCBcRF18a7Qf58cCRy5xuWwQ'},
+    {name:'ช่อง 7 HD',ch:'UC2OtDM92rPHk0GKnYNGOCzA'},
+    {name:'ช่อง 8',   ch:'UCtBu8Wb2BUoduUXJS9Uss7Q'},
+    {name:'GMMTV',    ch:'UC8BzJM6_VbZTdiNLD4R1jxQ'},
+  ],
+  sport:[
+    // สยามกีฬา = ช่องกีฬาล้วน ทุก video = กีฬา
+    {name:'สยามกีฬา', ch:'UCzORJV8l3o_tQs4SHY-HJaA'},
+    // ช่องใหญ่ → filter keyword
+    {name:'PPTV กีฬา',ch:'UC7FCQJFK1sfwD_uobB45Xng',
+      kw:['ฟุตบอล','กีฬา','บอล','แข่ง','สนาม','ลีก','นักกีฬา','ทีม','ผลบอล','พรีเมียร์']},
+    {name:'TNN กีฬา', ch:'UCqUBA96OsqMgSFvTwLXY9yw',
+      kw:['ฟุตบอล','กีฬา','บอล','แข่ง','สนาม','ลีก','นักกีฬา','ทีม']},
+    {name:'ไทยรัฐ กีฬา',ch:'UCrFDdD-EE05N7gjwZho2wqw',
+      kw:['ฟุตบอล','กีฬา','บอล','แข่ง','สนาม','ลีก','นักกีฬา','ทีม']},
+    {name:'Thai PBS กีฬา',ch:'UC5TOFhyb_LxL2VG_Zenhpzw',
+      kw:['ฟุตบอล','กีฬา','บอล','แข่ง','สนาม','นักกีฬา']},
+    {name:'อมรินทร์ กีฬา',ch:'UCzMoibQRslh_1bTuW0YXc6A',
+      kw:['ฟุตบอล','กีฬา','บอล','แข่ง','สนาม','นักกีฬา']},
+  ],
+  movie:[
+    // ช่องละคร/ซีรี่ส์ล้วน
+    {name:'GMMTV',      ch:'UC8BzJM6_VbZTdiNLD4R1jxQ'},
+    {name:'ช่อง One31', ch:'UCBcRF18a7Qf58cCRy5xuWwQ'},
+    {name:'ช่อง 3',     ch:'UC48h7Dst_hX82HxOf3xJw_w'},
+    {name:'ช่อง 7 HD',  ch:'UC2OtDM92rPHk0GKnYNGOCzA'},
+    {name:'ช่อง 8',     ch:'UCtBu8Wb2BUoduUXJS9Uss7Q'},
+    {name:'อมรินทร์ ละคร',ch:'UCzMoibQRslh_1bTuW0YXc6A',
+      kw:['ละคร','ซีรี่','ตอนที่','ep ','ฉาก','ย้อนหลัง','พระเอก','นาง']},
+  ],
+  music:[
+    // ช่องเพลงล้วน — ทุก video = เพลง/MV
+    {name:'GMM Grammy Official', ch:'UCF-YFQPG8-VPmcWdAkEqAkg'},
+    {name:'Grammy Gold Official',ch:'UC9CP-k0UwCRIr3RTDP3GdMQ'},
+    {name:'RS Music',            ch:'UCDNHjPnVEeEHrLUDT_AxMkA'},
+    {name:'GMMTV Music',  ch:'UC8BzJM6_VbZTdiNLD4R1jxQ',
+      kw:['mv','เพลง','ost','music','cover','คอนเสิร์ต']},
+    {name:'Workpoint Music',ch:'UC3ZkCd7XtUREnjjt3cyY_gg',
+      kw:['mv','เพลง','ost','music','cover','คอนเสิร์ต','ร้อง']},
+  ],
+  tech:[
+    // ช่องเทคโนโลยีล้วน
+    {name:'Blognone', ch:'UCt7mzJGKpRE1JwNclE_BKOA'},
+    {name:'Droidsans',ch:'UCqajGCbBop4FFHnBSmINpQQ'},
+    {name:'ไทยรัฐ เทค',ch:'UCrFDdD-EE05N7gjwZho2wqw',
+      kw:['เทค','มือถือ','ai','รีวิว','tech','review','gadget','iphone','android','แอป','ดิจิทัล','นวัตกรรม']},
+    {name:'TNN Tech', ch:'UCqUBA96OsqMgSFvTwLXY9yw',
+      kw:['เทค','มือถือ','ai','รีวิว','tech','review','gadget','ดิจิทัล']},
+    {name:'Thai PBS เทค',ch:'UC5TOFhyb_LxL2VG_Zenhpzw',
+      kw:['เทค','มือถือ','ai','tech','ดิจิทัล','นวัตกรรม','วิทยาศาสตร์']},
+  ],
+  cartoon:[
+    // ช่องการ์ตูนล้วน
+    {name:'Cartoon Network TH',ch:'UCJlejBGlsKkzOGu9RBXM_LA'},
+    {name:'Nickelodeon TH',    ch:'UCFOJoJE1T7kFKnKMpNmEwkA'},
+    {name:'Disney TH',         ch:'UCjmJDI5RkLgTIJC5v_VEbQ'},
+    {name:'Workpoint การ์ตูน',ch:'UC3ZkCd7XtUREnjjt3cyY_gg',
+      kw:['การ์ตูน','cartoon','animation','ตอนที่','ep']},
+  ],
+  game:[
+    // ช่องเกมส์ล้วน
+    {name:'ROV Thailand',  ch:'UCgYkuL87rovnBj4m3hn2VwA'},
+    {name:'Free Fire TH',  ch:'UCFQMnBA3CS502aghlcr0_aw'},
+    {name:'Garena TH',     ch:'UCbmNph6atAoGfqLoCL_duAg'},
+    {name:'RoV Pro League',ch:'UCHtL3mp77nrCyJTq8K6DEMA'},
+    {name:'Workpoint เกมส์',ch:'UC3ZkCd7XtUREnjjt3cyY_gg',
+      kw:['เกม','gaming','rov','freefire','esport','สตรีม','tournament','แข่งเกม']},
+  ],
+};
+
+// ── RSS fetch via allorigins (no CORS issues) ─────────────────────────────────
+function parseRSS(xml, name, kw) {
+  const all = [];
+  for (const p of xml.split('<entry>').slice(1)) {
+    const id    = (p.match(/<yt:videoId>(.*?)<\/yt:videoId>/) ||[])[1]||'';
+    const title = (p.match(/<title>(.*?)<\/title>/)           ||[])[1]||'';
+    const date  = (p.match(/<published>(.*?)<\/published>/)   ||[])[1]||'';
+    if (!id) continue;
+    const clean = title.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+    all.push({id, title:clean, date, ch:name, thumb:`https://img.youtube.com/vi/${id}/mqdefault.jpg`});
+  }
+  if (!kw||!kw.length) return all.slice(0,10);
+  const f = all.filter(v=>kw.some(k=>v.title.toLowerCase().includes(k.toLowerCase())));
+  return (f.length>=2?f:all).slice(0,10);
 }
+
+async function fetchCh(ch) {
+  const rss   = `https://www.youtube.com/feeds/videos.xml?channel_id=${ch.ch}`;
+  const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(rss)}`;
+  try {
+    const r = await fetch(proxy);
+    const j = await r.json();
+    return parseRSS(j.contents||'', ch.name, ch.kw||null);
+  } catch { return []; }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function ago(d){
+  const s=Math.floor((Date.now()-new Date(d))/1000);
+  if(s<60)return'เมื่อกี้';
+  if(s<3600)return`${Math.floor(s/60)} นาทีที่แล้ว`;
+  if(s<86400)return`${Math.floor(s/3600)} ชั่วโมงที่แล้ว`;
+  if(s<2592000)return`${Math.floor(s/86400)} วันที่แล้ว`;
+  return new Date(d).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'});
+}
+
+function skelRow(){
+  return`<div class="ch-block">
+    <div class="ch-header">
+      <div class="ch-logo skel-box" style="background:#e2e8f0"></div>
+      <div class="skel-box" style="width:140px;height:18px;border-radius:8px"></div>
+    </div>
+    <div class="video-grid">${Array(5).fill(`
+      <div class="skel-card">
+        <div class="skel-box" style="aspect-ratio:16/9"></div>
+        <div style="padding:.55rem .65rem">
+          <div class="skel-box" style="height:13px;border-radius:6px;margin-bottom:.35rem"></div>
+          <div class="skel-box" style="height:11px;border-radius:6px;width:60%"></div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderVideos(channels, results){
+  const wrap = document.getElementById('videoWrap');
+  const html = channels.map((ch,i)=>{
+    const vids = results[i];
+    if(!vids||!vids.length) return '';
+    return`<div class="ch-block">
+      <div class="ch-header">
+        <div class="ch-logo"><i class="fab fa-youtube"></i></div>
+        <div>
+          <div class="ch-name">${ch.name}</div>
+          <div class="ch-sub">${vids.length} วิดีโอล่าสุด • อัปเดตอัตโนมัติ</div>
+        </div>
+      </div>
+      <div class="video-grid">
+        ${vids.map(v=>`
+          <div class="vcard" onclick="openModal('${v.id}')">
+            <div class="thumb">
+              <img src="${v.thumb}" alt="${v.title}" loading="lazy">
+              <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            </div>
+            <div class="vinfo">
+              <div class="vtitle">${v.title}</div>
+              <div class="vmeta"><i class="far fa-clock"></i> ${ago(v.date)}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+  wrap.innerHTML = html||`<div style="text-align:center;padding:3rem;color:var(--muted)">ไม่พบวิดีโอในหมวดนี้</div>`;
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+function openModal(id){
+  document.getElementById('modalFrame').src=`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  document.getElementById('modalBg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalFrame').src='';
+  document.getElementById('modalBg').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modalClose').onclick=closeModal;
+document.getElementById('modalBg').onclick=e=>{if(e.target===e.currentTarget)closeModal();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ── Load ──────────────────────────────────────────────────────────────────────
+const cache={};
+let cur='news';
+
+async function loadCat(cat){
+  cur=cat;
+  const channels=CAT[cat];
+  if(cache[cat]){renderVideos(channels,cache[cat]);return;}
+  // แสดง skeleton
+  document.getElementById('videoWrap').innerHTML=Array(3).fill(skelRow()).join('');
+  // ดึงข้อมูลทั้งหมดพร้อมกัน
+  const results=await Promise.all(channels.map(ch=>fetchCh(ch)));
+  cache[cat]=results;
+  if(cur===cat) renderVideos(channels,results);
+}
+
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    loadCat(btn.dataset.cat);
+  });
+});
+
+loadCat('news');
+</script>
+</body>
+</html>
