@@ -350,30 +350,23 @@ def post_to_facebook_with_image(page: dict, title: str, filename: str, category:
 
     article_url = f"{SITE_URL}/{filename}"
     message = generate_fb_caption(title, category, page["style"], article_url)
-    keyword = CATEGORY_IMAGES.get(category, "thailand")
-    rand = random.randint(1, 9999)
-    image_url = f"https://picsum.photos/seed/{keyword}{rand}/1200/630"
 
     try:
         r = requests.post(
-            f"https://graph.facebook.com/v25.0/{page_id}/photos",
-            data={"message": message, "url": image_url, "access_token": token},
+            f"https://graph.facebook.com/v25.0/{page_id}/feed",
+            data={
+                "message": message,
+                "link": article_url,
+                "access_token": token,
+            },
             timeout=30,
         )
         result = r.json()
         if "id" in result:
-            print(f"  ✅ {page['name']}: โพสสำเร็จพร้อมรูป!")
+            print(f"  ✅ {page['name']}: โพสสำเร็จ!")
         else:
             err = result.get("error", {}).get("message", "Unknown")
             print(f"  ❌ {page['name']}: {err}")
-            # fallback ไม่มีรูป
-            r2 = requests.post(
-                f"https://graph.facebook.com/v25.0/{page_id}/feed",
-                data={"message": message, "link": article_url, "access_token": token},
-                timeout=30,
-            )
-            if "id" in r2.json():
-                print(f"  ✅ {page['name']}: โพสสำเร็จ (ไม่มีรูป)")
     except Exception as e:
         print(f"  ❌ {page['name']}: {e}")
 
