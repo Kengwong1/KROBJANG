@@ -130,3 +130,8 @@
 [2026-03-24 17:02:22] Generating article: การลงทุนสำหรับมือใหม่ ล่าสุด (finance)
 [2026-03-24 17:03:02] FULL AUTO START
 [2026-03-24 17:03:02] Checking HTML files...
+[2026-03-24 17:05:12] Saved: finance_20260324_170512_3162.html
+[2026-03-24 17:05:13] Unsplash API error: 'urls'
+[2026-03-24 17:05:14] Facebook post FAILED: Missing or invalid image file (finance_20260324_170512_3162.html)
+[2026-03-24 17:05:14] --- Article 3/20 ---
+[2026-03-24 17:05:14] Generating article: ประโยคฮาๆ ล่าสุด (comedy)
