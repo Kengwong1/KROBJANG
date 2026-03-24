@@ -1,159 +1,416 @@
-# agent_krobjang.py — COMPLETE VERSION WITH AUTO AUTO_ARTICLES INSERTION
-# วางไฟล์นี้แทนของเดิมได้เลย
-# ทำหน้าที่:
-# 1) สแกนไฟล์ HTML ทุกไฟล์ในโปรเจค
-# 2) ตรวจและซ่อม HTML เบื้องต้น
-# 3) ใส่ <!-- AUTO_ARTICLES --> อัตโนมัติถ้ายังไม่มี
-
-from pathlib import Path
-from bs4 import BeautifulSoup
-import logging
 import os
+import random
+import argparse
+import datetime
+import time
+import subprocess
+from pathlib import Path
 
-# ─────────────────────────────────────────────
+# =====================================================
 # CONFIG
-# ─────────────────────────────────────────────
+# =====================================================
 
-# โฟลเดอร์โปรเจค (ค่าเริ่มต้น = โฟลเดอร์ที่ไฟล์นี้อยู่)
-KROBJANG_PATH = Path(__file__).resolve().parent
+BASE_PATH = Path(r"D:\\Projects\\krubjang-site full")
+ARTICLES_PATH = BASE_PATH
+LOG_PATH = BASE_PATH / "agent_logs"
+LOG_PATH.mkdir(exist_ok=True)
 
-# ตั้งค่า logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-)
+MODEL_NAME = "scb10x/llama3.1-typhoon2-8b-instruct:latest"
 
-log = logging.getLogger("KrobjangAgent")
+DAILY_ARTICLE_LIMIT = 20
+MAX_INTERNAL_LINKS = 3
 
+CATEGORIES = [
+    "health",
+    "finance",
+    "technology",
+    "lifestyle",
+    "comedy",
+    "horoscope"
+]
 
-# ─────────────────────────────────────────────
-# GET ALL HTML FILES
-# ─────────────────────────────────────────────
+# =====================================================
+# UTIL
+# =====================================================
 
-def get_all_html_files() -> list[Path]:
-    """ค้นหาไฟล์ .html ทั้งหมดในโปรเจค"""
+def log(msg: str):
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    line = f"[{now}] {msg}"
+    print(line)
 
-    files: list[Path] = []
-
-    for f in KROBJANG_PATH.rglob("*.html"):
-        path_str = str(f).lower()
-
-        # ข้ามโฟลเดอร์ที่ไม่จำเป็น
-        if any(skip in path_str for skip in [
-            "node_modules",
-            "__pycache__",
-            "agent_logs",
-            "venv",
-            ".git",
-        ]):
-            continue
-
-        files.append(f)
-
-    return files
+    logfile = LOG_PATH / "agent.log"
+    with open(logfile, "a", encoding="utf-8") as f:
+        f.write(line + "\n")
 
 
-# ─────────────────────────────────────────────
-# BASIC HTML CHECK / FIX
-# ─────────────────────────────────────────────
+# =====================================================
+# TRENDING TOPICS (REALISTIC SIMULATION)
+# =====================================================
 
-def check_and_fix_html(filepath: Path) -> dict:
-    """
-    ตรวจ HTML ว่าอ่านได้หรือไม่
-    (ไม่แก้ logic ใหญ่ — แค่ตรวจ parse ได้)
-    """
-
-    result = {
-        "file": filepath.name,
-        "fixed": False,
+def get_trending_topics(category: str):
+    topics = {
+        "health": [
+            "อาหารเสริมที่คนไทยนิยม",
+            "วิธีนอนหลับให้สนิท",
+            "สมุนไพรไทยยอดนิยม"
+        ],
+        "finance": [
+            "วิธีเก็บเงินให้ได้ผล",
+            "รายได้เสริมออนไลน์",
+            "การลงทุนสำหรับมือใหม่"
+        ],
+        "technology": [
+            "AI ทำอะไรได้บ้าง",
+            "มือถือรุ่นใหม่ล่าสุด",
+            "เทคโนโลยีอนาคต"
+        ],
+        "lifestyle": [
+            "นิสัยคนสำเร็จ",
+            "วิธีจัดบ้านให้น่าอยู่",
+            "การพัฒนาตัวเอง"
+        ],
+        "comedy": [
+            "เรื่องตลกยอดฮิต",
+            "ประโยคฮาๆ",
+            "เรื่องขำประจำวัน"
+        ],
+        "horoscope": [
+            "ดวงความรัก",
+            "ดวงการเงิน",
+            "ดวงการงาน"
+        ]
     }
 
-    try:
-        html = filepath.read_text(encoding="utf-8", errors="ignore")
+    return random.choice(topics.get(category, ["เรื่องน่ารู้ล่าสุด"]))
 
-        # parse เพื่อเช็กว่า HTML ไม่พัง
-        BeautifulSoup(html, "lxml")
+
+# =====================================================
+# IMAGE AUTO (UNSPLASH STYLE)
+# =====================================================
+
+def add_auto_image(category: str) -> str:
+    keywords = {
+        "health": "health",
+        "finance": "money",
+        "technology": "technology",
+        "lifestyle": "lifestyle",
+        "comedy": "funny",
+        "horoscope": "zodiac"
+    }
+
+    key = keywords.get(category, "news")
+
+    return f'<img src="https://source.unsplash.com/800x400/?{key}" alt="{key}">\n'
+
+
+# =====================================================
+# GENERATE CONTENT
+# =====================================================
+
+def generate_article(title: str, category: str) -> str:
+    prompt = f"""
+เขียนบทความ SEO ภาษาไทย
+หัวข้อ: {title}
+หมวด: {category}
+
+เงื่อนไข:
+- ยาวประมาณ 800-1200 คำ
+- อ่านง่าย
+- มีหัวข้อย่อย
+- ใช้ HTML
+"""
+
+    try:
+        result = subprocess.run(
+            ["ollama", "run", MODEL_NAME],
+            input=prompt,
+            capture_output=True,
+            text=True,
+            encoding="utf-8"
+        )
+
+        content = result.stdout
+
+        image_html = add_auto_image(category)
+
+        return image_html + content
 
     except Exception as e:
-        log.error(f"HTML parse error: {filepath} | {e}")
-        result["fixed"] = False
-
-    return result
+        log(f"Generate error: {e}")
+        return "<p>Generate failed</p>"
 
 
-# ─────────────────────────────────────────────
-# AUTO INSERT MARKER
-# ─────────────────────────────────────────────
+# =====================================================
+# INTERNAL LINKS BY CATEGORY
+# =====================================================
 
-def ensure_auto_articles_marker(filepath: Path):
-    """
-    ถ้าไฟล์ HTML ไม่มี <!-- AUTO_ARTICLES -->
-    ให้ใส่เข้าไปอัตโนมัติใน content-area
-    """
-
+def add_internal_links(content: str, category: str) -> str:
     try:
-        html = filepath.read_text(encoding="utf-8", errors="ignore")
+        files = [
+            f.name for f in ARTICLES_PATH.glob(f"{category}_*.html")
+        ]
 
-        # ถ้ามี marker อยู่แล้ว
-        if "<!-- AUTO_ARTICLES -->" in html:
-            return
+        if not files:
+            return content
 
-        soup = BeautifulSoup(html, "lxml")
+        selected = random.sample(
+            files,
+            min(MAX_INTERNAL_LINKS, len(files))
+        )
 
-        # หา content-area
-        content = soup.find("div", class_="content-area")
+        html = "\n<hr>\n<h3>บทความที่เกี่ยวข้อง</h3>\n<ul>\n"
 
-        if not content:
-            log.info(f"[SKIP] No content-area in: {filepath.name}")
-            return
+        for f in selected:
+            title = f.replace(".html", "").replace("_", " ")
+            html += f'<li><a href="{f}">{title}</a></li>\n'
 
-        marker = soup.new_string("\n<!-- AUTO_ARTICLES -->\n")
+        html += "</ul>\n"
 
-        content.append(marker)
-
-        filepath.write_text(str(soup), encoding="utf-8")
-
-        log.info(f"[AUTO] Inserted AUTO_ARTICLES in: {filepath.name}")
+        return content + html
 
     except Exception as e:
-        log.error(f"[ERROR] {filepath.name}: {e}")
+        log(f"Internal links error: {e}")
+        return content
 
 
-# ─────────────────────────────────────────────
-# MAIN RUNNER
-# ─────────────────────────────────────────────
+# =====================================================
+# PING GOOGLE
+# =====================================================
 
-def run_html_fixer():
-    """วนตรวจและใส่ marker ทุกไฟล์"""
+def ping_google():
+    try:
+        import requests
 
-    log.info("=" * 50)
-    log.info("HTML FIXER START")
-    log.info("=" * 50)
+        sitemap_url = "https://krobjang.vercel.app/sitemap.xml"
 
-    files = get_all_html_files()
+        ping_url = (
+            "https://www.google.com/ping?"
+            f"sitemap={sitemap_url}"
+        )
 
-    log.info(f"Found HTML files: {len(files)}")
+        r = requests.get(ping_url, timeout=10)
 
-    results = []
+        if r.status_code == 200:
+            log("Google ping success")
+        else:
+            log("Google ping failed")
 
-    for f in files:
-        result = check_and_fix_html(f)
-
-        # ใส่ marker อัตโนมัติ
-        ensure_auto_articles_marker(f)
-
-        results.append(result)
-
-    fixed_count = sum(1 for r in results if r.get("fixed"))
-
-    log.info(
-        f"Completed. Checked: {len(files)} files | Fixed: {fixed_count}"
-    )
+    except Exception as e:
+        log(f"Ping error: {e}")
 
 
-# ─────────────────────────────────────────────
-# ENTRY POINT
-# ─────────────────────────────────────────────
+# =====================================================
+# SITEMAP AUTO
+# =====================================================
+
+def generate_sitemap():
+    try:
+        sitemap_path = BASE_PATH / "sitemap.xml"
+
+        urls = []
+
+        for file in ARTICLES_PATH.glob("*.html"):
+            url = f"https://example.com/{file.name}"
+            urls.append(url)
+
+        xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+        xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+
+        for url in urls:
+            xml += "  <url>\n"
+            xml += f"    <loc>{url}</loc>\n"
+            xml += "  </url>\n"
+
+        xml += '</urlset>'
+
+        with open(sitemap_path, "w", encoding="utf-8") as f:
+            f.write(xml)
+
+        log("Sitemap generated")
+
+    except Exception as e:
+        log(f"Sitemap error: {e}")
+
+
+# =====================================================
+# SAVE FILE
+# =====================================================
+
+def make_filename(category: str) -> str:
+    now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    rand = random.randint(1000, 9999)
+    return f"{category}_{now}_{rand}.html"
+
+
+def save_article(filename: str, content: str):
+    path = ARTICLES_PATH / filename
+
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    log(f"Saved: {filename}")
+
+
+# =====================================================
+# FACEBOOK POST (SAFE)
+# =====================================================
+
+def post_to_facebook(filename: str):
+    log(f"Facebook: Post simulated for {filename}")
+
+
+# =====================================================
+# GIT PUSH
+# =====================================================
+
+def git_push():
+    try:
+        subprocess.run("git add .", shell=True)
+        subprocess.run("git commit -m \"auto content\"", shell=True)
+        subprocess.run("git push", shell=True)
+        log("Git pushed")
+    except Exception as e:
+        log(f"Git error: {e}")
+
+
+# =====================================================
+# FIX HTML
+# =====================================================
+
+def fix_html_files():
+    log("Checking HTML files...")
+
+    for file in ARTICLES_PATH.glob("*.html"):
+        try:
+            with open(file, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            if "</html>" not in content:
+                content += "\n</html>"
+
+                with open(file, "w", encoding="utf-8") as f:
+                    f.write(content)
+
+                log(f"Fixed: {file.name}")
+
+        except Exception as e:
+            log(f"Fix error: {e}")
+
+    git_push()
+
+
+# =====================================================
+# CONTENT WORKFLOW (20 ARTICLES / DAY)
+# =====================================================
+
+def run_content():
+    log("Generating content batch...")
+
+    for _ in range(DAILY_ARTICLE_LIMIT):
+        category = random.choice(CATEGORIES)
+
+        topic = get_trending_topics(category)
+
+        title = f"{topic} ล่าสุด"
+
+        content = generate_article(title, category)
+
+        content = add_internal_links(content, category)
+
+        filename = make_filename(category)
+
+        save_article(filename, content)
+
+        post_to_facebook(filename)
+
+    generate_sitemap()
+
+    git_push()
+
+
+# =====================================================
+# FB CHECK
+# =====================================================
+
+def check_facebook_posts():
+    log("Checking Facebook posts...")
+
+    for file in ARTICLES_PATH.glob("*.html"):
+        post_to_facebook(file.name)
+
+
+# =====================================================
+# SCHEDULER
+# =====================================================
+
+def scheduler():
+    log("Scheduler started")
+
+    times = [
+        "08:00",
+        "14:00",
+        "20:00"
+    ]
+
+    while True:
+        now = datetime.datetime.now().strftime("%H:%M")
+
+        if now in times:
+            run_content()
+            time.sleep(60)
+
+        time.sleep(30)
+
+
+# =====================================================
+# MAIN
+# =====================================================
+
+# =====================================================
+# RUN ALL WORKFLOW (FULL AUTO)
+# =====================================================
+
+def run_all():
+    log("FULL AUTO START")
+
+    fix_html_files()
+
+    run_content()
+
+    generate_sitemap()
+
+    ping_google()
+
+    git_push()
+
+    log("FULL AUTO COMPLETE")
+
+
+def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--fix", action="store_true")
+    parser.add_argument("--content", action="store_true")
+    parser.add_argument("--fb-check", action="store_true")
+    parser.add_argument("--schedule", action="store_true")
+
+    args = parser.parse_args()
+
+    if args.fix:
+        fix_html_files()
+
+    elif args.content:
+        run_content()
+
+    elif args.fb_check:
+        check_facebook_posts()
+
+    elif args.schedule:
+        scheduler()
+
+    else:
+        run_all()
+
 
 if __name__ == "__main__":
-    run_html_fixer()
+    main()

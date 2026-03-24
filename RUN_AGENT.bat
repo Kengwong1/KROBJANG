@@ -1,21 +1,29 @@
 @echo off
-title Krobjang AI Agent
+chcp 65001 > nul
+setlocal
 
-cd /d "%~dp0"
-
-echo ============================================
-echo   Krobjang AI Agent Starting...
-echo ============================================
+title KROBJANG AI AGENT v3 AUTO
+color 0A
 
 echo.
-echo Running auto content generator...
+echo =====================================================
+echo   KROBJANG AI AGENT v3.0 - FULL AUTO MODE
+echo =====================================================
 echo.
 
-python auto_content_krobjang.py
+REM ไปที่โฟลเดอร์โปรเจกต์
+cd /d "D:\Projects\krubjang-site full"
+
+echo Starting FULL AUTO workflow...
+
+REM รันระบบทั้งหมด
+python agent_krobjang.py
 
 echo.
-echo ============================================
-echo   Agent Finished
-echo ============================================
+echo =========================================
+echo AUTO WORKFLOW COMPLETE
+echo Logs folder: agent_logs
+echo =========================================
+echo.
 
-pause
+exit
