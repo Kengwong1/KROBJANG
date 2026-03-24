@@ -217,3 +217,25 @@
 [2026-03-24 17:22:41] Fixed: technology_20260324_171219_8071.html
 [2026-03-24 17:22:41] Fixed: technology_20260324_171257_6000.html
 [2026-03-24 17:22:41] Fixed: technology_20260324_171602_5213.html
+[2026-03-24 17:22:43] Git pushed
+[2026-03-24 17:22:43] Generating content batch...
+[2026-03-24 17:22:43] --- Article 1/20 ---
+[2026-03-24 17:22:43] Generating article: การพัฒนาตัวเอง ล่าสุด (lifestyle)
+[2026-03-24 17:22:59] Saved: lifestyle_20260324_172259_9635.html
+[2026-03-24 17:22:59] Unsplash API error: 'urls'
+[2026-03-24 17:23:00] Facebook post FAILED: Missing or invalid image file (lifestyle_20260324_172259_9635.html)
+[2026-03-24 17:23:00] --- Article 18/20 ---
+[2026-03-24 17:23:00] Generating article: เทคโนโลยีอนาคต ล่าสุด (technology)
+[2026-03-24 17:25:51] Saved: technology_20260324_172551_9735.html
+[2026-03-24 17:25:56] Facebook posted OK — post id: 1579303714204713 (technology_20260324_172551_9735.html)
+[2026-03-24 17:25:56] --- Article 19/20 ---
+[2026-03-24 17:25:56] Generating article: วิธีเก็บเงินให้ได้ผล ล่าสุด (finance)
+[2026-03-24 17:27:09] Saved: finance_20260324_172709_5150.html
+[2026-03-24 17:27:09] Unsplash API error: 'urls'
+[2026-03-24 17:27:10] Facebook post FAILED: Missing or invalid image file (finance_20260324_172709_5150.html)
+[2026-03-24 17:27:10] --- Article 20/20 ---
+[2026-03-24 17:27:10] Generating article: AI ทำอะไรได้บ้าง ล่าสุด (technology)
+[2026-03-24 17:29:24] Saved: technology_20260324_172924_7967.html
+[2026-03-24 17:29:27] Facebook posted OK — post id: 1579305884204496 (technology_20260324_172924_7967.html)
+[2026-03-24 17:29:27] Sitemap generated
+[2026-03-24 17:29:28] Google ping failed
