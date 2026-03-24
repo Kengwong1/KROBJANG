@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เริ่มต้นใช้ ChatGPT สำหรับมือใหม่ | ครบจังดอทคอม</title>
+    <meta name="description" content="คู่มือเริ่มต้นใช้ ChatGPT สำหรับมือใหม่ วิธีสมัคร วิธีใช้งานพื้นฐาน ตัวอย่างการเขียน Prompt ให้ได้ผลลัพธ์ที่ดีที่สุด">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #0d47a1;
+            --accent: #1565c0;
+            --bg: #f4f6f9;
+            --card: #fff;
+            --text: #222;
+            --text-secondary: #666;
+            --border: #e0e0e0;
+            --highlight: #ff9800;
+        }
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        header { background: var(--brand); color:#fff; padding:20px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
+        header h1 { margin:0; font-size:24px; letter-spacing:0.5px; }
+        nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
+        nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
+        nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
+        main { max-width:1200px; margin:20px auto; padding:0 16px; display:grid; grid-template-columns:1fr 300px; gap:20px; }
+        .content-area { display:flex; flex-direction:column; gap:20px; }
+        .section { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+        .section h2 { margin:0 0 12px; color: var(--brand); font-size:1.3em; display:flex; align-items:center; gap:8px; }
+        .section h2::before { content:""; display:inline-block; width:8px; height:8px; background: var(--accent); border-radius:50%; }
+        .guide-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:15px; }
+        .guide-card { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); transition:0.2s; }
+        .guide-card:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.1); }
+        .guide-card h3 { color: var(--brand); margin-bottom: 8px; }
+        .guide-card p { color: var(--text-secondary); margin-bottom: 10px; }
+        .guide-card a { text-decoration:none; color: var(--accent); font-weight:600; display:block; margin-top:10px; }
+        .sidebar { display:flex; flex-direction:column; gap:18px; }
+        .ad-section { background: var(--card); padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+        .ad-section h2 { color: var(--highlight); }
+        .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
+        footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
+        @media(max-width:768px) { main { grid-template-columns:1fr; padding:0 12px; } nav.main-nav { padding:8px; } nav.main-nav a { padding:6px 10px; font-size:0.85em; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>เริ่มต้นใช้ ChatGPT สำหรับมือใหม่</h1>
+</header>
+
+<nav class="main-nav">
+    <a href="index.html">หน้าแรก</a>
+    <a href="news.html">ข่าว</a>
+    <a href="lotto.html">ตรวจหวย</a>
+    <a href="horoscope.html">ดูดวง</a>
+    <a href="sport.html">กีฬา</a>
+    <a href="video.html">วีดีโอ</a>
+    <a href="ai.html">AI</a>
+    <a href="games.html">เกมส์</a>
+    <a href="shopping.html">ช้อปปิ้งกับเรา</a>
+    <a href="booking.html">ท่องเที่ยว</a>
+    <a href="contact.html">ติดต่อเรา</a>
+</nav>
+
+<main>
+    <div class="content-area">
+        <div class="section">
+            <h2>🚀 คู่มือเริ่มต้นใช้ ChatGPT สำหรับมือใหม่</h2>
+            <p class="intro-text">
+                ยินดีต้อนรับสู่โลกของ AI! หากคุณเพิ่งเริ่มต้นใช้ ChatGPT นี่คือคู่มือที่จะพาคุณก้าวแรกไปอย่างมั่นใจ 
+                ตั้งแต่การสมัครสมาชิก การใช้งานพื้นฐาน ไปจนถึงเทคนิคการเขียน Prompt เพื่อให้ได้คำตอบที่ดีที่สุด
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>✅ ขั้นตอนการเริ่มต้น</h2>
+            <ol style="padding-left: 20px; margin: 10px 0;">
+                <li><strong>สมัครสมาชิก:</strong> ไปที่ <a href="https://chat.openai.com" target="_blank">chat.openai.com</a> และสมัครด้วยอีเมลหรือบัญชี Google</li>
+                <li><strong>เลือกโมเดล:</strong> บนหน้าเว็บ จะเห็นตัวเลือก "GPT-4" หรือ "GPT-3.5". ใช้ GPT-3.5 สำหรับฟรี</li>
+                <li><strong>เริ่มพิมพ์คำถาม:</strong> คลิกที่กล่อง "Message ChatGPT" แล้วพิมพ์คำถามหรือคำขอของคุณ</li>
+                <li><strong>รอคำตอบ:</strong> คลิก Enter หรือปุ่มส่ง แล้วรอ AI ตอบกลับ</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>💡 ตัวอย่าง Prompt พื้นฐาน</h2>
+            <ul style="padding-left: 20px; margin: 10px 0;">
+                <li>"อธิบายความหมายของคำว่า 'AI' ให้ฉันฟังเหมือนกำลังเล่าให้เด็ก 5 ขวบฟัง"</li>
+                <li>"ช่วยเขียนบทความยาวประมาณ 300 คำ เรื่อง 'ประโยชน์ของการออกกำลังกาย'"</li>
+                <li>"ช่วยแปลประโยคนี้เป็นภาษาอังกฤษ: 'วันนี้อากาศดีมาก ฉันออกไปเดินเล่นในสวนสาธารณะ'"</li>
+                <li>"ช่วยคิดไอเดีย 5 อย่างสำหรับคอนเทนต์ใน TikTok เกี่ยวกับการเรียนรู้"</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>⚠️ ข้อควรระวัง</h2>
+            <ul style="padding-left: 20px; margin: 10px 0;">
+                <li>ไม่ควรแชร์ข้อมูลส่วนตัว เช่น รหัสผ่าน หมายเลขบัตรเครดิต</li>
+                <li>ตรวจสอบข้อมูลที่ได้รับจาก AI เพราะอาจไม่ถูกต้องเสมอไป</li>
+                <li>ใช้ AI เป็นเครื่องมือช่วย ไม่ใช่แหล่งข้อมูลหลักที่เชื่อถือได้ 100%</li>
+            </ul>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <div class="ad-section">
+            <h2>💰 สนับสนุนเว็บไซต์</h2>
+            <div style="text-align:center;">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2068902667667616"
+                    data-ad-slot="1706997713"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="ad-placeholder">[โฆษณา Affiliate / โปรโมท AI Tools อื่น ๆ]</div>
+        </div>
+
+        <div class="ad-section">
+            <h2>☕ สนับสนุนเรา</h2>
+            <div class="card">
+                <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+                <img src="images/promptpay.png" alt="QR PromptPay" style="width:100%; max-width:150px; display:block; margin:0 auto;">
+            </div>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    &copy; 2025 ครบจังดอทคอม — All rights reserved.
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+</body>
+</html>

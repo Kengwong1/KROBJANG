@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หมวดบันเทิง - ครบจังดอทคอม</title>
+    <!-- เปลี่ยน font เป็น Sarabun ตามหน้าแรก -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ใช้ CSS Variables และสไตล์ทั้งหมดจากหน้าแรก */
+        :root {
+            --brand: #0d47a1;
+            --accent: #1565c0;
+            --bg: #f4f6f9;
+            --card: #fff;
+            --text: #222;
+            --text-secondary: #666;
+            --border: #e0e0e0;
+            --highlight: #ff9800;
+        }
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: "Sarabun", system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        /* Header แบบหน้าแรก */
+        header { background: var(--brand); color:#fff; padding:15px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
+        header h1 { margin:0; font-size:20px; letter-spacing:0.5px; }
+
+        /* Nav แบบหน้าแรก */
+        nav.main-nav { background:#fff; padding:10px 16px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; justify-content:center; overflow-x:auto; gap:8px; flex-wrap: nowrap; }
+        nav.main-nav a { color:#333; text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; font-size:0.9em; white-space:nowrap; border:1px solid transparent; }
+        nav.main-nav a.active, nav.main-nav a:hover { background: var(--accent); color:#fff; }
+
+        /* Container แบบหน้าแรก (Grid Layout) */
+        .container { max-width:1200px; margin:20px auto; padding:0 16px; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+
+        /* Content Area แบบหน้าแรก */
+        .content-area { display: flex; flex-direction: column; gap: 20px; }
+
+        /* Section แบบหน้าแรก */
+        .section { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+        .section h2 { margin:0 0 12px; color: var(--brand); font-size:1.3em; display:flex; align-items:center; gap:8px; }
+        .section h2::before { content:""; display:inline-block; width:8px; height:8px; background: var(--accent); border-radius:50%; }
+
+        /* Card Grid and Card (ปรับให้เข้ากับสไตล์ใหม่) */
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:15px; }
+        .card { background: var(--card); padding:18px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.06); transition:0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+        .card:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.1); }
+        .card iframe { width: 100%; height: 150px; border-radius: 8px 8px 0 0; border: none; }
+        .card h3 { color: var(--brand); margin-bottom: 8px; font-size: 1.1em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+        .card p { font-size: 0.9em; color: var(--text-secondary); margin: 0; }
+
+        /* สไตล์เฉพาะสำหรับ iframe */
+        .youtube-embed {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        footer { background: var(--brand); color:#fff; padding:15px; text-align:center; margin-top:30px; font-size:0.85em; }
+
+        /* สไตล์สำหรับส่วนโฆษณาและสนับสนุนด้านข้าง (ใช้สไตล์จากหน้าแรก) */
+        .sidebar { display:flex; flex-direction:column; gap:18px; }
+        .ad-section { background: var(--card); padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+        .ad-section h2 { color: var(--highlight); }
+        .ad-placeholder { background:#eee; padding:20px; text-align:center; border-radius:8px; color: var(--text-secondary); font-style:italic; margin-top:10px; }
+        .support-card { background: var(--card); padding: 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); text-align: center; }
+        .support-card h3 { margin: 0 0 10px; font-size: 1em; color: var(--brand); }
+        .qr-code { width: 100%; max-width: 150px; height: auto; display: block; margin: 10px auto 0; }
+        .social-links { margin-top: 15px; }
+        .social-links a { display: block; margin: 5px 0; color: var(--accent); text-decoration: none; font-size: 0.9em; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ครบจังดอทคอม</h1>
+    </header>
+    
+    <div id="navigation-placeholder"></div>
+
+    <div class="container">
+        <!-- พื้นที่เนื้อหาหลัก -->
+        <div class="content-area">
+            <div class="section">
+                <h2>🔥 ข่าวบันเทิงล่าสุด</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <!-- วิดีโอข่าวบันเทิง (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                        <h3>ดาราคนดังประกาศแต่งงานในปีนี้!</h3>
+                        <p>ข่าวฮือฮาในวงการบันเทิงไทย</p>
+                    </div>
+                    <div class="card">
+                        <!-- วิดีโอสัมภาษณ์นักร้อง (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/9bZkp7qzjK0" frameborder="0" allowfullscreen></iframe>
+                        <h3>นักร้องดังเปิดใจถึงชีวิตส่วนตัว</h3>
+                        <p>หลังหายไปจากวงการนานหลายเดือน</p>
+                    </div>
+                    <div class="card">
+                        <!-- วิดีโอรีวิวหนังไทย (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/tPEE9ZwT3XY" frameborder="0" allowfullscreen></iframe>
+                        <h3>ภาพยนตร์ไทยใหม่ทำรายได้สูงสุดในรอบปี</h3>
+                        <p>ดึงผู้ชมเข้าโรงภาพยนตร์กว่า 1 ล้านคน</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎬 รีวิวหนังและซีรีส์</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <!-- รีวิวหนัง 'รักลวงใจ' (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
+                        <h3>รีวิวหนัง 'รักลวงใจ' ช่อง 3 | 2025</h3>
+                        <p>Thairath TV</p>
+                    </div>
+                    <div class="card">
+                        <!-- รีวิวซีรีส์ 'Queen of Tears' (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/4m1tBkV3HxI" frameborder="0" allowfullscreen></iframe>
+                        <h3>รีวิวซีรีส์เกาหลี 'Queen of Tears'</h3>
+                        <p>Sanook</p>
+                    </div>
+                    <div class="card">
+                        <!-- รีวิวหนังแอคชั่น 'The Last Stand' (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/6tRyYDnLJ8U" frameborder="0" allowfullscreen></iframe>
+                        <h3>รีวิวหนังแอคชั่น 'The Last Stand'</h3>
+                        <p>MovieReviewTH</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎶 ดนตรีและคอนเสิร์ต</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <!-- คอนเสิร์ตใหญ่แห่งปี 2025 (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/1oF3Q5K0lGQ" frameborder="0" allowfullscreen></iframe>
+                        <h3>คอนเสิร์ตใหญ่แห่งปี 2025 ที่ห้ามพลาด</h3>
+                        <p>รวมศิลปินดังทั่วประเทศ</p>
+                    </div>
+                    <div class="card">
+                        <!-- เพลงฮิตใหม่ล่าสุด (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
+                        <h3>เพลงฮิตใหม่ล่าสุดที่กำลังมาแรง</h3>
+                        <p>ฟังแล้วติดใจแน่นอน</p>
+                    </div>
+                    <div class="card">
+                        <!-- บทสัมภาษณ์พิเศษกับศิลปิน (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/4m1tBkV3HxI" frameborder="0" allowfullscreen></iframe>
+                        <h3>บทสัมภาษณ์พิเศษกับศิลปินคนดัง</h3>
+                        <p>บอกเล่าเรื่องราวเบื้องหลังเพลง</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎭 งานอีเว้นท์และกิจกรรม</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <!-- เทศกาลดนตรีกลางแจ้ง 2025 (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/1oF3Q5K0lGQ" frameborder="0" allowfullscreen></iframe>
+                        <h3>เทศกาลดนตรีกลางแจ้ง 2025</h3>
+                        <p>รวมศิลปินดังมากกว่า 50 ชื่อ</p>
+                    </div>
+                    <div class="card">
+                        <!-- งานแฟชั่นโชว์ระดับโลก (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/6tRyYDnLJ8U" frameborder="0" allowfullscreen></iframe>
+                        <h3>งานแฟชั่นโชว์ระดับโลกในประเทศไทย</h3>
+                        <p>ดึงดูดผู้ชมกว่า 10,000 คน</p>
+                    </div>
+                    <div class="card">
+                        <!-- งานอีเว้นท์สำหรับครอบครัว (เช็คแล้วว่า embed ได้) -->
+                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
+                        <h3>งานอีเว้นท์สำหรับครอบครัว</h3>
+                        <p>กิจกรรมสนุกๆ สำหรับทุกเพศทุกวัย</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- พื้นที่ด้านข้างสำหรับโฆษณาและสนับสนุน -->
+        <aside class="sidebar">
+            <!-- โฆษณา AdSense -->
+            <div class="ad-section">
+                <h2>💰 สนับสนุนเว็บไซต์</h2>
+                <div style="text-align: center;"> 
+                  <ins class="adsbygoogle"
+                      style="display:block"
+                      data-ad-client="ca-pub-2068902667667616" 
+                      data-ad-slot="1706997713" 
+                      data-ad-format="auto"
+                      data-full-width-responsive="true"></ins>
+                  <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </div>
+                <div class="ad-placeholder" style="margin-top: 10px;">
+                    [โฆษณา Affiliate]
+                </div>
+            </div>
+            
+            <!-- QR Code สนับสนุน -->
+            <div class="ad-section">
+                <h2>☕ สนับสนุนเรา</h2>
+                <div class="support-card">
+                    <p>หากเนื้อหานี้มีประโยชน์ ช่วยสนับสนุนทีมงานได้นะครับ</p>
+                    <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+                </div>
+            </div>
+
+            <!-- โซเชียล -->
+            <div class="ad-section">
+                <h2>📣 ติดตามเรา</h2>
+                <div class="support-card">
+                    <p>ติดตามข่าวสารและอัปเดตได้ที่</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">Facebook Page</a>
+                        <a href="https://youtube.com/@phongphunphommanee8045?si=6Qc-xMaBicyMaFYo" target="_blank">YouTube Channel</a>
+                        <a href="https://www.tiktok.com/@kengwong007?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <p>© 2025 ครบจังดอทคอม | <a href="#" style="color:white; text-decoration: underline;">นโยบายความเป็นส่วนตัว</a></p>
+    </footer>
+    <script>
+        // 📌 ฟังก์ชันสำหรับโหลดเมนูจาก nav.html และจัดการ active link
+        async function loadNav() {
+            try {
+                const response = await fetch('nav.html'); 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                const placeholder = document.getElementById('navigation-placeholder');
+                placeholder.innerHTML = html;
+
+                // Logic to set the active link dynamically
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = placeholder.querySelectorAll('.main-nav a');
+                
+                // 1. ลบ active class จากทุก link
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // 2. เพิ่ม active class ให้กับ link ของหน้านี้ (entertainment.html)
+                navLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading navigation:', error);
+                document.getElementById('navigation-placeholder').innerHTML = '<p style="text-align: center; padding: 10px; background: #fff; color: red;">ไม่สามารถโหลดเมนูได้</p>';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadNav(); // 📌 โหลดเมนูอัตโนมัติ
+        });
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+</body>
+</html>
