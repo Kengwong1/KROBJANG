@@ -4,7 +4,9 @@ import argparse
 import datetime
 import time
 import subprocess
+import requests
 from pathlib import Path
+from dotenv import load_dotenv
 
 # =====================================================
 # CONFIG
@@ -15,10 +17,22 @@ ARTICLES_PATH = BASE_PATH
 LOG_PATH = BASE_PATH / "agent_logs"
 LOG_PATH.mkdir(exist_ok=True)
 
+# โหลด .env จากโฟลเดอร์โปรเจกต์
+load_dotenv(BASE_PATH / ".env")
+
 MODEL_NAME = "scb10x/llama3.1-typhoon2-8b-instruct:latest"
 
 DAILY_ARTICLE_LIMIT = 20
 MAX_INTERNAL_LINKS = 3
+
+# ดึงค่าจาก .env ทั้งหมด
+SITE_URL          = os.getenv("WEBSITE_URL", "https://krobjang.vercel.app").rstrip("/")
+SITEMAP_URL       = f"{SITE_URL}/sitemap.xml"
+FB_PAGE_ACCESS_TOKEN = os.getenv("FB_PAGE_TOKEN")
+FB_PAGE_ID           = os.getenv("FB_PAGE_ID")
+UNSPLASH_KEY         = os.getenv("UNSPLASH_KEY")
+
+# =====================================================
 
 CATEGORIES = [
     "health",
@@ -30,7 +44,7 @@ CATEGORIES = [
 ]
 
 # =====================================================
-# UTIL
+# LOG
 # =====================================================
 
 def log(msg: str):
@@ -42,17 +56,16 @@ def log(msg: str):
     with open(logfile, "a", encoding="utf-8") as f:
         f.write(line + "\n")
 
-
 # =====================================================
-# TRENDING TOPICS (REALISTIC SIMULATION)
+# TRENDING TOPICS
 # =====================================================
 
 def get_trending_topics(category: str):
     topics = {
         "health": [
+            "สมุนไพรไทยยอดนิยม",
             "อาหารเสริมที่คนไทยนิยม",
-            "วิธีนอนหลับให้สนิท",
-            "สมุนไพรไทยยอดนิยม"
+            "วิธีนอนหลับให้สนิท"
         ],
         "finance": [
             "วิธีเก็บเงินให้ได้ผล",
@@ -83,41 +96,69 @@ def get_trending_topics(category: str):
 
     return random.choice(topics.get(category, ["เรื่องน่ารู้ล่าสุด"]))
 
-
 # =====================================================
-# IMAGE AUTO (UNSPLASH STYLE)
+# IMAGE AUTO
 # =====================================================
 
-def add_auto_image(category: str) -> str:
-    keywords = {
-        "health": "health",
-        "finance": "money",
-        "technology": "technology",
-        "lifestyle": "lifestyle",
-        "comedy": "funny",
-        "horoscope": "zodiac"
-    }
+def add_auto_image(title: str, category: str) -> str:
+    try:
+        words = title.replace("ล่าสุด", "").split()
+        keyword = words[0]
+    except:
+        keyword = category
 
-    key = keywords.get(category, "news")
+    return f'<img src="https://source.unsplash.com/800x400/?{keyword}" alt="{keyword}">\n'
 
-    return f'<img src="https://source.unsplash.com/800x400/?{key}" alt="{key}">\n'
 
+def get_image_url(title: str, category: str) -> str:
+    """คืน URL รูปภาพจาก Unsplash API สำหรับโพสต์ Facebook"""
+    try:
+        words = title.replace("ล่าสุด", "").split()
+        keyword = words[0]
+    except:
+        keyword = category
+
+    # ถ้ามี Unsplash key ใช้ API จริง (ได้รูปแน่นอน ไม่ redirect)
+    if UNSPLASH_KEY:
+        try:
+            r = requests.get(
+                "https://api.unsplash.com/photos/random",
+                params={"query": keyword, "orientation": "landscape"},
+                headers={"Authorization": f"Client-ID {UNSPLASH_KEY}"},
+                timeout=10
+            )
+            data = r.json()
+            return data["urls"]["regular"]
+        except Exception as e:
+            log(f"Unsplash API error: {e}")
+
+    # fallback ถ้าไม่มี key
+    return f"https://source.unsplash.com/800x400/?{keyword}"
 
 # =====================================================
 # GENERATE CONTENT
 # =====================================================
 
 def generate_article(title: str, category: str) -> str:
+    log(f"Generating article: {title} ({category})")
+
     prompt = f"""
-เขียนบทความ SEO ภาษาไทย
+เขียนบทความ SEO ภาษาไทยแบบละเอียดมาก
 หัวข้อ: {title}
 หมวด: {category}
 
+โครงสร้าง:
+1. บทนำ
+2. ประวัติ / ความเป็นมา
+3. ประโยชน์
+4. วิธีใช้
+5. ข้อควรระวัง
+6. สรุป
+
 เงื่อนไข:
-- ยาวประมาณ 800-1200 คำ
-- อ่านง่าย
-- มีหัวข้อย่อย
-- ใช้ HTML
+- ยาว 1200-2000 คำ
+- มีหัวข้อย่อย h2 h3
+- ใช้ HTML เท่านั้น
 """
 
     try:
@@ -131,7 +172,7 @@ def generate_article(title: str, category: str) -> str:
 
         content = result.stdout
 
-        image_html = add_auto_image(category)
+        image_html = add_auto_image(title, category)
 
         return image_html + content
 
@@ -139,9 +180,8 @@ def generate_article(title: str, category: str) -> str:
         log(f"Generate error: {e}")
         return "<p>Generate failed</p>"
 
-
 # =====================================================
-# INTERNAL LINKS BY CATEGORY
+# INTERNAL LINKS
 # =====================================================
 
 def add_internal_links(content: str, category: str) -> str:
@@ -172,20 +212,15 @@ def add_internal_links(content: str, category: str) -> str:
         log(f"Internal links error: {e}")
         return content
 
-
 # =====================================================
 # PING GOOGLE
 # =====================================================
 
 def ping_google():
     try:
-        import requests
-
-        sitemap_url = "https://krobjang.vercel.app/sitemap.xml"
-
         ping_url = (
             "https://www.google.com/ping?"
-            f"sitemap={sitemap_url}"
+            f"sitemap={SITEMAP_URL}"
         )
 
         r = requests.get(ping_url, timeout=10)
@@ -198,9 +233,8 @@ def ping_google():
     except Exception as e:
         log(f"Ping error: {e}")
 
-
 # =====================================================
-# SITEMAP AUTO
+# SITEMAP
 # =====================================================
 
 def generate_sitemap():
@@ -210,7 +244,7 @@ def generate_sitemap():
         urls = []
 
         for file in ARTICLES_PATH.glob("*.html"):
-            url = f"https://example.com/{file.name}"
+            url = f"{SITE_URL}/{file.name}"
             urls.append(url)
 
         xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -231,9 +265,8 @@ def generate_sitemap():
     except Exception as e:
         log(f"Sitemap error: {e}")
 
-
 # =====================================================
-# SAVE FILE
+# SAVE
 # =====================================================
 
 def make_filename(category: str) -> str:
@@ -250,17 +283,51 @@ def save_article(filename: str, content: str):
 
     log(f"Saved: {filename}")
 
+# =====================================================
+# FACEBOOK  ← แก้ใหม่ทั้งหมด โพสต์จริงพร้อมรูป
+# =====================================================
+
+def post_to_facebook(filename: str, title: str, category: str):
+    """
+    โพสต์บทความไปยัง Facebook Page พร้อมรูปภาพ
+    ใช้ Facebook Graph API endpoint: /PAGE_ID/photos
+    """
+    try:
+        article_url = f"{SITE_URL}/{filename}"
+        image_url   = get_image_url(title, category)
+
+        # ข้อความ caption ที่จะโพสต์
+        caption = (
+            f"📖 {title}\n\n"
+            f"อ่านบทความเพิ่มเติม 👉 {article_url}\n\n"
+            f"#krobjang #{category} #บทความไทย"
+        )
+
+        # โพสต์รูป + caption ด้วย /photos endpoint
+        # (Facebook จะสร้าง post พร้อมรูปให้อัตโนมัติ)
+        api_url = f"https://graph.facebook.com/v19.0/{FB_PAGE_ID}/photos"
+
+        payload = {
+            "url":          image_url,
+            "caption":      caption,
+            "access_token": FB_PAGE_ACCESS_TOKEN,
+        }
+
+        response = requests.post(api_url, data=payload, timeout=30)
+        result   = response.json()
+
+        if "id" in result:
+            log(f"Facebook posted OK — post id: {result['id']} ({filename})")
+        else:
+            # แสดง error จาก API ให้ชัดเจน
+            error_msg = result.get("error", {}).get("message", str(result))
+            log(f"Facebook post FAILED: {error_msg} ({filename})")
+
+    except Exception as e:
+        log(f"Facebook error: {e}")
 
 # =====================================================
-# FACEBOOK POST (SAFE)
-# =====================================================
-
-def post_to_facebook(filename: str):
-    log(f"Facebook: Post simulated for {filename}")
-
-
-# =====================================================
-# GIT PUSH
+# GIT
 # =====================================================
 
 def git_push():
@@ -271,7 +338,6 @@ def git_push():
         log("Git pushed")
     except Exception as e:
         log(f"Git error: {e}")
-
 
 # =====================================================
 # FIX HTML
@@ -298,46 +364,33 @@ def fix_html_files():
 
     git_push()
 
-
 # =====================================================
-# CONTENT WORKFLOW (20 ARTICLES / DAY)
+# CONTENT WORKFLOW
 # =====================================================
 
 def run_content():
     log("Generating content batch...")
 
-    for _ in range(DAILY_ARTICLE_LIMIT):
+    for i in range(DAILY_ARTICLE_LIMIT):
+        log(f"--- Article {i+1}/{DAILY_ARTICLE_LIMIT} ---")
+
         category = random.choice(CATEGORIES)
+        topic    = get_trending_topics(category)
+        title    = f"{topic} ล่าสุด"
 
-        topic = get_trending_topics(category)
-
-        title = f"{topic} ล่าสุด"
-
-        content = generate_article(title, category)
-
-        content = add_internal_links(content, category)
+        content  = generate_article(title, category)
+        content  = add_internal_links(content, category)
 
         filename = make_filename(category)
 
         save_article(filename, content)
 
-        post_to_facebook(filename)
+        # ← ส่ง title + category ด้วยเพื่อใช้สร้างรูปและ caption
+        post_to_facebook(filename, title, category)
 
     generate_sitemap()
-
+    ping_google()
     git_push()
-
-
-# =====================================================
-# FB CHECK
-# =====================================================
-
-def check_facebook_posts():
-    log("Checking Facebook posts...")
-
-    for file in ARTICLES_PATH.glob("*.html"):
-        post_to_facebook(file.name)
-
 
 # =====================================================
 # SCHEDULER
@@ -361,27 +414,15 @@ def scheduler():
 
         time.sleep(30)
 
-
 # =====================================================
 # MAIN
-# =====================================================
-
-# =====================================================
-# RUN ALL WORKFLOW (FULL AUTO)
 # =====================================================
 
 def run_all():
     log("FULL AUTO START")
 
     fix_html_files()
-
     run_content()
-
-    generate_sitemap()
-
-    ping_google()
-
-    git_push()
 
     log("FULL AUTO COMPLETE")
 
@@ -389,9 +430,8 @@ def run_all():
 def main():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--fix", action="store_true")
-    parser.add_argument("--content", action="store_true")
-    parser.add_argument("--fb-check", action="store_true")
+    parser.add_argument("--fix",      action="store_true")
+    parser.add_argument("--content",  action="store_true")
     parser.add_argument("--schedule", action="store_true")
 
     args = parser.parse_args()
@@ -401,9 +441,6 @@ def main():
 
     elif args.content:
         run_content()
-
-    elif args.fb_check:
-        check_facebook_posts()
 
     elif args.schedule:
         scheduler()
