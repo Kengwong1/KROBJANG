@@ -77,3 +77,50 @@
 [2026-03-24 16:26:36] Git pushed
 [2026-03-24 16:48:03] FULL AUTO START
 [2026-03-24 16:48:03] Checking HTML files...
+[2026-03-24 16:48:05] Git pushed
+[2026-03-24 16:48:05] Generating content batch...
+[2026-03-24 16:48:05] --- Article 1/20 ---
+[2026-03-24 16:48:05] Generating article: การพัฒนาตัวเอง ล่าสุด (lifestyle)
+[2026-03-24 16:49:19] Saved: lifestyle_20260324_164919_1340.html
+[2026-03-24 16:49:20] Unsplash API error: 'urls'
+[2026-03-24 16:49:21] Facebook post FAILED: Missing or invalid image file (lifestyle_20260324_164919_1340.html)
+[2026-03-24 16:49:21] --- Article 2/20 ---
+[2026-03-24 16:49:21] Generating article: วิธีเก็บเงินให้ได้ผล ล่าสุด (finance)
+[2026-03-24 16:50:35] Saved: finance_20260324_165035_8205.html
+[2026-03-24 16:50:35] Unsplash API error: 'urls'
+[2026-03-24 16:50:36] Facebook post FAILED: Missing or invalid image file (finance_20260324_165035_8205.html)
+[2026-03-24 16:50:36] --- Article 3/20 ---
+[2026-03-24 16:50:36] Generating article: วิธีเก็บเงินให้ได้ผล ล่าสุด (finance)
+[2026-03-24 16:52:00] Saved: finance_20260324_165200_1171.html
+[2026-03-24 16:52:01] Unsplash API error: 'urls'
+[2026-03-24 16:52:02] Facebook post FAILED: Missing or invalid image file (finance_20260324_165200_1171.html)
+[2026-03-24 16:52:02] --- Article 4/20 ---
+[2026-03-24 16:52:02] Generating article: AI ทำอะไรได้บ้าง ล่าสุด (technology)
+[2026-03-24 16:52:59] Saved: technology_20260324_165259_9739.html
+[2026-03-24 16:53:05] Facebook posted OK — post id: 1579281244206960 (technology_20260324_165259_9739.html)
+[2026-03-24 16:53:05] --- Article 5/20 ---
+[2026-03-24 16:53:05] Generating article: การพัฒนาตัวเอง ล่าสุด (lifestyle)
+[2026-03-24 16:54:07] Saved: lifestyle_20260324_165407_4317.html
+[2026-03-24 16:54:07] Unsplash API error: 'urls'
+[2026-03-24 16:54:08] Facebook post FAILED: Missing or invalid image file (lifestyle_20260324_165407_4317.html)
+[2026-03-24 16:54:08] --- Article 6/20 ---
+[2026-03-24 16:54:08] Generating article: วิธีนอนหลับให้สนิท ล่าสุด (health)
+[2026-03-24 16:55:10] Saved: health_20260324_165510_7043.html
+[2026-03-24 16:55:16] Facebook posted OK — post id: 1579282864206798 (health_20260324_165510_7043.html)
+[2026-03-24 16:55:16] --- Article 7/20 ---
+[2026-03-24 16:55:16] Generating article: อาหารเสริมที่คนไทยนิยม ล่าสุด (health)
+[2026-03-24 16:56:35] Saved: health_20260324_165635_4848.html
+[2026-03-24 16:56:38] Facebook posted OK — post id: 1579283564206728 (health_20260324_165635_4848.html)
+[2026-03-24 16:56:38] --- Article 8/20 ---
+[2026-03-24 16:56:38] Generating article: สมุนไพรไทยยอดนิยม ล่าสุด (health)
+[2026-03-24 16:57:29] Saved: health_20260324_165729_5586.html
+[2026-03-24 16:57:33] Facebook posted OK — post id: 1579284260873325 (health_20260324_165729_5586.html)
+[2026-03-24 16:57:33] --- Article 9/20 ---
+[2026-03-24 16:57:33] Generating article: เรื่องขำประจำวัน ล่าสุด (comedy)
+[2026-03-24 16:58:32] Saved: comedy_20260324_165832_3961.html
+[2026-03-24 16:58:32] Unsplash API error: 'urls'
+[2026-03-24 16:58:33] Facebook post FAILED: Missing or invalid image file (comedy_20260324_165832_3961.html)
+[2026-03-24 16:58:33] --- Article 10/20 ---
+[2026-03-24 16:58:33] Generating article: ประโยคฮาๆ ล่าสุด (comedy)
+[2026-03-24 17:02:21] FULL AUTO START
+[2026-03-24 17:02:21] Checking HTML files...
