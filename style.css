@@ -7,219 +7,196 @@
 
 /* ── CSS Variables (แก้สีที่นี่ที่เดียว) ── */
 :root {
-  --color-primary:    #e85d04;   /* ส้มอิฐ — จุดเด่น */
-  --color-secondary:  #f48c06;   /* เหลืองทอง */
-  --color-accent:     #ffba08;   /* เหลืองสดใส */
-  --color-bg:         #fffbf3;   /* ครีมอ่อน */
-  --color-surface:    #ffffff;
-  --color-text:       #2d2d2d;
-  --color-muted:      #888;
-  --color-border:     #ffe8cc;
-
-  --font-heading: 'Itim', 'Sarabun', cursive;
-  --font-body:    'Sarabun', sans-serif;
-
-  --radius-card:  16px;
-  --radius-pill:  999px;
-  --shadow-card:  0 4px 20px rgba(232,93,4,0.10);
-  --shadow-hover: 0 8px 32px rgba(232,93,4,0.18);
-
-  --max-width: 860px;
+  --primary: #1e40af;
+  --primary-light: #3b82f6;
+  --soft: #eff6ff;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --radius: 18px;
+  --highlight-green: #388e3c;
 }
 
-/* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Sarabun', sans-serif;
+}
 
-/* ── Base ── */
-html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font-body);
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.85;
-  font-size: 17px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
-/* ── Header / Nav ── */
+/* Header */
 header {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  padding: 14px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
   position: sticky;
   top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 12px rgba(232,93,4,0.25);
+  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
 }
-header .brand {
-  font-family: var(--font-heading);
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Navigation */
+.main-nav {
+  background: #fff;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.nav-wrap {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.main-nav a {
   text-decoration: none;
-}
-header nav {
+  color: #4b5563;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-header nav a {
-  color: rgba(255,255,255,0.92);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  transition: background 0.2s;
-}
-header nav a:hover { background: rgba(255,255,255,0.20); }
-
-/* ── Article Container ── */
-.article-container {
-  max-width: var(--max-width);
-  margin: 36px auto;
-  padding: 0 18px;
+  gap: 0.4rem;
+  font-size: 0.95rem;
 }
 
-/* ── Article Card ── */
-article {
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  padding: 36px 40px;
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--color-border);
-  position: relative;
-  overflow: hidden;
-}
-article::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+.main-nav a:hover,
+.main-nav a.active {
+  background: var(--soft);
+  transform: scale(1.02);
 }
 
-/* ── Typography ── */
-h1 {
-  font-family: var(--font-heading);
-  font-size: clamp(22px, 4vw, 30px);
-  color: var(--color-text);
-  line-height: 1.35;
-  margin-bottom: 10px;
+/* Slogan Capsule */
+.slogan-wrapper {
+  text-align: center;
+  margin-top: -0.25rem;
+  margin-bottom: 1.25rem;
 }
-h2 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  color: var(--color-primary);
-  margin: 28px 0 10px;
-  padding-left: 12px;
-  border-left: 4px solid var(--color-accent);
-}
-h3 {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--color-secondary);
-  margin: 20px 0 8px;
-}
-p { margin-bottom: 16px; }
 
-ul, ol { margin: 12px 0 18px 22px; }
-li { margin-bottom: 8px; }
-
-strong { color: var(--color-primary); }
-a { color: var(--color-primary); }
-a:hover { color: var(--color-secondary); }
-
-/* ── Meta / Badge ── */
-.meta {
-  color: var(--color-muted);
-  font-size: 13px;
-  margin-bottom: 18px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.source-badge {
+.slogan-capsule {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: #fff3e0;
-  color: var(--color-primary);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 3px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border);
-  margin-bottom: 14px;
-}
-.category-badge {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 12px;
-  border-radius: var(--radius-pill);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+  transition: transform 0.2s ease;
 }
 
-/* ── Hero Image ── */
-.hero-image {
-  width: 100%;
-  max-height: 420px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 28px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+.slogan-capsule:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.12);
 }
 
-/* ── Related Articles ── */
-.related-articles {
-  margin-top: 32px;
-  padding: 24px;
-  background: #fff8ee;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
+.slogan-main {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.1rem;
 }
-.related-articles h3 {
-  color: var(--color-primary);
-  font-family: var(--font-heading);
-  font-size: 16px;
-  margin-bottom: 12px;
+
+.slogan-main i {
+  color: #F59E0B;
+  margin-right: 0.2rem;
 }
-.related-articles ul { margin-left: 0; list-style: none; }
-.related-articles li {
-  padding: 6px 0;
-  border-bottom: 1px dashed var(--color-border);
+
+.slogan-divider {
+  color: #93c5fd;
+  font-weight: 300;
 }
-.related-articles li:last-child { border: none; }
-.related-articles a {
-  color: var(--color-text);
+
+.slogan-sub {
+  color: var(--primary-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Content Area */
+.container {
+  max-width: 1200px;
+  margin: 1.25rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar ul li a {
   text-decoration: none;
-  font-size: 14px;
-}
-.related-articles a:hover { color: var(--color-primary); }
-
-/* ── AdSense slots ── */
-.ad-slot {
-  margin: 24px 0;
-  text-align: center;
-  min-height: 90px;
+  color: var(--text);
+  transition: color 0.2s ease;
 }
 
-/* ── Footer ── */
+.sidebar ul li a:hover {
+  color: var(--primary);
+}
+
+/* Main Content */
+.main-content {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Footer */
 footer {
+  background: #f1f5f9;
+  padding: 1rem;
   text-align: center;
-  padding: 24px 16px;
-  color: var(--color-muted);
-  font-size: 13px;
-  margin-top: 40px;
-  border-top: 1px solid var(--color-border);
-}
-footer a { color: var(--color-muted); }
-
-/* ── Responsive ── */
-@media (max-width: 600px) {
-  article { padding: 22px 18px; }
-  h1 { font-size: 21px; }
+  margin-top: 2rem;
+  color: #4b5563;
 }
