@@ -17,28 +17,111 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
-    
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+          --primary-dark: #1e3a8a; --primary: #1e40af; --primary-light: #3b82f6;
+          --soft: #eff6ff; --bg: #f8fafc; --card: #ffffff; --text: #1e293b;
+          --muted: #64748b; --radius: 18px; --highlight-red: #d32f2f; --highlight-green: #388e3c;
+          --lao-color: #F59E0B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(30, 64, 175, 0.3); display: flex; justify-content: center; align-items: center; padding: 0.75rem 1rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; margin: 0; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        .main-nav { background: #fff; padding: 0.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .nav-wrap { max-width: 1200px; margin: auto; display: flex; gap: 0.5rem; padding: 0 1rem; overflow-x: auto; white-space: nowrap; }
+        .main-nav a { text-decoration: none; color: #4b5563; font-weight: 600; padding: 0.6rem 1rem; border-radius: 12px; transition: all 0.2s ease; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
+        .main-nav a:hover, .main-nav a.active { background: var(--soft); transform: scale(1.02); }
+        
+        .container { max-width: 1200px; margin: 1.5rem auto; padding: 0 1rem; display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; }
+        .content-area { display: flex; flex-direction: column; gap: 1.5rem; }
+        .section { background: var(--card); border-radius: var(--radius); padding: 1.25rem; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
+        
+        .lotto-tabs { display: flex; gap: 0.5rem; background: var(--card); padding: 0.5rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); overflow-x: auto; white-space: nowrap; }
+        .lotto-tab-btn { flex: 1; text-align: center; padding: 0.75rem 1rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1rem; color: var(--muted); transition: all 0.2s; border: 1px solid transparent; min-width: 120px; }
+        .lotto-tab-btn:hover { background: var(--soft); color: var(--primary); }
+        .lotto-tab-btn.active-lao { background: linear-gradient(135deg, #FBBF24, #F59E0B); color: white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+
+        .section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--lao-color); display: flex; align-items: center; gap: 0.5rem; }
+        .section h2::before { content: ""; display: inline-block; width: 8px; height: 8px; background: var(--lao-color); border-radius: 50%; }
+
+        .lotto-latest { text-align: center; }
+        .draw-date { font-size: 1.1em; color: var(--muted); margin-bottom: 1.25rem; }
+        
+        .prize-box { display: inline-block; background: var(--lao-color); color: #fff; padding: 1rem 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); margin-bottom: 1.25rem; }
+        .prize-box h3 { font-size: 1.1em; margin-bottom: 0.5rem; font-weight: 700; }
+        .prize-box .number { font-size: 2.5rem; font-weight: 800; letter-spacing: 6px; }
+        
+        .prize-summary { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .prize-item { padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; min-width: 110px; text-align: center; }
+        .prize-item h4 { font-size: 0.9rem; color: var(--lao-color); margin-bottom: 0.25rem; }
+        .prize-item .number { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+        
+        .animal-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed #cbd5e1; }
+        .animal-grid { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+        .animal-item { background: #fff8e1; border: 1px solid #ffecb3; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 700; color: #d84315; font-size: 1.1rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+
+        .check-form { background: #fffbeb; padding: 1.2rem; border-radius: 12px; margin: 1.5rem 0; text-align: center; border: 1px solid #fef3c7; }
+        #userNumbers { width: 180px; padding: 0.6rem; font-size: 1.1rem; text-align: center; border: 2px solid #fcd34d; border-radius: 10px; margin: 0.5rem auto; display: block; outline: none; }
+        #userNumbers:focus { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
+        .btn-check { background: var(--lao-color); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-check:hover { background: #d97706; transform: scale(1.05); }
+        
+        #resultMsg { margin-top: 0.75rem; min-height: 1.5rem; font-weight: 700; }
+        #resultMsg.win { color: var(--highlight-green); font-size: 1.1rem;}
+        #resultMsg.lose { color: var(--highlight-red); }
+
+        .share-box { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #fcd34d; display: none; justify-content: center; gap: 0.5rem; align-items: center;}
+        .share-text { font-size: 0.95rem; font-weight: 700; color: #b45309; }
+        .btn-share { border: none; padding: 0.5rem 1rem; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: transform 0.2s;}
+        .btn-share:hover { transform: translateY(-2px); }
+        .btn-fb { background: #1877F2; }
+        .btn-line { background: #00B900; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
+        .animate-win { animation: pulse 0.8s ease-out; background: #fffbeb !important; border: 2px solid var(--lao-color); }
+
+        .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+        .ad-section { background: var(--card); border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04); }
+        .ad-section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #1e293b; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
+        .ad-section h2.support-site i { color: #7E57C2; font-size: 1.1em; } 
+        .ad-section h2.support-us i { color: #FB8C00; font-size: 1.1em; } 
+
+        .adsense-container { background-color: #f9fbff; border: 1px dashed #dbeafe; border-radius: 12px; min-height: 250px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .adsense-container::before { content: "พื้นที่โฆษณา"; color: #94a3b8; font-size: 0.85rem; position: absolute; z-index: 0; }
+        .support-card { background: var(--card); border-radius: var(--radius); padding: 1rem; }
+        .qr-code { width: 100%; max-width: 150px; height: auto; margin: 0.75rem auto; display: block; border-radius: 8px; }
+        .support-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 1rem; }
+        .support-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 0.5rem; border-radius: 10px; text-decoration: none; color: white; font-size: 0.9rem; }
+        .support-btn.promptpay{ background: #10B981; } .support-btn.facebook { background: #4267B2; } .support-btn.youtube { background: #FF0000; } .support-btn.tiktok { background: #000000; }
+        
+        footer { margin-top: 2rem; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 1.25rem 1rem; font-size: 0.9rem; }
+        footer a { color: #e0f2fe; text-decoration: none; font-weight: 600; margin: 0 0.5rem; }
+        
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .prize-summary { flex-direction: column; } .lotto-tabs { padding-bottom: 0.5rem; } }
+    </style>
 </head>
 <body>
-      
+    <header>
+        <div class="logo">ครบจังดอทคอม</div>
+    </header>
 
     <nav class="main-nav">
-  <div class="nav-wrap">
-    <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
-    <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าว</a>
-    <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> ตรวจหวย</a>
-    <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
-    <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
-    <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
-    <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
-    <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
-    <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ร้านค้า</a>
-    <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
-    <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-  </div>
-</nav>
+        <div class="nav-wrap">
+            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
+            <a href="lotto.html" class="active"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> ตรวจหวย</a>
+            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
+            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
+            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
+            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+            <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
+            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
+            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
+            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="content-area">

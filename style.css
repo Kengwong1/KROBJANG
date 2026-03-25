@@ -755,6 +755,7 @@ footer {
 footer a {
   color: rgba(255,255,255,0.75);
   text-decoration: underline;
+<<<<<<< HEAD
 }
 
 footer a:hover { color: #fff; }
@@ -800,4 +801,349 @@ footer a:hover { color: #fff; }
   .article-card, article {
     padding: 1.1rem;
   }
+=======
+>>>>>>> f82f97bb17659d6b8449cf828c4df520d5898ecd
+}
+
+footer a:hover { color: #fff; }
+
+/* =====================================================
+   MOBILE RESPONSIVE
+   ===================================================== */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .news-grid, .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  article h1, .article-card h1 {
+    font-size: 1.4rem;
+  }
+
+  .article-card, article {
+    padding: 1.1rem;
+  }
+}
+
+/* =====================================================
+   PATCH — เพิ่มต่อท้าย style.css
+   สำหรับ elements เฉพาะหน้าที่ยังไม่มี style
+   ===================================================== */
+
+/* =====================================================
+   CONTACT PAGE
+   ===================================================== */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.contact-info h3,
+.contact-form h3 {
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 0.85rem;
+  font-weight: 700;
+}
+
+.contact-info p {
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.contact-info a {
+  color: var(--primary-light);
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: 'Sarabun', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.15s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+}
+
+.contact-form button[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.65rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Sarabun', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.contact-form button[type="submit"]:hover {
+  background: var(--primary-light);
+}
+
+@media (max-width: 700px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   LOTTO PAGE
+   ===================================================== */
+.lotto-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.lotto-tab-btn {
+  padding: 0.5rem 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lotto-tab-btn:hover,
+.lotto-tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.history-select-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.history-select-box label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.history-select-box select {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: 'Sarabun', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+/* =====================================================
+   BOOKING PAGE — cards
+   ===================================================== */
+.booking-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.booking-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.booking-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.booking-card-body {
+  padding: 1rem;
+}
+
+.booking-card-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.35rem;
+}
+
+.booking-card-body p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.booking-card-body a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: background 0.18s;
+  text-decoration: none;
+}
+
+.booking-card-body a:hover {
+  background: var(--primary-light);
+}
+
+/* =====================================================
+   GAMES PAGE
+   ===================================================== */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.game-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.game-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.game-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.game-card-title {
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.game-card-btn {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 1rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================================================
+   SHOPPING PAGE
+   ===================================================== */
+.shop-info {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--text);
+}
+
+.shop-info a {
+  color: var(--primary-light);
+  font-weight: 600;
+}
+
+/* =====================================================
+   SECTION h2 — ไม่มี justify-content: space-between
+   (กรณีไม่มี see-all link)
+   ===================================================== */
+.section h2:only-child,
+.section > h2 {
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
