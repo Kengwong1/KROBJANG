@@ -11,23 +11,106 @@
     <!-- ✅ Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
             crossorigin="anonymous"></script>
-
-    
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Booking page: card grid fix ── */
+    .booking-header {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--accent, #45B7D1);
+    }
+    .booking-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+    .booking-nav a {
+      padding: .4rem 1rem;
+      border-radius: 20px;
+      background: var(--card-bg, #1e293b);
+      color: var(--text, #e2e8f0);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      border: 1px solid var(--border, #334155);
+      transition: background .2s, color .2s;
+    }
+    .booking-nav a:hover {
+      background: var(--accent, #45B7D1);
+      color: #fff;
+    }
+    .ticket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .ticket-card {
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border, #334155);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ticket-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .ticket-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+    .ticket-title {
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .75rem .9rem .25rem;
+      color: var(--text, #e2e8f0);
+    }
+    .ticket-desc {
+      font-size: .82rem;
+      color: var(--muted, #94a3b8);
+      padding: 0 .9rem .75rem;
+      flex: 1;
+      line-height: 1.5;
+    }
+    .btn-book {
+      display: block;
+      margin: 0 .9rem .9rem;
+      padding: .5rem;
+      text-align: center;
+      background: var(--accent, #45B7D1);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      transition: opacity .2s;
+    }
+    .btn-book:hover { opacity: .85; }
+    .section { margin-bottom: 2.5rem; }
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+      padding-bottom: .4rem;
+      border-bottom: 2px solid var(--border, #334155);
+      color: var(--text, #e2e8f0);
+    }
+  </style>
 </head>
 <body>
-      <header>
-    <nav>
-      <a class="brand" href="/">ครบจัง</a>
-      <a href="/ai">🤖 AI</a>
-      <a href="/finance">💰 การเงิน</a>
-      <a href="/health">💚 สุขภาพ</a>
-      <a href="/lifestyle">🌟 ไลฟ์สไตล์</a>
-      <a href="/horoscope">⭐ ดวง</a>
-    </nav>
-  </header>
+      
 
-    <nav class="main-nav">
+    <header>
+  <div class="logo">ครบจังดอทคอม</div>
+</header>
+<nav class="main-nav">
         <div class="nav-wrap">
             <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
             <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
@@ -44,8 +127,7 @@
     </nav>
 
     <div class="mobile-nav" id="nav-placeholder">
-        <div class="nav-wrap">
-            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+<a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
             <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
             <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
             <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
@@ -56,8 +138,7 @@
             <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
             <a href="booking.html" class="active"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
             <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-        </div>
-    </div>
+</div>
 
     <div class="container">
         <div class="content-area">

@@ -11,23 +11,99 @@
     <!-- ✅ Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616"
             crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .shop-intro h2 { font-size:1.5rem; font-weight:800; margin-bottom:.5rem; }
+    .shop-intro p  { color:var(--muted,#94a3b8); margin-bottom:1.2rem; }
+    .shop-links    { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:.75rem; }
+    .shop-link {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.65rem 1.4rem; border-radius:10px;
+      font-weight:700; font-size:1rem; text-decoration:none; color:#fff;
+      transition:opacity .2s;
+    }
+    .shop-link:hover { opacity:.85; }
+    .shop-link.shopee  { background:#ee4d2d; }
+    .shop-link.lazada  { background:#0f146d; }
+    .affiliate-note { font-size:.83rem; color:var(--muted,#94a3b8); margin-bottom:2rem; }
 
-    
-  <link rel="stylesheet" href="/style.css">
+    /* Category grid */
+    .cat-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap:1rem;
+      margin:1rem 0 2rem;
+    }
+    .cat-card {
+      background:var(--card-bg,#1e293b);
+      border:1px solid var(--border,#334155);
+      border-radius:14px;
+      padding:1.2rem .75rem;
+      text-align:center;
+      cursor:pointer;
+      transition:transform .2s, box-shadow .2s;
+      text-decoration:none;
+      color:var(--text,#e2e8f0);
+      display:flex; flex-direction:column; align-items:center; gap:.5rem;
+    }
+    .cat-card:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.3); }
+    .cat-card .cat-icon { font-size:2rem; }
+    .cat-card .cat-name { font-weight:700; font-size:.9rem; }
+    .cat-card .cat-sub  { font-size:.75rem; color:var(--muted,#94a3b8); }
+
+    /* Featured product grid */
+    .product-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap:1.2rem;
+      margin-top:1rem;
+    }
+    .product-card {
+      background:var(--card-bg,#1e293b);
+      border:1px solid var(--border,#334155);
+      border-radius:14px;
+      overflow:hidden;
+      display:flex; flex-direction:column;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .product-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.35); }
+    .product-card img {
+      width:100%; height:160px; object-fit:cover; display:block;
+    }
+    .product-info { padding:.75rem .9rem; flex:1; display:flex; flex-direction:column; gap:.3rem; }
+    .product-name { font-weight:700; font-size:.95rem; color:var(--text,#e2e8f0); }
+    .product-price { font-weight:800; font-size:1.05rem; color:#ee4d2d; }
+    .product-old   { font-size:.78rem; color:var(--muted,#94a3b8); text-decoration:line-through; }
+    .product-badge {
+      display:inline-block; background:#ee4d2d; color:#fff;
+      font-size:.7rem; font-weight:700; padding:.15rem .4rem;
+      border-radius:4px; margin-bottom:.2rem; width:fit-content;
+    }
+    .btn-buy {
+      display:block; margin:.5rem .9rem .9rem;
+      padding:.45rem; text-align:center;
+      background:var(--accent,#45B7D1); color:#fff;
+      border-radius:8px; text-decoration:none;
+      font-weight:700; font-size:.85rem;
+      transition:opacity .2s;
+    }
+    .btn-buy:hover { opacity:.85; }
+    .section-title {
+      font-size:1.15rem; font-weight:800;
+      margin:1.5rem 0 .75rem;
+      padding-bottom:.4rem;
+      border-bottom:2px solid var(--border,#334155);
+      color:var(--text,#e2e8f0);
+    }
+  </style>
 </head>
 <body>
-      <header>
-    <nav>
-      <a class="brand" href="/">ครบจัง</a>
-      <a href="/ai">🤖 AI</a>
-      <a href="/finance">💰 การเงิน</a>
-      <a href="/health">💚 สุขภาพ</a>
-      <a href="/lifestyle">🌟 ไลฟ์สไตล์</a>
-      <a href="/horoscope">⭐ ดวง</a>
-    </nav>
-  </header>
+      
 
-    <nav class="main-nav">
+    <header>
+  <div class="logo">ครบจังดอทคอม</div>
+</header>
+<nav class="main-nav">
         <div class="nav-wrap">
             <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
             <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
@@ -44,8 +120,7 @@
     </nav>
 
     <div class="mobile-nav" id="nav-placeholder">
-        <div class="nav-wrap">
-            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+<a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
             <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
             <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
             <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
@@ -56,8 +131,7 @@
             <a href="shopping.html" class="active"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
             <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
             <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-        </div>
-    </div>
+</div>
 
     <div class="container">
         <div class="content-area">
@@ -84,6 +158,116 @@
                     <i class="fas fa-check-circle" style="color: var(--highlight-green);"></i> 
                     รายได้ส่วนหนึ่งจากการซื้อผ่านลิงก์นี้จะช่วยสนับสนุนเว็บไซต์ของเรา
                 </p>
+
+                <!-- หมวดหมู่สินค้า -->
+                <h3 class="section-title"><i class="fas fa-th-large"></i> หมวดหมู่สินค้า</h3>
+                <div class="cat-grid">
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">📱</span>
+                        <span class="cat-name">มือถือ / แกดเจ็ต</span>
+                        <span class="cat-sub">โทรศัพท์ อุปกรณ์เสริม</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">👗</span>
+                        <span class="cat-name">เสื้อผ้า แฟชั่น</span>
+                        <span class="cat-sub">ชาย หญิง เด็ก</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">🏠</span>
+                        <span class="cat-name">บ้านและสวน</span>
+                        <span class="cat-sub">ของแต่งบ้าน เครื่องใช้</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">💄</span>
+                        <span class="cat-name">ความงาม</span>
+                        <span class="cat-sub">สกินแคร์ เครื่องสำอาง</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">🍜</span>
+                        <span class="cat-name">อาหารและเครื่องดื่ม</span>
+                        <span class="cat-sub">ของกิน ของฝาก</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">🎮</span>
+                        <span class="cat-name">เกมส์และของเล่น</span>
+                        <span class="cat-sub">Console อุปกรณ์เกม</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">⚽</span>
+                        <span class="cat-name">กีฬาและฟิตเนส</span>
+                        <span class="cat-sub">อุปกรณ์กีฬา ออกกำลังกาย</span>
+                    </a>
+                    <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="cat-card">
+                        <span class="cat-icon">📚</span>
+                        <span class="cat-name">หนังสือและการศึกษา</span>
+                        <span class="cat-sub">หนังสือ อุปกรณ์การเรียน</span>
+                    </a>
+                </div>
+
+                <!-- สินค้าแนะนำ -->
+                <h3 class="section-title"><i class="fas fa-fire" style="color:#ee4d2d"></i> สินค้าแนะนำ</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="นาฬิกาสมาร์ท">
+                        <div class="product-info">
+                            <span class="product-badge">ขายดี</span>
+                            <div class="product-name">Smart Watch ติดตามสุขภาพ</div>
+                            <div class="product-price">฿890</div>
+                            <div class="product-old">฿1,590</div>
+                        </div>
+                        <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="btn-buy"><i class="fab fa-shopify"></i> ซื้อบน Shopee</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=400&q=80" alt="ครีมบำรุงผิว">
+                        <div class="product-info">
+                            <span class="product-badge">ลดราคา</span>
+                            <div class="product-name">ครีมบำรุงผิวหน้า SPF50</div>
+                            <div class="product-price">฿299</div>
+                            <div class="product-old">฿550</div>
+                        </div>
+                        <a href="https://s.lazada.co.th/s.Z0h9sd" target="_blank" rel="noopener" class="btn-buy" style="background:#0f146d"><i class="fas fa-shopping-bag"></i> ซื้อบน Lazada</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=80" alt="รองเท้ากีฬา">
+                        <div class="product-info">
+                            <span class="product-badge">ใหม่</span>
+                            <div class="product-name">รองเท้าวิ่ง Running Pro</div>
+                            <div class="product-price">฿1,290</div>
+                            <div class="product-old">฿2,200</div>
+                        </div>
+                        <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="btn-buy"><i class="fab fa-shopify"></i> ซื้อบน Shopee</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" alt="หูฟังไร้สาย">
+                        <div class="product-info">
+                            <span class="product-badge">ฮิต</span>
+                            <div class="product-name">หูฟังไร้สาย Bluetooth 5.3</div>
+                            <div class="product-price">฿590</div>
+                            <div class="product-old">฿990</div>
+                        </div>
+                        <a href="https://s.lazada.co.th/s.Z0h9sd" target="_blank" rel="noopener" class="btn-buy" style="background:#0f146d"><i class="fas fa-shopping-bag"></i> ซื้อบน Lazada</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=400&q=80" alt="เครื่องครัว">
+                        <div class="product-info">
+                            <span class="product-badge">ขายดี</span>
+                            <div class="product-name">กระทะทอดไม่ติด Non-Stick</div>
+                            <div class="product-price">฿450</div>
+                            <div class="product-old">฿750</div>
+                        </div>
+                        <a href="https://collshp.com/jankeng211?share_channel_code=6&view=storefront" target="_blank" rel="noopener" class="btn-buy"><i class="fab fa-shopify"></i> ซื้อบน Shopee</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=400&q=80" alt="แล็ปท็อป">
+                        <div class="product-info">
+                            <span class="product-badge">ลดราคา</span>
+                            <div class="product-name">Laptop Stand ปรับระดับได้</div>
+                            <div class="product-price">฿350</div>
+                            <div class="product-old">฿620</div>
+                        </div>
+                        <a href="https://s.lazada.co.th/s.Z0h9sd" target="_blank" rel="noopener" class="btn-buy" style="background:#0f146d"><i class="fas fa-shopping-bag"></i> ซื้อบน Lazada</a>
+                    </div>
+                </div>
             </div>
         </div>
 
