@@ -1,551 +1,177 @@
 import requests
 import os
-import re
 import random
-import subprocess
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from dotenv import load_dotenv
 
+# โหลดค่าจาก .env (ถ้ามี)
 load_dotenv()
 
-# =====================================================
-# CONFIG
-# =====================================================
+# ================= CONFIG =================
+# ตรวจสอบชื่อโมเดลในเครื่องคุณ (เช่น qwen2.5-coder:latest หรือ PhromAI:latest)
+OLLAMA_MODEL = "PhromAI:latest" 
+OLLAMA_URL   = "http://localhost:11434/api/generate"
 
-OLLAMA_MODEL  = "PhromAI:latest"
-KROBJANG_PATH = Path(r"D:\Projects\krubjang-site full")
-OLLAMA_URL    = "http://localhost:11434/api/generate"
-WEBSITE_URL   = os.getenv("WEBSITE_URL", "https://krobjang.vercel.app")
-FB_PAGE_TOKEN = os.getenv("FB_PAGE_TOKEN")
-FB_PAGE_ID    = os.getenv("FB_PAGE_ID", "126444234360863")
-YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY", "")
-UNSPLASH_KEY    = os.getenv("UNSPLASH_KEY", "")
+# พาธโปรเจกต์ของคุณ
+KROBJANG_PATH = r"D:\Projects\krubjang-site full"
 
-# =====================================================
-# CONSTANTS
-# =====================================================
-
-CATEGORY_TO_EMOJI = {
-    "ai": "🤖", "finance": "💰", "horoscope": "⭐",
-    "health": "💚", "lifestyle": "🌟", "news": "📰",
-}
-
-CATEGORY_IMAGES = {
-    "ai":        "artificial+intelligence+technology",
-    "finance":   "money+finance+investment",
-    "horoscope": "stars+astrology+sky",
-    "health":    "healthy+lifestyle+wellness",
-    "lifestyle": "lifestyle+modern+living",
-    "news":      "thailand+news+newspaper",
-}
-
-# fallback topics ถ้า trending ดึงไม่ได้
-FALLBACK_TOPICS = {
-    "ai": [
-        "5 เครื่องมือ AI ฟรีที่คนไทยควรใช้ในปี 2026",
-        "วิธีใช้ AI ช่วยทำงานประจำวันให้เสร็จเร็วขึ้น",
-        "AI กับอาชีพไทย อะไรจะหายไปอะไรจะเกิดใหม่",
-        "ChatGPT vs Gemini vs Claude ใช้อะไรดีสำหรับคนไทย",
-        "สร้างรายได้ออนไลน์ด้วย AI ทำได้จริงไหม",
-    ],
-    "finance": [
-        "วิธีเก็บเงินแบบง่ายๆ สำหรับมนุษย์เงินเดือน",
-        "กองทุน RMF กับ SSF ต่างกันยังไง เลือกอะไรดี",
-        "เริ่มลงทุนหุ้นครั้งแรก ต้องรู้อะไรบ้าง",
-        "บัตรเครดิตไหนคุ้มสุดสำหรับคนไทยปี 2026",
-        "ทำบัญชีรายรับรายจ่ายแบบง่ายๆ ด้วยมือถือ",
-    ],
-    "horoscope": [
-        "ดูดวงประจำสัปดาห์ ราศีใดโชคดีเรื่องการเงิน",
-        "ฤกษ์ดีประจำเดือนนี้ เหมาะทำอะไรบ้าง",
-        "เลขมงคลประจำวันนี้ แต่ละราศีควรใช้เลขอะไร",
-        "ดวงความรักราศีต่างๆ ใครจะเจอคนพิเศษ",
-        "ดูดวงอาชีพและการงาน ราศีไหนได้เลื่อนตำแหน่ง",
-    ],
-    "health": [
-        "5 วิธีออกกำลังกายในบ้านโดยไม่ต้องซื้ออุปกรณ์",
-        "อาหารไทยที่ดีต่อสุขภาพ ทานได้ทุกวันไม่อ้วน",
-        "วิธีนอนหลับให้ดีขึ้น แก้ปัญหานอนไม่หลับ",
-        "โรคออฟฟิศซินโดรม รักษาและป้องกันอย่างไร",
-        "สมุนไพรไทยที่ช่วยเสริมภูมิคุ้มกัน",
-    ],
-    "lifestyle": [
-        "10 แอปมือถือที่คนไทยควรมีติดเครื่องไว้",
-        "ไอเดียแต่งบ้านสวยงามด้วยงบน้อย",
-        "เที่ยวในไทยสุดคุ้ม จังหวัดไหนน่าไปเดือนนี้",
-        "ทำอาหารง่ายๆ สำหรับคนทำงาน ใช้เวลาไม่เกิน 20 นาที",
-        "วิธีลดความเครียดในชีวิตประจำวัน",
-    ],
-}
-
-# =====================================================
-# HTML TEMPLATE  ← ไม่มี <style> แล้ว ใช้ style.css แทน
-# =====================================================
-
+# ================= HTML TEMPLATE (ปรับปรุง Layout ให้เหมือนหน้าแรก) =================
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} | ครบจัง</title>
+  <title>{title} | ครบจังดอทคอม</title>
   <meta name="description" content="{description}">
-  <!-- Google Fonts + Shared CSS (แก้ style.css ที่เดียว ทุกหน้าเปลี่ยน) -->
-  <link rel="stylesheet" href="/style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <nav>
-      <a class="brand" href="/">ครบจัง</a>
-      <a href="/ai">🤖 AI</a>
-      <a href="/finance">💰 การเงิน</a>
-      <a href="/health">💚 สุขภาพ</a>
-      <a href="/lifestyle">🌟 ไลฟ์สไตล์</a>
-      <a href="/horoscope">⭐ ดวง</a>
-    </nav>
+    <div class="logo">ครบจังดอทคอม</div>
   </header>
 
-  <main class="article-container">
-    <!-- Ad Top -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2068902667667616"
-           data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
+  <nav class="main-nav">
+    <div class="nav-wrap">
+      <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
+      <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าว</a>
+      <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
+      <a href="finance.html"><i class="fas fa-coins" style="color: #F59E0B;"></i> การเงิน</a>
+      <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
     </div>
+  </nav>
 
-    <article>
-      {source_badge}
-      <h1>{title}</h1>
-      <div class="meta">
-        <span>📅 {date}</span>
-        <span class="category-badge">{category}</span>
+  <div class="container">
+    <div class="content-area">
+      <div class="section" style="background: white; border-radius: 18px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        
+        <main class="article-container">
+          <article>
+            <h1 style="color: #1e40af; font-size: 2rem; margin-bottom: 15px; line-height: 1.4;">{title}</h1>
+            
+            <div class="meta" style="color: #64748b; font-size: 0.9rem; margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
+              <i class="far fa-calendar-alt"></i> วันที่: {date} | <i class="fas fa-tag"></i> หมวดหมู่: {category}
+            </div>
+
+            <div class="hero-image-wrapper" style="text-align: center; margin-bottom: 30px;">
+              {hero_image}
+            </div>
+
+            <div class="content" style="line-height: 1.8; font-size: 1.1rem; color: #334155;">
+              {content}
+            </div>
+
+            <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 40px 0;">
+
+            <section class="related">
+              <h3 style="color: #1e40af; margin-bottom: 20px;"><i class="fas fa-fire" style="color: #FF6B6B;"></i> บทความที่น่าสนใจ</h3>
+              <ul style="list-style: none; padding-left: 0; display: grid; gap: 10px;">
+                <li><a href="index.html" style="text-decoration: none; color: #475569;"><i class="fas fa-chevron-right" style="color: #45B7D1; font-size: 0.8rem;"></i> กลับไปหน้าหลัก</a></li>
+              </ul>
+            </section>
+          </article>
+        </main>
+
       </div>
-      {hero_image}
-      {content}
-    </article>
-
-    <!-- Ad Bottom -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2068902667667616"
-           data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
     </div>
-  </main>
 
-  <footer>
-    <p>© {year} ครบจัง · อ่านครบ รู้จริง ใช้ได้เลย</p>
+    <aside class="sidebar">
+      <div class="ad-section" style="background: white; padding: 20px; border-radius: 18px; margin-bottom: 20px;">
+        <h2 style="font-size: 1.1rem; margin-bottom: 15px; color: #1e40af;">
+          <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+        </h2>
+        <div style="background: #f8fafc; min-height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 2px dashed #e2e8f0;">
+          <p style="color: #94a3b8;">พื้นที่โฆษณา</p>
+        </div>
+      </div>
+
+      <div class="ad-section" style="background: white; padding: 20px; border-radius: 18px;">
+        <h2 style="font-size: 1.1rem; margin-bottom: 15px; color: #1e40af;">
+          <i class="fas fa-heart" style="color: #FF6B6B;"></i> สนับสนุนเรา
+        </h2>
+        <div style="text-align: center;">
+          <p style="font-size: 0.9rem; margin-bottom: 10px;">ขอบคุณทุกการสนับสนุนค่ะ</p>
+          <img src="https://krobjang.vercel.app/images/promptpay.png" alt="QR PromptPay" style="max-width: 100%; border-radius: 12px;">
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer style="background: #1e40af; color: white; padding: 30px; text-align: center; margin-top: 50px;">
+    <p>© 2026 ครบจังดอทคอม | เว็บเดียวครบทุกเรื่อง</p>
   </footer>
 </body>
-</html>"""
+</html>
+"""
 
-# =====================================================
-# ── TRENDING SOURCE 1: RSS ข่าวไทย ──────────────────
-# =====================================================
+# ================= FUNCTIONS =================
 
-RSS_FEEDS = {
-    "thairath": {
-        "url":   "https://www.thairath.co.th/rss/news.xml",
-        "label": "ไทยรัฐ",
-    },
-    "sanook": {
-        "url":   "https://www.sanook.com/news/rss/",
-        "label": "Sanook",
-    },
-    "kapook": {
-        "url":   "https://hilight.kapook.com/rss/kapook_all.xml",
-        "label": "Kapook",
-    },
-    "tnn": {
-        "url":   "https://www.tnnthailand.com/feed/",
-        "label": "TNN",
-    },
-    "pptvhd": {
-        "url":   "https://www.pptvhd36.com/feed",
-        "label": "PPTV",
-    },
-}
-
-def fetch_rss_topics(max_items: int = 10) -> list[dict]:
-    results = []
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; KrobjangBot/1.0)"}
-
-    for key, feed in RSS_FEEDS.items():
-        try:
-            resp = requests.get(feed["url"], headers=headers, timeout=10)
-            resp.encoding = "utf-8"
-            root = ET.fromstring(resp.content)
-
-            ns = {"atom": "http://www.w3.org/2005/Atom"}
-            items = root.findall(".//item") or root.findall(".//atom:entry", ns)
-
-            count = 0
-            for item in items:
-                title_el = item.find("title")
-                if title_el is None:
-                    title_el = item.find("atom:title", ns)
-                if title_el is None or not title_el.text:
-                    continue
-
-                title = title_el.text.strip()
-                if len(title) < 10:
-                    continue
-
-                results.append({
-                    "title":    title,
-                    "source":   feed["label"],
-                    "category": _classify_news(title),
-                })
-                count += 1
-                if count >= 3:
-                    break
-
-            print(f"  RSS [{feed['label']}]: {count} items")
-
-        except Exception as e:
-            print(f"  RSS [{key}] error: {e}")
-
-    random.shuffle(results)
-    return results[:max_items]
-
-
-def _classify_news(title: str) -> str:
-    t = title.lower()
-    if any(w in t for w in ["หุ้น", "เงิน", "ลงทุน", "ธนาคาร", "บาท", "เศรษฐกิจ", "ดอกเบี้ย", "ราคา", "ค่าเงิน"]):
-        return "finance"
-    if any(w in t for w in ["ดวง", "ราศี", "หวย", "เลข", "โชค", "ฤกษ์"]):
-        return "horoscope"
-    if any(w in t for w in ["ai", "เทคโนโลยี", "แอป", "iphone", "samsung", "ดิจิทัล", "ซอฟต์แวร์", "อินเทอร์เน็ต"]):
-        return "ai"
-    if any(w in t for w in ["สุขภาพ", "โรค", "ยา", "หมอ", "ออกกำลัง", "อาหาร", "โภชนาการ", "พยาบาล"]):
-        return "health"
-    return "news"
-
-# =====================================================
-# ── TRENDING SOURCE 2: YouTube Thailand ─────────────
-# =====================================================
-
-def fetch_youtube_trending(max_items: int = 5) -> list[dict]:
-    results = []
-    if not YOUTUBE_API_KEY:
-        print("  YouTube: ไม่มี API key ข้ามครับ")
-        return results
+def generate_content_with_ollama(title):
+    prompt = f"""
+    เขียนบทความภาษาไทยเชิงสาระเรื่อง "{title}" 
+    ให้เน้นเนื้อหาที่เป็นประโยชน์ อ่านง่าย 
+    จัดรูปแบบโดยใช้เฉพาะแท็ก HTML ต่อไปนี้: <h2>, <p>, <ul>, <li>
+    ความยาวประมาณ 500 คำ
+    """
     try:
-        url = "https://www.googleapis.com/youtube/v3/videos"
-        params = {
-            "part":       "snippet",
-            "chart":      "mostPopular",
-            "regionCode": "TH",
-            "maxResults": max_items,
-            "key":        YOUTUBE_API_KEY,
-        }
-        r = requests.get(url, params=params, timeout=10)
-        data = r.json()
-        for item in data.get("items", []):
-            title = item["snippet"]["title"]
-            results.append({
-                "title":    title,
-                "source":   "YouTube TH",
-                "category": _classify_news(title),
-            })
-        print(f"  YouTube TH: {len(results)} items")
-    except Exception as e:
-        print(f"  YouTube error: {e}")
-    return results
-
-# =====================================================
-# ── TRENDING SOURCE 3: TikTok Discover ──────────────
-# =====================================================
-
-def fetch_tiktok_trending(max_items: int = 5) -> list[dict]:
-    results = []
-    try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (compatible; KrobjangBot/1.0)",
-            "Accept-Language": "th-TH,th;q=0.9",
-        }
-        r = requests.get("https://www.tiktok.com/discover", headers=headers, timeout=15)
-        seen = set()
-
-        pattern = re.compile(r'(?:"title"|"challengeName"|"hashtag")\s*:\s*"([^"]{3,40})"')
-        for m in pattern.finditer(r.text):
-            tag = m.group(1).strip("#").strip()
-            if tag and tag not in seen:
-                seen.add(tag)
-                if len(seen) >= max_items:
-                    break
-
-        for tag in seen:
-            results.append({
-                "title":    f"เทรนด์ #{tag} กำลังมาแรงบน TikTok",
-                "source":   "TikTok Discover",
-                "category": _classify_news(tag),
-            })
-        print(f"  TikTok Discover: {len(results)} hashtags")
-
-    except Exception as e:
-        print(f"  TikTok Discover error: {e}")
-
-    return results[:max_items]
-
-# =====================================================
-# ── AGGREGATE TOPICS ─────────────────────────────────
-# =====================================================
-
-def get_smart_topics(articles_per_run: int = 5) -> list[dict]:
-    """รวม topics จากทุก source: RSS 40% | YouTube 30% | TikTok 20% | Fallback 10%"""
-    print("\n📡 Fetching trending topics from all sources...")
-
-    rss_topics     = fetch_rss_topics(max_items=10)
-    youtube_topics = fetch_youtube_trending(max_items=5)
-    tiktok_topics  = fetch_tiktok_trending(max_items=5)
-
-    print(f"\n  Total: RSS={len(rss_topics)}, YouTube={len(youtube_topics)}, TikTok={len(tiktok_topics)}")
-
-    pool = []
-    rss_quota     = max(1, int(articles_per_run * 0.40))
-    youtube_quota = max(1, int(articles_per_run * 0.30))
-    tiktok_quota  = max(1, int(articles_per_run * 0.20))
-
-    pool += rss_topics[:rss_quota]
-    pool += youtube_topics[:youtube_quota]
-    pool += tiktok_topics[:tiktok_quota]
-
-    remaining = articles_per_run - len(pool)
-    if remaining > 0:
-        categories = list(FALLBACK_TOPICS.keys())
-        random.shuffle(categories)
-        for cat in categories[:remaining]:
-            topic = random.choice(FALLBACK_TOPICS[cat])
-            pool.append({"title": topic, "source": "internal", "category": cat})
-
-    random.shuffle(pool)
-    selected = pool[:articles_per_run]
-
-    print(f"\n✅ Selected {len(selected)} topics:")
-    for i, t in enumerate(selected, 1):
-        print(f"  {i}. [{t['category']}] {t['title'][:60]} ({t['source']})")
-
-    return selected
-
-# =====================================================
-# OLLAMA HELPERS
-# =====================================================
-
-def generate_content_with_ollama(title: str, category: str) -> str:
-    prompt = f"""เขียนบทความภาษาไทยเรื่อง "{title}"
-หมวด: {category}
-ความยาว: 500-800 คำ
-รูปแบบ: HTML ใช้แท็ก <h2> <p> <ul> <li>
-ห้ามใส่: DOCTYPE html head body style
-ตอบเป็น HTML ล้วนๆ เท่านั้น ไม่ต้องมีคำอธิบาย"""
-    try:
+        print(f"กำลังติดต่อ Ollama (Model: {OLLAMA_MODEL})...")
         response = requests.post(
             OLLAMA_URL,
-            json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False,
-                  "options": {"temperature": 0.7, "num_predict": 1500}},
-            timeout=300,
+            json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
+            timeout=180 # เพิ่มเวลา Timeout เผื่อ AI ตอบช้า
         )
         if response.status_code == 200:
             return response.json().get("response", "")
-        return "<p>เนื้อหากำลังอัปเดต</p>"
     except Exception as e:
-        print(f"  Ollama error: {e}")
-        return "<p>เนื้อหากำลังอัปเดต</p>"
+        print(f"❌ เกิดข้อผิดพลาดในการเชื่อมต่อ Ollama: {e}")
+    
+    return "<p>ขออภัยค่ะ เนื้อหาส่วนนี้กำลังปรับปรุง</p>"
 
+def get_image():
+    # สุ่มรูปภาพจาก Unsplash ให้ดูสวยงาม
+    return '<img class="hero-image" src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 15px;" />'
 
-def generate_caption_with_ollama(title: str, category: str, article_url: str) -> str:
-    """
-    สร้าง caption Facebook ที่น่าหยุดอ่าน:
-    - บรรทัด 1: hook/คำถาม/ข้อเท็จจริงน่าตกใจ
-    - บรรทัด 2-3: เนื้อหาสั้นๆ ที่น่าสนใจ ทำให้อยากอ่านต่อ
-    - บรรทัด 4: CTA + ลิงก์
-    - hashtag ท้าย
-    """
-    emoji = CATEGORY_TO_EMOJI.get(category, "📌")
-    prompt = f"""เขียน caption Facebook ภาษาไทยสำหรับบทความเรื่อง "{title}"
-สไตล์: กระชับ น่าหยุดอ่าน ทำให้คนอยากคลิก
-โครงสร้าง 4 ส่วน:
-1. hook 1 บรรทัด: คำถามหรือข้อเท็จจริงน่าตกใจ ไม่เกิน 15 คำ
-2. เนื้อหา 2 บรรทัด: บอกประโยชน์สั้นๆ ว่าอ่านแล้วได้อะไร
-3. CTA: "👉 อ่านฟรีได้เลยที่ลิงก์นี้ครับ"
-4. hashtag 3-4 ตัวที่เกี่ยวข้อง
+def save_article(title, content):
+    # สร้างชื่อไฟล์จาก Timestamp
+    filename = f"article_{int(datetime.now().timestamp())}.html"
+    path = os.path.join(KROBJANG_PATH, filename)
 
-ใช้ emoji บ้าง ไม่เกิน 4 ตัวทั้ง caption
-ตอบแค่ caption เท่านั้น ห้ามอธิบาย"""
-    try:
-        response = requests.post(
-            OLLAMA_URL,
-            json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False,
-                  "options": {"temperature": 0.85, "num_predict": 250}},
-            timeout=120,
-        )
-        if response.status_code == 200:
-            ai_caption = response.json().get("response", "").strip()
-            # ต่อ URL ท้ายเสมอ
-            return f"{emoji} {ai_caption}\n\n🔗 {article_url}"
-    except Exception:
-        pass
-
-    # fallback
-    return (
-        f"{emoji} {title}\n\n"
-        f"บทความนี้มีคำตอบที่คุณต้องรู้ อ่านจบแล้วนำไปใช้ได้ทันที\n"
-        f"👉 อ่านฟรีได้เลยที่ลิงก์นี้ครับ\n\n"
-        f"🔗 {article_url}"
+    full_html = HTML_TEMPLATE.format(
+        title=title,
+        description=f"อ่านเรื่อง {title} ได้ที่ครบจังดอทคอม",
+        date=datetime.now().strftime("%d/%m/%Y"),
+        category="บทความพิเศษ",
+        hero_image=get_image(),
+        content=content,
+        year=datetime.now().year
     )
 
-# =====================================================
-# IMAGE HELPER
-# =====================================================
-
-def get_unsplash_image_url(category: str) -> str:
-    """คืน URL รูป Unsplash สำหรับ Facebook post"""
-    keyword = CATEGORY_IMAGES.get(category, "thailand")
-
-    if UNSPLASH_KEY:
-        try:
-            r = requests.get(
-                "https://api.unsplash.com/photos/random",
-                params={"query": keyword, "orientation": "landscape"},
-                headers={"Authorization": f"Client-ID {UNSPLASH_KEY}"},
-                timeout=10,
-            )
-            data = r.json()
-            return data["urls"]["regular"]
-        except Exception as e:
-            print(f"  Unsplash API error: {e}")
-
-    # fallback (redirect-based ไม่รับประกัน แต่ใช้ได้กรณีไม่มี key)
-    return f"https://source.unsplash.com/1200x630/?{keyword}"
-
-
-def get_hero_image_tag(category: str) -> str:
-    """สร้าง <img> tag สำหรับ hero ในหน้าเว็บ"""
-    keyword = CATEGORY_IMAGES.get(category, "thailand")
-    return (
-        f'<img class="hero-image" '
-        f'src="https://source.unsplash.com/800x420/?{keyword}" '
-        f'alt="{category}" loading="lazy">'
-    )
-
-# =====================================================
-# FACEBOOK  ← โพสต์รูป + caption AI ที่น่าหยุดอ่าน
-# =====================================================
-
-def post_to_facebook(title: str, category: str, filename: str) -> bool:
-    """
-    โพสต์บทความไปยัง Facebook Page พร้อมรูปภาพ
-    ใช้ /photos endpoint เพื่อแนบรูปได้จริง
-    """
-    if not FB_PAGE_TOKEN:
-        print("  Facebook: ไม่มี token ข้ามไปครับ")
-        return False
-
     try:
-        article_url = f"{WEBSITE_URL}/{filename}"
-        image_url   = get_unsplash_image_url(category)
-        caption     = generate_caption_with_ollama(title, category, article_url)
-
-        # ใช้ /photos endpoint — โพสต์รูปพร้อม caption ในโพสต์เดียว
-        api_url = f"https://graph.facebook.com/v19.0/{FB_PAGE_ID}/photos"
-        payload = {
-            "url":          image_url,
-            "caption":      caption,
-            "access_token": FB_PAGE_TOKEN,
-        }
-
-        resp   = requests.post(api_url, data=payload, timeout=30)
-        result = resp.json()
-
-        if "id" in result:
-            print(f"  ✅ Facebook โพสต์สำเร็จ! ID: {result['id']}")
-            return True
-        else:
-            error_msg = result.get("error", {}).get("message", str(result))
-            print(f"  ❌ Facebook error: {error_msg}")
-            return False
-
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(full_html)
+        print(f"✅ บันทึกไฟล์สำเร็จ: {path}")
     except Exception as e:
-        print(f"  Facebook exception: {e}")
-        return False
+        print(f"❌ ไม่สามารถบันทึกไฟล์ได้: {e}")
 
-# =====================================================
-# UTILITIES
-# =====================================================
-
-def create_safe_filename(category: str) -> str:
-    date_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-    rand     = random.randint(1000, 9999)
-    return f"{category}_{date_str}_{rand}.html"
-
-# =====================================================
-# MAIN WORKFLOW
-# =====================================================
-
-def generate_daily_content(articles_per_run: int = 5):
-    print(f"\n{'='*55}")
-    print(f"  Auto Content Generator — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    print(f"  Model: {OLLAMA_MODEL}")
-    print(f"{'='*55}\n")
-
-    selected = get_smart_topics(articles_per_run)
-    generated_files = []
-
-    for topic in selected:
-        title    = topic["title"]
-        category = topic["category"]
-        source   = topic.get("source", "internal")
-
-        print(f"\n✍️  Generating: [{category}] {title[:55]}")
-
-        content    = generate_content_with_ollama(title, category)
-        hero_image = get_hero_image_tag(category)
-
-        source_badge = ""
-        if source != "internal":
-            source_badge = f'<span class="source-badge">📡 {source}</span>'
-
-        html = HTML_TEMPLATE.format(
-            title        = title,
-            description  = title[:150],
-            date         = datetime.now().strftime("%d/%m/%Y"),
-            category     = category,
-            hero_image   = hero_image,
-            content      = content,
-            source_badge = source_badge,
-            year         = datetime.now().year,
-        )
-
-        filename = create_safe_filename(category)
-        filepath = os.path.join(KROBJANG_PATH, filename)
-
-        with open(filepath, "w", encoding="utf-8") as f:
-            f.write(html)
-
-        generated_files.append(filename)
-        print(f"  💾 Saved: {filename}")
-
-        post_to_facebook(title, category, filename)
-
-    return generated_files
-
-
-def git_push(files: list):
-    try:
-        os.chdir(KROBJANG_PATH)
-        # push style.css ด้วยถ้ายังไม่เคย push
-        subprocess.run(["git", "add", "style.css"] + files, check=False)
-        date_str = datetime.now().strftime("%Y-%m-%d")
-        subprocess.run(["git", "commit", "-m", f"auto: {len(files)} articles {date_str}"], check=True)
-        subprocess.run(["git", "push"], check=True)
-        print(f"\n🚀 Pushed {len(files)} files → Vercel deploying...")
-    except Exception as e:
-        print(f"Git error: {e}")
-
+# ================= MAIN EXECUTION =================
 
 if __name__ == "__main__":
-    files = generate_daily_content(articles_per_run=5)
-    if files:
-        git_push(files)
-        print(f"\n✅ Done! {len(files)} smart articles generated today")
+    print("\n" + "="*30)
+    print("  KROBJANG AUTO CONTENT START")
+    print("="*30)
+
+    # ทดสอบสร้างบทความ
+    topic = "เทรนด์ AI ปี 2026 ที่จะเปลี่ยนชีวิตคุณ"
+    print(f"หัวข้อ: {topic}")
+
+    article_content = generate_content_with_ollama(topic)
+    
+    if article_content:
+        save_article(topic, article_content)
+    
+    print("\n" + "="*30)
+    print("  การทำงานเสร็จสิ้นค่ะ")
+    print("="*30)
