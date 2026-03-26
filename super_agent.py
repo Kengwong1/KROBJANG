@@ -6,23 +6,18 @@ import feedparser
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-# --- ตั้งค่าพื้นฐาน (ดึงมาจากไฟล์เก่าของคุณ) ---
+# --- ⚙️ การตั้งค่าพื้นฐาน ---
 BASE_PATH = Path(r"D:\Projects\krubjang-site full")
 OLLAMA_URL = "http://localhost:11434/api/generate"
-# เลือกชื่อโมเดลที่คุณใช้บ่อยที่สุด (เช่น Typhoon หรือ PhromAI)
 MODEL_NAME = "scb10x/llama3.1-typhoon2-8b-instruct:latest" 
 
-# หมวดหมู่ที่มีในเว็บของคุณ
 CATEGORIES = ["health", "finance", "technology", "lifestyle", "comedy", "horoscope"]
 
-print("✅ สเต็ป 2 สำเร็จ: ตั้งค่าเรียบร้อยแล้วค่ะ")
-
-# --- ฟังก์ชันบันทึก Log (เอามาจากไฟล์เก่า) ---
 def log(msg):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{now}] {msg}")
 
-# --- 1. ฟังก์ชัน "ตา" (ไปดึงเทรนด์จริงจาก Google และ Pantip) ---
+# --- 1. ฟังก์ชันดึงเทรนด์ (The Eye) ---
 def get_live_trends():
     all_trends = []
     log("🔍 กำลังค้นหาเทรนด์ล่าสุดจากโลกออนไลน์...")
@@ -45,27 +40,25 @@ def get_live_trends():
     except Exception as e:
         log(f"❌ Pantip Error: {e}")
 
-    return list(set(all_trends)) # ลบหัวข้อที่ซ้ำออก
+    return list(set(all_trends))
 
-print("✅ สเต็ป 3 สำเร็จ: ระบบดึงเทรนด์พร้อมทำงานแล้วค่ะ")
-
-# --- 2. ฟังก์ชัน "สมอง" (ให้ Ollama เลือกหัวข้อและวางแผน) ---
+# --- 2. ฟังก์ชันวางแผนบทความ (The Brain - ปรับปรุงใหม่) ---
 def ask_ollama_to_plan(trend_list):
     log("🧠 กำลังส่งเทรนด์ให้ AI ช่วยวิเคราะห์และเลือกหัวข้อ...")
     
     prompt = f"""
-    จากรายการหัวข้อที่กำลังดังต่อไปนี้: {", ".join(trend_list)}
+    จากรายการหัวข้อดังต่อไปนี้: {", ".join(trend_list)}
     
     คำสั่ง:
-    1. เลือกหัวข้อที่น่าสนใจที่สุดมา 1 หัวข้อเพื่อเขียนบทความลงเว็บ
-    2. จัดหมวดหมู่ที่เหมาะสมจากรายการนี้เท่านั้น: {", ".join(CATEGORIES)}
-    3. ระบุตำแหน่งความสำคัญบนหน้าเว็บ (Top, Middle, Bottom)
+    1. เลือกหัวข้อที่น่าสนใจและมีประโยชน์ที่สุดมา 1 หัวข้อ
+    2. **ข้อห้ามเด็ดขาด**: ห้ามเลือกหัวข้อที่เป็นข้อความ Error, หน้าเว็บล่ม, หรือข้อความระบบ (เช่น 'หน้านี้ไม่พร้อมใช้งาน', '404', 'Error')
+    3. จัดหมวดหมู่ที่เหมาะสมจากรายการนี้เท่านั้น: {", ".join(CATEGORIES)}
+    4. ระบุตำแหน่งความสำคัญบนหน้าเว็บ (Top, Middle, Bottom)
     
     ตอบกลับในรูปแบบนี้เท่านั้น (ห้ามมีคำอื่น): หัวข้อ | หมวดหมู่ | ตำแหน่ง
     """
     
     try:
-        # ใช้ requests ติดต่อ Ollama เหมือนในไฟล์ auto_content_krobjang.py ของคุณค่ะ
         response = requests.post(OLLAMA_URL, json={
             "model": MODEL_NAME, 
             "prompt": prompt, 
@@ -77,66 +70,76 @@ def ask_ollama_to_plan(trend_list):
         return result
     except Exception as e:
         log(f"❌ Ollama Planning Error: {e}")
-        return "สรุปข่าวเด่นวันนี้ | lifestyle | Middle"
+        return "สรุปสาระน่ารู้ประจำวัน | lifestyle | Middle"
 
-print("✅ สเต็ป 4 สำเร็จ: สมอง AI พร้อมสั่งการแล้วค่ะ")
-
-# --- 3. ฟังก์ชัน "มือ" (สั่งเขียนเนื้อหาและหาภาพ) ---
+# --- 3. ฟังก์ชันเขียนเนื้อหา (The Hand - ปรับปรุง SEO) ---
 def generate_article_content(title, category):
     log(f"✍️ กำลังเขียนบทความหัวข้อ: {title}...")
-    prompt = f"เขียนบทความ SEO ภาษาไทยเรื่อง {title} หมวด {category} ให้ละเอียด มีหัวข้อ h2, h3 และใช้ HTML Tag เฉพาะเนื้อหา (ไม่ต้องมี <html> หรือ <body>)"
+    
+    prompt = f"""
+    คุณคือผู้เชี่ยวชาญด้านการเขียนบทความ SEO ภาษาไทย
+    จงเขียนบทความเรื่อง: "{title}" หมวดหมู่: {category}
+    
+    ข้อกำหนด:
+    - เขียนเนื้อหาที่เจาะลึก น่าสนใจ และให้สาระแก่ผู้อ่าน
+    - ใช้ HTML Tag: <h2> สำหรับหัวข้อหลัก, <h3> สำหรับหัวข้อย่อย และ <p> สำหรับเนื้อหา
+    - ห้ามใส่ Tag <html>, <body> หรือ <head> มาในคำตอบ
+    - ความยาวบทความอย่างน้อย 500 คำ
+    """
     
     try:
         response = requests.post(OLLAMA_URL, json={
             "model": MODEL_NAME, "prompt": prompt, "stream": False
-        }, timeout=300) # ให้เวลา AI คิด 5 นาที
+        }, timeout=300)
         return response.json().get("response", "")
     except Exception as e:
         log(f"❌ Generate Content Error: {e}")
-        return "<p>ขออภัยค่ะ เนื้อหาส่วนนี้กำลังปรับปรุง</p>"
+        return "<p>ขออภัยค่ะ เนื้อหาส่วนนี้กำลังปรับปรุง โปรดรอสักครู่</p>"
 
 def get_image_url(title, category):
-    # ใช้รูปภาพจาก Unsplash ตามหัวข้อที่ AI เลือก
     keyword = title.split()[0] if title else category
     return f"https://source.unsplash.com/800x400/?{keyword}"
 
-print("✅ สเต็ป 5 สำเร็จ: ระบบเขียนบทความพร้อมแล้วค่ะ")
-
-# --- HTML Template สำหรับหน้าบทความ (ปรับปรุงจากต้นฉบับของคุณ) ---
+# --- 4. ระบบจัดการไฟล์และ HTML Template ---
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} | ครบจังดอทคอม</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {{ font-family: 'Tahoma', sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f4f4f4; }}
+        .container {{ max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }}
+        header {{ background: #333; color: #fff; padding: 10px 0; text-align: center; }}
+        .meta {{ color: #666; font-size: 0.9em; margin-bottom: 20px; }}
+        .content img {{ max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; }}
+        footer {{ text-align: center; padding: 20px; font-size: 0.8em; color: #777; }}
+    </style>
 </head>
 <body>
-    <header><div class="logo">ครบจังดอทคอม</div></header>
+    <header><h1>ครบจังดอทคอม</h1></header>
     <main class="container">
         <article>
             <h1>{title}</h1>
-            <div class="meta">📅 {date} | หมวดหมู่: {category}</div>
+            <p class="meta">📅 {date} | 📂 หมวดหมู่: {category}</p>
             <div class="hero-image">{hero_image}</div>
             <div class="content">{content}</div>
         </article>
     </main>
-    <footer><p>© {year} ครบจังดอทคอม</p></footer>
+    <footer><p>© {year} ครบจังดอทคอม - ระบบ Super Agent อัตโนมัติ</p></footer>
 </body>
 </html>
 """
 
 def save_article(title, category, content, image_url):
-    # สร้างชื่อไฟล์อัตโนมัติ
     filename = f"{category}_{int(time.time())}.html"
     date_str = datetime.datetime.now().strftime("%d/%m/%Y")
     
-    # นำข้อมูลไปหยอดใส่ Template
     full_html = HTML_TEMPLATE.format(
         title=title,
         date=date_str,
         category=category,
-        hero_image=f'<img src="{image_url}" style="width:100%; border-radius:15px;">',
+        hero_image=f'<img src="{image_url}" alt="{title}">',
         content=content,
         year=datetime.datetime.now().year
     )
@@ -148,13 +151,10 @@ def save_article(title, category, content, image_url):
     log(f"💾 บันทึกไฟล์สำเร็จ: {filename}")
     return filename
 
-print("✅ สเต็ป 6 สำเร็จ: ระบบ Template และการบันทึกไฟล์พร้อมแล้วค่ะ")
-
-# --- 4. ฟังก์ชันอัตโนมัติ (อัปเดตระบบออนไลน์) ---
+# --- 5. ระบบอัปเดตออนไลน์ (Git) ---
 def update_online():
-    log("⚙️ กำลังอัปเดตระบบ Sitemap และส่งไฟล์ขึ้น GitHub...")
+    log("⚙️ กำลังส่งไฟล์ขึ้น GitHub...")
     try:
-        # ระบบจัดการ Git อัตโนมัติที่คุณเคยทำไว้
         import subprocess
         os.chdir(BASE_PATH)
         subprocess.run("git add .", shell=True)
@@ -164,38 +164,33 @@ def update_online():
     except Exception as e:
         log(f"❌ ระบบ Git ขัดข้อง: {e}")
 
-# --- 5. ตัวควบคุมหลัก (Master Workflow) ---
+# --- 6. Master Workflow ---
 def main():
     log("🌟 เริ่มต้นระบบ Super Agent อัจฉริยะ...")
     
-    # 1. ค้นหาเทรนด์ล่าสุด
     trends = get_live_trends()
-    
-    # 2. ให้ AI วิเคราะห์และเลือกหัวข้อที่ดีที่สุด
+    if not trends:
+        log("⚠️ ไม่พบเทรนด์ใหม่ในขณะนี้")
+        return
+
     plan = ask_ollama_to_plan(trends)
     
-    # 3. ตรวจสอบข้อมูลและเริ่มงาน
     if "|" in plan:
         try:
-            title, category, position = [x.strip() for x in plan.split("|")]
-            
-            # 4. AI เขียนเนื้อหาบทความ
-            content = generate_article_content(title, category)
-            
-            # 5. ค้นหาภาพประกอบ
-            image_url = get_image_url(title, category)
-            
-            # 6. บันทึกเป็นหน้าเว็บ HTML
-            save_article(title, category, content, image_url)
-            
-            # 7. ดันขึ้นเว็บออนไลน์ทันที
-            update_online()
-            
-            log(f"🎊 ทำงานเสร็จสมบูรณ์! สร้างบทความเรื่อง: {title}")
+            parts = [x.strip() for x in plan.split("|")]
+            if len(parts) >= 2:
+                title, category = parts[0], parts[1]
+                
+                content = generate_article_content(title, category)
+                image_url = get_image_url(title, category)
+                save_article(title, category, content, image_url)
+                update_online()
+                
+                log(f"🎊 ทำงานเสร็จสมบูรณ์! สร้างบทความเรื่อง: {title}")
         except Exception as e:
             log(f"❌ เกิดข้อผิดพลาดในขั้นตอนรวมงาน: {e}")
     else:
-        log("⚠️ AI วางแผนไม่สำเร็จ (รูปแบบข้อมูลผิด) ขอยกเลิกงานรอบนี้ค่ะ")
+        log("⚠️ AI ตอบกลับในรูปแบบที่ไม่ถูกต้อง ขอยกเลิกงานรอบนี้ค่ะ")
 
 if __name__ == "__main__":
     main()
