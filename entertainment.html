@@ -230,7 +230,7 @@
         // 📌 ฟังก์ชันสำหรับโหลดเมนูจาก nav.html และจัดการ active link
         async function loadNav() {
             try {
-                const response = await fetch('nav.html'); 
+                const response = await fetch('/nav.html'); 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -267,7 +267,7 @@
 
 <script>
 (function() {
-  fetch('nav.html')
+  fetch('/nav.html')
     .then(r => r.text())
     .then(html => {
       var tmp = document.createElement('div');
