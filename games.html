@@ -426,42 +426,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <button class="menu-btn" id="menuBtn">☰</button>
-        <div class="logo">ครบจังดอทคอม</div>
-        <div class="header-spacer"></div>
-    </header>
-
-    <nav class="main-nav">
-        <div class="nav-wrap">
-            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
-            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
-            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
-            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
-            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
-            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
-            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
-            <a href="games.html" class="active"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
-            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
-            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
-            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-        </div>
-    </nav>
-
-    <div class="mobile-nav" id="nav-placeholder">
-        <div class="nav-wrap">
-            <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
-            <a href="news.html"><i class="fas fa-bolt" style="color: #FF6B6B;"></i> ข่าวด่วน</a>
-            <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
-            <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
-            <a href="sport.html"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
-            <a href="video.html"><i class="fas fa-play-circle" style="color: #FF9F1C;"></i> วีดีโอ</a>
-            <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
-            <a href="games.html" class="active"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
-            <a href="shopping.html"><i class="fas fa-shopping-bag" style="color: #4ECDC4;"></i> ช้อป</a>
-            <a href="booking.html"><i class="fas fa-umbrella-beach" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
-            <a href="contact.html"><i class="fas fa-headset" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-        </div>
     </div>
 
     <div class="container">
@@ -646,5 +610,29 @@
             });
         });
     </script>
+<script>
+(function() {
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      var ph = document.getElementById('nav-placeholder');
+      if (ph) ph.outerHTML = tmp.innerHTML;
+
+      var page = location.pathname.split('/').pop().replace('.html','') || 'index';
+      document.querySelectorAll('.nav-wrap a[data-page]').forEach(function(a) {
+        if (a.dataset.page === page) a.classList.add('active');
+      });
+
+      if (!document.querySelector('.nav-wrap a.active')) {
+        var cat = page.split('_')[0];
+        var match = document.querySelector('.nav-wrap a[data-page="' + cat + '"]');
+        if (match) match.classList.add('active');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

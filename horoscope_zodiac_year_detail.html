@@ -115,25 +115,10 @@
     }
   </style>
   <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <header class="header-container">
-    <h1>ครบจังดอทคอม</h1>
-    <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
-  </header>
- <nav class="main-nav">
-    <a href="index.html" class="active">หน้าแรก</a>
-    <a href="news.html">ข่าว</a>
-    <a href="lotto.html">ตรวจหวย</a>
-    <a href="horoscope.html">ดูดวง</a>
-    <a href="sport.html">กีฬา</a>
-    <a href="video.html">วีดีโอ</a>
-    <a href="games.html">เกมส์</a>
-    <a href="marketplace.html">ซื้อ-ขาย</a>
-    <a href="booking.html">จองออนไลน์</a>
-    <a href="contact.html">ติดต่อเรา</a>
-  </nav>
-  <div class="container">
+  <div id="nav-placeholder"></div><div class="container">
     <div class="ads">
       </div>
     <div class="section">
@@ -362,5 +347,33 @@
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
+
+<script>
+(function() {
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      // แทรก header + nav เข้าตรง placeholder
+      var ph = document.getElementById('nav-placeholder');
+      if (ph) ph.outerHTML = tmp.innerHTML;
+
+      // ไฮไลต์เมนูที่ตรงกับหน้าปัจจุบัน
+      var page = location.pathname.split('/').pop().replace('.html','') || 'index';
+      document.querySelectorAll('.nav-wrap a[data-page]').forEach(function(a) {
+        if (a.dataset.page === page) a.classList.add('active');
+      });
+
+      // ไฮไลต์หน้าบทความให้ตรงหมวด เช่น food_xxx.html → active food
+      if (!document.querySelector('.nav-wrap a.active')) {
+        var cat = page.split('_')[0];
+        var match = document.querySelector('.nav-wrap a[data-page="' + cat + '"]');
+        if (match) match.classList.add('active');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

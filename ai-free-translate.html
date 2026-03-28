@@ -33,28 +33,11 @@
         @media(max-width:768px) { main { grid-template-columns:1fr; padding:0 12px; } nav.main-nav { padding:8px; } nav.main-nav a { padding:6px 10px; font-size:0.85em; } }
     </style>
   <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<header>
-    <h1>AI แปลภาษาฟรี 2025</h1>
-</header>
-
-<nav class="main-nav">
-    <a href="index.html">หน้าแรก</a>
-    <a href="news.html">ข่าว</a>
-    <a href="lotto.html">ตรวจหวย</a>
-    <a href="horoscope.html">ดูดวง</a>
-    <a href="sport.html">กีฬา</a>
-    <a href="video.html">วีดีโอ</a>
-    <a href="ai.html">AI</a>
-    <a href="games.html">เกมส์</a>
-    <a href="shopping.html">ช้อปปิ้งกับเรา</a>
-    <a href="booking.html">ท่องเที่ยว</a>
-    <a href="contact.html">ติดต่อเรา</a>
-</nav>
-
-<main>
+<div id="nav-placeholder"></div><main>
     <div class="content-area">
         <div class="section">
             <h2>🌐 แนะนำเครื่องมือ AI แปลภาษาฟรี</h2>
@@ -134,5 +117,33 @@
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
+
+<script>
+(function() {
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      // แทรก header + nav เข้าตรง placeholder
+      var ph = document.getElementById('nav-placeholder');
+      if (ph) ph.outerHTML = tmp.innerHTML;
+
+      // ไฮไลต์เมนูที่ตรงกับหน้าปัจจุบัน
+      var page = location.pathname.split('/').pop().replace('.html','') || 'index';
+      document.querySelectorAll('.nav-wrap a[data-page]').forEach(function(a) {
+        if (a.dataset.page === page) a.classList.add('active');
+      });
+
+      // ไฮไลต์หน้าบทความให้ตรงหมวด เช่น food_xxx.html → active food
+      if (!document.querySelector('.nav-wrap a.active')) {
+        var cat = page.split('_')[0];
+        var match = document.querySelector('.nav-wrap a[data-page="' + cat + '"]');
+        if (match) match.classList.add('active');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

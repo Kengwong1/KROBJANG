@@ -280,13 +280,7 @@
 </head>
 <body>
 
-    <header>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <h1>เทคโนโลยี</h1>
-        <div style="width: 24px;"></div>
-    </header>
-
-    <!-- Desktop Navigation -->
+    <div id="nav-placeholder"></div><!-- Desktop Navigation -->
     <nav class="main-nav">
         <a href="index.html">
             <i class="fas fa-home" style="color: #45B7D1;"></i>
@@ -572,5 +566,33 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
+
+<script>
+(function() {
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      // แทรก header + nav เข้าตรง placeholder
+      var ph = document.getElementById('nav-placeholder');
+      if (ph) ph.outerHTML = tmp.innerHTML;
+
+      // ไฮไลต์เมนูที่ตรงกับหน้าปัจจุบัน
+      var page = location.pathname.split('/').pop().replace('.html','') || 'index';
+      document.querySelectorAll('.nav-wrap a[data-page]').forEach(function(a) {
+        if (a.dataset.page === page) a.classList.add('active');
+      });
+
+      // ไฮไลต์หน้าบทความให้ตรงหมวด เช่น food_xxx.html → active food
+      if (!document.querySelector('.nav-wrap a.active')) {
+        var cat = page.split('_')[0];
+        var match = document.querySelector('.nav-wrap a[data-page="' + cat + '"]');
+        if (match) match.classList.add('active');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

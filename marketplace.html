@@ -187,36 +187,14 @@
         }
     </style>
   <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-
-    <header class="header-container">
-        <h1>ครบจังดอทคอม</h1>
-        <p>ข่าว เกม บันเทิง ไอที ไลฟ์สไตล์ ครบจบในเว็บเดียว</p>
-    </header>
-
-    <!-- จุดที่จะโหลดเมนูจาก nav.html -->
+<body><!-- จุดที่จะโหลดเมนูจาก nav.html -->
     <div id="navigation-placeholder"></div>
 
     <div class="container">
         <div class="ads">
         </div>
-        
-        <header class="marketplace-header">
-            <div>ตลาดซื้อขายออนไลน์</div>
-            <div id="userStatus" aria-live="polite"></div>
-        </header>
-        
-        <nav class="category-nav" aria-label="หมวดหมู่สินค้า">
-            <button class="tab-button" data-category="บ้าน">บ้าน</button>
-            <button class="tab-button" data-category="รถ">รถ</button>
-            <button class="tab-button" data-category="ที่ดิน">ที่ดิน</button>
-            <button class="tab-button" data-category="เสื้อผ้า">เสื้อผ้า</button>
-            <button class="tab-button" data-category="เครื่องประดับ">เครื่องประดับ</button>
-            <button class="tab-button" data-category="เครื่องใช้ไฟฟ้า">เครื่องใช้ไฟฟ้า</button>
-            <button class="tab-button" data-category="อื่นๆ">อื่นๆ</button>
-            <a href="post-product.html" class="post-link">ลงประกาศขายสินค้า</a>
-        </nav>
         
         <main style="margin-top: 20px;">
             <div id="productsArea" class="section">
@@ -359,5 +337,33 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 
+
+<script>
+(function() {
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      // แทรก header + nav เข้าตรง placeholder
+      var ph = document.getElementById('nav-placeholder');
+      if (ph) ph.outerHTML = tmp.innerHTML;
+
+      // ไฮไลต์เมนูที่ตรงกับหน้าปัจจุบัน
+      var page = location.pathname.split('/').pop().replace('.html','') || 'index';
+      document.querySelectorAll('.nav-wrap a[data-page]').forEach(function(a) {
+        if (a.dataset.page === page) a.classList.add('active');
+      });
+
+      // ไฮไลต์หน้าบทความให้ตรงหมวด เช่น food_xxx.html → active food
+      if (!document.querySelector('.nav-wrap a.active')) {
+        var cat = page.split('_')[0];
+        var match = document.querySelector('.nav-wrap a[data-page="' + cat + '"]');
+        if (match) match.classList.add('active');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

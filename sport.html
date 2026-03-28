@@ -340,41 +340,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <h1>ครบจังดอทคอม</h1>
-        <div style="width: 24px;"></div>
-    </header>
-
-    <nav class="main-nav">
-        <a href="index.html"><i class="fas fa-home" style="color: #45B7D1;"></i> หน้าแรก</a>
-        <a href="news.html"><i class="fas fa-newspaper" style="color: #FF6B6B;"></i> ข่าว</a>
-        <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166;"></i> หวย</a>
-        <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93;"></i> ดูดวง</a>
-        <a href="sport.html" class="active"><i class="fas fa-futbol" style="color: #E76F51;"></i> กีฬา</a>
-        <a href="video.html"><i class="fas fa-video" style="color: #FF9F1C;"></i> วีดีโอ</a>
-        <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6;"></i> AI</a>
-        <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51;"></i> เกมส์</a>
-        <a href="shopping.html"><i class="fas fa-shopping-cart" style="color: #4ECDC4;"></i> ช้อป</a>
-        <a href="booking.html"><i class="fas fa-map-marked-alt" style="color: #45B7D1;"></i> ท่องเที่ยว</a>
-        <a href="contact.html"><i class="fas fa-address-card" style="color: #6A4C93;"></i> ติดต่อเรา</a>
-    </nav>
-
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html"><i class="fas fa-home" style="color: #45B7D1; margin-right: 8px;"></i> หน้าแรก</a>
-        <a href="news.html"><i class="fas fa-newspaper" style="color: #FF6B6B; margin-right: 8px;"></i> ข่าว</a>
-        <a href="lotto.html"><i class="fas fa-ticket-alt" style="color: #FFD166; margin-right: 8px;"></i> หวย</a>
-        <a href="horoscope.html"><i class="fas fa-star" style="color: #6A4C93; margin-right: 8px;"></i> ดูดวง</a>
-        <a href="sport.html" class="active"><i class="fas fa-futbol" style="color: #E76F51; margin-right: 8px;"></i> กีฬา</a>
-        <a href="video.html"><i class="fas fa-video" style="color: #FF9F1C; margin-right: 8px;"></i> วีดีโอ</a>
-        <a href="ai.html"><i class="fas fa-robot" style="color: #2EC4B6; margin-right: 8px;"></i> AI</a>
-        <a href="games.html"><i class="fas fa-gamepad" style="color: #E76F51; margin-right: 8px;"></i> เกมส์</a>
-        <a href="shopping.html"><i class="fas fa-shopping-cart" style="color: #4ECDC4; margin-right: 8px;"></i> ช้อป</a>
-        <a href="booking.html"><i class="fas fa-map-marked-alt" style="color: #45B7D1; margin-right: 8px;"></i> ท่องเที่ยว</a>
-        <a href="contact.html"><i class="fas fa-address-card" style="color: #6A4C93; margin-right: 8px;"></i> ติดต่อเรา</a>
-    </div>
-
-    <div class="container">
+    <div id="nav-placeholder"></div><div class="container">
         <div class="content-area">
             <div class="section">
                 <h2>🏆 ข่าวกีฬา</h2>
@@ -490,5 +456,33 @@
         });
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+<script>
+(function() {
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      // แทรก header + nav เข้าตรง placeholder
+      var ph = document.getElementById('nav-placeholder');
+      if (ph) ph.outerHTML = tmp.innerHTML;
+
+      // ไฮไลต์เมนูที่ตรงกับหน้าปัจจุบัน
+      var page = location.pathname.split('/').pop().replace('.html','') || 'index';
+      document.querySelectorAll('.nav-wrap a[data-page]').forEach(function(a) {
+        if (a.dataset.page === page) a.classList.add('active');
+      });
+
+      // ไฮไลต์หน้าบทความให้ตรงหมวด เช่น food_xxx.html → active food
+      if (!document.querySelector('.nav-wrap a.active')) {
+        var cat = page.split('_')[0];
+        var match = document.querySelector('.nav-wrap a[data-page="' + cat + '"]');
+        if (match) match.classList.add('active');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>
