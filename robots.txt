@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://krobjang.vercel.app/sitemap.xml

@@ -1,20 +1,43 @@
-# ไฟล์ความลับ
+# ============================================
+# ครบจังดอทคอม — .gitignore
+# สร้างอัตโนมัติโดย super_agent.py
+# ============================================
+
+# ไฟล์ความลับ — ห้ามขึ้น GitHub เด็ดขาด
 .env
+.env.*
+*.key
+*.pem
+secrets.json
+credentials.json
 
-# โฟลเดอร์ขยะของระบบ
+# โค้ดและสคริปต์ (ไม่อัปโหลดขึ้น GitHub)
+*.py
+*.bat
+*.sh
+
+# ระบบ Python
 __pycache__/
-.vscode/
+*.pyc
+*.pyo
+.venv/
+venv/
 
-# ไฟล์บันทึกการทำงาน (Logs)
+# บันทึกการทำงาน
 agent_logs/
 *.log
 auto_content_log.txt
 
-# --- ส่วนที่เพิ่มใหม่เพื่อแก้ปัญหาของพี่เก่ง ---
-# ไม่เอาไฟล์โค้ดและสคริปต์ขึ้น GitHub
-*.py
-*.bat
+# ไฟล์ state ภายใน (ไม่ต้อง sync)
+.agent_round
 
-# ไฟล์ชั่วคราวอื่นๆ
-*.pyc
+# Editor / OS
+.vscode/
+.idea/
 .DS_Store
+Thumbs.db
+
+# ไฟล์ชั่วคราว
+*.bak
+*.backup
+*.tmp
