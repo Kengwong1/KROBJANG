@@ -25,13 +25,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://krobjang.vercel.app/finance.html</loc>
+    <loc>https://krobjang.vercel.app/booking.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://krobjang.vercel.app/ai.html</loc>
+    <loc>https://krobjang.vercel.app/finance.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -43,10 +43,46 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://krobjang.vercel.app/booking.html</loc>
+    <loc>https://krobjang.vercel.app/ai.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle_1774768375.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle_1774768302.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle_1774768231.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle_1774768154.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle_1774768085.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle_1774768022.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://krobjang.vercel.app/lifestyle_1774766878.html</loc>
