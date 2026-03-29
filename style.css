@@ -193,14 +193,14 @@ img { max-width:100%; height:auto; display:block; }
 /* ===== Footer ===== */
 footer {
   margin-top:2rem;
-  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  background:linear-gradient(135deg,#1a1040 0%,#2d1b69 50%,#1a1040 100%);
   color:white; text-align:center;
   padding:1.5rem 1rem;
   /* รองรับ notch/home bar บน iPhone */
   padding-bottom:calc(1.5rem + var(--safe-bottom));
 }
-footer a { color:#e0f2fe; text-decoration:none; font-weight:600; margin:0 0.5rem; }
-footer a:hover { text-decoration:underline; }
+footer a { color:#e0d6ff; text-decoration:none; font-weight:600; margin:0 0.5rem; }
+footer a:hover { color:#FFD166; text-decoration:underline; }
 
 /* ===== Bottom Nav Bar (มือถือ — เหมือนแอป) ===== */
 .bottom-nav {
