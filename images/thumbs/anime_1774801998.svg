@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#f1f5f9"/>
+  <rect x="0" y="0" width="8" height="450" fill="#1e40af"/>
+  <rect x="0" y="380" width="800" height="70" fill="#1e40af" opacity="0.08"/>
+  <text x="60" y="180" font-size="80" font-family="serif">📄</text>
+  <text x="60" y="270" font-size="32" font-weight="bold"
+        font-family="sans-serif" fill="#1e40af">การออกแบบระบบการปกครอง</text>
+  <text x="60" y="315" font-size="32" font-weight="bold" font-family="sans-serif" fill="#1e40af">และสังคมในโลกแฟนตาซี</text>
+  <text x="60" y="415" font-size="20" font-family="sans-serif" fill="#1e40af" opacity="0.6">ครบจังดอทคอม</text>
+</svg>

@@ -1,13 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://krobjang.vercel.app/news.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/anime_1774802760.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/anime_1774801998.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/anime_1774801468.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/anime_1774800483.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/health_1774802649.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/health_1774802406.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/health_1774801735.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/health_1774801516.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://krobjang.vercel.app/index.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://krobjang.vercel.app/health_1774800791.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/health_1774800015.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lifestyle.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/lotto.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/sport.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/horoscope.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/food.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://krobjang.vercel.app/booking.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/finance.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/ai.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -25,37 +133,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://krobjang.vercel.app/finance.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/food.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://krobjang.vercel.app/health.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/lifestyle.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/ai.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/sport.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -67,25 +145,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://krobjang.vercel.app/horoscope.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/lotto.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://krobjang.vercel.app/contact.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/news.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
