@@ -1,171 +1,522 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>ข่าวด่วน — ครบจังดอทคอม</title>
-  <meta name="description" content="รวมบทความหมวดข่าวด่วน อัปเดตใหม่ทุกวัน ครบจังดอทคอม">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1e40af">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="ครบจังดอทคอม">
-  <link rel="canonical" href="https://krobjang.vercel.app/news.html">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ข่าวทั้งหมด - ครบจังดอทคอม</title>
+<meta name="description" content="รวบรวมข่าวด่วน ข่าวเศรษฐกิจ หวย ดวง กีฬา และเทคโนโลยี AI อัปเดตตลอด 24 ชั่วโมง">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 
-  <!-- Open Graph (แชร์ Facebook / Line) -->
-  <meta property="og:type"        content="article">
-  <meta property="og:title"       content="ข่าวด่วน — ครบจังดอทคอม">
-  <meta property="og:description" content="รวมบทความหมวดข่าวด่วน อัปเดตใหม่ทุกวัน ครบจังดอทคอม">
-  <meta property="og:image"       content="https://krobjang.vercel.app/images/og-default.png">
-  <meta property="og:url"         content="https://krobjang.vercel.app/news.html">
-  <meta property="og:site_name"   content="ครบจังดอทคอม">
-  <meta property="og:locale"      content="th_TH">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="ข่าวด่วน — ครบจังดอทคอม">
-  <meta name="twitter:description" content="รวมบทความหมวดข่าวด่วน อัปเดตใหม่ทุกวัน ครบจังดอทคอม">
-  <meta name="twitter:image"       content="https://krobjang.vercel.app/images/og-default.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
 </head>
 <body>
 <script src="nav.js"></script>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <div class="ticker-label">ด่วน!</div>
+    <div class="ticker-text">
+      <div class="ticker-scroll" id="tickerScroll">
+        <span>กำลังโหลดข่าวด่วน</span><span>โปรดรอสักครู่</span>
+        <span>กำลังโหลดข่าวด่วน</span><span>โปรดรอสักครู่</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="content-area">
+
+    <!-- ข่าวทั่วไป -->
     <div class="section">
       <h2>
-        <span class="h2-left"><i class="fas fa-bolt" style="color:#FF6B6B;"></i> ข่าวด่วน</span>
+        <span class="h2-left"><i class="fas fa-newspaper"></i> ข่าวทั่วไป</span>
+        <a href="#" class="see-all">ดูทั้งหมด →</a>
       </h2>
-      <p style="color:var(--muted);font-size:0.95rem;">รวมบทความหมวดข่าวด่วน อัปเดตใหม่ทุกวัน</p>
-    </div>
-<!-- ARTICLE_LIST_START -->
-<div style="background:var(--card);border-radius:16px;padding:1.25rem;box-shadow:0 4px 12px rgba(30,64,175,0.06);margin-top:1rem;">
-  <h2 style="color:var(--primary);font-size:1.1rem;margin:0 0 1rem;">
-    <i class="fas fa-list-ul"></i> บทความล่าสุด (5 บทความ)
-  </h2>
-  
-  <a href="entertainment_1774712963.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
-     background:var(--card);border-radius:10px;margin-bottom:0.5rem;
-     text-decoration:none;color:inherit;border:1px solid var(--border);transition:box-shadow 0.2s;"
-     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
-     onmouseout="this.style.boxShadow='none'">
-    <img src="https://images.unsplash.com/photo-1531402581960-f0a304148a1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ3MTI5NjZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ซีรีส์ไทยที่จะเปลี่ยนมุมมองของคุณเกี่ยวกับชีวิต" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:0.25rem;">
-        <i class="far fa-calendar-alt"></i> 
-      </div>
-      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
-         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
-        หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ซีรีส์ไทยที่จะเปลี่ยนมุมมองของคุณเกี่ยวกับชีวิต
-      </h3>
-    </div>
-    <i class="fas fa-chevron-right" style="color:var(--muted);font-size:0.75rem;flex-shrink:0;"></i>
-  </a>
-  <a href="entertainment_1774712892.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
-     background:var(--card);border-radius:10px;margin-bottom:0.5rem;
-     text-decoration:none;color:inherit;border:1px solid var(--border);transition:box-shadow 0.2s;"
-     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
-     onmouseout="this.style.boxShadow='none'">
-    <img src="https://images.unsplash.com/photo-1649861305401-1ee66281b2c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ3MTI4OTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ซีรีส์ไทยที่ทำให้คุณหลงรักในวัฒนธรรมไทย" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:0.25rem;">
-        <i class="far fa-calendar-alt"></i> 
-      </div>
-      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
-         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
-        หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ซีรีส์ไทยที่ทำให้คุณหลงรักในวัฒนธรรมไทย
-      </h3>
-    </div>
-    <i class="fas fa-chevron-right" style="color:var(--muted);font-size:0.75rem;flex-shrink:0;"></i>
-  </a>
-  <a href="entertainment_1774712833.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
-     background:var(--card);border-radius:10px;margin-bottom:0.5rem;
-     text-decoration:none;color:inherit;border:1px solid var(--border);transition:box-shadow 0.2s;"
-     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
-     onmouseout="this.style.boxShadow='none'">
-    <img src="https://images.unsplash.com/photo-1715034160819-e0defb889b04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ3MTI4MzV8&ixlib=rb-4.1.0&q=80&w=1080" alt="หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ส่องซีรีส์ไทยที่กำลังมาแรงในขณะนี้" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:0.25rem;">
-        <i class="far fa-calendar-alt"></i> 
-      </div>
-      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
-         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
-        หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ส่องซีรีส์ไทยที่กำลังมาแรงในขณะนี้
-      </h3>
-    </div>
-    <i class="fas fa-chevron-right" style="color:var(--muted);font-size:0.75rem;flex-shrink:0;"></i>
-  </a>
-  <a href="entertainment_1774712728.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
-     background:var(--card);border-radius:10px;margin-bottom:0.5rem;
-     text-decoration:none;color:inherit;border:1px solid var(--border);transition:box-shadow 0.2s;"
-     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
-     onmouseout="this.style.boxShadow='none'">
-    <img src="https://images.unsplash.com/photo-1771330535621-718e39b528a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ3MTI3MzF8&ixlib=rb-4.1.0&q=80&w=1080" alt="หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ดูซีรีส์ไทยให้สนุกยิ่งขึ้น! เคล็ดลับที่ต้องรู้" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:0.25rem;">
-        <i class="far fa-calendar-alt"></i> 
-      </div>
-      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
-         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
-        หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ดูซีรีส์ไทยให้สนุกยิ่งขึ้น! เคล็ดลับที่ต้องรู้
-      </h3>
-    </div>
-    <i class="fas fa-chevron-right" style="color:var(--muted);font-size:0.75rem;flex-shrink:0;"></i>
-  </a>
-  <a href="entertainment_1774712607.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
-     background:var(--card);border-radius:10px;margin-bottom:0.5rem;
-     text-decoration:none;color:inherit;border:1px solid var(--border);transition:box-shadow 0.2s;"
-     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
-     onmouseout="this.style.boxShadow='none'">
-    <img src="https://images.unsplash.com/photo-1568301535779-d8b2550a8879?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ3MTI2MTB8&ixlib=rb-4.1.0&q=80&w=1080" alt="หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ซีรีส์ไทยสุดฮิตที่คุณไม่ควรพลาดในปีนี้" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy">
-    <div style="flex:1;min-width:0;">
-      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:0.25rem;">
-        <i class="far fa-calendar-alt"></i> 
-      </div>
-      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
-         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
-        หัวข้อบทความ: "5 ซีรีส์ไทยที่ควรดูในปีนี้ — - ซีรีส์ไทยสุดฮิตที่คุณไม่ควรพลาดในปีนี้
-      </h3>
-    </div>
-    <i class="fas fa-chevron-right" style="color:var(--muted);font-size:0.75rem;flex-shrink:0;"></i>
-  </a>
-</div>
-<!-- ARTICLE_LIST_END -->
-  </div>
-  <aside class="sidebar">
-    <div class="ad-section">
-      <h2 class="support-site"><i class="fas fa-ad"></i> สนับสนุนเว็บไซต์</h2>
-      <div class="adsense-container">
-        <ins class="adsbygoogle" style="display:block;width:100%;"
-             data-ad-client="ca-pub-2068902667667616" data-ad-slot="1706997713"
-             data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-    </div>
-    <div class="ad-section">
-      <h2 class="support-us"><i class="fas fa-heart"></i> สนับสนุนเรา</h2>
-      <div class="support-card">
-        <p><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
-        <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code" loading="lazy">
-        <div class="support-links">
-          <a href="images/promptpay.png" target="_blank" class="support-btn promptpay"><i class="fas fa-money-bill-wave"></i> พร้อมเพย์</a>
-          <a href="https://www.facebook.com/phongphun.phommanee" target="_blank" class="support-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-          <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube"><i class="fab fa-youtube"></i> YouTube</a>
-          <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+      <div id="general-news">
+        <div class="skeleton-grid">
+          <div class="skel-card"><div class="skel-img"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+          <div class="skel-card"><div class="skel-img"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+          <div class="skel-card"><div class="skel-img"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line"></div><div class="skel-line short"></div></div></div>
         </div>
       </div>
     </div>
+
+    <!-- ข่าวเศรษฐกิจ -->
+    <div class="section">
+      <h2>
+        <span class="h2-left"><i class="fas fa-chart-line"></i> ข่าวเศรษฐกิจ</span>
+        <a href="#" class="see-all">ดูทั้งหมด →</a>
+      </h2>
+      <div id="economy-news" class="news-grid"><div class="error-msg">กำลังโหลด...</div></div>
+    </div>
+
+    <!-- เทคโนโลยี & AI -->
+    <div class="section">
+      <h2>
+        <span class="h2-left"><i class="fas fa-microchip"></i> เทคโนโลยี &amp; AI</span>
+        <a href="#" class="see-all">ดูทั้งหมด →</a>
+      </h2>
+      <div id="tech-news" class="news-grid"><div class="error-msg">กำลังโหลด...</div></div>
+    </div>
+
+    <!-- กีฬา -->
+    <div class="section">
+      <h2>
+        <span class="h2-left"><i class="fas fa-futbol"></i> กีฬา</span>
+        <a href="#" class="see-all">ดูทั้งหมด →</a>
+      </h2>
+      <div id="sport-news" class="news-grid"><div class="error-msg">กำลังโหลด...</div></div>
+    </div>
+
+    <!-- บันเทิง -->
+    <div class="section">
+      <h2>
+        <span class="h2-left"><i class="fas fa-film"></i> บันเทิง</span>
+        <a href="#" class="see-all">ดูทั้งหมด →</a>
+      </h2>
+      <div id="entertain-news" class="news-grid"><div class="error-msg">กำลังโหลด...</div></div>
+    </div>
+
+    <!-- วีดีโอข่าว -->
+    <div class="section">
+      <h2>
+        <span class="h2-left"><i class="fab fa-youtube" style="color:#ef4444;"></i> วีดีโอข่าว</span>
+      </h2>
+      <div class="video-grid" id="video-news">
+        <div class="error-msg">กำลังโหลดวีดีโอ...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Weather -->
+    <div class="sidebar-box">
+      <h2><i class="fas fa-cloud-sun" style="color:#f59e0b;"></i> สภาพอากาศ กรุงเทพฯ</h2>
+      <div class="weather-widget">
+        <div>
+          <div class="weather-temp" id="wTemp">--°C</div>
+          <div class="weather-desc" id="wDesc">กำลังโหลด...</div>
+          <div class="weather-hum" id="wHum"></div>
+        </div>
+        <div class="weather-icon" id="wIcon">🌤️</div>
+      </div>
+    </div>
+
+    <!-- Trending -->
+    <div class="sidebar-box">
+      <h2><i class="fas fa-fire" style="color:#ef4444;"></i> ข่าวยอดนิยม</h2>
+      <div id="trending-list"><div class="error-msg">กำลังโหลด...</div></div>
+    </div>
+
+    <!-- AdSense สนับสนุนเว็บไซต์ (เดิม) -->
+    <div class="ad-section">
+      <h2 class="support-site">
+        <i class="fas fa-ad"></i> สนับสนุนเว็บไซต์
+      </h2>
+      <div class="adsense-outer">
+        <div class="adsense-placeholder">
+          <i class="fas fa-rectangle-ad" style="font-size:1.5rem;"></i>
+          <span>พื้นที่โฆษณา</span>
+        </div>
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-height:250px;"
+             data-ad-client="ca-pub-2068902667667616"
+             data-ad-slot="1706997713"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+      <div style="font-size:0.78em;color:#999;margin-top:5px;">[พื้นที่สนับสนุนเว็บ]</div>
+    </div>
+
+    <!-- สนับสนุนเรา (เดิม) -->
+    <div class="ad-section">
+      <h2 class="support-us">
+        <i class="fas fa-heart"></i> สนับสนุนเรา
+      </h2>
+      <div>
+        <p style="font-size:0.85rem;color:var(--muted);"><i class="fas fa-hand-holding-heart" style="color:#FB8C00;"></i> ขอบคุณทุกการสนับสนุน!</p>
+        <img src="images/promptpay.png" alt="QR PromptPay" class="qr-code">
+        <div class="support-links">
+          <a href="images/promptpay.png" target="_blank" class="support-btn promptpay">
+            <i class="fas fa-money-bill-wave"></i> พร้อมเพย์
+          </a>
+          <a href="https://www.facebook.com/phongphun.phommanee/?locale=th_TH" target="_blank" class="support-btn facebook">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://youtube.com/@phongphunphommanee8045" target="_blank" class="support-btn youtube">
+            <i class="fab fa-youtube"></i> YouTube
+          </a>
+          <a href="https://www.tiktok.com/@kengwong007" target="_blank" class="support-btn tiktok">
+            <i class="fab fa-tiktok"></i> TikTok
+          </a>
+        </div>
+      </div>
+    </div>
+
   </aside>
 </div>
+
 <footer>
-  <p>© 2026 ครบจังดอทคอม | <a href="contact.html">ติดต่อเรา</a> | <a href="#">นโยบายความเป็นส่วนตัว</a></p>
+  <p>© 2025 ครบจังดอทคอม |
+    <a href="#">นโยบายความเป็นส่วนตัว</a> |
+    <a href="#">เกี่ยวกับเรา</a>
+  </p>
+  <p>ข่าวสารฉับไว ใช้งานง่าย ทุกวัยเข้าใจ</p>
 </footer>
+
+<script>
+const RSS = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+const FEEDS = {
+  general: [
+    { url:'https://www.thairath.co.th/rss/news',           src:'ไทยรัฐ' },
+    { url:'https://www.prachachat.net/feed',               src:'ประชาชาติ' },
+    { url:'https://feeds.bbcthai.bbc.co.uk/thai/rss.xml',  src:'BBC Thai' },
+  ],
+  economy: [
+    { url:'https://www.prachachat.net/economy/feed',               src:'ประชาชาติ' },
+    { url:'https://www.thairath.co.th/rss/money',                  src:'ไทยรัฐ' },
+    { url:'https://www.bangkokbiznews.com/rss/data/business.xml',  src:'กรุงเทพธุรกิจ' },
+  ],
+  tech: [
+    { url:'https://www.blognone.com/node/feed',                 src:'Blognone' },
+    { url:'https://www.thairath.co.th/rss/it',                  src:'ไทยรัฐ IT' },
+    { url:'https://www.bangkokbiznews.com/rss/data/tech.xml',    src:'กรุงเทพธุรกิจ' },
+  ],
+  sport: [
+    { url:'https://www.thairath.co.th/rss/sport',    src:'ไทยรัฐ' },
+    { url:'https://www.prachachat.net/sport/feed',   src:'ประชาชาติ' },
+    { url:'https://www.siamsport.co.th/rss.php',     src:'สยามกีฬา' },
+  ],
+  entertain: [
+    { url:'https://www.thairath.co.th/rss/entertainment', src:'ไทยรัฐ' },
+    { url:'https://www.prachachat.net/lifestyle/feed',    src:'ประชาชาติ' },
+    { url:'https://www.sanook.com/news/cat/celeb/rss/',   src:'Sanook' },
+  ],
+};
+
+const YT = [
+  { id:'UCupvZG-5ko_eiXAupbDfxWw', name:'Thai PBS' },
+  { id:'UC3MElBjZhDLEBpbH9eMJoJQ', name:'ไทยรัฐ' },
+  { id:'UCm2TSh9NJQZQ5fH6iA1LENA', name:'ช่อง 8' },
+];
+
+const FB = {
+  general:   'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=200&fit=crop',
+  economy:   'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=200&fit=crop',
+  tech:      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop',
+  sport:     'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=400&h=200&fit=crop',
+  entertain: 'https://images.unsplash.com/photo-1586899028174-e7098604235b?w=400&h=200&fit=crop',
+  video:     'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=640&h=360&fit=crop',
+};
+
+function strip(h){ return h ? h.replace(/<[^>]*>/g,'').trim() : ''; }
+function getImg(item, fb){
+  if(item.thumbnail && item.thumbnail.startsWith('http')) return item.thumbnail;
+  if(item.enclosure && item.enclosure.link && item.enclosure.link.startsWith('http')) return item.enclosure.link;
+  const m = (item.description||'').match(/<img[^>]+src=["']([^"']+)["']/i);
+  if(m && m[1] && m[1].startsWith('http')) return m[1];
+  return fb;
+}
+function relTime(d){
+  if(!d) return '';
+  const s = (Date.now()-new Date(d))/1000;
+  if(s<60) return 'เมื่อกี้';
+  if(s<3600) return Math.floor(s/60)+' นาทีที่แล้ว';
+  if(s<86400) return Math.floor(s/3600)+' ชั่วโมงที่แล้ว';
+  return Math.floor(s/86400)+' วันที่แล้ว';
+}
+
+async function fetchFeeds(list){
+  const all = [];
+  await Promise.allSettled(list.map(async ({url,src}) => {
+    try {
+      const r = await fetch(RSS+encodeURIComponent(url));
+      if(!r.ok) return;
+      const d = await r.json();
+      if(d.status==='ok' && d.items) d.items.forEach(i=>{i._src=src;all.push(i);});
+    } catch(e){}
+  }));
+  all.sort((a,b)=>new Date(b.pubDate||0)-new Date(a.pubDate||0));
+  return all;
+}
+
+function renderGrid(items, elId, cat, n=6){
+  const el = document.getElementById(elId);
+  if(!items||!items.length){
+    el.innerHTML=`<div class="error-msg"><i class="fas fa-satellite-dish"></i><br>ไม่สามารถโหลดข่าวได้ชั่วคราว</div>`;
+    return;
+  }
+  el.className='news-grid';
+  el.innerHTML=items.slice(0,n).map(item=>{
+    const img=getImg(item,FB[cat]);
+    const desc=strip(item.description).substring(0,85);
+    return `<a href="${item.link||'#'}" target="_blank" rel="noopener" class="news-card">
+      <img src="${img}" alt="" loading="lazy" onerror="this.src='${FB[cat]}'">
+      <div class="news-content">
+        <div class="news-source">${item._src||''}</div>
+        <h3>${item.title||''}</h3>
+        <p>${desc||'อ่านข่าวเพิ่มเติม...'}</p>
+        <div class="news-time"><i class="fas fa-clock" style="font-size:0.68rem;"></i> ${relTime(item.pubDate)}</div>
+      </div></a>`;
+  }).join('');
+}
+
+function renderTrending(items){
+  const el=document.getElementById('trending-list');
+  if(!items||!items.length){el.innerHTML='';return;}
+  el.innerHTML=items.slice(0,7).map((item,i)=>`
+    <a href="${item.link||'#'}" target="_blank" rel="noopener" class="trending-item">
+      <div class="t-num">${i+1}</div>
+      <div class="t-title">${item.title||''}</div>
+    </a>`).join('');
+}
+
+function updateTicker(items){
+  const el=document.getElementById('tickerScroll');
+  if(!items||!items.length) return;
+  const t=items.slice(0,8).map(i=>`<span>${i.title||''}</span>`).join('');
+  el.innerHTML=t+t;
+}
+
+async function loadWeather(){
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=13.75&longitude=100.52&current_weather=true&hourly=relativehumidity_2m&timezone=Asia%2FBangkok');
+    const d=await r.json();
+    const cw=d.current_weather;
+    const icons={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',61:'🌦️',80:'🌧️',95:'⛈️'};
+    const descs={0:'แดดจ้า',1:'มีเมฆบางส่วน',2:'มีเมฆ',3:'ครึ้ม',45:'หมอก',61:'ฝนเล็กน้อย',80:'ฝนตก',95:'พายุฝน'};
+    const wc=cw.weathercode;
+    document.getElementById('wTemp').textContent=Math.round(cw.temperature)+'°C';
+    document.getElementById('wDesc').textContent=(descs[wc]||'สภาพอากาศปกติ')+' • '+(cw.windspeed||0)+' km/h';
+    document.getElementById('wIcon').textContent=icons[wc]||'🌡️';
+    if(d.hourly&&d.hourly.relativehumidity_2m)
+      document.getElementById('wHum').textContent='💧 ความชื้น '+d.hourly.relativehumidity_2m[0]+'%';
+  }catch(e){document.getElementById('wDesc').textContent='ไม่สามารถโหลดอากาศได้';}
+}
+
+async function loadVideos(){
+  const el=document.getElementById('video-news');
+  const vids=[];
+  for(const ch of YT){
+    try{
+      const url=`https://www.youtube.com/feeds/videos.xml?channel_id=${ch.id}`;
+      const r=await fetch(RSS+encodeURIComponent(url));
+      const d=await r.json();
+      if(d.status==='ok'&&d.items) d.items.slice(0,2).forEach(i=>{i._src=ch.name;vids.push(i);});
+    }catch(e){}
+  }
+  if(!vids.length){el.innerHTML=`<div class="error-msg">ไม่สามารถโหลดวีดีโอได้</div>`;return;}
+  el.innerHTML=vids.slice(0,4).map(item=>{
+    const thumb=getImg(item,FB.video);
+    return `<a href="${item.link||'#'}" target="_blank" rel="noopener" class="video-card">
+      <div class="video-thumb">
+        <img src="${thumb}" alt="" loading="lazy" onerror="this.src='${FB.video}'">
+        <div class="yt-badge"><i class="fab fa-youtube"></i> ${item._src}</div>
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="news-content">
+        <div class="news-source">${item._src}</div>
+        <h3 style="-webkit-line-clamp:2;">${item.title||''}</h3>
+        <div class="news-time"><i class="fas fa-clock" style="font-size:0.68rem;"></i> ${relTime(item.pubDate)}</div>
+      </div></a>`;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', async()=>{
+  document.getElementById('menuToggle')?.addEventListener('click',()=>{
+    document.getElementById('mobileNav').classList.toggle('active');
+  });
+  document.querySelectorAll('.mobile-nav a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('mobileNav').classList.remove('active'));
+  });
+
+  /* AdSense */
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+
+  loadWeather();
+  loadVideos();
+
+  const [gen,eco,tech,sport,ent]=await Promise.all([
+    fetchFeeds(FEEDS.general),
+    fetchFeeds(FEEDS.economy),
+    fetchFeeds(FEEDS.tech),
+    fetchFeeds(FEEDS.sport),
+    fetchFeeds(FEEDS.entertain),
+  ]);
+
+  renderGrid(gen,   'general-news',  'general');
+  renderGrid(eco,   'economy-news',  'economy');
+  renderGrid(tech,  'tech-news',     'tech');
+  renderGrid(sport, 'sport-news',    'sport');
+  renderGrid(ent,   'entertain-news','entertain');
+
+  const all=[...gen,...eco,...tech,...sport,...ent];
+  all.sort((a,b)=>new Date(b.pubDate||0)-new Date(a.pubDate||0));
+  renderTrending(all);
+  updateTicker(all);
+});
+</script>
+<!-- ARTICLE_LIST_START -->
+<div style="background:var(--card,#fff);border-radius:16px;padding:1.25rem;box-shadow:0 4px 12px rgba(30,64,175,0.06);margin-top:1rem;">
+  <h2 style="color:var(--primary,#1e40af);font-size:1.1rem;margin:0 0 1rem;">
+    <i class="fas fa-list-ul"></i> บทความล่าสุด (8 บทความ)
+  </h2>
+  
+  <a href="politics_1774689328.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1620730750544-78e25389d973?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODkzMzF8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — ประชานิยมและการมีส่วนร่วมของประชาชน: วิธีการและผลกระทบต่อการเลือกตั้ง" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — ประชานิยมและการมีส่วนร่วมของประชาชน: วิธีการและผลกระทบต่อการเลือกตั้ง
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774689239.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1770129157654-951b8b289838?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODkyNDF8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — บทบาทของผู้นำทางการเมืองในวันเลือกตั้ง: การรณรงค์และการสื่อสารกับประชาชน" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — บทบาทของผู้นำทางการเมืองในวันเลือกตั้ง: การรณรงค์และการสื่อสารกับประชาชน
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774689145.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1561229817-1a1f494b9968?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODkxNDh8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — ความสำคัญของการมีส่วนร่วมในกระบวนการประชาธิปไตย: แนวทางในการสร้างความเข้าใจ" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — ความสำคัญของการมีส่วนร่วมในกระบวนการประชาธิปไตย: แนวทางในการสร้างความเข้าใจ
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774689083.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1701964473421-204a80be7099?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODkwODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การมีส่วนร่วมทางการเมืองของประชาชน: กิจกรรมและกลุ่มต่างๆ ในสังคมไทย" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การมีส่วนร่วมทางการเมืองของประชาชน: กิจกรรมและกลุ่มต่างๆ ในสังคมไทย
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774689005.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1571631097639-390461963315?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODkwMDh8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การวิเคราะห์ผลการเลือกตั้งในประเทศไทย: ข้อมูลเชิงลึกและสถิติ" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การวิเคราะห์ผลการเลือกตั้งในประเทศไทย: ข้อมูลเชิงลึกและสถิติ
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774688917.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1591454162837-b50552ebec8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODg5MjB8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — ผลกระทบของการเลือกตั้งต่อการเมืองไทย: ประโยชน์และข้อดี" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — ผลกระทบของการเลือกตั้งต่อการเมืองไทย: ประโยชน์และข้อดี
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774688858.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1506905760138-9e8f7f36bdd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODg4NjB8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การมีส่วนร่วมของประชาชนในการเลือกตั้ง: วิธีการลงคะแนนเสียง" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การมีส่วนร่วมของประชาชนในการเลือกตั้ง: วิธีการลงคะแนนเสียง
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+  <a href="politics_1774688781.html" style="display:flex;gap:0.85rem;align-items:center;padding:0.75rem;
+     background:var(--card,#fff);border-radius:10px;margin-bottom:0.5rem;
+     text-decoration:none;color:inherit;border:1px solid var(--border,#e0e0e0);
+     transition:box-shadow 0.2s;"
+     onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'"
+     onmouseout="this.style.boxShadow='none'">
+    <img src="https://images.unsplash.com/photo-1592371251171-7af634962bdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ2ODg3ODR8&ixlib=rb-4.1.0&q=80&w=1080" alt="การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การเลือกตั้งในประเทศไทย: ข้อมูลเบื้องต้นและประวัติศาสตร์" style="width:100px;height:68px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:0.72rem;color:var(--muted,#64748b);margin-bottom:0.25rem;">
+        <i class="far fa-calendar-alt"></i> 28/03/2026
+      </div>
+      <h3 style="margin:0;font-size:0.92rem;line-height:1.4;font-weight:600;
+         overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">
+        การเมืองไทย: การเลือกตั้งและการมีส่วนร่วมของประชาชน — การเลือกตั้งในประเทศไทย: ข้อมูลเบื้องต้นและประวัติศาสตร์
+      </h3>
+    </div>
+    <i class="fas fa-chevron-right" style="color:var(--muted,#94a3b8);font-size:0.75rem;flex-shrink:0;"></i>
+  </a>
+</div>
+<!-- ARTICLE_LIST_END -->
+
+
 </body>
 </html>
