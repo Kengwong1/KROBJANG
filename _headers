@@ -1,0 +1,14 @@
+# ============================================
+# Vercel _headers — Cache control for speed
+# ============================================
+/style.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+/nav.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/*.html
+  Cache-Control: public, max-age=3600, stale-while-revalidate=600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
