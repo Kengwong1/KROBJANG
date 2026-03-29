@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://krobjang.vercel.app/booking.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/travel_1774784003.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/travel_1774783412.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/travel_1774782851.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/travel_1774782312.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://krobjang.vercel.app/travel_1774781439.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://krobjang.vercel.app/news.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
@@ -37,30 +73,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://krobjang.vercel.app/travel_1774783412.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/travel_1774782851.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/travel_1774782312.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/travel_1774781439.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://krobjang.vercel.app/food.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
@@ -86,12 +98,6 @@
   </url>
   <url>
     <loc>https://krobjang.vercel.app/finance.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://krobjang.vercel.app/booking.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
