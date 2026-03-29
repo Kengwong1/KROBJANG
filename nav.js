@@ -50,17 +50,30 @@ var HTML=`
 <a href="booking.html" data-page="booking"><i class="fas fa-umbrella-beach" style="color:#45B7D1;"></i> ท่องเที่ยว</a>
 <a href="contact.html" data-page="contact"><i class="fas fa-headset" style="color:#a78bfa;"></i> ติดต่อเรา</a>
 </div>
+</nav>
+<nav class="bottom-nav" id="bottomNav">
+<div class="bottom-nav-inner">
+<a href="index.html" data-page="index"><i class="fas fa-home"></i>หน้าแรก</a>
+<a href="news.html" data-page="news"><i class="fas fa-bolt"></i>ข่าว</a>
+<a href="horoscope.html" data-page="horoscope"><i class="fas fa-star"></i>ดวง</a>
+<a href="lotto.html" data-page="lotto"><i class="fas fa-ticket-alt"></i>หวย</a>
+<a href="food.html" data-page="food"><i class="fas fa-utensils"></i>อาหาร</a>
+</div>
 </nav>`;
 var s=document.createElement('style');s.textContent=CSS;document.head.appendChild(s);
 var w=document.createElement('div');w.innerHTML=HTML;var r=document.body.firstChild;
 while(w.firstChild){document.body.insertBefore(w.firstChild,r);}
 var page=location.pathname.split('/').pop().replace('.html','')||'index';
-document.querySelectorAll('nav.site-main-nav .nav-wrap a[data-page]').forEach(function(a){
+document.querySelectorAll('nav.site-main-nav .nav-wrap a[data-page], nav.bottom-nav a[data-page]').forEach(function(a){
 if(a.dataset.page===page)a.classList.add('active');});
 if(!document.querySelector('nav.site-main-nav .nav-wrap a.active')){
 var cat=page.split('_')[0];
 var m=document.querySelector('nav.site-main-nav .nav-wrap a[data-page="'+cat+'"]');
 if(m)m.classList.add('active');}
+if(!document.querySelector('nav.bottom-nav a.active')){
+var cat2=page.split('_')[0];
+var m2=document.querySelector('nav.bottom-nav a[data-page="'+cat2+'"]');
+if(m2)m2.classList.add('active');}
 var toggle=document.getElementById('navToggle');
 var nav=document.getElementById('mainNav');
 var overlay=document.getElementById('navOverlay');
