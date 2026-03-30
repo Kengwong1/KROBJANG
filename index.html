@@ -31,8 +31,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068902667667616" crossorigin="anonymous"></script>
+
+  <style>
+    /* ─── News Cards ─────────────────────────────────── */
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: #e2e8f0;
+    }
+    .news-card img[src=""],
+    .news-card img:not([src]) {
+      display: none;
+    }
+    .news-card-placeholder {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #94a3b8;
+    }
+    /* ─── Footer สีจาก style.css (background: #1a1040) ─── */
+    /* ─── Skeleton loader ────────────────────────────── */
+    .skeleton {
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 8px;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-card {
+      background: var(--card, #fff);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border, #e2e8f0);
+    }
+    .skeleton-img  { height: 180px; }
+    .skeleton-line { height: 14px; margin: 12px 12px 6px; }
+    .skeleton-line.short { width: 60%; }
+    .skeleton-line.long  { width: 90%; }
+  </style>
+
+<style id="footer-fix">
+footer {
+  background: #1a1040 !important;
+  color: rgba(255,255,255,0.85) !important;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  font-size: 0.88rem;
+  margin-top: 2rem;
+}
+footer a {
+  color: rgba(255,255,255,0.7) !important;
+  text-decoration: none;
+}
+footer a:hover { color: #fff !important; }
+</style>
 </head>
 <body>
 
@@ -42,7 +105,7 @@
   <div class="ticker-inner">
     <div class="ticker-label"><i class="fas fa-bullhorn" style="margin-right:5px;"></i> อัปเดตล่าสุด</div>
     <div class="ticker-text">
-      <div class="ticker-scroll">
+      <div class="ticker-scroll" id="ticker-dynamic">
         <span>ยินดีต้อนรับเข้าสู่ ครบจังดอทคอม แหล่งรวมข่าวสารและสาระความรู้</span>
         <span>ติดตามผลสลากกินแบ่งรัฐบาล รวดเร็ว แม่นยำ ทันใจ</span>
         <span>อ่านดวงรายวัน สีมงคล กราฟชีวิต เช็กเลยที่นี่</span>
@@ -54,7 +117,7 @@
 
 <div class="container">
   <div class="content-area">
-    
+
     <div class="slogan-wrapper">
       <div class="slogan-capsule">
         <span class="slogan-main"><i class="fas fa-sparkles"></i> ครบจังดอทคอม</span>
@@ -94,50 +157,19 @@
         <span class="h2-left"><i class="fas fa-fire" style="color:#ef4444;"></i> บทความอัปเดตล่าสุด</span>
         <a href="news.html" class="see-all">ดูทั้งหมด <i class="fas fa-chevron-right"></i></a>
       </h2>
-      <div class="news-grid">
-        <a href="#" class="news-card">
-          <img src="https://placehold.co/400x250/f1f5f9/94a3b8?text=Image+1" alt="ภาพข่าว" loading="lazy">
-          <div class="news-content">
-            <span class="news-source" style="color:#FF6B6B;">ข่าวด่วน</span>
-            <h3>หัวข้อข่าวตัวอย่างที่น่าสนใจ อัปเดตสถานการณ์รายวัน</h3>
-            <p>รายละเอียดเนื้อหาข่าวเบื้องต้นที่ดึงมาแสดงผลในหน้าแรก เพื่อให้ผู้อ่านสนใจคลิกเข้าไปอ่านรายละเอียดเพิ่มเติม...</p>
-            <span class="news-time"><i class="far fa-clock"></i> 2 ชั่วโมงที่แล้ว</span>
-          </div>
-        </a>
-        
-        <a href="#" class="news-card">
-          <img src="https://placehold.co/400x250/f1f5f9/94a3b8?text=Image+2" alt="ภาพข่าว" loading="lazy">
-          <div class="news-content">
-            <span class="news-source" style="color:#2EC4B6;">AI & เทคโนโลยี</span>
-            <h3>สรุปฟีเจอร์ใหม่ โมเดล AI สุดล้ำที่เพิ่งเปิดตัววันนี้</h3>
-            <p>เจาะลึกความสามารถใหม่ๆ ที่นักพัฒนาและผู้ใช้งานทั่วไปควรรู้ พร้อมวิธีนำไปประยุกต์ใช้งานจริง...</p>
-            <span class="news-time"><i class="far fa-clock"></i> 5 ชั่วโมงที่แล้ว</span>
-          </div>
-        </a>
 
-        <a href="#" class="news-card">
-          <img src="https://placehold.co/400x250/f1f5f9/94a3b8?text=Image+3" alt="ภาพข่าว" loading="lazy">
-          <div class="news-content">
-            <span class="news-source" style="color:#c084fc;">ดูดวง</span>
-            <h3>จัดอันดับ 3 ราศี ดวงการเงินพุ่งแรง ปลายเดือนนี้รับทรัพย์</h3>
-            <p>เช็กดวงชะตาราศีของคุณ ใครมีเกณฑ์จะได้โชคลาภก้อนโต พร้อมเคล็ดลับเสริมดวงให้ปังยิ่งขึ้น...</p>
-            <span class="news-time"><i class="far fa-clock"></i> 1 วันที่แล้ว</span>
-          </div>
-        </a>
-        
-        <a href="#" class="news-card">
-          <img src="https://placehold.co/400x250/f1f5f9/94a3b8?text=Image+4" alt="ภาพข่าว" loading="lazy">
-          <div class="news-content">
-            <span class="news-source" style="color:#F59E0B;">การเงิน</span>
-            <h3>ทิศทางราคาทองคำวันนี้ นักลงทุนควรจับตาแนวรับแนวต้านไหน</h3>
-            <p>วิเคราะห์แนวโน้มตลาดทองคำและปัจจัยที่ส่งผลกระทบต่อราคา เพื่อใช้ประกอบการตัดสินใจลงทุน...</p>
-            <span class="news-time"><i class="far fa-clock"></i> 1 วันที่แล้ว</span>
-          </div>
-        </a>
+      <!-- Skeleton แสดงระหว่างโหลด -->
+      <div class="news-grid" id="news-grid">
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line long"></div><div class="skeleton skeleton-line short"></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line long"></div><div class="skeleton skeleton-line short"></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line long"></div><div class="skeleton skeleton-line short"></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line long"></div><div class="skeleton skeleton-line short"></div></div>
       </div>
     </div>
 
-  </div> <aside class="sidebar">
+  </div><!-- /content-area -->
+
+  <aside class="sidebar">
     <div class="ad-section">
       <h2 class="support-site"><i class="fas fa-ad"></i> สนับสนุนเว็บไซต์</h2>
       <div class="adsense-container">
@@ -147,7 +179,7 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
-    
+
     <div class="ad-section">
       <h2 class="support-us"><i class="fas fa-heart"></i> สนับสนุนเรา</h2>
       <div class="support-card">
@@ -162,10 +194,112 @@
       </div>
     </div>
   </aside>
-  
-</div> <footer>
+
+</div><!-- /container -->
+
+<footer>
   <p>© 2026 ครบจังดอทคอม | <a href="contact.html">ติดต่อเรา</a> | <a href="#">นโยบายความเป็นส่วนตัว</a></p>
 </footer>
+
+<script>
+/* ══════════════════════════════════════════════════
+   โหลดบทความจริงจาก search-index.json
+   ถ้าไม่มี json → fallback อ่าน HTML ไฟล์ล่าสุด
+   ══════════════════════════════════════════════════ */
+
+const CAT_COLOR = {
+  health:"#10B981", finance:"#F59E0B", technology:"#06b6d4",
+  lifestyle:"#ec4899", food:"#f59e0b", travel:"#0e7490",
+  sport:"#E76F51", horoscope:"#c084fc", ghost:"#374151",
+  entertainment:"#be185d", comedy:"#ca8a04", politics:"#1e3a8a",
+  anime:"#8b5cf6", movie:"#6d28d9", music:"#a855f7",
+  beauty:"#f43f5e", pet:"#10B981", education:"#1e40af",
+  business:"#1e3a5f", diy:"#92400e", car:"#1e40af",
+  gaming:"#ec4899", law:"#1e3a8a", mystery:"#374151",
+};
+const CAT_LABEL = {
+  health:"สุขภาพ", finance:"การเงิน", technology:"เทคโนโลยี",
+  lifestyle:"ไลฟ์สไตล์", food:"อาหาร", travel:"ท่องเที่ยว",
+  sport:"กีฬา", horoscope:"ดูดวง", ghost:"ผีสาง",
+  entertainment:"บันเทิง", comedy:"ตลก", politics:"การเมือง",
+  anime:"อนิเมะ", movie:"หนัง", music:"เพลง",
+  beauty:"ความงาม", pet:"สัตว์เลี้ยง", education:"การศึกษา",
+  business:"ธุรกิจ", diy:"DIY", car:"รถยนต์",
+  gaming:"เกม", law:"กฎหมาย", mystery:"ลึกลับ",
+};
+
+function timeAgo(mtime) {
+  if (!mtime) return "";
+  const diff = Math.floor((Date.now() / 1000) - mtime);
+  if (diff < 3600)  return Math.floor(diff/60) + " นาทีที่แล้ว";
+  if (diff < 86400) return Math.floor(diff/3600) + " ชั่วโมงที่แล้ว";
+  return Math.floor(diff/86400) + " วันที่แล้ว";
+}
+
+function buildCard(art) {
+  const cat   = (art.cat || art.file?.split("_")[0] || "").toLowerCase();
+  const color = CAT_COLOR[cat] || "#1e40af";
+  const label = CAT_LABEL[cat] || cat;
+  const time  = art.mtime ? `<span class="news-time"><i class="far fa-clock"></i> ${timeAgo(art.mtime)}</span>` : "";
+  const imgSrc = art.img || "";
+  const imgHtml = imgSrc
+    ? `<img src="${imgSrc}" alt="${art.title}" loading="lazy" onerror="this.parentNode.querySelector('.news-card-placeholder').style.display='flex';this.remove();">
+       <div class="news-card-placeholder" style="display:none;">📰</div>`
+    : `<div class="news-card-placeholder">📰</div>`;
+
+  return `
+  <a href="${art.file || art.url}" class="news-card">
+    ${imgHtml}
+    <div class="news-content">
+      <span class="news-source" style="color:${color};">${label}</span>
+      <h3>${art.title}</h3>
+      <p>${(art.snippet || art.desc || "").slice(0,120)}...</p>
+      ${time}
+    </div>
+  </a>`;
+}
+
+async function loadNews() {
+  const grid = document.getElementById("news-grid");
+  try {
+    // ลองโหลด search-index.json ก่อน
+    const res = await fetch("search-index.json?t=" + Date.now());
+    if (!res.ok) throw new Error("no index");
+    const data = await res.json();
+
+    // เรียงจากใหม่ → เก่า แล้วเอา 4 อันแรก
+    const latest = data
+      .filter(a => a.title)
+      .sort((a,b) => (b.mtime||0) - (a.mtime||0))
+      .slice(0, 4);
+
+    if (latest.length === 0) throw new Error("empty");
+
+    grid.innerHTML = latest.map(buildCard).join("");
+
+    // อัปเดต ticker ด้วยหัวข้อบทความจริง
+    const ticker = document.getElementById("ticker-dynamic");
+    if (ticker && latest.length > 0) {
+      const extra = latest.map(a => `<span>${a.title}</span>`).join("");
+      ticker.innerHTML += extra;
+    }
+
+  } catch(e) {
+    // fallback: placeholder สวยๆ แทน placehold.co
+    grid.innerHTML = `
+      <div class="news-card" style="pointer-events:none;">
+        <div class="news-card-placeholder">📰</div>
+        <div class="news-content">
+          <span class="news-source" style="color:#64748b;">กำลังโหลด...</span>
+          <h3>ยังไม่มีบทความ</h3>
+          <p>รัน python agent_writer.py เพื่อสร้างบทความแรก</p>
+        </div>
+      </div>`.repeat(4);
+  }
+}
+
+loadNews();
+</script>
 
 </body>
 </html>

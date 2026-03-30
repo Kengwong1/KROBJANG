@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <!-- พื้นหลัง gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ca8a04" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#ca8a04cc"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- พื้นหลัง -->
+  <rect width="800" height="450" fill="#f8fafc"/>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- แถบสีซ้าย -->
+  <rect x="0" y="0" width="10" height="450" fill="url(#bar)"/>
+  
+  <!-- วงกลมตกแต่ง -->
+  <circle cx="680" cy="80" r="120" fill="#ca8a04" fill-opacity="0.06"/>
+  <circle cx="720" cy="380" r="80" fill="#ca8a04" fill-opacity="0.08"/>
+  <circle cx="100" cy="380" r="60" fill="#ca8a04" fill-opacity="0.05"/>
+  
+  <!-- กล่องไอคอน -->
+  <rect x="60" y="120" width="80" height="80" rx="16" fill="#ca8a04" fill-opacity="0.15"/>
+  <rect x="72" y="132" width="56" height="8" rx="4" fill="#ca8a04" fill-opacity="0.6"/>
+  <rect x="72" y="148" width="44" height="6" rx="3" fill="#ca8a04" fill-opacity="0.4"/>
+  <rect x="72" y="162" width="50" height="6" rx="3" fill="#ca8a04" fill-opacity="0.4"/>
+  <rect x="72" y="176" width="38" height="6" rx="3" fill="#ca8a04" fill-opacity="0.3"/>
+  
+  <!-- Badge หมวดหมู่ -->
+  <rect x="60" y="260" width="62" height="32" rx="16" fill="#ca8a04"/>
+  <text x="91" y="281" font-family="sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">ตลก</text>
+  
+  <!-- หัวข้อบทความ -->
+  <text x="60" y="330" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1e293b">วิธีการสร้างความสนุกสน</text>
+  <text x="60" y="368" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1e293b">านด้วยการเล่าเรื่องต...</text>
+  
+  <!-- ชื่อเว็บ -->
+  <text x="60" y="420" font-family="sans-serif" font-size="16" fill="#ca8a04" font-weight="600">ครบจังดอทคอม</text>
+  
+  <!-- เส้นแบ่ง -->
+  <line x1="60" y1="300" x2="740" y2="300" stroke="#ca8a04" stroke-opacity="0.15" stroke-width="1"/>
+</svg>

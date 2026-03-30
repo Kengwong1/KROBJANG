@@ -35,8 +35,8 @@
   <text x="112" y="281" font-family="sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">สุขภาพ</text>
   
   <!-- หัวข้อบทความ -->
-  <text x="60" y="330" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1e293b">เทคนิคการกินเพื่อเสริม</text>
-  <text x="60" y="368" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1e293b">สร้างความแข็งแรงของเ...</text>
+  <text x="60" y="330" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1e293b">สุขภาพจิตกับการใช้ชีวิ</text>
+  <text x="60" y="368" font-family="sans-serif" font-size="28" font-weight="bold" fill="#1e293b">ตประจำวัน: เทคนิคในก...</text>
   
   <!-- ชื่อเว็บ -->
   <text x="60" y="420" font-family="sans-serif" font-size="16" fill="#10B981" font-weight="600">ครบจังดอทคอม</text>
