@@ -57,7 +57,22 @@
       font-size: 2.5rem;
       color: #94a3b8;
     }
-    /* ─── Footer สีจาก style.css (background: #1a1040) ─── */
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      background: #1a1040 !important;   /* เดียวกับ navbar */
+      color: rgba(255,255,255,0.85) !important;
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-size: 0.88rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: rgba(255,255,255,0.7) !important;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #fff !important;
+    }
     /* ─── Skeleton loader ────────────────────────────── */
     .skeleton {
       background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
@@ -80,22 +95,6 @@
     .skeleton-line.short { width: 60%; }
     .skeleton-line.long  { width: 90%; }
   </style>
-
-<style id="footer-fix">
-footer {
-  background: #1a1040 !important;
-  color: rgba(255,255,255,0.85) !important;
-  text-align: center;
-  padding: 1.25rem 1rem;
-  font-size: 0.88rem;
-  margin-top: 2rem;
-}
-footer a {
-  color: rgba(255,255,255,0.7) !important;
-  text-decoration: none;
-}
-footer a:hover { color: #fff !important; }
-</style>
 </head>
 <body>
 
@@ -203,8 +202,9 @@ footer a:hover { color: #fff !important; }
 
 <script>
 /* ══════════════════════════════════════════════════
-   โหลดบทความจริงจาก search-index.json
-   ถ้าไม่มี json → fallback อ่าน HTML ไฟล์ล่าสุด
+   โหลดบทความ — รองรับทั้ง file:// และ http://
+   1) ถ้ามี EMBEDDED_ARTICLES (inject โดย agent) → ใช้ทันที (ไม่ต้อง fetch)
+   2) ถ้าเปิดผ่าน http → fetch search-index.json
    ══════════════════════════════════════════════════ */
 
 const CAT_COLOR = {
@@ -237,65 +237,76 @@ function timeAgo(mtime) {
 }
 
 function buildCard(art) {
-  const cat   = (art.cat || art.file?.split("_")[0] || "").toLowerCase();
+  const cat   = (art.cat || (art.file||"").split("_")[0] || "").toLowerCase();
   const color = CAT_COLOR[cat] || "#1e40af";
   const label = CAT_LABEL[cat] || cat;
   const time  = art.mtime ? `<span class="news-time"><i class="far fa-clock"></i> ${timeAgo(art.mtime)}</span>` : "";
   const imgSrc = art.img || "";
   const imgHtml = imgSrc
-    ? `<img src="${imgSrc}" alt="${art.title}" loading="lazy" onerror="this.parentNode.querySelector('.news-card-placeholder').style.display='flex';this.remove();">
-       <div class="news-card-placeholder" style="display:none;">📰</div>`
-    : `<div class="news-card-placeholder">📰</div>`;
+    ? `<img src="${imgSrc}" alt="${art.title||''}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+       <div class="news-card-placeholder" style="display:none;width:100%;height:180px;background:#e2e8f0;align-items:center;justify-content:center;font-size:2rem;color:#94a3b8;">🗞</div>`
+    : `<div class="news-card-placeholder" style="width:100%;height:180px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#94a3b8;">🗞</div>`;
 
   return `
-  <a href="${art.file || art.url}" class="news-card">
+  <a href="${art.file || art.url || '#'}" class="news-card">
     ${imgHtml}
     <div class="news-content">
       <span class="news-source" style="color:${color};">${label}</span>
-      <h3>${art.title}</h3>
+      <h3>${art.title||''}</h3>
       <p>${(art.snippet || art.desc || "").slice(0,120)}...</p>
       ${time}
     </div>
   </a>`;
 }
 
+function renderArticles(data) {
+  const grid = document.getElementById("news-grid");
+  const latest = data
+    .filter(a => a.title)
+    .sort((a,b) => (b.mtime||0) - (a.mtime||0))
+    .slice(0, 4);
+  if (latest.length === 0) return false;
+  grid.innerHTML = latest.map(buildCard).join("");
+  // อัปเดต ticker
+  const ticker = document.getElementById("ticker-dynamic");
+  if (ticker) ticker.innerHTML += latest.map(a => `<span>${a.title}</span>`).join("");
+  return true;
+}
+
+
+/* __EMBEDDED_ARTICLES_START__ */
+const EMBEDDED_ARTICLES = [{"file": "health_1774803899.html", "title": "เทคนิคการกินเพื่อเสริมสร้างความแข็งแรงของเส้นผม", "snippet": "สวัสดีค่ะทุกคน! วันนี้เรามาพูดถึงหัวใจสำคัญของการดูแลเส้นผมกันนะคะ นั่นก็คือ 'เทคนิคการกินเพื่อเสริมสร้างความแข็งแรงของเส้นผม' นั่นเอง เราจะมาดูกันว", "img": "images/thumbs/health_1774803899.svg", "cat": "health", "mtime": 1774852867}, {"file": "health_1774803221.html", "title": "สุขภาพจิตกับการใช้ชีวิตประจำวัน: เทคนิคในการรักษาสุขภาพจิตให้ดีขึ้น", "snippet": "สวัสดีค่ะทุกคน! วันนี้เรามาพูดถึงเรื่องสำคัญที่ไม่ควรมองข้าม นั่นก็คือ 'สุขภาพจิต' ซึ่งมีผลต่อการใช้ชีวิตประจำวันของเราอย่างมาก บทความนี้จะพาทุกคนไป", "img": "https://images.unsplash.com/photo-1545775492-894df40cd814?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDMyMjZ8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}, {"file": "health_1774803570.html", "title": "อาหารธรรมชาติที่ช่วยบำรุงเส้นผมให้ดูสุขภาพดี", "snippet": "สวัสดีค่ะทุกคน! วันนี้เราจะมาพูดถึงอาหารธรรมชาติที่ช่วยบำรุงเส้นผมให้ดูสุขภาพดี ซึ่งแน่นอนว่าหลายๆ คนอาจจะเคยประสบปัญหาเกี่ยวกับเส้นผม เช่น ผมแห้งกร", "img": "https://images.unsplash.com/photo-1714423240476-b07bbb2cc37c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDM1NzV8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}, {"file": "health_1774802649.html", "title": "การนอนหลับที่มีคุณภาพ: วิธีการสร้างสุขภาพที่ดีจากการนอนหลับ", "snippet": "การนอนหลับที่มีคุณภาพเป็นสิ่งที่สำคัญต่อสุขภาพที่ดีของเรา เนื่องจากการนอนที่ไม่เพียงพอหรือคุณภาพการนอนไม่ดีอาจส่งผลกระทบต่อระบบประสาทและร่างกาย ทำให", "img": "https://images.unsplash.com/photo-1688125289116-2c0e54d77e9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDI2NTN8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}, {"file": "health_1774803161.html", "title": "วิธีเลือกอาหารเพื่อสุขภาพสำหรับป้องกันผม หงอกก่อนวัย", "snippet": "วิธีเลือกอาหารเพื่อสุขภาพสำหรับป้องกันผม หงอกก่อนวัย\nสวัสดีค่ะ! คุณเคยประสบปัญหาผมหงอกก่อนวัยหรือไม่? ไม่ต้องห่วงนะคะ เพราะบทความนี้จะช่วยให้คุณเลือก", "img": "https://images.unsplash.com/photo-1644204317919-a0185a4997f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDMxNjZ8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}, {"file": "health_1774801735.html", "title": "ออกกำลังกายอย่างไรให้ได้ผล: เทคนิคการออกกำลังกายเพื่อสุขภาพที่แข็งแรง", "snippet": "สวัสดีค่ะทุกคน! วันนี้เรามาพูดถึงเรื่องสำคัญที่ไม่ควรมองข้าม นั่นคือ 'การออกกำลังกาย' ที่จะช่วยให้เรามีสุขภาพที่แข็งแรงและมีชีวิตที่ยืนยาวมากยิ่งขึ้", "img": "https://images.unsplash.com/photo-1700784795176-7ff886439d79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDE3NDB8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}, {"file": "health_1774802406.html", "title": "อาหารที่ช่วยเปลี่ยนผมขาวให้กลับมาดำเงางาม", "snippet": "สวัสดีค่ะทุกคน! วันนี้เรามาพูดถึงเรื่องที่หลายๆ คนอาจจะสนใจกัน นั่นก็คือ 'อาหารที่ช่วยเปลี่ยนผมขาวให้กลับมาดำเงางาม' คุณรู้ไหมคะว่า อาหารบางชนิดสามา", "img": "https://images.unsplash.com/photo-1765914088172-6ddc065ee2de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDI0MTB8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}, {"file": "health_1774800791.html", "title": "การกินอาหารเพื่อสุขภาพ: เคล็ดลับในการเลือกอาหารที่ดีต่อร่างกาย", "snippet": "สวัสดีค่ะทุกคน! ถ้าพูดถึงเรื่องสุขภาพแล้ว การกินอาหารเป็นสิ่งที่สำคัญมากเลยนะคะ วันนี้เราจะมาพูดถึงเรื่องการกินอาหารเพื่อสุขภาพกัน ซึ่งจะช่วยให้เราไ", "img": "https://images.unsplash.com/photo-1704881986193-b4c7dfec95d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MDY1Nzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzQ4MDA3OTZ8&ixlib=rb-4.1.0&q=80&w=1080", "cat": "health", "mtime": 1774852867}];
+/* __EMBEDDED_ARTICLES_END__ */
 async function loadNews() {
   const grid = document.getElementById("news-grid");
-  try {
-    // ลองโหลด search-index.json ก่อน
-    const res = await fetch("search-index.json?t=" + Date.now());
-    if (!res.ok) throw new Error("no index");
-    const data = await res.json();
 
-    // เรียงจากใหม่ → เก่า แล้วเอา 4 อันแรก
-    const latest = data
-      .filter(a => a.title)
-      .sort((a,b) => (b.mtime||0) - (a.mtime||0))
-      .slice(0, 4);
-
-    if (latest.length === 0) throw new Error("empty");
-
-    grid.innerHTML = latest.map(buildCard).join("");
-
-    // อัปเดต ticker ด้วยหัวข้อบทความจริง
-    const ticker = document.getElementById("ticker-dynamic");
-    if (ticker && latest.length > 0) {
-      const extra = latest.map(a => `<span>${a.title}</span>`).join("");
-      ticker.innerHTML += extra;
-    }
-
-  } catch(e) {
-    // fallback: placeholder สวยๆ แทน placehold.co
-    grid.innerHTML = `
-      <div class="news-card" style="pointer-events:none;">
-        <div class="news-card-placeholder">📰</div>
-        <div class="news-content">
-          <span class="news-source" style="color:#64748b;">กำลังโหลด...</span>
-          <h3>ยังไม่มีบทความ</h3>
-          <p>รัน python agent_writer.py เพื่อสร้างบทความแรก</p>
-        </div>
-      </div>`.repeat(4);
+  // ── 1) ใช้ข้อมูลที่ embed ไว้ใน HTML โดย agent (ทำงานได้แม้ file://) ──
+  if (typeof EMBEDDED_ARTICLES !== "undefined" && EMBEDDED_ARTICLES.length > 0) {
+    if (renderArticles(EMBEDDED_ARTICLES)) return;
   }
+
+  // ── 2) ถ้าเปิดผ่าน http server → fetch search-index.json ──
+  if (location.protocol !== "file:") {
+    try {
+      const res = await fetch("search-index.json?t=" + Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        if (renderArticles(data)) return;
+      }
+    } catch(e) {}
+  }
+
+  // ── 3) fallback สวยๆ ──
+  grid.innerHTML = `
+    <div class="news-card" style="pointer-events:none;">
+      <div class="news-card-placeholder" style="height:180px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#94a3b8;">🗞</div>
+      <div class="news-content">
+        <span class="news-source" style="color:#64748b;">ยังไม่มีบทความ</span>
+        <h3>รัน python agent_writer.py เพื่อสร้างบทความแรก</h3>
+        <p>จากนั้นรัน python agent_fix_all.py เพื่ออัปเดตหน้าแรก</p>
+      </div>
+    </div>`.repeat(4);
 }
 
 loadNews();
