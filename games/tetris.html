@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tetris Game</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useCallback, useRef } = React;
+
+    const BOARD_WIDTH = 10;
+    const BOARD_HEIGHT = 20;
+    const CELL_SIZE = 30;
+
+    const SHAPES = {
+      I: [[1, 1, 1, 1]],
+      O: [[1, 1], [1, 1]],
+      T: [[0, 1, 0], [1, 1, 1]],
+      S: [[0, 1, 1], [1, 1, 0]],
+      Z: [[1, 1, 0], [0, 1, 1]],
+      J: [[1, 0, 0], [1, 1, 1]],
+      L: [[0, 0, 1], [1, 1, 1]]
+    };
+
+    const COLORS = {
+      I: '#00f0f0',
+      O: '#f0f000',
+      T: '#a000f0',
+      S: '#00f000',
+      Z: '#f00000',
+      J: '#0000f0',
+      L: '#f0a000'
+    };
+
+    // Sound Engine
+    const useSound = () => {
+      const audioContextRef = useRef(null);
+
+      const playTone = useCallback((frequency = 440, duration = 0.1, type = 'square') => {
+        if (typeof window === 'undefined') return;
+        if (!audioContextRef.current) {
+          audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        const ctx = audioContextRef.current;
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        oscillator.type = type;
+        oscillator.frequency.value = frequency;
+        gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        oscillator.start();
+        oscillator.stop(ctx.currentTime + duration);
+      }, []);
+
+      return { playTone };
+    };
+
+    const createEmptyBoard = () =>
+      Array(BOARD_HEIGHT).fill(null).map(() => Array(BOARD_WIDTH).fill(0));
+
+    const TetrisGame = () => {
+      const [board, setBoard] = useState(createEmptyBoard());
+      const [currentPiece, setCurrentPiece] = useState(null);
+      const [currentPos, setCurrentPos] = useState({ x: 0, y: 0 });
+      const [score, setScore] = useState(0);
+      const [gameOver, setGameOver] = useState(false);
+      const [isPaused, setIsPaused] = useState(false);
+      const [level, setLevel] = useState(1);
+      const [lines, setLines] = useState(0);
+      const [lineClearEffect, setLineClearEffect] = useState(false);
+
+      const { playTone } = useSound();
+
+      const getRandomPiece = () => {
+        const shapes = Object.keys(SHAPES);
+        const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+        return { shape: SHAPES[randomShape], color: randomShape };
+      };
+
+      const checkCollision = (piece, pos, newBoard = board) => {
+        for (let y = 0; y < piece.shape.length; y++) {
+          for (let x = 0; x < piece.shape[y].length; x++) {
+            if (piece.shape[y][x]) {
+              const newX = pos.x + x;
+              const newY = pos.y + y;
+              if (newX < 0 || newX >= BOARD_WIDTH || newY >= BOARD_HEIGHT) return true;
+              if (newY >= 0 && newBoard[newY][newX]) return true;
+            }
+          }
+        }
+        return false;
+      };
+
+      const mergePiece = () => {
+        const newBoard = board.map(row => [...row]);
+        for (let y = 0; y < currentPiece.shape.length; y++) {
+          for (let x = 0; x < currentPiece.shape[y].length; x++) {
+            if (currentPiece.shape[y][x]) {
+              const boardY = currentPos.y + y;
+              const boardX = currentPos.x + x;
+              if (boardY >= 0) newBoard[boardY][boardX] = currentPiece.color;
+            }
+          }
+        }
+        return newBoard;
+      };
+
+      const clearLines = (newBoard) => {
+        let linesCleared = 0;
+        const clearedBoard = [];
+        for (let y = 0; y < newBoard.length; y++) {
+          if (!newBoard[y].every(cell => cell !== 0)) {
+            clearedBoard.push(newBoard[y]);
+          } else {
+            linesCleared++;
+          }
+        }
+        while (clearedBoard.length < BOARD_HEIGHT) {
+          clearedBoard.unshift(Array(BOARD_WIDTH).fill(0));
+        }
+        return { board: clearedBoard, linesCleared };
+      };
+
+      const rotatePiece = (piece) => {
+        const rotated = piece.shape[0].map((_, i) =>
+          piece.shape.map(row => row[i]).reverse()
+        );
+        return { ...piece, shape: rotated };
+      };
+
+      const movePiece = (dx, dy) => {
+        if (gameOver || isPaused || !currentPiece) return false;
+        const newPos = { x: currentPos.x + dx, y: currentPos.y + dy };
+        if (!checkCollision(currentPiece, newPos)) {
+          setCurrentPos(newPos);
+          playTone(200 + dx * 50, 0.05, 'sine');
+          return true;
+        }
+        return false;
+      };
+
+      const rotate = () => {
+        if (gameOver || isPaused || !currentPiece) return;
+        const rotated = rotatePiece(currentPiece);
+        if (!checkCollision(rotated, currentPos)) {
+          setCurrentPiece(rotated);
+          playTone(600, 0.08, 'triangle');
+        }
+      };
+
+      const drop = useCallback(() => {
+        if (gameOver || isPaused || !currentPiece) return;
+        if (!movePiece(0, 1)) {
+          const merged = mergePiece();
+          const { board: clearedBoard, linesCleared } = clearLines(merged);
+
+          if (linesCleared > 0) {
+            setLineClearEffect(true);
+            setTimeout(() => setLineClearEffect(false), 300);
+            playTone(800, 0.3, 'sawtooth');
+            setLines(prev => prev + linesCleared);
+            setScore(prev => prev + linesCleared * 100 * level);
+            setLevel(Math.floor((lines + linesCleared) / 10) + 1);
+          }
+          setBoard(clearedBoard);
+
+          const newPiece = getRandomPiece();
+          const startPos = { x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 };
+          if (checkCollision(newPiece, startPos, clearedBoard)) {
+            setGameOver(true);
+            playTone(100, 0.5, 'sine');
+          } else {
+            setCurrentPiece(newPiece);
+            setCurrentPos(startPos);
+          }
+        } else {
+          playTone(300, 0.03, 'sine');
+        }
+      }, [currentPiece, currentPos, board, gameOver, isPaused, level, lines, playTone]);
+
+      const hardDrop = () => {
+        if (gameOver || isPaused || !currentPiece) return;
+        let newY = currentPos.y;
+        while (!checkCollision(currentPiece, { x: currentPos.x, y: newY + 1 })) {
+          newY++;
+        }
+        setCurrentPos({ x: currentPos.x, y: newY });
+        playTone(500, 0.2, 'square');
+      };
+
+      const startGame = () => {
+        setBoard(createEmptyBoard());
+        setScore(0);
+        setLines(0);
+        setLevel(1);
+        setGameOver(false);
+        setIsPaused(false);
+        setLineClearEffect(false);
+        const newPiece = getRandomPiece();
+        setCurrentPiece(newPiece);
+        setCurrentPos({ x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 });
+        playTone(400, 0.2, 'sine');
+      };
+
+      useEffect(() => {
+        if (!currentPiece && !gameOver) startGame();
+      }, []);
+
+      useEffect(() => {
+        if (isPaused || gameOver) return;
+        const interval = setInterval(() => drop(), Math.max(100, 800 - (level - 1) * 50));
+        return () => clearInterval(interval);
+      }, [drop, level, isPaused, gameOver]);
+
+      useEffect(() => {
+        const handleKeyPress = (e) => {
+          if (gameOver || isPaused) return;
+          switch (e.key) {
+            case 'ArrowLeft': e.preventDefault(); movePiece(-1, 0); break;
+            case 'ArrowRight': e.preventDefault(); movePiece(1, 0); break;
+            case 'ArrowDown': e.preventDefault(); drop(); break;
+            case 'ArrowUp':
+            case ' ': e.preventDefault(); rotate(); break;
+            case 'Shift': e.preventDefault(); hardDrop(); break;
+          }
+        };
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
+      }, [currentPiece, currentPos, gameOver, isPaused, drop, hardDrop, rotate, movePiece]);
+
+      useEffect(() => {
+        lucide.createIcons();
+      });
+
+      const renderBoard = () => {
+        const displayBoard = board.map(row => [...row]);
+        if (currentPiece) {
+          for (let y = 0; y < currentPiece.shape.length; y++) {
+            for (let x = 0; x < currentPiece.shape[y].length; x++) {
+              if (currentPiece.shape[y][x]) {
+                const boardY = currentPos.y + y;
+                const boardX = currentPos.x + x;
+                if (boardY >= 0 && boardY < BOARD_HEIGHT && boardX >= 0 && boardX < BOARD_WIDTH) {
+                  displayBoard[boardY][boardX] = currentPiece.color;
+                }
+              }
+            }
+          }
+        }
+
+        return displayBoard.map((row, y) => (
+          <div key={y} className={`flex ${lineClearEffect && row.every(cell => cell !== 0) ? 'animate-pulse bg-yellow-400' : ''}`}>
+            {row.map((cell, x) => (
+              <div
+                key={x}
+                className="border border-gray-700"
+                style={{
+                  width: CELL_SIZE,
+                  height: CELL_SIZE,
+                  backgroundColor: cell ? COLORS[cell] : '#1a1a1a'
+                }}
+              />
+            ))}
+          </div>
+        ));
+      };
+
+      return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 to-blue-900 p-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">TETRIS</h1>
+
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="bg-black p-2 md:p-4 rounded-lg shadow-2xl">
+              {renderBoard()}
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="bg-gray-800 p-5 rounded-lg text-white text-center">
+                <div className="text-xl md:text-2xl font-bold mb-2">คะแนน</div>
+                <div className="text-3xl md:text-4xl text-yellow-400">{score}</div>
+              </div>
+
+              <div className="bg-gray-800 p-5 rounded-lg text-white">
+                <div className="text-lg md:text-xl font-bold mb-2">เลเวล: {level}</div>
+                <div className="text-lg">แถว: {lines}</div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={startGame}
+                  className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold"
+                >
+                  <i data-lucide="refresh-cw" className="w-4 h-4 md:w-5 md:h-5"></i>
+                  เริ่มใหม่
+                </button>
+
+                <button
+                  onClick={() => setIsPaused(!isPaused)}
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold"
+                >
+                  {isPaused ? <i data-lucide="play" className="w-4 h-4 md:w-5 md:h-5"></i> : <i data-lucide="pause" className="w-4 h-4 md:w-5 md:h-5"></i>}
+                  {isPaused ? 'เล่นต่อ' : 'หยุด'}
+                </button>
+              </div>
+
+              <div className="bg-gray-800 p-4 rounded-lg text-white text-xs md:text-sm">
+                <div className="font-bold mb-1">วิธีเล่น:</div>
+                <div>← → เคลื่อนที่</div>
+                <div>↑ หมุน</div>
+                <div>↓ เร่งลง</div>
+                <div>Shift ตกเร็ว</div>
+              </div>
+            </div>
+          </div>
+
+          {gameOver && (
+            <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-10">
+              <div className="bg-gray-800 p-6 md:p-8 rounded-lg text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-3">จบเกม!</h2>
+                <p className="text-xl md:text-2xl text-white mb-5">คะแนน: {score}</p>
+                <button
+                  onClick={startGame}
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-lg"
+                >
+                  เล่นอีกครั้ง
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(<TetrisGame />);
+  </script>
+</body>
+</html>

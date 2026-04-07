@@ -1,0 +1,16 @@
+{
+  "site_name": "ไอหมอก",
+  "site_url": "https://krobjang.vercel.app/",
+  "base_path": "D:\\Projects\\krubjang-site full",
+  "categories": [
+    "news",
+    "politics",
+    "business",
+    "entertainment",
+    "technology"
+  ],
+  "color_theme": "forest_green",
+  "font": "kanit",
+  "nav_style": "sidebar",
+  "created": "2026-04-07T20:13:42.462668"
+}

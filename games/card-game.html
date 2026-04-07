@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมไพ่ป๊อกเด้ง - 1 หรือ 2 ผู้เล่น</title>
+    <style>
+        body {
+            font-family: 'Sarabun', 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #8B0000 0%, #4A0000 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .game-container {
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            width: 95%;
+            max-width: 900px;
+            padding: 30px;
+            text-align: center;
+            border: 3px solid #FFD700;
+        }
+        
+        h1 {
+            margin-top: 0;
+            font-size: 36px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+            color: #FFD700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mode-selection {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 2px solid #3498db;
+        }
+        
+        .mode-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+        
+        .mode-btn.active {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            transform: scale(1.05);
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #3498db;
+        }
+        
+        .info-item {
+            text-align: center;
+        }
+        
+        .info-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .info-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .players-area {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .player {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            padding: 25px;
+            border: 3px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .player.dealer {
+            border-color: #e74c3c;
+        }
+        
+        .player.player2 {
+            border-color: #9b59b6;
+        }
+        
+        .player.current-turn {
+            box-shadow: 0 0 20px #FFD700;
+            transform: scale(1.03);
+        }
+        
+        .player:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .player-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: #3498db;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .player.dealer .player-name {
+            color: #e74c3c;
+        }
+        
+        .player.player2 .player-name {
+            color: #9b59b6;
+        }
+        
+        .cards-area {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            min-height: 130px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            width: 70px;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid #333;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        
+        .card.red {
+            color: #e74c3c;
+        }
+        
+        .card.black {
+            color: #2c3e50;
+        }
+        
+        .card.back {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a235a 100%);
+            color: white;
+            font-size: 28px;
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+        }
+        
+        .score-display {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 18px;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .pok-indicator {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 8px;
+            color: #2ecc71;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            min-height: 25px;
+        }
+        
+        .controls {
+            margin: 30px 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .deal-btn {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+        
+        .hit-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+        
+        .stand-btn {
+            background: linear-gradient(135deg, #f39c12 0%, #d35400 100%);
+        }
+        
+        .action-btn:hover:not(:disabled) {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+        
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .game-message {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            border: 2px solid #3498db;
+        }
+        
+        .message-waiting {
+            background: rgba(52, 152, 219, 0.25);
+            color: #3498db;
+        }
+        
+        .message-result {
+            background: rgba(231, 76, 60, 0.25);
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
+        .win {
+            background: rgba(46, 204, 113, 0.25);
+            color: #2ecc71;
+            border-color: #2ecc71;
+        }
+        
+        .tie {
+            background: rgba(243, 156, 18, 0.25);
+            color: #f39c12;
+            border-color: #f39c12;
+        }
+        
+        .instructions {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+            font-size: 15px;
+            line-height: 1.6;
+            border: 1px solid #3498db;
+        }
+        
+        .instructions h3 {
+            color: #FFD700;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ul {
+            text-align: left;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .instructions li {
+            margin: 8px 0;
+        }
+        
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .turn-indicator {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🃏 เกมไพ่ป๊อกเด้ง 🃏</h1>
+        
+        <div class="mode-selection">
+            <h3>เลือกโหมดการเล่น:</h3>
+            <button class="mode-btn active" id="mode1Btn" onclick="setMode(1)">1 ผู้เล่น (กับ AI)</button>
+            <button class="mode-btn" id="mode2Btn" onclick="setMode(2)">2 ผู้เล่น</button>
+        </div>
+        
+        <div class="game-info">
+            <div class="info-item">
+                <div class="info-value" id="round">1</div>
+                <div class="info-label">รอบที่</div>
+            </div>
+            <div class="info-item" id="player1WinsInfo">
+                <div class="info-value" id="player1Wins">0</div>
+                <div class="info-label">ผู้เล่น 1</div>
+            </div>
+            <div class="info-item" id="player2WinsInfo">
+                <div class="info-value" id="player2Wins">0</div>
+                <div class="info-label">ผู้เล่น 2</div>
+            </div>
+        </div>
+        
+        <div class="turn-indicator" id="turnIndicator">รอเริ่มเกม...</div>
+        
+        <div class="players-area" id="playersArea">
+            <!-- Players will be added dynamically -->
+        </div>
+        
+        <div class="game-message message-waiting" id="gameMessage">
+            กด "แจกไพ่" เพื่อเริ่มเกมป๊อกเด้ง!
+        </div>
+        
+        <div class="controls">
+            <div class="action-buttons">
+                <button class="action-btn deal-btn" id="dealBtn" onclick="dealCards()">แจกไพ่ 🃏</button>
+                <button class="action-btn hit-btn" id="hitBtn" onclick="playerHit()" disabled>จั่วไพ่ ➕</button>
+                <button class="action-btn stand-btn" id="standBtn" onclick="playerStand()" disabled>อยู่ไพ่ ✋</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>📜 กฎเกมไพ่ป๊อกเด้ง</h3>
+            <ul>
+                <li>ไพ่ <span class="highlight">2-10</span> นับตามแต้ม, <span class="highlight">J/Q/K = 0 แต้ม</span>, <span class="highlight">A = 1 แต้ม</span></li>
+                <li>แต้มรวมเกิน 9 ให้นับเฉพาะ <span class="highlight">หลักหน่วย</span> (เช่น 15 = 5 แต้ม, 23 = 3 แต้ม)</li>
+                <li><span class="highlight">ป๊อก 8 หรือ ป๊อก 9</span> ชนะทันที (ยกเว้นป๊อกเท่ากัน)</li>
+                <li>ถ้าไม่มีป๊อก: <span class="highlight">แต้มสูงกว่าชนะ</span>, เท่ากัน = เสมอ</li>
+                <li>ในโหมด 1 ผู้เล่น: ดีลเลอร์จะ <span class="highlight">จั่วไพ่เมื่อแต้ม ≤ 3</span> หรือเท่ากับผู้เล่นและ ≤ 6</li>
+                <li>ผู้เล่นมีไพ่ <span class="highlight">5 ใบ</span> จะชนะอัตโนมัติ (ยกเว้นคู่ต่อสู้ป๊อก)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // ตัวแปรเกม
+        const suits = ['♠', '♥', '♦', '♣'];
+        const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        let deck = [];
+        let players = [];
+        let currentPlayerIndex = 0;
+        let gameActive = false;
+        let round = 1;
+        let mode = 1; // 1 = vs AI, 2 = 2 players
+        let player1Wins = 0;
+        let player2Wins = 0;
+        
+        // สร้างสำรับไพ่
+        function createDeck() {
+            const newDeck = [];
+            for (let suit of suits) {
+                for (let rank of ranks) {
+                    newDeck.push({ suit, rank });
+                }
+            }
+            return newDeck;
+        }
+        
+        // สุ่มไพ่
+        function shuffleDeck(deck) {
+            const shuffled = [...deck];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+        
+        // คำนวณแต้มไพ่
+        function calculateScore(hand) {
+            let score = 0;
+            for (let card of hand) {
+                if (card.rank === 'A') {
+                    score += 1;
+                } else if (['J', 'Q', 'K'].includes(card.rank)) {
+                    score += 0;
+                } else {
+                    score += parseInt(card.rank);
+                }
+            }
+            return score % 10;
+        }
+        
+        // ตรวจสอบป๊อก
+        function isPok(hand) {
+            const score = calculateScore(hand);
+            return score === 8 || score === 9;
+        }
+        
+        // ตรวจสอบไพ่ 5 ใบ
+        function hasFiveCards(hand) {
+            return hand.length >= 5;
+        }
+        
+        // สร้างองค์ประกอบไพ่
+        function createCardElement(card, hidden = false) {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card';
+            
+            if (hidden) {
+                cardElement.classList.add('back');
+                cardElement.textContent = '🂠';
+            } else {
+                cardElement.textContent = card.rank + card.suit;
+                if (card.suit === '♥' || card.suit === '♦') {
+                    cardElement.classList.add('red');
+                } else {
+                    cardElement.classList.add('black');
+                }
+            }
+            
+            return cardElement;
+        }
+        
+        // แสดงไพ่
+        function displayCards() {
+            const playersArea = document.getElementById('playersArea');
+            playersArea.innerHTML = '';
+            
+            players.forEach((player, index) => {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = `player ${player.type}`;
+                if (gameActive && index === currentPlayerIndex) {
+                    playerDiv.classList.add('current-turn');
+                }
+                
+                const playerName = document.createElement('div');
+                playerName.className = 'player-name';
+                playerName.textContent = player.name;
+                
+                const cardsArea = document.createElement('div');
+                cardsArea.className = 'cards-area';
+                
+                player.hand.forEach((card, cardIndex) => {
+                    let hidden = false;
+                    // ในโหมด 2 ผู้เล่น แสดงไพ่ทั้งหมด
+                    // ในโหมด 1 ผู้เล่น ซ่อนไพ่ที่ 2 ของดีลเลอร์
+                    if (mode === 1 && player.type === 'dealer' && cardIndex === 1 && gameActive && !isPok(players[0].hand)) {
+                        hidden = true;
+                    }
+                    cardsArea.appendChild(createCardElement(card, hidden));
+                });
+                
+                const scoreDisplay = document.createElement('div');
+                scoreDisplay.className = 'score-display';
+                let scoreText = 'แต้ม: ';
+                if (mode === 1 && player.type === 'dealer' && gameActive && !isPok(players[0].hand)) {
+                    scoreText += '?';
+                } else {
+                    scoreText += calculateScore(player.hand);
+                }
+                scoreDisplay.textContent = scoreText;
+                
+                const pokIndicator = document.createElement('div');
+                pokIndicator.className = 'pok-indicator';
+                if ((mode === 2 || player.type !== 'dealer' || !gameActive || isPok(players[0].hand)) && isPok(player.hand)) {
+                    pokIndicator.textContent = 'ป๊อก ' + calculateScore(player.hand) + '!';
+                } else if (hasFiveCards(player.hand)) {
+                    pokIndicator.textContent = 'ไพ่ 5 ใบ! 🎉';
+                    pokIndicator.style.color = '#FFD700';
+                }
+                pokIndicator.style.color = hasFiveCards(player.hand) ? '#FFD700' : '#2ecc71';
+                
+                playerDiv.appendChild(playerName);
+                playerDiv.appendChild(cardsArea);
+                playerDiv.appendChild(scoreDisplay);
+                playerDiv.appendChild(pokIndicator);
+                playersArea.appendChild(playerDiv);
+            });
+            
+            // อัพเดทคะแนน
+            document.getElementById('round').textContent = round;
+            document.getElementById('player1Wins').textContent = player1Wins;
+            document.getElementById('player2Wins').textContent = player2Wins;
+        }
+        
+        // ตั้งค่าโหมด
+        function setMode(selectedMode) {
+            mode = selectedMode;
+            document.getElementById('mode1Btn').classList.toggle('active', mode === 1);
+            document.getElementById('mode2Btn').classList.toggle('active', mode === 2);
+            
+            // ซ่อน/แสดงข้อมูลผู้เล่น 2
+            document.getElementById('player2WinsInfo').style.display = mode === 2 ? 'block' : 'none';
+            
+            // รีเซ็ตเกมเมื่อเปลี่ยนโหมด
+            resetGame();
+        }
+        
+        // รีเซ็ตเกม
+        function resetGame() {
+            gameActive = false;
+            currentPlayerIndex = 0;
+            document.getElementById('dealBtn').disabled = false;
+            document.getElementById('hitBtn').disabled = true;
+            document.getElementById('standBtn').disabled = true;
+            document.getElementById('gameMessage').textContent = 'กด "แจกไพ่" เพื่อเริ่มเกมป๊อกเด้ง!';
+            document.getElementById('gameMessage').className = 'game-message message-waiting';
+            document.getElementById('turnIndicator').textContent = 'รอเริ่มเกม...';
+        }
+        
+        // แจกไพ่
+        function dealCards() {
+            if (gameActive) return;
+            
+            // สร้างผู้เล่นตามโหมด
+            players = [];
+            if (mode === 1) {
+                players.push({ name: 'คุณ', hand: [], type: 'player' });
+                players.push({ name: 'ดีลเลอร์ (AI)', hand: [], type: 'dealer' });
+            } else {
+                players.push({ name: 'ผู้เล่น 1', hand: [], type: 'player1' });
+                players.push({ name: 'ผู้เล่น 2', hand: [], type: 'player2' });
+            }
+            
+            // รีเซ็ตเกม
+            deck = shuffleDeck(createDeck());
+            gameActive = true;
+            currentPlayerIndex = 0;
+            
+            // แจกไพ่คนละ 2 ใบ
+            for (let i = 0; i < 2; i++) {
+                players.forEach(player => {
+                    player.hand.push(deck.pop());
+                });
+            }
+            
+            // แสดงไพ่
+            displayCards();
+            
+            // อัพเดทปุ่ม
+            document.getElementById('dealBtn').disabled = true;
+            document.getElementById('hitBtn').disabled = false;
+            document.getElementById('standBtn').disabled = false;
+            
+            // แสดงข้อความ
+            const gameMessage = document.getElementById('gameMessage');
+            if (mode === 1) {
+                gameMessage.textContent = 'ตัดสินใจ: จั่วไพ่หรืออยู่ไพ่?';
+                gameMessage.className = 'game-message message-waiting';
+            } else {
+                gameMessage.textContent = `ผู้เล่น 1: ตัดสินใจจั่วไพ่หรืออยู่ไพ่?`;
+                gameMessage.className = 'game-message message-waiting';
+            }
+            
+            document.getElementById('turnIndicator').textContent = mode === 1 ? 'ตาคุณ' : 'ตาผู้เล่น 1';
+            
+            // ตรวจสอบป๊อกทันที (เฉพาะโหมด 1 ผู้เล่น)
+            if (mode === 1) {
+                setTimeout(() => {
+                    if (isPok(players[0].hand) || isPok(players[1].hand)) {
+                        resolveGame();
+                    }
+                }, 1200);
+            }
+        }
+        
+        // ผู้เล่นจั่วไพ่
+        function playerHit() {
+            if (!gameActive) return;
+            
+            // จั่วไพ่
+            players[currentPlayerIndex].hand.push(deck.pop());
+            displayCards();
+            
+            // ตรวจสอบเงื่อนไขการอยู่อัตโนมัติ
+            const playerScore = calculateScore(players[currentPlayerIndex].hand);
+            if (hasFiveCards(players[currentPlayerIndex].hand) || playerScore <= 4) {
+                setTimeout(() => {
+                    playerStand();
+                }, 1000);
+            }
+        }
+        
+        // ผู้เล่นอยู่ไพ่
+        function playerStand() {
+            if (!gameActive) return;
+            
+            // ไปยังผู้เล่นคนถัดไป
+            currentPlayerIndex++;
+            
+            if (currentPlayerIndex < players.length) {
+                // ยังมีผู้เล่นคนถัดไป
+                document.getElementById('turnIndicator').textContent = mode === 1 ? 'ตาดีลเลอร์' : `ตาผู้เล่น ${currentPlayerIndex + 1}`;
+                document.getElementById('gameMessage').textContent = mode === 1 ? 'ดีลเลอร์กำลังเล่น...' : `ผู้เล่น ${currentPlayerIndex + 1}: ตัดสินใจจั่วไพ่หรืออยู่ไพ่?`;
+                
+                displayCards();
+                
+                if (mode === 1 && currentPlayerIndex === 1) {
+                    // โหมด 1 ผู้เล่น: ดีลเลอร์เล่นอัตโนมัติ
+                    document.getElementById('hitBtn').disabled = true;
+                    document.getElementById('standBtn').disabled = true;
+                    setTimeout(() => {
+                        dealerPlay();
+                    }, 1500);
+                } else {
+                    // โหมด 2 ผู้เล่น: เปิดปุ่มสำหรับผู้เล่นคนถัดไป
+                    document.getElementById('hitBtn').disabled = false;
+                    document.getElementById('standBtn').disabled = false;
+                }
+            } else {
+                // ทุกคนอยู่ไพ่แล้ว ตัดสินผล
+                resolveGame();
+            }
+        }
+        
+        // ดีลเลอร์เล่น (เฉพาะโหมด 1 ผู้เล่น)
+        function dealerPlay() {
+            function dealerDraw() {
+                const dealerScore = calculateScore(players[1].hand);
+                const playerScore = calculateScore(players[0].hand);
+                
+                // เงื่อนไขการจั่วไพ่ของดีลเลอร์
+                let shouldDraw = false;
+                
+                if (hasFiveCards(players[1].hand)) {
+                    shouldDraw = false;
+                } else if (hasFiveCards(players[0].hand) && !isPok(players[1].hand)) {
+                    shouldDraw = false;
+                } else if (isPok(players[1].hand)) {
+                    shouldDraw = false;
+                } else if (dealerScore <= 3) {
+                    shouldDraw = true;
+                } else if (dealerScore === playerScore && dealerScore <= 6) {
+                    shouldDraw = true;
+                }
+                
+                if (shouldDraw) {
+                    players[1].hand.push(deck.pop());
+                    displayCards();
+                    setTimeout(dealerDraw, 1200);
+                } else {
+                    resolveGame();
+                }
+            }
+            
+            dealerDraw();
+        }
+        
+        // ตัดสินผลเกม
+        function resolveGame() {
+            gameActive = false;
+            document.getElementById('hitBtn').disabled = true;
+            document.getElementById('standBtn').disabled = true;
+            
+            // เปิดไพ่ทั้งหมด
+            displayCards();
+            
+            let result = '';
+            let messageClass = 'message-result';
+            
+            if (mode === 1) {
+                // โหมด 1 ผู้เล่น
+                const playerScore = calculateScore(players[0].hand);
+                const dealerScore = calculateScore(players[1].hand);
+                const playerHasFive = hasFiveCards(players[0].hand);
+                const dealerHasFive = hasFiveCards(players[1].hand);
+                
+                if (isPok(players[1].hand) && !isPok(players[0].hand)) {
+                    result = 'ดีลเลอร์ป๊อก! คุณแพ้! 💔';
+                    player2Wins++;
+                } else if (isPok(players[0].hand) && !isPok(players[1].hand)) {
+                    result = 'คุณป๊อก! คุณชนะ! 🎉';
+                    player1Wins++;
+                    messageClass = 'win';
+                } else if (isPok(players[0].hand) && isPok(players[1].hand)) {
+                    if (playerScore > dealerScore) {
+                        result = 'คุณป๊อกสูงกว่า! คุณชนะ! 🎉';
+                        player1Wins++;
+                        messageClass = 'win';
+                    } else if (dealerScore > playerScore) {
+                        result = 'ดีลเลอร์ป๊อกสูงกว่า! คุณแพ้! 💔';
+                        player2Wins++;
+                    } else {
+                        result = 'ป๊อกเท่ากัน! เสมอกัน! 🤝';
+                        messageClass = 'tie';
+                    }
+                } else if (playerHasFive && !dealerHasFive && !isPok(players[1].hand)) {
+                    result = 'คุณมีไพ่ 5 ใบ! คุณชนะ! 🎉';
+                    player1Wins++;
+                    messageClass = 'win';
+                } else if (dealerHasFive && !playerHasFive && !isPok(players[0].hand)) {
+                    result = 'ดีลเลอร์มีไพ่ 5 ใบ! คุณแพ้! 💔';
+                    player2Wins++;
+                } else if (playerHasFive && dealerHasFive) {
+                    result = 'ทั้งคู่มีไพ่ 5 ใบ! เสมอกัน! 🤝';
+                    messageClass = 'tie';
+                } else {
+                    if (playerScore > dealerScore) {
+                        result = 'คุณชนะ! 🎉';
+                        player1Wins++;
+                        messageClass = 'win';
+                    } else if (dealerScore > playerScore) {
+                        result = 'คุณแพ้! 💔';
+                        player2Wins++;
+                    } else {
+                        result = 'เสมอกัน! 🤝';
+                        messageClass = 'tie';
+                    }
+                }
+            } else {
+                // โหมด 2 ผู้เล่น
+                const player1Score = calculateScore(players[0].hand);
+                const player2Score = calculateScore(players[1].hand);
+                const player1HasFive = hasFiveCards(players[0].hand);
+                const player2HasFive = hasFiveCards(players[1].hand);
+                
+                if (isPok(players[0].hand) && !isPok(players[1].hand)) {
+                    result = 'ผู้เล่น 1 ป๊อก! ผู้เล่น 1 ชนะ! 🎉';
+                    player1Wins++;
+                    messageClass = 'win';
+                } else if (isPok(players[1].hand) && !isPok(players[0].hand)) {
+                    result = 'ผู้เล่น 2 ป๊อก! ผู้เล่น 2 ชนะ! 🎉';
+                    player2Wins++;
+                    messageClass = 'win';
+                } else if (isPok(players[0].hand) && isPok(players[1].hand)) {
+                    if (player1Score > player2Score) {
+                        result = 'ผู้เล่น 1 ป๊อกสูงกว่า! ผู้เล่น 1 ชนะ! 🎉';
+                        player1Wins++;
+                        messageClass = 'win';
+                    } else if (player2Score > player1Score) {
+                        result = 'ผู้เล่น 2 ป๊อกสูงกว่า! ผู้เล่น 2 ชนะ! 🎉';
+                        player2Wins++;
+                        messageClass = 'win';
+                    } else {
+                        result = 'ป๊อกเท่ากัน! เสมอกัน! 🤝';
+                        messageClass = 'tie';
+                    }
+                } else if (player1HasFive && !player2HasFive) {
+                    result = 'ผู้เล่น 1 มีไพ่ 5 ใบ! ผู้เล่น 1 ชนะ! 🎉';
+                    player1Wins++;
+                    messageClass = 'win';
+                } else if (player2HasFive && !player1HasFive) {
+                    result = 'ผู้เล่น 2 มีไพ่ 5 ใบ! ผู้เล่น 2 ชนะ! 🎉';
+                    player2Wins++;
+                    messageClass = 'win';
+                } else if (player1HasFive && player2HasFive) {
+                    result = 'ทั้งคู่มีไพ่ 5 ใบ! เสมอกัน! 🤝';
+                    messageClass = 'tie';
+                } else {
+                    if (player1Score > player2Score) {
+                        result = 'ผู้เล่น 1 ชนะ! 🎉';
+                        player1Wins++;
+                        messageClass = 'win';
+                    } else if (player2Score > player1Score) {
+                        result = 'ผู้เล่น 2 ชนะ! 🎉';
+                        player2Wins++;
+                        messageClass = 'win';
+                    } else {
+                        result = 'เสมอกัน! 🤝';
+                        messageClass = 'tie';
+                    }
+                }
+            }
+            
+            document.getElementById('gameMessage').textContent = result;
+            document.getElementById('gameMessage').className = 'game-message ' + messageClass;
+            document.getElementById('turnIndicator').textContent = 'เกมสิ้นสุด!';
+            
+            // เปิดปุ่มแจกไพ่
+            document.getElementById('dealBtn').disabled = false;
+            round++;
+        }
+        
+        // เริ่มต้น
+        resetGame();
+    </script>
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Jump Hero – Fullscreen 16-bit</title>
+<style>
+  :root {
+    --ui-bg: rgba(20,24,32,0.7);
+    --ui-fg: #fff;
+    --accent: #2f82ff;
+  }
+  html, body {
+    margin:0; height:100%; background:#0f1216; overflow:hidden; font-family:system-ui, Segoe UI, Roboto, sans-serif;
+    color:#fff;
+  }
+  #gameWrap { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; }
+  canvas { width:100vw; height:100vh; display:block; image-rendering:pixelated; image-rendering:crisp-edges; }
+  /* HUD */
+  #hud {
+    position:fixed; top:12px; left:50%; transform:translateX(-50%);
+    display:flex; gap:16px; padding:8px 12px; border-radius:10px;
+    background:var(--ui-bg); backdrop-filter: blur(6px); align-items:center;
+    font-weight:700;
+  }
+  #stateMsg { font-weight:800; }
+  /* Bottom bar */
+  #btnBar {
+    position:fixed; bottom:12px; left:50%; transform:translateX(-50%);
+    display:flex; gap:10px; background:var(--ui-bg); padding:8px 12px; border-radius:10px; backdrop-filter: blur(6px);
+  }
+  button {
+    background:var(--accent); border:none; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700;
+  }
+  button.secondary { background:#3a3f4a; }
+  /* Mobile controls */
+  #touchControls {
+    position:fixed; bottom:12px; right:12px; display:flex; gap:8px;
+    background:var(--ui-bg); padding:8px; border-radius:12px; backdrop-filter: blur(6px);
+  }
+  .tc-btn {
+    width:60px; height:60px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:#2a2f3a; color:#fff; font-weight:800; user-select:none;
+    touch-action:manipulation;
+  }
+  .tc-btn:active { background:#3b4656; }
+  @media (max-width:768px) {
+    #hud { font-size:14px; }
+    .tc-btn { width:56px; height:56px; }
+    #btnBar { font-size:14px; }
+  }
+</style>
+</head>
+<body>
+<div id="gameWrap">
+  <canvas id="game"></canvas>
+</div>
+
+<div id="hud">
+  <div>คะแนน: <span id="score">0</span></div>
+  <div>เหรียญ: <span id="coins">0</span>/<span id="coinsTotal">0</span></div>
+  <div id="stateMsg"></div>
+</div>
+
+<div id="btnBar">
+  <button id="toggleFullscreen">เต็มจอ</button>
+  <button id="restart">เริ่มใหม่</button>
+  <button id="toggleSound" class="secondary">เสียง: เปิด</button>
+  <button id="pauseBtn" class="secondary">หยุดเกม</button>
+</div>
+
+<!-- Mobile controls -->
+<div id="touchControls">
+  <div class="tc-btn" id="leftBtn">◀</div>
+  <div class="tc-btn" id="rightBtn">▶</div>
+  <div class="tc-btn" id="jumpBtn">⭯</div>
+</div>
+
+<script>
+/* ========= Fullscreen / Canvas ========= */
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+let viewW = 960, viewH = 540; // virtual design size (will scale)
+let aspectRatio = viewW / viewH;
+
+function resize(){
+  // คำนวณขนาดหน้าต่างที่รักษาอัตราส่วน
+  const windowRatio = window.innerWidth / window.innerHeight;
+  if (windowRatio > aspectRatio) {
+    // หน้าจอกว้างกว่า -> จำกัดความสูง
+    canvas.height = window.innerHeight;
+    canvas.width = canvas.height * aspectRatio;
+  } else {
+    // หน้าจอยาวกว่า -> จำกัดความกว้าง
+    canvas.width = window.innerWidth;
+    canvas.height = canvas.width / aspectRatio;
+  }
+  
+  // กำหนดขนาดจริงของเกม
+  viewW = canvas.width;
+  viewH = canvas.height;
+}
+window.addEventListener('resize', resize);
+resize();
+
+/* ========= WebAudio sounds (real SFX) ========= */
+let soundOn = true;
+const toggleSoundBtn = document.getElementById('toggleSound');
+toggleSoundBtn.onclick = () => { 
+  soundOn = !soundOn; 
+  toggleSoundBtn.textContent = `เสียง: ${soundOn?'เปิด':'ปิด'}`; 
+};
+
+let actx, master;
+function initAudio(){
+  if(actx) return;
+  actx = new (window.AudioContext || window.webkitAudioContext)();
+  master = actx.createGain(); 
+  master.gain.value = 0.25; 
+  master.connect(actx.destination);
+}
+
+function beep({freq=440, duration=0.12, type='square', attack=0.01, release=0.08, volume=0.5}={}){
+  if(!soundOn || !actx) return;
+  const osc = actx.createOscillator();
+  const gain = actx.createGain();
+  osc.type = type; 
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0, actx.currentTime);
+  gain.gain.linearRampToValueAtTime(volume, actx.currentTime + attack);
+  gain.gain.linearRampToValueAtTime(0, actx.currentTime + attack + duration + release);
+  osc.connect(gain); 
+  gain.connect(master);
+  osc.start(); 
+  osc.stop(actx.currentTime + attack + duration + release);
+}
+
+const SND = {
+  jump(){ 
+    initAudio(); 
+    beep({freq: 520, type:'square', duration:0.12}); 
+    beep({freq: 660, type:'square', duration:0.08}); 
+  },
+  coin(){ 
+    initAudio(); 
+    beep({freq: 900, type:'triangle', duration:0.08}); 
+    beep({freq: 1200, type:'triangle', duration:0.06}); 
+  },
+  hit(){ 
+    initAudio(); 
+    beep({freq: 180, type:'sawtooth', duration:0.2}); 
+  },
+  flag(){ 
+    initAudio(); 
+    beep({freq: 700, type:'square', duration:0.12}); 
+  },
+  win(){ 
+    initAudio(); 
+    beep({freq: 520, type:'triangle', duration:0.12}); 
+    setTimeout(()=>beep({freq:860, type:'triangle', duration:0.12}), 120); 
+    setTimeout(()=>beep({freq:1200, type:'triangle', duration:0.12}), 240); 
+  }
+};
+
+// เริ่ม audio เมื่อผู้ใช้โต้ตอบครั้งแรก
+window.addEventListener('pointerdown', ()=> initAudio(), {once:true});
+window.addEventListener('keydown', ()=> initAudio(), {once:true});
+
+/* ========= Fullscreen ========= */
+const fullscreenBtn = document.getElementById('toggleFullscreen');
+fullscreenBtn.onclick = () => {
+  if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
+    fullscreenBtn.textContent = "ออกจากเต็มจอ";
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+    fullscreenBtn.textContent = "เต็มจอ";
+  }
+};
+
+/* ========= HUD ========= */
+const hudScore = document.getElementById('score');
+const hudCoins = document.getElementById('coins');
+const hudCoinsTotal = document.getElementById('coinsTotal');
+const stateMsg = document.getElementById('stateMsg');
+
+/* ========= Input ========= */
+let keys = { left:false, right:false, jump:false };
+window.addEventListener('keydown', e=>{
+  if(e.code==='ArrowLeft'||e.code==='KeyA') keys.left = true;
+  if(e.code==='ArrowRight'||e.code==='KeyD') keys.right = true;
+  if(e.code==='Space'||e.code==='ArrowUp'||e.code==='KeyW') keys.jump = true;
+  if(e.code==='Escape') togglePause();
+});
+window.addEventListener('keyup', e=>{
+  if(e.code==='ArrowLeft'||e.code==='KeyA') keys.left = false;
+  if(e.code==='ArrowRight'||e.code==='KeyD') keys.right = false;
+  if(e.code==='Space'||e.code==='ArrowUp'||e.code==='KeyW') keys.jump = false;
+});
+
+/* ป้องกันการเลื่อนหน้าจอเมื่อกดลูกศร */
+window.addEventListener('keydown', e=>{
+  if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+    e.preventDefault();
+  }
+});
+
+/* Mobile buttons */
+const leftBtn = document.getElementById('leftBtn');
+const rightBtn = document.getElementById('rightBtn');
+const jumpBtn = document.getElementById('jumpBtn');
+function bindHold(btn, set){
+  const on = (ev)=>{ ev.preventDefault(); set(true); };
+  const off = (ev)=>{ ev.preventDefault(); set(false); };
+  btn.addEventListener('pointerdown', on);
+  btn.addEventListener('pointerup', off);
+  btn.addEventListener('pointerleave', off);
+  btn.addEventListener('touchstart', on);
+  btn.addEventListener('touchend', off);
+  btn.addEventListener('touchcancel', off);
+}
+bindHold(leftBtn, v=> keys.left=v);
+bindHold(rightBtn, v=> keys.right=v);
+bindHold(jumpBtn, v=> keys.jump=v);
+
+/* ========= World data (single scene) ========= */
+const GRAVITY = 0.8, MOVE_SPEED = 4.2, JUMP_SPEED = 19, FRICTION = 0.85, CAMERA_LERP = 0.14;
+const world = {
+  width: 2400,
+  groundY: () => viewH - 120,
+  clouds: [{x:160,y:80},{x:560,y:120},{x:980,y:60},{x:1400,y:110},{x:1800,y:70},{x:2150,y:90}],
+  bushes: [{x:180},{x:680},{x:1120},{x:1600},{x:2050}],
+  platforms: [
+    // ground strip rendered procedural; these are floating platforms
+    {x: 360, y: -220, w: 180, h: 24},
+    {x: 620, y: -300, w: 160, h: 24},
+    {x: 860, y: -220, w: 180, h: 24},
+    {x: 1120, y: -180, w: 140, h: 24},
+    {x: 1360, y: -270, w: 200, h: 24},
+    {x: 1640, y: -210, w: 160, h: 24},
+    {x: 1880, y: -260, w: 160, h: 24},
+  ],
+  coins: [
+    {x: 400, y: -260, r: 12, got:false},
+    {x: 660, y: -340, r: 12, got:false},
+    {x: 900, y: -260, r: 12, got:false},
+    {x: 1140, y: -220, r: 12, got:false},
+    {x: 1400, y: -310, r: 12, got:false},
+    {x: 1680, y: -250, r: 12, got:false},
+    {x: 1920, y: -300, r: 12, got:false},
+  ],
+  enemies: [
+    {x: 820, w: 40, h: 30, vx: 1.2, min:780, max:940, alive:true},
+    {x: 1320, w: 40, h: 30, vx:-1.1, min:1280, max:1440, alive:true},
+    {x: 1720, w: 40, h: 30, vx: 1.0, min:1680, max:1840, alive:true},
+  ],
+  flag: { x: 2080, h: 140, reached:false },
+  castle: { x: 2200, w: 140, h: 160 }
+};
+/* resolve Y relative to ground */
+function groundY(){ return world.groundY(); }
+function platY(py){ return groundY() + py; }
+world.platforms.forEach(p=> p.y = platY(p.y));
+world.coins.forEach(c=> c.y = platY(c.y));
+hudCoinsTotal.textContent = world.coins.length;
+
+/* ========= Player / Camera / Game state ========= */
+const player = { 
+  x: 100, 
+  y: groundY()-44, 
+  w: 36, 
+  h: 44, 
+  vx:0, 
+  vy:0, 
+  onGround:false, 
+  alive:true, 
+  facing:1 
+};
+let cam = { x:0 }, score = 0, gameOver = false, gameWin = false, paused = false;
+
+/* ========= Utils ========= */
+function aabb(ax,ay,aw,ah,bx,by,bw,bh){ 
+  return ax<bx+bw && ax+aw>bx && ay<by+bh && ay+ah>by; 
+}
+function clamp(v,a,b){ 
+  return Math.max(a, Math.min(b, v)); 
+}
+
+/* ========= Reset / Pause ========= */
+document.getElementById('restart').onclick = reset;
+document.getElementById('pauseBtn').onclick = togglePause;
+function reset(){
+  player.x = 100; 
+  player.y = groundY()-44; 
+  player.vx=0; 
+  player.vy=0; 
+  player.onGround=false; 
+  player.alive=true; 
+  player.facing=1;
+  score = 0; 
+  hudScore.textContent = score;
+  gameOver=false; 
+  gameWin=false; 
+  paused=false; 
+  stateMsg.textContent = ""; 
+  world.flag.reached=false;
+  world.coins.forEach(c=> c.got=false);
+  world.enemies.forEach(e=> { 
+    e.alive=true; 
+    e.x=(e.min+e.max)/2; 
+    e.vx=Math.sign(e.vx)*Math.abs(e.vx); 
+  });
+  // รีเซ็ตขนาดอีกครั้งหลังเริ่มใหม่
+  resize();
+}
+function togglePause(){
+  paused = !paused;
+  document.getElementById('pauseBtn').textContent = paused ? 'เล่นต่อ' : 'หยุดเกม';
+  stateMsg.textContent = paused ? 'หยุดเกมชั่วคราว' : '';
+}
+
+/* ========= Drawing (16-bit style) ========= */
+function drawBackground(){
+  // sky gradient
+  let g = ctx.createLinearGradient(0,0,0,viewH);
+  g.addColorStop(0,"#8fd3ff"); 
+  g.addColorStop(1,"#76c8f3");
+  ctx.fillStyle = g; 
+  ctx.fillRect(0,0,viewW,viewH);
+
+  // parallax clouds
+  world.clouds.forEach(cl=>{
+    const cx = cl.x - cam.x*0.3;
+    const screenX = (cx - cam.x) / world.width * viewW;
+    const y = cl.y / 540 * viewH;
+    drawCloud(screenX, y);
+  });
+}
+function drawCloud(x,y){
+  ctx.fillStyle="#fff";
+  ctx.beginPath(); 
+  ctx.arc(x, y, 24, 0, Math.PI*2);
+  ctx.arc(x+26,y+6,22,0,Math.PI*2);
+  ctx.arc(x-26,y+6,18,0,Math.PI*2);
+  ctx.fill();
+}
+
+function drawGround(){
+  const gy = groundY();
+  ctx.fillStyle="#5ea84f"; 
+  ctx.fillRect(-cam.x, gy-10, world.width, 10);
+  ctx.fillStyle="#3b6b2f"; 
+  ctx.fillRect(-cam.x, gy, world.width, viewH-gy);
+  
+  // bushes
+  world.bushes.forEach(b=>{
+    const x = b.x - cam.x;
+    if(x > -100 && x < viewW + 100) {
+      drawBush(x, gy-20);
+    }
+  });
+}
+function drawBush(x,y){
+  ctx.fillStyle="#2f7a31";
+  ctx.beginPath(); 
+  ctx.arc(x,y,20,0,Math.PI*2);
+  ctx.arc(x+24,y,18,0,Math.PI*2);
+  ctx.arc(x-24,y,18,0,Math.PI*2);
+  ctx.fill();
+  ctx.fillStyle="#226024"; 
+  ctx.fillRect(x-36,y,72,8);
+}
+
+function drawPlatform(p){
+  const x = p.x - cam.x;
+  if(x < -p.w || x > viewW) return;
+  ctx.fillStyle="#b0772e"; 
+  ctx.fillRect(x, p.y, p.w, p.h);
+  ctx.fillStyle="#d49846"; 
+  ctx.fillRect(x, p.y, p.w, Math.max(4, p.h*0.25));
+  ctx.fillStyle="rgba(0,0,0,0.2)"; 
+  ctx.fillRect(x, p.y+p.h-4, p.w, 4);
+}
+
+function drawCoin(c){
+  const x = c.x - cam.x;
+  if(c.got) return;
+  if(x < -20 || x > viewW + 20) return;
+  ctx.fillStyle="#f7d14a"; 
+  ctx.beginPath(); 
+  ctx.arc(x, c.y, c.r, 0, Math.PI*2); 
+  ctx.fill();
+  ctx.strokeStyle="#fff6a0"; 
+  ctx.lineWidth=2; 
+  ctx.beginPath(); 
+  ctx.arc(x, c.y, c.r-4, 0, Math.PI*2); 
+  ctx.stroke();
+}
+
+function drawEnemy(e){
+  const x = e.x - cam.x;
+  if(!e.alive) return;
+  if(x < -100 || x > viewW + 100) return;
+  ctx.fillStyle="#2ea043"; 
+  ctx.fillRect(x, e.y - 36, e.w, e.h);
+  ctx.fillStyle="#188a33"; 
+  ctx.fillRect(x+4, e.y - 32, e.w-8, e.h-8);
+  ctx.fillStyle="#3bbf54"; 
+  ctx.fillRect(x-10, e.y - 30, 12, 16); // head
+}
+
+function drawFlagAndCastle(){
+  const fx = world.flag.x - cam.x;
+  const gy = groundY();
+  // pole
+  ctx.fillStyle="#7b6d61"; 
+  ctx.fillRect(fx, gy - world.flag.h, 8, world.flag.h);
+  // flag cloth
+  ctx.fillStyle = world.flag.reached ? "#00d084" : "#ff3b30";
+  ctx.beginPath();
+  ctx.moveTo(fx+8, gy - world.flag.h + 20);
+  ctx.lineTo(fx+8+38, gy - world.flag.h + 34);
+  ctx.lineTo(fx+8, gy - world.flag.h + 48);
+  ctx.closePath(); 
+  ctx.fill();
+  // castle
+  const cx = world.castle.x - cam.x;
+  ctx.fillStyle="#8b5e3c"; 
+  ctx.fillRect(cx, gy - world.castle.h, world.castle.w, world.castle.h);
+  ctx.fillStyle="#734b2f";
+  for(let i=0;i<world.castle.w;i+=24){ 
+    ctx.fillRect(cx+i, gy - world.castle.h - 16, 16, 16); 
+  }
+}
+
+function drawPlayer(){
+  const x = player.x - cam.x, y = player.y;
+  // ร่างกาย
+  ctx.fillStyle = "#e74c3c"; // เสื้อแดง
+  ctx.fillRect(x, y, player.w, player.h);
+  // หมวก
+  ctx.fillStyle = "#c0392b";
+  ctx.beginPath();
+  ctx.arc(x + player.w/2, y - 6, 10, 0, Math.PI*2);
+  ctx.fill();
+  // หน้า
+  ctx.fillStyle = "#f0c29a";
+  ctx.fillRect(x+6, y+8, player.w-12, 12);
+  // ตา
+  ctx.fillStyle = "#000";
+  ctx.fillRect(x+10, y+10, 4, 4);
+  ctx.fillRect(x+20, y+10, 4, 4);
+  // กางเกง
+  ctx.fillStyle = "#3498db";
+  ctx.fillRect(x+4, y+28, player.w-8, 12);
+  // รองเท้าสีน้ำตาล
+  ctx.fillStyle = "#5d4037";
+  ctx.fillRect(x+4, y+player.h-6, player.w-8, 6);
+}
+
+/* ========= Game logic ========= */
+function update(){
+  if(paused || gameOver || gameWin) return;
+
+  const targetVx = (keys.right? MOVE_SPEED : 0) + (keys.left? -MOVE_SPEED : 0);
+  player.vx = (player.vx*FRICTION) + (targetVx*(1-FRICTION));
+  if(Math.abs(targetVx) > 0.1) player.facing = Math.sign(targetVx);
+
+  // jump
+  if(keys.jump && player.onGround){
+    player.vy = -JUMP_SPEED;
+    player.onGround = false;
+    SND.jump();
+  }
+  // gravity
+  player.vy += GRAVITY;
+
+  // integrate
+  player.x += player.vx;
+  player.y += player.vy;
+
+  // bounds
+  player.x = clamp(player.x, 0, world.width - player.w);
+  const gy = groundY();
+  if(player.y > gy - player.h){
+    player.y = gy - player.h;
+    player.vy = 0; player.onGround = true;
+  }
+
+  // platforms (top collision)
+  world.platforms.forEach(p=>{
+    const fromAbove = (player.y + player.h) <= p.y + 24;
+    if(fromAbove && aabb(player.x, player.y, player.w, player.h, p.x, p.y, p.w, p.h)){
+      player.y = p.y - player.h; player.vy = 0; player.onGround = true;
+    }
+  });
+
+  // coins
+  world.coins.forEach(c=>{
+    if(!c.got && aabb(player.x, player.y, player.w, player.h, c.x-c.r, c.y-c.r, c.r*2, c.r*2)){
+      c.got = true;
+      SND.coin();
+      score += 100; 
+      hudScore.textContent = score;
+      hudCoins.textContent = parseInt(hudCoins.textContent) + 1;
+    }
+  });
+
+  // enemies
+  world.enemies.forEach(e=>{
+    if(!e.alive) return;
+    e.x += e.vx;
+    if(e.x < e.min || e.x > e.max) e.vx *= -1;
+    const ey = groundY() - 36;
+    if(aabb(player.x, player.y, player.w, player.h, e.x, ey, e.w, e.h)){
+      const stomp = (player.vy > 0) && (player.y + player.h - 6 <= ey);
+      if(stomp){
+        e.alive = false;
+        player.vy = -JUMP_SPEED * 0.7;
+        score += 200; 
+        hudScore.textContent = score;
+        SND.coin(); // เสียงเวลาเหยียบศัตรู
+      } else {
+        SND.hit();
+        gameOver = true;
+        stateMsg.textContent = "โดนศัตรู! แพ้แล้วนะ";
+      }
+    }
+  });
+
+  // flag reach
+  const flagW = 8+38;
+  if(!world.flag.reached && aabb(player.x, player.y, player.w, player.h, world.flag.x, gy - world.flag.h, flagW, world.flag.h)){
+    world.flag.reached = true;
+    SND.flag();
+    gameWin = true;
+    score += 500; 
+    hudScore.textContent = score;
+    stateMsg.textContent = "เยี่ยม! คุณชนะด่านนี้แล้ว 🎉";
+    SND.win();
+  }
+
+  // camera
+  const targetCamX = clamp(player.x - viewW*0.4, 0, world.width - viewW);
+  cam.x += (targetCamX - cam.x) * CAMERA_LERP;
+}
+
+/* ========= Main loop ========= */
+function loop(){
+  // ล้าง canvas ด้วยสีพื้นหลัง
+  ctx.fillStyle = "#76c8f3";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // คำนวณอัตราส่วนสำหรับการวาด
+  const scaleX = canvas.width / viewW;
+  const scaleY = canvas.height / viewH;
+  
+  // ตั้งค่าการแปลง
+  ctx.save();
+  ctx.scale(scaleX, scaleY);
+  
+  // draw
+  drawBackground();
+  drawGround();
+  world.platforms.forEach(drawPlatform);
+  world.coins.forEach(drawCoin);
+  world.enemies.forEach(drawEnemy);
+  drawFlagAndCastle();
+  drawPlayer();
+  
+  // คืนค่าการแปลง
+  ctx.restore();
+  
+  // HUD coin count (refresh each frame for safety)
+  const total = world.coins.length;
+  const got = world.coins.filter(c=>c.got).length;
+  hudCoinsTotal.textContent = total;
+  hudCoins.textContent = got;
+
+  update();
+  requestAnimationFrame(loop);
+}
+reset();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
