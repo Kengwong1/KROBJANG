@@ -1,11 +1,4 @@
 User-agent: *
 Allow: /
 
-# ไม่ให้ index ไฟล์ระบบ
-Disallow: /agent_logs/
-Disallow: /.env
-Disallow: /search-index.json
-Disallow: /thumbnails.json
-Disallow: /seo-report.json
-
-Sitemap: https://krobjang.vercel.app/sitemap.xml
+Sitemap: https://krobjang.vercel.app//sitemap.xml

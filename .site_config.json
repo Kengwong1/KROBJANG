@@ -4,13 +4,19 @@
   "base_path": "D:\\Projects\\krubjang-site full",
   "categories": [
     "news",
-    "politics",
-    "business",
-    "entertainment",
-    "technology"
+    "lifestyle",
+    "health",
+    "food",
+    "finance",
+    "technology",
+    "entertainment"
   ],
-  "color_theme": "forest_green",
-  "font": "kanit",
-  "nav_style": "sidebar",
-  "created": "2026-04-07T20:13:42.462668"
+  "color_theme": "slate_indigo",
+  "font": "sarabun",
+  "nav_style": "top_full",
+  "layout": "grid",
+  "dark_mode": "toggle",
+  "web_type": "blog",
+  "rss_preset": "th_news",
+  "created": "2026-04-09T22:16:21.910820"
 }

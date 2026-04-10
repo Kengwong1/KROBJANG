@@ -1,43 +1,11 @@
-# ============================================
-# ครบจังดอทคอม — .gitignore
-# สร้างอัตโนมัติโดย super_agent.py
-# ============================================
-
-# ไฟล์ความลับ — ห้ามขึ้น GitHub เด็ดขาด
-.env
-.env.*
-*.key
-*.pem
-secrets.json
-credentials.json
-
-# โค้ดและสคริปต์ (ไม่อัปโหลดขึ้น GitHub)
-*.py
-*.bat
-*.sh
-
-# ระบบ Python
 __pycache__/
-*.pyc
-*.pyo
-.venv/
+*.py[cod]
+*.env
+.env
 venv/
-
-# บันทึกการทำงาน
+.venv/
 agent_logs/
-*.log
-auto_content_log.txt
-
-# ไฟล์ state ภายใน (ไม่ต้อง sync)
-.agent_round
-
-# Editor / OS
-.vscode/
-.idea/
+*.pid
+node_modules/
 .DS_Store
 Thumbs.db
-
-# ไฟล์ชั่วคราว
-*.bak
-*.backup
-*.tmp
