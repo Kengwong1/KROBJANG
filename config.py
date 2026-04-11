@@ -17,14 +17,57 @@ BASE_PATH         = Path(r"D:\Projects\krubjang-site full")
 SITE_URL          = "https://krobjang.vercel.app/"
 SITE_NAME         = "ไอหมอก"
 SITE_DESC         = "ไอหมอก — แหล่งความรู้ครบครัน"
-CATEGORIES        = ['news', 'lifestyle', 'health', 'food', 'finance', 'technology', 'entertainment']
-CATEGORY_PAGE_MAP = {'news': 'news.html', 'lifestyle': 'lifestyle.html', 'health': 'health.html', 'food': 'food.html', 'finance': 'finance.html', 'technology': 'technology.html', 'entertainment': 'entertainment.html'}
+CATEGORIES        = [
+    'news', 'lifestyle', 'health', 'food', 'finance', 'technology', 'entertainment',
+    'travel', 'horoscope', 'ghost', 'lottery', 'beauty', 'sport', 'education',
+    'gaming', 'diy', 'pet', 'car', 'law', 'business', 'anime', 'movie',
+    'cooking', 'story', 'comedy', 'tips',
+    'folktale', 'cartoon', 'drama', 'inspirational',
+]
+CATEGORY_PAGE_MAP = {
+    'news': 'news.html', 'lifestyle': 'lifestyle.html', 'health': 'health.html',
+    'food': 'food.html', 'finance': 'finance.html', 'technology': 'technology.html',
+    'entertainment': 'entertainment.html', 'travel': 'travel.html',
+    'horoscope': 'horoscope.html', 'ghost': 'ghost.html', 'lottery': 'lottery.html',
+    'beauty': 'beauty.html', 'sport': 'sport.html', 'education': 'education.html',
+    'gaming': 'gaming.html', 'diy': 'diy.html', 'pet': 'pet.html',
+    'car': 'car.html', 'law': 'law.html', 'business': 'business.html',
+    'anime': 'anime.html', 'movie': 'movie.html', 'cooking': 'cooking.html',
+    'story': 'story.html', 'comedy': 'comedy.html', 'tips': 'tips.html',
+    'folktale': 'story.html', 'cartoon': 'story.html',
+    'drama': 'entertainment.html', 'inspirational': 'lifestyle.html',
+}
 CAT_PAGE_MAP      = CATEGORY_PAGE_MAP
 FILE_TYPES        = [".html"]
 ART_PATTERN       = "*_*.html"
 LANG              = "th"
 
-RSS_FEEDS = [('ไทยรัฐ', 'https://www.thairath.co.th/rss/news.xml'), ('BBC Thai', 'https://feeds.bbci.co.uk/thai/rss.xml'), ('ข่าวสด', 'https://www.khaosod.co.th/feed')]
+RSS_FEEDS = [
+    # ── ข่าวทั่วไปไทย ─────────────────────────────────────────
+    ('ไทยรัฐ',           'https://www.thairath.co.th/rss/news.xml'),
+    ('BBC Thai',         'https://feeds.bbci.co.uk/thai/rss.xml'),
+    ('ข่าวสด',           'https://www.khaosod.co.th/feed'),
+    # ── บันเทิงไทย / ดาราไทย (เรียลไทม์) ──────────────────────
+    ('Sanook บันเทิง',   'https://www.sanook.com/entertainment/feed/'),
+    ('Kapook บันเทิง',   'https://entertain.kapook.com/feed/'),
+    ('Manager บันเทิง',  'https://mgronline.com/entertainment/rss'),
+    # ── เทคโนโลยี ─────────────────────────────────────────────
+    ('TechCrunch',       'https://techcrunch.com/feed/'),
+    ('The Verge',        'https://www.theverge.com/rss/index.xml'),
+    # ── อาหาร ─────────────────────────────────────────────────
+    ('Allrecipes',       'https://www.allrecipes.com/feeds/allrecipes.rss'),
+    # ── สุขภาพ ────────────────────────────────────────────────
+    ('WebMD',            'https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC'),
+    # ── ท่องเที่ยว ────────────────────────────────────────────
+    ('Lonely Planet',    'https://www.lonelyplanet.com/news/feed/rss/'),
+    # ── บันเทิงสากล ───────────────────────────────────────────
+    ('Entertainment Weekly', 'https://ew.com/feed/'),
+    # ── การเงิน ───────────────────────────────────────────────
+    ('Forbes Finance',   'https://www.forbes.com/investing/feed2/'),
+]
+
+# Google Trends Thailand RSS — ฟรี ไม่ต้อง API key
+GOOGLE_TRENDS_TH_URL = "https://trends.google.com/trending/rss?geo=TH"
 
 # ══════════════════════════════════════════════════════════════
 # 🤖 Ollama
@@ -79,6 +122,9 @@ def log_section(m):print(f"\n{'='*55}\n  {m}\n{'='*55}")
     "doctor":"แพทย์","faq":"คำถาม","course":"หลักสูตร",
     "teacher":"อาจารย์","gallery":"แกลเลอรี่","feature":"คุณสมบัติ",
     "pricing":"ราคา","hotel":"โรงแรม","tip":"เคล็ดลับ","about":"เกี่ยวกับ",
+    "story":"นิทาน/เรื่องเล่า","tips":"เคล็ดลับ","cooking":"ทำอาหาร",
+    "lottery":"หวย","folktale":"นิทานพื้นบ้าน","cartoon":"การ์ตูน",
+    "drama":"ละคร/ดราม่า","inspirational":"สร้างแรงบันดาลใจ",
 }
 
 CAT_COLORS = {
@@ -268,3 +314,174 @@ def สร้าง_sidebar_html() -> str:
         f'  </div>\n'
         f'</aside>'
     )
+
+# ══════════════════════════════════════════════════════════════
+# 🎨 THEME CONFIG — เปลี่ยนหน้าตาเว็บทั้งหมดที่นี่จุดเดียว
+# ══════════════════════════════════════════════════════════════
+# เปลี่ยน THEME_NAME เพื่อเลือกธีม แล้วรัน agent_writer เพื่อ rebuild
+THEME_NAME = os.getenv("THEME_NAME", "default")   # default | dark | warm | nature | minimal
+
+THEMES = {
+    # ── ธีมเริ่มต้น (น้ำเงิน-ขาว) ───────────────────────────
+    "default": {
+        "primary":    "#1e40af",
+        "secondary":  "#3b82f6",
+        "accent":     "#f59e0b",
+        "bg":         "#f8fafc",
+        "card_bg":    "#ffffff",
+        "text":       "#1e293b",
+        "muted":      "#64748b",
+        "border":     "#e2e8f0",
+        "header_bg":  "linear-gradient(135deg,#1e3a8a,#1e40af)",
+        "font_body":  "Sarabun",
+        "font_head":  "Sarabun",
+        "font_url":   "https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap",
+        "btn_radius": "8px",
+        "card_radius":"12px",
+    },
+    # ── ธีมมืด (Dark Mode) ────────────────────────────────────
+    "dark": {
+        "primary":    "#818cf8",
+        "secondary":  "#6366f1",
+        "accent":     "#fbbf24",
+        "bg":         "#0f172a",
+        "card_bg":    "#1e293b",
+        "text":       "#e2e8f0",
+        "muted":      "#94a3b8",
+        "border":     "#334155",
+        "header_bg":  "linear-gradient(135deg,#0f172a,#1e293b)",
+        "font_body":  "Sarabun",
+        "font_head":  "Sarabun",
+        "font_url":   "https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap",
+        "btn_radius": "8px",
+        "card_radius":"12px",
+    },
+    # ── ธีมอบอุ่น (Warm/Orange) ──────────────────────────────
+    "warm": {
+        "primary":    "#c2410c",
+        "secondary":  "#ea580c",
+        "accent":     "#fbbf24",
+        "bg":         "#fff7ed",
+        "card_bg":    "#ffffff",
+        "text":       "#1c1917",
+        "muted":      "#78716c",
+        "border":     "#fed7aa",
+        "header_bg":  "linear-gradient(135deg,#7c2d12,#c2410c)",
+        "font_body":  "Noto Sans Thai",
+        "font_head":  "Noto Serif Thai",
+        "font_url":   "https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;700&family=Noto+Serif+Thai:wght@600;700&display=swap",
+        "btn_radius": "20px",
+        "card_radius":"16px",
+    },
+    # ── ธีมธรรมชาติ (Nature/Green) ───────────────────────────
+    "nature": {
+        "primary":    "#15803d",
+        "secondary":  "#16a34a",
+        "accent":     "#84cc16",
+        "bg":         "#f0fdf4",
+        "card_bg":    "#ffffff",
+        "text":       "#14532d",
+        "muted":      "#4b7c59",
+        "border":     "#bbf7d0",
+        "header_bg":  "linear-gradient(135deg,#14532d,#15803d)",
+        "font_body":  "IBM Plex Sans Thai",
+        "font_head":  "IBM Plex Sans Thai",
+        "font_url":   "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&display=swap",
+        "btn_radius": "6px",
+        "card_radius":"8px",
+    },
+    # ── ธีมมินิมอล (Clean/White) ─────────────────────────────
+    "minimal": {
+        "primary":    "#171717",
+        "secondary":  "#404040",
+        "accent":     "#525252",
+        "bg":         "#fafafa",
+        "card_bg":    "#ffffff",
+        "text":       "#171717",
+        "muted":      "#737373",
+        "border":     "#e5e5e5",
+        "header_bg":  "linear-gradient(135deg,#171717,#262626)",
+        "font_body":  "Mitr",
+        "font_head":  "Mitr",
+        "font_url":   "https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&display=swap",
+        "btn_radius": "4px",
+        "card_radius":"4px",
+    },
+}
+
+# ธีมที่ใช้งานอยู่ตอนนี้ — เปลี่ยน THEME_NAME ด้านบน
+ACTIVE_THEME = THEMES.get(THEME_NAME, THEMES["default"])
+
+def get_theme_css_vars() -> str:
+    """คืน CSS variables block สำหรับใส่ใน <style> ของทุกหน้า"""
+    t = ACTIVE_THEME
+    return f"""
+  --primary:    {t['primary']};
+  --secondary:  {t['secondary']};
+  --accent:     {t['accent']};
+  --bg:         {t['bg']};
+  --card-bg:    {t['card_bg']};
+  --dark:       {t['text']};
+  --muted:      {t['muted']};
+  --border:     {t['border']};
+  --btn-radius: {t['btn_radius']};
+  --card-radius:{t['card_radius']};"""
+
+def get_font_link() -> str:
+    """คืน <link> tag สำหรับโหลดฟอนต์ Google"""
+    return f'<link href="{ACTIVE_THEME["font_url"]}" rel="stylesheet">'
+
+def get_font_family() -> str:
+    return f"'{ACTIVE_THEME['font_body']}', 'Sarabun', sans-serif"
+
+def get_header_gradient() -> str:
+    return ACTIVE_THEME["header_bg"]
+
+
+# ══════════════════════════════════════════════════════════════
+# 📖 STORY CONFIG — Pool นิทาน/เรื่องเล่า/ตำนานไทย
+# ══════════════════════════════════════════════════════════════
+# ใช้ใน agent_writer --cat story  หรือ --topic "กระต่ายกับเต่า"
+# agent จะ rewrite + แต่งเพิ่มเติม ไม่ copy ต้นฉบับ
+
+STORY_POOL = {
+    # ── นิทานอีสป (Rewrite ภาษาไทยสมัยใหม่) ─────────────────
+    "aesop": [
+        "กระต่ายกับเต่า", "สิงโตกับหนู", "หมาป่ากับลูกแกะ",
+        "อีกาและหม้อน้ำ", "มดกับตั๊กแตน", "หมาป่าในคราบแกะ",
+        "คนตัดฟืนกับขวาน", "เด็กเลี้ยงแกะกับหมาป่า",
+        "สุนัขจิ้งจอกกับองุ่น", "นกกากับหม้อ",
+    ],
+    # ── ผี/ตำนานไทย ──────────────────────────────────────────
+    "thai_ghost": [
+        "กระสือ", "กระหัง", "แม่นาคพระโขนง", "ผีปอบ",
+        "นางตานี", "ผีโขมด", "ผีกองกอย", "ผีปู่โสมเฝ้าทรัพย์",
+        "แม่ม่ายตาแดง", "วิญญาณนางเรือน",
+    ],
+    # ── นิทานพื้นบ้านไทย ─────────────────────────────────────
+    "thai_folk": [
+        "สังข์ทอง", "พระอภัยมณี", "ไกรทอง", "เจ้าชายกบ",
+        "นางสิบสอง", "พระรถเมรี", "กาละแมสิงโต",
+        "ตาม่องล่าย", "นิทานชาดก ๕๐๐ ชาติ",
+    ],
+    # ── เรื่องแต่งใหม่ทั้งเรื่อง (AI สร้าง 100%) ────────────
+    "original": [
+        "หมู่บ้านที่ดวงดาวพูดได้", "เด็กหญิงกับมังกรแม่น้ำโขง",
+        "นักเดินทางข้ามกาลเวลาในอยุธยา", "ป่าลึกที่ต้นไม้มีชีวิต",
+        "โรงเรียนลับของนักวิเศษไทย", "เด็กชายที่เพาะฝันเป็นดอกไม้",
+        "ตลาดผีกลางคืนริมแม่น้ำ", "สมุดวิเศษที่เขียนอนาคต",
+    ],
+}
+
+# รูปแบบภาพตามประเภทเรื่อง — ใช้เป็น keyword ค้นรูป Unsplash/Pexels
+STORY_IMAGE_STYLE = {
+    "aesop":      "cute cartoon animals illustrated children storybook",
+    "thai_ghost": "dark mysterious thai temple night fog atmospheric",
+    "thai_folk":  "traditional thai painting mural temple colorful",
+    "original":   "fantasy illustration magical colorful dreamlike",
+}
+
+def get_story_image_keyword(เรื่อง: str, ประเภท: str = "") -> str:
+    """คืน keyword ภาษาอังกฤษสำหรับค้นรูปที่เหมาะกับประเภทเรื่อง"""
+    base = STORY_IMAGE_STYLE.get(ประเภท, "storytelling illustration colorful")
+    return f"{base} {เรื่อง[:20]}"

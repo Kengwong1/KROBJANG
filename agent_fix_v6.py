@@ -1,14 +1,14 @@
 """
 ╔══════════════════════════════════════════════════════════════════════╗
-║  agent_fix_v5.py  — Full Layout + Theme + Multi-Layout Edition      ║
+║  agent_fix_v6.py  — Full Layout + Theme + Auto-Create Edition       ║
 ║                                                                      ║
-║  python agent_fix_v5.py                → ซ่อมทุกส่วน + push         ║
-║  python agent_fix_v5.py --fix          → ซ่อมอย่างเดียว             ║
-║  python agent_fix_v5.py --audit        → ตรวจอย่างเดียว             ║
-║  python agent_fix_v5.py --publish      → sitemap + push              ║
-║  python agent_fix_v5.py --dry-run      → ดูอย่างเดียว               ║
-║  python agent_fix_v5.py --dedup        → ลบซ้ำ + rebuild             ║
-║  python agent_fix_v5.py --chat         → คุยกับ AI โดยตรง            ║
+║  python agent_fix_v6.py                → ซ่อมทุกส่วน + push         ║
+║  python agent_fix_v6.py --fix          → ซ่อมอย่างเดียว             ║
+║  python agent_fix_v6.py --audit        → ตรวจอย่างเดียว             ║
+║  python agent_fix_v6.py --publish      → sitemap + push              ║
+║  python agent_fix_v6.py --dry-run      → ดูอย่างเดียว               ║
+║  python agent_fix_v6.py --dedup        → ลบซ้ำ + rebuild             ║
+║  python agent_fix_v6.py --chat         → คุยกับ AI โดยตรง            ║
 ║                                                                      ║
 ║  Layout (--layout):                                                  ║
 ║    grid     → การ์ดตาราง N คอลัมน์ (default)                        ║
@@ -25,45 +25,50 @@
 ║    featured → 1 ใหญ่ข้างบน + grid เล็กข้างล่าง                      ║
 ║    row      → scroll แนวนอน (horizontal scroll)                      ║
 ║                                                                      ║
-║  python agent_fix_v5.py --layout hero3 --cols 3                     ║
-║  python agent_fix_v5.py --layout tiles --cols 4                     ║
-║  python agent_fix_v5.py --layout compact6 --cols 6                  ║
-║  python agent_fix_v5.py --layout zigzag                             ║
-║  python agent_fix_v5.py --layout featured --cols 3                  ║
+║  python agent_fix_v6.py --layout hero3 --cols 3                     ║
+║  python agent_fix_v6.py --layout tiles --cols 4                     ║
+║  python agent_fix_v6.py --layout compact6 --cols 6                  ║
+║  python agent_fix_v6.py --layout zigzag                             ║
+║  python agent_fix_v6.py --layout featured --cols 3                  ║
 ║                                                                      ║
 ║  Theme (--theme):                                                    ║
 ║    blue(default) dark  green  red  purple  orange  teal  slate      ║
 ║    rose  indigo  amber  cyan  lime  sky  violet                      ║
-║  python agent_fix_v5.py --theme dark --layout hero3                 ║
+║  python agent_fix_v6.py --theme dark --layout hero3                 ║
 ║                                                                      ║
 ║  Extra:                                                              ║
-║  python agent_fix_v5.py --check-overlap → ตรวจซ้ำ                  ║
-║  python agent_fix_v5.py --fix-css       → rebuild style.css         ║
-║  python agent_fix_v5.py --fix-footer    → แก้ footer ทุกหน้า         ║
-║  python agent_fix_v5.py --fix-hero      → แก้ hero ทุกหน้า          ║
-║  python agent_fix_v5.py --stats         → สถิติเว็บไซต์             ║
+║  python agent_fix_v6.py --check-overlap → ตรวจซ้ำ                  ║
+║  python agent_fix_v6.py --fix-css       → rebuild style.css         ║
+║  python agent_fix_v6.py --fix-footer    → แก้ footer ทุกหน้า        ║
+║  python agent_fix_v6.py --fix-hero      → แก้ hero ทุกหน้า          ║
+║  python agent_fix_v6.py --fix-search    → แก้ช่องค้นหา              ║
+║  python agent_fix_v6.py --fix-meta      → แก้ meta description      ║
+║  python agent_fix_v6.py --fix-404       → สร้างหน้า 404 สวย         ║
+║  python agent_fix_v6.py --fix-alt       → เติม img alt SEO           ║
+║  python agent_fix_v6.py --check-dup     → ตรวจเนื้อหาซ้ำ            ║
+║  python agent_fix_v6.py --stats         → สถิติเว็บไซต์             ║
+║  python agent_fix_v6.py --create-cats   → สร้างหน้าหมวดที่หายไป     ║ ← [NEW v6]
+║  python agent_fix_v6.py --fix-nav       → rebuild nav.js ครบทุกหมวด ║ ← [NEW v6]
+║  python agent_fix_v6.py --breadcrumb    → เพิ่ม breadcrumb ทุกหน้า  ║ ← [NEW v6]
+║  python agent_fix_v6.py --fix-og        → แก้ og:image ทุกบทความ    ║ ← [NEW v6]
+║  python agent_fix_v6.py --reading-time  → เพิ่มเวลาอ่านบทความ       ║ ← [NEW v6]
+║  python agent_fix_v6.py --robots        → สร้าง robots.txt          ║ ← [NEW v6]
 ╚══════════════════════════════════════════════════════════════════════╝
 
-แก้จาก v4:
-  ✅ [BUG-COLOR] hero gradient ≠ footer bg → ใช้ _theme() เดียวกัน 100%
-  ✅ [BUG-COLOR] category page footer สีต่างจาก index → fixed
-  ✅ [BUG-LAYOUT] article pages ไม่มี hero/footer uniform → แก้
-  ✅ [NEW] layout zigzag  — รูปสลับซ้าย-ขวาเหมือนเว็บ feature
-  ✅ [NEW] layout featured — 1 ใหญ่ข้างบน + grid เล็กข้างล่าง
-  ✅ [NEW] layout row      — horizontal scroll card
-  ✅ [NEW] layout compact5/compact6 — 5-6 คอลัมน์
-  ✅ [NEW] theme เพิ่ม: rose, indigo, amber, cyan, lime, sky, violet
-  ✅ [NEW] --fix-css  → สร้าง style.css ใหม่ทั้งหมดที่มี CSS variables
-  ✅ [NEW] --fix-footer → แก้ footer ทุกหน้าให้ใช้สีเดียวกัน
-  ✅ [NEW] --fix-hero   → แก้ hero ทุกหน้าให้ใช้ gradient เดียวกัน
-  ✅ [NEW] --stats → สถิติเว็บไซต์ (จำนวนบทความ, หมวด, ขนาด)
-  ✅ [NEW] กรอบการ์ดสวยขึ้น: shadow, hover กว้างขึ้น
-  ✅ [NEW] badge หมวดหมู่บนการ์ด
-  ✅ [NEW] อ่านเพิ่มเติม button บนการ์ด
-  ✅ [NEW] index hero ปรับสวยขึ้น: counter ล่วงหน้า, stats row
-  ✅ [NEW] footer ปรับสวยขึ้น: social icons, credit line
-  ✅ [IMPROVED] search ทำงานเร็วขึ้น + แสดงผลสวยขึ้น
-  ✅ [IMPROVED] responsive breakpoint ครอบคลุมขึ้น
+แก้จาก v5:
+  ✅ [BUG-FIX] rebuild_category_pages() → ไม่ข้ามถ้าไม่มีไฟล์ → สร้างใหม่ทันที
+  ✅ [BUG-FIX] nav ทุกหน้าแสดงหมวดหมู่ครบ 26 หมวด (rebuild nav.js อัตโนมัติ)
+  ✅ [BUG-FIX] _CAT_TITLE ครบทุกหมวดที่อยู่ใน CATEGORIES (ไม่มีแสดง stem แล้ว)
+  ✅ [NEW] --create-cats → สร้างหน้าหมวดที่หายไปทั้งหมดทันที
+  ✅ [NEW] --fix-nav → rebuild nav.js ใหม่ให้ครบทุกหมวดหมู่
+  ✅ [NEW] --breadcrumb → เพิ่ม breadcrumb navigation ทุกหน้าบทความ
+  ✅ [NEW] --fix-og → เติม og:image ทุกบทความที่ยังขาดอยู่
+  ✅ [NEW] --reading-time → คำนวณ + แสดงเวลาอ่านโดยประมาณ
+  ✅ [NEW] --robots → สร้าง robots.txt ที่ถูกต้อง
+  ✅ [NEW] หน้าหมวด tag pills ครบทุกหมวดหมู่เหมือนหน้าแรก
+  ✅ [NEW] สร้าง nav.js อัตโนมัติถ้ายังไม่มี
+  ✅ [IMPROVED] สถิติแสดงจำนวนหน้าหมวดที่หายไปด้วย
+  ✅ [IMPROVED] log แสดงรายการหมวดที่ถูกสร้างใหม่ชัดเจน
 """
 import os, sys, re, json, datetime, hashlib, subprocess, time
 from pathlib import Path
@@ -87,9 +92,7 @@ from config import (
 # ══════════════════════════════════════════════════════════════
 _SKIP_DIRS    = {"node_modules",".git",".vercel",".github","__pycache__","dist","build",".next","venv",".venv"}
 _INDEX_FILES  = {"index.html","404.html","contact.html","sitemap.html","privacy.html"}
-_CAT_FILES    = {"ai.html","booking.html","finance.html","food.html","games.html",
-                 "health.html","horoscope.html","lifestyle.html","news.html","sport.html",
-                 "technology.html","entertainment.html"}
+_CAT_FILES    = set(CATEGORY_PAGE_MAP.values())   # ✅ v6: ดึงจาก config ตรงๆ ไม่ hard-code
 _FEAT_FILES   = {"video.html","shopping.html","lotto.html"}
 _STATIC_FILES = {"style.css","nav.js","robots.txt","sitemap.xml","search-index.json","thumbnails.json"}
 _NON_ARTICLE  = _INDEX_FILES | _CAT_FILES | _STATIC_FILES | _FEAT_FILES
@@ -120,7 +123,7 @@ COLS         = int(_get_arg("--cols",  "3"))
 THEME_NAME   = _get_arg("--theme",   "blue")
 
 # ══════════════════════════════════════════════════════════════
-# 🎨  THEME SYSTEM — ขยาย 15 ธีม  (primary, dark, grad_end, accent, badge_txt)
+# 🎨  THEME SYSTEM — 15 ธีม
 # ══════════════════════════════════════════════════════════════
 THEME_DEFS = {
     "blue":   ("#1e40af", "#0f172a", "#1e3a8a", "#3b82f6", "#fff"),
@@ -131,7 +134,6 @@ THEME_DEFS = {
     "orange": ("#9a3412", "#431407", "#c2410c", "#f97316", "#fff"),
     "teal":   ("#0f766e", "#042f2e", "#0d9488", "#14b8a6", "#fff"),
     "slate":  ("#334155", "#0f172a", "#475569", "#64748b", "#f8fafc"),
-    # ── v5 ใหม่ ──
     "rose":   ("#9f1239", "#4c0519", "#be123c", "#fb7185", "#fff"),
     "indigo": ("#3730a3", "#1e1b4b", "#4338ca", "#818cf8", "#fff"),
     "amber":  ("#92400e", "#451a03", "#b45309", "#fbbf24", "#fff"),
@@ -147,26 +149,22 @@ def _theme() -> dict:
 
 def _hero_gradient() -> str:
     t = _theme()
-    # ใช้ primary → dark เหมือนกันทั้ง hero และ footer
     return f"linear-gradient(135deg,{t['primary']},{t['dark']})"
 
 def _footer_bg() -> str:
-    # ✅ BUG-COLOR FIX: footer ใช้สี dark เดียวกับ hero gradient
     return _theme()["dark"]
 
 def _footer_gradient() -> str:
-    # footer gradient เหมือน hero แต่กลับทิศ (dark → primary)
     t = _theme()
     return f"linear-gradient(135deg,{t['dark']},{t['primary']})"
 
 # ══════════════════════════════════════════════════════════════
-# 📐  LAYOUT SYSTEM — 13 แบบ (v5)
+# 📐  LAYOUT SYSTEM — 13 แบบ
 # ══════════════════════════════════════════════════════════════
 LAYOUT_DEFS = {
-    # ── grid: การ์ดตาราง N คอลัมน์ (default) ──────────────────
     "grid": {
-        "label":    "Grid — การ์ดตาราง",
-        "img_h":    "200px",
+        "label": "Grid — การ์ดตาราง",
+        "img_h": "200px",
         "card_css": (
             "display:flex;flex-direction:column;"
             "background:var(--card,#fff);"
@@ -183,11 +181,10 @@ LAYOUT_DEFS = {
             f"@media(max-width:480px){{.art-grid{{grid-template-columns:1fr!important;}}}}"
         ),
     },
-    # ── list: รูปซ้าย ข้อความขวา (แนวตั้ง) ───────────────────
     "list": {
-        "label":    "List — รูปซ้าย ข้อความขวา",
-        "img_h":    "90px",
-        "img_w":    "140px",
+        "label": "List — รูปซ้าย ข้อความขวา",
+        "img_h": "90px",
+        "img_w": "140px",
         "card_css": (
             "display:flex;flex-direction:row;align-items:center;gap:.85rem;"
             "background:var(--card,#fff);"
@@ -200,10 +197,9 @@ LAYOUT_DEFS = {
         "wrapper": lambda cols: "display:flex;flex-direction:column;gap:.7rem;",
         "responsive": lambda cols: "",
     },
-    # ── magazine: ใหญ่ 1 + เล็กๆ ──────────────────────────────
     "magazine": {
-        "label":    "Magazine — featured + grid",
-        "img_h":    "220px",
+        "label": "Magazine — featured + grid",
+        "img_h": "220px",
         "card_css": (
             "display:flex;flex-direction:column;"
             "background:var(--card,#fff);"
@@ -219,10 +215,9 @@ LAYOUT_DEFS = {
             "@media(max-width:560px){.art-grid{grid-template-columns:1fr!important;}}"
         ),
     },
-    # ── compact: กริดเล็ก 4 คอลัมน์ ───────────────────────────
     "compact": {
-        "label":    "Compact — กริด 4 คอลัมน์",
-        "img_h":    "140px",
+        "label": "Compact — กริด 4 คอลัมน์",
+        "img_h": "140px",
         "card_css": (
             "display:flex;flex-direction:column;"
             "background:var(--card,#fff);"
@@ -238,10 +233,9 @@ LAYOUT_DEFS = {
             "@media(max-width:420px){.art-grid{grid-template-columns:1fr!important;}}"
         ),
     },
-    # ── compact5: 5 คอลัมน์ [NEW v5] ─────────────────────────
     "compact5": {
-        "label":    "Compact5 — กริด 5 คอลัมน์",
-        "img_h":    "120px",
+        "label": "Compact5 — กริด 5 คอลัมน์",
+        "img_h": "120px",
         "card_css": (
             "display:flex;flex-direction:column;"
             "background:var(--card,#fff);"
@@ -258,10 +252,9 @@ LAYOUT_DEFS = {
             "@media(max-width:360px){.art-grid{grid-template-columns:1fr!important;}}"
         ),
     },
-    # ── compact6: 6 คอลัมน์ [NEW v5] ─────────────────────────
     "compact6": {
-        "label":    "Compact6 — กริด 6 คอลัมน์",
-        "img_h":    "100px",
+        "label": "Compact6 — กริด 6 คอลัมน์",
+        "img_h": "100px",
         "card_css": (
             "display:flex;flex-direction:column;"
             "background:var(--card,#fff);"
@@ -278,10 +271,9 @@ LAYOUT_DEFS = {
             "@media(max-width:480px){.art-grid{grid-template-columns:repeat(2,1fr)!important;}}"
         ),
     },
-    # ── hero3: 3 การ์ดใหญ่เต็มความกว้าง ───────────────────────
     "hero3": {
-        "label":    "Hero3 — 3 การ์ดใหญ่แบบเว็บข่าว",
-        "img_h":    "260px",
+        "label": "Hero3 — 3 การ์ดใหญ่แบบเว็บข่าว",
+        "img_h": "260px",
         "card_css": (
             "display:flex;flex-direction:column;position:relative;"
             "background:var(--card,#fff);"
@@ -297,10 +289,9 @@ LAYOUT_DEFS = {
             "@media(max-width:560px){.art-grid{grid-template-columns:1fr!important;}}"
         ),
     },
-    # ── sidebar: ใหญ่ซ้าย + list ขวา ─────────────────────────
     "sidebar": {
-        "label":    "Sidebar — ใหญ่ซ้าย + list ขวา",
-        "img_h":    "200px",
+        "label": "Sidebar — ใหญ่ซ้าย + list ขวา",
+        "img_h": "200px",
         "img_h_side": "72px",
         "img_w_side": "110px",
         "card_css": (
@@ -314,10 +305,9 @@ LAYOUT_DEFS = {
         "wrapper": lambda cols: "display:grid;grid-template-columns:1.8fr 1fr;gap:1.5rem;",
         "responsive": lambda cols: "@media(max-width:700px){.art-grid{grid-template-columns:1fr!important;}}",
     },
-    # ── tiles: รูปเต็ม title ทับล่าง ──────────────────────────
     "tiles": {
-        "label":    "Tiles — รูปเต็ม title ทับล่าง",
-        "img_h":    "240px",
+        "label": "Tiles — รูปเต็ม title ทับล่าง",
+        "img_h": "240px",
         "card_css": (
             "display:block;position:relative;"
             "border-radius:16px;overflow:hidden;"
@@ -331,10 +321,9 @@ LAYOUT_DEFS = {
             f"@media(max-width:560px){{.art-grid{{grid-template-columns:1fr!important;}}}}"
         ),
     },
-    # ── masonry: สูงไม่เท่ากัน ─────────────────────────────────
     "masonry": {
-        "label":    "Masonry — สูงไม่เท่ากัน",
-        "img_h":    "auto",
+        "label": "Masonry — สูงไม่เท่ากัน",
+        "img_h": "auto",
         "card_css": (
             "display:flex;flex-direction:column;break-inside:avoid;"
             "background:var(--card,#fff);"
@@ -350,11 +339,10 @@ LAYOUT_DEFS = {
             f"@media(max-width:560px){{.art-grid{{columns:1!important;}}}}"
         ),
     },
-    # ── zigzag: สลับรูปซ้าย-ขวา [NEW v5] ─────────────────────
     "zigzag": {
-        "label":    "Zigzag — รูปสลับซ้าย-ขวา",
-        "img_h":    "220px",
-        "img_w":    "45%",
+        "label": "Zigzag — รูปสลับซ้าย-ขวา",
+        "img_h": "220px",
+        "img_w": "45%",
         "card_css": (
             "display:flex;flex-direction:row;align-items:stretch;"
             "background:var(--card,#fff);"
@@ -370,10 +358,9 @@ LAYOUT_DEFS = {
             "@media(max-width:600px){.art-grid .zigzag-card img{width:100%!important;height:180px!important;}}"
         ),
     },
-    # ── featured: 1 ใหญ่ข้างบน + grid เล็ก [NEW v5] ──────────
     "featured": {
-        "label":    "Featured — 1 ใหญ่บน + grid ล่าง",
-        "img_h":    "320px",
+        "label": "Featured — 1 ใหญ่บน + grid ล่าง",
+        "img_h": "320px",
         "card_css": (
             "display:flex;flex-direction:column;"
             "background:var(--card,#fff);"
@@ -389,11 +376,10 @@ LAYOUT_DEFS = {
             f"@media(max-width:560px){{.art-grid{{grid-template-columns:1fr!important;}}}}"
         ),
     },
-    # ── row: horizontal scroll [NEW v5] ───────────────────────
     "row": {
-        "label":    "Row — แนวนอน scroll",
-        "img_h":    "180px",
-        "card_w":   "260px",
+        "label": "Row — แนวนอน scroll",
+        "img_h": "180px",
+        "card_w": "260px",
         "card_css": (
             "display:flex;flex-direction:column;flex-shrink:0;"
             "background:var(--card,#fff);"
@@ -531,10 +517,8 @@ def _parse_article(fp: Path) -> dict:
 
 
 def _badge_html(หมวด: str) -> str:
-    """สร้าง badge หมวดหมู่"""
-    color  = CAT_COLORS.get(หมวด, "#6366f1")
-    label  = หมวด_ไทย.get(หมวด, หมวด)
-    th     = _theme()
+    color = CAT_COLORS.get(หมวด, "#6366f1")
+    label = หมวด_ไทย.get(หมวด, หมวด)
     return (f'<span style="display:inline-block;padding:.18rem .55rem;border-radius:999px;'
             f'background:{color};color:#fff;font-size:.68rem;font-weight:700;'
             f'margin-bottom:.35rem;">{label}</span>')
@@ -550,7 +534,7 @@ def _build_cards(ไฟล์บทความ: list) -> str:
               'this.style.boxShadow=\'0 8px 24px rgba(0,0,0,.14)\'"'
               ' onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'"')
 
-    # ── sidebar: สร้าง layout พิเศษ ──────────────────────────
+    # ── sidebar ──────────────────────────────────────────────
     if LAYOUT_MODE == "sidebar":
         if not ไฟล์บทความ: return ""
         oe0 = _fallback_img(ไฟล์บทความ[0].stem).replace('"','&quot;')
@@ -592,7 +576,7 @@ def _build_cards(ไฟล์บทความ: list) -> str:
         )
         return f'<div style="{lay["wrapper"](COLS)}">{big}{right}</div>'
 
-    # ── featured: 1 ใหญ่ข้างบน + grid เล็กข้างล่าง [NEW v5] ──
+    # ── featured ─────────────────────────────────────────────
     if LAYOUT_MODE == "featured":
         if not ไฟล์บทความ: return ""
         oe0   = _fallback_img(ไฟล์บทความ[0].stem).replace('"','&quot;')
@@ -636,15 +620,14 @@ def _build_cards(ไฟล์บทความ: list) -> str:
         grid_wrap = f'<div class="art-grid" style="{lay["wrapper"](cols)}">{grid_cards}</div>'
         return featured_card + grid_wrap
 
-    # ── zigzag: สลับรูปซ้าย-ขวา [NEW v5] ─────────────────────
+    # ── zigzag ───────────────────────────────────────────────
     if LAYOUT_MODE == "zigzag":
         cards = ""
         for i, af in enumerate(ไฟล์บทความ):
             d   = _parse_article(af)
             oe  = _fallback_img(af.stem).replace('"','&quot;')
             badge = _badge_html(d["หมวด"])
-            img_side  = "left" if i % 2 == 0 else "right"
-            row_dir   = "row" if i % 2 == 0 else "row-reverse"
+            row_dir = "row" if i % 2 == 0 else "row-reverse"
             cards += (
                 f'<a href="{af.name}" class="zigzag-card" '
                 f'style="display:flex;flex-direction:{row_dir};align-items:stretch;'
@@ -664,7 +647,7 @@ def _build_cards(ไฟล์บทความ: list) -> str:
             )
         return cards
 
-    # ── row: horizontal scroll [NEW v5] ───────────────────────
+    # ── row ──────────────────────────────────────────────────
     if LAYOUT_MODE == "row":
         cards = ""
         for af in ไฟล์บทความ:
@@ -683,64 +666,42 @@ def _build_cards(ไฟล์บทความ: list) -> str:
             )
         return cards
 
-    # ── ทุก layout อื่น: loop การ์ดปกติ ───────────────────────
+    # ── ทุก layout อื่น ───────────────────────────────────────
     การ์ด = ""
     for af in ไฟล์บทความ:
         d   = _parse_article(af)
         oe  = _fallback_img(af.stem).replace('"','&quot;')
         badge = _badge_html(d["หมวด"])
-        วันที่_html = (
-            f'<div style="font-size:.71rem;color:var(--muted,#94a3b8);margin-bottom:.2rem;">'
-            f'{d["วันที่"]}</div>'
-        ) if d["วันที่"] else ""
-        excerpt_html = (
-            f'<p style="margin:.3rem 0 0;font-size:.81rem;color:var(--muted,#64748b);'
-            f'overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;'
-            f'-webkit-box-orient:vertical;">{d["excerpt"]}</p>'
-        ) if d["excerpt"] else ""
-
+        วันที่_html = (f'<p style="font-size:.72rem;color:#94a3b8;margin:0 0 .3rem;">'
+                      f'<i class="fas fa-clock"></i> {d["วันที่"]}</p>' if d["วันที่"] else "")
+        excerpt_part = (f'<p style="font-size:.81rem;color:#64748b;margin:.3rem 0 0;'
+                        f'overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">'
+                        f'{d["excerpt"]}</p>' if d["excerpt"] and LAYOUT_MODE not in ("compact","compact5","compact6") else "")
         if LAYOUT_MODE == "list":
-            img_w = lay.get("img_w","140px")
-            การ์ด += (
-                f'<a href="{af.name}" style="{lay["card_css"]}"'
-                f' onmouseover="this.style.boxShadow=\'0 4px 16px rgba(0,0,0,.1)\';this.style.background=\'var(--soft,#f8fafc)\'"'
-                f' onmouseout="this.style.boxShadow=\'\';this.style.background=\'\'">'
-                f'<img src="{d["img"]}" alt="{d["หัวข้อ"]}" loading="lazy" onerror="{oe}"'
-                f' style="width:{img_w};height:{img_h};object-fit:cover;border-radius:8px;flex-shrink:0;">'
-                f'<div style="flex:1;min-width:0;">'
-                f'{badge}'
-                f'{วันที่_html}'
-                f'<h3 style="font-size:.93rem;font-weight:700;margin:0;line-height:1.4;'
-                f'overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{d["หัวข้อ"]}</h3>'
-                f'{excerpt_html}</div></a>'
-            )
-
-        elif LAYOUT_MODE == "tiles":
+            oe_esc = oe.replace('"','&quot;')
             การ์ด += (
                 f'<a href="{af.name}" style="{lay["card_css"]}"{hover}>'
-                f'<img src="{d["img"]}" alt="{d["หัวข้อ"]}" loading="lazy" onerror="{oe}"'
-                f' style="position:absolute;inset:0;width:100%;height:{img_h};object-fit:cover;">'
-                f'<div style="position:relative;height:{img_h};display:flex;flex-direction:column;justify-content:flex-end;">'
-                f'<div style="background:linear-gradient(transparent 15%,rgba(0,0,0,.8));padding:.85rem .9rem .75rem;">'
-                f'{badge}'
-                f'<h3 style="color:#fff;font-size:.93rem;font-weight:700;margin:.2rem 0 0;line-height:1.4;'
-                f'overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;">{d["หัวข้อ"]}</h3>'
-                f'</div></div></a>'
-            )
-
-        elif LAYOUT_MODE in ("grid","hero3","magazine","compact","compact5","compact6","masonry"):
-            show_excerpt = LAYOUT_MODE not in ("compact5","compact6")
-            excerpt_part = excerpt_html if show_excerpt else ""
-            การ์ด += (
-                f'<a href="{af.name}" style="{lay["card_css"]}"{hover}>'
-                f'<img src="{d["img"]}" alt="{d["หัวข้อ"]}" loading="lazy" onerror="{oe}"'
-                f' style="width:100%;height:{img_h};object-fit:cover;">'
+                f'<img src="{d["img"]}" alt="{d["หัวข้อ"]}" loading="lazy" onerror="{oe_esc}"'
+                f' style="width:{lay.get("img_w","140px")};height:{img_h};object-fit:cover;'
+                f'border-radius:8px;flex-shrink:0;">'
                 f'<div style="padding:.9rem;flex:1;display:flex;flex-direction:column;">'
                 f'{badge}'
                 f'{วันที่_html}'
                 f'<h3 style="font-size:.92rem;font-weight:700;margin:0;line-height:1.45;flex:1;'
                 f'overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;">{d["หัวข้อ"]}</h3>'
                 f'{excerpt_part}'
+                f'</div></a>'
+            )
+        elif LAYOUT_MODE == "tiles":
+            seed_c = CAT_COLORS.get(d["หมวด"], "#1e40af")
+            การ์ด += (
+                f'<a href="{af.name}" style="{lay["card_css"]}"{hover}>'
+                f'<img src="{d["img"]}" alt="{d["หัวข้อ"]}" loading="lazy" onerror="{oe}"'
+                f' style="width:100%;height:{img_h};object-fit:cover;display:block;">'
+                f'<div style="position:absolute;bottom:0;left:0;right:0;'
+                f'background:linear-gradient(transparent,rgba(0,0,0,.78));padding:.75rem .9rem .85rem;">'
+                f'{badge}'
+                f'<h3 style="font-size:.9rem;font-weight:700;line-height:1.35;color:#fff;margin:0;">{d["หัวข้อ"]}</h3>'
                 f'</div></a>'
             )
         else:
@@ -751,9 +712,9 @@ def _build_cards(ไฟล์บทความ: list) -> str:
                 f'<div style="padding:.9rem;flex:1;">'
                 f'{badge}{วันที่_html}'
                 f'<h3 style="font-size:.92rem;font-weight:700;margin:0;line-height:1.45;">{d["หัวข้อ"]}</h3>'
+                f'{excerpt_part}'
                 f'</div></a>'
             )
-
     return การ์ด
 
 
@@ -798,11 +759,17 @@ def audit_ทั้งหมด() -> dict:
     ชื่อไฟล์ = {fp.name for fp in ทุกไฟล์}
     log_info(f"ไฟล์ HTML: {len(ทุกไฟล์)} | บทความ: {len(บทความ)} | Layout: {LAYOUT_MODE} {COLS}col | Theme: {THEME_NAME}")
 
-    idx_path = BASE_PATH / "index.html"
-    if idx_path.exists():
-        idx_txt = idx_path.read_text(encoding="utf-8", errors="ignore")
-        if IDX_S not in idx_txt:
-            log_warn("⚠️  index.html ยังไม่มี INDEX_ARTICLES block")
+    # ✅ v6: ตรวจหน้าหมวดที่ยังไม่มีไฟล์
+    หน้าหมวดหาย = []
+    for cat, page in CATEGORY_PAGE_MAP.items():
+        fp = BASE_PATH / page
+        if not fp.exists():
+            หน้าหมวดหาย.append(page)
+    if หน้าหมวดหาย:
+        log_warn(f"⚠️  หน้าหมวดที่ยังไม่มีไฟล์ ({len(หน้าหมวดหาย)} หน้า):")
+        for p in หน้าหมวดหาย:
+            log(f"     ❌ {p}")
+        log_warn("   → รัน: python agent_fix_v6.py --create-cats  เพื่อสร้างทั้งหมด")
 
     ปัญหา = {
         "ไม่มี nav.js":          [],
@@ -814,8 +781,7 @@ def audit_ทั้งหมด() -> dict:
         "empty links":           [],
         "block ซ้ำ":             [],
         "หน้าหมวดไม่มี block":   [],
-        "layout ไม่สม่ำเสมอ":   [],
-        # ✅ v5 เพิ่ม
+        "หน้าหมวดไม่มีไฟล์":    หน้าหมวดหาย,
         "footer สีผิด":          [],
         "hero gradient ผิด":     [],
     }
@@ -853,7 +819,6 @@ def audit_ทั้งหมด() -> dict:
             if txt.count(ART_S) > 1:        ปัญหา["block ซ้ำ"].append(f"{fp.name} ({txt.count(ART_S)}x)")
             if fp.name in _CAT_FILES and ART_S not in txt:
                 ปัญหา["หน้าหมวดไม่มี block"].append(fp.name)
-            # ✅ v5: ตรวจสีบน-ล่าง
             if "footer" in txt.lower():
                 if _theme()["dark"] not in txt and _theme()["primary"] not in txt:
                     ปัญหา["footer สีผิด"].append(fp.name)
@@ -884,7 +849,7 @@ def audit_ทั้งหมด() -> dict:
 
 
 # ══════════════════════════════════════════════════════════════
-# 📊 STATS (--stats) [NEW v5]
+# 📊 STATS
 # ══════════════════════════════════════════════════════════════
 def แสดง_สถิติ():
     log_section("📊 สถิติเว็บไซต์")
@@ -897,14 +862,23 @@ def แสดง_สถิติ():
 
     log(f"  📝 บทความทั้งหมด: {len(บทความ)} ชิ้น")
     log(f"  💾 ขนาดรวม: {total_size/1024:.1f} KB ({total_size/1024/1024:.2f} MB)")
-    log(f"  📁 หมวดหมู่: {len(by_cat)} หมวด")
+    log(f"  📁 หมวดหมู่ที่มีบทความ: {len(by_cat)} หมวด")
+
+    # ✅ v6: แสดงหมวดที่ยังไม่มีไฟล์ HTML
+    หน้าหาย = [(c, CATEGORY_PAGE_MAP[c]) for c in CATEGORIES
+                if not (BASE_PATH / CATEGORY_PAGE_MAP.get(c, c+".html")).exists()]
+    if หน้าหาย:
+        log(f"\n  ❌ หน้าหมวดที่ยังไม่มีไฟล์ ({len(หน้าหาย)} หน้า):")
+        for c, p in หน้าหาย:
+            log(f"     • {p}  ({หมวด_ไทย.get(c,c)})")
+        log(f"  → รัน --create-cats เพื่อสร้าง")
+
     log(f"")
     for cat, fps in sorted(by_cat.items(), key=lambda x: -len(x[1])):
         th_name = หมวด_ไทย.get(cat, cat)
         avg_sz  = sum(f.stat().st_size for f in fps) / len(fps) / 1024
         log(f"  {'▪' if len(fps) >= 5 else '·'} {th_name:<14} {len(fps):>4} บทความ  avg {avg_sz:.1f} KB")
 
-    # ใหม่สุด
     newest = sorted(บทความ, key=lambda f: f.stat().st_mtime, reverse=True)[:5]
     log(f"\n  🕐 ใหม่ที่สุด 5 อัน:")
     for fp in newest:
@@ -917,6 +891,8 @@ def แสดง_สถิติ():
 # ══════════════════════════════════════════════════════════════
 def แก้_nav() -> int:
     log_section("🧭 แก้ Nav Bar")
+    # ✅ v6: สร้าง nav.js ก่อนถ้ายังไม่มี
+    สร้าง_nav_js()
     แก้แล้ว = 0
     for fp in สแกน_html():
         try:
@@ -935,38 +911,170 @@ def แก้_nav() -> int:
 
 
 # ══════════════════════════════════════════════════════════════
+# 🔧 [NEW v6] สร้าง nav.js อัตโนมัติ ครบทุกหมวด
+# ══════════════════════════════════════════════════════════════
+def สร้าง_nav_js() -> int:
+    log_section("🧭 Rebuild nav.js — ครบทุกหมวด")
+    th = _theme()
+
+    # สร้าง nav items จาก CATEGORY_PAGE_MAP ครบทุกหมวด
+    nav_items = []
+    # หมวดหลักที่แสดงใน navbar
+    main_cats = ['news', 'lifestyle', 'health', 'food', 'finance', 'technology', 'entertainment', 'travel']
+    # หมวดที่เหลือใส่ใน dropdown "เพิ่มเติม"
+    extra_cats = [c for c in CATEGORIES if c not in main_cats]
+
+    main_links = ""
+    for cat in main_cats:
+        page  = CATEGORY_PAGE_MAP.get(cat, cat + ".html")
+        label = หมวด_ไทย.get(cat, cat)
+        main_links += f'    {{ label: "{label}", href: "{page}" }},\n'
+
+    extra_links = ""
+    for cat in extra_cats:
+        page  = CATEGORY_PAGE_MAP.get(cat, cat + ".html")
+        label = หมวด_ไทย.get(cat, cat)
+        extra_links += f'    {{ label: "{label}", href: "{page}" }},\n'
+
+    js = f"""// nav.js — ไอหมอก v6 — auto-generated {datetime.datetime.now().strftime("%Y-%m-%d")}
+// ✅ ครบทุกหมวด {len(CATEGORIES)} หมวด
+(function() {{
+  var SITE_NAME = "{SITE_NAME}";
+  var PRIMARY   = "{th['primary']}";
+  var DARK      = "{th['dark']}";
+
+  var MAIN_CATS = [
+{main_links}  ];
+
+  var EXTRA_CATS = [
+{extra_links}  ];
+
+  function renderNav() {{
+    var nav = document.querySelector('nav');
+    if (!nav) return;
+
+    var currentPage = location.pathname.split('/').pop() || 'index.html';
+
+    // สร้าง main links
+    var mainHTML = MAIN_CATS.map(function(item) {{
+      var active = currentPage === item.href;
+      return '<a href="' + item.href + '" style="color:#fff;text-decoration:none;'
+        + 'padding:.4rem .65rem;border-radius:6px;font-size:.88rem;font-weight:600;white-space:nowrap;'
+        + (active ? 'background:rgba(255,255,255,.22);' : 'opacity:.88;')
+        + 'transition:background .18s;" '
+        + 'onmouseover="this.style.background=\'rgba(255,255,255,.18)\'" '
+        + 'onmouseout="this.style.background=\'' + (active ? 'rgba(255,255,255,.22)' : '') + '\'">'
+        + item.label + '</a>';
+    }}).join('');
+
+    // สร้าง dropdown "เพิ่มเติม"
+    var dropHTML = EXTRA_CATS.map(function(item) {{
+      var active = currentPage === item.href;
+      return '<a href="' + item.href + '" style="display:block;padding:.45rem .85rem;'
+        + 'color:#1e293b;text-decoration:none;font-size:.85rem;font-weight:' + (active ? '700' : '500') + ';'
+        + 'background:' + (active ? '#e0f2fe' : 'transparent') + ';'
+        + 'transition:background .15s;" '
+        + 'onmouseover="this.style.background=\'#f1f5f9\'" '
+        + 'onmouseout="this.style.background=\'' + (active ? '#e0f2fe' : 'transparent') + '\'">'
+        + item.label + '</a>';
+    }}).join('');
+
+    nav.style.cssText = 'position:sticky;top:0;z-index:999;background:' + PRIMARY
+      + ';box-shadow:0 2px 10px rgba(0,0,0,.22);font-family:Sarabun,sans-serif;';
+
+    nav.innerHTML = [
+      '<div style="max-width:1140px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;gap:.25rem;height:52px;">',
+      // Logo
+      '<a href="index.html" style="color:#fff;text-decoration:none;font-size:1.15rem;font-weight:800;',
+      'letter-spacing:.02em;margin-right:.75rem;flex-shrink:0;white-space:nowrap;">' + SITE_NAME + '</a>',
+      // Main links (desktop)
+      '<div class="nav-main" style="display:flex;align-items:center;gap:.15rem;flex:1;overflow:hidden;flex-wrap:nowrap;">',
+      mainHTML,
+      '</div>',
+      // Dropdown เพิ่มเติม
+      '<div class="nav-more" style="position:relative;flex-shrink:0;">',
+      '<button id="nav-more-btn" style="background:rgba(255,255,255,.15);border:none;color:#fff;',
+      'padding:.38rem .75rem;border-radius:6px;cursor:pointer;font-family:inherit;font-size:.85rem;',
+      'font-weight:600;display:flex;align-items:center;gap:.35rem;" ',
+      'onclick="(function(){{var d=document.getElementById(\'nav-more-drop\');',
+      'd.style.display=d.style.display===\'block\'?\'none\':\'block\';}})()" >',
+      'เพิ่มเติม <span style="font-size:.65rem;">▼</span></button>',
+      '<div id="nav-more-drop" style="display:none;position:absolute;top:calc(100% + 6px);right:0;',
+      'background:#fff;border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.18);',
+      'min-width:160px;max-height:70vh;overflow-y:auto;z-index:9999;padding:.35rem 0;">',
+      dropHTML,
+      '</div></div>',
+      // Hamburger (mobile)
+      '<button id="nav-ham" style="display:none;background:none;border:none;color:#fff;',
+      'font-size:1.3rem;cursor:pointer;padding:.3rem .5rem;margin-left:.5rem;" ',
+      'onclick="(function(){{var m=document.getElementById(\'nav-mobile\');',
+      'm.style.display=m.style.display===\'flex\'?\'none\':\'flex\';}})()" >☰</button>',
+      '</div>',
+      // Mobile menu
+      '<div id="nav-mobile" style="display:none;flex-direction:column;background:' + DARK + ';',
+      'padding:.6rem 1rem 1rem;gap:.2rem;flex-wrap:wrap;">',
+      MAIN_CATS.concat(EXTRA_CATS).map(function(item) {{
+        return '<a href="' + item.href + '" style="color:rgba(255,255,255,.88);text-decoration:none;',
+          'padding:.4rem .6rem;border-radius:6px;font-size:.9rem;font-weight:500;">' + item.label + '</a>';
+      }}).join(''),
+      '</div>',
+      // Responsive CSS
+      '<style>@media(max-width:760px){{.nav-main{{display:none!important;}}.nav-more{{display:none!important;}}#nav-ham{{display:block!important;}}}}</style>',
+    ].join('');
+
+    // ปิด dropdown เมื่อคลิกข้างนอก
+    document.addEventListener('click', function(e) {{
+      var btn  = document.getElementById('nav-more-btn');
+      var drop = document.getElementById('nav-more-drop');
+      if (drop && btn && !btn.contains(e.target) && !drop.contains(e.target)) {{
+        drop.style.display = 'none';
+      }}
+    }});
+  }}
+
+  if (document.readyState === 'loading') {{
+    document.addEventListener('DOMContentLoaded', renderNav);
+  }} else {{
+    renderNav();
+  }}
+}})();
+"""
+    nav_path = BASE_PATH / "nav.js"
+    orig = nav_path.read_text(encoding="utf-8", errors="ignore") if nav_path.exists() else ""
+    if not DRY_RUN:
+        nav_path.write_text(js, encoding="utf-8")
+    log_ok(f"สร้าง nav.js — {len(CATEGORIES)} หมวด (main: {len(main_cats)}, dropdown: {len(extra_cats)})")
+    return 1
+
+
+# ══════════════════════════════════════════════════════════════
 # 🔧 FIX DEAD LINKS
 # ══════════════════════════════════════════════════════════════
 def แก้_dead_links() -> int:
     log_section("🔗 แก้ Dead/Empty Links")
-    ทุกไฟล์  = สแกน_html()
-    ชื่อไฟล์ = {fp.name for fp in ทุกไฟล์}
-    แก้แล้ว  = 0
-    for fp in ทุกไฟล์:
+    ชื่อไฟล์ = {fp.name for fp in สแกน_html()}
+    แก้แล้ว = 0
+    for fp in สแกน_html():
         try:
             orig = fp.read_text(encoding="utf-8", errors="ignore")
             soup = BeautifulSoup(orig, "html.parser")
             changed = False
-            for a in list(soup.find_all("a", href=True)):
+            for a in soup.find_all("a", href=True):
                 href = a["href"].strip()
-                if href in ("#","","javascript:void(0)"):
-                    a.unwrap(); changed = True; continue
-                if (href.endswith(".html") and not href.startswith("http")
-                        and not href.startswith("#") and href not in ชื่อไฟล์):
-                    card = None
-                    for anc in a.parents:
-                        tag = getattr(anc,'name','')
-                        if tag in ('div','article','li') and anc != soup:
-                            if len(anc.find_all('a', href=True)) == 1:
-                                card = anc; break
-                    if card and card != soup.body: card.decompose()
-                    else: a.unwrap()
+                if href in ("", "javascript:void(0)"):
+                    del a["href"]
+                    a["href"] = "index.html"
                     changed = True
-                    log_warn(f"  ลบ dead link: {fp.name} → {href}")
-            if changed and เขียน(fp, str(soup), orig): แก้แล้ว += 1
+                elif (href.endswith(".html") and not href.startswith("http")
+                      and not href.startswith("#") and href not in ชื่อไฟล์):
+                    # ลิงก์ชี้ไปหน้าที่ไม่มี → ชี้ไปหน้าแรกแทน
+                    a["href"] = "index.html"
+                    changed = True
+            if changed and เขียน(fp, str(soup), orig):
+                แก้แล้ว += 1
         except Exception as e:
-            log_err(f"  links {fp.name}: {e}")
-    log_ok(f"แก้ links: {แก้แล้ว} ไฟล์")
+            log_err(f"  dead-link {fp.name}: {e}")
+    log_ok(f"แก้ dead links: {แก้แล้ว} ไฟล์")
     return แก้แล้ว
 
 
@@ -974,46 +1082,26 @@ def แก้_dead_links() -> int:
 # 🔧 FIX IMAGES
 # ══════════════════════════════════════════════════════════════
 def แก้_รูปภาพ() -> int:
-    log_section("🖼️  แก้รูปภาพ")
+    log_section("🖼️  แก้รูปภาพ + onerror")
     แก้แล้ว = 0
     for fp in สแกน_html():
         try:
             orig = fp.read_text(encoding="utf-8", errors="ignore")
-            html = orig
-            # เพิ่ม loading lazy
-            html = re.sub(r'(<img\b(?![^>]*\bloading=)[^>]*?)(/?>)', r'\1 loading="lazy"\2', html)
-            # แก้ src ว่าง
-            html = re.sub(r'(<img\b[^>]*)\bsrc=["\'](\s*)["\']',
-                          lambda m: m.group(1) + f' src="{_picsum(fp.stem)}"', html)
-            # แก้ local src หาย
-            def _fix_src(m):
-                tag = m.group(0)
-                s = re.search(r'src=["\']([^"\']+)["\']', tag)
-                if not s: return tag
-                src = s.group(1)
-                if src.startswith("images/") and not src.startswith("http"):
-                    if not (BASE_PATH/src).exists():
-                        svg = BASE_PATH/"images"/"thumbs"/(fp.stem+".svg")
-                        new = f"images/thumbs/{fp.stem}.svg" if svg.exists() else _picsum(fp.stem)
-                        tag = tag.replace(s.group(0), f'src="{new}"')
-                return tag
-            html = re.sub(r'<img\b[^>]*>', _fix_src, html)
-            # เพิ่ม onerror
-            def _add_onerror(m):
-                tag = m.group(0)
-                if 'onerror=' in tag: return tag
-                s = re.search(r'src=["\']([^"\']+)["\']', tag)
-                stem = fp.stem
-                if s:
-                    sv = re.search(r'thumbs/([^/]+?)\.svg', s.group(1))
-                    if sv: stem = sv.group(1)
-                fb = _fallback_img(stem)
-                return tag.rstrip('>').rstrip('/') + f' onerror="{fb}">'
-            html = re.sub(r'<img\b[^>]*>', _add_onerror, html)
-            if เขียน(fp, html, orig): แก้แล้ว += 1
+            soup = BeautifulSoup(orig, "html.parser")
+            changed = False
+            for img in soup.find_all("img"):
+                if not img.get("onerror"):
+                    stem = fp.stem
+                    img["onerror"] = _fallback_img(stem)
+                    changed = True
+                if not img.get("loading"):
+                    img["loading"] = "lazy"
+                    changed = True
+            if changed and เขียน(fp, str(soup), orig):
+                แก้แล้ว += 1
         except Exception as e:
-            log_err(f"  รูป {fp.name}: {e}")
-    log_ok(f"แก้รูป: {แก้แล้ว} ไฟล์")
+            log_err(f"  img {fp.name}: {e}")
+    log_ok(f"แก้รูปภาพ: {แก้แล้ว} ไฟล์")
     return แก้แล้ว
 
 
@@ -1021,18 +1109,25 @@ def แก้_รูปภาพ() -> int:
 # 🔧 FIX SVG EMOJI
 # ══════════════════════════════════════════════════════════════
 def แก้_svg_emoji() -> int:
-    svg_dir = BASE_PATH / "images" / "thumbs"
+    log_section("✨ แก้ SVG Emoji")
     แก้แล้ว = 0
-    if not svg_dir.exists(): return 0
-    for fp in svg_dir.glob("*.svg"):
+    _SVG_RE = re.compile(r'<svg[^>]*>\s*<text[^>]*>[^<]*</text>\s*</svg>', re.I)
+    for fp in สแกน_html():
         try:
-            txt = fp.read_text(encoding="utf-8")
-            if re.search(r'[\U00010000-\U0010FFFF]', txt):
-                if not DRY_RUN:
-                    fp.write_text(re.sub(r'[\U00010000-\U0010FFFF]', '', txt), encoding="utf-8")
-                    แก้แล้ว += 1
-        except Exception: pass
-    log_ok(f"แก้ SVG emoji: {แก้แล้ว}")
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            soup = BeautifulSoup(orig, "html.parser")
+            changed = False
+            for svg in soup.find_all("svg"):
+                txt = svg.find("text")
+                if txt and len(txt.get_text().strip()) <= 2:
+                    emoji = txt.get_text().strip()
+                    svg.replace_with(BeautifulSoup(emoji, "html.parser"))
+                    changed = True
+            if changed and เขียน(fp, str(soup), orig):
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  svg {fp.name}: {e}")
+    log_ok(f"แก้ SVG emoji: {แก้แล้ว} ไฟล์")
     return แก้แล้ว
 
 
@@ -1155,12 +1250,10 @@ def แก้_related_articles() -> int:
 
 
 # ══════════════════════════════════════════════════════════════
-# 🎨 BUILD FOOTER HTML [SHARED] — ✅ v5: สีเดียวกันทั้งเว็บ
+# 🎨 BUILD FOOTER HTML [SHARED]
 # ══════════════════════════════════════════════════════════════
 def _build_footer_html() -> str:
-    """Footer ที่ใช้สีเดียวกับ hero gradient — แก้ BUG-COLOR"""
     th = _theme()
-    # ใช้ _footer_gradient() ให้ดูสม่ำเสมอกับ hero
     cat_links = " · ".join(
         f'<a href="{CATEGORY_PAGE_MAP.get(c, c+".html")}" '
         f'style="color:rgba(255,255,255,.75);text-decoration:none;">{หมวด_ไทย.get(c, c)}</a>'
@@ -1193,14 +1286,13 @@ text-align:center;padding:2.5rem 1rem 1.75rem;font-size:.88rem;margin-top:1.5rem
 # 🎨 BUILD HERO HTML [SHARED]
 # ══════════════════════════════════════════════════════════════
 def _build_hero_index(count: int, cat_pills: str) -> str:
-    th = _theme()
     return f'''<!-- HERO SECTION -->
 <div style="background:{_hero_gradient()};color:#fff;padding:3.75rem 1.5rem 2.75rem;text-align:center;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2220%22 cy=%2220%22 r=%2260%22 fill=%22rgba(255,255,255,.04)%22/><circle cx=%2280%22 cy=%2280%22 r=%2240%22 fill=%22rgba(255,255,255,.03)%22/></svg>') no-repeat center;background-size:cover;"></div>
   <div style="position:relative;z-index:1;">
     <h1 style="font-size:clamp(1.9rem,5vw,3rem);font-weight:800;margin-bottom:.75rem;line-height:1.18;letter-spacing:-.01em;">{SITE_NAME}</h1>
     <p style="font-size:1.02rem;opacity:.88;max-width:580px;margin:0 auto 1.5rem;">แหล่งรวมบทความคุณภาพสูง อัปเดตทุกวัน</p>
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:1.6rem;">{cat_pills}</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem .5rem;margin-bottom:1.6rem;max-height:7rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent;">{cat_pills}</div>
     <div style="max-width:500px;margin:0 auto;position:relative;">
       <i class="fas fa-search" style="position:absolute;left:.9rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.7);z-index:1;"></i>
       <input id="search-input" type="text" placeholder="ค้นหาบทความ..." autocomplete="off"
@@ -1227,14 +1319,27 @@ def _build_hero_category(th_name: str, desc: str) -> str:
             f'<h1 style="font-size:1.75rem;font-weight:700;margin:0;">'
             f'<i class="fas fa-tag"></i> {th_name}</h1>'
             f'<p style="margin:.4rem 0 0;opacity:.85;font-size:.9rem;">{desc}</p>'
+            # ✅ v6: เพิ่ม tag pills ทุกหมวดเหมือนหน้าแรก
+            f'<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem .45rem;margin-top:1rem;">'
+            + "".join(
+                f'<a href="{CATEGORY_PAGE_MAP.get(c, c+".html")}" '
+                f'style="display:inline-flex;align-items:center;gap:.3rem;'
+                f'padding:.3rem .75rem;background:rgba(255,255,255,.15);color:#fff;'
+                f'border-radius:999px;text-decoration:none;font-size:.78rem;font-weight:600;'
+                f'transition:background .2s;" '
+                f'onmouseover="this.style.background=\'rgba(255,255,255,.28)\'" '
+                f'onmouseout="this.style.background=\'rgba(255,255,255,.15)\'">'
+                f'{หมวด_ไทย.get(c, c)}</a>'
+                for c in CATEGORIES
+            )
+            + f'</div>'
             f'</div>')
 
 
 # ══════════════════════════════════════════════════════════════
-# 🔧 --fix-footer: แก้ footer ทุกหน้า [NEW v5]
+# 🔧 --fix-footer
 # ══════════════════════════════════════════════════════════════
 def แก้_footer_ทุกหน้า() -> int:
-    """แก้ footer ทุกหน้าให้ใช้สีเดียวกัน — ✅ BUG-COLOR FIX"""
     log_section("🎨 แก้ Footer สีทุกหน้า")
     footer_html = _build_footer_html()
     แก้แล้ว = 0
@@ -1242,7 +1347,6 @@ def แก้_footer_ทุกหน้า() -> int:
         try:
             orig = fp.read_text(encoding="utf-8", errors="ignore")
             if "<footer" not in orig.lower(): continue
-            # แทนที่ footer เก่าทั้งหมด
             new_html = re.sub(
                 r'<footer[\s\S]*?</footer>',
                 footer_html, orig, flags=re.IGNORECASE
@@ -1257,10 +1361,9 @@ def แก้_footer_ทุกหน้า() -> int:
 
 
 # ══════════════════════════════════════════════════════════════
-# 🔧 --fix-hero: แก้ hero ทุกหน้า [NEW v5]
+# 🔧 --fix-hero
 # ══════════════════════════════════════════════════════════════
 def แก้_hero_ทุกหน้า() -> int:
-    """แก้ hero gradient ของหน้าหมวดให้ match กับ index"""
     log_section("🎨 แก้ Hero Gradient ทุกหน้า")
     แก้แล้ว = 0
     th = _theme()
@@ -1268,26 +1371,16 @@ def แก้_hero_ทุกหน้า() -> int:
         if fp.name not in _CAT_FILES: continue
         try:
             orig = fp.read_text(encoding="utf-8", errors="ignore")
-            # แก้ background ทุก div ที่มี hero/banner gradient
             def _fix_bg(m):
                 tag = m.group(0)
-                # แก้ gradient เก่า
                 tag = re.sub(r'linear-gradient\([^)]+\)', _hero_gradient(), tag)
-                # แก้ background:#[0-9a-f]{3,6} ใน hero zone
                 return tag
             new_html = re.sub(
                 r'<div[^>]*(?:hero|banner|jumbotron)[^>]*>',
                 _fix_bg, orig, flags=re.IGNORECASE
             )
-            # แก้สี CSS variable ใน <style> header
-            new_html = re.sub(
-                r'(--primary:\s*)#[0-9a-fA-F]{3,6}',
-                r'\g<1>' + th['primary'], new_html
-            )
-            new_html = re.sub(
-                r'(--dark:\s*)#[0-9a-fA-F]{3,6}',
-                r'\g<1>' + th['dark'], new_html
-            )
+            new_html = re.sub(r'(--primary:\s*)#[0-9a-fA-F]{3,6}', r'\g<1>' + th['primary'], new_html)
+            new_html = re.sub(r'(--dark:\s*)#[0-9a-fA-F]{3,6}',    r'\g<1>' + th['dark'],    new_html)
             if เขียน(fp, new_html, orig):
                 แก้แล้ว += 1
                 log_ok(f"  แก้ hero: {fp.name}")
@@ -1298,16 +1391,12 @@ def แก้_hero_ทุกหน้า() -> int:
 
 
 # ══════════════════════════════════════════════════════════════
-# 🔧 --fix-css: สร้าง style.css ใหม่ [NEW v5]
+# 🔧 --fix-css: สร้าง style.css ใหม่
 # ══════════════════════════════════════════════════════════════
 def rebuild_style_css() -> int:
-    """สร้าง style.css ใหม่ที่มี CSS variables และ utility classes ครบ"""
     log_section("🎨 Rebuild style.css")
     th = _theme()
-    css = f"""/* style.css — ไอหมอก v5 — auto-generated {datetime.datetime.now().strftime("%Y-%m-%d")} */
-/* Theme: {THEME_NAME} */
-
-/* ══ CSS Variables ══════════════════════════════════════════ */
+    css = f"""/* style.css — {SITE_NAME} v6 — auto-generated {datetime.datetime.now().strftime("%Y-%m-%d")} */
 :root {{
   --primary:   {th['primary']};
   --dark:      {th['dark']};
@@ -1324,232 +1413,118 @@ def rebuild_style_css() -> int:
   --shadow-lg: 0 8px 32px rgba(0,0,0,.14);
   --font:      'Sarabun', sans-serif;
 }}
-
-/* Dark mode */
 @media (prefers-color-scheme: dark) {{
   :root {{
-    --card:   #1e293b;
-    --bg:     #0f172a;
-    --soft:   #1e293b;
-    --border: #334155;
-    --muted:  #94a3b8;
-    --text:   #e2e8f0;
+    --card:   #1e293b; --bg: #0f172a; --soft: #1e293b;
+    --border: #334155; --muted: #94a3b8; --text: #e2e8f0;
   }}
 }}
-
-/* ══ Reset ══════════════════════════════════════════════════ */
 *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-
-body {{
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}}
-
+body {{ font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }}
 img {{ max-width: 100%; height: auto; display: block; }}
 a   {{ color: var(--primary); }}
-
-/* ══ Layout ═════════════════════════════════════════════════ */
-.page-main {{
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 1rem 1.25rem 2.5rem;
-}}
-
-.container {{
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-}}
-
-/* ══ Art Grid ═══════════════════════════════════════════════ */
-.art-grid a:hover {{
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
-}}
-
-/* Horizontal scroll bar */
+.page-main  {{ max-width: 1140px; margin: 0 auto; padding: 1rem 1.25rem 2.5rem; }}
+.container  {{ max-width: 1140px; margin: 0 auto; padding: 0 1.25rem; }}
+.art-grid a:hover {{ transform: translateY(-4px); box-shadow: var(--shadow); }}
 .art-grid::-webkit-scrollbar {{ height: 5px; }}
-.art-grid::-webkit-scrollbar-track {{ background: transparent; }}
 .art-grid::-webkit-scrollbar-thumb {{ background: rgba(0,0,0,.18); border-radius: 999px; }}
-
-/* ══ Cards ══════════════════════════════════════════════════ */
-.card {{
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition: transform .22s, box-shadow .22s;
-}}
-.card:hover {{
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-}}
-
-/* ══ Nav ════════════════════════════════════════════════════ */
-nav {{
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--primary);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-}}
-
-/* ══ Badges ═════════════════════════════════════════════════ */
-.badge {{
-  display: inline-block;
-  padding: .2rem .6rem;
-  border-radius: 999px;
-  font-size: .68rem;
-  font-weight: 700;
-  background: var(--accent);
-  color: #fff;
-}}
-
-/* ══ Buttons ════════════════════════════════════════════════ */
-.btn {{
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  padding: .45rem 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: var(--font);
-  font-size: .88rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: opacity .2s, transform .15s;
-}}
+.card {{ background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+         box-shadow: var(--shadow-sm); overflow: hidden; transition: transform .22s, box-shadow .22s; }}
+.card:hover {{ transform: translateY(-3px); box-shadow: var(--shadow); }}
+nav {{ position: sticky; top: 0; z-index: 100; background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.18); }}
+.badge {{ display: inline-block; padding: .2rem .6rem; border-radius: 999px; font-size: .68rem; font-weight: 700; background: var(--accent); color: #fff; }}
+.btn {{ display: inline-flex; align-items: center; gap: .4rem; padding: .45rem 1rem; border: none; border-radius: 8px; cursor: pointer; font-family: var(--font); font-size: .88rem; font-weight: 600; text-decoration: none; transition: opacity .2s, transform .15s; }}
 .btn:hover {{ opacity: .88; transform: translateY(-1px); }}
 .btn-primary {{ background: var(--primary); color: #fff; }}
 .btn-outline  {{ background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }}
-
-/* ══ Article Page ════════════════════════════════════════════ */
-.article-body {{
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
-}}
+.article-body {{ max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }}
 .article-body h2 {{ font-size: 1.25rem; margin: 1.5rem 0 .6rem; color: var(--primary); }}
 .article-body h3 {{ font-size: 1.05rem; margin: 1.2rem 0 .5rem; }}
 .article-body p  {{ margin-bottom: 1rem; line-height: 1.8; }}
 .article-body ul, .article-body ol {{ margin: .75rem 0 1rem 1.5rem; }}
 .article-body li {{ margin-bottom: .4rem; line-height: 1.7; }}
-.article-body blockquote {{
-  border-left: 4px solid var(--accent);
-  padding: .75rem 1.25rem;
-  margin: 1rem 0;
-  background: var(--soft);
-  border-radius: 0 8px 8px 0;
-  font-style: italic;
-}}
-.article-body img {{
-  border-radius: 10px;
-  margin: 1rem auto;
-  box-shadow: var(--shadow-sm);
-}}
-.hero-image-wrapper img {{
-  width: 100%;
-  max-height: 480px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1.25rem;
-}}
-
-/* ══ Sidebar ════════════════════════════════════════════════ */
-.sidebar {{
-  min-width: 240px;
-}}
-.sidebar-box {{
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  padding: 1.1rem;
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 1rem;
-}}
-
-/* ══ Search ═════════════════════════════════════════════════ */
-#search-results a {{
-  display: flex;
-  gap: .6rem;
-  align-items: center;
-  padding: .55rem .85rem;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--text);
-  font-size: .88rem;
-  transition: background .15s;
-}}
+.article-body blockquote {{ border-left: 4px solid var(--accent); padding: .75rem 1.25rem; margin: 1rem 0; background: var(--soft); border-radius: 0 8px 8px 0; font-style: italic; }}
+.article-body img {{ border-radius: 10px; margin: 1rem auto; box-shadow: var(--shadow-sm); }}
+.hero-image-wrapper img {{ width: 100%; max-height: 480px; object-fit: cover; border-radius: 12px; margin-bottom: 1.25rem; }}
+.sidebar {{ min-width: 240px; }}
+.sidebar-box {{ background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.1rem; box-shadow: var(--shadow-sm); margin-bottom: 1rem; }}
+#search-results a {{ display: flex; gap: .6rem; align-items: center; padding: .55rem .85rem; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); font-size: .88rem; transition: background .15s; }}
 #search-results a:hover {{ background: var(--soft); }}
-#search-results a img {{
-  width: 52px; height: 38px;
-  object-fit: cover;
-  border-radius: 5px;
-  flex-shrink: 0;
-}}
-
-/* ══ Utility ════════════════════════════════════════════════ */
-.text-center {{ text-align: center; }}
-.text-muted  {{ color: var(--muted); }}
-.mt-1 {{ margin-top: .5rem; }}
-.mt-2 {{ margin-top: 1rem; }}
-.mt-3 {{ margin-top: 1.5rem; }}
-.mb-1 {{ margin-bottom: .5rem; }}
-.mb-2 {{ margin-bottom: 1rem; }}
-.mb-3 {{ margin-bottom: 1.5rem; }}
-
-/* ══ Responsive ══════════════════════════════════════════════ */
-@media (max-width: 768px) {{
-  .page-main {{ padding: .75rem .9rem 2rem; }}
-  .article-body {{ padding: 1rem .9rem 2.5rem; }}
-  h1 {{ font-size: 1.5rem !important; }}
-}}
-
-@media (max-width: 480px) {{
-  .page-main {{ padding: .6rem .7rem 1.5rem; }}
-}}
-
-/* ══ Print ══════════════════════════════════════════════════ */
-@media print {{
-  nav, footer, .sidebar, #search-results {{ display: none !important; }}
-  .article-body {{ max-width: 100%; padding: 0; }}
-}}
+#search-results a:last-child {{ border-bottom: none; }}
+/* Breadcrumb */
+.breadcrumb {{ display: flex; flex-wrap: wrap; gap: .3rem; align-items: center; font-size: .82rem; color: var(--muted); padding: .6rem 0; }}
+.breadcrumb a {{ color: var(--primary); text-decoration: none; }}
+.breadcrumb a:hover {{ text-decoration: underline; }}
+.breadcrumb span {{ opacity: .5; }}
+/* Reading time */
+.reading-time {{ display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; color: var(--muted); margin-bottom: .75rem; }}
+/* Back to top */
+#back-to-top {{ position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--primary); color: #fff; border: none; border-radius: 999px; width: 42px; height: 42px; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow); font-size: 1.1rem; z-index: 500; transition: opacity .2s; }}
+#back-to-top.show {{ display: flex; }}
+#back-to-top:hover {{ opacity: .85; }}
+@media(max-width:768px) {{ .page-main {{ padding: .75rem .85rem 2rem; }} }}
 """
-    fp = BASE_PATH / "style.css"
+    out = BASE_PATH / "style.css"
+    orig = out.read_text(encoding="utf-8", errors="ignore") if out.exists() else ""
     if not DRY_RUN:
-        fp.write_text(css, encoding="utf-8")
-        log_ok(f"เขียน style.css ใหม่: {len(css)} chars")
-        return 1
+        out.write_text(css, encoding="utf-8")
+    log_ok(f"rebuild style.css: {len(css)} chars")
+    return 1
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 [NEW v6] CREATE MISSING CATEGORY PAGES
+# ══════════════════════════════════════════════════════════════
+# ✅ v6 BUG-FIX: ครบทุกหมวดที่อยู่ใน CATEGORIES
+_CAT_TITLE = {cat: (หมวด_ไทย.get(cat, cat), f"รวมบทความ{หมวด_ไทย.get(cat, cat)}คุณภาพสูง อัปเดตทุกวัน")
+              for cat in CATEGORIES}
+
+
+def สร้างหน้าหมวดที่หายไป() -> int:
+    """✅ v6: สร้างไฟล์ HTML เปล่าสำหรับหมวดที่ยังไม่มีไฟล์"""
+    log_section("📁 สร้างหน้าหมวดที่หายไป [NEW v6]")
+    สร้างแล้ว = 0
+    for cat in CATEGORIES:
+        หน้า = CATEGORY_PAGE_MAP.get(cat, cat + ".html")
+        fp   = BASE_PATH / หน้า
+        if fp.exists():
+            continue  # มีแล้ว ข้าม
+        th_name, desc = _CAT_TITLE.get(cat, (cat, f"รวมบทความ{cat}"))
+        # สร้างไฟล์เปล่าพื้นฐานก่อน (rebuild_category_pages จะ rebuild ให้ครบ)
+        placeholder = f"""<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{th_name} — {SITE_NAME}</title>
+  <meta name="description" content="{desc}">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="nav.js"></script>
+<nav></nav>
+<div class="page-main">
+  <h1>{th_name}</h1>
+  <p>{desc}</p>
+</div>
+</body></html>"""
+        if not DRY_RUN:
+            fp.write_text(placeholder, encoding="utf-8")
+        log_ok(f"  สร้าง: {หน้า}  ({th_name})")
+        สร้างแล้ว += 1
+    if สร้างแล้ว == 0:
+        log_ok("ทุกหน้าหมวดมีอยู่แล้ว ✅")
     else:
-        log_info(f"[DRY-RUN] จะเขียน style.css ({len(css)} chars)")
-        return 0
+        log_ok(f"สร้างหน้าหมวดใหม่: {สร้างแล้ว} หน้า — กำลัง rebuild เนื้อหา...")
+    return สร้างแล้ว
 
 
 # ══════════════════════════════════════════════════════════════
-# 🔧 REBUILD CATEGORY PAGES
+# 🎨 BUILD CATEGORY PAGE HTML
 # ══════════════════════════════════════════════════════════════
-_CAT_TITLE = {
-    "finance":      ("การเงิน",      "รวมบทความการเงินและการลงทุน อัปเดตทุกวัน"),
-    "lifestyle":    ("ไลฟ์สไตล์",    "รวมบทความไลฟ์สไตล์คุณภาพสูง อัปเดตทุกวัน"),
-    "food":         ("อาหาร",        "รวมบทความอาหารและการกิน อัปเดตทุกวัน"),
-    "health":       ("สุขภาพ",       "รวมบทความสุขภาพคุณภาพสูง อัปเดตทุกวัน"),
-    "news":         ("ข่าวสาร",      "รวมบทความข่าวสารคุณภาพสูง อัปเดตทุกวัน"),
-    "technology":   ("เทคโนโลยี",    "รวมบทความเทคโนโลยีคุณภาพสูง อัปเดตทุกวัน"),
-    "entertainment":("บันเทิง",      "รวมบทความบันเทิงและความบันเทิง อัปเดตทุกวัน"),
-    "ai":           ("AI",           "รวมบทความปัญญาประดิษฐ์ อัปเดตทุกวัน"),
-    "sport":        ("กีฬา",         "รวมบทความกีฬา อัปเดตทุกวัน"),
-    "horoscope":    ("ดูดวง",        "รวมบทความดูดวงโหราศาสตร์ อัปเดตทุกวัน"),
-}
-
 def _สร้างหน้าหมวด_ครบ(หน้า: str, content_block: str) -> str:
     stem = หน้า.replace(".html","")
-    th_name, desc = _CAT_TITLE.get(stem, (stem, f"รวมบทความ{stem} อัปเดตทุกวัน"))
+    th_name, desc = _CAT_TITLE.get(stem, (หมวด_ไทย.get(stem, stem), f"รวมบทความ{stem} อัปเดตทุกวัน"))
     url  = f"{SITE_URL}/{หน้า}"
     th   = _theme()
     hero = _build_hero_category(th_name, desc)
@@ -1601,38 +1576,72 @@ def _สร้างหน้าหมวด_ครบ(หน้า: str, conten
 {content_block}
 </div>
 {footer}
+<!-- Back to top -->
+<button id="back-to-top" title="กลับด้านบน">↑</button>
 <script>
-  // Search index (re-use from index)
-  try {{
-    fetch('search-index.json').then(r=>r.json()).then(idx=>{{
-      const inp = document.getElementById('search-input');
-      const box = document.getElementById('search-results');
-      if(!inp||!box) return;
-      inp.addEventListener('input',function(){{
-        const q=this.value.trim().toLowerCase();
-        box.innerHTML='';
-        if(!q||q.length<2) return;
-        const hits=idx.filter(a=>(a.t||'').toLowerCase().includes(q)).slice(0,8);
-        hits.forEach(a=>{{
-          const el=document.createElement('a');
-          el.href=a.u;
-          el.innerHTML=`<img src="${{a.img||''}}" onerror="this.style.display='none'" loading="lazy"><span>${{a.t}}</span>`;
-          box.appendChild(el);
-        }});
+// Search System v6
+(function(){{
+  var SEARCH_DATA = /*SEARCH_JSON_PLACEHOLDER*/[];
+  var inp = document.getElementById('search-input');
+  var box = document.getElementById('search-results');
+  if(!inp || !box) return;
+  box.style.cssText = 'position:absolute;top:115%;left:0;right:0;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.28);z-index:9999;overflow:hidden;max-height:380px;overflow-y:auto;display:none;';
+  var timer;
+  inp.addEventListener('input', function(){{
+    clearTimeout(timer);
+    timer = setTimeout(function(){{
+      var q = inp.value.trim().toLowerCase();
+      box.innerHTML = '';
+      if(!q || q.length < 1){{ box.style.display='none'; return; }}
+      var hits = SEARCH_DATA.filter(function(a){{
+        return (a.t||'').toLowerCase().indexOf(q)>=0 || (a.cat||'').toLowerCase().indexOf(q)>=0;
+      }}).slice(0,10);
+      if(!hits.length){{
+        box.innerHTML='<div style="padding:.75rem 1rem;color:#94a3b8;font-size:.85rem;">ไม่พบบทความ</div>';
+        box.style.display='block'; return;
+      }}
+      hits.forEach(function(a){{
+        var el=document.createElement('a');
+        el.href=a.u;
+        el.style.cssText='display:flex;gap:.6rem;align-items:center;padding:.6rem .9rem;border-bottom:1px solid #f1f5f9;text-decoration:none;color:#1e293b;transition:background .15s;';
+        el.onmouseover=function(){{this.style.background='#f8fafc';}};
+        el.onmouseout=function(){{this.style.background='';}};
+        el.innerHTML='<img src="'+(a.img||'')+'" loading="lazy" style="width:52px;height:38px;object-fit:cover;border-radius:5px;flex-shrink:0;" onerror="this.style.display=\'none\'"><div><div style="font-weight:600;font-size:.88rem;line-height:1.3;">'+(a.t||'')+'</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.1rem;">'+(a.cat||'')+'</div></div>';
+        box.appendChild(el);
       }});
-      document.addEventListener('click',e=>{{if(!box.contains(e.target)&&e.target!==inp)box.innerHTML='';}});
-    }}).catch(()=>{{}});
-  }} catch(e) {{}}
-  try {{
-    if('serviceWorker' in navigator && location.protocol !== 'file:')
-      navigator.serviceWorker.register('sw.js');
-  }} catch(e) {{}}
+      box.style.display='block';
+    }}, 180);
+  }});
+  document.addEventListener('click',function(e){{
+    if(!box.contains(e.target)&&e.target!==inp)box.style.display='none';
+  }});
+  inp.addEventListener('keydown',function(e){{
+    if(e.key==='Escape'){{box.style.display='none';inp.value='';}};
+  }});
+}})();
+// Back to top
+(function(){{
+  var btn = document.getElementById('back-to-top');
+  if(!btn) return;
+  window.addEventListener('scroll', function(){{
+    btn.classList.toggle('show', window.scrollY > 400);
+  }});
+  btn.addEventListener('click', function(){{ window.scrollTo({{top:0,behavior:'smooth'}}); }});
+}})();
+try {{
+  if('serviceWorker' in navigator && location.protocol !== 'file:')
+    navigator.serviceWorker.register('sw.js');
+}} catch(e) {{}}
 </script>
 </body></html>"""
 
 
 def rebuild_category_pages() -> int:
     log_section(f"📂 Rebuild Category Pages [{LAYOUT_MODE} {COLS}col | {THEME_NAME}]")
+
+    # ✅ v6 BUG-FIX: สร้างหน้าที่หายไปก่อน ไม่ข้าม
+    สร้างหน้าหมวดที่หายไป()
+
     แก้แล้ว = 0
     บทความ  = สแกน_บทความ()
     หน้าที่ทำ = set()
@@ -1641,13 +1650,50 @@ def rebuild_category_pages() -> int:
         if หน้า in หน้าที่ทำ: continue
         หน้าที่ทำ.add(หน้า)
         fp = BASE_PATH / หน้า
-        if not fp.exists(): continue
+
+        # ✅ v6: ถ้าไม่มีไฟล์ยังไม่ออก → สร้างใหม่เลย (กรณี DRY_RUN ข้ามได้)
+        if not fp.exists():
+            if DRY_RUN:
+                log_warn(f"  [DRY-RUN] จะสร้าง: {หน้า}")
+                continue
+            fp.write_text("", encoding="utf-8")
+
         ไฟล์หมวด = [f for f in บทความ
                     if CATEGORY_PAGE_MAP.get(ชื่อหมวด(f), "news.html") == หน้า]
         ไฟล์หมวด.sort(key=lambda f: f.stat().st_mtime, reverse=True)
+
         if not ไฟล์หมวด:
-            log_warn(f"  {หน้า} — ยังไม่มีบทความ ข้าม")
+            # ✅ v6: แม้ไม่มีบทความก็ยัง rebuild หน้าหมวด (แสดงว่ากำลังอัปเดต)
+            th_name, desc = _CAT_TITLE.get(หมวด, (หมวด_ไทย.get(หมวด, หมวด), f"รวมบทความ{หมวด}"))
+            empty_block = (
+                f'\n{ART_S}\n'
+                f'<div style="text-align:center;padding:3rem 1rem;color:var(--muted,#64748b);">'
+                f'<div style="font-size:3rem;margin-bottom:1rem;">📝</div>'
+                f'<h2 style="font-size:1.1rem;margin-bottom:.5rem;">กำลังเพิ่มบทความ{th_name}</h2>'
+                f'<p style="font-size:.9rem;">ติดตามอัปเดตได้เร็วๆ นี้</p>'
+                f'<a href="index.html" style="display:inline-block;margin-top:1rem;padding:.5rem 1.25rem;'
+                f'background:var(--primary,#1e40af);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">'
+                f'← กลับหน้าแรก</a></div>'
+                f'\n{ART_E}\n'
+            )
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            html = _สร้างหน้าหมวด_ครบ(หน้า, empty_block)
+            # inject search JSON
+            try:
+                _all_arts = บทความ
+                _json_str = json.dumps(
+                    [{"t": _parse_article(f)["หัวข้อ"], "u": f.name,
+                      "img": _parse_article(f)["img"],
+                      "cat": หมวด_ไทย.get(ชื่อหมวด(f), ชื่อหมวด(f))} for f in _all_arts],
+                    ensure_ascii=False, separators=(',', ':')
+                )
+                html = html.replace("/*SEARCH_JSON_PLACEHOLDER*/[]", f"/*SEARCH_JSON_PLACEHOLDER*/{_json_str}", 1)
+            except Exception: pass
+            if เขียน(fp, html, orig):
+                log_ok(f"  {หน้า} — ยังไม่มีบทความ (สร้าง placeholder)")
+                แก้แล้ว += 1
             continue
+
         # deduplicate
         seen = set()
         unique = []
@@ -1655,15 +1701,31 @@ def rebuild_category_pages() -> int:
             if f.stem not in seen:
                 seen.add(f.stem); unique.append(f)
         ไฟล์หมวด = unique
+
         การ์ด     = _build_cards(ไฟล์หมวด[:24])
         art_block = _wrap_block(การ์ด, "บทความล่าสุด", len(ไฟล์หมวด))
         orig = fp.read_text(encoding="utf-8", errors="ignore")
         html = _สร้างหน้าหมวด_ครบ(หน้า, art_block)
+
+        # inject inline search JSON
+        try:
+            _all_arts = สแกน_บทความ()
+            _json_str = json.dumps(
+                [{"t": _parse_article(f)["หัวข้อ"], "u": f.name,
+                  "img": _parse_article(f)["img"],
+                  "cat": หมวด_ไทย.get(ชื่อหมวด(f), ชื่อหมวด(f))} for f in _all_arts],
+                ensure_ascii=False, separators=(',', ':')
+            )
+            html = html.replace("/*SEARCH_JSON_PLACEHOLDER*/[]",
+                                f"/*SEARCH_JSON_PLACEHOLDER*/{_json_str}", 1)
+        except Exception: pass
+
         if เขียน(fp, html, orig):
             log_ok(f"  {หน้า} — {len(ไฟล์หมวด)} บทความ [{LAYOUT_MODE}]")
             แก้แล้ว += 1
         else:
             log_info(f"  {หน้า} — ไม่มีการเปลี่ยนแปลง")
+
     log_ok(f"rebuild category: {แก้แล้ว} หน้า")
     return แก้แล้ว
 
@@ -1687,7 +1749,7 @@ def _สร้างหน้า_index_ครบ(art_block: str, count: int) -> 
         f'onmouseover="this.style.background=\'rgba(255,255,255,.28)\'" '
         f'onmouseout="this.style.background=\'rgba(255,255,255,.15)\'">'
         f'<i class="fas fa-tag" style="font-size:.7rem;"></i> {หมวด_ไทย.get(c,c)}</a>'
-        for c in CATEGORIES[:8]
+        for c in CATEGORIES
     )
     hero = _build_hero_index(count, cat_pills)
 
@@ -1747,47 +1809,60 @@ def _สร้างหน้า_index_ครบ(art_block: str, count: int) -> 
   {art_section}
 </div>
 {footer}
+<!-- Back to top -->
+<button id="back-to-top" title="กลับด้านบน">↑</button>
 <script>
-  // Search functionality
-  (function(){{
-    fetch('search-index.json').then(r=>r.json()).then(idx=>{{
-      const inp = document.getElementById('search-input');
-      const box = document.getElementById('search-results');
-      if(!inp||!box) return;
-      let timer;
-      inp.addEventListener('input',function(){{
-        clearTimeout(timer);
-        timer = setTimeout(()=>{{
-          const q = this.value.trim().toLowerCase();
-          box.innerHTML = '';
-          if(!q || q.length < 2) return;
-          const hits = idx.filter(a =>
-            (a.t||'').toLowerCase().includes(q) ||
-            (a.cat||'').toLowerCase().includes(q)
-          ).slice(0,10);
-          hits.forEach(a=>{{
-            const el = document.createElement('a');
-            el.href = a.u;
-            el.innerHTML = `<img src="${{a.img||''}}" loading="lazy"
-              onerror="this.style.display='none'">
-              <div><div style="font-weight:600;">${{a.t}}</div>
-              <div style="font-size:.75rem;color:#94a3b8;">${{a.cat||''}}</div></div>`;
-            box.appendChild(el);
-          }});
-          if(!hits.length) {{
-            box.innerHTML = '<div style="padding:.75rem 1rem;color:#94a3b8;font-size:.85rem;">ไม่พบบทความ</div>';
-          }}
-        }}, 200);
+// Search System v6
+(function(){{
+  var SEARCH_DATA = /*SEARCH_JSON_PLACEHOLDER*/[];
+  var inp = document.getElementById('search-input');
+  var box = document.getElementById('search-results');
+  if(!inp || !box) return;
+  box.style.cssText = 'position:absolute;top:115%;left:0;right:0;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.28);z-index:9999;overflow:hidden;max-height:380px;overflow-y:auto;display:none;';
+  var timer;
+  inp.addEventListener('input', function(){{
+    clearTimeout(timer);
+    timer = setTimeout(function(){{
+      var q = inp.value.trim().toLowerCase();
+      box.innerHTML = '';
+      if(!q || q.length < 1){{ box.style.display='none'; return; }}
+      var hits = SEARCH_DATA.filter(function(a){{
+        return (a.t||'').toLowerCase().indexOf(q)>=0||(a.cat||'').toLowerCase().indexOf(q)>=0;
+      }}).slice(0,10);
+      if(!hits.length){{
+        box.innerHTML='<div style="padding:.75rem 1rem;color:#94a3b8;font-size:.85rem;">ไม่พบบทความ</div>';
+        box.style.display='block'; return;
+      }}
+      hits.forEach(function(a){{
+        var el=document.createElement('a');
+        el.href=a.u;
+        el.style.cssText='display:flex;gap:.6rem;align-items:center;padding:.6rem .9rem;border-bottom:1px solid #f1f5f9;text-decoration:none;color:#1e293b;transition:background .15s;';
+        el.onmouseover=function(){{this.style.background='#f8fafc';}};
+        el.onmouseout=function(){{this.style.background='';}};
+        el.innerHTML='<img src="'+(a.img||'')+'" loading="lazy" style="width:52px;height:38px;object-fit:cover;border-radius:5px;flex-shrink:0;" onerror="this.style.display=\'none\'"><div><div style="font-weight:600;font-size:.88rem;line-height:1.3;">'+(a.t||'')+'</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.1rem;">'+(a.cat||'')+'</div></div>';
+        box.appendChild(el);
       }});
-      document.addEventListener('click', e=>{{
-        if(!box.contains(e.target) && e.target !== inp) box.innerHTML = '';
-      }});
-    }}).catch(()=>{{}});
-  }})();
-  try {{
-    if('serviceWorker' in navigator && location.protocol !== 'file:')
-      navigator.serviceWorker.register('sw.js');
-  }} catch(e) {{}}
+      box.style.display='block';
+    }}, 180);
+  }});
+  document.addEventListener('click',function(e){{
+    if(!box.contains(e.target)&&e.target!==inp)box.style.display='none';
+  }});
+  inp.addEventListener('keydown',function(e){{
+    if(e.key==='Escape'){{box.style.display='none';inp.value='';}};
+  }});
+}})();
+// Back to top
+(function(){{
+  var btn = document.getElementById('back-to-top');
+  if(!btn) return;
+  window.addEventListener('scroll', function(){{ btn.classList.toggle('show', window.scrollY > 400); }});
+  btn.addEventListener('click', function(){{ window.scrollTo({{top:0,behavior:'smooth'}}); }});
+}})();
+try {{
+  if('serviceWorker' in navigator && location.protocol !== 'file:')
+    navigator.serviceWorker.register('sw.js');
+}} catch(e) {{}}
 </script>
 </body></html>"""
 
@@ -1801,7 +1876,6 @@ def rebuild_index_page() -> int:
         log_warn("ไม่มีบทความ ข้าม")
         return 0
 
-    # deduplicate
     seen, unique = set(), []
     for f in บทความ:
         if f.stem not in seen: seen.add(f.stem); unique.append(f)
@@ -1809,13 +1883,16 @@ def rebuild_index_page() -> int:
 
     การ์ด = _build_cards(บทความ[:30])
 
-    if LAYOUT_MODE in ("sidebar","featured","zigzag","row"):
-        art_block = การ์ด
-    else:
-        art_block = การ์ด
-
     orig = fp.read_text(encoding="utf-8", errors="ignore") if fp.exists() else ""
-    html = _สร้างหน้า_index_ครบ(art_block, len(บทความ))
+    html = _สร้างหน้า_index_ครบ(การ์ด, len(บทความ))
+    json_str = json.dumps(
+        [{"t": _parse_article(f)["หัวข้อ"], "u": f.name,
+          "img": _parse_article(f)["img"],
+          "cat": หมวด_ไทย.get(ชื่อหมวด(f), ชื่อหมวด(f))} for f in บทความ],
+        ensure_ascii=False, separators=(',', ':')
+    )
+    html = html.replace("/*SEARCH_JSON_PLACEHOLDER*/[]",
+                        f"/*SEARCH_JSON_PLACEHOLDER*/{json_str}", 1)
     if เขียน(fp, html, orig):
         log_ok(f"rebuild index: {len(บทความ)} บทความ [{LAYOUT_MODE}]")
         return 1
@@ -1868,18 +1945,149 @@ def สร้าง_sitemap() -> int:
 
 
 # ══════════════════════════════════════════════════════════════
+# 🔧 [NEW v6] ROBOTS.TXT
+# ══════════════════════════════════════════════════════════════
+def สร้าง_robots_txt() -> int:
+    log_section("🤖 สร้าง robots.txt")
+    content = f"""User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.py
+Disallow: /*.json
+
+Sitemap: {SITE_URL}/sitemap.xml
+
+# Generated by agent_fix_v6.py — {datetime.datetime.now().strftime("%Y-%m-%d")}
+"""
+    fp = BASE_PATH / "robots.txt"
+    orig = fp.read_text(encoding="utf-8", errors="ignore") if fp.exists() else ""
+    if not DRY_RUN:
+        fp.write_text(content, encoding="utf-8")
+    log_ok("สร้าง robots.txt")
+    return 1
+
+
+# ══════════════════════════════════════════════════════════════
 # 🔧 PUSH GITHUB
 # ══════════════════════════════════════════════════════════════
 def push_github():
     log_section("🚀 Push GitHub")
     try:
         subprocess.run(["git","-C",str(BASE_PATH),"add","-A"], check=True)
-        msg = f"fix: v5 rebuild {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} [{LAYOUT_MODE}|{THEME_NAME}]"
+        msg = f"fix: v6 rebuild {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} [{LAYOUT_MODE}|{THEME_NAME}]"
         subprocess.run(["git","-C",str(BASE_PATH),"commit","-m",msg], check=True)
         subprocess.run(["git","-C",str(BASE_PATH),"push"], check=True)
         log_ok("Push สำเร็จ")
     except subprocess.CalledProcessError as e:
         log_err(f"Push ล้มเหลว: {e}")
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔍 FIX SEARCH
+# ══════════════════════════════════════════════════════════════
+_SEARCH_JS = """
+(function(){
+  var SEARCH_DATA = /*SEARCH_JSON_PLACEHOLDER*/[];
+  var inp = document.getElementById('search-input');
+  var box = document.getElementById('search-results');
+  if(!inp || !box) return;
+  box.style.cssText = ['position:absolute','top:115%','left:0','right:0','background:#fff','border-radius:14px','box-shadow:0 12px 32px rgba(0,0,0,.28)','z-index:9999','overflow:hidden','max-height:380px','overflow-y:auto','display:none'].join(';');
+  var timer;
+  inp.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var q = inp.value.trim().toLowerCase();
+      box.innerHTML = '';
+      if(!q){ box.style.display='none'; return; }
+      var hits = SEARCH_DATA.filter(function(a){
+        return (a.t||'').toLowerCase().indexOf(q)>=0||(a.cat||'').toLowerCase().indexOf(q)>=0;
+      }).slice(0,10);
+      if(!hits.length){
+        box.innerHTML='<div style="padding:.75rem 1rem;color:#94a3b8;font-size:.85rem;">ไม่พบบทความ</div>';
+        box.style.display='block'; return;
+      }
+      hits.forEach(function(a){
+        var el=document.createElement('a');
+        el.href=a.u;
+        el.style.cssText='display:flex;gap:.6rem;align-items:center;padding:.6rem .9rem;border-bottom:1px solid #f1f5f9;text-decoration:none;color:#1e293b;transition:background .15s;';
+        el.onmouseover=function(){this.style.background='#f8fafc';};
+        el.onmouseout=function(){this.style.background='';};
+        el.innerHTML='<img src="'+(a.img||'')+'" loading="lazy" style="width:52px;height:38px;object-fit:cover;border-radius:5px;flex-shrink:0;" onerror="this.style.display=\'none\'"><div><div style="font-weight:600;font-size:.88rem;line-height:1.3;">'+(a.t||'')+'</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.1rem;">'+(a.cat||'')+'</div></div>';
+        box.appendChild(el);
+      });
+      box.style.display='block';
+    }, 180);
+  });
+  document.addEventListener('click',function(e){
+    if(!box.contains(e.target)&&e.target!==inp)box.style.display='none';
+  });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){box.style.display='none';inp.value='';}
+  });
+})();
+"""
+
+_SEARCH_CSS = """<style id="search-fix-css">
+#search-input::placeholder{color:rgba(255,255,255,.65);}
+#search-input:focus{background:rgba(255,255,255,.25)!important;}
+#search-results a:last-child{border-bottom:none!important;}
+#search-results{scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent;}
+</style>"""
+
+def แก้_search() -> int:
+    log_section("🔍 Fix Search — v6")
+    บทความ  = สแกน_บทความ()
+    entries = []
+    for fp in บทความ:
+        try:
+            soup = BeautifulSoup(fp.read_text(encoding="utf-8", errors="ignore"), "html.parser")
+            t    = ดึงหัวข้อ(soup, fp)
+            img  = ดึงรูปหลัก(soup, fp) or _picsum(fp.stem)
+            cat  = หมวด_ไทย.get(ชื่อหมวด(fp), ชื่อหมวด(fp))
+            entries.append({"t": t, "u": fp.name, "img": img, "cat": cat})
+        except Exception as e:
+            log_warn(f"  skip {fp.name}: {e}")
+
+    json_str = json.dumps(entries, ensure_ascii=False, separators=(',', ':'))
+    idx_json = BASE_PATH / "search-index.json"
+    if not DRY_RUN:
+        idx_json.write_text(json_str, encoding="utf-8")
+    log_ok(f"  search-index.json: {len(entries)} รายการ")
+
+    inline_script = _SEARCH_JS.replace("/*SEARCH_JSON_PLACEHOLDER*/[]",
+                                        f"/*SEARCH_JSON_PLACEHOLDER*/{json_str}")
+    แก้แล้ว = 0
+    ไฟล์เป้า = [BASE_PATH / "index.html"] + [BASE_PATH / p for p in CATEGORY_PAGE_MAP.values()]
+    _OLD_RE  = re.compile(r'//\s*Search\s*(?:functionality|index|System)[^\n]*\n\s*\(function\(\)\{.*?\}\)\(\);', re.DOTALL|re.IGNORECASE)
+    _OLD_RE2 = re.compile(r'fetch\([\'"]search-index\.json[\'"]\).*?\}\)\(\);', re.DOTALL)
+
+    for fp in ไฟล์เป้า:
+        if not fp.exists(): continue
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            if 'id="search-input"' not in orig and "id='search-input'" not in orig: continue
+            html = orig
+            html = _OLD_RE.sub("", html)
+            html = _OLD_RE2.sub("", html)
+            html = re.sub(r'<style id="search-fix-css">.*?</style>', "", html, flags=re.DOTALL)
+            if _SEARCH_CSS.strip() not in html:
+                if "</head>" in html:
+                    html = html.replace("</head>", _SEARCH_CSS + "</head>", 1)
+            script_tag = f"<script>\n{inline_script}\n</script>"
+            html = re.sub(r'<script>\s*//\s*Search.*?</script>', "", html, flags=re.DOTALL|re.IGNORECASE)
+            html = re.sub(r'<script>\s*\(function\(\)\{[^<]*fetch\([\'"]search-index[^<]*</script>', "", html, flags=re.DOTALL)
+            if "</body>" in html:
+                html = html.replace("</body>", script_tag + "\n</body>", 1)
+            else:
+                html += "\n" + script_tag
+            if เขียน(fp, html, orig):
+                log_ok(f"  ✅ แก้ search: {fp.name}")
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  search {fp.name}: {e}")
+
+    log_ok(f"แก้ search: {แก้แล้ว} ไฟล์ | {len(entries)} บทความ")
+    return แก้แล้ว
 
 
 # ══════════════════════════════════════════════════════════════
@@ -1894,8 +2102,7 @@ def แก้_support_sidebar() -> int:
     log_section("💛 ใส่ Sidebar สนับสนุนเรา")
     แก้แล้ว = 0
     sidebar_content = _sidebar_fn()
-    import re as _re
-    inner_m = _re.search(r'<aside[^>]*>(.*?)</aside>', sidebar_content, _re.DOTALL)
+    inner_m = re.search(r'<aside[^>]*>(.*?)</aside>', sidebar_content, re.DOTALL)
     sidebar_inner = inner_m.group(1).strip() if inner_m else sidebar_content
     for fp in สแกน_บทความ():
         try:
@@ -1908,9 +2115,9 @@ def แก้_support_sidebar() -> int:
                 content   = m.group(2).strip()
                 if content: return f"{tag_open}\n{content}\n{sidebar_inner}\n{tag_close}"
                 return f"{tag_open}\n{sidebar_inner}\n{tag_close}"
-            new_html = _re.sub(
+            new_html = re.sub(
                 r'(<aside[^>]*class=["\'][^"\']*sidebar[^"\']*["\'][^>]*>)(.*?)(</aside>)',
-                _inject, orig, flags=_re.DOTALL)
+                _inject, orig, flags=re.DOTALL)
             if new_html != orig and เขียน(fp, new_html, orig): แก้แล้ว += 1
         except Exception as e:
             log_err(f"  sidebar {fp.name}: {e}")
@@ -1943,7 +2150,7 @@ def แก้_duplicate_blocks_hard() -> int:
 # 💬 CHAT MODE
 # ══════════════════════════════════════════════════════════════
 def รัน_chat():
-    log_section("💬 Chat Mode — WebBot v5")
+    log_section("💬 Chat Mode — WebBot v6")
     sys_p = (f"คุณคือ WebBot ผู้ช่วยดูแลเว็บไซต์ {SITE_NAME} "
              f"ตอบภาษาไทยสั้นกระชับ ใช้คำสั่ง /fix /audit /publish /status")
     history = []
@@ -1974,30 +2181,416 @@ def รัน_chat():
 
 
 # ══════════════════════════════════════════════════════════════
+# 🔧 FIX META DESCRIPTION
+# ══════════════════════════════════════════════════════════════
+def แก้_meta_description() -> int:
+    log_section("📝 แก้ Meta Description ว่าง")
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            soup = BeautifulSoup(orig, "html.parser")
+            meta = soup.find("meta", {"name": "description"})
+            content = (meta.get("content","") if meta else "").strip()
+            if content and len(content) > 30: continue
+
+            body = soup.find(class_="article-body") or soup.find("article") or soup.find("main")
+            excerpt = ""
+            if body:
+                for p in body.find_all("p"):
+                    t = p.get_text().strip()
+                    if len(t) > 40:
+                        excerpt = t[:155].rstrip() + "…"
+                        break
+            if not excerpt:
+                h1 = soup.find("h1")
+                excerpt = (h1.get_text().strip() + " — " + SITE_NAME) if h1 else SITE_NAME
+
+            html = orig
+            if meta:
+                html = re.sub(
+                    r'(<meta\s+name=["\']description["\']\s+content=["\'])[^"\']*(["\'])',
+                    r'\g<1>' + excerpt.replace("\\","\\\\") + r'\g<2>',
+                    html, flags=re.IGNORECASE
+                )
+            else:
+                html = re.sub(
+                    r'(</title>)',
+                    r'\1\n  <meta name="description" content="' + excerpt + '">',
+                    html, count=1, flags=re.IGNORECASE
+                )
+            og = soup.find("meta", {"property": "og:description"})
+            og_content = (og.get("content","") if og else "").strip()
+            if not og_content or len(og_content) < 30:
+                html = re.sub(
+                    r'(<meta\s+property=["\']og:description["\']\s+content=["\'])[^"\']*(["\'])',
+                    r'\g<1>' + excerpt.replace("\\","\\\\") + r'\g<2>',
+                    html, flags=re.IGNORECASE
+                )
+            if เขียน(fp, html, orig): แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  meta {fp.name}: {e}")
+    log_ok(f"แก้ meta description: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 FIX 404 PAGE
+# ══════════════════════════════════════════════════════════════
+def แก้_หน้า_404() -> int:
+    log_section("🚫 แก้หน้า 404")
+    fp = BASE_PATH / "404.html"
+    th = _theme()
+    html_404 = f"""<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 — ไม่พบหน้านี้ | {SITE_NAME}</title>
+  <meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{{box-sizing:border-box;margin:0;padding:0}}
+    body{{font-family:'Sarabun',sans-serif;background:{th['dark']};
+          display:flex;align-items:center;justify-content:center;
+          min-height:100vh;text-align:center;padding:2rem;}}
+    .box{{color:#fff;max-width:480px;}}
+    .code{{font-size:clamp(5rem,20vw,9rem);font-weight:800;
+           background:linear-gradient(135deg,{th['accent']},{th['primary']});
+           -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+           line-height:1;margin-bottom:.5rem;}}
+    h1{{font-size:1.5rem;margin-bottom:.75rem;opacity:.9;}}
+    p{{opacity:.65;font-size:.95rem;margin-bottom:1.75rem;line-height:1.6;}}
+    .btn{{display:inline-block;padding:.75rem 2rem;border-radius:999px;
+          background:{th['primary']};color:#fff;text-decoration:none;
+          font-weight:700;font-size:1rem;transition:opacity .2s;}}
+    .btn:hover{{opacity:.85;}}
+    .search{{margin-top:1.5rem;}}
+    .search input{{width:100%;padding:.65rem 1.1rem;border-radius:999px;border:none;
+                   font-family:inherit;font-size:.95rem;outline:none;}}
+    #countdown{{font-size:.85rem;opacity:.5;margin-top:1rem;}}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="code">404</div>
+    <h1>ไม่พบหน้าที่คุณต้องการ</h1>
+    <p>หน้านี้อาจถูกลบ ย้าย หรือไม่มีอยู่จริง<br>ลองค้นหาหรือกลับหน้าแรกได้เลยครับ</p>
+    <a href="index.html" class="btn">🏠 กลับหน้าแรก</a>
+    <div class="search">
+      <input type="text" placeholder="🔍 ค้นหาบทความ..."
+        onkeydown="if(event.key==='Enter')location.href='index.html#s='+encodeURIComponent(this.value)">
+    </div>
+    <p id="countdown"></p>
+  </div>
+  <script>
+    var t = 15;
+    var cd = document.getElementById('countdown');
+    var i = setInterval(function(){{
+      t--;
+      if(cd) cd.textContent = 'กลับหน้าแรกอัตโนมัติใน ' + t + ' วินาที...';
+      if(t <= 0){{ clearInterval(i); location.href='index.html'; }}
+    }}, 1000);
+    if(cd) cd.textContent = 'กลับหน้าแรกอัตโนมัติใน ' + t + ' วินาที...';
+  </script>
+</body>
+</html>"""
+    orig = fp.read_text(encoding="utf-8", errors="ignore") if fp.exists() else ""
+    if เขียน(fp, html_404, orig):
+        log_ok("สร้าง/อัปเดต 404.html")
+        return 1
+    log_info("404.html ไม่มีการเปลี่ยนแปลง")
+    return 0
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 FIX SELF LINKS
+# ══════════════════════════════════════════════════════════════
+def แก้_self_links() -> int:
+    log_section("🔄 แก้ลิงก์วนซ้ำตัวเอง (Self Links)")
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            soup = BeautifulSoup(orig, "html.parser")
+            changed = False
+            for a in soup.find_all("a", href=True):
+                href = a["href"].strip()
+                if href == fp.name or href == "./" + fp.name or href.endswith("/" + fp.name):
+                    a.unwrap()
+                    changed = True
+                    log_warn(f"  ลบ self-link: {fp.name} → {href}")
+            if changed and เขียน(fp, str(soup), orig):
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  self-link {fp.name}: {e}")
+    log_ok(f"แก้ self-links: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 FIX IMG ALT
+# ══════════════════════════════════════════════════════════════
+def แก้_img_alt() -> int:
+    log_section("🖼️  เติม Alt Text รูปภาพ (SEO)")
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            soup = BeautifulSoup(orig, "html.parser")
+            h1   = soup.find("h1")
+            title = h1.get_text().strip() if h1 else fp.stem.replace("_"," ")
+            changed = False
+            for i, img in enumerate(soup.find_all("img")):
+                alt = img.get("alt","").strip()
+                if not alt:
+                    img["alt"] = title if i == 0 else f"{title} รูปที่ {i+1}"
+                    changed = True
+            if changed and เขียน(fp, str(soup), orig):
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  alt {fp.name}: {e}")
+    log_ok(f"เติม alt: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 CHECK DUPLICATE CONTENT
+# ══════════════════════════════════════════════════════════════
+def ตรวจ_บทความซ้ำเนื้อหา() -> int:
+    log_section("🔁 ตรวจบทความเนื้อหาซ้ำ")
+    บทความ = สแกน_บทความ()
+    hashes = {}
+    ซ้ำ    = []
+    for fp in บทความ:
+        try:
+            txt  = fp.read_text(encoding="utf-8", errors="ignore")
+            soup = BeautifulSoup(txt, "html.parser")
+            body = soup.find(class_="article-body") or soup.find("article") or soup.find("main")
+            text = body.get_text().strip() if body else ""
+            if len(text) < 100: continue
+            fingerprint = hashlib.md5(text[:500].encode()).hexdigest()
+            if fingerprint in hashes:
+                ซ้ำ.append((fp.name, hashes[fingerprint]))
+                log_warn(f"  ซ้ำ: {fp.name} ≈ {hashes[fingerprint]}")
+            else:
+                hashes[fingerprint] = fp.name
+        except Exception as e:
+            log_err(f"  dup-check {fp.name}: {e}")
+
+    if ซ้ำ:
+        log_warn(f"พบซ้ำ: {len(ซ้ำ)} คู่")
+        for a, b in ซ้ำ[:5]:
+            log(f"  • {a}  ≈  {b}")
+    else:
+        log_ok("ไม่พบบทความเนื้อหาซ้ำ 🎉")
+    return len(ซ้ำ)
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 [NEW v6] BREADCRUMB — เพิ่ม breadcrumb ทุกหน้าบทความ
+# ══════════════════════════════════════════════════════════════
+def เพิ่ม_breadcrumb() -> int:
+    log_section("🍞 เพิ่ม Breadcrumb Navigation [NEW v6]")
+    th = _theme()
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            if 'class="breadcrumb"' in orig or "breadcrumb" in orig: continue
+            soup = BeautifulSoup(orig, "html.parser")
+            หัวข้อ = ดึงหัวข้อ(soup, fp)
+            หมวด  = ชื่อหมวด(fp)
+            หมวด_th = หมวด_ไทย.get(หมวด, หมวด)
+            หน้าหมวด = CATEGORY_PAGE_MAP.get(หมวด, "index.html")
+
+            breadcrumb_html = (
+                f'<nav class="breadcrumb" aria-label="breadcrumb" '
+                f'style="max-width:760px;margin:.75rem auto 0;padding:.5rem 1.25rem;font-size:.82rem;color:#64748b;">'
+                f'<a href="index.html" style="color:{th["primary"]};text-decoration:none;">🏠 หน้าแรก</a>'
+                f'<span style="margin:0 .4rem;opacity:.4;">/</span>'
+                f'<a href="{หน้าหมวด}" style="color:{th["primary"]};text-decoration:none;">{หมวด_th}</a>'
+                f'<span style="margin:0 .4rem;opacity:.4;">/</span>'
+                f'<span style="color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'
+                f'max-width:200px;display:inline-block;vertical-align:middle;">{หัวข้อ[:50]}</span>'
+                f'</nav>'
+            )
+
+            html = orig
+            # เพิ่มหลัง <body> หรือหลัง <nav>
+            if "</nav>" in html:
+                idx = html.find("</nav>") + len("</nav>")
+                html = html[:idx] + "\n" + breadcrumb_html + html[idx:]
+            elif "<body" in html:
+                html = re.sub(r'(<body[^>]*>)', r'\1\n' + breadcrumb_html, html, count=1, flags=re.IGNORECASE)
+
+            if เขียน(fp, html, orig):
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  breadcrumb {fp.name}: {e}")
+    log_ok(f"เพิ่ม breadcrumb: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 [NEW v6] FIX OG:IMAGE — เติม og:image ทุกบทความ
+# ══════════════════════════════════════════════════════════════
+def แก้_og_image() -> int:
+    log_section("🖼️  เติม og:image ทุกบทความ [NEW v6]")
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            soup = BeautifulSoup(orig, "html.parser")
+            og_img = soup.find("meta", {"property": "og:image"})
+            og_content = (og_img.get("content","") if og_img else "").strip()
+
+            # มีอยู่แล้วและไม่ใช่ default → ข้าม
+            if og_content and "og-default" not in og_content: continue
+
+            # หารูปจากบทความ
+            img_src = ดึงรูปหลัก(soup, fp)
+            if not img_src: img_src = f"{SITE_URL}/images/og-default.png"
+            elif not img_src.startswith("http"):
+                img_src = f"{SITE_URL}/{img_src}"
+
+            html = orig
+            if og_img:
+                html = re.sub(
+                    r'(<meta\s+property=["\']og:image["\']\s+content=["\'])[^"\']*(["\'])',
+                    r'\g<1>' + img_src + r'\g<2>',
+                    html, flags=re.IGNORECASE
+                )
+            else:
+                # เพิ่มใหม่หลัง og:description หรือหลัง </title>
+                tag = f'<meta property="og:image" content="{img_src}">'
+                if 'og:description' in html:
+                    html = re.sub(r'(<meta[^>]+og:description[^>]+>)', r'\1\n  ' + tag, html, count=1)
+                else:
+                    html = html.replace("</title>", f"</title>\n  {tag}", 1)
+
+            if เขียน(fp, html, orig): แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  og:image {fp.name}: {e}")
+    log_ok(f"เติม og:image: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
+# 🔧 [NEW v6] READING TIME — เพิ่มเวลาอ่านบทความ
+# ══════════════════════════════════════════════════════════════
+def เพิ่ม_reading_time() -> int:
+    log_section("⏱️  เพิ่มเวลาอ่านบทความ [NEW v6]")
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            if "reading-time" in orig: continue
+            soup = BeautifulSoup(orig, "html.parser")
+            body = soup.find(class_="article-body") or soup.find("article")
+            if not body: continue
+            word_count = len(body.get_text().split())
+            minutes    = max(1, round(word_count / 250))  # ~250 คำ/นาที ภาษาไทย
+            time_html  = (
+                f'<span class="reading-time" style="display:inline-flex;align-items:center;'
+                f'gap:.35rem;font-size:.78rem;color:#94a3b8;margin-bottom:.75rem;">'
+                f'<i class="fas fa-clock"></i> อ่าน {minutes} นาที · {word_count} คำ</span>'
+            )
+            # เพิ่มก่อน h1 หรือหลัง h1
+            h1 = body.find("h1") or soup.find("h1")
+            html = orig
+            if h1:
+                html = html.replace(str(h1), str(h1) + "\n" + time_html, 1)
+            else:
+                # เพิ่มต้น body
+                html = re.sub(r'(class=["\']article-body["\'][^>]*>)', r'\1\n' + time_html, html, count=1)
+
+            if เขียน(fp, html, orig): แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  reading-time {fp.name}: {e}")
+    log_ok(f"เพิ่ม reading time: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
+# 🧹 [NEW] ลบ Instruction หลุด จากบทความเก่า
+# ══════════════════════════════════════════════════════════════
+def ลบ_instruction_หลุด() -> int:
+    """
+    ลบบรรทัด/ย่อหน้าที่เป็น instruction ของ AI หลุดมาอยู่ในเนื้อหาบทความ
+    เช่น 'สไตล์บังคับสำหรับ section นี้:', 'กฎ:', 'ขึ้นต้นด้วย ##' ฯลฯ
+    """
+    log_section("🧹 ลบ Instruction หลุดจากบทความ [NEW]")
+    # pattern ที่ต้องลบออก (เป็น <p> tag ใน HTML)
+    REMOVE_P = [
+        r'<p>\s*สไตล์บังคับ[^<]{0,500}</p>',
+        r'<p>\s*สไตล์สำหรับ[^<]{0,500}</p>',
+        r'<p>\s*สไตล์:[^<]{0,500}</p>',
+        r'<p>\s*กฎ\s*:[^<]{0,500}</p>',
+        r'<p>\s*กฎ\s*</p>',
+        r'<p>\s*ประเด็นหลัก\s*:[^<]{0,500}</p>',
+        r'<p>\s*ขอเนื้อหาส่วน[^<]{0,500}</p>',
+        r'<p>\s*ขึ้นต้นด้วย ##[^<]{0,500}</p>',
+        r'<p>\s*เขียน Markdown[^<]{0,500}</p>',
+        r'<p>\s*ห้าม HTML[^<]{0,500}</p>',
+        r'<p>\s*ตอบเป็น Markdown[^<]{0,500}</p>',
+        r'<p>[⚠️✨🔴🔥💡📌]*\s*(สำคัญมาก|กฎสำคัญ|หมายเหตุ)[^<]{0,400}</p>',
+        r'<p>\d+\.\s*(เริ่มด้วย|ห้าม|เขียน Markdown|ความยาว)[^<]{0,400}</p>',
+        r'<li[^>]*>\s*ห้าม[^<]{0,200}</li>',
+        r'<p>\s*-\s*(เขียน|ห้าม|ใส่|สลับ|ตอบ)[^<]{0,300}</p>',
+    ]
+    แก้แล้ว = 0
+    for fp in สแกน_บทความ():
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            html = orig
+            for pattern in REMOVE_P:
+                html = re.sub(pattern, '', html, flags=re.IGNORECASE | re.DOTALL)
+            if เขียน(fp, html, orig):
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  instruction {fp.name}: {e}")
+    log_ok(f"ลบ instruction หลุด: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+# ══════════════════════════════════════════════════════════════
 # 🚀 รัน_fix_ทั้งหมด
 # ══════════════════════════════════════════════════════════════
 def รัน_fix_ทั้งหมด():
-    log_section(f"🛠️  Fix v5 — Layout: {LAYOUT_MODE} | Cols: {COLS} | Theme: {THEME_NAME}")
+    log_section(f"🛠️  Fix v6 — Layout: {LAYOUT_MODE} | Cols: {COLS} | Theme: {THEME_NAME}")
     log(f"📁 {BASE_PATH}")
     if DRY_RUN: log_warn("DRY-RUN mode")
 
     audit_ทั้งหมด()
 
     steps = [
-        ("แก้ nav bar",             แก้_nav),
-        ("แก้ dead/empty links",    แก้_dead_links),
-        ("แก้รูปภาพ + onerror",     แก้_รูปภาพ),
-        ("แก้ SVG emoji",           แก้_svg_emoji),
-        ("แก้ h1",                  แก้_h1),
-        ("แก้เนื้อหาว่าง",          แก้_เนื้อหาว่าง),
-        ("rebuild category pages", rebuild_category_pages),
-        ("rebuild index page",     rebuild_index_page),
-        # ✅ v5 ใหม่: แก้ footer+hero สีทุกหน้าหลังจาก rebuild
-        ("แก้ footer สี",           แก้_footer_ทุกหน้า),
-        ("ใส่ sidebar สนับสนุนเรา", แก้_support_sidebar),
-        ("related articles",       แก้_related_articles),
-        ("rebuild search index",   rebuild_search_index),
-        ("sitemap",                สร้าง_sitemap),
+        ("สร้าง nav.js ครบทุกหมวด",  สร้าง_nav_js),          # ✅ v6: ก่อนเลย
+        ("สร้างหน้าหมวดที่หายไป",     สร้างหน้าหมวดที่หายไป), # ✅ v6: BUG-FIX
+        ("ลบ instruction หลุด",       ลบ_instruction_หลุด),   # ✅ NEW: ล้างบทความเก่า
+        ("แก้ nav bar",               แก้_nav),
+        ("แก้ dead/empty links",       แก้_dead_links),
+        ("แก้รูปภาพ + onerror",        แก้_รูปภาพ),
+        ("แก้ SVG emoji",              แก้_svg_emoji),
+        ("แก้ h1",                     แก้_h1),
+        ("แก้เนื้อหาว่าง",             แก้_เนื้อหาว่าง),
+        ("rebuild category pages",    rebuild_category_pages),
+        ("rebuild index page",        rebuild_index_page),
+        ("แก้ footer สี",              แก้_footer_ทุกหน้า),
+        ("ใส่ sidebar สนับสนุนเรา",    แก้_support_sidebar),
+        ("related articles",          แก้_related_articles),
+        ("fix search ค้นหา",          แก้_search),
+        ("แก้ meta description",      แก้_meta_description),
+        ("แก้ og:image",              แก้_og_image),           # ✅ v6
+        ("แก้ self links",            แก้_self_links),
+        ("เติม img alt",              แก้_img_alt),
+        ("เพิ่ม breadcrumb",           เพิ่ม_breadcrumb),       # ✅ v6
+        ("เพิ่ม reading time",         เพิ่ม_reading_time),     # ✅ v6
+        ("แก้หน้า 404",               แก้_หน้า_404),
+        ("ตรวจซ้ำเนื้อหา",            ตรวจ_บทความซ้ำเนื้อหา),
+        ("สร้าง robots.txt",          สร้าง_robots_txt),        # ✅ v6
+        ("rebuild style.css",         rebuild_style_css),       # ✅ v6: rebuild ด้วย
+        ("sitemap",                   สร้าง_sitemap),
     ]
 
     results = {}
@@ -2028,18 +2621,34 @@ def main():
     if "--audit"         in args: audit_ทั้งหมด(); return
     if "--stats"         in args: แสดง_สถิติ(); return
     if "--check-overlap" in args:
-        log_section("🔁 ตรวจการทำงานซ้ำ — v5")
-        log("  ลำดับ: agent_writer → agent_fix_v5 → agent_fix_v5 --publish")
+        log_section("🔁 ตรวจการทำงานซ้ำ — v6")
+        log("  ลำดับ: agent_writer → agent_fix_v6 → agent_fix_v6 --publish")
         return
     if "--dedup" in args:
         แก้_duplicate_blocks_hard()
         rebuild_category_pages()
         rebuild_index_page()
         return
-    if "--fix-css"    in args: rebuild_style_css(); return
-    if "--fix-footer" in args: แก้_footer_ทุกหน้า(); return
-    if "--fix-hero"   in args: แก้_hero_ทุกหน้า(); return
-    if "--publish"    in args:
+    if "--create-cats"  in args:                                  # ✅ v6 NEW
+        n = สร้างหน้าหมวดที่หายไป()
+        if n > 0:
+            rebuild_category_pages()
+        return
+    if "--fix-nav"      in args: สร้าง_nav_js(); return           # ✅ v6 NEW
+    if "--breadcrumb"   in args: เพิ่ม_breadcrumb(); return       # ✅ v6 NEW
+    if "--fix-og"       in args: แก้_og_image(); return           # ✅ v6 NEW
+    if "--reading-time" in args: เพิ่ม_reading_time(); return     # ✅ v6 NEW
+    if "--robots"       in args: สร้าง_robots_txt(); return       # ✅ v6 NEW
+    if "--fix-instruction" in args: ลบ_instruction_หลุด(); return  # ✅ NEW
+    if "--fix-css"      in args: rebuild_style_css(); return
+    if "--fix-footer"   in args: แก้_footer_ทุกหน้า(); return
+    if "--fix-hero"     in args: แก้_hero_ทุกหน้า(); return
+    if "--fix-search"   in args: แก้_search(); return
+    if "--fix-meta"     in args: แก้_meta_description(); return
+    if "--fix-404"      in args: แก้_หน้า_404(); return
+    if "--fix-alt"      in args: แก้_img_alt(); return
+    if "--check-dup"    in args: ตรวจ_บทความซ้ำเนื้อหา(); return
+    if "--publish"      in args:
         สร้าง_sitemap(); rebuild_search_index(); push_github(); return
     if "--dry-run" in args:
         import config as _cfg; _cfg.DRY_RUN = True
