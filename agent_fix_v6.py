@@ -2513,8 +2513,60 @@ def เพิ่ม_reading_time() -> int:
 
 
 # ══════════════════════════════════════════════════════════════
-# 🧹 [NEW] ลบ Instruction หลุด จากบทความเก่า
+# 🔧 [NEW] แก้ Share Buttons — JS Quote Bug
 # ══════════════════════════════════════════════════════════════
+def แก้_share_buttons() -> int:
+    """
+    แก้ bug JS syntax error ใน share button ของบทความเก่าทั้งหมด
+    ปัญหา: btn.innerHTML='<i class='fas fa-check'></i>...'
+           single quote ใน class= ไปปิด JS string → ปุ่มแชร์ทุกอันหายหมด
+    แก้:   เปลี่ยนเป็น double quote ใน HTML attribute ข้างใน JS string
+    """
+    log_section("🔧 แก้ Share Buttons JS Bug [NEW]")
+    แก้แล้ว = 0
+
+    # pattern เก่าที่ผิด (single quote ใน class attribute)
+    OLD_PATTERNS = [
+        # escaped single quote version
+        (
+            r"btn\.innerHTML='<i class=\\'fas fa-check\\'></i> คัดลอกแล้ว!'",
+            "btn.innerHTML='<i class=\"fas fa-check\"></i> คัดลอกแล้ว!'"
+        ),
+        (
+            r"btn\.innerHTML='<i class=\\'fas fa-link\\'></i> คัดลอกลิงก์'",
+            "btn.innerHTML='<i class=\"fas fa-link\"></i> คัดลอกลิงก์'"
+        ),
+        # unescaped single quote version (ที่ทำให้พัง)
+        (
+            "btn.innerHTML='<i class='fas fa-check'></i> คัดลอกแล้ว!'",
+            "btn.innerHTML='<i class=\"fas fa-check\"></i> คัดลอกแล้ว!'"
+        ),
+        (
+            "btn.innerHTML='<i class='fas fa-link'></i> คัดลอกลิงก์'",
+            "btn.innerHTML='<i class=\"fas fa-link\"></i> คัดลอกลิงก์'"
+        ),
+    ]
+
+    for fp in list(สแกน_บทความ()) + [BASE_PATH / f for f in ["index.html","news.html","lifestyle.html","health.html","food.html"]]:
+        if not fp.exists():
+            continue
+        try:
+            orig = fp.read_text(encoding="utf-8", errors="ignore")
+            if "share-btns" not in orig:
+                continue
+            html = orig
+            for old, new in OLD_PATTERNS:
+                html = html.replace(old, new)
+            if เขียน(fp, html, orig):
+                แก้แล้ว += 1
+        except Exception as e:
+            log_err(f"  share-btn {fp.name}: {e}")
+
+    log_ok(f"แก้ share buttons: {แก้แล้ว} ไฟล์")
+    return แก้แล้ว
+
+
+
 def ลบ_instruction_หลุด() -> int:
     """
     ลบบรรทัด/ย่อหน้าที่เป็น instruction ของ AI หลุดมาอยู่ในเนื้อหาบทความ
@@ -2568,6 +2620,7 @@ def รัน_fix_ทั้งหมด():
         ("สร้าง nav.js ครบทุกหมวด",  สร้าง_nav_js),          # ✅ v6: ก่อนเลย
         ("สร้างหน้าหมวดที่หายไป",     สร้างหน้าหมวดที่หายไป), # ✅ v6: BUG-FIX
         ("ลบ instruction หลุด",       ลบ_instruction_หลุด),   # ✅ NEW: ล้างบทความเก่า
+        ("แก้ share buttons JS bug",  แก้_share_buttons),      # ✅ NEW: แก้ปุ่มแชร์หาย
         ("แก้ nav bar",               แก้_nav),
         ("แก้ dead/empty links",       แก้_dead_links),
         ("แก้รูปภาพ + onerror",        แก้_รูปภาพ),
@@ -2639,6 +2692,7 @@ def main():
     if "--fix-og"       in args: แก้_og_image(); return           # ✅ v6 NEW
     if "--reading-time" in args: เพิ่ม_reading_time(); return     # ✅ v6 NEW
     if "--robots"       in args: สร้าง_robots_txt(); return       # ✅ v6 NEW
+    if "--fix-share"       in args: แก้_share_buttons(); return   # ✅ NEW
     if "--fix-instruction" in args: ลบ_instruction_หลุด(); return  # ✅ NEW
     if "--fix-css"      in args: rebuild_style_css(); return
     if "--fix-footer"   in args: แก้_footer_ทุกหน้า(); return

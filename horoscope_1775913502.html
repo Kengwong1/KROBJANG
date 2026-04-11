@@ -254,7 +254,7 @@
         var btn=document.createElement('button');
         btn.style=BTN+'background:var(--primary,#1e40af);border:none;cursor:pointer;font-family:inherit;';
         btn.innerHTML='<i class="fas fa-link"></i> คัดลอกลิงก์';
-        btn.onclick=function(){navigator.clipboard.writeText(location.href).then(function(){btn.innerHTML='<i class='fas fa-check'></i> คัดลอกแล้ว!';setTimeout(function(){btn.innerHTML='<i class='fas fa-link'></i> คัดลอกลิงก์'},2000)});};
+        btn.onclick=function(){navigator.clipboard.writeText(location.href).then(function(){btn.innerHTML='<i class="fas fa-check"></i> คัดลอกแล้ว!';setTimeout(function(){btn.innerHTML='<i class="fas fa-link"></i> คัดลอกลิงก์'},2000)});};
         c.appendChild(btn);
       })();
       </script>
