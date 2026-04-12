@@ -1975,8 +1975,22 @@ def push_github():
     try:
         subprocess.run(["git","-C",str(BASE_PATH),"add","-A"], check=True)
         msg = f"fix: v6 rebuild {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} [{LAYOUT_MODE}|{THEME_NAME}]"
-        subprocess.run(["git","-C",str(BASE_PATH),"commit","-m",msg], check=True)
-        subprocess.run(["git","-C",str(BASE_PATH),"push"], check=True)
+        try:
+            subprocess.run(["git","-C",str(BASE_PATH),"commit","-m",msg], check=True)
+        except subprocess.CalledProcessError:
+            log_info("ไม่มีอะไรต้อง commit")
+
+        # ── pull --rebase ก่อน push เสมอ เพื่อไม่ให้ fetch first error ──
+        log_info("git pull --rebase ก่อน push...")
+        try:
+            subprocess.run(
+                ["git","-C",str(BASE_PATH),"pull","--rebase","origin","main"],
+                check=True
+            )
+        except subprocess.CalledProcessError:
+            log_warn("pull --rebase ล้มเหลว — ลอง push ต่อ")
+
+        subprocess.run(["git","-C",str(BASE_PATH),"push","origin","main"], check=True)
         log_ok("Push สำเร็จ")
     except subprocess.CalledProcessError as e:
         log_err(f"Push ล้มเหลว: {e}")
