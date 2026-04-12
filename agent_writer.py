@@ -289,6 +289,9 @@ def แปลง_md_html(ข้อความ: str) -> str:
     ข้อความ = re.sub(r'<think>.*?</think>', '', ข้อความ, flags=re.DOTALL).strip()
     # ลบ ``` code blocks
     ข้อความ = re.sub(r'```.*?```', '', ข้อความ, flags=re.DOTALL)
+    # ลบ #### Q3: / A: ที่ AI เขียนใน FAQ แบบดิบ (ไม่ถูก render)
+    ข้อความ = re.sub(r'^#{2,5}\s*Q\d+[:\s]', 'Q: ', ข้อความ, flags=re.MULTILINE)
+    ข้อความ = re.sub(r'^#{2,5}\s*A\s*:', 'A:', ข้อความ, flags=re.MULTILINE)
     # ลบ instruction หลุด
     ข้อความ = _กรอง_instruction(ข้อความ)
 
@@ -299,7 +302,20 @@ def แปลง_md_html(ข้อความ: str) -> str:
     for line in บรรทัด:
         stripped = line.strip()
 
-        if re.match(r'^#{3}\s+', stripped):
+        # ── ข้าม heading ที่ขึ้นต้นด้วย "ย่อหน้า N" "ตอน N" ──
+        _h_text = re.sub(r'^#{1,6}\s*', '', stripped)
+        if re.match(r'^(ย่อหน้า|ตอน|ฉาก)(ที่)?\s*\d+', _h_text) and re.match(r'^#{1,6}\s+', stripped):
+            continue
+
+        if re.match(r'^#{4,6}\s+', stripped):
+            # h4-h6 → แปลงเป็น <p><strong> แทน เพราะ AI มักใช้ #### สำหรับ Q&A
+            if in_list: ผล.append("</ul>"); in_list = False
+            if in_ol:   ผล.append("</ol>"); in_ol = False; ol_counter = 0
+            h = re.sub(r'^#{4,6}\s+', '', stripped)
+            h = re.sub(r'\*\*(.+?)\*\*', r'\1', h)
+            ผล.append(f'<p><strong style="color:var(--dark,#1e293b);">{h}</strong></p>')
+
+        elif re.match(r'^#{3}\s+', stripped):
             if in_list: ผล.append("</ul>"); in_list = False
             if in_ol:   ผล.append("</ol>"); in_ol = False; ol_counter = 0
             h = re.sub(r'^#{3}\s+', '', stripped)
@@ -375,10 +391,15 @@ def ทำความสะอาด_html(html: str) -> str:
         r'<p>[\*\-]\s*(เขียน|ย่อหน้า|ห้าม|ใส่|สลับ|ตอบ|ต้อง)[^<]{0,400}</p>', '', html)
     html = re.sub(r'<li[^>]*>\s*ห้าม[^<]{0,200}</li>', '', html)
     html = re.sub(r'<li[^>]*>\s*\d+\.\s*(เขียน|ห้าม|ต้อง)[^<]{0,200}</li>', '', html)
-    # ── ลบ h2/h3 ที่เป็นแค่ "ย่อหน้าที่ N" "ตอนที่ N" ไม่มีชื่อจริง ──
-    html = re.sub(r'<h[23][^>]*>\s*ย่อหน้า(ที่)?\s*\d+\s*</h[23]>', '', html, flags=re.IGNORECASE)
-    html = re.sub(r'<h[23][^>]*>\s*ตอน(ที่)?\s*\d+\s*</h[23]>', '', html, flags=re.IGNORECASE)
-    html = re.sub(r'<h[23][^>]*>\s*ฉาก(ที่)?\s*\d+\s*</h[23]>', '', html, flags=re.IGNORECASE)
+    # ── ลบ h2/h3 ที่ขึ้นต้นด้วย "ย่อหน้า N" "ตอน N" "ฉาก N" ไม่ว่าจะมีชื่อตามหรือไม่ ──
+    html = re.sub(r'<h[23][^>]*>\s*ย่อหน้า(ที่)?\s*\d+[^<]*</h[23]>', '', html, flags=re.IGNORECASE)
+    html = re.sub(r'<h[23][^>]*>\s*ตอน(ที่)?\s*\d+[^<]*</h[23]>', '', html, flags=re.IGNORECASE)
+    html = re.sub(r'<h[23][^>]*>\s*ฉาก(ที่)?\s*\d+[^<]*</h[23]>', '', html, flags=re.IGNORECASE)
+    # ── แปลง #### Q3: ... ที่หลุดออกมาเป็น <p> แทน h4 ──
+    html = re.sub(r'<h[34][^>]*>\s*#{2,4}\s*Q\d+[^<]*</h[34]>', '', html, flags=re.IGNORECASE)
+    # ── ลบ #### markdown ดิบที่ไม่ถูก render (หลุดออกมาเป็น <p>) ──
+    html = re.sub(r'<p>\s*#{2,5}\s*Q\d+[:\s][^<]{0,400}</p>', '', html)
+    html = re.sub(r'<p>\s*#{2,5}\s*A\s*:[^<]{0,400}</p>', '', html)
     return html.strip()
 
 
@@ -504,13 +525,13 @@ def สร้าง_outline_แบบสุ่มสไตล์(หัวข้
         """Parse outline — รองรับทุก format ที่โมเดลตอบมา"""
         import re as _re
         SKIP = ["หัวข้อย่อย","สิ่งที่ต้อง","---","===","รูปแบบ","ตอบแค่","กฎ:","ห้าม","ใช้:"]
-        # pattern หัวข้อที่เป็น instruction ไม่ใช่ชื่อฉากจริง
+        # pattern หัวข้อที่ขึ้นต้นด้วย "ย่อหน้า N" หรือ "ตอน N" ไม่ว่าจะมีชื่อตามหรือไม่
         SKIP_RE = [
-            _re.compile(r'^ย่อหน้า(ที่)?\s*\d+\s*$'),  # "ย่อหน้าที่ 1" ล้วนๆ
-            _re.compile(r'^ตอน(ที่)?\s*\d+\s*$'),       # "ตอนที่ 1" ล้วนๆ
-            _re.compile(r'^ฉาก(ที่)?\s*\d+\s*$'),       # "ฉากที่ 1" ล้วนๆ
-            _re.compile(r'^chapter\s*\d+\s*$', _re.IGNORECASE),
-            _re.compile(r'^part\s*\d+\s*$', _re.IGNORECASE),
+            _re.compile(r'^ย่อหน้า(ที่)?\s*\d+'),   # ย่อหน้า 1, ย่อหน้า 1: ชื่อ
+            _re.compile(r'^ตอน(ที่)?\s*\d+'),        # ตอน 1, ตอน 1: ชื่อ
+            _re.compile(r'^ฉาก(ที่)?\s*\d+'),        # ฉาก 1, ฉาก 1: ชื่อ
+            _re.compile(r'^chapter\s*\d+', _re.IGNORECASE),
+            _re.compile(r'^part\s*\d+', _re.IGNORECASE),
         ]
         result = []
         for line in raw.split("\n"):
