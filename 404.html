@@ -33,7 +33,7 @@
     <div class="code">404</div>
     <h1>ไม่พบหน้าที่คุณต้องการ</h1>
     <p>หน้านี้อาจถูกลบ ย้าย หรือไม่มีอยู่จริง<br>ลองค้นหาหรือกลับหน้าแรกได้เลยครับ</p>
-    <a href="index.html" class="btn">🏠 กลับหน้าแรก</a>
+    <a href="/" class="btn">🏠 กลับหน้าแรก</a>
     <div class="search">
       <input type="text" placeholder="🔍 ค้นหาบทความ..."
         onkeydown="if(event.key==='Enter')location.href='index.html#s='+encodeURIComponent(this.value)">
@@ -46,7 +46,7 @@
     var i = setInterval(function(){
       t--;
       if(cd) cd.textContent = 'กลับหน้าแรกอัตโนมัติใน ' + t + ' วินาที...';
-      if(t <= 0){ clearInterval(i); location.href='index.html'; }
+      if(t <= 0){ clearInterval(i); location.href="/"; }
     }, 1000);
     if(cd) cd.textContent = 'กลับหน้าแรกอัตโนมัติใน ' + t + ' วินาที...';
   </script>
