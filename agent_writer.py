@@ -235,20 +235,56 @@ def scrape_อ้างอิง(หัวข้อ: str) -> str:
         "Accept-Language": "th-TH,th;q=0.9,en;q=0.8",
     }
     เนื้อหา = []
+    _BAD_WORDS = ["คุกกี้","Cookie","ลงทะเบียน","subscribe","copyright","advertisement",
+                  "ดาวน์โหลดแอป","Privacy Policy","Terms of","นโยบายความ"]
+
+    def _ดึงหน้าเว็บ(url: str, max_chars: int = 6000) -> list:
+        """ดึง paragraph จากหน้าเว็บจริง กรองขยะออก"""
+        try:
+            r2 = requests.get(url, headers=headers, timeout=12)
+            r2.encoding = "utf-8"
+            if r2.status_code != 200:
+                return []
+            s2 = BeautifulSoup(r2.text, "html.parser")
+            # ลบ nav/footer/script/style/ads
+            for tag in s2(["script","style","nav","footer","header","aside","iframe",
+                            "noscript","form","button"]):
+                tag.decompose()
+            ps = []
+            total = 0
+            for p in s2.find_all(["p","li","h2","h3"]):
+                t = p.get_text(" ", strip=True)
+                if len(t) < 60:
+                    continue
+                if any(w in t for w in _BAD_WORDS):
+                    continue
+                ps.append(t)
+                total += len(t)
+                if total >= max_chars:
+                    break
+            return ps
+        except Exception:
+            return []
 
     log_info("ค้นหาข้อมูลอ้างอิง...")
 
-    # แหล่งที่ 1: DuckDuckGo
+    # ── แหล่งที่ 1: DuckDuckGo — ดึง snippet + เข้าหน้าจริง ──
+    all_links = []
     try:
         ddg = f"https://html.duckduckgo.com/html/?q={urllib.parse.quote(หัวข้อ + ' ภาษาไทย')}"
         r = requests.get(ddg, headers=headers, timeout=12)
         soup = BeautifulSoup(r.text, "html.parser")
+
+        # snippet (ใช้ backup ถ้าหน้าจริงดึงไม่ได้)
         snippets = [s.get_text().strip() for s in soup.select(".result__snippet")
                     if len(s.get_text().strip()) > 50]
-        เนื้อหา.extend(snippets[:10])
+        เนื้อหา.extend(snippets[:5])
 
-        # ดึงเนื้อหาจากเว็บข่าวไทยที่เจอใน DuckDuckGo
-        links = []
+        # รวบรวม link ทั้งหมด — ไม่จำกัดแค่ข่าว
+        _PREFER = ["sanook","kapook","thairath","khaosod","mthai","manager",
+                   "wongnai","cookpad.th","allrecipes.in.th","healthline",
+                   "rama.mahidol","pobpad","dmh.go.th","bangkokpost","nationthailand",
+                   "posttoday","prachachat","thaipbs"]
         for a in soup.select(".result__title a, .result__a"):
             href = a.get("href", "")
             if "uddg=" in href:
@@ -256,58 +292,54 @@ def scrape_อ้างอิง(หัวข้อ: str) -> str:
                     href = urllib.parse.unquote(href.split("uddg=")[1].split("&")[0])
                 except Exception:
                     pass
-            if href.startswith("http") and any(d in href for d in
-                    ["sanook", "kapook", "thairath", "khaosod", "mthai",
-                     "manager", "bangkokpost", "nationthailand"]):
-                links.append(href)
+            if href.startswith("http"):
+                # ให้ priority แก่เว็บที่รู้จัก
+                priority = 0 if any(d in href for d in _PREFER) else 1
+                all_links.append((priority, href))
 
-        for url in links[:3]:
-            try:
-                r2 = requests.get(url, headers=headers, timeout=10)
-                s2 = BeautifulSoup(r2.text, "html.parser")
-                ps = [p.get_text().strip() for p in s2.find_all("p")
-                      if len(p.get_text().strip()) > 80
-                      and not any(w in p.get_text() for w in
-                                  ["คุกกี้","Cookie","ลงทะเบียน","subscribe","copyright"])]
-                เนื้อหา.extend(ps[:8])
-                log_ok(f"อ่านเว็บ: {url[8:50]}...")
-            except Exception:
-                pass
+        # เรียง priority ก่อน แล้วดึงหน้าจริง
+        all_links.sort(key=lambda x: x[0])
+        visited = 0
+        for _, url in all_links[:6]:
+            ps = _ดึงหน้าเว็บ(url)
+            if ps:
+                เนื้อหา.extend(ps)
+                log_ok(f"อ่านหน้าจริง: {url[8:55]}... ({len(ps)} ย่อหน้า)")
+                visited += 1
+            if visited >= 4:
+                break
     except Exception as e:
         log_warn(f"DuckDuckGo ล้มเหลว: {e}")
 
-    # แหล่งที่ 2: เว็บไทยโดยตรง (ถ้ายังน้อย)
-    if len(เนื้อหา) < 8:
-        log_info("Fallback: ค้นเว็บไทยโดยตรง...")
-        thai_sources = [
-            f"https://www.sanook.com/search/?q={urllib.parse.quote(หัวข้อ)}",
-            f"https://www.kapook.com/search.php?q={urllib.parse.quote(หัวข้อ)}",
-            f"https://www.thairath.co.th/search/{urllib.parse.quote(หัวข้อ)}",
-            f"https://www.khaosod.co.th/?s={urllib.parse.quote(หัวข้อ)}",
+    # ── แหล่งที่ 2: เว็บเฉพาะทางตามหมวด (ถ้ายังน้อย) ──────────
+    if len(เนื้อหา) < 10:
+        log_info("Fallback: ค้นเว็บเฉพาะทาง...")
+        q = urllib.parse.quote(หัวข้อ)
+        fallback_sources = [
+            f"https://www.wongnai.com/search?q={q}",
+            f"https://www.sanook.com/search/?q={q}",
+            f"https://www.kapook.com/search.php?q={q}",
+            f"https://www.thairath.co.th/search/{q}",
+            f"https://www.khaosod.co.th/?s={q}",
+            f"https://www.pobpad.com/?s={q}",
         ]
-        for url in thai_sources:
-            try:
-                r = requests.get(url, headers=headers, timeout=10)
-                soup = BeautifulSoup(r.text, "html.parser")
-                ps = [p.get_text().strip() for p in soup.find_all("p")
-                      if len(p.get_text().strip()) > 80]
-                เนื้อหา.extend(ps[:6])
-                if len(เนื้อหา) >= 20:
-                    break
-            except Exception:
-                pass
+        for url in fallback_sources:
+            ps = _ดึงหน้าเว็บ(url, max_chars=4000)
+            เนื้อหา.extend(ps[:8])
+            if len(เนื้อหา) >= 25:
+                break
 
-    # กรองซ้ำ + เรียงตาม length (เนื้อหายาวกว่า = มีประโยชน์มากกว่า)
+    # ── กรองซ้ำ + เรียงตาม length ─────────────────────────────
     seen, กรอง = set(), []
     for t in เนื้อหา:
-        k = t[:50]
+        k = t[:60]
         if k not in seen and len(t) > 60:
             seen.add(k)
             กรอง.append(t)
     กรอง.sort(key=len, reverse=True)
 
-    log_info(f"ข้อมูลอ้างอิง: {len(กรอง)} ย่อหน้า ({sum(len(x) for x in กรอง)} ตัวอักษร)")
-    return "\n".join(กรอง[:30])
+    log_info(f"ข้อมูลอ้างอิง: {len(กรอง)} ย่อหน้า ({sum(len(x) for x in กรอง):,} ตัวอักษร)")
+    return "\n\n".join(กรอง[:35])
 
 
 # ══════════════════════════════════════════════════════════════
@@ -666,6 +698,22 @@ def สร้าง_outline_แบบสุ่มสไตล์(หัวข้
             "- เคล็ดลับ/วิธีแก้ปัญหา\n"
             "- ตัวอย่างผลงาน"
         ),
+        "cooking": (
+            "บทความสูตรอาหาร/ทำครัว ต้องมีหัวข้อที่ครอบคลุม:\n"
+            "- วัตถุดิบและเครื่องปรุงครบถ้วน พร้อมปริมาณเป็นตัวเลข\n"
+            "- ขั้นตอนการทำทีละขั้น Step-by-step จริงๆ ไม่ใช่แค่สรุป\n"
+            "- เคล็ดลับให้อร่อยกว่าปกติ ข้อผิดพลาดที่พบบ่อย\n"
+            "- วิธีจัดจาน/เสิร์ฟ\n"
+            "ห้ามบอกแบบเกริ่นๆ ต้องระบุรายละเอียดจริง"
+        ),
+        "tips": (
+            "บทความเคล็ดลับ/How-to ต้องมีหัวข้อที่ครอบคลุม:\n"
+            "- สิ่งที่ต้องเตรียม (วัตถุดิบ อุปกรณ์) พร้อมปริมาณ/รายละเอียดจริง\n"
+            "- ขั้นตอนทีละขั้น Step-by-step จริงๆ ไม่ใช่แค่บอกว่า 'ทำให้เสร็จ'\n"
+            "- ข้อผิดพลาดที่พบบ่อยและวิธีแก้\n"
+            "- เคล็ดลับขั้นสูง/ทริคที่ทำให้ได้ผลดีขึ้น\n"
+            "ถ้ามีหลายรายการ แยกแต่ละรายการให้ชัดเจน ไม่รวมกัน"
+        ),
         "story": (
             "นิทาน/เรื่องเล่า ต้องมีโครงสร้างเรื่อง:\n"
             "- บทนำ: แนะนำตัวละคร ฉาก บรรยากาศ\n"
@@ -859,6 +907,24 @@ def สร้าง_outline_แบบสุ่มสไตล์(หัวข้
             {"h": "ผลลัพธ์ที่ได้", "desc": "ความสำเร็จ การเปลี่ยนแปลง"},
             {"h": "บทเรียนที่นำไปใช้ได้", "desc": "คติ คำแนะนำ แรงบันดาลใจให้ผู้อ่าน"},
         ],
+        "cooking": [
+            {"h": f"{หัวข้อ} — ที่มาและความน่าสนใจ", "desc": "ประวัติ เหตุผลที่นิยม คุณค่า"},
+            {"h": "วัตถุดิบและเครื่องปรุงทั้งหมด", "desc": "รายการวัตถุดิบครบถ้วนพร้อมปริมาณที่ชัดเจน"},
+            {"h": "อุปกรณ์ที่ใช้ในการทำ", "desc": "หม้อ กระทะ เครื่องมือที่ต้องเตรียม"},
+            {"h": "ขั้นตอนการทำทีละขั้น", "desc": "Step-by-step วิธีทำตั้งแต่ต้นจนเสร็จ ระบุเวลาแต่ละขั้น"},
+            {"h": "เคล็ดลับให้อร่อยกว่าร้าน", "desc": "เทคนิค ข้อผิดพลาดที่พบบ่อย ปรับรสให้ถูกจุด"},
+            {"h": "การจัดจานและเสิร์ฟ", "desc": "วิธีตกแต่ง เครื่องเคียง การนำเสนอให้น่ากิน"},
+            {"h": "คุณค่าทางโภชนาการ", "desc": "แคลอรี่ สารอาหาร ประโยชน์ต่อร่างกาย"},
+        ],
+        "tips": [
+            {"h": "ทำไมเรื่องนี้ถึงสำคัญ", "desc": "เหตุผล ปัญหาที่แก้ได้ ประโยชน์ที่จะได้รับ"},
+            {"h": "สิ่งที่ต้องเตรียม", "desc": "วัตถุดิบ อุปกรณ์ ทรัพยากร พร้อมรายละเอียดและปริมาณจริง"},
+            {"h": "ขั้นตอนทำได้เลยทีละขั้น", "desc": "Step-by-step วิธีทำตั้งแต่ต้นจนจบ ระบุรายละเอียดทุกขั้น"},
+            {"h": "ข้อผิดพลาดที่พบบ่อยและวิธีแก้", "desc": "ปัญหาที่คนมักเจอ สาเหตุ วิธีหลีกเลี่ยงหรือแก้ไข"},
+            {"h": "เคล็ดลับและเทคนิคขั้นสูง", "desc": "วิธีทำให้ดียิ่งขึ้น ลัดขั้นตอน ประหยัดเวลา"},
+            {"h": "ตัวอย่างจริงที่ได้ผล", "desc": "กรณีศึกษา ตัวเลขจริง ประสบการณ์ที่ทำแล้วได้ผล"},
+            {"h": "สรุปและขั้นตอนถัดไป", "desc": "สรุปสาระสำคัญ สิ่งที่ทำต่อได้ทันที"},
+        ],
         "ghost": [
             {"h": "บรรยากาศและฉาก", "desc": "สถานที่ลึกลับ บรรยากาศน่ากลัว"},
             {"h": "เหตุการณ์แรกที่ประหลาด", "desc": "สัญญาณแรกที่มีบางอย่างผิดปกติ"},
@@ -872,8 +938,23 @@ def สร้าง_outline_แบบสุ่มสไตล์(หัวข้
 
     if len(sections) < 4:
         log_warn(f"Outline ไม่ครบ (ได้ {len(sections)}) → ใช้โครงสร้างสำรองตามหมวด '{หมวด}'")
+        # ตรวจหัวข้อเป็น recipe/how-to หลายรายการ
+        _is_recipe_topic = any(kw in หัวข้อ for kw in [
+            "เมนู", "สูตร", "วิธีทำ", "ขั้นตอน", "ทำอาหาร",
+            "ผัด", "ต้ม", "ทอด", "อบ", "นึ่ง", "ย่าง",
+        ])
         if หมวด in FALLBACK_OUTLINE:
             sections = FALLBACK_OUTLINE[หมวด]
+        elif _is_recipe_topic and หมวด in ("food", "cooking", "tips", "diy"):
+            sections = [
+                {"h": "ทำไมต้องลองเมนูนี้", "desc": "เหตุผล ประโยชน์ ความน่าสนใจ"},
+                {"h": "วัตถุดิบและเครื่องปรุงทั้งหมด", "desc": "รายการวัตถุดิบแต่ละเมนูครบถ้วน พร้อมปริมาณ"},
+                {"h": "ขั้นตอนการทำทีละเมนู", "desc": "Step-by-step วิธีทำแต่ละเมนูตั้งแต่ต้นจนเสร็จ"},
+                {"h": "เคล็ดลับให้อร่อยกว่าเดิม", "desc": "เทคนิค ข้อผิดพลาดที่ควรหลีกเลี่ยง การปรุงรสให้ถูกจุด"},
+                {"h": "การจัดจานและเสิร์ฟ", "desc": "วิธีตกแต่ง เครื่องเคียง การนำเสนอให้น่ากิน"},
+                {"h": "ปรับเปลี่ยนตามสไตล์ตัวเอง", "desc": "วิธีดัดแปลง ทดแทนวัตถุดิบ ทำให้เหมาะกับความชอบ"},
+                {"h": "เก็บรักษาและอุ่นซ้ำ", "desc": "วิธีเก็บ อายุอาหาร การอุ่นให้อร่อยเหมือนเดิม"},
+            ]
         else:
             sections = [
                 {"h": f"{หัวข้อ} คืออะไร", "desc": "ความหมาย นิยาม ภาพรวม ทำไมถึงสำคัญ"},
@@ -1370,11 +1451,26 @@ def เขียนบทความ(หัวข้อ: str, หมวด: str
 
     # ── STEP 3: เขียนทีละ Section ─────────────────────────
     log_info("STEP 3/6 — เขียนทีละ Section...")
+    written_headings: list = []  # track หัวข้อที่เขียนแล้ว เพื่อ coherence
+
     for i, sec in enumerate(sections):
         log_info(f"  Section {i+1}/{len(sections)}: {sec['h']}")
 
-        # ใช้ข้อมูลอ้างอิงที่ตรงกว่าสำหรับแต่ละ section
-        ctx_sec = f"\nข้อมูลอ้างอิง:\n{อ้างอิง[:1500]}\n" if อ้างอิง else ""
+        # ── กรอง paragraph อ้างอิงที่ตรงกับ section นี้ ──────
+        # เลือกเฉพาะย่อหน้าที่มี keyword ของ section นี้ก่อน แล้ว fallback ทั้งหมด
+        _sec_keywords = set(sec['h'].replace('และ','').replace('ของ','').split())
+        _relevant = [p for p in อ้างอิง.split('\n\n')
+                     if any(kw in p for kw in _sec_keywords) and len(p) > 60]
+        _ctx_para = '\n\n'.join(_relevant[:5]) if _relevant else อ้างอิง[:2000]
+        ctx_sec = f"\nข้อมูลอ้างอิงสำหรับ section นี้:\n{_ctx_para}\n" if _ctx_para else ""
+
+        # ── เพิ่ม written_so_far context ─────────────────────
+        written_so_far = ""
+        if written_headings:
+            written_so_far = (
+                f"\n⚠️ section ที่เขียนไปแล้ว (ห้ามซ้ำ): {', '.join(written_headings)}\n"
+                f"section ปัจจุบันต้องต่อเนื่องและไม่ทับซ้อนกับที่เขียนไปแล้ว\n"
+            )
 
         # สุ่มสไตล์ย่อยเพื่อให้แต่ละ section ไม่ซ้ำกัน
         _micro_styles = [
@@ -1402,6 +1498,7 @@ def เขียนบทความ(หัวข้อ: str, หมวด: str
                 f"เรื่อง: {หัวข้อ}\n"
                 f"เล่าต่อจากส่วนที่แล้ว — ฉาก/ตอน: {sec['h']} ({sec['desc']})\n"
                 f"{ctx_sec}"
+                f"{written_so_far}"
                 f"สไตล์: {_style}\n"
                 f"เขียน 4-5 ย่อหน้าต่อเนื่อง ไม่ต้องมีหัวข้อ ไม่ต้องมี ## นำหน้า\n"
                 f"มีบทสนทนา บรรยายฉาก อารมณ์ตัวละครให้เห็นภาพ\n"
@@ -1414,15 +1511,55 @@ def เขียนบทความ(หัวข้อ: str, หมวด: str
             _style = _micro_styles[i % len(_micro_styles)]
             # FIX: แยก instruction ออกจากเนื้อหาอย่างชัดเจน
             # ไม่ใส่ "## heading" + "กฎ:" ในก้อนเดียวกัน เพราะโมเดลจะ copy กฎออกมาในเนื้อหาด้วย
-            section_raw = เรียก_ollama(
-                f"บทความเรื่อง \"{หัวข้อ}\" หมวด {หมวด_ไทย.get(หมวด, หมวด)}\n"
-                f"ขอเนื้อหาส่วน \"{sec['h']}\" ครอบคลุมประเด็น: {sec['desc']}\n"
-                f"{ctx_sec}"
-                f"เขียนเนื้อหา 4-6 ย่อหน้า ภาษาไทย สไตล์: {_style}\n"
-                f"ขึ้นต้นด้วย ## {sec['h']} แล้วเขียนเนื้อหาต่อเลย ห้าม copy คำสั่งนี้\n"
-                f"เขียน Markdown ห้ามใช้ HTML",
-                timeout=250, num_predict=2500
-            )
+
+            # ── บังคับโครงสร้างสำหรับ section วัตถุดิบ/ขั้นตอน ──
+            _force_ingredients = any(kw in sec['h'] for kw in [
+                "วัตถุดิบ", "เครื่องปรุง", "ส่วนผสม", "สิ่งที่ต้องเตรียม", "อุปกรณ์",
+            ])
+            _force_steps = any(kw in sec['h'] for kw in [
+                "ขั้นตอน", "วิธีทำ", "วิธีการ", "การทำ", "ทีละขั้น",
+            ])
+            _is_howto_cat = หมวด in ("food", "cooking", "tips", "diy", "beauty")
+
+            if _force_ingredients and _is_howto_cat:
+                section_raw = เรียก_ollama(
+                    f"บทความเรื่อง \"{หัวข้อ}\" หมวด {หมวด_ไทย.get(หมวด, หมวด)}\n"
+                    f"ขอเนื้อหาส่วน \"{sec['h']}\" ครอบคลุมประเด็น: {sec['desc']}\n"
+                    f"{ctx_sec}"
+                    f"{written_so_far}"
+                    f"กฎสำคัญ — ต้องระบุรายละเอียดจริง ห้ามบอกแบบเกริ่นๆ:\n"
+                    f"- ถ้ามีหลายเมนู/รายการ: แยกแต่ละรายการด้วย ### ชื่อเมนู\n"
+                    f"- ระบุปริมาณเป็นตัวเลขชัดเจน เช่น 2 ช้อนโต๊ะ, 100 กรัม, 3 กลีบ\n"
+                    f"- เครื่องปรุงหลักห้ามบอกว่า 'ตามชอบ' ต้องบอกปริมาณเริ่มต้น\n"
+                    f"- ขึ้นต้นด้วย ## {sec['h']} แล้วเขียนเนื้อหาต่อเลย ห้าม copy คำสั่งนี้\n"
+                    f"เขียน Markdown ห้ามใช้ HTML",
+                    timeout=250, num_predict=2500
+                )
+            elif _force_steps and _is_howto_cat:
+                section_raw = เรียก_ollama(
+                    f"บทความเรื่อง \"{หัวข้อ}\" หมวด {หมวด_ไทย.get(หมวด, หมวด)}\n"
+                    f"ขอเนื้อหาส่วน \"{sec['h']}\" ครอบคลุมประเด็น: {sec['desc']}\n"
+                    f"{ctx_sec}"
+                    f"{written_so_far}"
+                    f"กฎสำคัญ — เขียน step-by-step จริงๆ ไม่ใช่แค่บอกว่า 'ทำให้เสร็จ':\n"
+                    f"- ถ้ามีหลายเมนู: แยกแต่ละเมนูด้วย ### ชื่อเมนู แล้วบอก step 1, 2, 3...\n"
+                    f"- แต่ละ step ระบุ: ทำอะไร, ใช้อะไร, ใช้เวลากี่นาที/ความร้อนเท่าไร\n"
+                    f"- บอกสัญญาณที่รู้ว่าสุก/เสร็จ เช่น 'จนเหลืองกรอบ' 'จนซอสข้น'\n"
+                    f"- ขึ้นต้นด้วย ## {sec['h']} แล้วเขียนเนื้อหาต่อเลย ห้าม copy คำสั่งนี้\n"
+                    f"เขียน Markdown ห้ามใช้ HTML",
+                    timeout=250, num_predict=2500
+                )
+            else:
+                section_raw = เรียก_ollama(
+                    f"บทความเรื่อง \"{หัวข้อ}\" หมวด {หมวด_ไทย.get(หมวด, หมวด)}\n"
+                    f"ขอเนื้อหาส่วน \"{sec['h']}\" ครอบคลุมประเด็น: {sec['desc']}\n"
+                    f"{ctx_sec}"
+                    f"{written_so_far}"
+                    f"เขียนเนื้อหา 4-6 ย่อหน้า ภาษาไทย สไตล์: {_style}\n"
+                    f"ขึ้นต้นด้วย ## {sec['h']} แล้วเขียนเนื้อหาต่อเลย ห้าม copy คำสั่งนี้\n"
+                    f"เขียน Markdown ห้ามใช้ HTML",
+                    timeout=250, num_predict=2500
+                )
 
         section_html = ทำความสะอาด_html(แปลง_md_html(section_raw))
 
@@ -1451,23 +1588,38 @@ def เขียนบทความ(หัวข้อ: str, หมวด: str
             fallback = f"https://picsum.photos/seed/{seed}/800/350"
             # keyword ตรงกับ section นี้เสมอ — ทั้ง story และ บทความปกติ
             try:
-                _eg = (
-                    'เช่น rabbit tortoise race forest cartoon หรือ ghost dark temple night'
-                    if is_story else
-                    'เช่น skincare face woman healthy หรือ thai food cooking ingredients'
-                )
+                if is_story:
+                    _eg = (
+                        'Examples:\n'
+                        '  "บรรยากาศและฉาก" (ghost) → "dark thai temple night fog mysterious"\n'
+                        '  "ตัวละครและโลกในเรื่อง" (folktale) → "thai traditional costume colorful ancient"\n'
+                        '  "จุดสูงสุดของเรื่อง" (drama) → "dramatic emotional thai people conflict scene"'
+                    )
+                else:
+                    _eg = (
+                        'Examples:\n'
+                        f'  "วัตถุดิบและเครื่องปรุง" (food) → "{หัวข้อ[:15]} ingredients spices bowl close-up"\n'
+                        f'  "ขั้นตอนการทำ" (cooking) → "chef cooking wok flame thai kitchen process"\n'
+                        f'  "คุณค่าทางโภชนาการ" (health) → "nutrition facts vegetables fruits healthy colorful"\n'
+                        f'  "เคล็ดลับการดูแลผิว" (beauty) → "skincare serum woman applying face glow"'
+                    )
                 _scene_kw_prompt = (
-                    f'หัวข้อ section: "{sec["h"]}" จากบทความ "{หัวข้อ}" หมวด {หมวด}\n'
-                    f'คิด keyword ภาษาอังกฤษ 3-4 คำ สำหรับค้นรูปภาพที่ตรงกับ section นี้\n'
+                    f'Article: "{หัวข้อ}" (category: {หมวด})\n'
+                    f'Section: "{sec["h"]}"\n'
+                    f'Section description: {sec["desc"]}\n'
+                    f'Write 4-5 specific English keywords for a stock photo that matches THIS section.\n'
+                    f'The photo should show exactly what this section is about — not just the general topic.\n'
                     f'{_eg}\n'
-                    f'ตอบแค่ keyword ไม่ต้องอธิบาย'
+                    f'Reply with keywords ONLY.'
                 )
                 from config import เรียก_ollama_เร็ว as _ollama_fast
-                _scene_kw = _ollama_fast(_scene_kw_prompt).strip().split('\n')[0][:80]
-                if not _scene_kw:
+                _scene_kw = _ollama_fast(_scene_kw_prompt).strip().split('\n')[0][:100]
+                # กรอง → ออก ถ้า AI ยังใส่มา
+                _scene_kw = _scene_kw.split('→')[-1].strip().strip('"\'')
+                if not _scene_kw or len(_scene_kw) < 5:
                     raise ValueError("empty")
             except Exception:
-                _scene_kw = story_img_kw if is_story else f"{หมวด} {sec['h'][:20]}"
+                _scene_kw = story_img_kw if is_story else f"{หัวข้อ[:20]} {sec['h'][:20]}"
             img_url = ดึงรูป_ตรงเนื้อหา(_scene_kw, หมวด, _scene_kw)
             img_html = (
                 f'<figure style="margin:1.5rem 0;border-radius:12px;overflow:hidden;'
@@ -1482,6 +1634,7 @@ def เขียนบทความ(หัวข้อ: str, หมวด: str
             log_info(f"  แทรกรูป section {i+1}/{len(sections)}: {_scene_kw}")
 
         parts_html.append(section_html)
+        written_headings.append(sec['h'])  # track สำหรับ section ถัดไป
         log_ok(f"  Section {i+1} เสร็จ: {len(section_html)} ตัว")
         time.sleep(0.3)  # ป้องกัน Ollama overload
 

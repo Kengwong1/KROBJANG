@@ -31,10 +31,19 @@
 ║  python agent_fix_v6.py --layout zigzag                             ║
 ║  python agent_fix_v6.py --layout featured --cols 3                  ║
 ║                                                                      ║
-║  Theme (--theme):                                                    ║
-║    blue(default) dark  green  red  purple  orange  teal  slate      ║
-║    rose  indigo  amber  cyan  lime  sky  violet                      ║
-║  python agent_fix_v6.py --theme dark --layout hero3                 ║
+║  Theme (--theme) — 40 ธีม:                                          ║
+║  พื้นฐาน: blue dark green red purple orange teal slate rose         ║
+║            indigo amber cyan lime sky violet                         ║
+║  มืออาชีพ: reliable corporate charcoal                              ║
+║  เรียบง่าย: minimal calm zen paper                                  ║
+║  หวานน่ารัก: sweet candy sakura lavender peach                      ║
+║  ธรรมมะ: dharma monk lotus gold                                     ║
+║  ดูดวง/ลึกลับ: mystic horoscope cosmic midnight                     ║
+║  ธรรมชาติ: forest ocean earth spring                                ║
+║  วินเทจ: retro vintage neon                                         ║
+║  python agent_fix_v6.py --theme dharma --layout grid               ║
+║  python agent_fix_v6.py --theme mystic --layout tiles              ║
+║  python agent_fix_v6.py --list-themes  → แสดงธีมทั้งหมด            ║
 ║                                                                      ║
 ║  Extra:                                                              ║
 ║  python agent_fix_v6.py --check-overlap → ตรวจซ้ำ                  ║
@@ -123,24 +132,113 @@ COLS         = int(_get_arg("--cols",  "3"))
 THEME_NAME   = _get_arg("--theme",   "blue")
 
 # ══════════════════════════════════════════════════════════════
-# 🎨  THEME SYSTEM — 15 ธีม
+# 🎨  THEME SYSTEM — 40 ธีม
+# format: (primary, dark, grad_end, accent, badge_txt)
 # ══════════════════════════════════════════════════════════════
 THEME_DEFS = {
-    "blue":   ("#1e40af", "#0f172a", "#1e3a8a", "#3b82f6", "#fff"),
-    "dark":   ("#0f172a", "#020617", "#1e293b", "#475569", "#e2e8f0"),
-    "green":  ("#065f46", "#022c22", "#047857", "#10b981", "#fff"),
-    "red":    ("#991b1b", "#450a0a", "#b91c1c", "#ef4444", "#fff"),
-    "purple": ("#581c87", "#2e1065", "#6b21a8", "#a855f7", "#fff"),
-    "orange": ("#9a3412", "#431407", "#c2410c", "#f97316", "#fff"),
-    "teal":   ("#0f766e", "#042f2e", "#0d9488", "#14b8a6", "#fff"),
-    "slate":  ("#334155", "#0f172a", "#475569", "#64748b", "#f8fafc"),
-    "rose":   ("#9f1239", "#4c0519", "#be123c", "#fb7185", "#fff"),
-    "indigo": ("#3730a3", "#1e1b4b", "#4338ca", "#818cf8", "#fff"),
-    "amber":  ("#92400e", "#451a03", "#b45309", "#fbbf24", "#fff"),
-    "cyan":   ("#155e75", "#083344", "#0e7490", "#22d3ee", "#fff"),
-    "lime":   ("#3f6212", "#1a2e05", "#4d7c0f", "#a3e635", "#1a2e05"),
-    "sky":    ("#075985", "#082f49", "#0369a1", "#38bdf8", "#fff"),
-    "violet": ("#4c1d95", "#2e1065", "#5b21b6", "#c084fc", "#fff"),
+    # ── ธีมพื้นฐาน (เดิม) ──────────────────────────────────────
+    "blue":     ("#1e40af", "#0f172a", "#1e3a8a", "#3b82f6", "#fff"),
+    "dark":     ("#0f172a", "#020617", "#1e293b", "#475569", "#e2e8f0"),
+    "green":    ("#065f46", "#022c22", "#047857", "#10b981", "#fff"),
+    "red":      ("#991b1b", "#450a0a", "#b91c1c", "#ef4444", "#fff"),
+    "purple":   ("#581c87", "#2e1065", "#6b21a8", "#a855f7", "#fff"),
+    "orange":   ("#9a3412", "#431407", "#c2410c", "#f97316", "#fff"),
+    "teal":     ("#0f766e", "#042f2e", "#0d9488", "#14b8a6", "#fff"),
+    "slate":    ("#334155", "#0f172a", "#475569", "#64748b", "#f8fafc"),
+    "rose":     ("#9f1239", "#4c0519", "#be123c", "#fb7185", "#fff"),
+    "indigo":   ("#3730a3", "#1e1b4b", "#4338ca", "#818cf8", "#fff"),
+    "amber":    ("#92400e", "#451a03", "#b45309", "#fbbf24", "#fff"),
+    "cyan":     ("#155e75", "#083344", "#0e7490", "#22d3ee", "#fff"),
+    "lime":     ("#3f6212", "#1a2e05", "#4d7c0f", "#a3e635", "#1a2e05"),
+    "sky":      ("#075985", "#082f49", "#0369a1", "#38bdf8", "#fff"),
+    "violet":   ("#4c1d95", "#2e1065", "#5b21b6", "#c084fc", "#fff"),
+
+    # ── น่าเชื่อถือ / มืออาชีพ ───────────────────────────────────
+    "reliable": ("#1a365d", "#0d1f3c", "#2a4a7f", "#4299e1", "#fff"),   # navy น่าเชื่อถือ
+    "corporate":("#1e3a5f", "#0f2340", "#2d5a9e", "#63b3ed", "#fff"),   # บริษัท เป็นทางการ
+    "charcoal": ("#374151", "#111827", "#4b5563", "#9ca3af", "#fff"),   # ถ่าน โมเดิร์น
+
+    # ── เรียบง่าย / สบายตา ──────────────────────────────────────
+    "minimal":  ("#334155", "#1e293b", "#475569", "#94a3b8", "#fff"),   # minimal สะอาด
+    "calm":     ("#2d6a7a", "#0f3642", "#3d8fa3", "#67c8d8", "#fff"),   # สบายตา ฟ้าเทา
+    "zen":      ("#4a7c59", "#1a3328", "#5a9c6e", "#88d4a8", "#fff"),   # เขียวอ่อน ผ่อนคลาย
+    "paper":    ("#5c4a32", "#2c2218", "#7a6248", "#c8a97a", "#fff"),   # น้ำตาลกระดาษ อบอุ่น
+
+    # ── หวาน / น่ารัก ───────────────────────────────────────────
+    "sweet":    ("#be185d", "#6b0f3a", "#db2777", "#f9a8d4", "#fff"),   # ชมพูหวาน
+    "candy":    ("#9d174d", "#5a0f2e", "#c2185b", "#f48fb1", "#fff"),   # ลูกอม
+    "sakura":   ("#ad1457", "#4a0726", "#c2185b", "#f8bbd0", "#fff"),   # ซากุระ ญี่ปุ่น
+    "lavender": ("#5b21b6", "#2e1065", "#7c3aed", "#ddd6fe", "#fff"),   # ลาเวนเดอร์
+    "peach":    ("#c2410c", "#7c2d12", "#ea580c", "#fdba74", "#fff"),   # พีช ส้มอ่อน
+
+    # ── ธรรมมะ / จิตใจ ──────────────────────────────────────────
+    "dharma":   ("#92400e", "#3b1a06", "#b45309", "#fcd34d", "#fff"),   # ทองธรรมะ วัด
+    "monk":     ("#c05621", "#7b341e", "#dd6b20", "#f6ad55", "#fff"),   # สีจีวร พระ
+    "lotus":    ("#702459", "#4a044e", "#9b2c8c", "#d6a8e0", "#fff"),   # บัว ม่วงเข้ม
+    "gold":     ("#78350f", "#3b1a03", "#92400e", "#fbbf24", "#fff"),   # ทองคำ มงคล
+
+    # ── ดูดวง / ลึกลับ ──────────────────────────────────────────
+    "mystic":   ("#1e1b4b", "#0f0c2e", "#312e81", "#818cf8", "#e0e7ff"), # ลึกลับ จักรวาล
+    "horoscope":("#4c1d95", "#1e0a3c", "#5b21b6", "#a78bfa", "#fff"),   # ดูดวง ม่วง
+    "cosmic":   ("#0f172a", "#020617", "#1e1b4b", "#6366f1", "#c7d2fe"), # จักรวาล ดาว
+    "midnight": ("#1e3a8a", "#0a0f2e", "#1e40af", "#60a5fa", "#dbeafe"), # เที่ยงคืน navy
+
+    # ── ธรรมชาติ / ป่า / ทะเล ────────────────────────────────────
+    "forest":   ("#14532d", "#052e16", "#166534", "#4ade80", "#fff"),   # ป่าเขา
+    "ocean":    ("#075985", "#0c1a35", "#0369a1", "#38bdf8", "#fff"),   # ทะเลลึก
+    "earth":    ("#713f12", "#3b1f07", "#92400e", "#d97706", "#fff"),   # ดินแดน
+    "spring":   ("#15803d", "#052e16", "#16a34a", "#86efac", "#fff"),   # ฤดูใบไม้ผลิ
+
+    # ── Retro / วินเทจ ──────────────────────────────────────────
+    "retro":    ("#7c3aed", "#1e0a3c", "#6d28d9", "#c4b5fd", "#fff"),   # retro ม่วง
+    "vintage":  ("#92400e", "#3b1a06", "#a16207", "#fde68a", "#1a0e00"), # วินเทจ ซีเปีย
+    "neon":     ("#0f172a", "#020617", "#1e293b", "#22d3ee", "#fff"),   # นีออน dark
+}
+
+# คำอธิบายธีม (ใช้ใน --list-themes)
+THEME_LABELS = {
+    "blue":      "น้ำเงิน (default) — เว็บทั่วไป",
+    "dark":      "Dark Mode — โมเดิร์น",
+    "green":     "เขียวเข้ม — สุขภาพ ธรรมชาติ",
+    "red":       "แดง — ข่าว บันเทิง",
+    "purple":    "ม่วง — สร้างสรรค์",
+    "orange":    "ส้ม — อาหาร ท่องเที่ยว",
+    "teal":      "เขียวน้ำ — เทคโนโลยี",
+    "slate":     "เทา — เรียบ มินิมอล",
+    "rose":      "กุหลาบ — ความงาม",
+    "indigo":    "คราม — การเงิน",
+    "amber":     "อำพัน — อบอุ่น",
+    "cyan":      "ฟ้าน้ำ — สดใส",
+    "lime":      "เขียวสด — พลังงาน",
+    "sky":       "ท้องฟ้า — สดชื่น",
+    "violet":    "ไวโอเล็ต — สร้างสรรค์",
+    "reliable":  "🏛️  Navy น่าเชื่อถือ — ข่าว รัฐ บริษัท",
+    "corporate": "💼 Corporate — เป็นทางการ มืออาชีพ",
+    "charcoal":  "🪨 Charcoal — โมเดิร์น เรียบ",
+    "minimal":   "✨ Minimal — สะอาด เรียบง่าย",
+    "calm":      "🌊 Calm — สบายตา ฟ้าเทา",
+    "zen":       "🍃 Zen — ผ่อนคลาย เขียวอ่อน",
+    "paper":     "📄 Paper — อบอุ่น กระดาษน้ำตาล",
+    "sweet":     "🍭 Sweet — หวาน ชมพู น่ารัก",
+    "candy":     "🍬 Candy — ลูกอม สดใส",
+    "sakura":    "🌸 Sakura — ซากุระ ญี่ปุ่น",
+    "lavender":  "💜 Lavender — ลาเวนเดอร์ นุ่มนวล",
+    "peach":     "🍑 Peach — พีช ส้มอ่อน",
+    "dharma":    "🙏 Dharma — ธรรมมะ ทองวัด",
+    "monk":      "🟠 Monk — จีวร พระ พุทธศาสนา",
+    "lotus":     "🪷 Lotus — บัว จิตใจ สมาธิ",
+    "gold":      "✨ Gold — ทองคำ มงคล ความสำเร็จ",
+    "mystic":    "🔮 Mystic — ลึกลับ จักรวาล",
+    "horoscope": "⭐ Horoscope — ดูดวง โหราศาสตร์",
+    "cosmic":    "🌌 Cosmic — ดาว อวกาศ",
+    "midnight":  "🌙 Midnight — เที่ยงคืน navy dark",
+    "forest":    "🌲 Forest — ป่า ธรรมชาติ",
+    "ocean":     "🌊 Ocean — ทะเลลึก สีฟ้า",
+    "earth":     "🌍 Earth — ดิน อบอุ่น",
+    "spring":    "🌱 Spring — ฤดูใบไม้ผลิ สดใส",
+    "retro":     "📺 Retro — วินเทจ ม่วง",
+    "vintage":   "🕰️  Vintage — ซีเปีย คลาสสิก",
+    "neon":      "💡 Neon — นีออน dark สว่าง",
 }
 
 def _theme() -> dict:
@@ -2771,6 +2869,14 @@ def รัน_fix_ทั้งหมด():
 def main():
     args = set(_args)
 
+    if "--list-themes"   in args:
+        log_section(f"🎨 ธีมทั้งหมด ({len(THEME_DEFS)} ธีม)")
+        for name, label in THEME_LABELS.items():
+            active = " ← (ใช้อยู่)" if name == THEME_NAME else ""
+            t = THEME_DEFS[name]
+            log(f"  --theme {name:<12}  {label}{active}")
+        log(f"\n  ตัวอย่าง: python agent_fix_v6.py --theme dharma --layout grid")
+        return
     if "--chat"          in args: รัน_chat(); return
     if "--audit"         in args: audit_ทั้งหมด(); return
     if "--stats"         in args: แสดง_สถิติ(); return

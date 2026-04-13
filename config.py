@@ -163,11 +163,27 @@ def เรียก_ollama_เร็ว(prompt: str, timeout: int = 30, num_pred
     return เรียก_ollama(prompt, timeout=timeout, num_predict=num_predict, temperature=0.4)
 
 def _แปลง_keyword_อังกฤษ(หัวข้อ: str, บริบท: str = "") -> str:
-    prompt = f'Thai topic: "{หัวข้อ}"\nWrite 3-4 English keywords for a stock photo. Reply keywords only.'
-    raw = เรียก_ollama(prompt, timeout=20, num_predict=40, temperature=0.15)
+    ctx_line = f'\nContext: "{บริบท}"' if บริบท and บริบท != หัวข้อ else ""
+    prompt = (
+        f'Thai topic: "{หัวข้อ}"{ctx_line}\n'
+        f'Write 3-5 specific English keywords for a stock photo search.\n'
+        f'Rules:\n'
+        f'- Be VERY specific: describe what you would actually see in the photo\n'
+        f'- Include main subject, key ingredients/items, visual details\n'
+        f'- NO generic words like "food", "health", "lifestyle" alone\n'
+        f'Examples:\n'
+        f'  "แกงเขียวหวานไก่" → "Thai green curry chicken coconut milk bowl"\n'
+        f'  "วิตามินซี" → "vitamin C orange citrus fruits supplements"\n'
+        f'  "ออกกำลังกาย" → "woman running outdoor park morning exercise"\n'
+        f'  "สูตรขนมปัง" → "homemade bread dough baking oven golden"\n'
+        f'Reply with keywords ONLY, no explanation.'
+    )
+    raw = เรียก_ollama(prompt, timeout=25, num_predict=60, temperature=0.2)
     raw = re.sub(r'<think>.*?</think>', '', raw, flags=re.DOTALL).strip()
     raw = re.sub(r'["\'\n]', ' ', raw).strip()
-    return raw[:80] if raw else ""
+    # กรองประโยคอธิบายออก ถ้า AI ยังส่งมา
+    raw = raw.split('.')[0].split('→')[-1].strip()
+    return raw[:100] if raw else ""
 
 def ดึงรูป_unsplash(หมวด: str, คีย์เวิร์ด: str = "") -> str:
     import hashlib
