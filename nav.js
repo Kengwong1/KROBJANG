@@ -1,4 +1,4 @@
-// nav.js — ไอหมอก v6 — auto-generated 2026-04-14
+// nav.js — ไอหมอก v6 — auto-generated 2026-04-15
 // ✅ ครบทุกหมวด 30 หมวด
 (function() {
   var SITE_NAME = "ไอหมอก";
