@@ -1,34 +1,25 @@
 """
 ╔══════════════════════════════════════════════════════════════════╗
-║  image_sources.py  — ดึงรูปฟรีจากหลายแหล่ง                    ║
+║  image_sources.py  v9 — ดึงรูปตรงเนื้อหา ไม่ซ้ำ ไม่ picsum    ║
 ║                                                                  ║
-║  แหล่งรูปฟรี 100% ไม่เสียเงินทุกกรณี:                         ║
-║  1. Unsplash (source.unsplash.com)  — ไม่ต้องใช้ key           ║
-║  2. Pexels API                      — ต้องมี PEXELS_KEY         ║
-║  3. Pixabay API                     — ต้องมี PIXABAY_KEY        ║
-║  4. Lorem Picsum                    — ไม่ต้องใช้ key            ║
-║  5. Stable Horde (AI สร้างภาพฟรี)  — ไม่ต้องใช้ key           ║
-║  6. Pollinations.ai (AI สร้างภาพ)  — ไม่ต้องใช้ key           ║
-║  7. Google Custom Search Images     — ต้องมี GOOGLE_CSE_KEY     ║
-║  8. Wikimedia Commons               — ไม่ต้องใช้ key           ║
+║  แก้ปัญหาหลัก (v9):                                            ║
+║  ✅ _extract_title_keywords() — ดึง EN keyword จากหัวข้อไทยตรง ║
+║  ✅ _get_topic() — ผสม title keyword + category topic           ║
+║  ✅ Pexels/Pixabay/Unsplash ส่ง title_kw ไปด้วยทุก source      ║
+║  ✅ page seed ใช้ full md5 + offset → ไม่ซ้ำข้ามบทความ         ║
+║  ✅ Pollinations ย้ายหลัง Wikimedia (ช้า ไม่ควร default)       ║
+║  ✅ timeout 5s (ลดจาก 8s) ป้องกัน pipeline หยุด               ║
 ║                                                                  ║
-║  ใช้: from image_sources import get_image_url                   ║
-║  >>> url = get_image_url("อาหารไทย", "food", "article-001")    ║
+║  Priority: Pexels > Pixabay > Unsplash > Google >               ║
+║            Wikimedia > Pollinations > Picsum(fallback)          ║
 ╚══════════════════════════════════════════════════════════════════╝
 """
 
-import os
-import re
-import hashlib
-import time
-import json
-import urllib.request
-import urllib.parse
-import urllib.error
+import os, re, hashlib, time, json, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
 # ══════════════════════════════════════════════════════════════
-# 🔧  โหลด .env อัตโนมัติ (ไม่ต้องติดตั้ง python-dotenv)
+# 🔧  โหลด .env
 # ══════════════════════════════════════════════════════════════
 def _load_dotenv():
     env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
@@ -40,95 +31,234 @@ def _load_dotenv():
             if not line or line.startswith("#") or "=" not in line:
                 continue
             key, _, val = line.partition("=")
-            key = key.strip()
-            val = val.strip().strip('"').strip("'")
-            if key and key not in os.environ:  # ไม่ทับ env จริงถ้ามีอยู่แล้ว
+            key = key.strip(); val = val.strip().strip('"').strip("'")
+            if key and key not in os.environ:
                 os.environ[key] = val
 
 _load_dotenv()
 
-# ══════════════════════════════════════════════════════════════
-# 🔑  API KEYS — ใส่ใน .env หรือ environment variable
-# ══════════════════════════════════════════════════════════════
-PEXELS_KEY      = os.environ.get("PEXELS_KEY", "")
-UNSPLASH_KEY    = os.environ.get("UNSPLASH_KEY", "")   # ไม่บังคับ (source. ใช้ได้ฟรี)
-PIXABAY_KEY     = os.environ.get("PIXABAY_KEY", "")
-GOOGLE_CSE_KEY  = os.environ.get("GOOGLE_CSE_KEY", "")
-GOOGLE_CSE_CX   = os.environ.get("GOOGLE_CSE_CX", "")
+PEXELS_KEY     = os.environ.get("PEXELS_KEY", "")
+UNSPLASH_KEY   = os.environ.get("UNSPLASH_KEY", "")
+PIXABAY_KEY    = os.environ.get("PIXABAY_KEY", "")
+GOOGLE_CSE_KEY = os.environ.get("GOOGLE_CSE_KEY", "")
+GOOGLE_CSE_CX  = os.environ.get("GOOGLE_CSE_CX", "")
 
 # ══════════════════════════════════════════════════════════════
-# 🗂️  Topic map — หัวข้อภาษาไทย → keyword ภาษาอังกฤษ
+# 🗂️  Topic map — หมวดหมู่ → EN keyword
 # ══════════════════════════════════════════════════════════════
 _TOPIC_MAP = {
-    # หมวดหลัก
-    "อาหาร":       "food,meal,cuisine,cooking",
-    "food":        "food,meal,restaurant,cuisine",
-    "cooking":     "cooking,kitchen,food,recipe",
-    "สุขภาพ":      "healthcare,wellness,fitness,medical",
-    "health":      "healthcare,wellness,medical,hospital",
-    "กีฬา":        "sport,fitness,exercise,athlete",
-    "sport":       "sport,fitness,exercise,stadium",
-    "ท่องเที่ยว":  "travel,landscape,destination,adventure",
-    "travel":      "travel,landscape,destination,adventure",
-    "เทคโนโลยี":  "technology,computer,digital,innovation",
-    "technology":  "technology,computer,digital,innovation",
-    "gaming":      "gaming,esports,controller,game",
-    "เกม":         "gaming,esports,controller,game",
-    "การเงิน":     "finance,money,investment,banking",
-    "finance":     "finance,money,investment,banking",
-    "business":    "business,office,corporate,finance",
-    "ธุรกิจ":      "business,office,corporate,finance",
-    "ความงาม":     "beauty,cosmetics,skincare,makeup",
-    "beauty":      "beauty,cosmetics,skincare,makeup",
-    "ดูดวง":       "stars,astrology,zodiac,horoscope",
-    "horoscope":   "stars,astrology,zodiac,moon",
-    "บันเทิง":     "entertainment,concert,show,celebrity",
-    "entertainment": "entertainment,show,concert,stage",
-    "ข่าว":        "news,newspaper,journalism,media",
-    "news":        "news,newspaper,journalism,media",
-    "สัตว์":       "animal,pet,nature,wildlife",
-    "pet":         "pet,dog,cat,animal",
-    "รถ":          "car,automobile,vehicle,road",
-    "car":         "car,automobile,vehicle,road",
-    "กฎหมาย":      "law,justice,courthouse,legal",
-    "law":         "law,justice,courthouse,legal",
-    "การ์ตูน":     "animation,cartoon,colorful,creative",
-    "cartoon":     "animation,cartoon,colorful,creative",
-    "anime":       "japan,illustration,art,anime",
-    "ไลฟ์สไตล์":  "lifestyle,living,home,relax",
-    "lifestyle":   "lifestyle,living,home,relax",
-    "ผี":          "mystery,horror,dark,night",
-    "ghost":       "mystery,horror,dark,supernatural",
-    "ลอตเตอรี":   "lucky,numbers,win,lottery",
-    "lottery":     "lucky,numbers,win,lottery",
-    "หนัง":        "movie,cinema,film,popcorn",
-    "movie":       "movie,cinema,film,popcorn",
-    "เคล็ดลับ":   "tips,advice,guide,learning",
-    "tips":        "tips,advice,guide,learning",
+    "อาหาร": "food meal cuisine cooking",
+    "food": "food meal restaurant cuisine",
+    "cooking": "cooking kitchen food recipe",
+    "ทำอาหาร": "cooking kitchen recipe food",
+    "เดลิเวอรี": "food delivery package courier",
+    "ร้านอาหาร": "restaurant dining food menu",
+    "สุขภาพ": "healthcare wellness fitness medical",
+    "health": "healthcare wellness medical hospital",
+    "ออกกำลังกาย": "exercise fitness workout gym",
+    "โควิด": "pandemic health medical virus",
+    "covid": "pandemic health medical quarantine",
+    "โรค": "disease medical health treatment",
+    "ธุรกิจ": "business office corporate meeting",
+    "business": "business office corporate finance",
+    "ออนไลน์": "online ecommerce digital shopping",
+    "online": "online ecommerce digital internet",
+    "การเงิน": "finance money investment banking",
+    "finance": "finance money investment banking",
+    "ลงทุน": "investment stock market finance",
+    "เงิน": "money finance cash banking",
+    "ตลาดหุ้น": "stock market trading investment",
+    "อสังหาริมทรัพย์": "real estate property house building",
+    "สตาร์ทอัพ": "startup business entrepreneur office",
+    "การตลาด": "marketing advertising brand strategy",
+    "marketing": "marketing business strategy advertising",
+    "เทคโนโลยี": "technology computer digital innovation",
+    "technology": "technology computer digital innovation",
+    "ai": "artificial intelligence technology robot",
+    "ปัญญาประดิษฐ์": "artificial intelligence robot technology",
+    "โปรแกรม": "programming code software developer",
+    "programming": "programming code computer developer",
+    "มือถือ": "smartphone mobile phone technology",
+    "smartphone": "smartphone mobile phone technology",
+    "gaming": "gaming esports controller game",
+    "เกม": "gaming esports controller game",
+    "ท่องเที่ยว": "travel landscape destination adventure",
+    "travel": "travel landscape destination adventure",
+    "ทะเล": "beach sea ocean travel",
+    "ภูเขา": "mountain nature landscape",
+    "ญี่ปุ่น": "japan tokyo temple travel",
+    "ยุโรป": "europe travel architecture city",
+    "ความงาม": "beauty cosmetics skincare makeup",
+    "beauty": "beauty cosmetics skincare makeup",
+    "แฟชั่น": "fashion clothing style outfit",
+    "fashion": "fashion clothing style outfit",
+    "ไลฟ์สไตล์": "lifestyle living home relax",
+    "lifestyle": "lifestyle living home relax",
+    "บ้าน": "home house interior decoration",
+    "กีฬา": "sport fitness exercise athlete",
+    "sport": "sport fitness exercise stadium",
+    "ฟุตบอล": "football soccer sport stadium",
+    "มวย": "boxing martial arts fight sport",
+    "การศึกษา": "education learning university student",
+    "education": "education learning study school",
+    "เคล็ดลับ": "tips advice guide learning",
+    "tips": "tips advice guide learning",
+    "ข่าว": "news newspaper journalism media",
+    "news": "news newspaper journalism media",
+    "บันเทิง": "entertainment concert show celebrity",
+    "entertainment": "entertainment show concert stage",
+    "ดารา": "celebrity entertainment people",
+    "หนัง": "movie cinema film entertainment",
+    "movie": "movie cinema film entertainment",
+    "เพลง": "music concert singer performance",
+    "music": "music concert instrument performance",
+    "สัตว์": "animal pet nature wildlife",
+    "pet": "pet dog cat animal",
+    "หมา": "dog pet animal cute",
+    "แมว": "cat pet animal cute",
+    "ธรรมชาติ": "nature landscape forest mountain",
+    "nature": "nature landscape forest outdoor",
+    "รถ": "car automobile vehicle road",
+    "car": "car automobile vehicle road",
+    "ดูดวง": "astrology stars zodiac moon",
+    "horoscope": "astrology stars zodiac horoscope",
+    "ธรรมะ": "meditation temple buddhism calm",
+    "สมาธิ": "meditation yoga calm mindfulness",
+    "กฎหมาย": "law justice courthouse legal",
+    "law": "law justice courthouse legal",
+    "อาชีพ": "career job work profession",
+    "career": "career job office work",
+    "การ์ตูน": "animation cartoon colorful art",
+    "cartoon": "animation cartoon colorful creative",
+    "anime": "japan illustration art anime",
+    "ผี": "mystery horror dark night",
+    "ghost": "mystery horror dark supernatural",
+    "ลอตเตอรี": "lucky numbers lottery win",
+    "lottery": "lucky numbers lottery win",
 }
 
-_DEFAULT_TOPIC = "lifestyle,nature,people"
+_DEFAULT_TOPIC = "lifestyle nature people"
+
+# ══════════════════════════════════════════════════════════════
+# 🔑  [NEW v9] TH word → EN keyword map สำหรับแยกจากหัวข้อ
+# ══════════════════════════════════════════════════════════════
+_TH_WORD_TO_EN = {
+    "อาหาร": "food", "ข้าว": "rice food", "ก๋วยเตี๋ยว": "noodle food",
+    "ทำอาหาร": "cooking kitchen", "สูตร": "recipe cooking",
+    "เดลิเวอรี": "food delivery", "ร้านอาหาร": "restaurant",
+    "สุขภาพ": "health", "ออกกำลังกาย": "exercise fitness",
+    "โยคะ": "yoga fitness", "วิ่ง": "running jogging",
+    "โควิด": "covid pandemic", "วัคซีน": "vaccine medical",
+    "โรค": "disease medical", "ยา": "medicine medical",
+    "ลดน้ำหนัก": "weight loss fitness", "อาหารเสริม": "supplement nutrition",
+    "ธุรกิจ": "business", "ออนไลน์": "online digital",
+    "ขายของ": "selling ecommerce", "ตลาด": "market",
+    "การตลาด": "marketing", "โฆษณา": "advertising",
+    "สตาร์ทอัพ": "startup entrepreneur",
+    "ลงทุน": "investment", "หุ้น": "stock investment",
+    "อสังหา": "real estate property",
+    "เทคโนโลยี": "technology", "มือถือ": "smartphone mobile",
+    "คอมพิวเตอร์": "computer", "อินเทอร์เน็ต": "internet",
+    "แอป": "app mobile", "โปรแกรม": "software programming",
+    "เกม": "gaming", "ปัญญาประดิษฐ์": "artificial intelligence",
+    "ท่องเที่ยว": "travel", "เที่ยว": "travel tourism",
+    "ทะเล": "beach sea ocean", "ภูเขา": "mountain nature",
+    "วัด": "temple buddhism", "ญี่ปุ่น": "japan",
+    "ยุโรป": "europe travel", "เกาหลี": "korea travel",
+    "ความงาม": "beauty", "เครื่องสำอาง": "cosmetics makeup",
+    "ผิว": "skincare beauty", "ผม": "hair beauty",
+    "แฟชั่น": "fashion", "เสื้อผ้า": "clothing fashion",
+    "กีฬา": "sport", "ฟุตบอล": "football soccer",
+    "บาสเกตบอล": "basketball sport", "มวย": "boxing",
+    "ว่ายน้ำ": "swimming sport",
+    "หนัง": "movie cinema", "ซีรี่ส์": "tv series",
+    "เพลง": "music", "คอนเสิร์ต": "concert music",
+    "ดารา": "celebrity", "นักแสดง": "actor",
+    "บ้าน": "home interior", "การ์ตูน": "cartoon animation",
+    "ดูดวง": "astrology", "ราศี": "zodiac astrology",
+    "ธรรมะ": "meditation buddhism", "สมาธิ": "meditation",
+    "สัตว์เลี้ยง": "pet animal", "หมา": "dog pet", "แมว": "cat pet",
+    "รถ": "car automobile", "มอเตอร์ไซค์": "motorcycle",
+    "กฎหมาย": "law legal", "ภาษี": "tax finance",
+    "อาชีพ": "career job", "งาน": "work career",
+    "การศึกษา": "education", "เรียน": "learning education",
+    "เด็ก": "children family", "ครอบครัว": "family",
+    "ผี": "horror mystery", "ลอตเตอรี": "lottery lucky",
+}
+
+
+def _extract_title_keywords(หัวข้อ: str) -> str:
+    """
+    [NEW v9] ดึง EN keyword ตรงๆ จากหัวข้อภาษาไทย/อังกฤษ
+    ใช้ word-level matching — ตรงกว่า category mapping มาก
+
+    ตัวอย่าง:
+      "ธุรกิจออนไลน์ในช่วงโควิด" → "business online covid pandemic"
+      "10 วิธีออกกำลังกายที่บ้าน" → "exercise fitness home"
+      "เคล็ดลับทำอาหารญี่ปุ่น"   → "cooking recipe japan food"
+    """
+    keywords = []
+    title_lower = หัวข้อ.lower()
+
+    # EN words ในหัวข้อ (ถ้าปนอังกฤษ)
+    skip_en = {"the","and","for","with","from","that","this","top",
+               "best","how","tips","guide","ways","what","when","why"}
+    for w in re.findall(r'[a-zA-Z]{3,}', title_lower):
+        if w not in skip_en:
+            keywords.append(w)
+
+    # แปล TH → EN (เรียงตาม key ยาวก่อน เพื่อ match คำยาวก่อน)
+    for th_word, en_kw in sorted(_TH_WORD_TO_EN.items(), key=lambda x: -len(x[0])):
+        if th_word.lower() in title_lower:
+            for kw in en_kw.split():
+                if kw not in keywords:
+                    keywords.append(kw)
+
+    # กำจัดซ้ำรักษาลำดับ
+    seen, unique = set(), []
+    for k in keywords:
+        if k not in seen:
+            seen.add(k); unique.append(k)
+
+    return " ".join(unique[:6])
 
 
 def _get_topic(หมวด: str, หัวข้อ: str = "") -> str:
-    """แปลงหมวด/หัวข้อภาษาไทย-อังกฤษ → keyword สำหรับ API"""
+    """
+    [IMPROVED v9] ผสม title keyword + category topic
+    → query ที่ตรงเนื้อหากว่าเดิมมาก
+    """
     combined = (หมวด + " " + หัวข้อ).lower()
-    for kw, topic in _TOPIC_MAP.items():
+    title_kw = _extract_title_keywords(หัวข้อ)
+
+    # หา base topic จาก map (เรียง key ยาวก่อน)
+    base_topic = _DEFAULT_TOPIC
+    for kw, topic in sorted(_TOPIC_MAP.items(), key=lambda x: -len(x[0])):
         if kw in combined:
-            return topic
-    return _DEFAULT_TOPIC
+            base_topic = topic
+            break
+
+    if title_kw:
+        words = list(dict.fromkeys(
+            (title_kw + " " + base_topic.replace(",", " ")).split()
+        ))[:6]
+        return ",".join(words)
+
+    return base_topic
 
 
 def _seed(identifier: str) -> str:
-    """สร้าง seed จาก identifier เพื่อให้รูปต่างกันทุกบทความ
-    ถ้า identifier ว่าง → ใช้ timestamp เพื่อป้องกันซ้ำ
-    """
     key = identifier.strip() if identifier.strip() else str(time.time_ns())
     return hashlib.md5(key.encode()).hexdigest()[:10]
 
 
-def _fetch_json(url: str, headers: dict = None, timeout: int = 8) -> dict:
-    """HTTP GET → parse JSON"""
+def _page_from_seed(seed_str: str, max_page: int, offset: int = 0) -> int:
+    """[FIX v9] ใช้ full seed hex + offset → ไม่ซ้ำข้ามบทความ"""
+    return (int(seed_str, 16) + offset) % max_page + 1
+
+
+def _fetch_json(url: str, headers: dict = None, timeout: int = 5) -> dict:
+    """HTTP GET → JSON (timeout 5s ป้องกัน pipeline หยุด)"""
     req = urllib.request.Request(url, headers=headers or {})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -138,96 +268,96 @@ def _fetch_json(url: str, headers: dict = None, timeout: int = 8) -> dict:
 
 
 # ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 1: Unsplash (ไม่ต้อง key — source.unsplash.com)
+# 📸  SOURCES
 # ══════════════════════════════════════════════════════════════
-def from_unsplash_source(topic: str, seed_str: str, w=800, h=450) -> str:
-    """
-    source.unsplash.com — ฟรี ไม่ต้อง key
-    แต่ Unsplash ปิด endpoint นี้แล้วในปี 2023
-    fallback → picsum
-    """
-    keyword = topic.split(",")[0].strip()
-    url = f"https://source.unsplash.com/featured/{w}x{h}/?{urllib.parse.quote(keyword)}&sig={seed_str}"
-    return url  # return URL ตรงๆ (redirect image)
 
-
-# ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 2: Unsplash API (ต้องมี UNSPLASH_KEY)
-# ══════════════════════════════════════════════════════════════
-def from_unsplash_api(topic: str, seed_str: str) -> str:
-    """Unsplash API — ฟรี 50 req/hr (ต้องลงทะเบียน developers.unsplash.com)"""
-    if not UNSPLASH_KEY:
-        return ""
-    keyword = topic.split(",")[0].strip()
-    page = (int(seed_str[:4], 16) % 10) + 1
-    data = _fetch_json(
-        f"https://api.unsplash.com/search/photos?query={urllib.parse.quote(keyword)}&per_page=1&page={page}",
-        headers={"Authorization": f"Client-ID {UNSPLASH_KEY}"}
-    )
-    try:
-        return data["results"][0]["urls"]["regular"]
-    except (KeyError, IndexError):
-        return ""
-
-
-# ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 3: Pexels API (ต้องมี PEXELS_KEY — ฟรีตลอด)
-# ══════════════════════════════════════════════════════════════
-def from_pexels(topic: str, seed_str: str) -> str:
-    """
-    Pexels — ฟรี ไม่จำกัด ต้องลงทะเบียน www.pexels.com/api/
-    ได้รูปตรงหัวข้อ 100%
-    """
+def from_pexels(topic: str, seed_str: str, title_kw: str = "") -> str:
     if not PEXELS_KEY:
         return ""
-    # ใช้ 2 keyword แรกเพื่อให้ผลลัพธ์ตรงเนื้อหากว่าใช้คำเดียว
-    keywords = [k.strip() for k in topic.split(",")[:2]]
-    keyword = " ".join(keywords)
-    page = (int(seed_str[:4], 16) % 20) + 1
+    if title_kw:
+        parts = title_kw.split()[:3]
+        first_cat = topic.split(",")[0].strip()
+        if first_cat not in title_kw:
+            parts.append(first_cat)
+        query = " ".join(parts)
+    else:
+        query = " ".join(k.strip() for k in topic.split(",")[:2])
+
+    page = _page_from_seed(seed_str, 20)
     data = _fetch_json(
-        f"https://api.pexels.com/v1/search?query={urllib.parse.quote(keyword)}&per_page=1&page={page}",
+        f"https://api.pexels.com/v1/search"
+        f"?query={urllib.parse.quote(query)}&per_page=3&page={page}",
         headers={"Authorization": PEXELS_KEY}
     )
     try:
-        return data["photos"][0]["src"]["large"]
+        photos = data.get("photos", [])
+        if not photos:
+            return ""
+        idx = int(seed_str[4:6], 16) % len(photos)
+        return photos[idx]["src"]["large"]
     except (KeyError, IndexError):
         return ""
 
 
-# ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 4: Pixabay API (ต้องมี PIXABAY_KEY — ฟรีตลอด)
-# ══════════════════════════════════════════════════════════════
-def from_pixabay(topic: str, seed_str: str) -> str:
-    """
-    Pixabay — ฟรี ลงทะเบียนที่ pixabay.com/api/docs/
-    200 req/hr, รูป CC0 ใช้ได้เสรี
-    """
+def from_pixabay(topic: str, seed_str: str, title_kw: str = "") -> str:
     if not PIXABAY_KEY:
         return ""
-    keywords = [k.strip() for k in topic.split(",")[:2]]
-    keyword = " ".join(keywords)
-    page = (int(seed_str[:4], 16) % 10) + 1
+    query = " ".join(title_kw.split()[:3]) if title_kw else " ".join(k.strip() for k in topic.split(",")[:2])
+    page = _page_from_seed(seed_str, 10, offset=3)
     data = _fetch_json(
-        f"https://pixabay.com/api/?key={PIXABAY_KEY}"
-        f"&q={urllib.parse.quote(keyword)}&image_type=photo"
-        f"&per_page=3&page={page}&safesearch=true"
+        f"https://pixabay.com/api/"
+        f"?key={PIXABAY_KEY}"
+        f"&q={urllib.parse.quote(query)}"
+        f"&image_type=photo&per_page=3&page={page}&safesearch=true"
     )
     try:
         hits = data.get("hits", [])
-        idx = int(seed_str[4:6], 16) % max(len(hits), 1)
+        if not hits:
+            return ""
+        idx = int(seed_str[6:8], 16) % len(hits)
         return hits[idx]["webformatURL"]
     except (KeyError, IndexError):
         return ""
 
 
-# ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 5: Wikimedia Commons (ไม่ต้อง key — ใช้ฟรีตลอด)
-# ══════════════════════════════════════════════════════════════
+def from_unsplash_api(topic: str, seed_str: str, title_kw: str = "") -> str:
+    if not UNSPLASH_KEY:
+        return ""
+    query = title_kw.split()[0] if title_kw else topic.split(",")[0].strip()
+    page = _page_from_seed(seed_str, 10, offset=1)
+    data = _fetch_json(
+        f"https://api.unsplash.com/search/photos"
+        f"?query={urllib.parse.quote(query)}&per_page=3&page={page}",
+        headers={"Authorization": f"Client-ID {UNSPLASH_KEY}"}
+    )
+    try:
+        results = data.get("results", [])
+        if not results:
+            return ""
+        idx = int(seed_str[4:6], 16) % len(results)
+        return results[idx]["urls"]["regular"]
+    except (KeyError, IndexError):
+        return ""
+
+
+def from_google_cse(topic: str, seed_str: str, title_kw: str = "") -> str:
+    if not GOOGLE_CSE_KEY or not GOOGLE_CSE_CX:
+        return ""
+    query = title_kw.split()[0] if title_kw else topic.split(",")[0].strip()
+    start = (int(seed_str[:2], 16) % 5) * 2 + 1
+    data = _fetch_json(
+        f"https://www.googleapis.com/customsearch/v1"
+        f"?key={GOOGLE_CSE_KEY}&cx={GOOGLE_CSE_CX}"
+        f"&q={urllib.parse.quote(query)}&searchType=image"
+        f"&num=1&start={start}&imgSize=large&safe=active"
+    )
+    try:
+        return data["items"][0]["link"]
+    except (KeyError, IndexError):
+        return ""
+
+
 def from_wikimedia(topic: str, seed_str: str) -> str:
-    """
-    Wikimedia Commons — ไม่ต้อง key, CC license, ฟรีตลอด
-    เหมาะกับหัวข้อทั่วไป/วิชาการ
-    """
     keyword = topic.split(",")[0].strip()
     data = _fetch_json(
         f"https://en.wikipedia.org/api/rest_v1/page/summary/{urllib.parse.quote(keyword)}"
@@ -241,59 +371,22 @@ def from_wikimedia(topic: str, seed_str: str) -> str:
     return ""
 
 
-# ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 6: Pollinations.ai (AI สร้างภาพฟรี — ไม่ต้อง key)
-# ══════════════════════════════════════════════════════════════
-def from_pollinations(prompt_th: str, seed_str: str, w=800, h=450) -> str:
-    """
-    Pollinations.ai — AI generate รูปฟรี ไม่ต้อง key
-    ส่ง prompt ภาษาไทยหรืออังกฤษก็ได้
-    URL format: https://image.pollinations.ai/prompt/{prompt}?width=800&height=450&seed=123&nologo=true
-    """
-    prompt = urllib.parse.quote(prompt_th[:200])
+def from_pollinations(prompt_en: str, seed_str: str, w: int = 800, h: int = 450) -> str:
+    """AI generate — ช้า 5-10s ใช้เป็น fallback เท่านั้น"""
+    prompt = urllib.parse.quote(prompt_en[:200])
     seed_num = int(seed_str[:6], 16) % 99999
-    url = (
+    return (
         f"https://image.pollinations.ai/prompt/{prompt}"
         f"?width={w}&height={h}&seed={seed_num}&nologo=true&model=flux"
     )
-    return url
 
 
-# ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 7: Lorem Picsum (ไม่ต้อง key — fallback ดีที่สุด)
-# ══════════════════════════════════════════════════════════════
-def from_picsum(seed_str: str, w=800, h=450) -> str:
-    """Lorem Picsum — ฟรีตลอด ไม่ต้อง key รูปสวยแต่ไม่ตรงเนื้อหา"""
+def from_picsum(seed_str: str, w: int = 800, h: int = 450) -> str:
     return f"https://picsum.photos/seed/{seed_str}/{w}/{h}"
 
 
 # ══════════════════════════════════════════════════════════════
-# 📸  SOURCE 8: Google Custom Search Images (ต้อง key + cx)
-# ══════════════════════════════════════════════════════════════
-def from_google_cse(topic: str, seed_str: str) -> str:
-    """
-    Google Custom Search Engine — ฟรี 100 req/วัน
-    ต้องสร้าง CSE ที่ programmablesearchengine.google.com
-    และ enable Image Search
-    """
-    if not GOOGLE_CSE_KEY or not GOOGLE_CSE_CX:
-        return ""
-    keyword = topic.split(",")[0].strip()
-    start = (int(seed_str[:2], 16) % 5) * 2 + 1
-    data = _fetch_json(
-        f"https://www.googleapis.com/customsearch/v1"
-        f"?key={GOOGLE_CSE_KEY}&cx={GOOGLE_CSE_CX}"
-        f"&q={urllib.parse.quote(keyword)}&searchType=image"
-        f"&num=1&start={start}&imgSize=large&safe=active"
-    )
-    try:
-        return data["items"][0]["link"]
-    except (KeyError, IndexError):
-        return ""
-
-
-# ══════════════════════════════════════════════════════════════
-# 🎯  MAIN FUNCTION — ลองทุก source ตามลำดับ priority
+# 🎯  MAIN
 # ══════════════════════════════════════════════════════════════
 def get_image_url(
     หัวข้อ: str,
@@ -305,146 +398,126 @@ def get_image_url(
     verbose: bool = False,
 ) -> str:
     """
-    ดึง URL รูปฟรีตรงเนื้อหา ลองทุก source ตามลำดับ
+    ดึง URL รูปฟรีตรงเนื้อหา
 
     Args:
         หัวข้อ:     หัวข้อบทความ (ภาษาไทยหรืออังกฤษ)
-        หมวด:       หมวดหมู่บทความ เช่น "food", "travel"
-        identifier: ชื่อไฟล์หรือ slug สำหรับสร้าง seed (ห้ามซ้ำ)
+        หมวด:       หมวดหมู่ เช่น "food", "travel", "business"
+        identifier: filename/slug ไม่ซ้ำกัน — สำคัญมาก!
         w, h:       ขนาดรูป
-        prefer_ai:  ถ้า True → ใช้ Pollinations ก่อน (AI generate)
+        prefer_ai:  True → Pollinations ก่อน (ตรง 100% แต่ช้า)
         verbose:    แสดง log
-
-    Returns:
-        URL รูปภาพที่ใช้ได้จริง (fallback → picsum ถ้าทุกอย่างพัง)
     """
-    topic  = _get_topic(หมวด, หัวข้อ)
-    s = _seed(identifier or (หัวข้อ + str(time.time_ns())))
-    prompt = f"{หัวข้อ}, {topic.split(',')[0]}, high quality photo, realistic"
+    topic    = _get_topic(หมวด, หัวข้อ)
+    s        = _seed(identifier or (หัวข้อ + str(time.time_ns())))
+    title_kw = _extract_title_keywords(หัวข้อ)
+
+    ai_prompt = (title_kw if title_kw else topic.split(",")[0]) + ", realistic photo, natural lighting"
 
     def _log(msg):
         if verbose:
             print(f"  [img] {msg}")
 
-    # ── ลำดับ priority ───────────────────────────────────────
+    _log(f"'{หัวข้อ[:35]}' → kw='{title_kw}' topic='{topic[:35]}'")
+
     sources = []
 
     if prefer_ai:
-        # AI generate ก่อน → ตรงเนื้อหา 100% แต่ช้ากว่า
-        sources.append(("pollinations", lambda: from_pollinations(prompt, s, w, h)))
+        sources.append(("pollinations", lambda: from_pollinations(ai_prompt, s, w, h)))
 
     if PEXELS_KEY:
-        sources.append(("pexels",    lambda: from_pexels(topic, s)))
+        sources.append(("pexels",    lambda: from_pexels(topic, s, title_kw)))
     if PIXABAY_KEY:
-        sources.append(("pixabay",   lambda: from_pixabay(topic, s)))
+        sources.append(("pixabay",   lambda: from_pixabay(topic, s, title_kw)))
     if UNSPLASH_KEY:
-        sources.append(("unsplash",  lambda: from_unsplash_api(topic, s)))
+        sources.append(("unsplash",  lambda: from_unsplash_api(topic, s, title_kw)))
     if GOOGLE_CSE_KEY and GOOGLE_CSE_CX:
-        sources.append(("google",    lambda: from_google_cse(topic, s)))
-
-    # ไม่ต้อง key — Pollinations ก่อนเสมอ (seed ทำงานจริง ไม่ซ้ำ)
-    # source.unsplash.com และ wikimedia ไม่สนใจ seed → ซ้ำได้
-    if not prefer_ai:
-        sources.append(("pollinations", lambda: from_pollinations(prompt, s, w, h)))
+        sources.append(("google",    lambda: from_google_cse(topic, s, title_kw)))
 
     sources.append(("wikimedia",    lambda: from_wikimedia(topic, s)))
-
-    # picsum เป็น fallback สุดท้ายเสมอ
+    if not prefer_ai:
+        sources.append(("pollinations", lambda: from_pollinations(ai_prompt, s, w, h)))
     sources.append(("picsum",       lambda: from_picsum(s, w, h)))
 
     for name, fn in sources:
         try:
             url = fn()
             if url:
-                _log(f"✅ {name}: {url[:60]}...")
+                _log(f"✅ {name}: {url[:70]}")
                 return url
         except Exception as e:
-            _log(f"⚠️  {name} error: {e}")
-            continue
+            _log(f"⚠️  {name}: {e}")
 
-    # ป้องกัน edge case
     return from_picsum(s, w, h)
 
 
 # ══════════════════════════════════════════════════════════════
-# 🔄  BATCH — ดึงรูปหลายบทความพร้อมกัน (มี delay ป้องกัน rate limit)
+# 🔄  BATCH
 # ══════════════════════════════════════════════════════════════
-def get_image_urls_batch(
-    articles: list[dict],
-    delay: float = 0.3,
-    verbose: bool = True,
-) -> dict[str, str]:
-    """
-    ดึงรูปหลายบทความ
-
-    Args:
-        articles: list of {"identifier": str, "หัวข้อ": str, "หมวด": str}
-        delay:    วินาทีรอระหว่าง request (ป้องกัน rate limit)
-
-    Returns:
-        dict: {identifier: url}
-    """
+def get_image_urls_batch(articles: list, delay: float = 0.3, verbose: bool = True) -> dict:
     results = {}
     for i, art in enumerate(articles):
         ident = art.get("identifier", f"article-{i}")
-        url = get_image_url(
+        results[ident] = get_image_url(
             หัวข้อ=art.get("หัวข้อ", ""),
             หมวด=art.get("หมวด", ""),
             identifier=ident,
             verbose=verbose,
         )
-        results[ident] = url
         if i < len(articles) - 1:
             time.sleep(delay)
     return results
 
 
 # ══════════════════════════════════════════════════════════════
-# 🔍  STATUS — ตรวจสอบว่า source ไหนใช้ได้บ้าง
+# 🔍  STATUS
 # ══════════════════════════════════════════════════════════════
 def check_sources_status() -> None:
-    """แสดงสถานะของทุก source"""
-    print("\n📸  Image Sources Status")
-    print("─" * 50)
-
+    print("\n📸  Image Sources Status (v9)")
+    print("─" * 58)
     statuses = [
-        ("Pexels API",         bool(PEXELS_KEY),   "PEXELS_KEY",     "www.pexels.com/api/"),
-        ("Pixabay API",        bool(PIXABAY_KEY),  "PIXABAY_KEY",    "pixabay.com/api/docs/"),
-        ("Unsplash API",       bool(UNSPLASH_KEY), "UNSPLASH_KEY",   "unsplash.com/developers"),
-        ("Google CSE Images",  bool(GOOGLE_CSE_KEY and GOOGLE_CSE_CX), "GOOGLE_CSE_KEY+CX", "programmablesearchengine.google.com"),
-        ("Pollinations.ai",    True,               "(ไม่ต้อง key)",  "image.pollinations.ai"),
-        ("Wikimedia Commons",  True,               "(ไม่ต้อง key)",  "commons.wikimedia.org"),
-        ("Lorem Picsum",       True,               "(ไม่ต้อง key)",  "picsum.photos"),
+        ("Pexels API",        bool(PEXELS_KEY),                       "PEXELS_KEY",         "www.pexels.com/api/"),
+        ("Pixabay API",       bool(PIXABAY_KEY),                      "PIXABAY_KEY",         "pixabay.com/api/docs/"),
+        ("Unsplash API",      bool(UNSPLASH_KEY),                     "UNSPLASH_KEY",        "unsplash.com/developers"),
+        ("Google CSE",        bool(GOOGLE_CSE_KEY and GOOGLE_CSE_CX), "GOOGLE_CSE_KEY+CX",   "programmablesearchengine.google.com"),
+        ("Wikimedia Commons", True,                                   "(ไม่ต้อง key)",       "commons.wikimedia.org"),
+        ("Pollinations.ai",   True,                                   "(ไม่ต้อง key, ช้า)", "image.pollinations.ai"),
+        ("Lorem Picsum",      True,                                   "(fallback สุดท้าย)",  "picsum.photos"),
     ]
-
     for name, ok, key_name, signup in statuses:
-        status = "✅ พร้อมใช้" if ok else f"❌ ไม่มี {key_name}"
-        print(f"  {status:<25} {name:<22} ({signup})")
+        print(f"  {'✅' if ok else '❌'} {name:<22} {key_name:<22} {signup}")
 
-    print()
     active = sum(1 for _, ok, _, _ in statuses if ok)
-    print(f"  รวม: {active}/{len(statuses)} sources พร้อมใช้")
-    if active < 3:
-        print("\n  💡 แนะนำ: สมัคร Pexels API ฟรี (www.pexels.com/api/)")
-        print("     ได้รูปตรงเนื้อหา ไม่จำกัด ไม่เสียเงิน")
+    print(f"\n  รวม: {active}/{len(statuses)} sources พร้อมใช้")
+
+    if not PEXELS_KEY:
+        print("\n  💡 แนะนำด่วน: สมัคร Pexels API ฟรี ได้รูปตรงเนื้อหาที่สุด")
+        print("     www.pexels.com/api/  → ใส่ใน .env: PEXELS_KEY=your_key")
+
+    print("\n  🧪 ทดสอบ keyword extraction:")
+    tests = [
+        ("ธุรกิจออนไลน์ในช่วงโควิด-19", "business"),
+        ("10 วิธีออกกำลังกายที่บ้าน",   "health"),
+        ("เคล็ดลับทำอาหารญี่ปุ่นง่ายๆ", "food"),
+        ("ดูดวงราศีพิจิกประจำสัปดาห์",  "horoscope"),
+    ]
+    for title, หมวด in tests:
+        kw    = _extract_title_keywords(title)
+        topic = _get_topic(หมวด, title)
+        print(f"    '{title}'")
+        print(f"     kw='{kw}'  query='{topic}'")
 
 
-# ══════════════════════════════════════════════════════════════
-# 🧪  ทดสอบ
-# ══════════════════════════════════════════════════════════════
 if __name__ == "__main__":
     import sys
     check_sources_status()
-
     if "--test" in sys.argv:
         print("\n🧪 ทดสอบดึงรูป...")
-        test_cases = [
-            ("เคล็ดลับทำอาหารให้สุขภาพดี", "food",        "test-food-001"),
-            ("10 สถานที่ท่องเที่ยวในกรุงเทพ", "travel",   "test-travel-002"),
-            ("เกมมือถือยอดนิยม 2025",        "gaming",     "test-game-003"),
-            ("ดูดวงราศีพิจิก",               "horoscope",  "test-horo-004"),
-        ]
-        for หัวข้อ, หมวด, ident in test_cases:
+        for หัวข้อ, หมวด, ident in [
+            ("ธุรกิจออนไลน์ในช่วงโควิด-19", "business", "test-biz-001"),
+            ("10 วิธีออกกำลังกายที่บ้าน",    "health",   "test-health-002"),
+            ("เคล็ดลับทำอาหารญี่ปุ่น",        "food",     "test-food-003"),
+            ("ดูดวงราศีพิจิก",               "horoscope", "test-horo-004"),
+        ]:
             url = get_image_url(หัวข้อ, หมวด, ident, verbose=True)
-            print(f"\n  📌 {หัวข้อ}")
-            print(f"     → {url}")
+            print(f"  → {url[:80]}\n")
