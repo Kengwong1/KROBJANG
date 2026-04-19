@@ -248,8 +248,11 @@ def _get_topic(หมวด: str, หัวข้อ: str = "") -> str:
 
 
 def _seed(identifier: str) -> str:
+    # [FIX v10] เพิ่ม nanosecond entropy ป้องกัน seed ชนเมื่อ identifier คล้ายกัน
     key = identifier.strip() if identifier.strip() else str(time.time_ns())
-    return hashlib.md5(key.encode()).hexdigest()[:10]
+    # ผสม key + length + position-hash ป้องกัน "article1" vs "article10" ได้ seed เดียวกัน
+    entropy_key = f"{key}|len={len(key)}|sum={sum(ord(c) for c in key)}"
+    return hashlib.md5(entropy_key.encode()).hexdigest()[:12]
 
 
 def _page_from_seed(seed_str: str, max_page: int, offset: int = 0) -> int:
@@ -396,6 +399,7 @@ def get_image_url(
     h: int = 450,
     prefer_ai: bool = False,
     verbose: bool = False,
+    no_image: bool = False,
 ) -> str:
     """
     ดึง URL รูปฟรีตรงเนื้อหา
@@ -407,8 +411,14 @@ def get_image_url(
         w, h:       ขนาดรูป
         prefer_ai:  True → Pollinations ก่อน (ตรง 100% แต่ช้า)
         verbose:    แสดง log
+        no_image:   True → คืน "" ทันที ไม่ดึงรูปใดๆ
     """
+    # [NEW v10] ถ้าตั้ง no_image → ไม่ดึงรูปใดๆ เลย
+    if no_image:
+        return ""
+
     topic    = _get_topic(หมวด, หัวข้อ)
+    # [FIX v10] เพิ่ม time_ns ป้องกัน seed ว่างชน
     s        = _seed(identifier or (หัวข้อ + str(time.time_ns())))
     title_kw = _extract_title_keywords(หัวข้อ)
 
