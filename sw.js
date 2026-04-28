@@ -1,6 +1,6 @@
 // Service Worker — ไอหมอก
 // Cache-first strategy: เปิดเว็บได้แม้ไม่มีเน็ต (อ่านบทความที่เคยเปิดไว้)
-const CACHE = 'v1';
+const CACHE = 'v202604232341';
 const PRECACHE = ['/', 'index.html', 'style.css', 'nav.js', 'search-index.json'];
 
 self.addEventListener('install', e => {

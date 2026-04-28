@@ -8,15 +8,14 @@
     "health",
     "food",
     "finance",
-    "technology",
-    "entertainment"
+    "technology"
   ],
   "color_theme": "slate_indigo",
-  "font": "sarabun",
+  "font": "sarabun|noto_sans|kanit|prompt|mitr",
   "nav_style": "top_full",
   "layout": "grid",
-  "dark_mode": "toggle",
+  "dark_mode": "auto",
   "web_type": "blog",
   "rss_preset": "th_news",
-  "created": "2026-04-09T22:16:21.910820"
+  "created": "2026-04-23T23:41:49.497022"
 }
