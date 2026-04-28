@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://krobjang.vercel.app/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://krobjang.vercel.app/contact.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/finance.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/food.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/health.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/index.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/inspirational_1777181996.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/lifestyle.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/news.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/privacy.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://krobjang.vercel.app/technology.html</loc><lastmod>2026-04-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://krobjang.vercel.app/comedy.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/finance.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/food.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/health.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/lifestyle.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/news.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/technology.html</loc><lastmod>2026-04-28</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://krobjang.vercel.app/contact.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://krobjang.vercel.app/privacy.html</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://krobjang.vercel.app/cartoon_1777365687.html</loc><lastmod>2026-04-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
