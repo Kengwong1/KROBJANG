@@ -1,0 +1,44 @@
+[
+  {
+    "title": "เรื่องราวน่าสนใจหมวดข่าว",
+    "category": "news",
+    "filename": "article_news_20260503_181945_064.html",
+    "image": "images/thumbs/news/news_0025.jpg",
+    "date": "2026-05-03T18:23:32.735887"
+  },
+  {
+    "title": "เรื่องราวน่าสนใจหมวดหนัง",
+    "category": "movie",
+    "filename": "article_movie_20260503_181626_696.html",
+    "image": "images/thumbs/movie/movie_0004.jpg",
+    "date": "2026-05-03T18:19:34.195222"
+  },
+  {
+    "title": "เรื่องราวน่าสนใจหมวดการ์ตูน",
+    "category": "cartoon",
+    "filename": "article_cartoon_20260503_181224_702.html",
+    "image": "images/thumbs/cartoon/cartoon_0035.jpg",
+    "date": "2026-05-03T18:16:15.686274"
+  },
+  {
+    "title": "เรื่องราวน่าสนใจหมวดดูดาว",
+    "category": "horoscope",
+    "filename": "article_horoscope_20260503_180831_437.html",
+    "image": "images/thumbs/horoscope/horoscope_0041.jpg",
+    "date": "2026-05-03T18:12:13.834079"
+  },
+  {
+    "title": "เรื่องราวน่าสนใจหมวดธุรกิจ",
+    "category": "business",
+    "filename": "article_business_20260503_180405_428.html",
+    "image": "images/thumbs/business/business_0018.jpg",
+    "date": "2026-05-03T18:08:20.449227"
+  },
+  {
+    "title": "เรื่องราวน่าสนใจหมวดเทคโนโลยี",
+    "category": "technology",
+    "filename": "article_technology_20260503_175212_017.html",
+    "image": "images/thumbs/technology/technology_0073.jpg",
+    "date": "2026-05-03T17:56:44.974440"
+  }
+]

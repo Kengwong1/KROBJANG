@@ -1,8 +1,8 @@
 // nav.js — ไอหมอก v6 — auto-generated
 (function() {
   var SITE_NAME = "ไอหมอก";
-  var PRIMARY   = "#0f172a";
-  var DARK      = "#020617";
+  var PRIMARY   = "#1e40af";
+  var DARK      = "#0f172a";
 
   var MAIN_CATS = [
     { label: "ข่าวสาร", href: "news.html" },

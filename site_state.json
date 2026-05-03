@@ -1,0 +1,28 @@
+{
+  "last_updated": "2026-05-03T21:28:58.203165",
+  "last_writer_run": "2026-05-03T18:23:32.736893",
+  "last_doctor_run": "",
+  "last_publisher_run": "",
+  "last_video_run": "",
+  "pending_publish": [
+    "article_technology_20260503_175212_017.html",
+    "article_business_20260503_180405_428.html",
+    "article_horoscope_20260503_180831_437.html",
+    "article_cartoon_20260503_181224_702.html",
+    "article_movie_20260503_181626_696.html",
+    "article_news_20260503_181945_064.html"
+  ],
+  "pending_doctor": [
+    "article_technology_20260503_175212_017.html",
+    "article_business_20260503_180405_428.html",
+    "article_horoscope_20260503_180831_437.html",
+    "article_cartoon_20260503_181224_702.html",
+    "article_movie_20260503_181626_696.html",
+    "article_news_20260503_181945_064.html"
+  ],
+  "published_today": 0,
+  "total_articles": 6,
+  "errors": [],
+  "setup_done": false,
+  "layout": "grid"
+}
