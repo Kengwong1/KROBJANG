@@ -1,0 +1,818 @@
+{
+  "summary": {
+    "food": {
+      "total": 160,
+      "match": 159,
+      "mismatch": 1
+    }
+  },
+  "detail": {
+    "food": {
+      "total": 160,
+      "match": 159,
+      "mismatch": 1,
+      "files": [
+        {
+          "file": "food_0001.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0002.jpg",
+          "match": true,
+          "desc": "The image displays multiple small bowls containing various colorful food items, such as desserts and"
+        },
+        {
+          "file": "food_0003.jpg",
+          "match": true,
+          "desc": "The image displays two plates of grilled meat skewers accompanied by vegetables and a sauce, presented as food items."
+        },
+        {
+          "file": "food_0004.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0005.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0006.jpg",
+          "match": true,
+          "desc": "Three cookies with coconut flakes are placed on a white plate."
+        },
+        {
+          "file": "food_0007.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0008.jpg",
+          "match": false,
+          "desc": "The image shows a pile of various colorful"
+        },
+        {
+          "file": "food_0009.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0010.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0011.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0012.jpg",
+          "match": true,
+          "desc": "ภาพแสดงจานปลาแซลมอนส"
+        },
+        {
+          "file": "food_0013.jpg",
+          "match": true,
+          "desc": "A bowl of soup containing various ingredients such as meat, vegetables, and possibly some spices,"
+        },
+        {
+          "file": "food_0014.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0015.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0016.jpg",
+          "match": true,
+          "desc": "The image shows two bento boxes containing various food items such as vegetables, fried snacks, and a blue"
+        },
+        {
+          "file": "food_0017.jpg",
+          "match": true,
+          "desc": "ภาพแสดงจานอาหารประเภทพลาดที่มีเนื้อสัตว์และผักต่างๆ รวมถึง lime และ"
+        },
+        {
+          "file": "food_0018.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0019.jpg",
+          "match": true,
+          "desc": "ภาพแสดงจานอาหารประกอบด้วยข้าว"
+        },
+        {
+          "file": "food_0020.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0021.jpg",
+          "match": true,
+          "desc": "A piece of grilled or seared"
+        },
+        {
+          "file": "food_0022.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0023.jpg",
+          "match": true,
+          "desc": "ภาพแสดงจานอาหารที่ประกอบด้วยสัตว์เลี้ย"
+        },
+        {
+          "file": "food_0024.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0025.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0026.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0027.jpg",
+          "match": true,
+          "desc": "The image displays a dish of Thai crab chili paste with crab legs and green vegetables, presented on a colorful plate."
+        },
+        {
+          "file": "food_0028.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0029.jpg",
+          "match": true,
+          "desc": "A white plate with a dish containing meat, vegetables, lime"
+        },
+        {
+          "file": "food_0030.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0031.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0032.jpg",
+          "match": true,
+          "desc": "A white plate holds various"
+        },
+        {
+          "file": "food_0033.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0034.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0035.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0036.jpg",
+          "match": true,
+          "desc": "A plate of mixed food including noodles, shrimp, vegetables,"
+        },
+        {
+          "file": "food_0037.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0038.jpg",
+          "match": true,
+          "desc": "ภาพแสดงจานอาหาร"
+        },
+        {
+          "file": "food_0039.jpg",
+          "match": true,
+          "desc": "The image shows a dish of cooked crawfish (crayfish) with green vegetables, presented in a serving dish."
+        },
+        {
+          "file": "food_0040.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0041.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0042.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0043.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0044.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0045.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0046.jpg",
+          "match": true,
+          "desc": "The"
+        },
+        {
+          "file": "food_0047.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0048.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0049.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0050.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0051.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0052.jpg",
+          "match": true,
+          "desc": "A close-up of cooked red potatoes with green"
+        },
+        {
+          "file": "food_0053.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0054.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0055.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0056.jpg",
+          "match": true,
+          "desc": "Two chefs in a kitchen hold white plates"
+        },
+        {
+          "file": "food_0057.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0058.jpg",
+          "match": true,
+          "desc": "DESC:"
+        },
+        {
+          "file": "food_0059.jpg",
+          "match": true,
+          "desc": "A pizza topped with shrimp, mozzarella"
+        },
+        {
+          "file": "food_0060.jpg",
+          "match": true,
+          "desc": "A"
+        },
+        {
+          "file": "food_0061.jpg",
+          "match": true,
+          "desc": "The image displays two plates of grilled satay skewers accompanied by vegetables and a dipping sauce, presented on a wooden table."
+        },
+        {
+          "file": "food_0062.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0063.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0064.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0065.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0066.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0067.jpg",
+          "match": true,
+          "desc": "ภาพแสดงจานข้าว"
+        },
+        {
+          "file": "food_0068.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0069.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0070.jpg",
+          "match": true,
+          "desc": "A plate of stir-fried noodles with meat, vegetables, and orange slices, garnished with cilantro and bean sprouts."
+        },
+        {
+          "file": "food_0071.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0072.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0073.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0074.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0075.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0076.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0077.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0078.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0079.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0080.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0081.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0082.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0083.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0084.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0085.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0086.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0087.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0088.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0089.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0090.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0091.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0092.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0093.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0094.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0095.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0096.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0097.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0098.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0099.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0100.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0101.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0102.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0103.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0104.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0105.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0106.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0107.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0108.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0109.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0110.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0111.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0112.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0113.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0114.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0115.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0116.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0117.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0118.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0119.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0120.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0121.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0122.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0123.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0124.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0125.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0126.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0127.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0128.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0129.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0130.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0131.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0132.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0133.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0134.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0135.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0136.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0137.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0138.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0139.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0140.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0141.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0142.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0143.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0144.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0145.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0146.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0147.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0148.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0149.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0150.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0151.jpg",
+          "match": true,
+          "desc": "(timeout)"
+        },
+        {
+          "file": "food_0152.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0153.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0154.jpg",
+          "match": true,
+          "desc": "DESC:"
+        },
+        {
+          "file": "food_0155.jpg",
+          "match": true,
+          "desc": "A bowl of soup with tofu, corn, and vegetables is placed on a wooden surface, with a keyboard and other items in the background."
+        },
+        {
+          "file": "food_0156.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0157.jpg",
+          "match": true,
+          "desc": "A plate of cooked food featuring vegetables and seafood,"
+        },
+        {
+          "file": "food_0158.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        },
+        {
+          "file": "food_0159.jpg",
+          "match": true,
+          "desc": "The image shows a plate of noodles mixed with vegetables such as carrots, cucumbers, and leafy greens, with chop"
+        },
+        {
+          "file": "food_0160.jpg",
+          "match": true,
+          "desc": "(empty response — assumed match)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "started_at": "2026-05-07T21:27:26",
+  "finished_at": "2026-05-07T21:27:26",
+  "steps": {
+    "fix_cards": {
+      "files_changed": [],
+      "count": 0
+    },
+    "fix_hero": {
+      "files_changed": [],
+      "count": 0
+    },
+    "fix_mismatch": {
+      "files_changed": [],
+      "count": 0
+    },
+    "fix_dup": {
+      "files_changed": [],
+      "count": 0
+    },
+    "fix_size": {
+      "files_changed": [],
+      "count": 0
+    },
+    "fix_credit": {
+      "files_changed": [],
+      "count": 0
+    },
+    "update_search_index": {
+      "files_changed": [],
+      "count": 0
+    }
+  },
+  "summary": {
+    "total_steps": 7,
+    "total_files_changed": 0,
+    "steps_list": [
+      "fix_cards",
+      "fix_hero",
+      "fix_mismatch",
+      "fix_dup",
+      "fix_size",
+      "fix_credit",
+      "update_search_index"
+    ]
+  }
+}
