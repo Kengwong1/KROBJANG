@@ -1,5 +1,82 @@
 [
   {
+    "title": "ผีสางในโรงแรม",
+    "category": "ghost",
+    "filename": "article_ghost_20260606_231611_395.html",
+    "image": "https://images.pexels.com/photos/27059239/pexels-photo-27059239.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-06T23:20:20.865365"
+  },
+  {
+    "title": "ภาพยนตร์",
+    "category": "movie",
+    "filename": "article_movie_20260602_230645_128.html",
+    "image": "https://images.pexels.com/photos/8088386/pexels-photo-8088386.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T23:12:20.050239"
+  },
+  {
+    "title": "ผีสางในโรงแรม",
+    "category": "ghost",
+    "filename": "article_ghost_20260602_225629_070.html",
+    "image": "https://images.pexels.com/photos/12494587/pexels-photo-12494587.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T23:01:58.450209"
+  },
+  {
+    "title": "สัตว์เลี้ยงในบ้าน",
+    "category": "pet",
+    "filename": "article_pet_20260602_224930_830.html",
+    "image": "https://images.pexels.com/photos/7899235/pexels-photo-7899235.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T22:54:46.568710"
+  },
+  {
+    "title": "ผีสางในโรงแรม",
+    "category": "story",
+    "filename": "article_story_20260602_224308_453.html",
+    "image": "https://images.pexels.com/photos/30226324/pexels-photo-30226324.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T22:48:21.718701"
+  },
+  {
+    "title": "อนิเมะ: วัฒนธรรมการ์ตูนญี่ปุ่น",
+    "category": "anime",
+    "filename": "article_anime_20260602_223447_344.html",
+    "image": "https://images.pexels.com/photos/37320472/pexels-photo-37320472.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T22:39:34.289727"
+  },
+  {
+    "title": "ผีสางในโรงแรม",
+    "category": "ghost",
+    "filename": "article_ghost_20260602_222304_053.html",
+    "image": "https://images.pexels.com/photos/33779909/pexels-photo-33779909.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T22:31:54.302100"
+  },
+  {
+    "title": "ไทยช่วยไทยพลัส ย้ำไม่อนุญาตให้ร้านค้าทอน \"เงินสด\" เตือนหากทำผิดจะถูกระงับสิทธิ\"\n\nReference(s):\n- Thairath.co.th",
+    "category": "food",
+    "filename": "article_food_20260602_221157_654.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/06/bar_headline-728x410-1.jpg",
+    "date": "2026-06-02T22:17:41.478654"
+  },
+  {
+    "title": "บริหารธุรกิจอย่างไรให้ประสบความสำเร็จ",
+    "category": "business",
+    "filename": "article_business_20260602_213747_589.html",
+    "image": "https://images.pexels.com/photos/7644006/pexels-photo-7644006.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T21:43:44.297451"
+  },
+  {
+    "title": "ดนตรีคือศิลปะแห่งเสียง",
+    "category": "music",
+    "filename": "article_music_20260602_212925_525.html",
+    "image": "https://images.pexels.com/photos/4552529/pexels-photo-4552529.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T21:33:40.646034"
+  },
+  {
+    "title": "ผีสางในโรงแรม",
+    "category": "ghost",
+    "filename": "article_ghost_20260602_212349_168.html",
+    "image": "https://images.pexels.com/photos/36301709/pexels-photo-36301709.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-02T21:28:15.748072"
+  },
+  {
     "title": "สุขภาพดีทุกวัน",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260601_175118_563.html",

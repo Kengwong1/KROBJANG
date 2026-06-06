@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-01T18:03:20.363565",
-  "last_writer_run": "2026-06-01T17:56:35.614940",
+  "last_updated": "2026-06-06T23:20:20.868365",
+  "last_writer_run": "2026-06-06T23:20:20.868365",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
   "last_publisher_run": "2026-05-03T22:20:11.774099",
   "last_video_run": "",
@@ -173,7 +173,18 @@
     "article_law_20260531_225547_179.html",
     "article_health_20260531_230110_181.html",
     "article_lifestyle_20260531_233810_675.html",
-    "article_lifestyle_20260601_175118_563.html"
+    "article_lifestyle_20260601_175118_563.html",
+    "article_ghost_20260602_212349_168.html",
+    "article_music_20260602_212925_525.html",
+    "article_business_20260602_213747_589.html",
+    "article_food_20260602_221157_654.html",
+    "article_ghost_20260602_222304_053.html",
+    "article_anime_20260602_223447_344.html",
+    "article_story_20260602_224308_453.html",
+    "article_pet_20260602_224930_830.html",
+    "article_ghost_20260602_225629_070.html",
+    "article_movie_20260602_230645_128.html",
+    "article_ghost_20260606_231611_395.html"
   ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
@@ -334,10 +345,21 @@
     "article_law_20260531_225547_179.html",
     "article_health_20260531_230110_181.html",
     "article_lifestyle_20260531_233810_675.html",
-    "article_lifestyle_20260601_175118_563.html"
+    "article_lifestyle_20260601_175118_563.html",
+    "article_ghost_20260602_212349_168.html",
+    "article_music_20260602_212925_525.html",
+    "article_business_20260602_213747_589.html",
+    "article_food_20260602_221157_654.html",
+    "article_ghost_20260602_222304_053.html",
+    "article_anime_20260602_223447_344.html",
+    "article_story_20260602_224308_453.html",
+    "article_pet_20260602_224930_830.html",
+    "article_ghost_20260602_225629_070.html",
+    "article_movie_20260602_230645_128.html",
+    "article_ghost_20260606_231611_395.html"
   ],
   "published_today": 7,
-  "total_articles": 176,
+  "total_articles": 187,
   "errors": [
     {
       "agent": "publisher",
