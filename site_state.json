@@ -1,10 +1,12 @@
 {
-  "last_updated": "2026-06-07T21:31:07.169134",
-  "last_writer_run": "2026-06-07T21:27:59.779669",
+  "last_updated": "2026-06-07T21:45:36.815982",
+  "last_writer_run": "2026-06-07T21:45:36.815982",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-06-07T21:31:07.169134",
+  "last_publisher_run": "2026-06-07T21:36:17.107267",
   "last_video_run": "",
-  "pending_publish": [],
+  "pending_publish": [
+    "article_drama_20260607_213953_316.html"
+  ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -176,10 +178,11 @@
     "article_ghost_20260602_225629_070.html",
     "article_movie_20260602_230645_128.html",
     "article_ghost_20260606_231611_395.html",
-    "article_education_20260607_212318_076.html"
+    "article_education_20260607_212318_076.html",
+    "article_drama_20260607_213953_316.html"
   ],
   "published_today": 188,
-  "total_articles": 188,
+  "total_articles": 189,
   "errors": [
     {
       "agent": "publisher",
@@ -198,5 +201,5 @@
     }
   ],
   "setup_done": true,
-  "layout": "list"
+  "layout": "grid"
 }
