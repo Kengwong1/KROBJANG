@@ -472,14 +472,14 @@
     "title": "ความตลกในวรรณกรรม",
     "category": "comedy",
     "filename": "article_comedy_20260522_123525_394.html",
-    "image": "images/thumbs/comedy/comedy_0092.jpg",
+    "image": "https://images.pexels.com/photos/8422370/pexels-photo-8422370.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-22T12:40:18.257386"
   },
   {
     "title": "ธุรกิจในยุคดิจิทัล",
     "category": "business",
     "filename": "article_business_20260520_232722_285.html",
-    "image": "images/thumbs/business/business_0025.jpg",
+    "image": "https://images.pexels.com/photos/7640435/pexels-photo-7640435.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-20T23:32:00.161044"
   },
   {
@@ -493,14 +493,14 @@
     "title": "ดราม่าที่น่าติดตาม",
     "category": "drama",
     "filename": "article_drama_20260517_201344_226.html",
-    "image": "images/thumbs/drama/drama_0067.jpg",
+    "image": "https://images.pexels.com/photos/6896314/pexels-photo-6896314.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-17T20:18:01.034307"
   },
   {
     "title": "ทีมดีไอวาย: แชมป์แท็กทีม NXT และ WWE",
     "category": "diy",
     "filename": "article_diy_20260517_195043_905.html",
-    "image": "images/thumbs/diy/diy_0187.jpg",
+    "image": "https://images.pexels.com/photos/37443512/pexels-photo-37443512.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-17T19:55:03.356358"
   },
   {
@@ -521,7 +521,7 @@
     "title": "อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว",
     "category": "anime",
     "filename": "article_anime_20260517_001557_355.html",
-    "image": "images/thumbs/anime/anime_0023.jpg",
+    "image": "https://images.pexels.com/photos/33157581/pexels-photo-33157581.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-17T00:20:08.597811"
   },
   {
@@ -535,42 +535,42 @@
     "title": "การ์ตูน: ศิลปะแห่งจินตนาการ",
     "category": "cartoon",
     "filename": "article_cartoon_20260517_000545_632.html",
-    "image": "images/thumbs/cartoon/cartoon_0223.jpg",
+    "image": "https://images.pexels.com/photos/8817542/pexels-photo-8817542.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-17T00:10:30.720813"
   },
   {
     "title": "ความตลกในวรรณกรรม",
     "category": "comedy",
     "filename": "article_comedy_20260517_000001_513.html",
-    "image": "images/thumbs/comedy/comedy_0092.jpg",
+    "image": "https://images.pexels.com/photos/8614950/pexels-photo-8614950.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-17T00:05:30.502234"
   },
   {
     "title": "แรงบันดาลใจจากคนรอบตัว",
     "category": "inspirational",
     "filename": "article_inspirational_20260516_235415_940.html",
-    "image": "images/thumbs/inspirational/inspirational_0115.jpg",
+    "image": "https://images.pexels.com/photos/32255990/pexels-photo-32255990.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T23:59:46.306416"
   },
   {
     "title": "ดราม่าในโลกออนไลน์",
     "category": "drama",
     "filename": "article_drama_20260516_234957_852.html",
-    "image": "images/thumbs/drama/drama_0122.jpg",
+    "image": "https://images.pexels.com/photos/6896222/pexels-photo-6896222.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T23:53:55.100938"
   },
   {
     "title": "ผีสางในนวนิยาย",
     "category": "ghost",
     "filename": "article_ghost_20260516_234605_610.html",
-    "image": "images/thumbs/ghost/ghost_0073.jpg",
+    "image": "https://images.pexels.com/photos/27205095/pexels-photo-27205095.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T23:49:42.823443"
   },
   {
     "title": "การประกวดความงาม",
     "category": "beauty",
     "filename": "article_beauty_20260516_234114_809.html",
-    "image": "images/thumbs/beauty/beauty_0176.jpg",
+    "image": "https://images.pexels.com/photos/14581391/pexels-photo-14581391.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T23:45:51.496169"
   },
   {
@@ -605,7 +605,7 @@
     "title": "ไลฟ์สไตล์ในยุคดิจิทัล",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260516_231940_523.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0109.jpg",
+    "image": "https://images.pexels.com/photos/37565077/pexels-photo-37565077.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T23:24:40.435303"
   },
   {
@@ -626,56 +626,56 @@
     "title": "การ์ตูนและการ์ตูนที่นิยม",
     "category": "cartoon",
     "filename": "article_cartoon_20260516_223802_890.html",
-    "image": "images/thumbs/cartoon/cartoon_0231.jpg",
+    "image": "https://images.pexels.com/photos/8831805/pexels-photo-8831805.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T22:42:51.245801"
   },
   {
     "title": "หอดูดาวลาซิยา",
     "category": "horoscope",
     "filename": "article_horoscope_20260516_221618_096.html",
-    "image": "images/thumbs/horoscope/horoscope_0015.jpg",
+    "image": "https://images.pexels.com/photos/7222051/pexels-photo-7222051.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T22:20:59.247457"
   },
   {
     "title": "แรงบันดาลใจจากคนรอบตัว",
     "category": "inspirational",
     "filename": "article_inspirational_20260516_215917_694.html",
-    "image": "images/thumbs/inspirational/inspirational_0115.jpg",
+    "image": "https://images.pexels.com/photos/6005013/pexels-photo-6005013.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T22:05:20.074475"
   },
   {
     "title": "หอดูดาวลาซิยา",
     "category": "horoscope",
     "filename": "article_horoscope_20260516_212931_520.html",
-    "image": "images/thumbs/horoscope/horoscope_0015.jpg",
+    "image": "https://images.pexels.com/photos/7221682/pexels-photo-7221682.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T21:34:05.584067"
   },
   {
     "title": "ผีสางในนวนิยาย",
     "category": "ghost",
     "filename": "article_ghost_20260516_210832_222.html",
-    "image": "images/thumbs/ghost/ghost_0073.jpg",
+    "image": "https://images.pexels.com/photos/15773558/pexels-photo-15773558.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-16T21:12:51.912521"
   },
   {
     "title": "ธุรกิจในยุคดิจิทัล",
     "category": "business",
     "filename": "article_business_20260515_021716_663.html",
-    "image": "images/thumbs/business/business_0037.jpg",
+    "image": "https://images.pexels.com/photos/7580644/pexels-photo-7580644.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T02:27:48.550252"
   },
   {
     "title": "การศึกษาในยุคดิจิทัล",
     "category": "education",
     "filename": "article_education_20260515_020610_752.html",
-    "image": "images/thumbs/education/education_0229.jpg",
+    "image": "https://images.pexels.com/photos/8618080/pexels-photo-8618080.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T02:15:17.906981"
   },
   {
     "title": "หนุ่มทอดแห ชายหาดพัทยา ได้ปลาหมอคางดำ จัดเมนูเด็ด กินโชว์ บอกอร่อย เหมือน ปลานิล",
     "category": "news",
     "filename": "article_news_20260515_015449_073.html",
-    "image": "images/thumbs/news/news_0212.jpg",
+    "image": "https://images.pexels.com/photos/7968593/pexels-photo-7968593.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T02:04:06.229919"
   },
   {
@@ -689,7 +689,7 @@
     "title": "อนิเมะญี่ปุ่น",
     "category": "anime",
     "filename": "article_anime_20260515_012540_723.html",
-    "image": "images/thumbs/anime/anime_0242.jpg",
+    "image": "https://images.pexels.com/photos/34615671/pexels-photo-34615671.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T01:38:01.211895"
   },
   {
@@ -703,42 +703,42 @@
     "title": "การ์ตูนสุดฮิต",
     "category": "cartoon",
     "filename": "article_cartoon_20260515_005813_254.html",
-    "image": "images/thumbs/cartoon/cartoon_0070.jpg",
+    "image": "https://images.pexels.com/photos/34036545/pexels-photo-34036545.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T01:11:39.273930"
   },
   {
     "title": "ผู้แสดงตลก",
     "category": "comedy",
     "filename": "article_comedy_20260515_004351_745.html",
-    "image": "images/thumbs/comedy/comedy_0043.jpg",
+    "image": "https://images.pexels.com/photos/12334446/pexels-photo-12334446.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T00:56:35.140962"
   },
   {
     "title": "แรงบันดาลใจจากคนรอบตัว",
     "category": "inspirational",
     "filename": "article_inspirational_20260515_002800_660.html",
-    "image": "images/thumbs/inspirational/inspirational_0115.jpg",
+    "image": "https://images.pexels.com/photos/33137130/pexels-photo-33137130.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T00:41:28.397012"
   },
   {
     "title": "ดราม่าที่เป็นที่นิยม",
     "category": "drama",
     "filename": "article_drama_20260515_001553_105.html",
-    "image": "images/thumbs/drama/drama_0083.jpg",
+    "image": "https://images.pexels.com/photos/6896188/pexels-photo-6896188.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T00:26:26.223659"
   },
   {
     "title": "ผีสางในนวนิยาย",
     "category": "ghost",
     "filename": "article_ghost_20260515_000555_302.html",
-    "image": "images/thumbs/ghost/ghost_0073.jpg",
+    "image": "https://images.pexels.com/photos/228844/pexels-photo-228844.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T00:13:53.392908"
   },
   {
     "title": "สุดยอดการประกวดความงาม",
     "category": "beauty",
     "filename": "article_beauty_20260514_235100_655.html",
-    "image": "images/thumbs/beauty/beauty_0221.jpg",
+    "image": "https://images.pexels.com/photos/7670759/pexels-photo-7670759.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-15T00:03:56.177294"
   },
   {
@@ -759,7 +759,7 @@
     "title": "ขายปลาทองเหลือง",
     "category": "finance",
     "filename": "article_finance_20260514_231532_523.html",
-    "image": "images/thumbs/finance/finance_0189.jpg",
+    "image": "https://images.pexels.com/photos/4056856/pexels-photo-4056856.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-14T23:24:05.688794"
   },
   {
@@ -773,7 +773,7 @@
     "title": "ไลฟ์สไตล์ที่สมดุล",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260514_225350_273.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0059.jpg",
+    "image": "https://images.pexels.com/photos/6802980/pexels-photo-6802980.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-14T23:04:07.065825"
   },
   {
@@ -808,112 +808,112 @@
     "title": "ผลหวยลาววันนี้",
     "category": "lottery",
     "filename": "article_lottery_20260513_163713_282.html",
-    "image": "images/thumbs/lottery/lottery_0062.jpg",
+    "image": "https://images.pexels.com/photos/34669146/pexels-photo-34669146.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-13T16:41:59.648951"
   },
   {
     "title": "อนิเมะ: สื่อการ์ตูนญี่ปุ่น",
     "category": "anime",
     "filename": "article_anime_20260512_223146_910.html",
-    "image": "images/thumbs/anime/anime_0034.jpg",
+    "image": "https://images.pexels.com/photos/33157574/pexels-photo-33157574.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T22:35:46.941370"
   },
   {
     "title": "ผีสางในนวนิยาย",
     "category": "ghost",
     "filename": "article_ghost_20260512_221333_756.html",
-    "image": "images/thumbs/ghost/ghost_0073.jpg",
+    "image": "https://images.pexels.com/photos/8383072/pexels-photo-8383072.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T22:17:33.352640"
   },
   {
     "title": "ผีสางในนวนิยาย",
     "category": "ghost",
     "filename": "article_ghost_20260512_220407_787.html",
-    "image": "images/thumbs/ghost/ghost_0073.jpg",
+    "image": "https://images.pexels.com/photos/14205196/pexels-photo-14205196.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T22:10:38.908270"
   },
   {
     "title": "ผีสางในนวนิยาย",
     "category": "ghost",
     "filename": "article_ghost_20260512_213231_075.html",
-    "image": "images/thumbs/ghost/ghost_0073.jpg",
+    "image": "https://images.pexels.com/photos/5422695/pexels-photo-5422695.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T21:37:00.877535"
   },
   {
     "title": "สุขภาพแข็งแรง120%",
     "category": "health",
     "filename": "article_health_20260512_211543_546.html",
-    "image": "images/thumbs/health/health_0232.jpg",
+    "image": "https://images.pexels.com/photos/14843494/pexels-photo-14843494.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T21:19:43.819082"
   },
   {
     "title": "เล่นเกมอย่างไรให้สนุกและปลอดภัย!",
     "category": "gaming",
     "filename": "article_gaming_20260512_210206_572.html",
-    "image": "images/thumbs/gaming/gaming_0135.jpg",
+    "image": "https://images.pexels.com/photos/414854/pexels-photo-414854.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T21:06:54.948714"
   },
   {
     "title": "ความงามภายในและภายนอก",
     "category": "beauty",
     "filename": "article_beauty_20260512_132417_472.html",
-    "image": "images/thumbs/beauty/beauty_0148.jpg",
+    "image": "https://images.pexels.com/photos/7290120/pexels-photo-7290120.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T13:54:00.007260"
   },
   {
     "title": "ดนตรี: เสียงและโครงสร้างที่จัดเรียบแบบแผน",
     "category": "music",
     "filename": "article_music_20260512_125733_820.html",
-    "image": "images/thumbs/music/music_0217.jpg",
+    "image": "https://images.pexels.com/photos/237464/pexels-photo-237464.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T13:01:38.030289"
   },
   {
     "title": "ไลฟ์สไตล์ที่สมดุล",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260512_124743_457.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0059.jpg",
+    "image": "https://images.pexels.com/photos/6802969/pexels-photo-6802969.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T12:53:56.334879"
   },
   {
     "title": "ทำความรู้จักโลกของธุรกิจ",
     "category": "business",
     "filename": "article_business_20260512_123721_920.html",
-    "image": "images/thumbs/business/business_0255.jpg",
+    "image": "https://images.pexels.com/photos/7648021/pexels-photo-7648021.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-12T12:42:42.189820"
   },
   {
     "title": "เรียนรู้ทฤษฎีดนตรีและพัฒนาทักษะการฟัง!",
     "category": "music",
     "filename": "article_music_20260511_221251_203.html",
-    "image": "images/thumbs/music/music_0182.jpg",
+    "image": "https://images.pexels.com/photos/5969432/pexels-photo-5969432.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T22:16:21.935159"
   },
   {
     "title": "เรื่องเล่าที่น่าติดตาม",
     "category": "story",
     "filename": "article_story_20260511_215425_163.html",
-    "image": "images/thumbs/story/story_0273.jpg",
+    "image": "https://images.pexels.com/photos/14427100/pexels-photo-14427100.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T22:00:11.785829"
   },
   {
     "title": "เกม: ความสนุกและพัฒนาการ",
     "category": "gaming",
     "filename": "article_gaming_20260511_213102_779.html",
-    "image": "images/thumbs/gaming/gaming_0194.jpg",
+    "image": "https://images.pexels.com/photos/459762/pexels-photo-459762.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T21:36:33.020369"
   },
   {
     "title": "เคล็ดลับการทำไข่น้ำให้อร่อย",
     "category": "tips",
     "filename": "article_tips_20260511_210255_753.html",
-    "image": "images/thumbs/tips/tips_0125.jpg",
+    "image": "https://images.pexels.com/photos/4467632/pexels-photo-4467632.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T21:07:17.023654"
   },
   {
     "title": "สุขภาพดีทุกวัน!",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260511_202951_899.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0062.jpg",
+    "image": "https://images.pexels.com/photos/6654111/pexels-photo-6654111.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T20:33:40.773973"
   },
   {
@@ -927,14 +927,14 @@
     "title": "สุขภาพดีเริ่มต้นจากใจ!",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260511_190818_098.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0081.jpg",
+    "image": "https://images.pexels.com/photos/2208004/pexels-photo-2208004.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T19:13:44.422505"
   },
   {
     "title": "สุขภาพดีเริ่มต้นจากใจ!",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260511_181642_962.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0081.jpg",
+    "image": "https://images.pexels.com/photos/7004722/pexels-photo-7004722.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T18:21:47.575875"
   },
   {
@@ -955,14 +955,14 @@
     "title": "แรงบันดาลใจในชีวิต",
     "category": "inspirational",
     "filename": "article_inspirational_20260511_174117_814.html",
-    "image": "images/thumbs/inspirational/inspirational_0226.jpg",
+    "image": "https://images.pexels.com/photos/7414225/pexels-photo-7414225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T17:46:23.728848"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดไลฟ์สไตล์",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260511_172020_321.html",
-    "image": "images/thumbs/lifestyle/lifestyle_0081.jpg",
+    "image": "https://images.pexels.com/photos/10069250/pexels-photo-10069250.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T17:24:18.007108"
   },
   {
@@ -976,7 +976,7 @@
     "title": "การแต่งตา: สีสันใหม่ที่ทำให้คุณเปล่งประกาย!",
     "category": "beauty",
     "filename": "article_beauty_20260511_125223_552.html",
-    "image": "images/thumbs/beauty/beauty_0071.jpg",
+    "image": "https://images.pexels.com/photos/12323034/pexels-photo-12323034.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T12:58:32.533829"
   },
   {
@@ -990,14 +990,14 @@
     "title": "สาวๆ ในชุดแดง สร้างเสียงฮา!",
     "category": "comedy",
     "filename": "article_comedy_20260511_120958_680.html",
-    "image": "images/thumbs/comedy/comedy_0165.jpg",
+    "image": "https://images.pexels.com/photos/18239101/pexels-photo-18239101.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T12:18:52.868174"
   },
   {
     "title": "สุดยอดตำนานท้องถิ่นที่ต้องฟัง!",
     "category": "folktale",
     "filename": "article_folktale_20260511_115553_804.html",
-    "image": "images/thumbs/folktale/folktale_0006.jpg",
+    "image": "https://images.pexels.com/photos/26574446/pexels-photo-26574446.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-11T12:03:20.314550"
   },
   {
@@ -1018,7 +1018,7 @@
     "title": "วัดทองคำ: ศูนย์กลางของจิตวิญญาณไทย",
     "category": "travel",
     "filename": "article_travel_20260510_234038_183.html",
-    "image": "images/thumbs/travel/travel_0271.jpg",
+    "image": "https://images.pexels.com/photos/35981276/pexels-photo-35981276.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-10T23:46:30.916474"
   },
   {
@@ -1067,7 +1067,7 @@
     "title": "การตลาดดิจิทัล: เปิดโลกใหม่สำหรับธุรกิจ",
     "category": "business",
     "filename": "article_business_20260510_212710_603.html",
-    "image": "images/thumbs/business/business_0041.jpg",
+    "image": "https://images.pexels.com/photos/7433840/pexels-photo-7433840.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-10T21:32:55.396415"
   },
   {
@@ -1088,42 +1088,42 @@
     "title": "ดูดาว: ความลึกลับของจักรวาลที่น่าตื่นเต้น!",
     "category": "horoscope",
     "filename": "article_horoscope_20260510_205444_811.html",
-    "image": "images/thumbs/horoscope/horoscope_0190.jpg",
+    "image": "https://images.pexels.com/photos/6806599/pexels-photo-6806599.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-10T21:01:20.014771"
   },
   {
     "title": "ผู้หญิงสีแดงแสด: ความฮาที่ไม่มีที่สิ้นสุด!",
     "category": "comedy",
     "filename": "article_comedy_20260510_141324_031.html",
-    "image": "images/thumbs/comedy/comedy_0165.jpg",
+    "image": "https://images.pexels.com/photos/33412570/pexels-photo-33412570.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-10T14:20:07.354009"
   },
   {
     "title": "ตลกที่ทำให้หัวเราะ",
     "category": "comedy",
     "filename": "article_comedy_20260510_135452_527.html",
-    "image": "images/thumbs/comedy/comedy_0165.jpg",
+    "image": "https://images.pexels.com/photos/4826429/pexels-photo-4826429.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-10T14:00:28.158523"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดการเงิน",
     "category": "finance",
     "filename": "article_finance_20260509_224804_931.html",
-    "image": "images/thumbs/finance/finance_0196.jpg",
+    "image": "https://images.pexels.com/photos/12969343/pexels-photo-12969343.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-09T23:11:31.701236"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดตลก",
     "category": "comedy",
     "filename": "article_comedy_20260509_224435_293.html",
-    "image": "images/thumbs/comedy/comedy_0135.jpg",
+    "image": "https://images.pexels.com/photos/2219118/pexels-photo-2219118.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-09T23:07:57.610538"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดความงาม",
     "category": "beauty",
     "filename": "article_beauty_20260509_223314_296.html",
-    "image": "images/thumbs/beauty/beauty_0071.jpg",
+    "image": "https://images.pexels.com/photos/3979134/pexels-photo-3979134.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-09T22:56:36.621429"
   },
   {
@@ -1137,7 +1137,7 @@
     "title": "แมวเหมียวในบรรยากาศที่อบอุ่น",
     "category": "pet",
     "filename": "article_pet_20260506_224310_571.html",
-    "image": "images/thumbs/pet/pet_0228.jpg",
+    "image": "https://images.pexels.com/photos/10264364/pexels-photo-10264364.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-06T23:02:23.534540"
   },
   {
@@ -1165,28 +1165,28 @@
     "title": "วิ่งชายหาดสวยๆ",
     "category": "sport",
     "filename": "article_sport_20260506_165903_173.html",
-    "image": "images/thumbs/sport/sport_0188.jpg",
+    "image": "https://images.pexels.com/photos/32285177/pexels-photo-32285177.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-06T17:03:29.089125"
   },
   {
     "title": "สัตว์เลี้ยงคือเพื่อนแท้",
     "category": "pet",
     "filename": "article_pet_20260506_164916_171.html",
-    "image": "images/thumbs/pet/pet_0228.jpg",
+    "image": "https://images.pexels.com/photos/28161338/pexels-photo-28161338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-06T16:54:39.829216"
   },
   {
     "title": "ตลกที่ทำให้หัวเราะ",
     "category": "comedy",
     "filename": "article_comedy_20260506_132313_840.html",
-    "image": "images/thumbs/comedy/comedy_0088.jpg",
+    "image": "https://images.pexels.com/photos/15670417/pexels-photo-15670417.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-06T13:27:48.124342"
   },
   {
     "title": "ไข่น้ำ เมนูง่ายๆ เด็กๆ ชอบ",
     "category": "tips",
     "filename": "article_tips_20260505_225104_598.html",
-    "image": "images/thumbs/tips/tips_0072.jpg",
+    "image": "https://images.pexels.com/photos/346814/pexels-photo-346814.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-05T22:55:41.945684"
   },
   {
@@ -1200,112 +1200,112 @@
     "title": "เรื่องราวน่าสนใจหมวดเทคโนโลยี",
     "category": "technology",
     "filename": "article_technology_20260504_225401_906.html",
-    "image": "images/thumbs/technology/technology_0057.jpg",
+    "image": "https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-04T23:05:52.221456"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดสุขภาพ",
     "category": "health",
     "filename": "article_health_20260504_225357_629.html",
-    "image": "images/thumbs/health/health_0053.jpg",
+    "image": "https://images.pexels.com/photos/4587381/pexels-photo-4587381.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-04T23:05:03.880410"
   },
   {
     "title": "นวัตกรรมชาร์จไว",
     "category": "technology",
     "filename": "article_technology_20260504_122916_877.html",
-    "image": "images/thumbs/technology/technology_0073.jpg",
+    "image": "https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-04T12:35:58.310692"
   },
   {
     "title": "ดราม่าร้อนโลก",
     "category": "drama",
     "filename": "article_drama_20260503_231356_558.html",
-    "image": "images/thumbs/drama/drama_0099.jpg",
+    "image": "https://images.pexels.com/photos/6895843/pexels-photo-6895843.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T23:19:20.164600"
   },
   {
     "title": "เกมจับเป็ดน่ารัก",
     "category": "lottery",
     "filename": "article_lottery_20260503_230903_307.html",
-    "image": "images/thumbs/lottery/lottery_0024.jpg",
+    "image": "https://images.pexels.com/photos/7083887/pexels-photo-7083887.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T23:13:55.729047"
   },
   {
     "title": "พายุกระหน่ำจังหาร",
     "category": "music",
     "filename": "article_music_20260503_230358_786.html",
-    "image": "images/thumbs/music/music_0029.jpg",
+    "image": "https://images.pexels.com/photos/32543370/pexels-photo-32543370.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T23:08:42.301353"
   },
   {
     "title": "เสี่ยงภัยเพศสัมพันธ์!",
     "category": "health",
     "filename": "article_health_20260503_225409_761.html",
-    "image": "images/thumbs/health/health_0153.jpg",
+    "image": "https://images.pexels.com/photos/7746390/pexels-photo-7746390.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T22:59:58.536162"
   },
   {
     "title": "ปชน. ขอโทษ กำนัน ผญบ. หลัง \"ภัณฑิล\" พาดพิงเอี่ยวยาเสพติด ชงเรื่องเข้ากรรมการสอบวินัย",
     "category": "horoscope",
     "filename": "article_horoscope_20260503_225029_044.html",
-    "image": "images/thumbs/horoscope/horoscope_0041.jpg",
+    "image": "https://images.pexels.com/photos/10562552/pexels-photo-10562552.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T22:55:49.092226"
   },
   {
     "title": "ดราม่าในวงการบันเทิง",
     "category": "drama",
     "filename": "article_drama_20260503_224420_148.html",
-    "image": "images/thumbs/drama/drama_0099.jpg",
+    "image": "https://images.pexels.com/photos/6899941/pexels-photo-6899941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T22:51:09.928608"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดหนัง",
     "category": "movie",
     "filename": "article_movie_20260503_221639_535.html",
-    "image": "images/thumbs/movie/movie_0004.jpg",
+    "image": "https://images.pexels.com/photos/1200450/pexels-photo-1200450.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T22:18:15.639389"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดข่าว",
     "category": "news",
     "filename": "article_news_20260503_181945_064.html",
-    "image": "images/thumbs/news/news_0025.jpg",
+    "image": "https://images.pexels.com/photos/12471191/pexels-photo-12471191.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T18:23:32.735887"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดหนัง",
     "category": "movie",
     "filename": "article_movie_20260503_181626_696.html",
-    "image": "images/thumbs/movie/movie_0004.jpg",
+    "image": "https://images.pexels.com/photos/24390597/pexels-photo-24390597.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T18:19:34.195222"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดการ์ตูน",
     "category": "cartoon",
     "filename": "article_cartoon_20260503_181224_702.html",
-    "image": "images/thumbs/cartoon/cartoon_0035.jpg",
+    "image": "https://images.pexels.com/photos/8834236/pexels-photo-8834236.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T18:16:15.686274"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดดูดาว",
     "category": "horoscope",
     "filename": "article_horoscope_20260503_180831_437.html",
-    "image": "images/thumbs/horoscope/horoscope_0041.jpg",
+    "image": "https://images.pexels.com/photos/6806445/pexels-photo-6806445.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T18:12:13.834079"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดธุรกิจ",
     "category": "business",
     "filename": "article_business_20260503_180405_428.html",
-    "image": "images/thumbs/business/business_0018.jpg",
+    "image": "https://images.pexels.com/photos/36765728/pexels-photo-36765728.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T18:08:20.449227"
   },
   {
     "title": "เรื่องราวน่าสนใจหมวดเทคโนโลยี",
     "category": "technology",
     "filename": "article_technology_20260503_175212_017.html",
-    "image": "images/thumbs/technology/technology_0073.jpg",
+    "image": "https://images.pexels.com/photos/28675583/pexels-photo-28675583.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-03T17:56:44.974440"
   }
 ]
