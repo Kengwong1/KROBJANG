@@ -1,12 +1,10 @@
 {
-  "last_updated": "2026-06-07T21:27:59.779669",
+  "last_updated": "2026-06-07T21:31:07.169134",
   "last_writer_run": "2026-06-07T21:27:59.779669",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-06-07T21:11:30.558518",
+  "last_publisher_run": "2026-06-07T21:31:07.169134",
   "last_video_run": "",
-  "pending_publish": [
-    "article_education_20260607_212318_076.html"
-  ],
+  "pending_publish": [],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -180,7 +178,7 @@
     "article_ghost_20260606_231611_395.html",
     "article_education_20260607_212318_076.html"
   ],
-  "published_today": 187,
+  "published_today": 188,
   "total_articles": 188,
   "errors": [
     {
