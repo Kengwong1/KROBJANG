@@ -1,69 +1,40 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>นโยบายความเป็นส่วนตัว — ไอหมอก</title>
-  <meta name="description" content="นโยบายความเป็นส่วนตัวของ ไอหมอก">
-  <!-- Open Graph -->
-  <meta property="og:title" content="นโยบายความเป็นส่วนตัว — ไอหมอก">
-  <meta property="og:description" content="นโยบายความเป็นส่วนตัวของ ไอหมอก">
-  <meta property="og:url" content="https://krobjang.vercel.app//privacy.html">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://krobjang.vercel.app//images/og-default.png">
-  <meta property="og:locale" content="th_TH">
-  <meta property="og:site_name" content="ไอหมอก">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="นโยบายความเป็นส่วนตัว — ไอหมอก">
-  <meta name="twitter:description" content="นโยบายความเป็นส่วนตัวของ ไอหมอก">
-  <meta name="twitter:image" content="https://krobjang.vercel.app//images/og-default.png">
-  <!-- Canonical + PWA -->
-  <link rel="canonical" href="https://krobjang.vercel.app//privacy.html">
-  
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1e40af">
-  <link rel="apple-touch-icon" href="images/icon-192.png">
-  <!-- Fonts + CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>นโยบายความเป็นส่วนตัว | ครบจัง</title>
+<meta name="description" content="บทความไทยคุณภาพ ครบทุกหมวด">
+<link rel="stylesheet" href="/style.css">
+<link rel="manifest" href="/manifest.json">
+
+
 </head>
 <body>
-<script src="nav.js"></script>
-<div class="container" style="max-width:700px;margin:2rem auto;padding:1.5rem;">
-  <div class="article-card content-area">
-    <h1 style="color:var(--primary);margin-bottom:1rem;">🔒 นโยบายความเป็นส่วนตัว</h1>
-    <p style="color:var(--muted);font-size:.85rem;">อัปเดตล่าสุด: 23/04/2026</p>
-    <div class="article-body">
-      <h2>การเก็บรวบรวมข้อมูล</h2>
-      <p>ไอหมอก อาจเก็บข้อมูลการใช้งานพื้นฐานเพื่อปรับปรุงบริการ เช่น ประเภทเบราว์เซอร์ และหน้าที่เข้าชม โดยไม่ระบุตัวตนส่วนบุคคล</p>
-      <h2>คุกกี้</h2>
-      <p>เว็บไซต์นี้อาจใช้คุกกี้เพื่อวิเคราะห์การใช้งาน (Google Analytics) และแสดงโฆษณาที่เกี่ยวข้อง (Google AdSense)</p>
-      <h2>การแชร์ข้อมูล</h2>
-      <p>เราไม่ขาย แลกเปลี่ยน หรือส่งข้อมูลส่วนตัวของคุณให้บุคคลที่สาม ยกเว้นที่จำเป็นตามกฎหมาย</p>
-      <h2>ลิงก์พันธมิตร (Affiliate Links)</h2>
-      <p>บางลิงก์ในเว็บไซต์นี้เป็น Affiliate Link เราอาจได้รับค่าคอมมิชชันเล็กน้อยเมื่อคุณซื้อสินค้าผ่านลิงก์เหล่านี้ โดยไม่มีค่าใช้จ่ายเพิ่มสำหรับคุณ</p>
-      <h2>ติดต่อเรา</h2>
-      <p>หากมีคำถาม กรุณาติดต่อผ่าน <a href="contact.html">หน้าติดต่อเรา</a></p>
-    </div>
-  </div>
+<nav class="site-nav">
+  <a href="/" class="nav-logo">ครบจัง</a>
+  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/news.html">ข่าว</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/tips.html">เคล็ดลับ</a></div>
+  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
+</nav>
+<div id="search-modal" class="search-modal">
+  <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
+  <div id="search-results"></div>
 </div>
-<footer>
-  <div style="max-width:800px;margin:0 auto;">
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.2rem;margin-bottom:.75rem;">
-      <a href="index.html">🏠 หน้าแรก</a>
-      <a href="contact.html">📬 ติดต่อเรา</a>
-      <a href="privacy.html">🔒 นโยบายฯ</a>
-      <a href="sitemap.xml">🗺️ Sitemap</a>
-    </div>
-    <div style="margin-bottom:.75rem;font-size:.85rem;opacity:.7;"><a href="news.html">ข่าวสาร</a> · <a href="lifestyle.html">ไลฟ์สไตล์</a> · <a href="health.html">สุขภาพ</a> · <a href="food.html">อาหาร</a> · <a href="finance.html">การเงิน</a> · <a href="technology.html">เทคโนโลยี</a></div>
-    <p style="margin:0;color:rgba(255,255,255,.5);font-size:.82rem;">
-      © 2026 ไอหมอก · เว็บไซต์นี้ใช้ Google AdSense และลิงก์พันธมิตร (Affiliate)
-    </p>
-  </div>
+
+<div class="article-wrap">
+  <h1>นโยบายความเป็นส่วนตัว</h1>
+  <p>เว็บไซต์ ครบจัง (https://krubjang.com) ให้ความสำคัญกับความเป็นส่วนตัวของผู้ใช้งาน</p>
+  <h2>การเก็บข้อมูล</h2>
+  <p>เราใช้ Google Analytics เพื่อวิเคราะห์การใช้งานเว็บไซต์ ข้อมูลที่เก็บเป็นข้อมูลสถิติโดยรวม ไม่สามารถระบุตัวตนได้</p>
+  <h2>คุกกี้</h2>
+  <p>เว็บไซต์นี้ใช้คุกกี้เพื่อปรับปรุงประสบการณ์การใช้งาน</p>
+  <h2>ติดต่อ</h2>
+  <p>หากมีคำถามเกี่ยวกับนโยบายนี้ กรุณาติดต่อผ่านหน้า <a href="/contact.html">ติดต่อ</a></p>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 ครบจัง · <a href="/privacy.html">นโยบายความเป็นส่วนตัว</a> · <a href="/contact.html">ติดต่อ</a></p>
 </footer>
-</body></html>
+<script src="/nav.js"></script>
+</body>
+</html>

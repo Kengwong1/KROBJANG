@@ -1,6 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /.git/
-Disallow: /node_modules/
-
 Sitemap: https://krubjang.com/sitemap.xml

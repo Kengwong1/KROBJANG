@@ -1,65 +1,35 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ติดต่อเรา — ไอหมอก</title>
-  <meta name="description" content="ติดต่อทีมงาน ไอหมอก">
-  <!-- Open Graph -->
-  <meta property="og:title" content="ติดต่อเรา — ไอหมอก">
-  <meta property="og:description" content="ติดต่อทีมงาน ไอหมอก">
-  <meta property="og:url" content="https://krobjang.vercel.app//contact.html">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://krobjang.vercel.app//images/og-default.png">
-  <meta property="og:locale" content="th_TH">
-  <meta property="og:site_name" content="ไอหมอก">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ติดต่อเรา — ไอหมอก">
-  <meta name="twitter:description" content="ติดต่อทีมงาน ไอหมอก">
-  <meta name="twitter:image" content="https://krobjang.vercel.app//images/og-default.png">
-  <!-- Canonical + PWA -->
-  <link rel="canonical" href="https://krobjang.vercel.app//contact.html">
-  
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1e40af">
-  <link rel="apple-touch-icon" href="images/icon-192.png">
-  <!-- Fonts + CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ติดต่อเรา | ครบจัง</title>
+<meta name="description" content="บทความไทยคุณภาพ ครบทุกหมวด">
+<link rel="stylesheet" href="/style.css">
+<link rel="manifest" href="/manifest.json">
+
+
 </head>
 <body>
-<script src="nav.js"></script>
-<div class="container" style="max-width:700px;margin:2rem auto;padding:1.5rem;">
-  <div class="article-card content-area">
-    <h1 style="color:var(--primary);margin-bottom:1rem;">📬 ติดต่อเรา</h1>
-    <p>ขอบคุณที่สนใจติดต่อ <strong>ไอหมอก</strong></p>
-    <div style="margin-top:1.5rem;background:var(--soft);border-radius:12px;padding:1.5rem;">
-      <h2 style="color:var(--primary);font-size:1rem;margin-bottom:1rem;">ช่องทางติดต่อ</h2>
-      <p>📧 Email: contact@krobjang.vercel.app</p>
-      <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem;">เราจะตอบกลับภายใน 24-48 ชั่วโมงในวันทำการ</p>
-    </div>
-    <div style="margin-top:1.5rem;padding:1rem;background:#ecfdf5;border-radius:12px;border-left:4px solid #10b981;">
-      <p style="color:#065f46;font-size:.9rem;margin:0;">💡 สำหรับการลงโฆษณาหรือร่วมมือทางธุรกิจ กรุณาระบุในหัวข้ออีเมลว่า "Business"</p>
-    </div>
-  </div>
+<nav class="site-nav">
+  <a href="/" class="nav-logo">ครบจัง</a>
+  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/news.html">ข่าว</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/tips.html">เคล็ดลับ</a></div>
+  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
+</nav>
+<div id="search-modal" class="search-modal">
+  <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
+  <div id="search-results"></div>
 </div>
-<footer>
-  <div style="max-width:800px;margin:0 auto;">
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.2rem;margin-bottom:.75rem;">
-      <a href="index.html">🏠 หน้าแรก</a>
-      <a href="contact.html">📬 ติดต่อเรา</a>
-      <a href="privacy.html">🔒 นโยบายฯ</a>
-      <a href="sitemap.xml">🗺️ Sitemap</a>
-    </div>
-    <div style="margin-bottom:.75rem;font-size:.85rem;opacity:.7;"><a href="news.html">ข่าวสาร</a> · <a href="lifestyle.html">ไลฟ์สไตล์</a> · <a href="health.html">สุขภาพ</a> · <a href="food.html">อาหาร</a> · <a href="finance.html">การเงิน</a> · <a href="technology.html">เทคโนโลยี</a></div>
-    <p style="margin:0;color:rgba(255,255,255,.5);font-size:.82rem;">
-      © 2026 ไอหมอก · เว็บไซต์นี้ใช้ Google AdSense และลิงก์พันธมิตร (Affiliate)
-    </p>
-  </div>
+
+<div class="article-wrap">
+  <h1>ติดต่อเรา</h1>
+  <p>หากต้องการติดต่อทีมงาน ครบจัง กรุณาส่งอีเมลมาที่ด้านล่าง</p>
+  <p>เว็บไซต์: <a href="https://krubjang.com">https://krubjang.com</a></p>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 ครบจัง · <a href="/privacy.html">นโยบายความเป็นส่วนตัว</a> · <a href="/contact.html">ติดต่อ</a></p>
 </footer>
-</body></html>
+<script src="/nav.js"></script>
+</body>
+</html>
