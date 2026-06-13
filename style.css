@@ -287,3 +287,30 @@ body{
 /* ══ UTIL ══ */
 .text-muted{color:var(--muted);}
 .text-primary{color:#1e40af;}
+
+/* ══ CATEGORY COLORS ══ */
+.cat-food,.cat-cooking,.cat-dessert,.cat-drinks,.cat-cafe{background:#f97316!important;}
+.cat-health,.cat-fitness,.cat-mentalhealth{background:#10b981!important;}
+.cat-travel,.cat-travel_thailand,.cat-nature,.cat-environment{background:#06b6d4!important;}
+.cat-technology,.cat-ai{background:#6366f1!important;}
+.cat-business,.cat-career,.cat-finance,.cat-crypto{background:#0ea5e9!important;}
+.cat-ghost,.cat-horror{background:#7c3aed!important;}
+.cat-comedy{background:#f59e0b!important;}
+.cat-drama,.cat-movie,.cat-celebrity{background:#ec4899!important;}
+.cat-music,.cat-kpop{background:#8b5cf6!important;}
+.cat-sport{background:#ef4444!important;}
+.cat-gaming,.cat-game{background:#84cc16!important;}
+.cat-anime,.cat-cartoon{background:#f43f5e!important;}
+.cat-beauty,.cat-fashion{background:#db2777!important;}
+.cat-education{background:#0284c7!important;}
+.cat-law{background:#374151!important;}
+.cat-lifestyle{background:#14b8a6!important;}
+.cat-folktale,.cat-story,.cat-thai_culture,.cat-temple{background:#b45309!important;}
+.cat-horoscope,.cat-lottery{background:#7c3aed!important;}
+.cat-parenting,.cat-pet{background:#10b981!important;}
+.cat-inspirational{background:#f59e0b!important;}
+.cat-news{background:#1e40af!important;}
+.cat-home,.cat-diy{background:#78716c!important;}
+.cat-car{background:#6b7280!important;}
+.cat-tips{background:#0891b2!important;}
+.cat-weather{background:#64748b!important;}
