@@ -8,6 +8,49 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="manifest" href="/manifest.json">
 
+<style>
+.hero-home {
+  background: linear-gradient(135deg, #1e40af, #0f172a);
+  color: #fff;
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+}
+.hero-home h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.hero-home p {
+  font-size: 1rem;
+  opacity: 0.88;
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+}
+.cat-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+.cat-chip {
+  background: #fff;
+  color: #1e40af;
+  border: 1px solid #1e40af;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+  white-space: nowrap;
+}
+.cat-chip:hover {
+  background: #1e40af;
+  color: #fff;
+  text-decoration: none;
+}
+</style>
 </head>
 <body>
 <nav class="site-nav">
@@ -19,12 +62,12 @@
   <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
   <div id="search-results"></div>
 </div>
-<section class="hero-home" style="text-align:center;padding:3rem 1rem;background:var(--primary);color:#fff;">
-  <h1 style="font-size:2.5rem;margin-bottom:.5rem;">ครบจัง</h1>
-  <p style="opacity:.85;font-size:1.1rem;">บทความไทยคุณภาพ ครบทุกหมวด</p>
+<section class="hero-home">
+  <h1>ครบจัง</h1>
+  <p>บทความไทยคุณภาพ ครบทุกหมวด</p>
 </section>
 <div class="container">
-  <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0;">
+  <div class="cat-chips-container">
     <a class="cat-chip" href="/food.html">อาหาร</a><a class="cat-chip" href="/health.html">สุขภาพ</a><a class="cat-chip" href="/lifestyle.html">ไลฟ์สไตล์</a><a class="cat-chip" href="/travel.html">ท่องเที่ยว</a><a class="cat-chip" href="/finance.html">การเงิน</a><a class="cat-chip" href="/technology.html">เทคโนโลยี</a><a class="cat-chip" href="/gaming.html">เกม</a><a class="cat-chip" href="/beauty.html">ความงาม</a><a class="cat-chip" href="/ghost.html">ผีสาง</a><a class="cat-chip" href="/drama.html">ดราม่า</a><a class="cat-chip" href="/inspirational.html">แรงบันดาลใจ</a><a class="cat-chip" href="/comedy.html">ตลก</a><a class="cat-chip" href="/cartoon.html">การ์ตูน</a><a class="cat-chip" href="/folktale.html">นิทานพื้นบ้าน</a><a class="cat-chip" href="/anime.html">อนิเมะ</a><a class="cat-chip" href="/story.html">เรื่องเล่า</a><a class="cat-chip" href="/news.html">ข่าว</a><a class="cat-chip" href="/education.html">การศึกษา</a><a class="cat-chip" href="/business.html">ธุรกิจ</a><a class="cat-chip" href="/sport.html">กีฬา</a><a class="cat-chip" href="/pet.html">สัตว์เลี้ยง</a><a class="cat-chip" href="/music.html">ดนตรี</a><a class="cat-chip" href="/movie.html">หนัง</a><a class="cat-chip" href="/diy.html">DIY</a><a class="cat-chip" href="/tips.html">เคล็ดลับ</a><a class="cat-chip" href="/horoscope.html">ดูดาว</a><a class="cat-chip" href="/lottery.html">หวย</a><a class="cat-chip" href="/car.html">รถยนต์</a><a class="cat-chip" href="/law.html">กฎหมาย</a><a class="cat-chip" href="/cooking.html">ทำอาหาร</a>
   </div>
   <h2 style="margin-bottom:1rem;">บทความล่าสุด</h2>
@@ -54,10 +97,6 @@ Reference(s):
   <p>© 2026 <a href="/">ครบจัง</a></p>
   <p style="margin-top:.5rem;"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></p>
 </footer>
-<style>
-.cat-chip{background:#fff;color:var(--primary);border:1px solid var(--primary);padding:.3rem .9rem;border-radius:20px;font-size:.85rem;transition:all .2s;}
-.cat-chip:hover{background:var(--primary);color:#fff;text-decoration:none;}
-</style>
 <script src="/nav.js"></script>
 </body>
 </html>
