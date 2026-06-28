@@ -1,17 +1,10 @@
 {
-  "last_updated": "2026-06-22T22:00:00.571766",
+  "last_updated": "2026-06-28T22:23:30.869528",
   "last_writer_run": "2026-06-22T22:00:00.571766",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-06-21T22:52:52.710269",
+  "last_publisher_run": "2026-06-28T22:23:30.869528",
   "last_video_run": "",
-  "pending_publish": [
-    "article_diy_20260622_212610_628.html",
-    "article_car_20260622_213504_949.html",
-    "article_travel_20260622_213924_984.html",
-    "article_folktale_20260622_214442_397.html",
-    "article_lottery_20260622_214959_540.html",
-    "article_folktale_20260622_215432_745.html"
-  ],
+  "pending_publish": [],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -192,7 +185,7 @@
     "article_lottery_20260622_214959_540.html",
     "article_folktale_20260622_215432_745.html"
   ],
-  "published_today": 189,
+  "published_today": 195,
   "total_articles": 195,
   "errors": [
     {
