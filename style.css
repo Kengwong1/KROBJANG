@@ -85,7 +85,7 @@ img { max-width: 100%; height: auto; display: block; }
 .cat-header p { opacity: .85; margin-top: .4rem; }
 
 /* Footer */
-.site-footer { background: var(--text); color: rgba(255,255,255,.7); text-align: center; padding: 2rem 1rem; margin-top: 4rem; font-size: .875rem; }
+.site-footer { background: #1e40af; color: rgba(255,255,255,.85); text-align: center; padding: 2rem 1rem; margin-top: 4rem; font-size: .875rem; }
 .site-footer a { color: rgba(255,255,255,.85); }
 
 /* Responsive */
