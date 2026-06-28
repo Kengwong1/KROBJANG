@@ -1,10 +1,17 @@
 {
-  "last_updated": "2026-06-19T20:15:54.621184",
-  "last_writer_run": "2026-06-07T21:45:36.815982",
+  "last_updated": "2026-06-22T22:00:00.571766",
+  "last_writer_run": "2026-06-22T22:00:00.571766",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-06-19T20:15:54.621184",
+  "last_publisher_run": "2026-06-21T22:52:52.710269",
   "last_video_run": "",
-  "pending_publish": [],
+  "pending_publish": [
+    "article_diy_20260622_212610_628.html",
+    "article_car_20260622_213504_949.html",
+    "article_travel_20260622_213924_984.html",
+    "article_folktale_20260622_214442_397.html",
+    "article_lottery_20260622_214959_540.html",
+    "article_folktale_20260622_215432_745.html"
+  ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -177,10 +184,16 @@
     "article_movie_20260602_230645_128.html",
     "article_ghost_20260606_231611_395.html",
     "article_education_20260607_212318_076.html",
-    "article_drama_20260607_213953_316.html"
+    "article_drama_20260607_213953_316.html",
+    "article_diy_20260622_212610_628.html",
+    "article_car_20260622_213504_949.html",
+    "article_travel_20260622_213924_984.html",
+    "article_folktale_20260622_214442_397.html",
+    "article_lottery_20260622_214959_540.html",
+    "article_folktale_20260622_215432_745.html"
   ],
   "published_today": 189,
-  "total_articles": 189,
+  "total_articles": 195,
   "errors": [
     {
       "agent": "publisher",
