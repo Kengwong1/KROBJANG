@@ -1,10 +1,15 @@
 {
-  "last_updated": "2026-06-28T22:31:56.407403",
-  "last_writer_run": "2026-06-22T22:00:00.571766",
+  "last_updated": "2026-06-28T23:12:46.998368",
+  "last_writer_run": "2026-06-28T23:12:46.998368",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-06-28T22:31:56.407403",
+  "last_publisher_run": "2026-06-28T22:36:01.189456",
   "last_video_run": "",
-  "pending_publish": [],
+  "pending_publish": [
+    "article_lifestyle_20260628_224356_061.html",
+    "article_lifestyle_20260628_225327_858.html",
+    "article_lifestyle_20260628_230050_760.html",
+    "article_lifestyle_20260628_230813_516.html"
+  ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -183,10 +188,14 @@
     "article_travel_20260622_213924_984.html",
     "article_folktale_20260622_214442_397.html",
     "article_lottery_20260622_214959_540.html",
-    "article_folktale_20260622_215432_745.html"
+    "article_folktale_20260622_215432_745.html",
+    "article_lifestyle_20260628_224356_061.html",
+    "article_lifestyle_20260628_225327_858.html",
+    "article_lifestyle_20260628_230050_760.html",
+    "article_lifestyle_20260628_230813_516.html"
   ],
   "published_today": 195,
-  "total_articles": 195,
+  "total_articles": 199,
   "errors": [
     {
       "agent": "publisher",
