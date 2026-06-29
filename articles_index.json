@@ -1,5 +1,26 @@
 [
   {
+    "title": "ภาพยนตร์",
+    "category": "movie",
+    "filename": "article_movie_20260629_215500_337.html",
+    "image": "https://images.pexels.com/photos/13119642/pexels-photo-13119642.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-29T22:00:00.899988"
+  },
+  {
+    "title": "เนย์มาร์ ซุปเปอร์สตาร์บราซิล บริจาค 8.7 ล้านบาท ช่วยแผ่นดินไหวเวเนซุเอล่า - Thairath.co.th",
+    "category": "food",
+    "filename": "article_food_20260629_215049_978.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/06/29-batt.jpg",
+    "date": "2026-06-29T21:54:39.971203"
+  },
+  {
+    "title": "การเรียนรู้ยุคใหม่",
+    "category": "education",
+    "filename": "article_education_20260629_214707_631.html",
+    "image": "https://images.pexels.com/photos/8617762/pexels-photo-8617762.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-06-29T21:50:31.473235"
+  },
+  {
     "title": "ไลฟ์สไตล์ที่ดี",
     "category": "lifestyle",
     "filename": "article_lifestyle_20260628_230813_516.html",
