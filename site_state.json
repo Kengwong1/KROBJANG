@@ -1,11 +1,11 @@
 {
-  "last_updated": "2026-07-02T23:00:49.252637",
-  "last_writer_run": "2026-07-02T22:30:15.597827",
+  "last_updated": "2026-07-03T15:45:14.917379",
+  "last_writer_run": "2026-07-02T23:28:18.581639",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-06-29T22:00:04.666803",
+  "last_publisher_run": "2026-07-02T23:03:17.948767",
   "last_video_run": "",
   "pending_publish": [
-    "article_food_20260702_222622_115.html"
+    "article_lifestyle_20260702_232414_978.html"
   ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
@@ -193,10 +193,11 @@
     "article_education_20260629_214707_631.html",
     "article_food_20260629_215049_978.html",
     "article_movie_20260629_215500_337.html",
-    "article_food_20260702_222622_115.html"
+    "article_food_20260702_222622_115.html",
+    "article_lifestyle_20260702_232414_978.html"
   ],
-  "published_today": 202,
-  "total_articles": 203,
+  "published_today": 203,
+  "total_articles": 204,
   "errors": [
     {
       "agent": "publisher",
