@@ -1,5 +1,82 @@
 [
   {
+    "title": "แรงบันดาลใจจากคนรอบตัว",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260706_233342_017.html",
+    "image": "https://images.pexels.com/photos/3184422/pexels-photo-3184422.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:38:07.154145"
+  },
+  {
+    "title": "ดราม่าวรรณกรรม",
+    "category": "drama",
+    "filename": "article_drama_20260706_232829_685.html",
+    "image": "https://images.pexels.com/photos/30208893/pexels-photo-30208893.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:33:15.555491"
+  },
+  {
+    "title": "ผีสิงในประเทศไทย",
+    "category": "ghost",
+    "filename": "article_ghost_20260706_232229_114.html",
+    "image": "https://images.pexels.com/photos/36030122/pexels-photo-36030122.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:28:08.201484"
+  },
+  {
+    "title": "การดูแลผิวพรรณอย่างมีประสิทธิภาพ",
+    "category": "beauty",
+    "filename": "article_beauty_20260706_231746_935.html",
+    "image": "https://images.pexels.com/photos/7161701/pexels-photo-7161701.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:22:08.126958"
+  },
+  {
+    "title": "วิดีโอเกม",
+    "category": "gaming",
+    "filename": "article_gaming_20260706_231310_867.html",
+    "image": "https://images.pexels.com/photos/7862238/pexels-photo-7862238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:17:24.331654"
+  },
+  {
+    "title": "บุกจับเจ๊นกยักษ์ ขายยาบ้าหาเงินซื้อข้าวเลี้ยงหมา 40 ตัว",
+    "category": "technology",
+    "filename": "article_technology_20260706_230930_108.html",
+    "image": "https://images.pexels.com/photos/9040435/pexels-photo-9040435.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:12:54.669303"
+  },
+  {
+    "title": "ทรัมป์ไม่มีเม้มพูดเองติดต่อฟีฟ่า",
+    "category": "finance",
+    "filename": "article_finance_20260706_230442_996.html",
+    "image": "https://images.pexels.com/photos/35273321/pexels-photo-35273321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:09:05.959348"
+  },
+  {
+    "title": "ท่องเที่ยวทั่วโลก",
+    "category": "travel",
+    "filename": "article_travel_20260706_230026_896.html",
+    "image": "https://images.pexels.com/photos/91119/pexels-photo-91119.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:04:14.490380"
+  },
+  {
+    "title": "การใช้ชีวิตอย่างมีสุขภาพดี",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260706_225327_304.html",
+    "image": "https://images.pexels.com/photos/4045741/pexels-photo-4045741.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T23:00:05.961621"
+  },
+  {
+    "title": "สุขภาพแข็งแรงด้วยการตรวจสอบสุขภาพ",
+    "category": "health",
+    "filename": "article_health_20260706_224820_305.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/2026-07-06T145003Z_766710879_RC2E8MAIIZKE_RTRMADP_3_USA-TRUMP.jpg",
+    "date": "2026-07-06T22:53:06.571010"
+  },
+  {
+    "title": "อาหารอร่อยทุกเมนู",
+    "category": "food",
+    "filename": "article_food_20260706_224322_253.html",
+    "image": "https://images.pexels.com/photos/29155320/pexels-photo-29155320.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-06T22:48:03.302444"
+  },
+  {
     "title": "การดูแลผิวพรรณอย่างมีประสิทธิภาพ",
     "category": "beauty",
     "filename": "article_beauty_20260703_161431_372.html",
