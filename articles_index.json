@@ -1,5 +1,26 @@
 [
   {
+    "title": "ภาพยนตร์ยอดนิยม",
+    "category": "movie",
+    "filename": "article_movie_20260711_214505_008.html",
+    "image": "https://images.pexels.com/photos/7234308/pexels-photo-7234308.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-11T21:50:01.626225"
+  },
+  {
+    "title": "นักเตะแอฟริกาใต้เสียชีวิต หลังฟุตบอลโลก",
+    "category": "news",
+    "filename": "article_news_20260711_214038_895.html",
+    "image": "https://images.pexels.com/photos/38390329/pexels-photo-38390329.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-11T21:44:31.498376"
+  },
+  {
+    "title": "กฎหมายตราสามดวง",
+    "category": "law",
+    "filename": "article_law_20260711_213528_327.html",
+    "image": "https://images.pexels.com/photos/9367109/pexels-photo-9367109.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-11T21:40:07.592162"
+  },
+  {
     "title": "ดราม่าในวรรณกรรม",
     "category": "drama",
     "filename": "article_drama_20260711_204234_514.html",
