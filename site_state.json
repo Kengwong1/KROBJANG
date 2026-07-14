@@ -1,10 +1,15 @@
 {
-  "last_updated": "2026-07-12T20:02:00.564515",
-  "last_writer_run": "2026-07-11T22:06:57.999959",
+  "last_updated": "2026-07-14T22:53:41.264895",
+  "last_writer_run": "2026-07-14T22:53:41.264895",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-07-12T20:02:00.564515",
+  "last_publisher_run": "2026-07-12T20:05:26.851816",
   "last_video_run": "",
-  "pending_publish": [],
+  "pending_publish": [
+    "article_anime_20260712_201118_842.html",
+    "article_diy_20260714_223727_585.html",
+    "article_drama_20260714_224224_743.html",
+    "article_lifestyle_20260714_224713_350.html"
+  ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -214,10 +219,14 @@
     "article_movie_20260711_214505_008.html",
     "article_music_20260711_215146_608.html",
     "article_news_20260711_215724_364.html",
-    "article_anime_20260711_220124_297.html"
+    "article_anime_20260711_220124_297.html",
+    "article_anime_20260712_201118_842.html",
+    "article_diy_20260714_223727_585.html",
+    "article_drama_20260714_224224_743.html",
+    "article_lifestyle_20260714_224713_350.html"
   ],
   "published_today": 226,
-  "total_articles": 226,
+  "total_articles": 230,
   "errors": [
     {
       "agent": "publisher",
