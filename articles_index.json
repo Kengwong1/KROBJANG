@@ -1,5 +1,26 @@
 [
   {
+    "title": "ภาพยนตร์อนิเมะ",
+    "category": "anime",
+    "filename": "article_anime_20260716_144057_538.html",
+    "image": "https://images.pexels.com/photos/1449545/pexels-photo-1449545.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:46:49.204976"
+  },
+  {
+    "title": "Civic: รถยนต์สัญลักษณ์ของ Honda",
+    "category": "car",
+    "filename": "article_car_20260716_143628_443.html",
+    "image": "https://images.pexels.com/photos/34043223/pexels-photo-34043223.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:40:23.668666"
+  },
+  {
+    "title": "เพลงชาติไทย",
+    "category": "music",
+    "filename": "article_music_20260716_143140_723.html",
+    "image": "https://images.pexels.com/photos/10003448/pexels-photo-10003448.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:35:53.928513"
+  },
+  {
     "title": "กฏหมายตราสามดวง",
     "category": "law",
     "filename": "article_law_20260716_142013_032.html",

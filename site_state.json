@@ -1,15 +1,13 @@
 {
-  "last_updated": "2026-07-16T14:24:37.196196",
-  "last_writer_run": "2026-07-16T14:24:37.196196",
+  "last_updated": "2026-07-16T14:46:49.207552",
+  "last_writer_run": "2026-07-16T14:46:49.207552",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-07-15T21:37:57.198779",
+  "last_publisher_run": "2026-07-16T14:24:40.031008",
   "last_video_run": "",
   "pending_publish": [
-    "article_technology_20260716_135609_437.html",
-    "article_horoscope_20260716_140000_262.html",
-    "article_story_20260716_140840_343.html",
-    "article_folktale_20260716_141431_774.html",
-    "article_law_20260716_142013_032.html"
+    "article_music_20260716_143140_723.html",
+    "article_car_20260716_143628_443.html",
+    "article_anime_20260716_144057_538.html"
   ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
@@ -232,10 +230,13 @@
     "article_horoscope_20260716_140000_262.html",
     "article_story_20260716_140840_343.html",
     "article_folktale_20260716_141431_774.html",
-    "article_law_20260716_142013_032.html"
+    "article_law_20260716_142013_032.html",
+    "article_music_20260716_143140_723.html",
+    "article_car_20260716_143628_443.html",
+    "article_anime_20260716_144057_538.html"
   ],
-  "published_today": 233,
-  "total_articles": 238,
+  "published_today": 238,
+  "total_articles": 241,
   "errors": [
     {
       "agent": "publisher",
