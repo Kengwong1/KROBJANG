@@ -1,5 +1,40 @@
 [
   {
+    "title": "กฏหมายตราสามดวง",
+    "category": "law",
+    "filename": "article_law_20260716_142013_032.html",
+    "image": "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:24:37.194116"
+  },
+  {
+    "title": "ผีสิงในประเทศไทย",
+    "category": "folktale",
+    "filename": "article_folktale_20260716_141431_774.html",
+    "image": "https://images.pexels.com/photos/13099592/pexels-photo-13099592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:19:44.671533"
+  },
+  {
+    "title": "ผีสิงในประเทศไทย",
+    "category": "story",
+    "filename": "article_story_20260716_140840_343.html",
+    "image": "https://images.pexels.com/photos/5607904/pexels-photo-5607904.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:14:18.439182"
+  },
+  {
+    "title": "ดูดาวลาซิยา",
+    "category": "horoscope",
+    "filename": "article_horoscope_20260716_140000_262.html",
+    "image": "https://images.pexels.com/photos/34519499/pexels-photo-34519499.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T14:04:00.245875"
+  },
+  {
+    "title": "TH-AI Passport: ฟังก์ชัน AI ฟรีในต่างประเทศ",
+    "category": "technology",
+    "filename": "article_technology_20260716_135609_437.html",
+    "image": "https://images.pexels.com/photos/32642488/pexels-photo-32642488.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-16T13:59:33.443046"
+  },
+  {
     "title": "ผีสิงในประเทศไทย",
     "category": "ghost",
     "filename": "article_ghost_20260715_213249_849.html",

@@ -1,13 +1,15 @@
 {
-  "last_updated": "2026-07-15T21:37:53.271338",
-  "last_writer_run": "2026-07-15T21:37:53.271338",
+  "last_updated": "2026-07-16T14:24:37.196196",
+  "last_writer_run": "2026-07-16T14:24:37.196196",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-07-14T22:53:44.287564",
+  "last_publisher_run": "2026-07-15T21:37:57.198779",
   "last_video_run": "",
   "pending_publish": [
-    "article_lifestyle_20260715_212152_505.html",
-    "article_tips_20260715_212737_818.html",
-    "article_ghost_20260715_213249_849.html"
+    "article_technology_20260716_135609_437.html",
+    "article_horoscope_20260716_140000_262.html",
+    "article_story_20260716_140840_343.html",
+    "article_folktale_20260716_141431_774.html",
+    "article_law_20260716_142013_032.html"
   ],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
@@ -225,10 +227,15 @@
     "article_lifestyle_20260714_224713_350.html",
     "article_lifestyle_20260715_212152_505.html",
     "article_tips_20260715_212737_818.html",
-    "article_ghost_20260715_213249_849.html"
+    "article_ghost_20260715_213249_849.html",
+    "article_technology_20260716_135609_437.html",
+    "article_horoscope_20260716_140000_262.html",
+    "article_story_20260716_140840_343.html",
+    "article_folktale_20260716_141431_774.html",
+    "article_law_20260716_142013_032.html"
   ],
-  "published_today": 230,
-  "total_articles": 233,
+  "published_today": 233,
+  "total_articles": 238,
   "errors": [
     {
       "agent": "publisher",
