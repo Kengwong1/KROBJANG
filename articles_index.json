@@ -1,5 +1,845 @@
 [
   {
+    "title": "กีฬา",
+    "category": "sport",
+    "filename": "article_sport_20260725_223334_007.html",
+    "image": "https://images.pexels.com/photos/13907429/pexels-photo-13907429.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:38:09.667738"
+  },
+  {
+    "title": "ธุรกิจในยุคดิจิทัล",
+    "category": "business",
+    "filename": "article_business_20260725_222825_055.html",
+    "image": "https://images.pexels.com/photos/5789912/pexels-photo-5789912.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:33:17.235775"
+  },
+  {
+    "title": "เทคโนโลยีการศึกษา",
+    "category": "education",
+    "filename": "article_education_20260725_222322_476.html",
+    "image": "https://images.pexels.com/photos/10638068/pexels-photo-10638068.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:28:06.774192"
+  },
+  {
+    "title": "เผาร่างอดีตนักศึกษาช่างกลดัง ยายวอนเร่งตามตัวคนร้าย",
+    "category": "news",
+    "filename": "article_news_20260725_221940_287.html",
+    "image": "https://images.pexels.com/photos/68138/fire-danger-dangerous-fight-68138.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:23:07.226636"
+  },
+  {
+    "title": "ผู้เดินทาง",
+    "category": "story",
+    "filename": "article_story_20260725_221534_542.html",
+    "image": "https://images.pexels.com/photos/14416667/pexels-photo-14416667.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:19:12.718765"
+  },
+  {
+    "title": "อนิเมะในญี่ปุ่น",
+    "category": "anime",
+    "filename": "article_anime_20260725_221103_864.html",
+    "image": "https://images.pexels.com/photos/5266498/pexels-photo-5266498.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:15:22.619756"
+  },
+  {
+    "title": "นิทานพื้นบ้านไทย",
+    "category": "folktale",
+    "filename": "article_folktale_20260725_220423_762.html",
+    "image": "https://images.pexels.com/photos/14412881/pexels-photo-14412881.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:10:38.100665"
+  },
+  {
+    "title": "การ์ตูน ความตลกขบขันในชีวิตประจำวัน",
+    "category": "cartoon",
+    "filename": "article_cartoon_20260725_215806_702.html",
+    "image": "https://images.pexels.com/photos/16516/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T22:04:00.885891"
+  },
+  {
+    "title": "ความตลกขบขันในชีวิตประจำวัน",
+    "category": "comedy",
+    "filename": "article_comedy_20260725_215223_151.html",
+    "image": "https://images.pexels.com/photos/12487146/pexels-photo-12487146.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:57:48.408100"
+  },
+  {
+    "title": "แรงบันดาลใจในชีวิต",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260725_214756_257.html",
+    "image": "https://images.pexels.com/photos/1650030/pexels-photo-1650030.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:52:04.572570"
+  },
+  {
+    "title": "ดราม่าวรรณกรรม",
+    "category": "drama",
+    "filename": "article_drama_20260725_214032_941.html",
+    "image": "https://images.pexels.com/photos/35647510/pexels-photo-35647510.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:47:32.067101"
+  },
+  {
+    "title": "ผีสางในวรรณกรรมไทย",
+    "category": "ghost",
+    "filename": "article_ghost_20260725_213518_517.html",
+    "image": "https://images.pexels.com/photos/34092684/pexels-photo-34092684.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:40:17.801451"
+  },
+  {
+    "title": "ความงามและผลิตภัณฑ์ดูแลผิว",
+    "category": "beauty",
+    "filename": "article_beauty_20260725_213018_057.html",
+    "image": "https://images.pexels.com/photos/7320732/pexels-photo-7320732.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:34:59.314943"
+  },
+  {
+    "title": "วิดีโอเกมในยุคปัจจุบัน",
+    "category": "gaming",
+    "filename": "article_gaming_20260725_212354_275.html",
+    "image": "https://images.pexels.com/photos/8652318/pexels-photo-8652318.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:29:50.831408"
+  },
+  {
+    "title": "นวัตกรรมใหม่ MouthPad รีเทนเนอร์อัจฉริยะ",
+    "category": "technology",
+    "filename": "article_technology_20260725_211926_624.html",
+    "image": "https://images.pexels.com/photos/11622659/pexels-photo-11622659.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:23:24.685212"
+  },
+  {
+    "title": "ปัญหาหุ้นบวก",
+    "category": "finance",
+    "filename": "article_finance_20260725_211454_771.html",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1c/An_office_building_of_Stock_Exchange_of_Thailand.jpg",
+    "date": "2026-07-25T21:18:49.450899"
+  },
+  {
+    "title": "เที่ยวทั่วโลกอย่างมีความสุข",
+    "category": "travel",
+    "filename": "article_travel_20260725_210852_368.html",
+    "image": "https://images.pexels.com/photos/33480793/pexels-photo-33480793.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:14:23.349718"
+  },
+  {
+    "title": "สุขภาพดีด้วยไลฟ์สไตล์ที่สมดุล",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260725_210402_508.html",
+    "image": "https://images.pexels.com/photos/6654111/pexels-photo-6654111.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T21:08:07.780329"
+  },
+  {
+    "title": "สุขภาพดีด้วยอาหารที่อร่อย",
+    "category": "health",
+    "filename": "article_health_20260725_205929_859.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/kill-3.jpg",
+    "date": "2026-07-25T21:03:39.442271"
+  },
+  {
+    "title": "สุขภาพดีด้วยอาหารที่อร่อย",
+    "category": "food",
+    "filename": "article_food_20260725_205458_131.html",
+    "image": "https://images.pexels.com/photos/31029446/pexels-photo-31029446.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T20:59:04.984433"
+  },
+  {
+    "title": "การเรียนรู้กีฬากอล์ฟในโรงเรียน",
+    "category": "sport",
+    "filename": "article_sport_20260725_003855_420.html",
+    "image": "https://images.pexels.com/photos/15877153/pexels-photo-15877153.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:42:45.214568"
+  },
+  {
+    "title": "การทำธุรกิจ",
+    "category": "business",
+    "filename": "article_business_20260725_003323_939.html",
+    "image": "https://images.pexels.com/photos/5833326/pexels-photo-5833326.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:38:33.022859"
+  },
+  {
+    "title": "เทคโนโลยีการศึกษา",
+    "category": "education",
+    "filename": "article_education_20260725_002832_574.html",
+    "image": "https://images.pexels.com/photos/10643469/pexels-photo-10643469.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:33:04.998610"
+  },
+  {
+    "title": "พัทยาอ่วม พายุซัดฝนเทกระหน่ำน้ำท่วมฉับพลันรถดับกลางถนนหลายสิบคัน แนะเลี่ยงเส้นทาง",
+    "category": "news",
+    "filename": "article_news_20260725_001903_789.html",
+    "image": "https://images.pexels.com/photos/24603677/pexels-photo-24603677.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:28:17.610336"
+  },
+  {
+    "title": "ตำนานพื้นบ้านไทย",
+    "category": "story",
+    "filename": "article_story_20260725_001314_148.html",
+    "image": "https://images.pexels.com/photos/35989565/pexels-photo-35989565.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:18:38.368881"
+  },
+  {
+    "title": "อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว",
+    "category": "anime",
+    "filename": "article_anime_20260725_000840_009.html",
+    "image": "https://images.pexels.com/photos/29901368/pexels-photo-29901368.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:13:01.943287"
+  },
+  {
+    "title": "ตำนานพื้นบ้านไทย",
+    "category": "folktale",
+    "filename": "article_folktale_20260725_000401_053.html",
+    "image": "https://images.pexels.com/photos/13099592/pexels-photo-13099592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:08:15.561230"
+  },
+  {
+    "title": "การ์ตูนสุดฮาอย่างไรให้เข้าใจง่าย",
+    "category": "cartoon",
+    "filename": "article_cartoon_20260724_235740_290.html",
+    "image": "https://images.pexels.com/photos/30883224/pexels-photo-30883224.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-25T00:03:46.518794"
+  },
+  {
+    "title": "ความบันเทิงจากเรื่องตลก",
+    "category": "comedy",
+    "filename": "article_comedy_20260724_235153_021.html",
+    "image": "https://images.pexels.com/photos/34573481/pexels-photo-34573481.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:57:21.761991"
+  },
+  {
+    "title": "แรงบันดาลใจในชีวิต",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260724_234640_356.html",
+    "image": "https://images.pexels.com/photos/7508025/pexels-photo-7508025.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:51:27.730204"
+  },
+  {
+    "title": "ดราม่า: สุดยอดเรื่องราว",
+    "category": "drama",
+    "filename": "article_drama_20260724_234219_759.html",
+    "image": "https://images.pexels.com/photos/34537967/pexels-photo-34537967.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:46:13.733282"
+  },
+  {
+    "title": "ผีสางและตำนานไทย",
+    "category": "ghost",
+    "filename": "article_ghost_20260724_233712_887.html",
+    "image": "https://images.pexels.com/photos/35988360/pexels-photo-35988360.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:41:58.417435"
+  },
+  {
+    "title": "ความงาม: ความลับของวิทยาศาสตร์เครื่องสำอาง",
+    "category": "beauty",
+    "filename": "article_beauty_20260724_233304_000.html",
+    "image": "https://images.pexels.com/photos/14581392/pexels-photo-14581392.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:36:48.710704"
+  },
+  {
+    "title": "วิดีโอเกม: ความบันเทิงสมัยใหม่ที่ไม่มีวันหมดอายุ",
+    "category": "gaming",
+    "filename": "article_gaming_20260724_232815_703.html",
+    "image": "https://images.pexels.com/photos/12660509/pexels-photo-12660509.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:32:46.357625"
+  },
+  {
+    "title": "เทคโนโลยียุคใหม่",
+    "category": "technology",
+    "filename": "article_technology_20260724_232406_946.html",
+    "image": "https://images.pexels.com/photos/32162277/pexels-photo-32162277.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:27:54.035471"
+  },
+  {
+    "title": "หุ้น First American Financial แตะระดับสูงสุดในรอบ 52 สัปดาห์",
+    "category": "finance",
+    "filename": "article_finance_20260724_232031_272.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/ffggghh.jpg",
+    "date": "2026-07-24T23:23:44.907735"
+  },
+  {
+    "title": "การเดินทางในทะเลแดง: ความท้าทายและโอกาส",
+    "category": "travel",
+    "filename": "article_travel_20260724_231523_119.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/Golf3.jpg",
+    "date": "2026-07-24T23:20:17.458837"
+  },
+  {
+    "title": "ไลฟ์สไตล์ที่ลงตัว",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260724_230905_251.html",
+    "image": "https://images.pexels.com/photos/36681314/pexels-photo-36681314.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:15:04.193015"
+  },
+  {
+    "title": "สุขภาพดีทุกวัน",
+    "category": "health",
+    "filename": "article_health_20260724_230354_229.html",
+    "image": "https://images.pexels.com/photos/13849190/pexels-photo-13849190.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T23:08:47.220657"
+  },
+  {
+    "title": "เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ โดนดำเนินคดีหลังโรยหน้าซอร์เบต์ด้วย “มดดำ”",
+    "category": "food",
+    "filename": "article_food_20260724_230009_847.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/nui-1.jpg",
+    "date": "2026-07-24T23:03:32.139131"
+  },
+  {
+    "title": "กีฬาสร้างสุขภาพ",
+    "category": "sport",
+    "filename": "article_sport_20260724_225127_798.html",
+    "image": "https://images.pexels.com/photos/4426317/pexels-photo-4426317.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:55:32.718452"
+  },
+  {
+    "title": "เศรษฐกิจดิจิทัล",
+    "category": "business",
+    "filename": "article_business_20260724_224605_480.html",
+    "image": "https://images.pexels.com/photos/35764276/pexels-photo-35764276.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:50:53.826776"
+  },
+  {
+    "title": "การเรียนรู้ในยุคดิจิทัล",
+    "category": "education",
+    "filename": "article_education_20260724_224050_739.html",
+    "image": "https://images.pexels.com/photos/37476297/pexels-photo-37476297.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:45:40.287619"
+  },
+  {
+    "title": "กาย-ฮารุ โพสต์ชี้แจงปมลูกๆ เกือบโดนรถชน",
+    "category": "news",
+    "filename": "article_news_20260724_223642_231.html",
+    "image": "https://images.pexels.com/photos/10643458/pexels-photo-10643458.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:40:32.300713"
+  },
+  {
+    "title": "ผจญภัยในโลกแฟนตาซี",
+    "category": "story",
+    "filename": "article_story_20260724_223023_530.html",
+    "image": "https://images.pexels.com/photos/14416665/pexels-photo-14416665.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:36:13.202720"
+  },
+  {
+    "title": "อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น",
+    "category": "anime",
+    "filename": "article_anime_20260724_222549_853.html",
+    "image": "https://images.pexels.com/photos/35261744/pexels-photo-35261744.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:30:11.150215"
+  },
+  {
+    "title": "เรียนรู้ตำนานท้องถิ่น",
+    "category": "folktale",
+    "filename": "article_folktale_20260724_222014_300.html",
+    "image": "https://images.pexels.com/photos/28747438/pexels-photo-28747438.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:25:21.527411"
+  },
+  {
+    "title": "การ์ตูนที่ตลกชวนหัว",
+    "category": "cartoon",
+    "filename": "article_cartoon_20260724_221624_902.html",
+    "image": "https://images.pexels.com/photos/38519711/pexels-photo-38519711.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:19:58.821664"
+  },
+  {
+    "title": "ตลกชวนหัว",
+    "category": "comedy",
+    "filename": "article_comedy_20260724_220958_369.html",
+    "image": "https://images.pexels.com/photos/7968584/pexels-photo-7968584.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:16:00.936929"
+  },
+  {
+    "title": "แรงบันดาลใจในชีวิตประจำวัน",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260724_220549_331.html",
+    "image": "https://images.pexels.com/photos/8728900/pexels-photo-8728900.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:09:39.614074"
+  },
+  {
+    "title": "ดราม่า: เรื่องราวที่เกินจริง",
+    "category": "drama",
+    "filename": "article_drama_20260724_215901_262.html",
+    "image": "https://images.pexels.com/photos/7593933/pexels-photo-7593933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T22:05:12.439129"
+  },
+  {
+    "title": "ผีกระสือและกระหัง",
+    "category": "ghost",
+    "filename": "article_ghost_20260724_215426_027.html",
+    "image": "https://images.pexels.com/photos/35988360/pexels-photo-35988360.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T21:58:34.840740"
+  },
+  {
+    "title": "ความงามและสุขภาพ",
+    "category": "beauty",
+    "filename": "article_beauty_20260724_214850_255.html",
+    "image": "https://images.pexels.com/photos/3884214/pexels-photo-3884214.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T21:53:55.131985"
+  },
+  {
+    "title": "วิดีโอเกม: เครื่องเล่นเกมที่เปลี่ยนแปลงโลก",
+    "category": "gaming",
+    "filename": "article_gaming_20260724_214433_875.html",
+    "image": "https://images.pexels.com/photos/14189711/pexels-photo-14189711.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T21:48:21.831502"
+  },
+  {
+    "title": "เทคโนโลยีก้าวหน้า",
+    "category": "technology",
+    "filename": "article_technology_20260724_214003_631.html",
+    "image": "https://images.pexels.com/photos/19997977/pexels-photo-19997977.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T21:44:11.073658"
+  },
+  {
+    "title": "ตลาดหุ้นยุโรปฟื้นตัว",
+    "category": "finance",
+    "filename": "article_finance_20260724_213627_149.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/fgetghethe.jpg",
+    "date": "2026-07-24T21:39:37.207696"
+  },
+  {
+    "title": "ท่องเที่ยวในโลกที่เต็มไปด้วยความตึงเครียด",
+    "category": "travel",
+    "filename": "article_travel_20260724_213100_718.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/sadshirt1.jpg",
+    "date": "2026-07-24T21:36:08.461237"
+  },
+  {
+    "title": "ไลฟ์สไตล์ที่ลงตัว",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260724_212625_245.html",
+    "image": "https://images.pexels.com/photos/287975/pexels-photo-287975.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-24T21:30:49.752211"
+  },
+  {
+    "title": "สุขภาพ: พ่อไทยทิพย์จับ 4 ผู้ต้องหาสวมสิทธิแจ้งเกิดเด็กให้ได้สัญชาติไทย",
+    "category": "health",
+    "filename": "article_health_20260724_212154_321.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/445-1.jpg",
+    "date": "2026-07-24T21:26:03.135772"
+  },
+  {
+    "title": "เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ ส่อจำคุก 1 ปี-หลังโรยหน้าซอร์เบต์ด้วย “มดดำ”",
+    "category": "food",
+    "filename": "article_food_20260724_211740_397.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/italy.jpg",
+    "date": "2026-07-24T21:21:34.490899"
+  },
+  {
+    "title": "กีฬาที่คุณชื่นชอบ",
+    "category": "sport",
+    "filename": "article_sport_20260723_222628_367.html",
+    "image": "https://images.pexels.com/photos/1394757/pexels-photo-1394757.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:30:55.842470"
+  },
+  {
+    "title": "ทำธุรกิจอย่างไรให้ประสบความสำเร็จ",
+    "category": "business",
+    "filename": "article_business_20260723_222150_617.html",
+    "image": "https://images.pexels.com/photos/7433879/pexels-photo-7433879.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:26:03.948994"
+  },
+  {
+    "title": "เทคโนโลยีการศึกษาในยุคดิจิทัล",
+    "category": "education",
+    "filename": "article_education_20260723_221724_803.html",
+    "image": "https://images.pexels.com/photos/5539290/pexels-photo-5539290.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:21:21.604618"
+  },
+  {
+    "title": "จวกยับหนุ่มทำคอนเทนต์ฉี่ใส่รีสอร์ตดัง",
+    "category": "news",
+    "filename": "article_news_20260723_221313_754.html",
+    "image": "https://images.pexels.com/photos/11244880/pexels-photo-11244880.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:17:00.384335"
+  },
+  {
+    "title": "สู่โลกแห่งนิทานพื้นบ้าน",
+    "category": "story",
+    "filename": "article_story_20260723_220751_185.html",
+    "image": "https://images.pexels.com/photos/14413000/pexels-photo-14413000.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:12:41.115280"
+  },
+  {
+    "title": "สุดยอดอนิเมะที่คุณต้องดู",
+    "category": "anime",
+    "filename": "article_anime_20260723_220317_297.html",
+    "image": "https://images.pexels.com/photos/1449545/pexels-photo-1449545.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:07:37.720474"
+  },
+  {
+    "title": "ตำนานนิทานพื้นบ้าน",
+    "category": "folktale",
+    "filename": "article_folktale_20260723_215759_135.html",
+    "image": "https://images.pexels.com/photos/479658/pexels-photo-479658.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T22:02:52.280934"
+  },
+  {
+    "title": "การ์ตูน: ศิลปะแห่งความตลกขบขัน",
+    "category": "cartoon",
+    "filename": "article_cartoon_20260723_215315_579.html",
+    "image": "https://images.pexels.com/photos/38202125/pexels-photo-38202125.png?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:57:43.712367"
+  },
+  {
+    "title": "ตลก: ความบันเทิงที่ทำให้หัวเราะ",
+    "category": "comedy",
+    "filename": "article_comedy_20260723_214705_859.html",
+    "image": "https://images.pexels.com/photos/20354293/pexels-photo-20354293.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:52:47.215877"
+  },
+  {
+    "title": "แรงบันดาลใจในชีวิต",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260723_214243_387.html",
+    "image": "https://images.pexels.com/photos/7143078/pexels-photo-7143078.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:46:40.843478"
+  },
+  {
+    "title": "ดราม่าในยุคดิจิทัล",
+    "category": "drama",
+    "filename": "article_drama_20260723_213420_776.html",
+    "image": "https://images.pexels.com/photos/3062603/pexels-photo-3062603.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:42:15.322338"
+  },
+  {
+    "title": "ผีสางในประเทศไทย",
+    "category": "ghost",
+    "filename": "article_ghost_20260723_212942_505.html",
+    "image": "https://images.pexels.com/photos/29111985/pexels-photo-29111985.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:33:53.413918"
+  },
+  {
+    "title": "ความงามในยุคดิจิทัล",
+    "category": "beauty",
+    "filename": "article_beauty_20260723_212252_421.html",
+    "image": "https://images.pexels.com/photos/4620863/pexels-photo-4620863.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:29:21.920047"
+  },
+  {
+    "title": "วิดีโอเกม: เครื่องเล่นเกมที่เปลี่ยนแปลงโลก",
+    "category": "gaming",
+    "filename": "article_gaming_20260723_211829_760.html",
+    "image": "https://images.pexels.com/photos/4522998/pexels-photo-4522998.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:22:32.960670"
+  },
+  {
+    "title": "เทคโนโลยีสุขภาพในยุคดิจิทัล",
+    "category": "technology",
+    "filename": "article_technology_20260723_211403_751.html",
+    "image": "https://images.pexels.com/photos/32026163/pexels-photo-32026163.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:18:04.490260"
+  },
+  {
+    "title": "การเงินดิจิทัลในยุคใหม่",
+    "category": "finance",
+    "filename": "article_finance_20260723_210840_503.html",
+    "image": "https://images.pexels.com/photos/7567591/pexels-photo-7567591.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:13:28.249461"
+  },
+  {
+    "title": "ภารกิจพิชิตทะเลแดง",
+    "category": "travel",
+    "filename": "article_travel_20260723_210304_242.html",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/89/The_Ka%27ba%2C_Great_Mosque_of_Mecca%2C_Saudi_Arabia_%284%29.jpg",
+    "date": "2026-07-23T21:08:09.102646"
+  },
+  {
+    "title": "สุขภาพดีเริ่มต้นจากการเลือกไลฟ์สไตล์ที่เหมาะสม",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260723_205825_034.html",
+    "image": "https://images.pexels.com/photos/36764439/pexels-photo-36764439.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T21:02:47.919879"
+  },
+  {
+    "title": "การเปลี่ยนแปลงของเทคโนโลยีส่งผลต่อสุขภาพอย่างไร?",
+    "category": "health",
+    "filename": "article_health_20260723_205421_054.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/malaimoney1.jpg",
+    "date": "2026-07-23T20:58:00.322837"
+  },
+  {
+    "title": "อาหารดีต่อสุขภาพ",
+    "category": "food",
+    "filename": "article_food_20260723_204935_766.html",
+    "image": "https://images.pexels.com/photos/30392946/pexels-photo-30392946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-23T20:53:58.237512"
+  },
+  {
+    "title": "แรงบันดาลใจในยุคดิจิทัล",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260722_224057_960.html",
+    "image": "https://images.pexels.com/photos/25630343/pexels-photo-25630343.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:46:55.438232"
+  },
+  {
+    "title": "ดราม่าสังคมยุคดิจิทัล",
+    "category": "drama",
+    "filename": "article_drama_20260722_223624_579.html",
+    "image": "https://images.pexels.com/photos/31845821/pexels-photo-31845821.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:40:38.227890"
+  },
+  {
+    "title": "ผีสางในประเทศไทย",
+    "category": "ghost",
+    "filename": "article_ghost_20260722_223118_422.html",
+    "image": "https://images.pexels.com/photos/13128730/pexels-photo-13128730.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:36:02.747458"
+  },
+  {
+    "title": "ความงามในยุคดิจิทัล",
+    "category": "beauty",
+    "filename": "article_beauty_20260722_222521_415.html",
+    "image": "https://images.pexels.com/photos/7256108/pexels-photo-7256108.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:30:55.577384"
+  },
+  {
+    "title": "วิดีโอเกม: เครื่องเล่นเกมที่เปลี่ยนแปลงโลก",
+    "category": "gaming",
+    "filename": "article_gaming_20260722_222048_714.html",
+    "image": "https://images.pexels.com/photos/9072217/pexels-photo-9072217.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:25:05.050696"
+  },
+  {
+    "title": "การเปลี่ยนแปลงของเทคโนโลยี",
+    "category": "technology",
+    "filename": "article_technology_20260722_221630_597.html",
+    "image": "https://images.pexels.com/photos/35754335/pexels-photo-35754335.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:20:30.872688"
+  },
+  {
+    "title": "การเงินในยุคดิจิทัล",
+    "category": "finance",
+    "filename": "article_finance_20260722_221114_056.html",
+    "image": "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:16:07.401883"
+  },
+  {
+    "title": "ฟิลิปปินส์ยื่นประท้วงจีน ปมเผชิญหน้าในทะเลจีนใต้ ย้ำใช้สันติวิธีแก้ข้อพิพาท",
+    "category": "travel",
+    "filename": "article_travel_20260722_220654_168.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/dgryht.jpg",
+    "date": "2026-07-22T22:10:46.105146"
+  },
+  {
+    "title": "ภารกิจพิชิตสุขภาพดี",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260722_220232_604.html",
+    "image": "https://images.pexels.com/photos/917654/pexels-photo-917654.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T22:06:35.969379"
+  },
+  {
+    "title": "ภารกิจพิชิตสุขภาพดี",
+    "category": "health",
+    "filename": "article_health_20260722_215819_143.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/Picture1-48.jpg",
+    "date": "2026-07-22T22:02:16.663254"
+  },
+  {
+    "title": "ภารกิจพิชิตสุขภาพดี",
+    "category": "food",
+    "filename": "article_food_20260722_215242_883.html",
+    "image": "https://images.pexels.com/photos/5602432/pexels-photo-5602432.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-22T21:58:03.078435"
+  },
+  {
+    "title": "สาวงามประกวดมิสแกรนด์ถูกตุ๋นเงิน",
+    "category": "sport",
+    "filename": "article_sport_20260721_213947_766.html",
+    "image": "https://images.pexels.com/photos/13119699/pexels-photo-13119699.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:43:52.248951"
+  },
+  {
+    "title": "ธุรกิจในยุคดิจิทัล",
+    "category": "business",
+    "filename": "article_business_20260721_213452_652.html",
+    "image": "https://images.pexels.com/photos/5831672/pexels-photo-5831672.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:39:22.756116"
+  },
+  {
+    "title": "การเรียนรู้ในยุคดิจิทัล",
+    "category": "education",
+    "filename": "article_education_20260721_212951_299.html",
+    "image": "https://images.pexels.com/photos/10638070/pexels-photo-10638070.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:34:34.047015"
+  },
+  {
+    "title": "น้ำมันขึ้น!",
+    "category": "news",
+    "filename": "article_news_20260721_212509_524.html",
+    "image": "https://images.pexels.com/photos/36143305/pexels-photo-36143305.png?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:29:29.073798"
+  },
+  {
+    "title": "กระสือผีที่น่าสะพรึงกลัว",
+    "category": "story",
+    "filename": "article_story_20260721_211928_162.html",
+    "image": "https://images.pexels.com/photos/8220335/pexels-photo-8220335.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:24:44.230383"
+  },
+  {
+    "title": "อนิเมะในญี่ปุ่น",
+    "category": "anime",
+    "filename": "article_anime_20260721_211435_452.html",
+    "image": "https://images.pexels.com/photos/38033784/pexels-photo-38033784.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:19:15.742155"
+  },
+  {
+    "title": "ตำนานกระสือ",
+    "category": "folktale",
+    "filename": "article_folktale_20260721_210807_851.html",
+    "image": "https://images.pexels.com/photos/27959517/pexels-photo-27959517.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:14:09.884311"
+  },
+  {
+    "title": "การ์ตูนสุดฮิต",
+    "category": "cartoon",
+    "filename": "article_cartoon_20260721_210310_160.html",
+    "image": "https://images.pexels.com/photos/35597702/pexels-photo-35597702.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:07:26.421746"
+  },
+  {
+    "title": "ตลกขบขัน",
+    "category": "comedy",
+    "filename": "article_comedy_20260721_205740_977.html",
+    "image": "https://images.pexels.com/photos/3751857/pexels-photo-3751857.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T21:02:19.386767"
+  },
+  {
+    "title": "แรงบันดาลใจจากคนรอบตัว",
+    "category": "inspirational",
+    "filename": "article_inspirational_20260721_205308_630.html",
+    "image": "https://images.pexels.com/photos/37346112/pexels-photo-37346112.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:57:21.496861"
+  },
+  {
+    "title": "ดราม่าในยุคปัจจุบัน",
+    "category": "drama",
+    "filename": "article_drama_20260721_204911_764.html",
+    "image": "https://images.pexels.com/photos/11058553/pexels-photo-11058553.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:52:42.814345"
+  },
+  {
+    "title": "ผีกระสือ",
+    "category": "ghost",
+    "filename": "article_ghost_20260721_204436_101.html",
+    "image": "https://images.pexels.com/photos/28897419/pexels-photo-28897419.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:48:51.449566"
+  },
+  {
+    "title": "ผิวสวยด้วยวิทยาศาสตร์",
+    "category": "beauty",
+    "filename": "article_beauty_20260721_204039_307.html",
+    "image": "https://images.pexels.com/photos/4148931/pexels-photo-4148931.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:44:10.419767"
+  },
+  {
+    "title": "วิดีโอเกม",
+    "category": "gaming",
+    "filename": "article_gaming_20260721_203559_942.html",
+    "image": "https://images.pexels.com/photos/9069289/pexels-photo-9069289.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:40:18.735519"
+  },
+  {
+    "title": "AI ใจนักสู้! ศึกหุ่นยนต์ที่จีน T800 “หัวหลุด” แต่ยังเดินหน้าบู๊ต่อบนสังเวียนจนไวรัล",
+    "category": "technology",
+    "filename": "article_technology_20260721_203106_503.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/0-web-4-728x410-1.jpg",
+    "date": "2026-07-21T20:35:42.422982"
+  },
+  {
+    "title": "การเงินดิจิทัล",
+    "category": "finance",
+    "filename": "article_finance_20260721_202647_037.html",
+    "image": "https://images.pexels.com/photos/28682352/pexels-photo-28682352.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:30:48.639868"
+  },
+  {
+    "title": "ภาคเหนือมีฝนตกหนักบางแห่ง-ทะเลอันดามันคลื่นสูง",
+    "category": "travel",
+    "filename": "article_travel_20260721_202246_982.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/fgggrgr.jpg",
+    "date": "2026-07-21T20:26:23.628002"
+  },
+  {
+    "title": "ไลฟ์สไตล์ทันสมัย",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260721_201807_731.html",
+    "image": "https://images.pexels.com/photos/1310527/pexels-photo-1310527.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-21T20:22:30.004018"
+  },
+  {
+    "title": "สังเวยอีโบลาพุ่ง 930 ศพ หลายสิบรายเป็นจนท.ทางการแพทย์-ป่วยเกิน 2,300 คน",
+    "category": "health",
+    "filename": "article_health_20260721_201341_481.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/Ballon-dOr-366.jpg",
+    "date": "2026-07-21T20:17:47.031855"
+  },
+  {
+    "title": "- อาหารพื้นบ้านไทย",
+    "category": "food",
+    "filename": "article_food_20260721_200815_031.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/hhgsgrg.jpg",
+    "date": "2026-07-21T20:13:23.023764"
+  },
+  {
+    "title": "ผีกระสือ",
+    "category": "ghost",
+    "filename": "article_ghost_20260720_234852_010.html",
+    "image": "https://images.pexels.com/photos/28566862/pexels-photo-28566862.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:52:25.908028"
+  },
+  {
+    "title": "ความงามแห่งธรรมชาติ",
+    "category": "beauty",
+    "filename": "article_beauty_20260720_234313_301.html",
+    "image": "https://images.pexels.com/photos/12526336/pexels-photo-12526336.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:48:28.194195"
+  },
+  {
+    "title": "วิดีโอเกมในปัจจุบัน",
+    "category": "gaming",
+    "filename": "article_gaming_20260720_233842_482.html",
+    "image": "https://images.pexels.com/photos/27424789/pexels-photo-27424789.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:42:57.329105"
+  },
+  {
+    "title": "สพม. สุรินทร์ ชี้แจง ทัวร์ลาว 8,500 บาท",
+    "category": "technology",
+    "filename": "article_technology_20260720_233450_524.html",
+    "image": "https://images.pexels.com/photos/10643465/pexels-photo-10643465.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:38:27.398442"
+  },
+  {
+    "title": "การเงินดิจิทัล",
+    "category": "finance",
+    "filename": "article_finance_20260720_233016_609.html",
+    "image": "https://images.pexels.com/photos/28682352/pexels-photo-28682352.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:34:31.847955"
+  },
+  {
+    "title": "ท่องเที่ยวข้ามพรมแดน",
+    "category": "travel",
+    "filename": "article_travel_20260720_232427_248.html",
+    "image": "https://images.pexels.com/photos/32342191/pexels-photo-32342191.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:29:57.693319"
+  },
+  {
+    "title": "ไลฟ์สไตล์ทันสมัย",
+    "category": "lifestyle",
+    "filename": "article_lifestyle_20260720_231922_934.html",
+    "image": "https://images.pexels.com/photos/6350/coffee-cup-magazines-desk-6350.jpg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:24:07.848746"
+  },
+  {
+    "title": "บัตรสวัสดิการแห่งรัฐ 2569 ปรับเกณฑ์รถเก่า-นักศึกษา พร้อมขยายเวลาอุทธรณ์",
+    "category": "health",
+    "filename": "article_health_20260720_231436_594.html",
+    "image": "https://www.khaosod.co.th/wpapp/uploads/2026/07/TM22.jpg",
+    "date": "2026-07-20T23:19:06.942208"
+  },
+  {
+    "title": "อาหารพื้นบ้านไทย",
+    "category": "food",
+    "filename": "article_food_20260720_230955_273.html",
+    "image": "https://images.pexels.com/photos/31027042/pexels-photo-31027042.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-20T23:14:24.072282"
+  },
+  {
     "title": "Thaiger พ่าย DCG คว้ารองแชมป์ APL 2026",
     "category": "sport",
     "filename": "article_sport_20260719_235143_382.html",
@@ -2658,138 +3498,5 @@
     "filename": "article_pet_20260506_164916_171.html",
     "image": "https://images.pexels.com/photos/28161338/pexels-photo-28161338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "date": "2026-05-06T16:54:39.829216"
-  },
-  {
-    "title": "ตลกที่ทำให้หัวเราะ",
-    "category": "comedy",
-    "filename": "article_comedy_20260506_132313_840.html",
-    "image": "https://images.pexels.com/photos/15670417/pexels-photo-15670417.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-06T13:27:48.124342"
-  },
-  {
-    "title": "ไข่น้ำ เมนูง่ายๆ เด็กๆ ชอบ",
-    "category": "tips",
-    "filename": "article_tips_20260505_225104_598.html",
-    "image": "https://images.pexels.com/photos/346814/pexels-photo-346814.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-05T22:55:41.945684"
-  },
-  {
-    "title": "ดราม่าร้อนโลก",
-    "category": "drama",
-    "filename": "article_drama_20260504_230341_893.html",
-    "image": "https://images.unsplash.com/photo-1570124738193-153948b7290d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjM4MjB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzc5MTAyOTV8&ixlib=rb-4.1.0&q=80&w=1080",
-    "date": "2026-05-04T23:11:45.060302"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดเทคโนโลยี",
-    "category": "technology",
-    "filename": "article_technology_20260504_225401_906.html",
-    "image": "https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-04T23:05:52.221456"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดสุขภาพ",
-    "category": "health",
-    "filename": "article_health_20260504_225357_629.html",
-    "image": "https://images.pexels.com/photos/4587381/pexels-photo-4587381.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-04T23:05:03.880410"
-  },
-  {
-    "title": "นวัตกรรมชาร์จไว",
-    "category": "technology",
-    "filename": "article_technology_20260504_122916_877.html",
-    "image": "https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-04T12:35:58.310692"
-  },
-  {
-    "title": "ดราม่าร้อนโลก",
-    "category": "drama",
-    "filename": "article_drama_20260503_231356_558.html",
-    "image": "https://images.pexels.com/photos/6895843/pexels-photo-6895843.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T23:19:20.164600"
-  },
-  {
-    "title": "เกมจับเป็ดน่ารัก",
-    "category": "lottery",
-    "filename": "article_lottery_20260503_230903_307.html",
-    "image": "https://images.pexels.com/photos/7083887/pexels-photo-7083887.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T23:13:55.729047"
-  },
-  {
-    "title": "พายุกระหน่ำจังหาร",
-    "category": "music",
-    "filename": "article_music_20260503_230358_786.html",
-    "image": "https://images.pexels.com/photos/32543370/pexels-photo-32543370.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T23:08:42.301353"
-  },
-  {
-    "title": "เสี่ยงภัยเพศสัมพันธ์!",
-    "category": "health",
-    "filename": "article_health_20260503_225409_761.html",
-    "image": "https://images.pexels.com/photos/7746390/pexels-photo-7746390.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T22:59:58.536162"
-  },
-  {
-    "title": "ปชน. ขอโทษ กำนัน ผญบ. หลัง \"ภัณฑิล\" พาดพิงเอี่ยวยาเสพติด ชงเรื่องเข้ากรรมการสอบวินัย",
-    "category": "horoscope",
-    "filename": "article_horoscope_20260503_225029_044.html",
-    "image": "https://images.pexels.com/photos/10562552/pexels-photo-10562552.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T22:55:49.092226"
-  },
-  {
-    "title": "ดราม่าในวงการบันเทิง",
-    "category": "drama",
-    "filename": "article_drama_20260503_224420_148.html",
-    "image": "https://images.pexels.com/photos/6899941/pexels-photo-6899941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T22:51:09.928608"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดหนัง",
-    "category": "movie",
-    "filename": "article_movie_20260503_221639_535.html",
-    "image": "https://images.pexels.com/photos/1200450/pexels-photo-1200450.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T22:18:15.639389"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดข่าว",
-    "category": "news",
-    "filename": "article_news_20260503_181945_064.html",
-    "image": "https://images.pexels.com/photos/12471191/pexels-photo-12471191.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T18:23:32.735887"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดหนัง",
-    "category": "movie",
-    "filename": "article_movie_20260503_181626_696.html",
-    "image": "https://images.pexels.com/photos/24390597/pexels-photo-24390597.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T18:19:34.195222"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดการ์ตูน",
-    "category": "cartoon",
-    "filename": "article_cartoon_20260503_181224_702.html",
-    "image": "https://images.pexels.com/photos/8834236/pexels-photo-8834236.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T18:16:15.686274"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดดูดาว",
-    "category": "horoscope",
-    "filename": "article_horoscope_20260503_180831_437.html",
-    "image": "https://images.pexels.com/photos/6806445/pexels-photo-6806445.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T18:12:13.834079"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดธุรกิจ",
-    "category": "business",
-    "filename": "article_business_20260503_180405_428.html",
-    "image": "https://images.pexels.com/photos/36765728/pexels-photo-36765728.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T18:08:20.449227"
-  },
-  {
-    "title": "เรื่องราวน่าสนใจหมวดเทคโนโลยี",
-    "category": "technology",
-    "filename": "article_technology_20260503_175212_017.html",
-    "image": "https://images.pexels.com/photos/28675583/pexels-photo-28675583.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-03T17:56:44.974440"
   }
 ]
