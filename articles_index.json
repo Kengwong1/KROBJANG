@@ -1,5 +1,26 @@
 [
   {
+    "title": "ภาพยนตร์",
+    "category": "movie",
+    "filename": "article_movie_20260727_201224_037.html",
+    "image": "https://images.pexels.com/photos/8422953/pexels-photo-8422953.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-27T20:16:17.912915"
+  },
+  {
+    "title": "สร้างสิ่งใหม่ด้วยมือคุณเอง",
+    "category": "diy",
+    "filename": "article_diy_20260727_200555_176.html",
+    "image": "https://images.pexels.com/photos/15316023/pexels-photo-15316023.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-27T20:11:47.177523"
+  },
+  {
+    "title": "การเงินสดโอกาสใหม่",
+    "category": "finance",
+    "filename": "article_finance_20260727_200146_541.html",
+    "image": "https://images.pexels.com/photos/12955794/pexels-photo-12955794.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "date": "2026-07-27T20:05:31.779510"
+  },
+  {
     "title": "กีฬา",
     "category": "sport",
     "filename": "article_sport_20260725_223334_007.html",
@@ -3477,26 +3498,5 @@
     "filename": "article_car_20260506_202303_680.html",
     "image": "https://www.khaosod.co.th/wpapp/uploads/2026/05/690625234_1490380236215700_8769359825371444153_n_0.jpg",
     "date": "2026-05-06T20:28:06.436070"
-  },
-  {
-    "title": "สุดยอดการเดินทางบนภูเขา",
-    "category": "travel",
-    "filename": "article_travel_20260506_171906_411.html",
-    "image": "https://images.unsplash.com/photo-1468818438311-4bab781ab9b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjM4MjB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzgwNjI2MTN8&ixlib=rb-4.1.0&q=80&w=1080",
-    "date": "2026-05-06T17:27:33.049282"
-  },
-  {
-    "title": "วิ่งชายหาดสวยๆ",
-    "category": "sport",
-    "filename": "article_sport_20260506_165903_173.html",
-    "image": "https://images.pexels.com/photos/32285177/pexels-photo-32285177.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-06T17:03:29.089125"
-  },
-  {
-    "title": "สัตว์เลี้ยงคือเพื่อนแท้",
-    "category": "pet",
-    "filename": "article_pet_20260506_164916_171.html",
-    "image": "https://images.pexels.com/photos/28161338/pexels-photo-28161338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "date": "2026-05-06T16:54:39.829216"
   }
 ]
