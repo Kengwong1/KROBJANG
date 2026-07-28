@@ -1,14 +1,10 @@
 {
-  "last_updated": "2026-07-27T20:16:17.916580",
+  "last_updated": "2026-07-27T20:16:26.713473",
   "last_writer_run": "2026-07-27T20:16:17.916580",
   "last_doctor_run": "2026-05-04T23:31:12.988653",
-  "last_publisher_run": "2026-07-26T23:42:18.232627",
+  "last_publisher_run": "2026-07-27T20:16:26.713473",
   "last_video_run": "",
-  "pending_publish": [
-    "article_finance_20260727_200146_541.html",
-    "article_diy_20260727_200555_176.html",
-    "article_movie_20260727_201224_037.html"
-  ],
+  "pending_publish": [],
   "pending_doctor": [
     "article_tips_20260505_225104_598.html",
     "article_comedy_20260506_132313_840.html",
@@ -516,7 +512,7 @@
     "article_diy_20260727_200555_176.html",
     "article_movie_20260727_201224_037.html"
   ],
-  "published_today": 519,
+  "published_today": 522,
   "total_articles": 522,
   "errors": [
     {
