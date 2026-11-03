@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-03T21:51:30.171978",
+  "last_updated": "2026-11-03T21:56:32.791988",
   "last_writer_run": "2026-11-03T21:22:47.992327",
   "last_doctor_run": "",
   "last_publisher_run": "",
@@ -13,6 +13,11 @@
   "published_today": 0,
   "total_articles": 1,
   "errors": [
+    {
+      "agent": "publisher",
+      "msg": "remote: Invalid username or token. Password authentication is not supported for Git operations.\nfatal: Authentication failed for 'https://github.com/Kengwong1/KROBJANG.git/'\n",
+      "time": "2026-11-03T21:56:32.791988"
+    },
     {
       "agent": "publisher",
       "msg": "remote: Invalid username or token. Password authentication is not supported for Git operations.\nfatal: Authentication failed for 'https://github.com/Kengwong1/KROBJANG.git/'\n",
