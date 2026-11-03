@@ -1,16 +1,14 @@
 {
-  "last_updated": "2026-11-03T22:14:44.344074",
+  "last_updated": "2026-11-03T22:53:26.642470",
   "last_writer_run": "2026-11-03T21:22:47.992327",
   "last_doctor_run": "",
-  "last_publisher_run": "",
+  "last_publisher_run": "2026-11-03T22:53:26.642470",
   "last_video_run": "",
-  "pending_publish": [
-    "article_diy_20261103_211737_657.html"
-  ],
+  "pending_publish": [],
   "pending_doctor": [
     "article_diy_20261103_211737_657.html"
   ],
-  "published_today": 0,
+  "published_today": 1,
   "total_articles": 1,
   "errors": [
     {
