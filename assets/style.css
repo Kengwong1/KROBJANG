@@ -111,15 +111,15 @@ header {
 }
 
 /* Article Grid */
-.article-grid {
+.article-grid, .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
     margin-bottom: 50px;
 }
 
 /* Article Card */
-.article-card {
+.article-card, .card {
     background: var(--bg-white);
     border-radius: var(--radius);
     overflow: hidden;
@@ -128,39 +128,41 @@ header {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
+    height: 100%;
 }
 
-.article-card:hover {
+.article-card:hover, .card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
 
-.thumbnail-wrapper {
+.thumbnail-wrapper, .card-thumb {
     width: 100%;
     height: 200px;
     overflow: hidden;
     position: relative;
+    background-color: #eee;
 }
 
-.thumbnail-wrapper img {
+.thumbnail-wrapper img, .card-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
 }
 
-.article-card:hover .thumbnail-wrapper img {
+.article-card:hover .thumbnail-wrapper img, .card:hover .card-thumb img {
     transform: scale(1.05);
 }
 
-.article-content {
+.article-content, .card-body {
     padding: 20px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.category-badge {
+.category-badge, .card-cat {
     display: inline-block;
     background-color: var(--primary-color);
     color: white;
@@ -171,7 +173,7 @@ header {
     width: fit-content;
 }
 
-.article-title {
+.article-title, .card-title {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 10px;
@@ -179,7 +181,7 @@ header {
     line-height: 1.4;
 }
 
-.article-date {
+.article-date, .card-meta {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-top: auto;
