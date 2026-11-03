@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-03T22:06:45.379662",
+  "last_updated": "2026-11-03T22:09:31.170506",
   "last_writer_run": "2026-11-03T21:22:47.992327",
   "last_doctor_run": "",
   "last_publisher_run": "",
@@ -13,6 +13,11 @@
   "published_today": 0,
   "total_articles": 1,
   "errors": [
+    {
+      "agent": "publisher",
+      "msg": "fatal: The current branch main has no upstream branch.\nTo push the current branch and set the remote as upstream, use\n\n    git push --set-upstream origin main\n\nTo have this happen automatically for branches without a tracking\nupstream, see 'push.autoSetupRemote' in 'git help config'.\n\n",
+      "time": "2026-11-03T22:09:31.170506"
+    },
     {
       "agent": "publisher",
       "msg": "remote: Permission to Kengwong1/KROBJANG.git denied to phongphunphommanee-create.\nfatal: unable to access 'https://github.com/Kengwong1/KROBJANG.git/': The requested URL returned error: 403\n",
