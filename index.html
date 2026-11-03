@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ครบจัง — บทความไทยคุณภาพ ครบทุกหมวด</title>
-<meta name="description" content="บทความไทยคุณภาพ ครบทุกหมวด">
-<link rel="stylesheet" href="/style.css">
-<link rel="manifest" href="/manifest.json">
-
-<style>
-/* ลบ style inline เพื่อใช้จาก style.css แทน */
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ครบจัง — บทความไทยคุณภาพ ครบทุกหมวด</title>
+    <meta name="description" content="บทความไทยคุณภาพ ครบทุกหมวด">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav class="site-nav">
-  <a href="/" class="nav-logo">ครบจัง</a>
-  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></div>
-  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-</nav>
-<div id="search-modal" class="search-modal">
-  <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
-  <div id="search-results"></div>
-</div>
-<section class="hero-home">
-  <h1>ครบจัง</h1>
-  <p>บทความไทยคุณภาพ ครบทุกหมวด</p>
-</section>
-<div class="container">
-  <h2 style="margin-bottom:1rem;">บทความล่าสุด</h2>
-  <div class="article-grid">
-    <a href="/article_diy_20261103_211737_657.html" class="card"><img class="card-img" src="https://images.unsplash.com/photo-1782849159378-a068078370bf?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MjM4MjB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTM3MTU0NjN8&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="DIY มวยปล้ำ" loading="lazy"><div class="card-body"><div class="card-cat cat-diy">DIY</div><div class="card-title">DIY มวยปล้ำ</div><div class="card-date">2026-11-03</div></div></a>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">ครบจัง</a>
+            <ul class="nav-links">
+                <li><a href="/food.html">อาหาร</a></li>
+                <li><a href="/health.html">สุขภาพ</a></li>
+                <li><a href="/lifestyle.html">ไลฟ์สไตล์</a></li>
+                <li><a href="/travel.html">ท่องเที่ยว</a></li>
+                <li><a href="/finance.html">การเงิน</a></li>
+                <li><a href="/technology.html">เทคโนโลยี</a></li>
+                <li><a href="/gaming.html">เกม</a></li>
+                <li><a href="/beauty.html">ความงาม</a></li>
+                <li><a href="/ghost.html">ผีสาง</a></li>
+                <li><a href="/drama.html">ดราม่า</a></li>
+                <li><a href="/inspirational.html">แรงบันดาลใจ</a></li>
+                <li><a href="/comedy.html">ตลก</a></li>
+                <li><a href="/cartoon.html">การ์ตูน</a></li>
+                <li><a href="/folktale.html">นิทานพื้นบ้าน</a></li>
+                <li><a href="/anime.html">อนิเมะ</a></li>
+                <li><a href="/story.html">เรื่องเล่า</a></li>
+                <li><a href="/news.html">ข่าว</a></li>
+                <li><a href="/education.html">การศึกษา</a></li>
+                <li><a href="/business.html">ธุรกิจ</a></li>
+                <li><a href="/sport.html">กีฬา</a></li>
+            </ul>
+            <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
+        </div>
+    </header>
 
-  </div>
-</div>
-<footer class="site-footer">
-  <p>© 2026 <a href="/">ครบจัง</a></p>
-  <p style="margin-top:.5rem;"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></p>
-</footer>
-<script src="/nav.js"></script>
+    <div id="search-modal" class="search-modal">
+        <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
+        <div id="search-results"></div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>ครบจัง</h1>
+            <p>บทความไทยคุณภาพ ครบทุกหมวดหมู่ เพื่อคุณ</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 style="margin-bottom: 2rem; text-align: center; font-size: 2rem;">บทความล่าสุด</h2>
+        <div class="article-grid">
+            <a href="/article_diy_20261103_211737_657.html" class="article-card">
+                <div class="thumbnail-wrapper">
+                    <img src="https://images.unsplash.com/photo-1782849159378-a068078370bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjM4MjB8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTM3MTU0NjN8&ixlib=rb-4.1.0&q=80&w=1080" alt="DIY มวยปล้ำ" loading="lazy">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">DIY</span>
+                    <h3 class="article-title">DIY มวยปล้ำ</h3>
+                    <div class="article-date">2026-11-03</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 <a href="/">ครบจัง</a></p>
+            <div class="footer-links" style="margin-top: 1rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 0.85rem;">
+                <a href="/food.html">อาหาร</a>
+                <a href="/health.html">สุขภาพ</a>
+                <a href="/lifestyle.html">ไลฟ์สไตล์</a>
+                <a href="/travel.html">ท่องเที่ยว</a>
+                <a href="/finance.html">การเงิน</a>
+                <a href="/technology.html">เทคโนโลยี</a>
+                <a href="/gaming.html">เกม</a>
+                <a href="/beauty.html">ความงาม</a>
+                <a href="/ghost.html">ผีสาง</a>
+                <a href="/drama.html">ดราม่า</a>
+                <a href="/inspirational.html">แรงบันดาลใจ</a>
+                <a href="/comedy.html">ตลก</a>
+                <a href="/cartoon.html">การ์ตูน</a>
+                <a href="/folktale.html">นิทานพื้นบ้าน</a>
+                <a href="/anime.html">อนิเมะ</a>
+                <a href="/story.html">เรื่องเล่า</a>
+                <a href="/news.html">ข่าว</a>
+                <a href="/education.html">การศึกษา</a>
+                <a href="/business.html">ธุรกิจ</a>
+                <a href="/sport.html">กีฬา</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/nav.js"></script>
 </body>
 </html>
