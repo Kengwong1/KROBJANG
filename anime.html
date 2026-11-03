@@ -1,129 +1,78 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>หมวดอนิเมะ | ครบจัง</title>
-    <meta name="description" content="บทความหมวดอนิเมะ ทั้งหมดจากครบจัง">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="manifest" href="/manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>หมวดอนิเมะ | ครบจัง</title>
+<meta name="description" content="บทความหมวดอนิเมะ ทั้งหมดจากครบจัง">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="manifest" href="/manifest.json">
+
+<style>
+.cat-header {
+  background: linear-gradient(135deg, #1e40af, #0f172a);
+  color: #fff;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+.cat-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+.cat-header p {
+  opacity: 0.85;
+  margin-top: 0.4rem;
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="nav-container">
-            <a href="/" class="logo">ครบจัง</a>
-            <ul class="nav-links">
-                <li><a href="/food.html">อาหาร</a></li>
-                <li><a href="/health.html">สุขภาพ</a></li>
-                <li><a href="/lifestyle.html">ไลฟ์สไตล์</a></li>
-                <li><a href="/travel.html">ท่องเที่ยว</a></li>
-                <li><a href="/finance.html">การเงิน</a></li>
-                <li><a href="/technology.html">เทคโนโลยี</a></li>
-                <li><a href="/gaming.html">เกม</a></li>
-                <li><a href="/beauty.html">ความงาม</a></li>
-                <li><a href="/ghost.html">ผีสาง</a></li>
-                <li><a href="/drama.html">ดราม่า</a></li>
-                <li><a href="/inspirational.html">แรงบันดาลใจ</a></li>
-                <li><a href="/comedy.html">ตลก</a></li>
-                <li><a href="/cartoon.html">การ์ตูน</a></li>
-                <li><a href="/folktale.html">นิทานพื้นบ้าน</a></li>
-                <li><a href="/anime.html">อนิเมะ</a></li>
-                <li><a href="/story.html">เรื่องเล่า</a></li>
-                <li><a href="/news.html">ข่าว</a></li>
-                <li><a href="/education.html">การศึกษา</a></li>
-                <li><a href="/business.html">ธุรกิจ</a></li>
-                <li><a href="/sport.html">กีฬา</a></li>
-            </ul>
-            <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-        </div>
-    </header>
+<!-- Navigation is now handled by nav.js -->
+<div id="search-modal" class="search-modal">
+  <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
+  <div id="search-results"></div>
+</div>
+<div class="cat-header">
+  <h1>อนิเมะ</h1>
+  <p>บทความหมวดอนิเมะทั้งหมด (31 บทความ)</p>
+</div>
+<div class="container">
+  <div class="cards-grid">
+    <a href="/article_anime_20260711_220124_297.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260712_201118_842.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260716_144057_538.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">ภาพยนตร์อนิเมะ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260716_174047_885.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260716_213613_501.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งการเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260716_232609_478.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: สื่อบันเทิงญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260717_131829_373.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะโลกแห่งจินตนาการ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260717_154709_005.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: วัฒนธรรมแห่งภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260717_224915_798.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะการเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260718_214843_101.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: วัฒนธรรมญี่ปุ่นที่ไม่อาจลืม | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260719_232742_344.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: วัฒนธรรมการ์ตูนญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260721_211435_452.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะในญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260723_220317_297.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">สุดยอดอนิเมะที่คุณต้องดู | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260724_222549_853.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260725_000840_009.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260725_221103_864.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะในญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260729_175456_472.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260729_195141_947.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะญี่ปุ่น: ศิลปะการวาดภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260729_233427_435.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260730_014056_740.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะการเคลื่อนไหวของญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260730_115120_424.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260730_134209_904.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: สื่อภาพเคลื่อนไหวจากประเทศญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260730_185650_134.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260730_215305_886.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งการเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260730_233729_307.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">ส่องโลกอนิเมะ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260731_113800_646.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะในประเทศญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260731_222446_331.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะการเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260801_223227_849.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: สุดยอดแห่งศิลปะการวาดภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260802_220601_185.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: สื่อการ์ตูนที่เคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260803_122413_789.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_anime_20260803_222447_441.html" class="card"><div class="card-body"><span class="card-cat cat-anime">อนิเมะ</span><h3 class="card-title">โลกอนิเมะ: ประวัติศาสตร์และพัฒนาการ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
 
-    <div id="search-modal" class="search-modal">
-        <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
-        <div id="search-results"></div>
-    </div>
-
-    <section class="hero">
-        <div class="container">
-            <h1>อนิเมะ</h1>
-            <p>รวมบทความโลกอนิเมะ ศิลปะ และวัฒนธรรมภาพเคลื่อนไหวจากญี่ปุ่น</p>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="article-grid">
-            <!-- Articles will be updated to include thumbnails in the next step -->
-            <a href="/article_anime_20260803_222447_441.html" class="article-card">
-                <div class="thumbnail-wrapper">
-                    <img src="https://images.pexels.com/photos/37669339/pexels-photo-37669339.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="โลกอนิเมะ: ประวัติศาสตร์และพัฒนาการ" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <span class="category-badge">Anime</span>
-                    <h3 class="article-title">โลกอนิเมะ: ประวัติศาสตร์และพัฒนาการ</h3>
-                    <div class="article-date">2026-08-03</div>
-                </div>
-            </a>
-                <div class="thumbnail-wrapper">
-                    <img src="https://images.pexels.com/photos/37669339/pexels-photo-37669339.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="อนิเมะ" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <span class="category-badge">อนิเมะ</span>
-                    <h3 class="article-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3>
-                    <div class="article-date">2026-01-01</div>
-                </div>
-            </a>
-            <a href="/article_anime_20260802_220601_185.html" class="article-card">
-                <div class="thumbnail-wrapper">
-                    <img src="https://images.pexels.com/photos/33157574/pexels-photo-33157574.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="อนิเมะ: สื่อการ์ตูนที่เคลื่อนไหว" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <span class="category-badge">Anime</span>
-                    <h3 class="article-title">อนิเมะ: สื่อการ์ตูนที่เคลื่อนไหว</h3>
-                    <div class="article-date">2026-08-02</div>
-                </div>
-            </a>
-                <div class="thumbnail-wrapper">
-                    <img src="https://images.pexels.com/photos/37669339/pexels-photo-37669339.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="อนิเมะ" loading="lazy">
-                </div>
-                <div class="article-content">
-                    <span class="category-badge">อนิเมะ</span>
-                    <h3 class="article-title">อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง</h3>
-                    <div class="article-date">2026-01-01</div>
-                </div>
-            </a>
-            <!-- Other articles follow the same pattern -->
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>© 2026 <a href="/">ครบจัง</a></p>
-            <div class="footer-links" style="margin-top: 1rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 0.85rem;">
-                <a href="/food.html">อาหาร</a>
-                <a href="/health.html">สุขภาพ</a>
-                <a href="/lifestyle.html">ไลฟ์สไตล์</a>
-                <a href="/travel.html">ท่องเที่ยว</a>
-                <a href="/finance.html">การเงิน</a>
-                <a href="/technology.html">เทคโนโลยี</a>
-                <a href="/gaming.html">เกม</a>
-                <a href="/beauty.html">ความงาม</a>
-                <a href="/ghost.html">ผีสาง</a>
-                <a href="/drama.html">ดราม่า</a>
-                <a href="/inspirational.html">แรงบันดาลใจ</a>
-                <a href="/comedy.html">ตลก</a>
-                <a href="/cartoon.html">การ์ตูน</a>
-                <a href="/folktale.html">นิทานพื้นบ้าน</a>
-                <a href="/anime.html">อนิเมะ</a>
-                <a href="/story.html">เรื่องเล่า</a>
-                <a href="/news.html">ข่าว</a>
-                <a href="/education.html">การศึกษา</a>
-                <a href="/business.html">ธุรกิจ</a>
-                <a href="/sport.html">กีฬา</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="/nav.js"></script>
+  </div>
+</div>
+<!-- Footer is now handled by nav.js -->
+<script src="/nav.js"></script>
 </body>
 </html>

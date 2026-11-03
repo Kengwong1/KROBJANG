@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>หมวดท่องเที่ยว | ครบจัง</title>
 <meta name="description" content="บทความหมวดท่องเที่ยว ทั้งหมดจากครบจัง">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/assets/style.css">
 <link rel="manifest" href="/manifest.json">
 
 <style>
@@ -27,11 +27,7 @@
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <a href="/" class="nav-logo">ครบจัง</a>
-  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></div>
-  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-</nav>
+<!-- Navigation is now handled by nav.js -->
 <div id="search-modal" class="search-modal">
   <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
   <div id="search-results"></div>
@@ -41,46 +37,43 @@
   <p>บทความหมวดท่องเที่ยวทั้งหมด (32 บทความ)</p>
 </div>
 <div class="container">
-  <div class="article-grid">
-    <a href="/article_travel_20260703_160151_216.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวธรรมชาติระนอง | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260706_230026_896.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวทั่วโลก | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260716_164635_316.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวในประเทศไทย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260716_203630_143.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">เที่ยวอิหร่าน: สถานที่ใหม่และประสบการณ์ที่น่าตื่นเต้น | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260716_222551_807.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ทะเลดำเดือด: รัสเซีย-ยูเครนโจมตีเรือ สะเทือนส่งออกธัญพืชโลก | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260717_122255_977.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ทะเลสาบดอยเต่าแห้งขอด | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260717_144911_046.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">อันตราย! สายเคเบิลใต้น้ำเสี่ยงจมทะเลแดง | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260717_215133_796.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวไต้หวัน | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260718_205534_877.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ฝนถล่ม 34 จังหวัด กทม. อ่วม 40% | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260719_223050_483.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">วัดธาตุทอง ร่อนแถลง แจงหีบศพใต้พระวิหาร คือย่าทวดของครอบครัวผู้สร้าง ญาติขอรับกระดูก ทำพิธีแล้ว | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260720_232427_248.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวข้ามพรมแดน | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260721_202246_982.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ภาคเหนือมีฝนตกหนักบางแห่ง-ทะเลอันดามันคลื่นสูง | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260722_220654_168.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ฟิลิปปินส์ยื่นประท้วงจีน ปมเผชิญหน้าในทะเลจีนใต้ ย้ำใช้สันติวิธีแก้ข้อพิพาท | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260723_210304_242.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ภารกิจพิชิตทะเลแดง | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260724_213100_718.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวในโลกที่เต็มไปด้วยความตึงเครียด | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260724_231523_119.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">การเดินทางในทะเลแดง: ความท้าทายและโอกาส | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260725_210852_368.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">เที่ยวทั่วโลกอย่างมีความสุข | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260729_165923_544.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวรอบโลก | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260729_184956_295.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวทั่วไทยปลอดภัย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260729_223938_768.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260730_004636_930.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260730_105904_829.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องโลกไปกับฮลุน | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260730_124723_771.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">เปิดโลกท่องเที่ยว | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260730_180528_471.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ฮลุน โซโล่ มีประกันเดินทางทุน 5 ล้าน คุ้มครองอุบัติเหตุ-ฆาตกรรม | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260730_204730_106.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวปลอดภัย! | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260730_224153_210.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">นักท่องเที่ยวแห่กราบไหว้หลวงพ่อปากแดง | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260731_104324_717.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ย้อนรอยโศกนาฏกรรมในจอร์เจีย นักท่องเที่ยว-แรงงานต่างชาติเคยเสียชีวิตหมู่จากก๊าซคาร์บอนมอนอกไซด์ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260731_213001_890.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวทั่วโลก | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260801_214101_163.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ประกันเดินทางฮลุน โซโล่: คุ้มครอง 5 ล้านบาท | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260802_211419_621.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ท่องเที่ยวสุดระทึก: ตำรวจปิดล้อมคู้บอน 27 ผู้ต้องหาเลือกปลิดชีพตัวเอง | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260803_113030_557.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">อุทิศตนท่องเที่ยว: สถานที่ซ่อนเร้นของไทยที่คุณไม่ควรพลาด | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_travel_20260803_212842_714.html" class="card"><div class="card-body"><div class="card-cat cat-travel">ท่องเที่ยว</div><div class="card-title">ชาวสเปนรวมตัวประท้วงต้าน ผู้อพยพจากโมร็อกโกกว่า 50,000 คน เข้าเมืองเซวตา | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
+  <div class="cards-grid">
+    <a href="/article_travel_20260703_160151_216.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวธรรมชาติระนอง | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260706_230026_896.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวทั่วโลก | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260716_164635_316.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวในประเทศไทย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260716_203630_143.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">เที่ยวอิหร่าน: สถานที่ใหม่และประสบการณ์ที่น่าตื่นเต้น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260716_222551_807.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ทะเลดำเดือด: รัสเซีย-ยูเครนโจมตีเรือ สะเทือนส่งออกธัญพืชโลก | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260717_122255_977.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ทะเลสาบดอยเต่าแห้งขอด | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260717_144911_046.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">อันตราย! สายเคเบิลใต้น้ำเสี่ยงจมทะเลแดง | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260717_215133_796.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวไต้หวัน | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260718_205534_877.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ฝนถล่ม 34 จังหวัด กทม. อ่วม 40% | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260719_223050_483.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">วัดธาตุทอง ร่อนแถลง แจงหีบศพใต้พระวิหาร คือย่าทวดของครอบครัวผู้สร้าง ญาติขอรับกระดูก ทำพิธีแล้ว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260720_232427_248.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวข้ามพรมแดน | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260721_202246_982.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ภาคเหนือมีฝนตกหนักบางแห่ง-ทะเลอันดามันคลื่นสูง | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260722_220654_168.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ฟิลิปปินส์ยื่นประท้วงจีน ปมเผชิญหน้าในทะเลจีนใต้ ย้ำใช้สันติวิธีแก้ข้อพิพาท | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260723_210304_242.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ภารกิจพิชิตทะเลแดง | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260724_213100_718.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวในโลกที่เต็มไปด้วยความตึงเครียด | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260724_231523_119.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">การเดินทางในทะเลแดง: ความท้าทายและโอกาส | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260725_210852_368.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">เที่ยวทั่วโลกอย่างมีความสุข | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260729_165923_544.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวรอบโลก | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260729_184956_295.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวทั่วไทยปลอดภัย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260729_223938_768.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260730_004636_930.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260730_105904_829.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องโลกไปกับฮลุน | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260730_124723_771.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">เปิดโลกท่องเที่ยว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260730_180528_471.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ฮลุน โซโล่ มีประกันเดินทางทุน 5 ล้าน คุ้มครองอุบัติเหตุ-ฆาตกรรม | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260730_204730_106.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวปลอดภัย! | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260730_224153_210.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">นักท่องเที่ยวแห่กราบไหว้หลวงพ่อปากแดง | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260731_104324_717.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ย้อนรอยโศกนาฏกรรมในจอร์เจีย นักท่องเที่ยว-แรงงานต่างชาติเคยเสียชีวิตหมู่จากก๊าซคาร์บอนมอนอกไซด์ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260731_213001_890.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวทั่วโลก | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260801_214101_163.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ประกันเดินทางฮลุน โซโล่: คุ้มครอง 5 ล้านบาท | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260802_211419_621.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ท่องเที่ยวสุดระทึก: ตำรวจปิดล้อมคู้บอน 27 ผู้ต้องหาเลือกปลิดชีพตัวเอง | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260803_113030_557.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">อุทิศตนท่องเที่ยว: สถานที่ซ่อนเร้นของไทยที่คุณไม่ควรพลาด | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_travel_20260803_212842_714.html" class="card"><div class="card-body"><span class="card-cat cat-travel">ท่องเที่ยว</span><h3 class="card-title">ชาวสเปนรวมตัวประท้วงต้าน ผู้อพยพจากโมร็อกโกกว่า 50,000 คน เข้าเมืองเซวตา | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
 
   </div>
 </div>
-<footer class="site-footer">
-  <p>© 2026 <a href="/">ครบจัง</a></p>
-  <p style="margin-top:.5rem;"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></p>
-</footer>
+<!-- Footer is now handled by nav.js -->
 <script src="/nav.js"></script>
 </body>
 </html>

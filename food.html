@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>หมวดอาหาร | ครบจัง</title>
 <meta name="description" content="บทความหมวดอาหาร ทั้งหมดจากครบจัง">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/assets/style.css">
 <link rel="manifest" href="/manifest.json">
 
 <style>
@@ -27,11 +27,7 @@
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <a href="/" class="nav-logo">ครบจัง</a>
-  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></div>
-  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-</nav>
+<!-- Navigation is now handled by nav.js -->
 <div id="search-modal" class="search-modal">
   <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
   <div id="search-results"></div>
@@ -41,45 +37,42 @@
   <p>บทความหมวดอาหารทั้งหมด (31 บทความ)</p>
 </div>
 <div class="container">
-  <div class="article-grid">
-    <a href="/article_food_20260706_224322_253.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารอร่อยทุกเมนู | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260716_163222_424.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">ปลาหมอคางดำ: ปัญหาอาหารที่ต้องจัดการ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260716_202108_211.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">ปลากระป๋อง: ความจริงที่น่าตกใจ! | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260716_221012_485.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">แม่บ้านยืนช็อก เผลอทำโต๊ะคอมล้มทั้งแถบ เจ้าของร้านไม่โกรธ แถมขอบคุณ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260717_120805_379.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">ข้าวถุงสำเร็จ vs ข้าวสารแบ่งขาย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260717_143257_019.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">5 อาหารที่ไม่ควรแช่นานเกิน 1 สัปดาห์ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260717_213702_778.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารจานเด็ดของเชฟมืออาชีพ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260718_202435_886.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารที่ไม่ควรแช่นาน | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260719_221454_567.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารฟิวชั่น: การผสมผสานรสชาติที่ลงตัว | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260720_230955_273.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารพื้นบ้านไทย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260721_200815_031.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">- อาหารพื้นบ้านไทย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260722_215242_883.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">ภารกิจพิชิตสุขภาพดี | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260723_204935_766.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารดีต่อสุขภาพ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260724_211740_397.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ ส่อจำคุก 1 ปี-หลังโรยหน้าซอร์เบต์ด้วย “มดดำ” | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260724_230009_847.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ โดนดำเนินคดีหลังโรยหน้าซอร์เบต์ด้วย “มดดำ” | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260725_205458_131.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">สุขภาพดีด้วยอาหารที่อร่อย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260729_164513_530.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อร่อยทุกคำ! | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260729_183603_340.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">ข่าวดังในวงการอาหาร: อาหารไทยสุดยอด! | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260729_222521_401.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารที่ดีต่อสุขภาพ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260730_001758_185.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารที่ดีต่อสุขภาพ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260730_104508_567.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">กับเทศกาลอาหารโลกที่กำลังมาถึง! | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260730_123220_125.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารฟิวชัน | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260730_175159_916.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารในยุคดิจิทัล | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260730_203213_484.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารสุขภาพ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260730_222532_666.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">กินให้ดีเพื่อสุขภาพที่ดีขึ้น | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260731_102943_972.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">นายกฯญี่ปุ่นลดภาษีบริโภคอาหาร | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260731_211525_274.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารอร่อยทั่วโลก | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260801_212557_372.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารไทย | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260802_210021_368.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">ระเบิดหน้าร้านอาหารในมอสโก | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260803_111441_942.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารที่น่าสนใจ | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
-<a href="/article_food_20260803_211345_091.html" class="card"><div class="card-body"><div class="card-cat cat-food">อาหาร</div><div class="card-title">อาหารสุขภาพ: ทางเลือกใหม่เพื่อสุขภาพดี | ครบจัง</div><div class="card-date">2026-01-01</div></div></a>
+  <div class="cards-grid">
+    <a href="/article_food_20260706_224322_253.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารอร่อยทุกเมนู | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260716_163222_424.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">ปลาหมอคางดำ: ปัญหาอาหารที่ต้องจัดการ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260716_202108_211.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">ปลากระป๋อง: ความจริงที่น่าตกใจ! | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260716_221012_485.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">แม่บ้านยืนช็อก เผลอทำโต๊ะคอมล้มทั้งแถบ เจ้าของร้านไม่โกรธ แถมขอบคุณ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260717_120805_379.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">ข้าวถุงสำเร็จ vs ข้าวสารแบ่งขาย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260717_143257_019.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">5 อาหารที่ไม่ควรแช่นานเกิน 1 สัปดาห์ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260717_213702_778.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารจานเด็ดของเชฟมืออาชีพ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260718_202435_886.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารที่ไม่ควรแช่นาน | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260719_221454_567.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารฟิวชั่น: การผสมผสานรสชาติที่ลงตัว | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260720_230955_273.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารพื้นบ้านไทย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260721_200815_031.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">- อาหารพื้นบ้านไทย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260722_215242_883.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">ภารกิจพิชิตสุขภาพดี | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260723_204935_766.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารดีต่อสุขภาพ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260724_211740_397.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ ส่อจำคุก 1 ปี-หลังโรยหน้าซอร์เบต์ด้วย “มดดำ” | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260724_230009_847.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ โดนดำเนินคดีหลังโรยหน้าซอร์เบต์ด้วย “มดดำ” | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260725_205458_131.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">สุขภาพดีด้วยอาหารที่อร่อย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260729_164513_530.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อร่อยทุกคำ! | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260729_183603_340.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">ข่าวดังในวงการอาหาร: อาหารไทยสุดยอด! | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260729_222521_401.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารที่ดีต่อสุขภาพ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260730_001758_185.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารที่ดีต่อสุขภาพ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260730_104508_567.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">กับเทศกาลอาหารโลกที่กำลังมาถึง! | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260730_123220_125.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารฟิวชัน | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260730_175159_916.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารในยุคดิจิทัล | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260730_203213_484.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารสุขภาพ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260730_222532_666.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">กินให้ดีเพื่อสุขภาพที่ดีขึ้น | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260731_102943_972.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">นายกฯญี่ปุ่นลดภาษีบริโภคอาหาร | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260731_211525_274.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารอร่อยทั่วโลก | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260801_212557_372.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารไทย | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260802_210021_368.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">ระเบิดหน้าร้านอาหารในมอสโก | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260803_111441_942.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารที่น่าสนใจ | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
+<a href="/article_food_20260803_211345_091.html" class="card"><div class="card-body"><span class="card-cat cat-food">อาหาร</span><h3 class="card-title">อาหารสุขภาพ: ทางเลือกใหม่เพื่อสุขภาพดี | ครบจัง</h3><div class="card-meta">2026-01-01</div></div></a>
 
   </div>
 </div>
-<footer class="site-footer">
-  <p>© 2026 <a href="/">ครบจัง</a></p>
-  <p style="margin-top:.5rem;"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></p>
-</footer>
+<!-- Footer is now handled by nav.js -->
 <script src="/nav.js"></script>
 </body>
 </html>
