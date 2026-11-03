@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://krubjang.com/sitemap.xml
+Sitemap: https://krobjang.vercel.app/sitemap.xml

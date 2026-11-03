@@ -1,0 +1,156 @@
+======================================================================
+FILES: html=653 (articles=618) py=44
+======================================================================
+
+[1] PYTHON SYNTAX
+  syntax errors: 0
+
+[2] PYTHON AST SMELLS
+  bare except: 2  -> agent_doctor.py:74, fix_local_images.py:63
+  open() w/o encoding: 1
+     agent_video.py:1325 (mode=wb)
+  mutable default args: 0 -> 
+  == None: 0
+
+[3] JSON VALIDITY
+  json files=60 bad=0
+
+[4] HTML INTERNAL LINKS
+  broken internal targets: 100 (total refs 248)
+     article_business_20260602_213747_589.html                    x7    e.g. article_business_20260716_180405_918.html
+     article_anime_20260602_223447_344.html                       x6    e.g. article_anime_20260711_220124_297.html
+     article_ghost_20260606_231611_395.html                       x6    e.g. article_ghost_20260706_232229_114.html
+     article_anime_20260524_214256_864.html                       x5    e.g. article_anime_20260711_220124_297.html
+     article_beauty_20260523_233910_572.html                      x5    e.g. article_beauty_20260703_161431_372.html
+     article_cartoon_20260524_000710_710.html                     x5    e.g. article_cartoon_20260716_173104_791.html
+     article_education_20260629_214707_631.html                   x5    e.g. article_education_20260716_175838_492.html
+     article_folktale_20260622_215432_745.html                    x5    e.g. article_folktale_20260716_141431_774.html
+     article_ghost_20260523_234340_857.html                       x5    e.g. article_ghost_20260706_232229_114.html
+     article_beauty_20260523_212356_917.html                      x4    e.g. article_beauty_20260703_161431_372.html
+     article_comedy_20260530_205357_909.html                      x4    e.g. article_comedy_20260716_172509_624.html
+     article_drama_20260607_213953_316.html                       x4    e.g. article_drama_20260706_232829_685.html
+     article_finance_20260523_232432_227.html                     x4    e.g. article_finance_20260706_230442_996.html
+     article_folktale_20260524_220650_179.html                    x4    e.g. article_folktale_20260716_141431_774.html
+     article_food_20260702_222622_115.html                        x4    e.g. article_food_20260706_224322_253.html
+     article_gaming_20260524_222057_849.html                      x4    e.g. article_gaming_20260703_160546_092.html
+     article_ghost_20260516_234605_610.html                       x4    e.g. article_ghost_20260706_232229_114.html
+     article_health_20260531_230110_181.html                      x4    e.g. article_health_20260706_224820_305.html
+     article_inspirational_20260531_223201_664.html               x4    e.g. article_inspirational_20260706_233342_017.html
+     article_lifestyle_20260702_232414_978.html                   x4    e.g. article_lifestyle_20260706_225327_304.html
+     article_news_20260524_002937_867.html                        x4    e.g. article_news_20260711_214038_895.html
+     article_sport_20260524_004920_749.html                       x4    e.g. article_sport_20260716_180854_062.html
+     article_story_20260602_224308_453.html                       x4    e.g. article_story_20260716_140840_343.html
+     article_technology_20260523_232953_778.html                  x4    e.g. article_technology_20260706_230930_108.html
+     article_travel_20260622_213924_984.html                      x4    e.g. article_travel_20260703_160151_216.html
+  missing <title>: 1 ['google1adca9165de3e511.html']
+  missing meta description: 8 ['article_beauty_20260703_161431_372.html', 'article_cooking_20260703_160756_671.html', 'article_diy_20260714_223727_585.html', 'article_food_20260730_001758_185.html', 'article_gaming_20260703_160546_092.html', 'article_travel_20260703_160151_216.html', 'google1adca9165de3e511.html', 'index.html']
+  missing canonical: 40 ['404.html', 'anime.html', 'article_beauty_20260703_161431_372.html', 'article_cooking_20260703_160756_671.html', 'article_diy_20260714_223727_585.html', 'article_gaming_20260703_160546_092.html', 'article_travel_20260703_160151_216.html', 'beauty.html', 'business.html', 'car.html']
+  duplicate ids: 0 []
+  inline handler -> missing id: 0 []
+  img without alt (files): 0 []
+  duplicate stylesheet links: 0
+  empty <a href="">: 0
+  JSON-LD parse errors: 0 []
+  JSON-LD datePublished without TZ: 618  e.g. [('article_anime_20260711_220124_297.html', '2026-07-11T22:06:57.993055'), ('article_anime_20260712_201118_842.html', '2026-07-12T20:15:38.714419'), ('article_anime_20260716_144057_538.html', '2026-07-16T14:46:49.202342')]
+  canonical != self: 0 []
+  duplicate <title> across pages: 62 groups, 208 files
+     'อนิเมะ: ศิลปะภาพเคลื่อนไหวจากญี่ปุ่น | ครบจัง' -> 5 files e.g. ['article_anime_20260711_220124_297.html', 'article_anime_20260712_201118_842.html', 'article_anime_20260716_174047_885.html']
+     'อนิเมะ: ศิลปะแห่งการเคลื่อนไหว | ครบจัง' -> 2 files e.g. ['article_anime_20260716_213613_501.html', 'article_anime_20260730_215305_886.html']
+     'อนิเมะในญี่ปุ่น | ครบจัง' -> 2 files e.g. ['article_anime_20260721_211435_452.html', 'article_anime_20260725_221103_864.html']
+     'อนิเมะ: ศิลปะแห่งภาพเคลื่อนไหว | ครบจัง' -> 4 files e.g. ['article_anime_20260725_000840_009.html', 'article_anime_20260730_115120_424.html', 'article_anime_20260730_185650_134.html']
+     'การดูแลผิวพรรณอย่างมีประสิทธิภาพ | ครบจัง' -> 2 files e.g. ['article_beauty_20260703_161431_372.html', 'article_beauty_20260706_231746_935.html']
+     'ความงามแห่งธรรมชาติ | ครบจัง' -> 2 files e.g. ['article_beauty_20260720_234313_301.html', 'article_beauty_20260730_230054_909.html']
+     'ความงามในยุคดิจิทัล | ครบจัง' -> 5 files e.g. ['article_beauty_20260722_222521_415.html', 'article_beauty_20260723_212252_421.html', 'article_beauty_20260729_225839_270.html']
+     'ทำธุรกิจอย่างไรให้ประสบความสำเร็จ | ครบจัง' -> 2 files e.g. ['article_business_20260716_215441_958.html', 'article_business_20260723_222150_617.html']
+
+[5] SITEMAP
+  entries: 531  unique: 531
+  broken/missing files: 0
+  hosts: {'krobjang.vercel.app': 531}
+  lastmod count=500 sample=['2026-08-02', '2026-08-02', '2026-08-02']
+  article files not in sitemap: 118
+
+[6] SEARCH INDEX / thumbnails / articles_index
+  search-index.json: type=list len=500
+     entries missing file: 0 []
+     key shapes: {('category', 'filename', 'title'): 500}
+     titles with <>" : 2 ['ยืนยันตัวตน "บัตรคนจน 2569" ผ่านแอปฯ เป๋าตัง', 'นายกฯ เรียกถกด่วน "มท.-ตร.-พณ." สั่งเร่งดำเนินคดีโกงสอบท้องถิ่น รุกที่ดินภูเก็ต-นอมินี']
+     duplicate filenames: 0
+     articles not in index: 118
+  articles_index.json: type=list len=500
+     keys of item: ['title', 'category', 'filename', 'image', 'date']
+  thumbnails.json: type=dict len=52
+  site_state.json: type=dict len=12
+
+[7] CATEGORY PAGES
+  anime.html       declared=24 cards=24 files=31   not-listed=7
+  beauty.html      declared=26 cards=26 files=32   not-listed=6
+  business.html    declared=23 cards=23 files=27   not-listed=4
+  car.html         declared=0 cards=0 files=1   not-listed=1
+       low article count: ['article_car_20260716_143628_443.html']
+  cartoon.html     declared=24 cards=24 files=28   not-listed=4
+  comedy.html      declared=24 cards=24 files=28   not-listed=4
+  cooking.html     declared=0 cards=0 files=1   not-listed=1
+       low article count: ['article_cooking_20260703_160756_671.html']
+  diy.html         declared=1 cards=1 files=2   not-listed=1
+       low article count: ['article_diy_20260714_223727_585.html', 'article_diy_20260727_200555_176.html']
+  drama.html       declared=25 cards=25 files=32   not-listed=7
+  education.html   declared=24 cards=24 files=28   not-listed=4
+  finance.html     declared=27 cards=27 files=32   not-listed=5
+  folktale.html    declared=24 cards=24 files=29   not-listed=5
+  food.html        declared=25 cards=25 files=31   not-listed=6
+  gaming.html      declared=26 cards=26 files=32   not-listed=6
+  ghost.html       declared=26 cards=26 files=32   not-listed=6
+  health.html      declared=26 cards=26 files=31   not-listed=5
+  horoscope.html   declared=0 cards=0 files=1   not-listed=1
+       low article count: ['article_horoscope_20260716_140000_262.html']
+  inspirational.html declared=25 cards=25 files=30   not-listed=5
+  law.html         declared=0 cards=0 files=2   not-listed=2
+       low article count: ['article_law_20260711_213528_327.html', 'article_law_20260716_142013_032.html']
+  lifestyle.html   declared=26 cards=26 files=33   not-listed=7
+  lottery.html     declared=0 cards=0 files=0   not-listed=0
+       low article count: []
+  movie.html       declared=1 cards=1 files=2   not-listed=1
+       low article count: ['article_movie_20260711_214505_008.html', 'article_movie_20260727_201224_037.html']
+  music.html       declared=0 cards=0 files=2   not-listed=2
+       low article count: ['article_music_20260711_215146_608.html', 'article_music_20260716_143140_723.html']
+  news.html        declared=24 cards=24 files=30   not-listed=6
+  pet.html         declared=0 cards=0 files=0   not-listed=0
+       low article count: []
+  sport.html       declared=23 cards=23 files=27   not-listed=4
+  story.html       declared=24 cards=24 files=29   not-listed=5
+  technology.html  declared=26 cards=26 files=32   not-listed=6
+  tips.html        declared=0 cards=0 files=1   not-listed=1
+       low article count: ['article_tips_20260715_212737_818.html']
+  travel.html      declared=26 cards=26 files=32   not-listed=6
+
+[8] ORPHAN / UNLINKED PAGES
+  article files never linked by any href: 26
+     article_anime_20260803_222447_441.html
+     article_beauty_20260803_214627_751.html
+     article_business_20260803_224622_537.html
+     article_car_20260716_143628_443.html
+     article_cartoon_20260803_221417_254.html
+     article_comedy_20260803_220852_362.html
+     article_cooking_20260703_160756_671.html
+     article_drama_20260803_215826_435.html
+     article_education_20260803_224054_094.html
+     article_finance_20260803_213248_041.html
+     article_folktale_20260803_221909_231.html
+     article_food_20260803_211345_091.html
+     article_gaming_20260803_214139_724.html
+     article_ghost_20260803_215121_231.html
+     article_health_20260803_211843_599.html
+
+[9] JS FILES
+  nav.js: 992 bytes, lines=27
+  cookie-consent.js: 465 bytes, lines=13
+  sw.js: 995 bytes, lines=28
+  serviceWorker register occurrences in html: 0
+  cookie-consent.js referenced: 0
+
+[10] SW PRECACHE TARGETS
+  index.html           exists=True
+  style.css            exists=True
+  nav.js               exists=True
+  search-index.json    exists=True
