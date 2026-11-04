@@ -233,7 +233,10 @@ a {
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background-color: var(--border-color);
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-thumb img {
