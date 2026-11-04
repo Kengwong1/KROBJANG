@@ -92,9 +92,10 @@ a {
     transition: var(--transition);
 }
 
-.nav-links a:hover {
-    background-color: var(--primary-light);
-    color: var(--primary-color);
+.nav-links a:hover, .nav-links a.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .nav-toggle {

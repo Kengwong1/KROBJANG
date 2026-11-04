@@ -23,8 +23,12 @@
   const STICKY    = true;
 
   function buildNav() {
+    const currentPath = window.location.pathname;
     const links = NAV_ITEMS
-      .map(n => `<a href="${SITE_URL}${n.href}">${n.label}</a>`)
+      .map(n => {
+        const isActive = currentPath === n.href || (currentPath === '/' && n.href === '/index.html');
+        return `<a href="${SITE_URL}${n.href}" class="${isActive ? 'active' : ''}">${n.label}</a>`;
+      })
       .join('');
     const nav = `
     <nav class="site-nav${STICKY ? ' sticky' : ''}">
