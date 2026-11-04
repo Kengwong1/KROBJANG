@@ -20,8 +20,8 @@
 
 
 
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css">
 <link rel="manifest" href="/manifest.json">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -88,11 +88,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <a href="/" class="nav-logo">ครบจัง</a>
-  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/news.html">ข่าว</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/tips.html">เคล็ดลับ</a></div>
-  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-</nav>
+
 <div id="search-modal" class="search-modal">
   <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
   <div id="search-results"></div>
@@ -105,7 +101,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
   </div>
   <h1>ตำนานพื้นบ้านไทย</h1>
   <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"><img src="https://images.pexels.com/photos/19291407/pexels-photo-19291407.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="ตำนานพื้นบ้านไทย" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjM2IwNzY0Ii8+PHJlY3QgeD0iNDAiIHk9IjQwIiB3aWR0aD0iMTEyMCIgaGVpZ2h0PSI1NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwuMTUpIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSIxMiIvPjx0ZXh0IHg9IjYwMCIgeT0iMzE1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI1NCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7guJXguLPguJnguLLguJnguJ7guLfguYnguJnguJrguYnguLLguJnguYTguJfguKI8L3RleHQ+PC9zdmc+'" style="width:100%;height:auto;max-height:420px;object-fit:cover;object-position:center top;display:block;"></div>
-  <div class="ad-wrap"></div>
+  
   <div class="content">
 <h2>ป่าลึกลับ</h2>
 <p>ในป่าลึกลับที่ห่างไกลจากหมู่บ้านเล็กๆ มีนิทานที่ถูกเล่าสืบทอดต่อกันมาจากรุ่นสู่รุ่น เรื่องราวเกี่ยวกับสัตว์ประหลาดที่อาศัยอยู่ในป่าแห่งนี้ ทำให้ผู้คนในหมู่บ้านหวาดกลัวและไม่กล้าเข้าใกล้ ป่าที่เต็มไปด้วยต้นไม้สูงใหญ่และเสียงนกที่ร้องเพลงในยามเช้า กลับถูกมองว่าเป็นที่อยู่ของสิ่งที่น่ากลัวอย่าง "จระเข้ปีศาจ" ที่คอยหลอกลวงผู้คนให้ติดกับ และหายไปในป่าที่ไม่มีวันกลับออกมา</p>
@@ -167,10 +163,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
   <div class="yt-section" style="margin:2rem 0;padding:1.5rem;background:#fff;border-radius:14px;border:1px solid #e2e8f0;"><h3 style="font-size:1rem;font-weight:700;color:#cc0000;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#cc0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> วิดีโอที่เกี่ยวข้อง: ตำนานพื้นบ้านไทย</h3><a href="https://www.youtube.com/results?search_query=%E0%B8%95%E0%B8%B3%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A2" target="_blank" rel="noopener" style="display:block;position:relative;width:100%;padding-bottom:56.25%;border-radius:10px;overflow:hidden;text-decoration:none;"><div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://images.pexels.com/photos/19291407/pexels-photo-19291407.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');background-size:cover;background-position:center;background-color:#0f0f0f;"></div><div style="position:absolute;inset:0;background:rgba(0,0,0,.35);"></div><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;background:rgba(204,0,0,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5);"><svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;padding:.75rem 1rem;font-size:.9rem;font-weight:700;">▶ ดูวิดีโอ &quot;ตำนานพื้นบ้านไทย&quot; บน YouTube</div></a><p style="margin-top:.85rem;font-size:.82rem;color:#64748b;text-align:center;"><a href="https://www.youtube.com/results?search_query=%E0%B8%95%E0%B8%B3%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A2" target="_blank" rel="noopener" style="color:#cc0000;font-weight:700;text-decoration:none;">🔍 ดูวิดีโอเพิ่มเติมบน YouTube →</a></p></div>
   <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดนิทานพื้นบ้าน</p><ul><li><a href="/article_folktale_20260729_194531_784.html">สืบค้นตำนานไทย</a></li><li><a href="/article_folktale_20260729_175010_007.html">ตำนานพื้นบ้าน</a></li><li><a href="/article_folktale_20260725_220423_762.html">นิทานพื้นบ้านไทย</a></li><li><a href="/article_folktale_20260725_000401_053.html">ตำนานพื้นบ้านไทย</a></li></ul></div>
 </div>
-<footer class="site-footer">
-  <p>© 2026 <a href="/">ครบจัง</a> · สงวนลิขสิทธิ์</p>
-  <div class="footer-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></div>
-</footer>
+
 <script src="/nav.js"></script>
 </body>
 </html>

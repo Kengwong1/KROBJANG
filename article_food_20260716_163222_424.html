@@ -37,7 +37,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ปลาหมอคางดำคืออะไร?", "acceptedAnswer": {"@type": "Answer", "text": "ปลาหมอคางดำเป็นชนิดพันธุ์ของสัตว์น้ำที่ถูกตรวจสอบในอุตสาหกรรมอาหารกระป๋อง"}}, {"@type": "Question", "name": "กรมประมงระบุว่าปลากระป๋องที่ขายในท้องตลาดคืออะไร?", "acceptedAnswer": {"@type": "Answer", "text": "กรมประมงชี้แจงว่าเป็นปลานิล ไม่ใช่ปลาหมอคางดำ"}}, {"@type": "Question", "name": "เหตุใดผลตรวจปลาจึงแตกต่างกัน?", "acceptedAnswer": {"@type": "Answer", "text": "อาจเกิดจากการใช้ตัวอย่างคนละรุ่นการผลิต"}}, {"@type": "Question", "name": "แม่ค้ากล้วยทอดได้โชคลาภจากการถูกหวยหรือไม่?", "acceptedAnswer": {"@type": "Answer", "text": "แม่ค้ากล้วยทอด จ.ลำพูน ได้โชคใหญ่ ถูกหวยรางวัลที่ 1 ได้รับเงิน 6 ล้านบาท"}}, {"@type": "Question", "name": "ปัญหาความผิดปกติของชนิดพันธุ์สัตว์น้ำในอุตสาหกรรมอาหารกระป๋องกำลังเป็นประเด็นที่ถูกการตรวจสอบโดยหลายฝ่ายหรือไม่?", "acceptedAnswer": {"@type": "Answer", "text": "ใช่ ปัญหาเกี่ยวกับชนิดพันธุ์สัตว์น้ำในอุตสาหกรรมอาหารกระป๋องกำลังได้รับการตรวจสอบ"}}]}</script>
 
 
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="assets/style.css">
 
 <link rel="manifest" href="/manifest.json">
 <style>
@@ -105,11 +105,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <a href="/" class="nav-logo">ครบจัง</a>
-  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/news.html">ข่าว</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/tips.html">เคล็ดลับ</a></div>
-  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-</nav>
+
 <div id="search-modal" class="search-modal">
   <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
   <div id="search-results"></div>
@@ -122,7 +118,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
   </div>
   <h1>ปลาหมอคางดำ: ปัญหาอาหารที่ต้องจัดการ</h1>
   <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"><img src="https://images.pexels.com/photos/28351167/pexels-photo-28351167.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="ปลาหมอคางดำ: ปัญหาอาหารที่ต้องจัดการ" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjOTI0MDBlIi8+PHJlY3QgeD0iNDAiIHk9IjQwIiB3aWR0aD0iMTEyMCIgaGVpZ2h0PSI1NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwuMTUpIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSIxMiIvPjx0ZXh0IHg9IjYwMCIgeT0iMzE1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI1NCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7guJvguKXguLLguKvguKHguK3guITguLLguIfguJTguLM6IOC4m+C4seC4jeC4q+C4suC4reC4suC4q+C4suC4o+C4l+C4teC5iOC4leC5ieC4reC4h+C4iOC4seC4lOC4geC4suC4ozwvdGV4dD48L3N2Zz4='" style="width:100%;height:auto;max-height:420px;object-fit:cover;object-position:center top;display:block;"></div>
-  <div class="ad-wrap"></div>
+  
   <div class="content">
 <h2>บทนำ</h2>
 <p>ในช่วงเวลานี้ "ปลาหมอคางดำ" กำลังเป็นประเด็นร้อนในวงการอาหาร เนื่องจากเกิดความสับสนเกี่ยวกับปลาที่ใช้ในการผลิตปลากระป๋อง ซึ่งกรมประมงได้ออกมาแจงว่าไม่ใช่ปลาหมอคางดำ แต่เป็นปลานิล นอกจากนี้ยังมีข่าวดีสำหรับคนที่รักการเสี่ยงโชค เมื่อแม่ค้ากล้วยทอดจากจังหวัดลำพูนถูกหวยรางวัลที่ 1 ได้รับเงิน 6 ล้านบาท โลกออนไลน์แห่ร่วมแสดงความยินดีอย่างมาก</p>
@@ -182,10 +178,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 Reference(s):
 - Thairath.co.th</a></li></ul></div>
 </div>
-<footer class="site-footer">
-  <p>© 2026 <a href="/">ครบจัง</a> · สงวนลิขสิทธิ์</p>
-  <div class="footer-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></div>
-</footer>
+
 <script src="/nav.js"></script>
 </body>
 </html>

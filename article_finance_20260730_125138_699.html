@@ -20,8 +20,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ตลาดหุ้นเปลี่ยนผ่านคืออะไร?", "acceptedAnswer": {"@type": "Answer", "text": "ตลาดหุ้นเปลี่ยนผ่านเป็นแนวโน้มการลงทุนในตลาดหลักทรัพย์ที่มีการเปลี่ยนแปลงรูปแบบและกลยุทธ์การลงทุน เพื่อให้เหมาะสมกับสถานการณ์ปัจจุบัน."}}, {"@type": "Question", "name": "ทำไมตลาดหุ้นถึงต้องมีการเปลี่ยนผ่าน?", "acceptedAnswer": {"@type": "Answer", "text": "การเปลี่ยนผ่านเป็นการตอบสนองต่อความท้าทายและโอกาสใหม่ๆ ในตลาด เพื่อปรับปรุงประสิทธิภาพในการลงทุนและผลตอบแทน."}}, {"@type": "Question", "name": "BPP แนวโน้มโตหมายถึงอะไร?", "acceptedAnswer": {"@type": "Answer", "text": "BPP แนวโน้มโตเป็นการวิเคราะห์แนวโน้มการเติบโตของบริษัทในตลาดหลักทรัพย์ เพื่อให้นักลงทุนสามารถตัดสินใจได้ดีขึ้น."}}, {"@type": "Question", "name": "การสะสมหุ้นคืออะไร?", "acceptedAnswer": {"@type": "Answer", "text": "การสะสมหุ้นคือกลยุทธ์การลงทุนที่นักลงทุนซื้อหุ้นในจำนวนมากในช่วงเวลาที่ราคาต่ำ เพื่อรอขายทำกำไรเมื่อราคาสูงขึ้น."}}, {"@type": "Question", "name": "NewCo คืออะไร?", "acceptedAnswer": {"@type": "Answer", "text": "NewCo เป็นบริษัทที่เกิดจากการรวมกิจการหรือควบรวมระหว่างบริษัทต่างๆ เพื่อสร้างโอกาสใหม่ๆ ในการลงทุน."}}]}</script>
 
 
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css">
 <link rel="manifest" href="/manifest.json">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -88,11 +88,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <a href="/" class="nav-logo">ครบจัง</a>
-  <div class="nav-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/news.html">ข่าว</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/tips.html">เคล็ดลับ</a></div>
-  <button class="nav-search-btn" onclick="document.getElementById('search-modal').classList.toggle('open')">🔍</button>
-</nav>
+
 <div id="search-modal" class="search-modal">
   <input type="text" id="search-input" placeholder="ค้นหาบทความ..." oninput="doSearch(this.value)">
   <div id="search-results"></div>
@@ -105,7 +101,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
   </div>
   <h1>ตลาดหุ้นเปลี่ยนผ่าน</h1>
   <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"><img src="https://images.pexels.com/photos/7807839/pexels-photo-7807839.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="ตลาดหุ้นเปลี่ยนผ่าน" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjMDY1ZjQ2Ii8+PHJlY3QgeD0iNDAiIHk9IjQwIiB3aWR0aD0iMTEyMCIgaGVpZ2h0PSI1NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwuMTUpIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSIxMiIvPjx0ZXh0IHg9IjYwMCIgeT0iMzE1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSI1NCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7guJXguKXguLLguJTguKvguLjguYnguJnguYDguJvguKXguLXguYjguKLguJnguJzguYjguLLguJk8L3RleHQ+PC9zdmc+'" style="width:100%;height:auto;max-height:420px;object-fit:cover;object-position:center top;display:block;"></div>
-  <div class="ad-wrap"></div>
+  
   <div class="content">
 <h2>บทนำ</h2>
 <p>ในระยะนี้ ตลาดหุ้นทั่วโลกกำลังเผชิญกับการเปลี่ยนแปลงที่สำคัญหลายประการ โดยเฉพาะอย่างยิ่งจากผลกระทบของเศรษฐกิจโลกที่ไม่แน่นอน การเปลี่ยนแปลงเหล่านี้ส่งผลกระทบต่อเศรษฐกิจและนักลงทุนในหลายๆ ด้าน นอกจากนี้ ยังมีการเปลี่ยนแปลงทางด้านเทคโนโลยีและการเงินที่มีผลต่อตลาดหุ้นด้วย</p>
@@ -163,10 +159,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 
 เจาะลึกเส้นแบ่ง 'ฮั้ว' กับ 'โกง' เส้นทางการเงิน</a></li><li><a href="/article_finance_20260729_224417_004.html">เจาะเส้นเงินเลือก สว. เส้นแบ่ง ‘ฮั้ว’ กับ ‘โกง’ เส้นทางการเงิน</a></li><li><a href="/article_finance_20260729_185435_827.html">การโกงทางการเงิน: เส้นทางของความโลภและผลกระทบทางกฎหมาย</a></li></ul></div>
 </div>
-<footer class="site-footer">
-  <p>© 2026 <a href="/">ครบจัง</a> · สงวนลิขสิทธิ์</p>
-  <div class="footer-links"><a href="/food.html">อาหาร</a><a href="/health.html">สุขภาพ</a><a href="/lifestyle.html">ไลฟ์สไตล์</a><a href="/travel.html">ท่องเที่ยว</a><a href="/finance.html">การเงิน</a><a href="/technology.html">เทคโนโลยี</a><a href="/gaming.html">เกม</a><a href="/beauty.html">ความงาม</a><a href="/ghost.html">ผีสาง</a><a href="/drama.html">ดราม่า</a><a href="/inspirational.html">แรงบันดาลใจ</a><a href="/comedy.html">ตลก</a><a href="/cartoon.html">การ์ตูน</a><a href="/folktale.html">นิทานพื้นบ้าน</a><a href="/anime.html">อนิเมะ</a><a href="/story.html">เรื่องเล่า</a><a href="/news.html">ข่าว</a><a href="/education.html">การศึกษา</a><a href="/business.html">ธุรกิจ</a><a href="/sport.html">กีฬา</a><a href="/pet.html">สัตว์เลี้ยง</a><a href="/music.html">ดนตรี</a><a href="/movie.html">หนัง</a><a href="/diy.html">DIY</a><a href="/tips.html">เคล็ดลับ</a><a href="/horoscope.html">ดูดาว</a><a href="/lottery.html">หวย</a><a href="/car.html">รถยนต์</a><a href="/law.html">กฎหมาย</a><a href="/cooking.html">ทำอาหาร</a></div>
-</footer>
+
 <script src="/nav.js"></script>
 </body>
 </html>
