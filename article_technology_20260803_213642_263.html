@@ -88,7 +88,6 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <link href="assets/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div class="article-wrap">
 <div class="article-meta">
 <a class="article-cat-badge" href="/technology.html">เทคโนโลยี</a>
@@ -98,6 +97,45 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <h1>เทคโนโลยีพัฒนาโลก</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="content">
+<div class="tool-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); font-family: 'Kanit', sans-serif;">
+<h3 style="color: #1e40af; margin-top: 0; margin-bottom: 15px; font-size: 1.25rem; font-weight: 600;">เครื่องคำนวณเวลาโหลดไฟล์</h3>
+<div style="display: grid; gap: 15px; margin-bottom: 20px;">
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 5px;">ขนาดไฟล์ (MB)</label>
+<input id="fileSize" placeholder="เช่น 100" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 5px;">ความเร็วอินเทอร์เน็ต (Mbps)</label>
+<input id="netSpeed" placeholder="เช่น 50" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;" type="number"/>
+</div>
+</div>
+<button onclick="calculateDownloadTime()" style="background: #1e40af; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 600; transition: background 0.2s;">คำนวณเวลา</button>
+<div id="result" style="margin-top: 15px; font-weight: 600; color: #111827; text-align: center; min-height: 24px;"></div>
+<div style="margin-top: 15px; font-size: 0.8125rem; color: #6b7280; text-align: center; line-height: 1.5;">
+        ความเร็วอินเทอร์เน็ตที่แท้จริงอาจน้อยกว่าที่ผู้ให้บริการโฆษณาไว้ ควรเผื่อเวลาไว้เล็กน้อยครับ<br/>
+<a href="/tech.html" style="color:#1e40af; text-decoration:underline; font-weight:bold;">👉 ดูบทความและ gadget เพิ่มเติม</a>
+</div>
+<script>
+        function calculateDownloadTime() {
+            const size = parseFloat(document.getElementById('fileSize').value);
+            const speed = parseFloat(document.getElementById('netSpeed').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(size) || isNaN(speed) || size <= 0 || speed <= 0) {
+                resultDiv.innerHTML = '<span style="color: #dc2626;">กรุณากรอกข้อมูลให้ถูกต้องค่ะ</span>';
+                return;
+            }
+
+            // Formula: (Size MB * 8) / Speed Mbps = Seconds
+            const totalSeconds = (size * 8) / speed;
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = Math.round(totalSeconds % 60);
+
+            resultDiv.innerHTML = 'เวลาในการโหลดโดยประมาณ: ' + minutes + ' นาที ' + seconds + ' วินาที';
+        }
+    </script>
+</div>
+
 <h2>เทคโนโลยีพัฒนาโลก</h2>
 เทคโนโลยีเป็นส่วนหนึ่งที่เปลี่ยนแปลงโลกไปอย่างรวดเร็ว ทำให้ชีวิตประจำวันของเราง่ายขึ้นและสะดวกสบายมากยิ่งขึ้น ไม่ว่าจะเป็นการใช้โทรศัพท์มือถือ การค้นหาข้อมูลผ่านอินเทอร์เน็ต หรือการชำระเงินผ่านระบบดิจิทัล ทุกอย่างล้วนมีความเปลี่ยนแปลงที่เกิดจากเทคโนโลยีทั้งสิ้น ในปี 2021 มีการพัฒนาเทคโนโลยีใหม่ ๆ อย่างรวดเร็ว โดยเฉพาะในด้านของปัญญาประดิษฐ์ (AI) และการประมวลผลข้อมูลขนาดใหญ่ (Big Data) ที่มีบทบาทสำคัญในการเปลี่ยนแปลงอุตสาหกรรมต่างๆ ของโลก
 <p>ในปี 2021 มีการสำรวจพบว่า 1,319 คนในบริษัท AI ระดับโลกได้ร่วมลงนามในเอกสาร Pacing the Frontier ซึ่งเป็นการเรียกร้องให้ชะลอการพัฒนา AI เพื่อให้มีการตรวจสอบและควบคุมการใช้เทคโนโลยีนี้อย่างมีความรับผิดชอบมากขึ้น นอกจากนี้ยังมีรายงานว่า 65% ของบริษัททั่วโลกได้นำ AI มาใช้ในกระบวนการทำงานของตน ซึ่งแสดงให้เห็นถึงความสำคัญของ AI ในการพัฒนาเทคโนโลยีในอนาคต</p>
@@ -141,9 +179,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </div>
 </div>
 </div>
-
 <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดเทคโนโลยี</p><ul><li><a href="/article_technology_20260803_114010_193.html">เทคโนโลยี: นวัตกรรมเปลี่ยนโลก</a></li><li><a href="/article_technology_20260802_212204_565.html">เทคโนโลยีสุราธัญพืช</a></li><li><a href="/article_technology_20260801_215114_967.html">AI กับการเปลี่ยนแปลงโลก</a></li><li><a href="/article_technology_20260731_213907_442.html">หุ่นยนต์ล้มกลางเวทีโชว์ในไต้หวัน</a></li></ul></div>
-
 <script src="/nav.js"></script>
 </body>
 </html>
