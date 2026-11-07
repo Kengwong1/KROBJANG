@@ -104,7 +104,6 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <link href="assets/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div class="article-wrap">
 <div class="article-meta">
 <a class="article-cat-badge" href="/food.html">อาหาร</a>
@@ -114,6 +113,76 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <h1>เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ ส่อจำคุก 1 ปี-หลังโรยหน้าซอร์เบต์ด้วย “มดดำ”</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="content">
+<div class="calorie-calculator-card" style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); font-family: 'Inter', sans-serif; max-width: 600px;">
+<h3 style="color: #1e40af; margin-top: 0; margin-bottom: 20px; font-size: 1.25rem; font-weight: 700; text-align: center;">เครื่องคำนวณแคลอรี่รายวัน</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+<div>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">เพศ</label>
+<select id="gender" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;">
+<option value="male">ชาย</option>
+<option value="female">หญิง</option>
+</select>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">อายุ (ปี)</label>
+<input id="age" placeholder="เช่น 25" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">น้ำหนัก (กก.)</label>
+<input id="weight" placeholder="เช่น 60" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">ส่วนสูง (ซม.)</label>
+<input id="height" placeholder="เช่น 170" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;" type="number"/>
+</div>
+</div>
+<div style="margin-bottom: 20px;">
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">ระดับกิจกรรม</label>
+<select id="activity" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;">
+<option value="1.2">นั่งทำงานเป็นหลัก (ไม่ออกกำลังกาย)</option>
+<option value="1.375">ออกกำลังกายเบาๆ (1-3 วัน/สัปดาห์)</option>
+<option value="1.55">ออกกำลังกายปานกลาง (3-5 วัน/สัปดาห์)</option>
+<option value="1.725">ออกกำลังกายหนัก (6-7 วัน/สัปดาห์)</option>
+<option value="1.9">ออกกำลังกายหนักมาก (นักกีฬา/งานใช้แรงงาน)</option>
+</select>
+</div>
+<button onclick="calculateCalories()" style="width: 100%; background-color: #1e40af; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background-color 0.2s;">คำนวณแคลอรี่</button>
+<div id="calorie-result" style="margin-top: 20px; text-align: center; display: none;">
+<div style="font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 8px;">
+            แคลอรี่ที่แนะนำต่อวัน: <span id="result-value" style="color: #1e40af;">0</span> kcal
+        </div>
+<p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 12px;">
+            การกินอาหารให้พอดีกับพลังงานที่ใช้ จะช่วยควบคุมน้ำหนักได้อย่างยั่งยืน
+        </p>
+<a href="/food.html" style="color:#1e40af; text-decoration:underline; font-weight:bold; font-size: 0.875rem;">👉 ดูเมนูอาหารเพื่อสุขภาพเพิ่มเติม</a>
+</div>
+<script>
+    function calculateCalories() {
+        const gender = document.getElementById('gender').value;
+        const age = parseFloat(document.getElementById('age').value);
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const activity = parseFloat(document.getElementById('activity').value);
+
+        if (!age || !weight || !height) {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วนค่ะ');
+            return;
+        }
+
+        let bmr;
+        if (gender === 'male') {
+            bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+        } else {
+            bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+        }
+
+        const tdee = Math.round(bmr * activity);
+        document.getElementById('result-value').innerText = tdee.toLocaleString();
+        document.getElementById('calorie-result').style.display = 'block';
+    }
+    </script>
+</div>
+
 <h2>เจ้าของร้านมิชลินสตาร์ในเกาหลีใต้ ส่อจำคุก 1 ปี - หลังโรยหน้าซอร์เบต์ด้วย “มดดำ”</h2>
 ในข่าวที่น่าตกใจ เจ้าของร้านอาหารมิชลินสตาร์ในเกาหลีใต้ ถูกจับกุมเนื่องจากการโรยหน้าซอร์เบต์ด้วย "มดดำ" ซึ่งเป็นส่วนผสมที่ไม่เหมาะสม โดยศาลได้ตัดสินว่าเขาอาจถูกจำคุกเป็นเวลา 1 ปี เหตุการณ์นี้เกิดขึ้นเมื่อเจ้าของร้านได้ใช้มดดำโรยหน้าซอร์เบต์เพื่อดึงดูดลูกค้า ซึ่งทำให้เกิดการวิพากษ์วิจารณ์อย่างมากในสังคมออนไลน์
 <p>ตามรายงานของสำนักงานอาหารและยาแห่งชาติเกาหลีใต้ การใช้ส่วนผสมที่ไม่เหมาะสมในอาหารถือเป็นอันตรายต่อสุขภาพของผู้บริโภค และอาจทำให้เกิดอาการแพ้ได้ นอกจากนี้ เจ้าของร้านยังถูกกล่าวหาว่ามีการปกปิดข้อมูลเกี่ยวกับส่วนผสมที่ใช้ในเมนูอาหาร ซึ่งถือเป็นการหลอกลวงผู้บริโภค</p>
@@ -153,9 +222,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </div>
 </div>
 </div>
-
 <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดอาหาร</p><ul><li><a href="/article_food_20260723_204935_766.html">อาหารดีต่อสุขภาพ</a></li><li><a href="/article_food_20260722_215242_883.html">ภารกิจพิชิตสุขภาพดี</a></li><li><a href="/article_food_20260721_200815_031.html">- อาหารพื้นบ้านไทย</a></li><li><a href="/article_food_20260720_230955_273.html">อาหารพื้นบ้านไทย</a></li></ul></div>
-
 <script src="/nav.js"></script>
 </body>
 </html>
