@@ -88,7 +88,6 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <link href="assets/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div class="article-wrap">
 <div class="article-meta">
 <a class="article-cat-badge" href="/health.html">สุขภาพ</a>
@@ -98,6 +97,66 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <h1>สุขภาพจิต: การดูแลและป้องกัน</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="content">
+<div class="bg-white p-6 rounded-xl shadow-lg border border-blue-100 mb-8 max-w-md mx-auto my-6 font-sans" id="bmi-calculator">
+<h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">เครื่องคำนวณดัชนีมวลกาย (BMI)</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">น้ำหนัก (กก.)</label>
+<input class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" id="bmi-weight" placeholder="ตัวอย่าง: 65" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">ส่วนสูง (ซม.)</label>
+<input class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" id="bmi-height" placeholder="ตัวอย่าง: 170" type="number"/>
+</div>
+<button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200 shadow-md" onclick="calculateBMI()">
+            คำนวณค่า BMI
+        </button>
+<div class="mt-4 p-3 rounded-md text-center hidden" id="bmi-result">
+<span class="text-lg font-semibold" id="bmi-value"></span>
+<div class="text-sm" id="bmi-category"></div>
+</div>
+</div>
+<script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('bmi-weight').value);
+            const height = parseFloat(document.getElementById('bmi-height').value) / 100;
+            const resultDiv = document.getElementById('bmi-result');
+            const valueSpan = document.getElementById('bmi-value');
+            const categoryDiv = document.getElementById('bmi-category');
+
+            if (weight > 0 && height > 0) {
+                const bmi = (weight / (height * height)).toFixed(2);
+                let category = '';
+                let colorClass = '';
+
+                if (bmi < 18.5) {
+                    category = 'น้ำหนักน้อย / ผอม';
+                    colorClass = 'bg-yellow-100 text-yellow-800';
+                } else if (bmi < 23) {
+                    category = 'ปกติ (สุขภาพดี)';
+                    colorClass = 'bg-green-100 text-green-800';
+                } else if (bmi < 25) {
+                    category = 'ท้วม / โรคอ้วนระดับ 1';
+                    colorClass = 'bg-orange-100 text-orange-800';
+                } else if (bmi < 30) {
+                    category = 'อ้วน / โรคอ้วนระดับ 2';
+                    colorClass = 'bg-red-100 text-red-800';
+                } else {
+                    category = 'อ้วนมาก / โรคอ้วนระดับ 3';
+                    colorClass = 'bg-red-200 text-red-900';
+                }
+
+                valueSpan.innerText = 'ค่า BMI ของคุณคือ: ' + bmi;
+                categoryDiv.innerText = 'เกณฑ์: ' + category;
+                resultDiv.className = 'mt-4 p-3 rounded-md text-center ' + colorClass;
+                resultDiv.classList.remove('hidden');
+            } else {
+                alert('กรุณากรอกน้ำหนักและส่วนสูงให้ถูกต้องค่ะ');
+            }
+        }
+    </script>
+</div>
+
 <h2>บทนำ: ความสำคัญของสุขภาพจิต</h2>
 <p>ในปัจจุบัน ปัญหาสุขภาพจิตกำลังเป็นที่สนใจมากขึ้น เนื่องจากการระบาดของโรคซึมเศร้าและความเครียดที่เพิ่มขึ้นในสังคม การดูแลและป้องกันสุขภาพจิตจึงมีความสำคัญอย่างยิ่ง เพื่อให้เราสามารถใช้ชีวิตได้อย่างมีคุณภาพ</p>
 <p>จากข้อมูลขององค์การอนามัยโลก (WHO) พบว่า 1 ใน 5 คนในโลกประสบกับปัญหาสุขภาพจิตในช่วงหนึ่งของชีวิต การรักษาและการดูแลสุขภาพจิตจึงเป็นเรื่องที่สำคัญที่ไม่ควรมองข้าม</p>
@@ -147,9 +206,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </div>
 </div>
 </div>
-
 <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดสุขภาพ</p><ul><li><a href="/article_health_20260801_213110_676.html">แพทย์ชื่อดัง สานต่อความตั้งใจ “ฮลุน โซโล่” ยินดีร่วมสนับสนุนเด็กคนหนึ่งอยากเรียนหมอ</a></li><li><a href="/article_health_20260731_212003_777.html">หญิงไทยจับยาไอซ์ที่สนามบิน</a></li><li><a href="/article_health_20260731_103446_450.html">สุขภาพดีจากภายใน: กีฬาใหม่เพิ่มพลังชีวิต</a></li><li><a href="/article_health_20260730_223048_275.html">กินให้ดีเพื่อสุขภาพที่ดีขึ้น</a></li></ul></div>
-
 <script src="/nav.js"></script>
 </body>
 </html>
