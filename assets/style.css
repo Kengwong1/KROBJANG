@@ -361,21 +361,3 @@ a {
         grid-template-columns: 1fr;
     }
 }
-
-.article-cat-badge {
-    display: inline-block;
-    background-color: var(--primary);
-    color: #ffffff !important;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 50px;
-    margin-right: 8px;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.article-cat-badge:hover {
-    background-color: var(--primary-dark);
-    opacity: 0.9;
-}
