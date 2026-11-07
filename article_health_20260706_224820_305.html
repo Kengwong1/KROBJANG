@@ -130,6 +130,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <div id="bmi-result" style="margin-top: 16px; padding: 12px; border-radius: 8px; text-align: center; display: none;">
 <span id="bmi-value" style="font-size: 1.125rem; font-weight: 600;"></span>
 <div id="bmi-category" style="font-size: 0.875rem;"></div>
+<p id="bmi-advice" style="background: #f8fafc; padding: 12px; border-radius: 8px; font-size: 0.9rem; color: #475569; margin-top: 12px; text-align: left; display: none;"></p>
 </div>
 </div>
 <script>
@@ -139,40 +140,50 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
             const resultDiv = document.getElementById('bmi-result');
             const valueSpan = document.getElementById('bmi-value');
             const categoryDiv = document.getElementById('bmi-category');
+            const adviceP = document.getElementById('bmi-advice');
 
             if (weight > 0 && height > 0) {
                 const bmi = (weight / (height * height)).toFixed(2);
                 let category = '';
                 let bgColor = '';
                 let textColor = '';
+                let advice = '';
 
                 if (bmi < 18.5) {
                     category = 'น้ำหนักน้อย / ผอม';
                     bgColor = '#fefce8';
                     textColor = '#854d0e';
+                    advice = 'คุณมีน้ำหนักน้อยกว่าเกณฑ์ แนะนำให้เพิ่มอาหารประเภทโปรตีนและคาร์โบไฮเดรตเชิงซ้อนเพื่อเพิ่มน้ำหนักอย่างถูกวิธี';
                 } else if (bmi < 23) {
                     category = 'ปกติ (สุขภาพดี)';
                     bgColor = '#f0fdf4';
                     textColor = '#166534';
+                    advice = 'ยินดีด้วย! คุณมีน้ำหนักในเกณฑ์ปกติ รักษาวินัยการกินและออกกำลังกายแบบนี้ต่อไปนะครับ';
                 } else if (bmi < 25) {
                     category = 'ท้วม / โรคอ้วนระดับ 1';
                     bgColor = '#fff7ed';
                     textColor = '#9a3412';
+                    advice = 'คุณเริ่มมีน้ำหนักเกินเกณฑ์ ควรเริ่มปรับการกิน ลดของหวาน/มัน/เค็ม และเพิ่มกิจกรรมทางกายเพื่อเผาผลาญพลังงาน';
                 } else if (bmi < 30) {
                     category = 'อ้วน / โรคอ้วนระดับ 2';
                     bgColor = '#fef2f2';
                     textColor = '#991b1b';
+                    advice = 'คุณอยู่ในเกณฑ์อ้วนระดับ 1 ควรเริ่มวางแผนออกกำลังกายจริงจัง ลดแป้งและน้ำตาล และควรวัดรอบเอวร่วมด้วย';
                 } else {
                     category = 'อ้วนมาก / โรคอ้วนระดับ 3';
                     bgColor = '#fee2e2';
                     textColor = '#7f1d1d';
+                    advice = 'คุณอยู่ในเกณฑ์อ้วนระดับ 2 ขึ้นไป แนะนำให้ปรึกษาแพทย์หรือนักโภชนาการเพื่อประเมินสุขภาพอย่างละเอียด เนื่องจากอาจมีความเสี่ยงต่อโรคแทรกซ้อน';
                 }
 
                 valueSpan.innerText = 'ค่า BMI ของคุณคือ: ' + bmi;
                 categoryDiv.innerText = 'เกณฑ์: ' + category;
+                adviceP.innerText = advice;
+                
                 resultDiv.style.backgroundColor = bgColor;
                 resultDiv.style.color = textColor;
                 resultDiv.style.display = 'block';
+                adviceP.style.display = 'block';
             } else {
                 alert('กรุณากรอกน้ำหนักและส่วนสูงให้ถูกต้องค่ะ');
             }
