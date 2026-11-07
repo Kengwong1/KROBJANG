@@ -361,3 +361,16 @@ a {
         grid-template-columns: 1fr;
     }
 }
+
+.article-cat-badge {
+    display: inline-block;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
