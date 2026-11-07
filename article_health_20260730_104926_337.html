@@ -97,23 +97,23 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <h1>สุขภาพดีด้วยสมุนไพรไทย</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="content">
-<div class="bg-white p-6 rounded-xl shadow-lg border border-blue-100 mb-8 max-w-md mx-auto my-6 font-sans" id="bmi-calculator">
-<h3 class="text-2xl font-bold text-blue-600 mb-4 text-center">เครื่องคำนวณดัชนีมวลกาย (BMI)</h3>
-<div class="space-y-4">
+<div id="bmi-calculator" style="background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 24px; border: 1px solid #e2e8f0; margin: 24px auto; max-width: 448px; font-family: sans-serif;">
+<h3 style="color: #1e40af; text-align: center; font-size: 1.5rem; font-weight: bold; margin-bottom: 16px;">เครื่องคำนวณดัชนีมวลกาย (BMI)</h3>
+<div style="display: flex; flex-direction: column; gap: 16px;">
 <div>
-<label class="block text-sm font-medium text-gray-700 mb-1">น้ำหนัก (กก.)</label>
-<input class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" id="bmi-weight" placeholder="ตัวอย่าง: 65" type="number"/>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">น้ำหนัก (กก.)</label>
+<input id="bmi-weight" placeholder="ตัวอย่าง: 65" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; outline: none;" type="number"/>
 </div>
 <div>
-<label class="block text-sm font-medium text-gray-700 mb-1">ส่วนสูง (ซม.)</label>
-<input class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" id="bmi-height" placeholder="ตัวอย่าง: 170" type="number"/>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">ส่วนสูง (ซม.)</label>
+<input id="bmi-height" placeholder="ตัวอย่าง: 170" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; outline: none;" type="number"/>
 </div>
-<button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200 shadow-md" onclick="calculateBMI()">
-            คำนวณค่า BMI
+<button onclick="calculateBMI()" style="width: 100%; background: #1e40af; color: #fff; font-weight: bold; padding: 10px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+            คำนวณ BMI
         </button>
-<div class="mt-4 p-3 rounded-md text-center hidden" id="bmi-result">
-<span class="text-lg font-semibold" id="bmi-value"></span>
-<div class="text-sm" id="bmi-category"></div>
+<div id="bmi-result" style="margin-top: 16px; padding: 12px; border-radius: 8px; text-align: center; display: none;">
+<span id="bmi-value" style="font-size: 1.125rem; font-weight: 600;"></span>
+<div id="bmi-category" style="font-size: 0.875rem;"></div>
 </div>
 </div>
 <script>
@@ -127,35 +127,43 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
             if (weight > 0 && height > 0) {
                 const bmi = (weight / (height * height)).toFixed(2);
                 let category = '';
-                let colorClass = '';
+                let bgColor = '';
+                let textColor = '';
 
                 if (bmi < 18.5) {
                     category = 'น้ำหนักน้อย / ผอม';
-                    colorClass = 'bg-yellow-100 text-yellow-800';
+                    bgColor = '#fefce8';
+                    textColor = '#854d0e';
                 } else if (bmi < 23) {
                     category = 'ปกติ (สุขภาพดี)';
-                    colorClass = 'bg-green-100 text-green-800';
+                    bgColor = '#f0fdf4';
+                    textColor = '#166534';
                 } else if (bmi < 25) {
                     category = 'ท้วม / โรคอ้วนระดับ 1';
-                    colorClass = 'bg-orange-100 text-orange-800';
+                    bgColor = '#fff7ed';
+                    textColor = '#9a3412';
                 } else if (bmi < 30) {
                     category = 'อ้วน / โรคอ้วนระดับ 2';
-                    colorClass = 'bg-red-100 text-red-800';
+                    bgColor = '#fef2f2';
+                    textColor = '#991b1b';
                 } else {
                     category = 'อ้วนมาก / โรคอ้วนระดับ 3';
-                    colorClass = 'bg-red-200 text-red-900';
+                    bgColor = '#fee2e2';
+                    textColor = '#7f1d1d';
                 }
 
                 valueSpan.innerText = 'ค่า BMI ของคุณคือ: ' + bmi;
                 categoryDiv.innerText = 'เกณฑ์: ' + category;
-                resultDiv.className = 'mt-4 p-3 rounded-md text-center ' + colorClass;
-                resultDiv.classList.remove('hidden');
+                resultDiv.style.backgroundColor = bgColor;
+                resultDiv.style.color = textColor;
+                resultDiv.style.display = 'block';
             } else {
                 alert('กรุณากรอกน้ำหนักและส่วนสูงให้ถูกต้องค่ะ');
             }
         }
     </script>
 </div>
+
 
 <h2>บทนำ</h2>
 คุณเคยสงสัยไหมว่า สมุนไพรไทยสามารถช่วยให้เรามีสุขภาพดีขึ้นได้อย่างไร? ในยุคที่ผู้คนหันมาใส่ใจในสุขภาพมากขึ้น การใช้สมุนไพรไทยเป็นอีกหนึ่งทางเลือกที่หลายคนมองหา โดยเฉพาะในช่วงเวลาที่เราต้องการฟื้นฟูร่างกายและเสริมสร้างภูมิคุ้มกันให้แข็งแรง
