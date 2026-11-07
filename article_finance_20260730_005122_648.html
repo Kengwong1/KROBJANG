@@ -94,7 +94,6 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <link href="assets/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div class="article-wrap">
 <div class="article-meta">
 <a class="article-cat-badge" href="/finance.html">การเงิน</a>
@@ -105,7 +104,50 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 
 เจาะลึกเส้นแบ่ง 'ฮั้ว' กับ 'โกง' เส้นทางการเงิน</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
-<div class="content">
+<div class="content"><div id="compound-interest-calculator" style="background-color: #ffffff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 25px; margin: 20px 0; font-family: 'Kanit', sans-serif; border: 1px solid #e5e7eb; max-width: 600px;">
+<h2 style="color: #1e40af; text-align: center; margin-top: 0; margin-bottom: 20px; font-size: 1.5rem;">เครื่องคำนวณดอกเบี้ยทบต้น</h2>
+<div style="margin-bottom: 15px;">
+<label style="display: block; margin-bottom: 5px; font-weight: bold; color: #374151;">เงินต้น (บาท)</label>
+<input id="principal" placeholder="ระบุเงินต้น" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-size: 1rem;" type="number"/>
+</div>
+<div style="margin-bottom: 15px;">
+<label style="display: block; margin-bottom: 5px; font-weight: bold; color: #374151;">อัตราดอกเบี้ย (% ต่อปี)</label>
+<input id="rate" placeholder="ระบุอัตราดอกเบี้ย" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-size: 1rem;" type="number"/>
+</div>
+<div style="margin-bottom: 20px;">
+<label style="display: block; margin-bottom: 5px; font-weight: bold; color: #374151;">ระยะเวลา (ปี)</label>
+<input id="years" placeholder="ระบุจำนวนปี" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-size: 1rem;" type="number"/>
+</div>
+<button onclick="calculateCompoundInterest()" style="width: 100%; background-color: #1e40af; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">คำนวณผลตอบแทน</button>
+<div id="result-area" style="margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #f3f4f6; display: none; text-align: center;">
+<p style="margin: 5px 0; font-size: 1.1rem; color: #1f2937;">เงินรวมทั้งหมด: <span id="total-amount" style="font-weight: bold; color: #1e40af;">0</span> บาท</p>
+<p style="margin: 5px 0; font-size: 1.1rem; color: #1f2937;">ดอกเบี้ยที่ได้รับ: <span id="interest-earned" style="font-weight: bold; color: #059669;">0</span> บาท</p>
+</div>
+<div style="margin-top: 20px; text-align: center; font-size: 0.95rem; color: #4b5563; border-top: 1px solid #e5e7eb; padding-top: 15px;">
+        การออมเงินอย่างสม่ำเสมอคือจุดเริ่มต้นของความมั่งคั่ง<br/>
+<a href="/finance.html" style="color:#1e40af; text-decoration:underline; font-weight:bold;">👉 ดูเคล็ดลับการออมและการลงทุนเพิ่มเติม</a>
+</div>
+<script>
+    function calculateCompoundInterest() {
+        const P = parseFloat(document.getElementById('principal').value);
+        const r = parseFloat(document.getElementById('rate').value) / 100;
+        const t = parseFloat(document.getElementById('years').value);
+        
+        if (isNaN(P) || isNaN(r) || isNaN(t)) {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องค่ะ');
+            return;
+        }
+        
+        // Formula: A = P(1 + r)^t
+        const A = P * Math.pow((1 + r), t);
+        const interest = A - P;
+        
+        document.getElementById('total-amount').innerText = A.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('interest-earned').innerText = interest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('result-area').style.display = 'block';
+    }
+    </script>
+</div>
 <h2>เจาะลึกเส้นแบ่ง 'ฮั้ว' กับ 'โกง' เส้นทางการเงิน</h2>
 <p>ในโลกของธุรกิจและการลงทุน คำว่า "ฮั้ว" และ "โกง" มักจะถูกพูดถึงควบคู่กัน แต่มีความหมายและผลกระทบที่แตกต่างกันอย่างสิ้นเชิง การทำความเข้าใจเส้นแบ่งระหว่างสองคำนี้จึงเป็นสิ่งสำคัญ เพื่อให้สามารถดำเนินการทางธุรกิจได้อย่างโปร่งใสและมีประสิทธิภาพ</p>
 <p>การ "ฮั้ว" หมายถึงการที่ผู้ประกอบการหรือองค์กรทำข้อตกลงที่ไม่เป็นธรรมเพื่อเอาเปรียบคู่แข่งขัน เช่น การกำหนดราคาขายที่สูงกว่าตลาด หรือการรวมกลุ่มเพื่อกำหนดราคา โดยไม่มีการแข่งขันที่แท้จริง ซึ่งส่งผลให้ผู้บริโภคต้องจ่ายเงินมากกว่าที่ควรจะเป็น</p>
@@ -155,9 +197,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </div>
 </div>
 </div>
-
 <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดการเงิน</p><ul><li><a href="/article_finance_20260729_224417_004.html">เจาะเส้นเงินเลือก สว. เส้นแบ่ง ‘ฮั้ว’ กับ ‘โกง’ เส้นทางการเงิน</a></li><li><a href="/article_finance_20260729_185435_827.html">การโกงทางการเงิน: เส้นทางของความโลภและผลกระทบทางกฎหมาย</a></li><li><a href="/article_finance_20260727_200146_541.html">การเงินสดโอกาสใหม่</a></li><li><a href="/article_finance_20260725_211454_771.html">ปัญหาหุ้นบวก</a></li></ul></div>
-
 <script src="/nav.js"></script>
 </body>
 </html>
