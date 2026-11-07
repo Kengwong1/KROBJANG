@@ -44,23 +44,9 @@
     });
   }
 
-  function buildFooter() {
-    const social = ``;
-    const footer = `
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <p class="footer-name">${SITE_NAME}</p>
-        <p class="footer-desc">บทความไทยคุณภาพ ครบทุกหมวด</p>
-        <div class="footer-social">${social}</div>
-        <p class="footer-copy">© ${new Date().getFullYear()} ${SITE_NAME} · All rights reserved</p>
-      </div>
-    </footer>`;
-    document.body.insertAdjacentHTML('beforeend', footer);
-  }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { buildNav(); buildFooter(); });
+    document.addEventListener('DOMContentLoaded', () => { buildNav(); });
   } else {
-    buildNav(); buildFooter();
+    buildNav();
   }
 })();
