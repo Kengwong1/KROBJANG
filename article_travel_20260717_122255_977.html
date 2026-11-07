@@ -104,7 +104,6 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <link href="assets/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div class="article-wrap">
 <div class="article-meta">
 <a class="article-cat-badge" href="/travel.html">ท่องเที่ยว</a>
@@ -114,6 +113,53 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <h1>ทะเลสาบดอยเต่าแห้งขอด</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="content">
+<div style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); font-family: 'Kanit', sans-serif; max-width: 600px;">
+<h3 style="color: #1e40af; margin-top: 0; margin-bottom: 20px; font-size: 1.25rem; font-weight: 600; text-align: center;">เครื่องคำนวณค่าน้ำมัน</h3>
+<div style="display: grid; gap: 16px; margin-bottom: 20px;">
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 4px;">ระยะทาง (กม.)</label>
+<input id="travel_distance" placeholder="ระบุระยะทาง" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; box-sizing: border-box;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 4px;">อัตราสิ้นเปลือง (กม./ลิตร)</label>
+<input id="travel_consumption" placeholder="ระบุอัตราสิ้นเปลือง" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; box-sizing: border-box;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 4px;">ราคาน้ำมัน (บาท/ลิตร)</label>
+<input id="travel_fuel_price" placeholder="ระบุราคาน้ำมัน" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; box-sizing: border-box;" type="number"/>
+</div>
+</div>
+<button onclick="calculateTravelCost()" style="width: 100%; background-color: #1e40af; color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s;">คำนวณค่าน้ำมัน</button>
+<div id="travel_result" style="margin-top: 20px; padding: 16px; background-color: #f3f4f6; border-radius: 8px; display: none; font-size: 1rem; color: #1f2937; line-height: 1.6;">
+</div>
+<div style="margin-top: 20px; font-size: 0.875rem; color: #6b7280; text-align: center; border-top: 1px solid #e5e7eb; padding-top: 16px;">
+            การวางแผนเส้นทางล่วงหน้าช่วยประหยัดเวลาและค่าใช้จ่ายในการเดินทาง<br/>
+<a href="/travel.html" style="color:#1e40af; text-decoration:underline; font-weight:bold;">👉 ดูสถานที่ท่องเที่ยวและเคล็ดลับการเดินทางเพิ่มเติม</a>
+</div>
+</div>
+<script>
+    function calculateTravelCost() {
+        const distance = parseFloat(document.getElementById('travel_distance').value);
+        const consumption = parseFloat(document.getElementById('travel_consumption').value);
+        const price = parseFloat(document.getElementById('travel_fuel_price').value);
+        const resultDiv = document.getElementById('travel_result');
+
+        if (isNaN(distance) || isNaN(consumption) || isNaN(price) || distance <= 0 || consumption <= 0 || price <= 0) {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องค่ะ');
+            return;
+        }
+
+        const fuelNeeded = distance / consumption;
+        const totalCost = fuelNeeded * price;
+
+        resultDiv.innerHTML = `
+            <strong>ปริมาณน้ำมันที่ต้องใช้:</strong> ${fuelNeeded.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ลิตร<br>
+            <strong>ค่าน้ำมันรวม:</strong> ${totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} บาท
+        `;
+        resultDiv.style.display = 'block';
+    }
+    </script>
+
 <h2>บทนำ</h2>
 ทะเลสาบดอยเต่า จังหวัดเชียงใหม่ กำลังเผชิญกับปัญหาน้ำแห้งขอดอย่างรุนแรง โดยระดับน้ำในทะเลสาบได้ลดลงเหลือเพียงไม่ถึง 10% ของปริมาณน้ำที่เคยมี ทำให้เกิดภาพที่น่าสะเทือนใจของเรือนแพที่ติดอยู่บนบก และสัตว์น้ำที่อาจจะต้องเผชิญกับความอดอยาก ในช่วงเวลาที่ผ่านมา ชาวบ้านและนักท่องเที่ยวได้พบเห็นภาพดังกล่าวและส่งผลให้เกิดความสนใจและวิตกกังวลถึงสถานการณ์ดังกล่าว
 <p>ทะเลสาบดอยเต่า เป็นสถานที่ท่องเที่ยวที่มีชื่อเสียงในจังหวัดเชียงใหม่ โดยเฉพาะในช่วงฤดูหนาวและฤดูร้อน ที่นักท่องเที่ยวจะเดินทางมาเยี่ยมชมความงามของธรรมชาติและสัมผัสกับอากาศบริสุทธิ์ อย่างไรก็ตาม ปัญหาน้ำแห้งขอดในครั้งนี้ส่งผลกระทบต่อทั้งชุมชนและเศรษฐกิจท้องถิ่น เนื่องจากการท่องเที่ยวเป็นแหล่งรายได้หลักของพื้นที่</p>
@@ -154,9 +200,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </div>
 </div>
 </div>
-
 <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดท่องเที่ยว</p><ul><li><a href="/article_travel_20260716_222551_807.html">ทะเลดำเดือด: รัสเซีย-ยูเครนโจมตีเรือ สะเทือนส่งออกธัญพืชโลก</a></li><li><a href="/article_travel_20260716_203630_143.html">เที่ยวอิหร่าน: สถานที่ใหม่และประสบการณ์ที่น่าตื่นเต้น</a></li><li><a href="/article_travel_20260716_164635_316.html">ท่องเที่ยวในประเทศไทย</a></li><li><a href="/article_travel_20260706_230026_896.html">ท่องเที่ยวทั่วโลก</a></li></ul></div>
-
 <script src="/nav.js"></script>
 </body>
 </html>

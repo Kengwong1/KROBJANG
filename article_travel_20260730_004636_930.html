@@ -88,7 +88,6 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <link href="assets/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div class="article-wrap">
 <div class="article-meta">
 <a class="article-cat-badge" href="/travel.html">ท่องเที่ยว</a>
@@ -98,6 +97,53 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 <h1>กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="content">
+<div style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); font-family: 'Kanit', sans-serif; max-width: 600px;">
+<h3 style="color: #1e40af; margin-top: 0; margin-bottom: 20px; font-size: 1.25rem; font-weight: 600; text-align: center;">เครื่องคำนวณค่าน้ำมัน</h3>
+<div style="display: grid; gap: 16px; margin-bottom: 20px;">
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 4px;">ระยะทาง (กม.)</label>
+<input id="travel_distance" placeholder="ระบุระยะทาง" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; box-sizing: border-box;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 4px;">อัตราสิ้นเปลือง (กม./ลิตร)</label>
+<input id="travel_consumption" placeholder="ระบุอัตราสิ้นเปลือง" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; box-sizing: border-box;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; color: #4b5563; margin-bottom: 4px;">ราคาน้ำมัน (บาท/ลิตร)</label>
+<input id="travel_fuel_price" placeholder="ระบุราคาน้ำมัน" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; box-sizing: border-box;" type="number"/>
+</div>
+</div>
+<button onclick="calculateTravelCost()" style="width: 100%; background-color: #1e40af; color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s;">คำนวณค่าน้ำมัน</button>
+<div id="travel_result" style="margin-top: 20px; padding: 16px; background-color: #f3f4f6; border-radius: 8px; display: none; font-size: 1rem; color: #1f2937; line-height: 1.6;">
+</div>
+<div style="margin-top: 20px; font-size: 0.875rem; color: #6b7280; text-align: center; border-top: 1px solid #e5e7eb; padding-top: 16px;">
+            การวางแผนเส้นทางล่วงหน้าช่วยประหยัดเวลาและค่าใช้จ่ายในการเดินทาง<br/>
+<a href="/travel.html" style="color:#1e40af; text-decoration:underline; font-weight:bold;">👉 ดูสถานที่ท่องเที่ยวและเคล็ดลับการเดินทางเพิ่มเติม</a>
+</div>
+</div>
+<script>
+    function calculateTravelCost() {
+        const distance = parseFloat(document.getElementById('travel_distance').value);
+        const consumption = parseFloat(document.getElementById('travel_consumption').value);
+        const price = parseFloat(document.getElementById('travel_fuel_price').value);
+        const resultDiv = document.getElementById('travel_result');
+
+        if (isNaN(distance) || isNaN(consumption) || isNaN(price) || distance <= 0 || consumption <= 0 || price <= 0) {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องค่ะ');
+            return;
+        }
+
+        const fuelNeeded = distance / consumption;
+        const totalCost = fuelNeeded * price;
+
+        resultDiv.innerHTML = `
+            <strong>ปริมาณน้ำมันที่ต้องใช้:</strong> ${fuelNeeded.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ลิตร<br>
+            <strong>ค่าน้ำมันรวม:</strong> ${totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} บาท
+        `;
+        resultDiv.style.display = 'block';
+    }
+    </script>
+
 <h2>กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้</h2>
 <p>ตามประกาศเตือนจากกรมอุตุนิยมวิทยา ฉบับที่ 13 วันที่ 14 สิงหาคม พ.ศ.2564 กรมอุตุนิยมวิทยาขอให้ประชาชนใน 16 จังหวัดเตรียมตัวรับมือกับฝนถล่มที่อาจเกิดขึ้นในวันนี้ โดยมีพื้นที่เสี่ยงสูงที่อาจได้รับผลกระทบจากฝนตกหนักและน้ำท่วมฉับพลัน</p>
 <p>จังหวัดที่อยู่ในพื้นที่เสี่ยงสูง ได้แก่ จังหวัดระยอง, ชลบุรี, สมุทรปราการ, นครปฐม, ปทุมธานี, สุพรรณบุรี, พระนครศรีอยุธยา, ลพบุรี, สระบุรี, อุทัยธานี, พิษณุโลก, เชียงราย, แพร่, น่าน, นครราชสีมา และอุดรธานี โดยกรมอุตุนิยมวิทยาคาดการณ์ว่าจะมีฝนตกหนักถึงหนักมากในบางพื้นที่</p>
@@ -144,9 +190,7 @@ body{font-family:'Sarabun',sans-serif;background:#f1f5f9;color:#1e293b;line-heig
 </div>
 </div>
 </div>
-
 <div class="related-box"><p>📚 บทความที่เกี่ยวข้องในหมวดท่องเที่ยว</p><ul><li><a href="/article_travel_20260729_223938_768.html">กรมอุตุฯ ประกาศเตือนฉบับที่ 13 เช็ก 16 จังหวัดพื้นที่เสี่ยงสูงฝนถล่มวันนี้</a></li><li><a href="/article_travel_20260729_184956_295.html">ท่องเที่ยวทั่วไทยปลอดภัย</a></li><li><a href="/article_travel_20260729_165923_544.html">ท่องเที่ยวรอบโลก</a></li><li><a href="/article_travel_20260725_210852_368.html">เที่ยวทั่วโลกอย่างมีความสุข</a></li></ul></div>
-
 <script src="/nav.js"></script>
 </body>
 </html>
