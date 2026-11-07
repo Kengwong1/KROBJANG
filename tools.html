@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>เครื่องมือและโปรแกรมคำนวณ — ครบจัง</title>
+<meta name="description" content="รวมเครื่องมือคำนวณที่มีประโยชน์ ครบจบในที่เดียว">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 2rem;
+    }
+    .tool-card {
+        background: var(--bg-white);
+        border-radius: var(--radius-md);
+        padding: 30px;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+    }
+    .tool-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-light);
+    }
+    .tool-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    .tool-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--text-main);
+    }
+    .tool-desc {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+    .tool-btn {
+        background-color: var(--primary);
+        color: white;
+        padding: 10px 20px;
+        border-radius: var(--radius-sm);
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: var(--transition);
+    }
+    .tool-card:hover .tool-btn {
+        background-color: var(--primary-dark);
+    }
+</style>
+</head>
+<body>
+<section class="hero-home">
+    <h1>เครื่องมือและโปรแกรมคำนวณ</h1>
+    <p>รวมเครื่องมือช่วยคำนวณที่ทำให้ชีวิตคุณง่ายขึ้น ครบจบในที่เดียว</p>
+</section>
+
+<div class="container">
+    <div class="tools-grid">
+        <!-- Card 1: BMI -->
+        <a href="/health.html" class="tool-card">
+            <div class="tool-icon">🏥</div>
+            <div class="tool-title">เครื่องคำนวณ BMI</div>
+            <div class="tool-desc">เช็คดัชนีมวลกาย เพื่อสุขภาพที่ดีและรูปร่างที่สมส่วน</div>
+            <div class="tool-btn">ใช้งานเลย</div>
+        </a>
+
+        <!-- Card 2: Compound Interest -->
+        <a href="/finance.html" class="tool-card">
+            <div class="tool-icon">💰</div>
+            <div class="tool-title">เครื่องคำนวณดอกเบี้ยทบต้น</div>
+            <div class="tool-desc">วางแผนการเงินและดูการเติบโตของเงินออมในอนาคต</div>
+            <div class="tool-btn">ใช้งานเลย</div>
+        </a>
+
+        <!-- Card 3: Fuel Cost -->
+        <a href="/travel.html" class="tool-card">
+            <div class="tool-icon">🚗</div>
+            <div class="tool-title">เครื่องคำนวณค่าน้ำมัน</div>
+            <div class="tool-desc">เช็คค่าน้ำมันก่อนออกเดินทาง วางแผนงบประมาณท่องเที่ยว</div>
+            <div class="tool-btn">ใช้งานเลย</div>
+        </a>
+
+        <!-- Card 4: Calories -->
+        <a href="/food.html" class="tool-card">
+            <div class="tool-icon">🍔</div>
+            <div class="tool-title">เครื่องคำนวณแคลอรี่</div>
+            <div class="tool-desc">คำนวณพลังงานที่ร่างกายต้องการต่อวัน เพื่อการคุมอาหาร</div>
+            <div class="tool-btn">ใช้งานเลย</div>
+        </a>
+
+        <!-- Card 5: File Download Time -->
+        <a href="/technology.html" class="tool-card">
+            <div class="tool-icon">💻</div>
+            <div class="tool-title">เครื่องคำนวณเวลาโหลดไฟล์</div>
+            <div class="tool-desc">คำนวณเวลาดาวน์โหลดไฟล์ตามความเร็วอินเทอร์เน็ตของคุณ</div>
+            <div class="tool-btn">ใช้งานเลย</div>
+        </a>
+    </div>
+</div>
+
+<script src="/nav.js"></script>
+</body>
+</html>
