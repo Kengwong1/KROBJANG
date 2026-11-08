@@ -1,36 +1,80 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>404 ไม่พบหน้า | ครบจัง</title>
-<meta name="description" content="บทความไทยคุณภาพ ครบทุกหมวด">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="manifest" href="/manifest.json">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - ไม่พบหน้าที่คุณต้องการ | Krubjang</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #ff4757;
+            margin: 0;
+            line-height: 1;
+        }
+        .error-message {
+            font-size: 1.5rem;
+            color: #2f3542;
+            margin-bottom: 2rem;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #3742fa;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2f3542;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #e1e1e1;
+            color: #2f3542;
+        }
+        .btn-secondary:hover {
+            background-color: #d1d1d1;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-
-
-</div>
-
-<div style="text-align:center;padding:5rem 1rem;">
-  <h1 style="font-size:5rem;color:var(--primary);margin-bottom:1rem;">404</h1>
-  <p style="font-size:1.2rem;color:var(--muted);margin-bottom:2rem;">ไม่พบหน้าที่ต้องการ</p>
-  <a href="/" style="background:var(--primary);color:#fff;padding:.75rem 2rem;border-radius:var(--radius);font-size:1rem;">กลับหน้าแรก</a>
-</div>
-
-
-<script src="/nav.js"></script>
-
-
-
-
-
-
-
-
-
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <p class="error-message">ขออภัย ไม่พบหน้าที่คุณต้องการ<br>หน้าที่คุณกำลังมองหาอาจถูกลบหรือย้ายไปที่อื่นแล้ว</p>
+        <div class="btn-group">
+            <a href="index.html" class="btn btn-primary">กลับหน้าหลัก</a>
+            <a href="tools.html" class="btn btn-secondary">เครื่องมือและโปรแกรมคำนวณ</a>
+        </div>
+    </div>
 </body>
 </html>
