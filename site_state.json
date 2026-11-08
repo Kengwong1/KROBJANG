@@ -1,15 +1,18 @@
 {
-  "last_updated": "2026-11-07T19:04:36.595058",
-  "last_writer_run": "2026-11-03T21:22:47.992327",
+  "last_updated": "2026-11-08T16:00:23.272792",
+  "last_writer_run": "2026-11-08T16:00:23.272792",
   "last_doctor_run": "",
   "last_publisher_run": "2026-11-07T19:04:36.595058",
   "last_video_run": "",
-  "pending_publish": [],
+  "pending_publish": [
+    "article_health_20261108_155344_992.html"
+  ],
   "pending_doctor": [
-    "article_diy_20261103_211737_657.html"
+    "article_diy_20261103_211737_657.html",
+    "article_health_20261108_155344_992.html"
   ],
   "published_today": 1,
-  "total_articles": 1,
+  "total_articles": 2,
   "errors": [
     {
       "agent": "publisher",
