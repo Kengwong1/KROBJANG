@@ -48,7 +48,12 @@
         <div class="nav-links">${links}</div>
       </div>
     </nav>`;
-    document.body.insertAdjacentHTML('afterbegin', nav);
+    const navContainer = document.getElementById('site-nav');
+    if (navContainer) {
+      navContainer.innerHTML = nav;
+    } else {
+      document.body.insertAdjacentHTML('afterbegin', `<div id="site-nav">${nav}</div>`);
+    }
     document.querySelector('.nav-toggle')?.addEventListener('click', () => {
       document.querySelector('.nav-links')?.classList.toggle('open');
     });
