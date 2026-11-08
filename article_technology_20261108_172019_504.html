@@ -21,7 +21,6 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ทำไมการโหลดไฟล์ 5GB ถึงใช้เวลานาน?", "acceptedAnswer": {"@type": "Answer", "text": "อาจมีปัจจัยหลายอย่าง เช่น ความหนาแน่นของผู้ใช้งาน, การสูญเสียสัญญาณ, หรือความเร็วในการประมวลผลของเซิร์ฟเวอร์"}}, {"@type": "Question", "name": "ทำไมอินเทอร์เน็ต 1 Gbps ถึงไม่ทำให้โหลดเร็วขึ้น?", "acceptedAnswer": {"@type": "Answer", "text": "ความเร็ว 1 Gbps หมายถึงความเร็วในการส่งข้อมูล แต่ความเร็วในการดาวน์โหลดยังขึ้นอยู่กับปัจจัยอื่นๆ เช่น ความหนาแน่นของผู้ใช้งานและคุณภาพของสายเคเบิล"}}, {"@type": "Question", "name": "ทำไมการโหลดไฟล์ขนาดใหญ่ถึงใช้เวลานาน?", "acceptedAnswer": {"@type": "Answer", "text": "การโหลดไฟล์ขนาดใหญ่ต้องใช้เวลามากขึ้น เนื่องจากต้องส่งข้อมูลจำนวนมาก ซึ่งอาจทำให้ความเร็วในการโหลดลดลง"}}, {"@type": "Question", "name": "มีวิธีใดบ้างที่จะทำให้การโหลดไฟล์เร็วขึ้น?", "acceptedAnswer": {"@type": "Answer", "text": "สามารถลองปิดโปรแกรมที่ไม่จำเป็น, ใช้ Wi-Fi แทน Ethernet, หรือย้ายไปยังเซิร์ฟเวอร์ที่ใกล้เคียงเพื่อเพิ่มความเร็วในการโหลด"}}, {"@type": "Question", "name": "ทำไมการโหลดไฟล์ 5GB ถึงใช้เวลานานในขณะที่อินเทอร์เน็ตมีความเร็ว 1 Gbps?", "acceptedAnswer": {"@type": "Answer", "text": "ความเร็ว 1 Gbps หมายถึงความเร็วในการส่งข้อมูล แต่ความเร็วในการดาวน์โหลดยังขึ้นอยู่กับปัจจัยอื่นๆ เช่น ความหนาแน่นของผู้ใช้งานและคุณภาพของสายเคเบิล"}}]}</script>
 <link href="assets/style.css" rel="stylesheet"/>
 <link href="/manifest.json" rel="manifest"/>
-
 </head>
 <body>
 <div class="search-modal" id="search-modal">
@@ -37,7 +36,7 @@
 <h1>ทำไมอินเทอร์เน็ต 1 Gbps โหลดไฟล์ 5GB ถึงช้ากว่าที่คิด</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="ad-wrap"></div>
-<div class="content">
+<div class="content"><div style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 6px rgba(0,0,0,0.1); margin-bottom:24px;"><h2 style="color:#1e40af; text-align:center;">เครื่องคำนวณเวลาโหลด</h2><input id="size" placeholder="ขนาดไฟล์ (MB)" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:6px;" type="number"/><input id="speed" placeholder="ความเร็ว (Mbps)" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:6px;" type="number"/><button onclick="alert('เวลาโหลด = ' + ((document.getElementById('size').value * 8) / document.getElementById('speed').value).toFixed(1) + ' วินาที')" style="width:100%; padding:10px; background:#1e40af; color:white; border:none; border-radius:6px; cursor:pointer;">คำนวณ</button></div>
 <h2>บทนำ</h2>
 <p>บทนำ
 ในยุคดิจิทัลนี้ การเข้าถึงข้อมูลผ่านอินเทอร์เน็ตกลายเป็นสิ่งจำเป็นในชีวิตประจำวันของผู้คน แต่บางครั้งเราอาจพบว่าแม้เราจะมีการเชื่อมต่ออินเทอร์เน็ตความเร็วสูงถึง 1 Gbps แต่การโหลดไฟล์ขนาด 5GB กลับใช้เวลานานกว่าที่เราคาดคิด ทำไมจึงเป็นเช่นนั้น? มาดูกัน!</p>
