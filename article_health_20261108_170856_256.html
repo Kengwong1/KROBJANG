@@ -21,7 +21,6 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "คำนวณ BMI สำหรับผู้สูงอายุทำอย่างไร?", "acceptedAnswer": {"@type": "Answer", "text": "ใช้สูตร BMI = น้ำหนัก (กิโลกรัม) ÷ (ส่วนสูง (เมตร)²) แล้วเปรียบเทียบค่า BMI กับค่าที่เหมาะสม"}}, {"@type": "Question", "name": "ผู้สูงอายุควรระวังอะไรเมื่อคำนวณ BMI?", "acceptedAnswer": {"@type": "Answer", "text": "ต้องระวังการเปลี่ยนแปลงน้ำหนักและความสูง รวมถึงการตรวจสุขภาพอย่างสม่ำเสมอ"}}, {"@type": "Question", "name": "ถ้า BMI สูงเกินไปจะมีผลอย่างไร?", "acceptedAnswer": {"@type": "Answer", "text": "มีความเสี่ยงต่อโรคอ้วนและโรคที่เกี่ยวข้องกับสุขภาพ"}}, {"@type": "Question", "name": "ผู้สูงอายุควรทำอย่างไรหาก BMI ต่ำเกินไป?", "acceptedAnswer": {"@type": "Answer", "text": "ควรปรับเปลี่ยนอาหารและการออกกำลังกายเพื่อเพิ่มน้ำหนักและสุขภาพ"}}, {"@type": "Question", "name": "มีวิธีไหนบ้างในการลดความเสี่ยงสุขภาพ?", "acceptedAnswer": {"@type": "Answer", "text": "การออกกำลังกายสม่ำเสมอและการรับประทานอาหารที่ดีต่อสุขภาพช่วยลดความเสี่ยงได้"}}]}</script>
 <link href="assets/style.css" rel="stylesheet"/>
 <link href="/manifest.json" rel="manifest"/>
-
 </head>
 <body>
 <div class="search-modal" id="search-modal">
@@ -37,7 +36,81 @@
 <h1>วิธีคำนวณ BMI สำหรับผู้สูงอายุ ต้องระวังอะไรบ้าง</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="ad-wrap"></div>
-<div class="content">
+<div class="content"><div id="bmi-calculator" style="background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 24px; border: 1px solid #e2e8f0; margin: 24px auto; max-width: 448px; font-family: sans-serif;">
+<h3 style="color: #1e40af; text-align: center; font-size: 1.5rem; font-weight: bold; margin-bottom: 16px;">เครื่องคำนวณดัชนีมวลกาย (BMI)</h3>
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">น้ำหนัก (กก.)</label>
+<input id="bmi-weight" placeholder="ตัวอย่าง: 65" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; outline: none;" type="number"/>
+</div>
+<div>
+<label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 4px;">ส่วนสูง (ซม.)</label>
+<input id="bmi-height" placeholder="ตัวอย่าง: 170" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; outline: none;" type="number"/>
+</div>
+<button onclick="calculateBMI()" style="width: 100%; background: #1e40af; color: #fff; font-weight: bold; padding: 10px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+            คำนวณ BMI
+        </button>
+<div id="bmi-result" style="margin-top: 16px; padding: 12px; border-radius: 8px; text-align: center; display: none;">
+<span id="bmi-value" style="font-size: 1.125rem; font-weight: 600;"></span>
+<p id="bmi-advice" style="background: #f8fafc; padding: 12px; border-radius: 8px; font-size: 0.9rem; color: #475569; margin-top: 12px; text-align: left; display: none;"></p>
+</div>
+</div>
+<script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('bmi-weight').value);
+            const height = parseFloat(document.getElementById('bmi-height').value) / 100;
+            const resultDiv = document.getElementById('bmi-result');
+            const valueSpan = document.getElementById('bmi-value');
+            const adviceP = document.getElementById('bmi-advice');
+
+            if (weight > 0 && height > 0) {
+                const bmi = (weight / (height * height)).toFixed(2);
+                let category = '';
+                let bgColor = '';
+                let textColor = '';
+                let advice = '';
+                const linkStyle = 'color:#1e40af; text-decoration:underline; font-weight:bold;';
+
+                if (bmi < 18.5) {
+                    category = 'น้ำหนักน้อย / ผอม';
+                    bgColor = '#fefce8';
+                    textColor = '#854d0e';
+                    advice = 'คุณมีน้ำหนักน้อยกว่าเกณฑ์ แนะนำให้เพิ่มอาหารประเภทโปรตีนและคาร์โบไฮเดรตเชิงซ้อนเพื่อเพิ่มน้ำหนักอย่างถูกวิธี' + '<br><a href="/health.html" style="' + linkStyle + '">👉 ดูวิธีเพิ่มน้ำหนักอย่างถูกวิธี</a>';
+                } else if (bmi < 23) {
+                    category = 'ปกติ (สุขภาพดี)';
+                    bgColor = '#f0fdf4';
+                    textColor = '#166534';
+                    advice = 'ยินดีด้วย! คุณมีน้ำหนักในเกณฑ์ปกติ รักษาวินัยการกินและออกกำลังกายแบบนี้ต่อไปนะครับ' + '<br><a href="/health.html" style="' + linkStyle + '">👉 ดูเคล็ดลับการดูแลสุขภาพเพิ่มเติม</a>';
+                } else if (bmi < 25) {
+                    category = 'ท้วม / โรคอ้วนระดับ 1';
+                    bgColor = '#fff7ed';
+                    textColor = '#9a3412';
+                    advice = 'คุณเริ่มมีน้ำหนักเกินเกณฑ์ ควรเริ่มปรับการกิน ลดของหวาน/มัน/เค็ม และเพิ่มกิจกรรมทางกายเพื่อเผาผลาญพลังงาน' + '<br><a href="/health.html" style="' + linkStyle + '">👉 ดูวิธีลดน้ำหนักและเมนูสุขภาพ</a>';
+                } else if (bmi < 30) {
+                    category = 'อ้วน / โรคอ้วนระดับ 2';
+                    bgColor = '#fef2f2';
+                    textColor = '#991b1b';
+                    advice = 'คุณอยู่ในเกณฑ์อ้วนระดับ 1 ควรเริ่มวางแผนออกกำลังกายจริงจัง ลดแป้งและน้ำตาล และควรวัดรอบเอวร่วมด้วย' + '<br><a href="/health.html" style="' + linkStyle + '">👉 ดูวิธีลดน้ำหนักและเมนูสุขภาพ</a>';
+                } else {
+                    category = 'อ้วนมาก / โรคอ้วนระดับ 3';
+                    bgColor = '#fee2e2';
+                    textColor = '#7f1d1d';
+                    advice = 'คุณอยู่ในเกณฑ์อ้วนระดับ 2 ขึ้นไป แนะนำให้ปรึกษาแพทย์หรือนักโภชนาการเพื่อประเมินสุขภาพอย่างละเอียด เนื่องจากอาจมีความเสี่ยงต่อโรคแทรกซ้อน' + '<br><a href="/health.html" style="' + linkStyle + '">👉 ดูวิธีลดน้ำหนักและเมนูสุขภาพ</a>';
+                }
+
+                valueSpan.innerText = 'ค่า BMI ของคุณคือ: ' + bmi + ' (' + category + ')';
+                adviceP.innerHTML = advice;
+                
+                resultDiv.style.backgroundColor = bgColor;
+                resultDiv.style.color = textColor;
+                resultDiv.style.display = 'block';
+                adviceP.style.display = 'block';
+            } else {
+                alert('กรุณากรอกน้ำหนักและส่วนสูงให้ถูกต้องค่ะ');
+            }
+        }
+    </script>
+</div>
 <h2>บทนำ</h2>
 <p>การคำนวณดัชนีมวลกาย (BMI) เป็นวิธีที่มีประสิทธิภาพในการประเมินสุขภาพร่างกายของผู้คน โดยเฉพาะผู้สูงอายุ ซึ่งการคำนวณนี้มีความสำคัญมากขึ้นเนื่องจากผู้สูงอายุมีความเสี่ยงต่อการเกิดโรคต่างๆ ได้มากขึ้น การคำนวณ BMI สำหรับผู้สูงอายุจึงเป็นสิ่งที่ต้องให้ความสำคัญ โดยมีวิธีการคำนวณที่ง่ายและสะดวก</p>
 <p><strong>วิธีการคำนวณ BMI</strong></p>

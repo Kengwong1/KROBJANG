@@ -21,7 +21,6 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ดอกเบี้ยทบต้นคืออะไร?", "acceptedAnswer": {"@type": "Answer", "text": "ดอกเบี้ยทบต้นคือการคำนวณดอกเบี้ยที่ได้รับจากเงินต้นในระยะเวลาที่กำหนด โดยดอกเบี้ยจะถูกเพิ่มเข้าไปในเงินต้นในแต่ละรอบ ซึ่งทำให้เงินเติบโตมากขึ้น"}}, {"@type": "Question", "name": "ดอกเบี้ยทบต้นสามารถนำไปใช้ได้กับอะไรบ้าง?", "acceptedAnswer": {"@type": "Answer", "text": "ดอกเบี้ยทบต้นสามารถนำไปใช้ในการลงทุนในกองทุน, หุ้น, หรือพันธบัตร เพื่อให้ได้ผลตอบแทนที่สูงขึ้น"}}, {"@type": "Question", "name": "ดอกเบี้ยทบต้นคำนวณอย่างไร?", "acceptedAnswer": {"@type": "Answer", "text": "ดอกเบี้ยทบต้นคำนวณโดยใช้สูตร: A = P(1 + r)^n โดยที่ A คือยอดรวม, P คือเงินต้น, r คืออัตราดอกเบี้ย, n คือระยะเวลา"}}, {"@type": "Question", "name": "ทำไมดอกเบี้ยทบต้นถึงสำคัญ?", "acceptedAnswer": {"@type": "Answer", "text": "ดอกเบี้ยทบต้นถือเป็นหลักการสำคัญในการวางแผนการเงินและการลงทุน เพราะช่วยให้เงินเติบโตได้อย่างรวดเร็ว"}}, {"@type": "Question", "name": "ดอกเบี้ยทบต้นมีตัวอย่างอะไรบ้าง?", "acceptedAnswer": {"@type": "Answer", "text": "ตัวอย่างของดอกเบี้ยทบต้น เช่น การฝากเงินในธนาคารที่มีอัตราดอกเบี้ยที่สูงขึ้นในระยะยาว"}}]}</script>
 <link href="assets/style.css" rel="stylesheet"/>
 <link href="/manifest.json" rel="manifest"/>
-
 </head>
 <body>
 <div class="search-modal" id="search-modal">
@@ -37,7 +36,49 @@
 <h1>ดอกเบี้ยทบต้นคืออะไร ยกตัวอย่างให้เห็นภาพชัดๆ</h1>
 <div style="width:100%;max-width:860px;margin:0 auto 1.5rem auto;border-radius:12px;overflow:hidden;background:#f0f0f0;"></div>
 <div class="ad-wrap"></div>
-<div class="content">
+<div class="content"><div id="compound-interest-calculator" style="background-color: #ffffff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 25px; margin: 20px 0; font-family: 'Kanit', sans-serif; border: 1px solid #e5e7eb; max-width: 600px;">
+<h2 style="color: #1e40af; text-align: center; margin-top: 0; margin-bottom: 20px; font-size: 1.5rem;">เครื่องคำนวณดอกเบี้ยทบต้น</h2>
+<div style="margin-bottom: 15px;">
+<label style="display: block; margin-bottom: 5px; font-weight: bold; color: #374151;">เงินต้น (บาท)</label>
+<input id="principal" placeholder="ระบุเงินต้น" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-size: 1rem;" type="number"/>
+</div>
+<div style="margin-bottom: 15px;">
+<label style="display: block; margin-bottom: 5px; font-weight: bold; color: #374151;">อัตราดอกเบี้ย (% ต่อปี)</label>
+<input id="rate" placeholder="ระบุอัตราดอกเบี้ย" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-size: 1rem;" type="number"/>
+</div>
+<div style="margin-bottom: 20px;">
+<label style="display: block; margin-bottom: 5px; font-weight: bold; color: #374151;">ระยะเวลา (ปี)</label>
+<input id="years" placeholder="ระบุจำนวนปี" style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-size: 1rem;" type="number"/>
+</div>
+<button onclick="calculateCompoundInterest()" style="width: 100%; background-color: #1e40af; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">คำนวณผลตอบแทน</button>
+<div id="result-area" style="margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #f3f4f6; display: none; text-align: center;">
+<p style="margin: 5px 0; font-size: 1.1rem; color: #1f2937;">เงินรวมทั้งหมด: <span id="total-amount" style="font-weight: bold; color: #1e40af;">0</span> บาท</p>
+<p style="margin: 5px 0; font-size: 1.1rem; color: #1f2937;">ดอกเบี้ยที่ได้รับ: <span id="interest-earned" style="font-weight: bold; color: #059669;">0</span> บาท</p>
+</div>
+<div style="margin-top: 20px; text-align: center; font-size: 0.95rem; color: #4b5563; border-top: 1px solid #e5e7eb; padding-top: 15px;">
+        การออมเงินอย่างสม่ำเสมอคือจุดเริ่มต้นของความมั่งคั่ง<br/>
+👉 ดูเคล็ดลับการออมและการลงทุนเพิ่มเติม
+</div>
+<script>
+    function calculateCompoundInterest() {
+        const P = parseFloat(document.getElementById('principal').value);
+        const r = parseFloat(document.getElementById('rate').value) / 100;
+        const t = parseFloat(document.getElementById('years').value);
+        
+        if (isNaN(P) || isNaN(r) || isNaN(t)) {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องค่ะ');
+            return;
+        }
+        
+        const A = P * Math.pow((1 + r), t);
+        const interest = A - P;
+        
+        document.getElementById('total-amount').innerText = A.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('interest-earned').innerText = interest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('result-area').style.display = 'block';
+    }
+</script>
+</div>
 <h2>บทนำ จี้ใจ</h2>
 <p>บทนำ จี้ใจ</p>
 <p>ดอกเบี้ยทบต้นคืออะไร? มันคือพลังของการลงทุนที่จะทำให้เงินของคุณเติบโตขึ้นอย่างน่ามหัศจรรย์! เราจะพาคุณไปทำความรู้จักกับดอกเบี้ยทบต้น พร้อมยกตัวอย่างที่เห็นภาพชัดเจน</p>
