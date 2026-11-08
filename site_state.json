@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-11-08T21:31:52.211720",
-  "last_writer_run": "2026-11-08T21:31:52.211720",
+  "last_updated": "2026-11-08T21:42:22.975464",
+  "last_writer_run": "2026-11-08T21:42:22.975464",
   "last_doctor_run": "",
   "last_publisher_run": "2026-11-07T19:04:36.595058",
   "last_video_run": "",
@@ -16,7 +16,9 @@
     "article_technology_20261108_183636_928.html",
     "article_sport_20261108_211622_299.html",
     "article_sport_20261108_212112_952.html",
-    "article_sport_20261108_212715_668.html"
+    "article_sport_20261108_212715_668.html",
+    "article_sport_20261108_213214_034.html",
+    "article_sport_20261108_213827_765.html"
   ],
   "pending_doctor": [
     "article_diy_20261103_211737_657.html",
@@ -31,10 +33,12 @@
     "article_technology_20261108_183636_928.html",
     "article_sport_20261108_211622_299.html",
     "article_sport_20261108_212112_952.html",
-    "article_sport_20261108_212715_668.html"
+    "article_sport_20261108_212715_668.html",
+    "article_sport_20261108_213214_034.html",
+    "article_sport_20261108_213827_765.html"
   ],
   "published_today": 1,
-  "total_articles": 13,
+  "total_articles": 15,
   "errors": [
     {
       "agent": "publisher",
