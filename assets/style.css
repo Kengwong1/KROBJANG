@@ -371,10 +371,10 @@ a {
 
 .share-buttons {
     display: flex;
-    gap: 10px;
-    margin: 1.5rem 0;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
+    margin: 1.5rem 0;
 }
 
 .share-btn {
@@ -395,6 +395,8 @@ a {
 .share-btn.facebook { background-color: #1877F2; }
 .share-btn.twitter, .share-btn.x { background-color: #000000; }
 .share-btn.line { background-color: #06C755; }
+.share-btn.telegram { background-color: #229ed9; }
+.share-btn.copy { background-color: #64748b; }
 
 .share-btn:hover {
     opacity: 0.9;
