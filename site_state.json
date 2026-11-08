@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-11-08T17:31:35.976397",
-  "last_writer_run": "2026-11-08T17:31:35.976397",
+  "last_updated": "2026-11-08T17:37:50.288347",
+  "last_writer_run": "2026-11-08T17:37:50.288347",
   "last_doctor_run": "",
   "last_publisher_run": "2026-11-07T19:04:36.595058",
   "last_video_run": "",
@@ -11,7 +11,8 @@
     "article_health_20261108_170856_256.html",
     "article_food_20261108_170920_358.html",
     "article_finance_20261108_171944_459.html",
-    "article_technology_20261108_172019_504.html"
+    "article_technology_20261108_172019_504.html",
+    "article_travel_20261108_173106_798.html"
   ],
   "pending_doctor": [
     "article_diy_20261103_211737_657.html",
@@ -21,10 +22,11 @@
     "article_health_20261108_170856_256.html",
     "article_food_20261108_170920_358.html",
     "article_finance_20261108_171944_459.html",
-    "article_technology_20261108_172019_504.html"
+    "article_technology_20261108_172019_504.html",
+    "article_travel_20261108_173106_798.html"
   ],
   "published_today": 1,
-  "total_articles": 8,
+  "total_articles": 9,
   "errors": [
     {
       "agent": "publisher",
