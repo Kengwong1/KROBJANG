@@ -27,40 +27,56 @@
   ];
 
   const SITE_NAME = "ครบจัง";
-  const SITE_URL  = "https://krobjang.vercel.app";
+  const SITE_URL  = ""; // ใช้ Relative Path เพื่อให้ทำงานได้ทั้ง Localhost และ Vercel
   const STICKY    = true;
 
   function buildNav() {
     const currentPath = window.location.pathname;
+    
+    // สร้างลิงก์เมนู
     const links = NAV_ITEMS
       .map(n => {
         const isActive = currentPath === n.href || 
                           (currentPath === '/' && n.href === '/index.html') || 
                           (n.pattern && currentPath.includes(n.pattern));
-        return `<a href="${SITE_URL}${n.href}" class="${isActive ? 'active' : ''}">${n.label}</a>`;
+        return `<a href="${n.href}" class="${isActive ? 'active' : ''}">${n.label}</a>`;
       })
       .join('');
-    const nav = `
-    <nav class="site-nav${STICKY ? ' sticky' : ''}">
+      
+    // สร้างเนื้อหาข้างใน Navbar
+    const navContent = `
       <div class="nav-inner">
-        <a class="nav-logo" href="${SITE_URL}/">${SITE_NAME}</a>
+        <a class="nav-logo" href="/">${SITE_NAME}</a>
         <button class="nav-toggle" aria-label="เมนู">☰</button>
         <div class="nav-links">${links}</div>
-      </div>
-    </nav>`;
+      </div>`;
+
+    // ค้นหา Container ที่ชื่อ site-nav
     const navContainer = document.getElementById('site-nav');
+    
     if (navContainer) {
-      navContainer.innerHTML = nav;
+      // ถ้ามี Container อยู่แล้ว ให้เขียนทับข้างใน (ไม่สร้าง <nav> ซ้อน <nav>)
+      navContainer.innerHTML = navContent;
+      // เติมคลาสให้ตัว Container เพื่อให้ CSS ทำงาน
+      navContainer.className = `site-nav${STICKY ? ' sticky' : ''}`;
     } else {
-      document.body.insertAdjacentHTML('afterbegin', `<div id="site-nav">${nav}</div>`);
+      // ถ้าไม่มี Container เลย (เช่นหน้าเว็บเก่า) ให้สร้างใหม่ทั้งบล็อก
+      const newNav = document.createElement('nav');
+      newNav.id = 'site-nav';
+      newNav.className = `site-nav${STICKY ? ' sticky' : ''}`;
+      newNav.innerHTML = navContent;
+      document.body.insertAdjacentElement('afterbegin', newNav);
     }
+
+    // ระบบกดเปิด/ปิดเมนูบนมือถือ
     document.querySelector('.nav-toggle')?.addEventListener('click', () => {
       document.querySelector('.nav-links')?.classList.toggle('open');
     });
   }
 
+  // รันเมื่อโหลดหน้าเสร็จ
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { buildNav(); });
+    document.addEventListener('DOMContentLoaded', buildNav);
   } else {
     buildNav();
   }
